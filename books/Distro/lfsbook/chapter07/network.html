@@ -1,29 +1,29 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>РјР®РЇР РџРќРР™Р® РЇР•Р Р•Р‘РЁРЈ РЇР™РџРҐРћР РќР‘</title><meta name="GENERATOR" content="Modular DocBook HTML Stylesheet Version 1.73" /=""><link rel="HOME" title="Linux From Scratch" href="../index.html" /=""><link rel="UP" title="Setting up system boot scripts" href="../chapter07/chapter07.html" /=""><link rel="PREVIOUS" title="Creating the /etc/hosts file" href="../chapter07/hosts.html" /=""><link rel="NEXT" title="Making the LFS system bootable" href="../chapter08/chapter08.html" /=""></head><body class="sect1" bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#840084" alink="#006000"><div class="NAVHEADER"><table summary="Header navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><th colspan="3" align="Center">Linux From Scratch: Р±Р•РџРЇРҐРЄ 4.0</th></tr><tr><td width="10%" align="Left" valign="Bottom"><a href="hosts.html" accesskey="P">РјР®Р“Р®Р”</a></td><td width="80%" align="Center" valign="Bottom">С†РљР®Р‘Р® 7. Р№РќРњРўРҐР¦РЎРџР®Р–РҐРЄ Р“Р®Р¦РџРЎР“РќР’РњРЁРЈ РЇР™РџРҐРћР РќР‘.</td><td width="10%" align="Right" valign="Bottom"><a href="../chapter08/chapter08.html" accesskey="N">Р±РћР•РџР•Р”</a></td></tr></tbody></table><hr align="Left" width="100%" /=""></div><div class="sect1"><h1 class="sect1"><a name="ch07-network">РјР®РЇР РџРќРР™Р® РЇР•Р Р•Р‘РЁРЈ РЇР™РџРҐРћР РќР‘</a></h1><p>С‰Р Р® Р’Р®РЇР Р­ РњРЎР¤РњР® Р”РљРЄ РњР®РЇР РџРќРР™РҐ РЇР•Р Р•Р‘РќР Р™Р®РџР РЁ.
-</p><p>РµРЇРљРҐ РЎ Р‘Р®РЇ РњР•Р  РЇР•Р Р•Р‘РќР Р™Р®РџР РЁ, Р‘Р®Р› РњР• Р РџР•РђРЎР•Р РЇРЄ РЇРќР“Р”Р®Р‘Р®Р Р­ РҐРљРҐ РњР®РЇР РџР®РҐР‘Р®Р Р­
-РўР®РРљРЁ, РќР РњРќРЇРЄР«РҐР•РЇРЄ Р™ РЇР•Р Р•Р‘РќР Р™Р®РџР Р•. Р± Р©Р РќР› РЇРљРЎР’Р®Р• РЎР”Р®РљРҐР Р• РЇРҐР›РљРҐРњР™
-<tt class="filename">network</tt> РҐР“ Р‘РЇР•РЈ Р”РҐРџР•Р™Р РќРџРҐР 
-(<tt class="filename">/etc/rc.d/rc*.d</tt>)</p><div class="sect2"><h2 class="sect2"><a name="AEN5929">РјР®РЇР РџРќРР™Р® Р¬РљР§Р“Р® РћРќ РЎР›РќРљР’Р®РњРҐР§.</a></h2><p>РµРЇРљРҐ Р‘Р®Р¬ Р™РќР›РћР­Р§Р Р•Рџ РЄР‘РљРЄР•Р РЇРЄ Р’Р®РЇР Р­Р§ РЇР•Р РҐ Р‘Р®Р› РћРќР РџР•РђРЎР•Р РЇРЄ РЎР™Р®Р“Р®Р Р­ Р¬РљР§Р“
-РҐРЇРћРќРљР­Р“РЎР•Р›РЁРЎ РћРќ РЎР›РќРљР’Р®РњРҐР§ Р”РљРЄ Р‘Р®Р¬Р•Р¦Рќ Р™РќР›РћР­Р§Р Р•РџР®. С‰Р Рќ Р”Р•РљР®Р•Р РЇРЄ Р”РќРђaР‘РљР•РњРҐР•Р› РЇРљР•Р”РЎР§Р«РҐРЈ
-Р“РњР®Р’Р•РњРҐР Р‘ РўР®РРљ <b>/etc/sysconfig/network</b>. РіР®РћРЎРЇР РҐР Р• Р Р®Р™РЎР§ Р™РќР›Р›Р®РњР”РЎ:</p><p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>cat &gt;&gt; /etc/sysconfig/network &lt;&lt; "EOF"</b></tt>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>Настройка сетевых скриптов</title><meta name="GENERATOR" content="Modular DocBook HTML Stylesheet Version 1.73" /=""><link rel="HOME" title="Linux From Scratch" href="../index.html" /=""><link rel="UP" title="Setting up system boot scripts" href="../chapter07/chapter07.html" /=""><link rel="PREVIOUS" title="Creating the /etc/hosts file" href="../chapter07/hosts.html" /=""><link rel="NEXT" title="Making the LFS system bootable" href="../chapter08/chapter08.html" /=""></head><body class="sect1" bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#840084" alink="#006000"><div class="NAVHEADER"><table summary="Header navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><th colspan="3" align="Center">Linux From Scratch: Версия 4.0</th></tr><tr><td width="10%" align="Left" valign="Bottom"><a href="hosts.html" accesskey="P">Назад</a></td><td width="80%" align="Center" valign="Bottom">Глава 7. Конфигурация загрузочных скриптов.</td><td width="10%" align="Right" valign="Bottom"><a href="../chapter08/chapter08.html" accesskey="N">Вперед</a></td></tr></tbody></table><hr align="Left" width="100%" /=""></div><div class="sect1"><h1 class="sect1"><a name="ch07-network">Настройка сетевых скриптов</a></h1><p>Эта часть нужна для настройки сетевой карты.
+</p><p>Если у вас нет сетевой карты, вам не требуется создавать или настраивать
+файлы, относящиеся к сетевой карте. В этом случае удалите симлинк
+<tt class="filename">network</tt> из всех директорий 
+(<tt class="filename">/etc/rc.d/rc*.d</tt>)</p><div class="sect2"><h2 class="sect2"><a name="AEN5929">Настройка шлюза по умолчанию.</a></h2><p>Если ваш компьютер является частью сети вам потребуется указать шлюз
+используемыу по умолчанию для вашего компьютера. Это делается добaвлением следующих
+значений в файл <b>/etc/sysconfig/network</b>. Запустите такую комманду:</p><p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>cat &gt;&gt; /etc/sysconfig/network &lt;&lt; "EOF"</b></tt>
 GATEWAY=192.168.1.2
 GATEWAY_IF=eth0
-<tt class="userinput"><b>EOF</b></tt></pre></td></tr></tbody></table></p><p>РіРњР®Р’Р•РњРҐРЄ Р”РљРЄ GATEWAY РҐ GATEWAY_IF РњР®Р”Рќ РҐР“Р›Р•РњРҐР Р­ РњР® РЎРЇР Р®РњРќР‘Р™РҐ Р‘Р®Р¬Р•Р РЇР•Р РҐ.
-GATEWAY Р”РќРљР¤Р•РњРҐ РЇРќР”Р•РџР¤Р®Р Р­ IP Р®Р”РџР•РЇ Р¬РљР§Р“Р® РћРќ РЎР›Р®РљР’Р®РњРҐР§, РҐ GATEWAY_IF РЎР™Р®Р“РЁР‘Р®Р Р­ РњР®
-РҐРњР Р•РџРўР•РРЇ РЇР•Р Р•Р‘РќР Р™Р®РџР РЁ Р’Р•РџР•Р“ Р™РќР РќРџРЁР РҐРЇРћРќР­Р“РќР‘Р®Р Р­ Р”РќРЇР РЎРћ Р™ Р¬РљР§Р“РЎ РћРќ РЎР›РќРљР’Р®РњРҐР§.
+<tt class="userinput"><b>EOF</b></tt></pre></td></tr></tbody></table></p><p>Значения для GATEWAY и GATEWAY_IF надо изменить на установки вашей сети.
+GATEWAY должени содержать IP адрес шлюза по умалчанию, и GATEWAY_IF указывать на
+интерфейс сетевой карты через который испоьзовать доступ к шлюзу по умолчанию.
 </p></div><div class="sect2"><h2 class="sect2"><a name="AEN5937">
-СЏРќР“Р”Р®РњРҐР• Р™РќРњРўРҐР¦РЎРџР®Р–РҐРќРњРњРЁРЈ РўР®РРљРќР‘ Р”РљРЄ РЇР•Р Р•Р‘РќР Р™Р®РџР РЁ
+Создание конфигурационных файлов для сетевой карты
 </a></h2><p>
-Р№Р®Р™РќР РЇР•Р Р•Р‘РќР РҐРњР Р•РџРўР•РРЇ РђРЎР”Р•Р  Р“Р®РћРЎРЇР™Р®Р Р­РЇРЄ РҐ РќРЇР Р®РњР®Р‘РљРҐР‘Р®Р Р­РЇРЄ РЇР•Р Р•Р‘РЁР›РҐ РЇР™РџРҐРћР Р®Р›РҐ
-Р“Р®Р‘РҐРЇРҐР  РќР  РўР®РРљРќР‘ РџР®РЇРћРќРљРќР¤Р•РњРњРЁРЈ Р‘ Р”РҐРџР•Р™Р РќРџРҐРҐ /etc/sysconfig/network-devices.
-С‰Р Р® Р”РҐРџР•Р™Р РќРџРҐРЄ Р”РќРљР¤РњР® РЇРќР”Р•РџР¤Р®Р Р­ РўР®РРљРЁ Р‘ РўРќРџР›Р®Р Р• ifconfig.xyz, Р¦Р”Р• xyz-
-РҐР›РЄ РЇР•Р Р•Р‘РќР¦Рќ РҐРњР Р•РџРўР•РРЇР® (РњР®РћРџРҐР›Р•Рџ eth0 РҐРљРҐ eth0:1).
+Какой сетевой интерфейс будет запускаться и останавливаться сетевыми скриптами
+зависит от файлов расположенных в директории /etc/sysconfig/network-devices.
+Эта директория должна содержать файлы в формате ifconfig.xyz, где xyz-
+имя сетевого интерфейса (например eth0 или eth0:1).
 </p><p>
-РµРЇРљРҐ Р‘РЁ РџР•Р¬РҐРљРҐ РћР•РџР•РҐР›Р•РњРќР‘Р®Р Р­ РҐРљРҐ РћР•РџР•Р›Р•РЇР РҐР Р­ Р”РҐРџР•Р™Р РќРџРҐР§ /etc/sysconfig/network-devices
-, РЎРђР•Р”РҐР Р•РЇР­, Р’Р Рќ Р‘РЁ РћРќРћРџР®Р‘РҐРљРҐ РўР®РРљРЁ Р‘ /etc/sysconfig/rc РњР® РћРџР•Р”Р›Р•Р  РњРќР‘РЁРЈ
-РћРЎР Р•Р Р™ РЇР•Р Р•Р‘РЁР› РЎРЇР РџРќРРЇР Р‘Р®Р› Р‘ РЇР™РџРҐРћР Р®РЈ.
+Если вы решили переименовать или переместить директорию /etc/sysconfig/network-devices
+, убедитесь, что вы поправили файлы в /etc/sysconfig/rc на предмет новых
+путей к сетевым устройствам в скриптах.
 </p><p>
-СЂР•РћР•РџР­, РњРќР‘РЁР• РўР®РРљРЁ РЇРќР“Р”Р®РњРњРЁР• Р‘ Р”РҐРџР•Р™Р РќРџРҐРҐ /etc/sysconfig/network-devices
-РЇРќР”Р•РџР¤Р®Р  РЇРљР•Р”РЎР§Р«Р•Р•. С‰Р РќР Р™РќР›Р®РњР”РќР РЇРќР“Р”Р®Р”РҐР› РћРџРҐР›Р•Рџ РўР®РРљР® ifconfig.eth0
+Теперь, новые файлы созданные в директории /etc/sysconfig/network-devices
+содержат следующее. Этой командой создадим пример файла ifconfig.eth0
 Now, new files are created in that directory containing the following.
 :
 </p><p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>cat &gt; /etc/sysconfig/network-devices/ifconfig.eth0 &lt;&lt; "EOF"</b></tt>
@@ -32,8 +32,8 @@ IP=192.168.1.1
 NETMASK=255.255.255.0
 BROADCAST=192.168.1.255
 <tt class="userinput"><b>EOF</b></tt></pre></td></tr></tbody></table></p><p>
-РµРЇР Р•РЇР Р‘Р•РњРњРќ, Р“РњР®Р’Р•РњРҐРЄ Р©Р РҐРЈ РћР•РџР•Р›Р•РњРњРЁРЈ Р”РќРљР¤РњРЁ РђРЁР Р­ РҐР“Р›Р•РњР•РњРЁ Р‘ Р™Р®Р¤Р”РќР› РўР®РРљР• РњР® 
-РћРџР®Р‘РҐРљР­РњРЁР• РњР®РЇР РџРќРР™РҐ. РµР‘РЇРљРҐ РћР•РџР•Р›Р•РњРњР®РЄ ONBOOT РЎРЇР Р®РњРќР‘РљР•РњР® yes, Р Рќ РЇР™РџРҐРћР  Р‘РЁРћРќРљРњРҐР РЇРЄ
- РћРџРҐ Р“Р®Р¦РџРЎР“Р™Р• РЇРҐРЇР Р•Р›РЁ. РµРЇРљРҐ РЎРЇР Р®РњРќР‘РљР•РњРќ Р’Р Рќ РњРҐР Р­ РќР РљРҐР’РњРќР• РќР  yes, Р Рќ РЇР™РџРҐРћР  РњР•
- Р‘РЁРћРќРљРњРҐР РЇРЄ.
-</p></div></div><div class="NAVFOOTER"><hr align="Left" width="100%" /=""><table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="33%" align="Left" valign="Top"><a href="hosts.html" accesskey="P">РјР®Р“Р®Р”</a></td><td width="34%" align="Center" valign="Top"><a href="../index.html" accesskey="H">РґРќР›РќР</a></td><td width="33%" align="Right" valign="Top"><a href="../chapter08/chapter08.html" accesskey="N">Р±РћР•РџР•Р”</a></td></tr><tr><td width="33%" align="Left" valign="Top">СЏРќР“Р”Р®РњРҐР• РўР®РРљР® /etc/hosts</td><td width="34%" align="Center" valign="Top"><a href="chapter07.html" accesskey="U">РјР®Р‘Р•РџРЈ</a></td><td width="33%" align="Right" valign="Top">РґР•РљР®Р•Р› РЇРҐРЇР Р•Р›РЎ LFS Р“Р®Р¦РџРЎР“РќР’РњРќР</td></tr></tbody></table></div></body></html>
+Естественно, значения этих переменных должны быть изменены в каждом файле на 
+правильные настройки. Евсли переменная ONBOOT установлена yes, то скрипт выполнится
+ при загрузке системы. Если установлено что нить отличное от yes, то скрипт не
+ выполнится.
+</p></div></div><div class="NAVFOOTER"><hr align="Left" width="100%" /=""><table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="33%" align="Left" valign="Top"><a href="hosts.html" accesskey="P">Назад</a></td><td width="34%" align="Center" valign="Top"><a href="../index.html" accesskey="H">Домой</a></td><td width="33%" align="Right" valign="Top"><a href="../chapter08/chapter08.html" accesskey="N">Вперед</a></td></tr><tr><td width="33%" align="Left" valign="Top">Создание файла /etc/hosts</td><td width="34%" align="Center" valign="Top"><a href="chapter07.html" accesskey="U">Наверх</a></td><td width="33%" align="Right" valign="Top">Делаем систему LFS загрузочной</td></tr></tbody></table></div></body></html>

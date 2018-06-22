@@ -39,24 +39,24 @@ Send bugs and suggestions to <texi2html@mathematik.uni-kl.de>
 <!--docid::SEC49::-->
 <P>
 
-п∙я│п╩п╦ п╡я▀ п©п╬п╩я▄п╥я┐п╣я┌п╣я│я▄ Emacs п╦ п©п╦я┬п╣я┌п╣ п©я─п╬пЁя─п╟п╪п╪я▀ п╫п╟ MIXAL п╡ я█я┌п╬п╪ я─п╣п╢п╟п╨я┌п╬я─п╣,
-п╡я▀ п╪п╬п╤п╣я┌п╣ п╫п╟п╧я┌п╦ п╢п╬п╡п╬п╩я▄п╫п╬ п©п╬п╩п╣п╥п╫п╬п╧ п©я─п╬пЁя─п╟п╪п╪я┐ п╫п╟ elisp
-<TT>`mixvm.el'</TT><A NAME="DOCF16" HREF="mdk_fot.html#FOOT16">(16)</A>. <TT>`mixvm.el'</TT> п©п╬п╥п╡п╬п╩я▐п╣я┌ п╥п╟п©я┐я│п╨п╟я┌я▄
-п╡п╦я─я┌я┐п╟п╩я▄п╫я┐я▌ п╪п╟я┬п╦п╫я┐ MIX <CODE>mixvm</CODE> (see section <A HREF="mdk_8.html#SEC52">6. <CODE>mixvm</CODE>, я█п╪я┐п╩я▐я┌п╬я─ п╨п╬п╪п©я▄я▌я┌п╣я─п╟ MIX</A>) п╡ п╠я┐я└п╣я─п╣
-<FONT SIZE="-1">GUD</FONT> Emacs п©я─п╦ п©я─п╬я│п╪п╬я┌я─п╣ п╦я│я┘п╬п╢п╫п╬пЁп╬ я└п╟п╧п╩п╟ п╫п╟ MIXAL п╡ п╢я─я┐пЁп╬п╪
-п╠я┐я└п╣я─п╣.
+Если вы пользуетесь Emacs и пишете программы на MIXAL в этом редакторе,
+вы можете найти довольно полезной программу на elisp
+<TT>`mixvm.el'</TT><A NAME="DOCF16" HREF="mdk_fot.html#FOOT16">(16)</A>. <TT>`mixvm.el'</TT> позволяет запускать
+виртуальную машину MIX <CODE>mixvm</CODE> (see section <A HREF="mdk_8.html#SEC52">6. <CODE>mixvm</CODE>, эмулятор компьютера MIX</A>) в буфере
+<FONT SIZE="-1">GUD</FONT> Emacs при просмотре исходного файла на MIXAL в другом
+буфере.
 </P><P>
 
-п÷п╬я│п╩п╣ я┐я│я┌п╟п╫п╬п╡п╨п╦ <TT>`mixvm.el'</TT> (see section <A HREF="mdk_3.html#SEC7">1.4 п÷п╬п╢п╢п╣я─п╤п╨п╟ Emacs</A>) п╡я▀ п╪п╬п╤п╣я┌п╣
-п╫п╟я┤п╟я┌я▄ я│п╣я│я│п╦я▌ MDK/<FONT SIZE="-1">GUD</FONT> п╡ Emacs п╨п╬п╪п╟п╫п╢п╬п╧:
+После установки <TT>`mixvm.el'</TT> (see section <A HREF="mdk_3.html#SEC7">1.4 Поддержка Emacs</A>) вы можете
+начать сессию MDK/<FONT SIZE="-1">GUD</FONT> в Emacs командой:
 </P><P>
 
 <TABLE><tr><td>&nbsp;</td><td class=example><pre>M-x mixvm
 </pre></td></tr></table></P><P>
 
-п╦ п╡я▀ п©п╬п╩я┐я┤п╦я┌п╣ п©я─п╦пЁп╩п╟я┬п╣п╫п╦п╣ <CODE>mixvm</CODE> п╡п╬ п╡п╫п╬п╡я▄ я│п╬п╥п╢п╟п╫п╫п╬п╪ п╠я┐я└п╣я─п╣
-<FONT SIZE="-1">GUD</FONT>. <FONT SIZE="-1">GUD</FONT> п╬я┌я─п╟п╤п╟п╣я┌ я┌п╣п╨я┐я┴я┐я▌ я│я┌я─п╬п╨я┐ я│п╬п╬я┌п╡п╣я┌я│я┌п╡я┐я▌я┴п╣пЁп╬
-п╦я│я┘п╬п╢п╫п╬пЁп╬ я└п╟п╧п╩п╟.
+и вы получите приглашение <CODE>mixvm</CODE> во вновь созданном буфере
+<FONT SIZE="-1">GUD</FONT>. <FONT SIZE="-1">GUD</FONT> отражает текущую строку соответствующего
+исходного файла.
 </P><P>
 
 <A NAME="mixasm"></A>

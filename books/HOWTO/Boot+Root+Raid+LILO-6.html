@@ -2,7 +2,7 @@
 <HTML>
 <HEAD>
  <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
- <TITLE>п°п╦п╫п╦ HOWTO:Boot + Root + Raid + Lilo : п÷я─п╬пЁя─п╟п╪п╪п╫я▀п╧ Raid: п÷я─п╦п╩п╬п╤п╣п╫п╦п╣ 2. - п÷я─п╦п╪п╣я─ я─п╣п╟п╩п╦п╥п╟я├п╦п╦ RAID5 п╫п╟ SCSI</TITLE>
+ <TITLE>Мини HOWTO:Boot + Root + Raid + Lilo : Программный Raid: Приложение 2. - Пример реализации RAID5 на SCSI</TITLE>
  <LINK HREF="Boot+Root+Raid+LILO-7.html" REL=next>
  <LINK HREF="Boot+Root+Raid+LILO-5.html" REL=previous>
  <LINK HREF="Boot+Root+Raid+LILO.html#toc6" REL=contents>
@@ -12,9 +12,9 @@
 <A HREF="Boot+Root+Raid+LILO-5.html">Previous</A>
 <A HREF="Boot+Root+Raid+LILO.html#toc6">Contents</A>
 <HR>
-<H2><A NAME="s6">6. п÷я─п╦п╩п╬п╤п╣п╫п╦п╣ 2. - п÷я─п╦п╪п╣я─ я─п╣п╟п╩п╦п╥п╟я├п╦п╦ RAID5 п╫п╟ SCSI</A></H2>
+<H2><A NAME="s6">6. Приложение 2. - Пример реализации RAID5 на SCSI</A></H2>
 
-<P>4-п╢п╦я│п╨п╬п╡я▀п╧ SCSI RAID5
+<P>4-дисковый SCSI RAID5
 <PRE>
  df
 Filesystem           1k-blocks      Used Available Use% Mounted on
@@ -85,7 +85,7 @@ raiddev /dev/md0
         persistent-superblock 1
         chunk-size      32
 
-# п║п╡п╬п╠п╬п╢п╫я▀п╣ п╢п╦я│п╨п╦ п╢п╩я▐ я─п╣п╨п╬п╫я│я┌я─я┐п╨я├п╦п╦ "п╫п╟-я┘п╬п╢я┐"
+# Свободные диски для реконструкции "на-ходу"
         nr-spare-disks  0
         device          /dev/sda3
         raid-disk       0
@@ -96,7 +96,7 @@ raiddev /dev/md0
         device          /dev/sdd3
         raid-disk       3
 
-# п╥п╟пЁя─я┐п╥п╬я┤п╫я▀п╧ я─п╟п╥п╢п╣п╩
+# загрузочный раздел
 #
 raiddev /dev/md1
         raid-level      1
@@ -104,7 +104,7 @@ raiddev /dev/md1
         persistent-superblock 1
         chunk-size      32
 
-# п║п╡п╬п╠п╬п╢п╫я▀п╣ п╢п╦я│п╨п╦ п╢п╩я▐ я─п╣п╨п╬п╫я│я┌я─я┐п╨я├п╦п╦ "п╫п╟-я┘п╬п╢я┐"
+# Свободные диски для реконструкции "на-ходу"
         nr-spare-disks  0
         device          /dev/sda1
         raid-disk       0
@@ -114,17 +114,17 @@ raiddev /dev/md1
 # --------------------------
 
 # cat lilo.conf.sda
-# п⌠п⌡п·п▒п░п⌡п╛п²п╚п≥ п═п░п≈п■п∙п⌡
-# я┐я│я┌я─п╬п╧я│я┌п╡п╬, я│п╬п╢п╣я─п╤п╟я┴п╣п╣ п╨п╟я┌п╟п╩п╬пЁ /boot
+# ГЛОБАЛЬНЫЙ РАЗДЕЛ
+# устройство, содержащее каталог /boot
 disk=/dev/md0
-# пЁп╣п╬п╪п╣я┌я─п╦я▐
+# геометрия
   bios=0x80
   sectors=32
   heads=64
   cylinders=4095
-# п©п╬п╢я│я┌п╟п╡п╫п╟я▐ я│я┌я─п╬п╨п╟
+# подставная строка
   partition=/dev/md1
-# п╫п╟я┤п╟п╩п╬ "п╢п╦я│п╨п╟" п╫п╟ я┐я│я┌я─п╬п╧я│я┌п╡п╣
+# начало "диска" на устройстве
   start=32
 
 boot=/dev/sda
@@ -138,17 +138,17 @@ read-only
 
 # ------------------------
 # cat lilo.conf.sdb
-# п⌠п⌡п·п▒п░п⌡п╛п²п╚п≥ п═п░п≈п■п∙п⌡
-# я┐я│я┌я─п╬п╧я│я┌п╡п╬, я│п╬п╢п╣я─п╤п╟я┴п╣п╣ п╨п╟я┌п╟п╩п╬пЁ /boot
+# ГЛОБАЛЬНЫЙ РАЗДЕЛ
+# устройство, содержащее каталог /boot
 disk=/dev/md0
-# пЁп╣п╬п╪п╣я┌я─п╦я▐
+# геометрия
   bios=0x80
   sectors=32
   heads=64
   cylinders=4095
-# п©п╬п╢я│я┌п╟п╡п╫п╟я▐ я│я┌я─п╬п╨п╟
+# подставная строка
   partition=/dev/md1
-# п╫п╟я┤п╟п╩п╬ "п╢п╦я│п╨п╟" п╫п╟ я┐я│я┌я─п╬п╧я│я┌п╡п╣
+# начало "диска" на устройстве
   start=32
 
 boot=/dev/sdb

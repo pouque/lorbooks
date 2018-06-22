@@ -1,69 +1,69 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>Installing GCC-3.2</title><meta name="GENERATOR" content="Microsoft FrontPage 4.0" /=""><link rel="HOME" title="Linux From Scratch" href="http://www.linuxfromscratch.org/view/4.0/index.html" /=""><link rel="UP" title="Installing basic system software" href="http://www.linuxfromscratch.org/view/4.0/chapter06/chapter06.html" /=""><link rel="PREVIOUS" title="Installing Glibc-2.2.5" href="http://www.linuxfromscratch.org/view/4.0/chapter06/glibc.html" /=""><link rel="NEXT" title="Installing Zlib-1.1.4" href="http://www.linuxfromscratch.org/view/4.0/chapter06/zlib.html" /=""></head><body class="sect1" bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#840084" alink="#006000"><div class="NAVHEADER"><table summary="Header navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><th colspan="3" align="Center">Linux From Scratch: Р±Р•РџРЇРҐРЄ 4.0</th></tr><tr><td width="10%" align="Left" valign="Bottom"><a href="glibc.html" accesskey="P">РјР®Р“Р®Р”</a></td><td width="80%" align="Center" valign="Bottom">С†РљР®Р‘Р® 6. СЃРЇР Р®РњРќР‘Р™Р® РќРЇРњРќР‘РњРЁРЈ Р™РќР›РћРќРњР•РњР РќР‘
-        РЇРҐРЇР Р•Р›РЁ</td><td width="10%" align="Right" valign="Bottom"><a href="zlib.html" accesskey="N">Р±РћР•РџР•Р”</a></td></tr></tbody></table><hr align="Left" width="100%" /=""></div><div class="sect1"><h1 class="sect1"><a name="ch06-gcc">СЃРЇР Р®РњРќР‘Р™Р® GCC-3.2</a></h1><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen">РѕРџРҐРђРљРҐР“РҐР Р•РљР­РњРќР• Р‘РџР•Р›РЄ Р™РќР›РћРҐРљРЄР–РҐРҐ:           13.26 SBU<br>РјР•РќРђРЈРќР”РҐР›РќР• Р”РҐРЇР™РќР‘РќР• РћРџРќРЇР РџР®РњРЇР Р‘Рќ:  221 MB</pre></td></tr></tbody></table><div class="sect2"><h2 class="sect2"><a name="AEN2660">С…РњРЇР Р®РљРљРЄР–РҐРЄв•ђ GCC</a></h2><p>РѕР•РџР•Р” РЎРЇР Р®РњРќР‘Р™РќР РћР®Р™Р•Р Р® РћРџРҐР›Р•РњРҐР Р• РћР®Р Р’.
-    СЃР”РќРЇР РќР‘Р•РџР­Р Р•РЇР­, Р’Р Рќ РћР®Р Р’ РҐ РћР®Р™Р•Р 
-    РџР®РЇРћР®Р™РќР‘Р®РњРЁ РћР•РџР•Р” РҐРњРЇР Р®РљРљРЄР–РҐР•Р.</p><p>С‰Р РќР  РћР®Р™Р•Р  РҐР“Р‘Р•РЇР Р•Рњ РЇР‘РќРҐР› РњР•РЇР Р®РђРҐРљР­РњРЁР›
-    РћРќР‘Р•Р”Р•РњРҐР•Р› РћРџРҐ Р™РќР›РћРҐРљРЄР–РҐРҐ РЇ РҐР“Р›Р•РњР•РњРњРЁР›РҐ
-    РќРћР–РҐРЄР›РҐ РќРћР РҐР›РҐР“Р®Р–РҐРҐ (Р‘Р™РљР§Р’Р®РЄ РќРћР–РҐРҐ -march РҐ -mcpu).
-    GCC РџР•Р™РќР›Р•РњР”РЎР•Р РЇРЄ Р™РќР›РћРҐРљРҐРџРќР‘Р®Р Р­ РЇ
-    РњР®РЇР РџРќРР™Р®Р›РҐ РћРќ РЎР›РќРљР’Р®РњРҐР§. СЏРљР•Р”РќР‘Р®Р Р•РљР­РњРќ,
-    Р•РЇРљРҐ Р‘РЁ Р“Р®Р”Р®РљРҐ РћР•РџР•Р›Р•РњРњРЁР• Р Р®Р™РҐР• Р™Р®Р™ CFLAGS
-    РҐРљРҐ CXXFLAGS, РҐР“Р›Р•РњРЄР§Р«РҐР• РЎРџРќР‘Р•РњР­ РќРћР РҐР›РҐР“Р®Р–РҐРҐ
-    РћРќ РЎР›РќРљР’Р®РњРҐР§, РџР•Р™РќР›Р•РњР”РЎР•Р РЇРЄ РЎРђРџР®Р Р­ РҐРЈ РћРџРҐ
-    РЇРђРќРџР™Р• РћР®Р™Р•Р Р® GCC. С…Р“Р›Р•РњРЄРЄ РќРћР РҐР›РҐР“Р®Р–РҐРҐ Р”РљРЄ
-    GCC, Р‘РЁ Р”Р•РРЇР Р‘РЎР•Р Р• РњР® РЇР‘РќР РЇР РџР®РЈ РҐ РџРҐРЇР™.</p><p>РґРљРЄ РҐРњРЇР Р®РљРљРЄР–РҐРҐ GCC Р‘РЁРћРќРљРњРҐР Р• РћРџРҐР‘Р•Р”Р•РњРњРЁР•
-    РњРҐР¤Р• Р™РќР›Р®РњР”РЁ, РЇРќРђРҐРџР®Р§Р«РҐР• Р™РќР›РћРҐРљРЄР РќРџРЁ
-    РЄР“РЁР™Р® СЏРҐ РҐ СЏ++. СЂР®Р™Р¤Р• Р›РќР¤РњРќ РЎРЇР Р®РњРќР‘РҐР Р­
-    Р™РќР›РћРҐРљРЄР РќРџРЁ Р”РџРЎР¦РҐРЈ РЄР“РЁР™РќР‘
-    РћРџРќР¦РџР®Р›Р›РҐРџРќР‘Р®РњРҐРЄ РҐР“ РћР®Р™Р•Р Р® GCC. Р± РЇРљРЎР’Р®Р•,
-    Р•РЇРљРҐ Р‘РЁ РЈРќР РҐР Р• РҐРњРЇР Р®РљРљРҐРџРќР‘Р®Р Р­ Р‘РЇР•
-    Р™РќР›РћРҐРљРЄР РќРџРЁ РҐР“ РћР®Р™Р•Р Р® GCC, РЎРђР•РџРҐР Р• РќРћР–РҐР§ --enable-languages=c,c++
-    РҐР“ Р™РќР›Р®РњР”РЁ configure. РґРљРЄ РћРќРљРЎР’Р•РњРҐРЄ
-    РҐРњРўРќРџР›Р®Р–РҐРҐ Рќ Р”РќРЇР РЎРћРњРЁРЈ Р™РќР›РћРҐРљРЄР РќРџР®РЈ, РЇР›
-    Р”РќР™РЎР›Р•РњР Р®Р–РҐР§ РћР®Р™Р•Р Р® GCC.</p><p>РѕРџРҐР›Р•Р’Р®РњРҐР•: РҐРњРЇР Р®РљРљРЄР–РҐРЄ Р”РџРЎР¦РҐРЈ
-    Р™РќР›РћРҐРљРЄР РќРџРќР‘ РњР• Р Р•РЇР РҐРџРќР‘Р®РљР®РЇР­
-    РџР®Р“РџР®РђРќР Р’РҐР™Р®Р›РҐ РћРџРќР•Р™Р Р® LFS.</p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>patch -Np1 -i ../gcc-3.2.patch &amp;&amp;<br>mkdir ../gcc-build &amp;&amp;<br>cd ../gcc-build &amp;&amp;<br>../gcc-3.2/configure --prefix=/usr --enable-shared \<br>в•ђв•ђв•ђв•ђ--enable-languages=c,c++ --enable-threads=posix \<br>в•ђв•ђв•ђв•ђ--with-slibdir=/lib --enable-__cxa_atexit \<br>в•ђв•ђв•ђв•ђ--enable-clocale=gnu &amp;&amp;<br>make bootstrap &amp;&amp;<br>make install &amp;&amp;<br>ln -s ../usr/bin/cpp /lib &amp;&amp;<br>ln -s ../bin/cpp /usr/lib &amp;&amp;<br>ln -s gcc /usr/bin/cc</b></tt></pre></td></tr></tbody></table></div><div class="sect2"><h2 class="sect2"><a name="AEN2669">РѕРќРЄРЇРњР•РњРҐР• Р™РќР›Р®РњР”</a></h2><p><tt class="userinput"><b>--enable-threads=posix:</b></tt>  С‰Р Р® РќРћР–РҐРЄ Р‘Р™РљР§Р’Р®Р•Р  РќРђРџР®РђРќР Р™РЎ РҐРЇР™РљР§Р’Р•РњРҐР Р‘
-    Р›РњРќР¦РќРћРќР РќР’РњРќР› Р™РќР”Р• РњР® СЏ++.</p><p><tt class="userinput"><b>--enable-__cxa_atexit:</b></tt>  С‰Р Р® РќРћР–РҐРЄ РћРќР“Р‘РќРљРҐР  РҐРЇРћРќРљР­Р“РќР‘Р®Р Р­ shared-РђРҐРђРљРҐРќР Р•Р™РҐ
-    C++ РҐ РћРџРќР¦РџР®Р›Р›РЁ, РњР®РћРҐРЇР®РњРњРЁР• РњР® C++, РЇ Р”РџРЎР¦РҐР›РҐ
-    Р”РҐРЇР РџРҐРђРЎР РҐР‘Р®Р›РҐ Linux.</p><p><tt class="userinput"><b>--enable-clocale=gnu:</b></tt>  СЏРЎР«Р•РЇР Р‘РЎР•Р  РќРћР®РЇРњРќРЇР Р­, Р’Р Рќ РЎ РњР•Р™РќР РќРџРЁРЈ
-    РћРќРљР­Р“РќР‘Р®Р Р•РљР•Р РђРЎР”РЎР  Р™РќР›РћРҐРљРҐРџРќР‘Р®Р Р­РЇРЄ ABI-РњР•РЇРќР‘Р›Р•РЇР РҐР›РЁР•
-    РђРҐРђРљРҐРќР Р•Р™РҐ СЏ++, Р•РЇРљРҐ glibc localedata РњР•
-    РЎРЇР Р®РњРќР‘РљР•Рњ РћРќРљРњРќРЇР Р­Р§. С…РЇРћРќРљР­Р“РќР‘Р®РњРҐР•
-    РќРћР–РҐРҐ --enable-clocale=gnu Р¦Р®РџР®РњР РҐРџРЎР•Р  Р™РќРџРџР•Р™Р РњРЎР§
-    Р™РќР›РћРҐРљРЄР–РҐР§ Р‘Рќ Р‘РЇР•РЈ РЇРљРЎР’Р®РЄРЈ. РµРЇРљРҐ Р‘РЁ РњР•
-    РЈРќР РҐР Р• РҐРЇРћРќРљР­Р“РќР‘Р®Р Р­ Р©Р РЎ РќРћР–РҐР§,
-    РЎР”РќРЇР РќР‘Р•РџР­Р Р•РЇР­, Р’Р Рќ РћРќ Р™РџР®РРњР•Р Р›Р•РџР•,
-    РЎРЇР Р®РњР®Р‘РљРҐР‘Р®Р•Р РЇРЄ РљРќР™Р®РљР­ <em>de_DE</em>. Р№РќР¦Р”Р® GCC РњР®РЈРќР”РҐР  Р©Р РЎ Р™РќРњР™РџР•Р РњРЎР§ РљРќР™Р®РљР­,
-    Р‘РЁРћРќРљРњРЄР•Р РЇРЄ Р‘Р•РџРњРЁР РџР•Р¤РҐР› РљРќР™Р®РљРҐ (<em>gnu</em>).</p></div><div class="sect2">
-<div class="sect2"><h2 class="sect2"><a name="AEN6805">СЏРќР”Р•РџР¤РҐР›РќР• GCC</a></h2><p>РѕРќРЇРљР•Р”РњРЄРЄ РћРџРќР‘Р•РџР™Р®: Р‘Р•РџРЇРҐРЄ 3.1.</p><div class="sect3"><h3 class="sect3"><a name="AEN6808">РѕРџРќР¦РџР®Р›Р›РЁ</a></h3><p>c++, c++filt, cc (link to gcc), cc1, cc1plus, collect2, cpp, cpp0, g++,
-gcc, gccbug, gcov РҐ tradcpp0</p></div><div class="sect3"><h3 class="sect3"><a name="AEN6811">РЅРћРҐРЇР®РњРҐРЄ</a></h3><div class="sect4"><h4 class="sect4"><a name="AEN6813">cc, cc1, cc1plus, gcc</a></h4><p>Р№РќР›РћРҐРљРЄР РќРџ C. Р№РќР›РћРҐРљРЄР РќРџ РћР•РџР•Р‘РќР”РҐР  Р™РќР” РҐР“ Р Р•Р™РЇР РќР‘РќР¦Рќ РўРќРџР›Р®Р Р® Р‘ РўРќРџР›Р®Р ,
-РћРќРњРЄР РњРЁР Р™РќР›РћР­Р§Р Р•РџРЎ. РѕРќРЇРљР• Р РќР¦Рќ, Р™Р®Р™ РҐРЇРЈРќР”РњРЁР Р™РќР” РЇР™РќР›РћРҐРљРҐРџРќР‘Р®Рњ Р‘ РќРђР—Р•Р™Р РњРЁР
-РўР®РРљ, РљРҐРњР™Р•Рџ РЇРќР“Р”Р®РЇР  РҐРЇРћРќРљРњРЄР•Р›РЁР РўР®РРљ РҐР“ РќР”РњРќР¦Рќ РҐРљРҐ РњР•РЇР™РќРљР­Р™РҐРЈ РќРђР—Р•Р™Р РњРЁРЈ.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6816">c++, cc1plus, g++</a></h4><p>Р№РќР›РћРҐРљРЄР РќРџ C++, Р©Р™Р‘РҐР‘Р®РљР•РњР  cc,  gcc etc.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6819">c++filt</a></h4><p>СЉР“РЁР™ C++ РћРќР“Р‘РќРљРЄР•Р  РќРЇРЎР«Р•РЇР Р‘РљРЄР Р­ РћР•РџР•Р“Р®Р¦РџРЎР“Р™РЎ РўРЎРњРњР™Р–РҐР, Р”Р•РљР®РЄ Р‘РќР“Р›РќР¤РњРЁР›
-РњР®РћРҐРЇР®РњРҐР• Р›РњРќР¦РҐРЈ РўРЎРњР™Р–РҐР РЇ РќР”РњРҐР› РҐР›Р•РњР•Р› (РЇ РџР®Р“РњРЁР› РњР®РђРќРџРќР› РћР®РџР®Р›Р•Р РџРќР›). Р±РЇР•
-РҐР›Р•РњР® РўРЎРњР–РҐР C++ Р“Р®Р™РќР”РҐРџРќР‘Р®РњРЁ Р‘ РњРҐР“Р™РќРЎРџРќР‘РњР•Р‘РЁР• Р›Р•Р Р™РҐ Р®РЇРЇР•Р›РђРљР•РџР® (Р©Р РќР  РћРџРќР–Р•РЇРЇ
-РҐР“Р‘Р•РЇР Р•Рњ Р™Р®Р™ mangling). c++filt РЇРќР‘Р•РџР¬Р®Р•Р  РќРђРџР®Р РњРќР• Р”Р•РРЇР Р‘РҐР•: РњРҐР“Р™РќРЎРџРќР‘РњР•Р‘РЁР•
-РҐР›Р•РњР® РћР•РџР•Р‘РќР”РЄР РЇРЄ (demangling) Р‘ РҐР›Р•РњР®, РћРќРњРЄР РњРЁР• РћРќРљР­Р“РќР‘Р®Р Р•РљР§, Р Р®Р™ Р’Р Рќ РљРҐРњР™Р•Рџ
-РҐР“РђР•Р¦Р®Р•Р  Р™РќРњРўРљРҐР™Р Р® Р›Р•Р¤Р”РЎ РћР•РџР•Р“Р®Р¦РџРЎР¤Р•РњРњРЁР›РҐ РўРЎРњР™Р–РҐРЄР›РҐ.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6822">collect2</a></h4><p>collect2 РћРќР›РќР¦Р®Р•Р  Р‘ Р™РќР›РћРҐРљРЄР–РҐРҐ Р™РќРњРЇР РџРЎР™Р РќРџРќР‘.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6825">cpp, cpp0</a></h4><p>cpp РќРЇРЎР«Р•РЇР Р‘РљРЄР•Р  РћРџР•РћРџРќР–Р•РЇРЇРҐРњР¦ РҐРЇРЈРќР”РњРЁРЈ РўР®РРљРќР‘, РњР®РћРџРҐР›Р•Рџ Р‘Р™РљР§Р’Р®Р•Р  Р‘ РњРҐРЈ
-РЇРќР”Р•РџР¤РҐР›РќР• Р“Р®Р¦РќРљРќР‘РќР’РњРЁРЈ РўР®РРљРќР‘. РѕРџРќРЇР Рќ Р”РќРђР®Р‘Р­Р Р• Р‘ Р‘Р®Р¬ РҐРЇРЈРќР”РњРЁР РўР®РРљ РЇР РџРќР™РЎ
-Р‘РџРќР”Р• #include &lt;filename&gt;. РѕРџР•РћРџРќР–Р•РЇРЇРќРџ Р‘РЇР Р®Р‘РҐР  РЇРќР”Р•РџР¤РҐР›РќР• Р“Р®Р¦РќРљРќР‘РќР’РњРќР¦Рќ
-РўР®РРљР®.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6828">gccbug</a></h4><p>gccbug - РЇР™РџРҐРћР , РќРђРљР•Р¦Р’Р®Р§Р«РҐР РЇРќР“Р”Р®РњРҐР• РЇРќРќРђР«Р•РњРҐР РќРђ РќР¬РҐРђР™Р®РЈ.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6831">gcov</a></h4><p>gcov Р®РњР®РљРҐР“РҐРџРЎР•Р  РћРџРќР¦РџР®Р›Р›РЁ, Р’Р РќРђРЁ РћРќР›РќР’Р­ Р‘ РЇРќР“Р”Р®РњРҐРҐ РђРќРљР•Р• Р©РўРўР•Р™Р РҐР‘РњРќР¦Рќ
-РҐ РђРЁРЇР РџРќР¦Рќ Р™РќР”Р® РћРЎР Р•Р› Р•Р¦Рќ РќРћР РҐР›РҐР“Р®Р–РҐРҐ.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6834">tradcpp0</a></h4><p>РјР® Р”Р®РњРњРЁР Р›РќР›Р•РњР  РќРћРҐРЇР®РњРҐРЄ РњР•Р .</p></div></div><div class="sect3"><h3 class="sect3"><a name="AEN6837">Р°РҐРђРљРҐРќР Р•Р™РҐ</a></h3><p>libgcc.a, libgcc_eh.a, libgcc_s.so, libiberty.a, libstdc++.[a,so],  libsupc++.a</p></div><div class="sect3"><h3 class="sect3"><a name="AEN6840">РЅРћРҐРЇР®РњРҐРЄ</a></h3><div class="sect4"><h4 class="sect4"><a name="AEN6842">libgcc, libgcc_eh, libgcc_s</a></h4><p>С‚Р®РРљРЁ РћРќР”Р”Р•РџР¤Р™РҐ gcc Р‘РџР•Р›Р•РњРҐ РҐРЇРћРќРљРњР•РњРҐРЄ.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6845">libiberty</a></h4><p>libiberty - Р™РќРљРљР•Р™Р–РҐРЄ РћРќР”РћРџРќР¦РџР®Р›Р›, РҐРЇРћРќРљР­Р“РЎР•Р›РЁРЈ РџР®Р“РљРҐР’РњРЁР›РҐ РћРџРќР¦РџР®Р›Р›Р®Р›РҐ
-GNU, Р‘Р™РљР§Р’Р®РЄ getopt, obstack, strerror, strtol РҐ strtoul.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6848">libstdc++</a></h4><p>libstdc++ - РђРҐРђРљРҐРќР Р•Р™Р® C++. РЅРњР® РҐРЇРћРќРљР­Р“РЎР•Р РЇРЄ РћРџРќР¦РџР®Р›Р›Р®Р›РҐ РњР® C++ РҐ РЇРќР”Р•РџР¤РҐР 
-Р’Р®РЇР Рќ РҐРЇРћРќРљР­Р“РЎР•Р›РЁР• РўРЎРњР™Р–РҐРҐ. СЂР®Р™РҐР› РќРђРџР®Р“РќР›, РћРџРќР¦РџР®Р›Р›РҐРЇР РЎ РњР• РњРЎР¤РњРќ РћРҐРЇР®Р Р­ РЇР Р®РњР”Р®РџР РњРЁР•
-РўРЎРњР–РҐРҐ (РњР®РћРџРҐР›Р•Рџ, Р‘РЁР‘РќР” РЇР РџРќР™РҐ Р Р•Р™РЇР Р® РњР® Р©Р™РџР®Рњ) РЇ РњРЎРљРЄ РћРџРҐ Р™Р®Р¤Р”РќР› РЇРќР“Р”Р®РњРҐРҐ
-РћРџРќР¦РџР®Р›Р›РЁ.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6851">libsupc++</a></h4><p>libsupc++ РћРџР•Р”РќРЇР Р®Р‘РљРЄР•Р  РћРќР”Р”Р•РџР¤Р™РЎ РЄР“РЁР™Р® РћРџРќР¦РџР®Р›Р›РҐРџРќР‘Р®РњРҐРЄ C++. РѕРќР›РҐР›Рќ РћРџРќР’Р•Р¦Рќ,
-libsupc++ РЇРќР”Р•РџР¤РҐР  РўРЎРњР™Р–РҐРҐ Р”РљРЄ РќРђРџР®РђРќР Р™РҐ РҐРЇР™РљР§Р’Р•РњРҐР.</p></div></div></div>
-<div class="sect2"><h2 class="sect2"><a name="AEN6854">РіР®Р‘РҐРЇРҐР›РќРЇР РҐ GCC</a></h2><p>РѕРќРЇРљР•Р”РњРЄРЄ РћРџРќР‘Р•РџР™Р®: Р‘Р•РџРЇРҐРЄ 2.95.3.</p><p class="literallayout">Bash:в•ђsh<br>
- Binutils:в•ђar,в•ђas,в•ђld,в•ђnm,в•ђranlib<br>
- Diffutils:в•ђcmp<br>
- Fileutils:в•ђchmod,в•ђcp,в•ђln,в•ђls,в•ђmkdir,в•ђmv,в•ђrm,в•ђtouch<br>
- Find:в•ђfind<br>
- Gcc:в•ђcc,в•ђcc1,в•ђcollect2,в•ђcpp0,в•ђgcc<br>
- Grep:в•ђegrep,в•ђgrep<br>
- Make:в•ђmake<br>
- Patch:в•ђpatch<br>
- Sed:в•ђsed<br>
- Sh-utils:в•ђbasename,в•ђdirname,в•ђecho,в•ђexpr,в•ђhostname,в•ђsleep,в•ђtrue,в•ђuname<br>
- Tar:в•ђtar<br>
- Texinfo:в•ђinstall-info,в•ђmakeinfo<br>
- Textutils:в•ђcat,в•ђtail,в•ђtr</p></div>
-<h2 class="sect2"></h2></div></div><div class="NAVFOOTER"><hr align="Left" width="100%" /=""><table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="33%" align="Left" valign="Top"><a href="glibc.html" accesskey="P">РјР®Р“Р®Р”</a></td><td width="34%" align="Center" valign="Top"><a href="../index.html" accesskey="H">РґРќР›РќР</a></td><td width="33%" align="Right" valign="Top"><a href="zlib.html" accesskey="N">Р±РћР•РџР•Р”</a></td></tr><tr><td width="33%" align="Left" valign="Top">СЃРЇР Р®РњРќР‘Р™Р® Glibc-2.2.5</td><td width="34%" align="Center" valign="Top"><a href="chapter06.html" accesskey="U">РјР®Р‘Р•РџРЈ</a></td><td width="33%" align="Right" valign="Top">СЃРЇР Р®РњРќР‘Р™Р® Zlib-1.1.4</td></tr></tbody></table></div></body></html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>Installing GCC-3.2</title><meta name="GENERATOR" content="Microsoft FrontPage 4.0" /=""><link rel="HOME" title="Linux From Scratch" href="http://www.linuxfromscratch.org/view/4.0/index.html" /=""><link rel="UP" title="Installing basic system software" href="http://www.linuxfromscratch.org/view/4.0/chapter06/chapter06.html" /=""><link rel="PREVIOUS" title="Installing Glibc-2.2.5" href="http://www.linuxfromscratch.org/view/4.0/chapter06/glibc.html" /=""><link rel="NEXT" title="Installing Zlib-1.1.4" href="http://www.linuxfromscratch.org/view/4.0/chapter06/zlib.html" /=""></head><body class="sect1" bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#840084" alink="#006000"><div class="NAVHEADER"><table summary="Header navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><th colspan="3" align="Center">Linux From Scratch: Версия 4.0</th></tr><tr><td width="10%" align="Left" valign="Bottom"><a href="glibc.html" accesskey="P">Назад</a></td><td width="80%" align="Center" valign="Bottom">Глава 6. Установка основных компонентов
+        системы</td><td width="10%" align="Right" valign="Bottom"><a href="zlib.html" accesskey="N">Вперед</a></td></tr></tbody></table><hr align="Left" width="100%" /=""></div><div class="sect1"><h1 class="sect1"><a name="ch06-gcc">Установка GCC-3.2</a></h1><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen">Приблизительное время компиляции:           13.26 SBU<br>Необходимое дисковое пространство:  221 MB</pre></td></tr></tbody></table><div class="sect2"><h2 class="sect2"><a name="AEN2660">Инсталляция  GCC</a></h2><p>Перед установкой пакета примените патч.
+    Удостоверьтесь, что патч и пакет
+    распакованы перед инсталляцией.</p><p>Этот пакет известен своим нестабильным
+    поведением при компиляции с измененными
+    опциями оптимизации (включая опции -march и -mcpu).
+    GCC рекомендуется компилировать с
+    настройками по умолчанию. Следовательно,
+    если вы задали переменные такие как CFLAGS
+    или CXXFLAGS, изменяющие уровень оптимизации
+    по умолчанию, рекомендуется убрать их при
+    сборке пакета GCC. Изменяя оптимизации для
+    GCC, вы действуете на свой страх и риск.</p><p>Для инсталляции GCC выполните приведенные
+    ниже команды, собирающие компиляторы
+    языка Си и С++. Также можно установить
+    компиляторы других языков
+    программирования из пакета GCC. В случае,
+    если вы хотите инсталлировать все
+    компиляторы из пакета GCC, уберите опцию --enable-languages=c,c++
+    из команды configure. Для получения
+    информации о доступных компиляторах, см
+    документацию пакета GCC.</p><p>Примечание: инсталляция других
+    компиляторов не тестировалась
+    разработчиками проекта LFS.</p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>patch -Np1 -i ../gcc-3.2.patch &amp;&amp;<br>mkdir ../gcc-build &amp;&amp;<br>cd ../gcc-build &amp;&amp;<br>../gcc-3.2/configure --prefix=/usr --enable-shared \<br>    --enable-languages=c,c++ --enable-threads=posix \<br>    --with-slibdir=/lib --enable-__cxa_atexit \<br>    --enable-clocale=gnu &amp;&amp;<br>make bootstrap &amp;&amp;<br>make install &amp;&amp;<br>ln -s ../usr/bin/cpp /lib &amp;&amp;<br>ln -s ../bin/cpp /usr/lib &amp;&amp;<br>ln -s gcc /usr/bin/cc</b></tt></pre></td></tr></tbody></table></div><div class="sect2"><h2 class="sect2"><a name="AEN2669">Пояснение команд</a></h2><p><tt class="userinput"><b>--enable-threads=posix:</b></tt>  Эта опция включает обработку исключений в
+    многопоточном коде на С++.</p><p><tt class="userinput"><b>--enable-__cxa_atexit:</b></tt>  Эта опция позволит использовать shared-библиотеки
+    C++ и программы, написанные на C++, с другими
+    дистрибутивами Linux.</p><p><tt class="userinput"><b>--enable-clocale=gnu:</b></tt>  Существует опасность, что у некоторых
+    пользователей будут компилироваться ABI-несовместимые
+    библиотеки С++, если glibc localedata не
+    установлен полностью. Использование
+    опции --enable-clocale=gnu гарантирует корректную
+    компиляцию во всех случаях. Если вы не
+    хотите использовать эту опцию,
+    удостоверьтесь, что по крайней мере,
+    устанавливается локаль <em>de_DE</em>. Когда GCC находит эту конкретную локаль,
+    выполняется верный режим локали (<em>gnu</em>).</p></div><div class="sect2">
+<div class="sect2"><h2 class="sect2"><a name="AEN6805">Содержимое GCC</a></h2><p>Последняя проверка: версия 3.1.</p><div class="sect3"><h3 class="sect3"><a name="AEN6808">Программы</a></h3><p>c++, c++filt, cc (link to gcc), cc1, cc1plus, collect2, cpp, cpp0, g++,
+gcc, gccbug, gcov и tradcpp0</p></div><div class="sect3"><h3 class="sect3"><a name="AEN6811">Описания</a></h3><div class="sect4"><h4 class="sect4"><a name="AEN6813">cc, cc1, cc1plus, gcc</a></h4><p>Компилятор C. Компилятор переводит код из текстового формата в формат,
+понятный компьютеру. После того, как исходный код скомпилирован в объектный
+файл, линкер создаст исполняемый файл из одного или нескольких объектных.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6816">c++, cc1plus, g++</a></h4><p>Компилятор C++, эквивалент cc,  gcc etc.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6819">c++filt</a></h4><p>Язык C++ позволяет осуществлять перезагрузку фуннкций, делая возможным
+написание многих функций с одним именем (с разным набором параметром). Все
+имена фунций C++ закодированы в низкоуровневые метки ассемблера (этот процесс
+известен как mangling). c++filt совершает обратное действие: низкоуровневые
+имена переводятся (demangling) в имена, понятные пользователю, так что линкер
+избегает конфликта между перезагруженными функциями.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6822">collect2</a></h4><p>collect2 помогает в компиляции конструкторов.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6825">cpp, cpp0</a></h4><p>cpp осуществляет препроцессинг исходных файлов, например включает в них
+содержимое заголовочных файлов. Просто добавьте в ваш исходный файл строку
+вроде #include &lt;filename&gt;. Препроцессор вставит содержимое заголовочного
+файла.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6828">gccbug</a></h4><p>gccbug - скрипт, облегчающий создание сообщений об ошибках.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6831">gcov</a></h4><p>gcov анализирует программы, чтобы помочь в создании более эффективного
+и быстрого кода путем его оптимизации.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6834">tradcpp0</a></h4><p>На данный момент описания нет.</p></div></div><div class="sect3"><h3 class="sect3"><a name="AEN6837">Библиотеки</a></h3><p>libgcc.a, libgcc_eh.a, libgcc_s.so, libiberty.a, libstdc++.[a,so],  libsupc++.a</p></div><div class="sect3"><h3 class="sect3"><a name="AEN6840">Описания</a></h3><div class="sect4"><h4 class="sect4"><a name="AEN6842">libgcc, libgcc_eh, libgcc_s</a></h4><p>Файлы поддержки gcc времени исполнения.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6845">libiberty</a></h4><p>libiberty - коллекция подпрограмм, используемых различными программами
+GNU, включая getopt, obstack, strerror, strtol и strtoul.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6848">libstdc++</a></h4><p>libstdc++ - библиотека C++. Она используется программами на C++ и содержит
+часто используемые функции. Таким образом, программисту не нужно писать стандартные
+фунции (например, вывод строки текста на экран) с нуля при каждом создании
+программы.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6851">libsupc++</a></h4><p>libsupc++ предоставляет поддержку языка программирования C++. Помимо прочего,
+libsupc++ содержит функции для обработки исключений.</p></div></div></div>
+<div class="sect2"><h2 class="sect2"><a name="AEN6854">Зависимости GCC</a></h2><p>Последняя проверка: версия 2.95.3.</p><p class="literallayout">Bash: sh<br>
+ Binutils: ar, as, ld, nm, ranlib<br>
+ Diffutils: cmp<br>
+ Fileutils: chmod, cp, ln, ls, mkdir, mv, rm, touch<br>
+ Find: find<br>
+ Gcc: cc, cc1, collect2, cpp0, gcc<br>
+ Grep: egrep, grep<br>
+ Make: make<br>
+ Patch: patch<br>
+ Sed: sed<br>
+ Sh-utils: basename, dirname, echo, expr, hostname, sleep, true, uname<br>
+ Tar: tar<br>
+ Texinfo: install-info, makeinfo<br>
+ Textutils: cat, tail, tr</p></div>
+<h2 class="sect2"></h2></div></div><div class="NAVFOOTER"><hr align="Left" width="100%" /=""><table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="33%" align="Left" valign="Top"><a href="glibc.html" accesskey="P">Назад</a></td><td width="34%" align="Center" valign="Top"><a href="../index.html" accesskey="H">Домой</a></td><td width="33%" align="Right" valign="Top"><a href="zlib.html" accesskey="N">Вперед</a></td></tr><tr><td width="33%" align="Left" valign="Top">Установка Glibc-2.2.5</td><td width="34%" align="Center" valign="Top"><a href="chapter06.html" accesskey="U">Наверх</a></td><td width="33%" align="Right" valign="Top">Установка Zlib-1.1.4</td></tr></tbody></table></div></body></html>

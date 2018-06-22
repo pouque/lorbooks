@@ -14,115 +14,115 @@ Contents
 <HR>
 <H1>Linux IPCHAINS-HOWTO</H1>
 
-<H2>п░п╡я┌п╬я─
+<H2>Автор
 Paul Russell, 
 <A HREF="mailto:ipchains@rustcorp.com">ipchains@rustcorp.com</A> <BR>
-п═я┐я│я│п╨п╦п╧ п©п╣я─п╣п╡п╬п╢
+Русский перевод
 Ilgiz Kalmetev, 
 <A HREF="mailto:ilgiz@mail.rb.ru">ilgiz@mail.rb.ru</A></H2>v1.0.7, 12 March 1999
 <P><HR>
-<EM>п╜я┌п╬я┌ п╢п╬п╨я┐п╪п╣п╫я┌ я─п╟я│я│п╨п╟п╥я▀п╡п╟п╣я┌ п╨п╟п╨ п©п╬п╩я┐я┤п╦я┌я▄, я┐я│я┌п╟п╫п╬п╡п╦я┌я▄ п╦ я│п╨п╬п╫я└п╦пЁя┐я─п╦я─п╬п╡п╟я┌я▄ п©я─п╬пЁя─п╟п╪п╪п╫п╬п╣ п╬п╠п╣я│п©п╣я┤п╣п╫п╦п╣ п╢п╩я▐ IP firewalling я├п╣п©п╬я┤п╣п╨(chains) п╡ Linux п╦ п©я─п╣п╢п╩п╟пЁп╟п╣я┌ п╫п╣п╨п╬я┌п╬я─я▀п╣ п©я─п╦п╣п╪я▀ п╦я┘ п╦я│п©п╬п╩я▄п╥п╬п╡п╟п╫п╦я▐.</EM>
+<EM>Этот документ рассказывает как получить, установить и сконфигурировать программное обеспечение для IP firewalling цепочек(chains) в Linux и предлагает некоторые приемы их использования.</EM>
 <HR>
-<P><B>п÷я─п╦п╪п╣я┤п╟п╫п╦п╣ п©п╣я─п╣п╡п╬п╢я┤п╦п╨п╟</B>
-<P>п²п╦п╤п╣ я┐п╨п╟п╥п╟п╫я▀ п╟п╫пЁп╩п╬-я─я┐я│я│п╨п╦п╣ п©п╣я─п╣п╡п╬п╢я▀, п╦я│п©п╬п╩я▄п╥я┐п╣п╪я▀п╣ п╡ п╢п╟п╫п╫п╬п╪ п©п╣я─п╣п╡п╬п╢п╣, п╨п╟п╨
-п╪п╫п╣ п╨п╟п╤п╣я┌я│я▐ п╠п╬п╩п╣п╣ п©п╬п╢я┘п╬п╢я▐я┴п╦п╣ п╡ п╨п╬п╫я┌п╣п╨я│я┌п╣ п©я─п╣п╢п╩п╬п╤п╣п╫п╦п╧ п╢п╟п╫п╫п╬пЁп╬ п╢п╬п╨я┐п╪п╣п╫я┌п╟:
+<P><B>Примечание переводчика</B>
+<P>Ниже указаны англо-русские переводы, используемые в данном переводе, как
+мне кажется более подходящие в контексте предложений данного документа:
 <PRE>
-chains        -- я├п╣п©п╬я┤п╨п╦ (я├п╣п©п╬я┤п╨п╦ п©я─п╟п╡п╦п╩)
-target        -- п╢п╣п╧я│я┌п╡п╦п╣ (п╢п╣п╧я│я┌п╡п╦п╣, я│п╬п╡п╣я─я┬п╟п╣п╪п╬п╣ п╫п╟п╢ п©п╟п╨п╣я┌п╬п╪) 
-policy        -- п©п╬п╩п╦я┌п╦п╨п╟ (п©п╬п╩п╦я┌п╦п╨п╟ я└п╦п╩я▄я┌я─п╟я├п╦п╦)
-to resolve    -- п©я─п╣п╬п╠я─п╟п╥п╬п╡п╟п╫п╦п╣ п╦п╪п╣п╫ п╡ п╟п╢я─п╣я│п╟ (п╦п╩п╦ п╫п╟п╬п╠п╬я─п╬я┌)
-MTU discovery -- п©я─п╬п╡п╣я─п╨п╟ MTU
-redirection   -- п©п╣я─п╣п╫п╟п©я─п╟п╡п╩п╣п╫п╦п╣
-forwarding    -- я└п╬я─п╡п╟я─п╢п╦п╫пЁ
-wildcards     -- я┐п╟п╧п╩п╢п╨п╟я─я┌я▀
-patch         -- п©п╟я┌я┤
+chains        -- цепочки (цепочки правил)
+target        -- действие (действие, совершаемое над пакетом) 
+policy        -- политика (политика фильтрации)
+to resolve    -- преобразование имен в адреса (или наоборот)
+MTU discovery -- проверка MTU
+redirection   -- перенаправление
+forwarding    -- форвардинг
+wildcards     -- уайлдкарты
+patch         -- патч
 </PRE>
 <P>
 <P>
 <P>
-<H2><A NAME="toc1">1.</A> <A HREF="Ipchains-HOWTO-1.html">п▓п╡п╣п╢п╣п╫п╦п╣</A></H2>
+<H2><A NAME="toc1">1.</A> <A HREF="Ipchains-HOWTO-1.html">Введение</A></H2>
 
 <UL>
-<LI><A HREF="Ipchains-HOWTO-1.html#ss1.1">1.1 п╖я┌п╬?</A>
-<LI><A HREF="Ipchains-HOWTO-1.html#ss1.2">1.2 п÷п╬я┤п╣п╪я┐?</A>
-<LI><A HREF="Ipchains-HOWTO-1.html#ss1.3">1.3 п п╟п╨?</A>
-<LI><A HREF="Ipchains-HOWTO-1.html#ss1.4">1.4 п⌠п╢п╣?</A>
+<LI><A HREF="Ipchains-HOWTO-1.html#ss1.1">1.1 Что?</A>
+<LI><A HREF="Ipchains-HOWTO-1.html#ss1.2">1.2 Почему?</A>
+<LI><A HREF="Ipchains-HOWTO-1.html#ss1.3">1.3 Как?</A>
+<LI><A HREF="Ipchains-HOWTO-1.html#ss1.4">1.4 Где?</A>
 </UL>
 <P>
-<H2><A NAME="toc2">2.</A> <A HREF="Ipchains-HOWTO-2.html">п·я│п╫п╬п╡я▀ я└п╦п╩я▄я┌я─п╟я├п╦п╦ п©п╟п╨п╣я┌п╬п╡</A></H2>
+<H2><A NAME="toc2">2.</A> <A HREF="Ipchains-HOWTO-2.html">Основы фильтрации пакетов</A></H2>
 
 <UL>
-<LI><A HREF="Ipchains-HOWTO-2.html#ss2.1">2.1 п╖я┌п╬?</A>
-<LI><A HREF="Ipchains-HOWTO-2.html#ss2.2">2.2 п÷п╬я┤п╣п╪я┐?</A>
-<LI><A HREF="Ipchains-HOWTO-2.html#ss2.3">2.3 п п╟п╨?</A>
+<LI><A HREF="Ipchains-HOWTO-2.html#ss2.1">2.1 Что?</A>
+<LI><A HREF="Ipchains-HOWTO-2.html#ss2.2">2.2 Почему?</A>
+<LI><A HREF="Ipchains-HOWTO-2.html#ss2.3">2.3 Как?</A>
 </UL>
 <P>
-<H2><A NAME="toc3">3.</A> <A HREF="Ipchains-HOWTO-3.html">п╞ п╥п╟п©я┐я┌п╟п╩я│я▐! п°п╟я─я┬я─я┐я┌п╦п╥п╟я├п╦я▐, п╪п╟я│п╨п╟я─п╟п╢п╦п╫пЁ, я└п╬я─п╡п╟я─п╢п╦п╫пЁ п©п╬я─я┌п╬п╡, ipautofw ...</A></H2>
+<H2><A NAME="toc3">3.</A> <A HREF="Ipchains-HOWTO-3.html">Я запутался! Маршрутизация, маскарадинг, форвардинг портов, ipautofw ...</A></H2>
 
 <UL>
-<LI><A HREF="Ipchains-HOWTO-3.html#ss3.1">3.1 п╒я─п╣я┘я│я┌я─п╬я┤п╫п╬п╣ я─я┐п╨п╬п╡п╬п╢я│я┌п╡п╬ п═я┐я│я┌п╦ п©п╬ п╪п╟я│п╨п╟я─п╟п╢п╦п╫пЁя┐</A>
-<LI><A HREF="Ipchains-HOWTO-3.html#ss3.2">3.2 п▒п╣п╥п╡п╬п╥п╪п╣п╥п╢п╫п╟я▐ п©п╬п╢п╢п╣я─п╤п╨п╟: п©я─п╟п╡п╦п╩п╟ WatchGuard</A>
-<LI><A HREF="Ipchains-HOWTO-3.html#ss3.3">3.3 п·п╠я┴п╦п╣ Firewall-п╫я▀п╣ я┐я│я┌п╟п╫п╬п╡п╨п╦</A>
-<LI><A HREF="Ipchains-HOWTO-3.html#ss3.4">3.4 п÷п╬п╢я─п╬п╠п╫п╟я▐ п╦п╫я└п╬я─п╪п╟я├п╦я▐ п╬ п╪п╟я│п╨п╟я─п╟п╢п╦п╫пЁп╣</A>
+<LI><A HREF="Ipchains-HOWTO-3.html#ss3.1">3.1 Трехстрочное руководство Русти по маскарадингу</A>
+<LI><A HREF="Ipchains-HOWTO-3.html#ss3.2">3.2 Безвозмездная поддержка: правила WatchGuard</A>
+<LI><A HREF="Ipchains-HOWTO-3.html#ss3.3">3.3 Общие Firewall-ные установки</A>
+<LI><A HREF="Ipchains-HOWTO-3.html#ss3.4">3.4 Подробная информация о маскарадинге</A>
 </UL>
 <P>
-<H2><A NAME="toc4">4.</A> <A HREF="Ipchains-HOWTO-4.html">IP Firewalling я├п╣п©п╬я┤п╨п╦</A></H2>
+<H2><A NAME="toc4">4.</A> <A HREF="Ipchains-HOWTO-4.html">IP Firewalling цепочки</A></H2>
 
 <UL>
-<LI><A HREF="Ipchains-HOWTO-4.html#ss4.1">4.1 п п╟п╨ я└п╦п╩я▄я┌я─я▀ п╬я┌я│п╣п╦п╡п╟я▌я┌ п©п╟п╨п╣я┌я▀ </A>
-<LI><A HREF="Ipchains-HOWTO-4.html#ss4.2">4.2 п÷п╬п╩п╣п╥п╫я▀п╣ п©я─п╦п╪п╣я─я▀</A>
+<LI><A HREF="Ipchains-HOWTO-4.html#ss4.1">4.1 Как фильтры отсеивают пакеты </A>
+<LI><A HREF="Ipchains-HOWTO-4.html#ss4.2">4.2 Полезные примеры</A>
 </UL>
 <P>
-<H2><A NAME="toc5">5.</A> <A HREF="Ipchains-HOWTO-5.html">п═п╟п╥п╫п╬п╣.</A></H2>
+<H2><A NAME="toc5">5.</A> <A HREF="Ipchains-HOWTO-5.html">Разное.</A></H2>
 
 <UL>
-<LI><A HREF="Ipchains-HOWTO-5.html#ss5.1">5.1 п п╟п╨ п╬я─пЁп╟п╫п╦п╥п╬п╡п╟я┌я▄ п╡п╟я┬п╦ Firewall п©я─п╟п╡п╦п╩п╟</A>
-<LI><A HREF="Ipchains-HOWTO-5.html#ss5.2">5.2 п╖я┌п╬ п╫п╣ п╫я┐п╤п╫п╬ п╬я┌я└п╦п╩я▄я┌я─п╬п╡я▀п╡п╟я┌я▄</A>
-<LI><A HREF="Ipchains-HOWTO-5.html#ss5.3">5.3 п╓п╦п╩я▄я┌я─п╟я├п╦я▐ п÷п╦п╫пЁп╟ п║п╪п╣я─я┌п╦ (DeathPing)</A>
-<LI><A HREF="Ipchains-HOWTO-5.html#ss5.4">5.4 п╓п╦п╩я▄я┌я─п╟я├п╦я▐ Teardrop п╦ Bonk</A>
-<LI><A HREF="Ipchains-HOWTO-5.html#ss5.5">5.5 п╓п╦п╩я▄я┌я─п╟я├п╦я▐ я└я─п╟пЁп╪п╣п╫я┌п╦я─п╬п╡п╟п╫п╫я▀я┘ п╠п╬п╪п╠</A>
-<LI><A HREF="Ipchains-HOWTO-5.html#ss5.6">5.6 п≤п╥п╪п╣п╫п╣п╫п╦п╣ Firewall п©я─п╟п╡п╦п╩</A>
-<LI><A HREF="Ipchains-HOWTO-5.html#ss5.7">5.7 п п╟п╨ я┐я│я┌п╟п╫п╬п╡п╦я┌я▄ п╥п╟я┴п╦я┌я┐ п╬я┌ IP я│п©я┐я└п╦п╫пЁп╟?</A>
-<LI><A HREF="Ipchains-HOWTO-5.html#ss5.8">5.8 п÷я─п╬п╢п╡п╦п╫я┐я┌я▀п╣ п©я─п╬п╣п╨я┌я▀</A>
-<LI><A HREF="Ipchains-HOWTO-5.html#ss5.9">5.9 п▒я┐п╢я┐я┴п╦п╣ я─п╟я│я┬п╦я─п╣п╫п╦я▐</A>
+<LI><A HREF="Ipchains-HOWTO-5.html#ss5.1">5.1 Как организовать ваши Firewall правила</A>
+<LI><A HREF="Ipchains-HOWTO-5.html#ss5.2">5.2 Что не нужно отфильтровывать</A>
+<LI><A HREF="Ipchains-HOWTO-5.html#ss5.3">5.3 Фильтрация Пинга Смерти (DeathPing)</A>
+<LI><A HREF="Ipchains-HOWTO-5.html#ss5.4">5.4 Фильтрация Teardrop и Bonk</A>
+<LI><A HREF="Ipchains-HOWTO-5.html#ss5.5">5.5 Фильтрация фрагментированных бомб</A>
+<LI><A HREF="Ipchains-HOWTO-5.html#ss5.6">5.6 Изменение Firewall правил</A>
+<LI><A HREF="Ipchains-HOWTO-5.html#ss5.7">5.7 Как установить защиту от IP спуфинга?</A>
+<LI><A HREF="Ipchains-HOWTO-5.html#ss5.8">5.8 Продвинутые проекты</A>
+<LI><A HREF="Ipchains-HOWTO-5.html#ss5.9">5.9 Будущие расширения</A>
 </UL>
 <P>
-<H2><A NAME="toc6">6.</A> <A HREF="Ipchains-HOWTO-6.html">п·п╠я┴п╦п╣ п©я─п╬п╠п╩п╣п╪я▀</A></H2>
+<H2><A NAME="toc6">6.</A> <A HREF="Ipchains-HOWTO-6.html">Общие проблемы</A></H2>
 
 <UL>
-<LI><A HREF="Ipchains-HOWTO-6.html#ss6.1">6.1 ipchains -L п╥п╟п╪п╦я─п╟п╣я┌!</A>
-<LI><A HREF="Ipchains-HOWTO-6.html#ss6.2">6.2 п°п╟я│п╨п╟я─п╟п╢п╦п╫пЁ/я└п╬я─п╡п╟я─п╢п╦п╫пЁ п╫п╣ я─п╟п╠п╬я┌п╟я▌я┌!</A>
-<LI><A HREF="Ipchains-HOWTO-6.html#ss6.3">6.3 -j REDIR п╫п╣ я─п╟п╠п╬я┌п╟п╣я┌!</A>
-<LI><A HREF="Ipchains-HOWTO-6.html#ss6.4">6.4 пёп╟п╧п╩п╢п╨п╟я─я┌я▀ п╦п╫я┌п╣я─я└п╣п╧я│п╬п╡ п╫п╣ я─п╟п╠п╬я┌п╟я▌я┌!</A>
-<LI><A HREF="Ipchains-HOWTO-6.html#ss6.5">6.5 TOS п╫п╣ я─п╟п╠п╬я┌п╟п╣я┌!</A>
-<LI><A HREF="Ipchains-HOWTO-6.html#ss6.6">6.6 ipautofw and ipportfw п╫п╣ я─п╟п╠п╬я┌п╟я▌я┌!</A>
-<LI><A HREF="Ipchains-HOWTO-6.html#ss6.7">6.7 xosview п©п╟п╢п╟п╣я┌!!</A>
-<LI><A HREF="Ipchains-HOWTO-6.html#ss6.8">6.8 Segmentation Fault п©я─п╦ `-j REDIRECT'!</A>
-<LI><A HREF="Ipchains-HOWTO-6.html#ss6.9">6.9 п╞ п╫п╣ п╪п╬пЁя┐ я┐я│я┌п╟п╫п╬п╡п╦я┌я▄ я┌п╟п╧п╪п╟я┐я┌я▀ п╪п╟я│п╨п╟я─п╟п╢п╦п╫пЁп╟!</A>
-<LI><A HREF="Ipchains-HOWTO-6.html#ss6.10">6.10 п╞ я┘п╬я┤я┐ я└п╟п╧п╣я─п╡п╬п╩п╩п╦я┌я▄ IPX!</A>
+<LI><A HREF="Ipchains-HOWTO-6.html#ss6.1">6.1 ipchains -L замирает!</A>
+<LI><A HREF="Ipchains-HOWTO-6.html#ss6.2">6.2 Маскарадинг/форвардинг не работают!</A>
+<LI><A HREF="Ipchains-HOWTO-6.html#ss6.3">6.3 -j REDIR не работает!</A>
+<LI><A HREF="Ipchains-HOWTO-6.html#ss6.4">6.4 Уайлдкарты интерфейсов не работают!</A>
+<LI><A HREF="Ipchains-HOWTO-6.html#ss6.5">6.5 TOS не работает!</A>
+<LI><A HREF="Ipchains-HOWTO-6.html#ss6.6">6.6 ipautofw and ipportfw не работают!</A>
+<LI><A HREF="Ipchains-HOWTO-6.html#ss6.7">6.7 xosview падает!!</A>
+<LI><A HREF="Ipchains-HOWTO-6.html#ss6.8">6.8 Segmentation Fault при `-j REDIRECT'!</A>
+<LI><A HREF="Ipchains-HOWTO-6.html#ss6.9">6.9 Я не могу установить таймауты маскарадинга!</A>
+<LI><A HREF="Ipchains-HOWTO-6.html#ss6.10">6.10 Я хочу файерволлить IPX!</A>
 </UL>
 <P>
-<H2><A NAME="toc7">7.</A> <A HREF="Ipchains-HOWTO-7.html">п║п╣я─я▄п╣п╥п╫я▀п╧ п©я─п╦п╪п╣я─.</A></H2>
+<H2><A NAME="toc7">7.</A> <A HREF="Ipchains-HOWTO-7.html">Серьезный пример.</A></H2>
 
 <UL>
-<LI><A HREF="Ipchains-HOWTO-7.html#ss7.1">7.1 п║п╬пЁп╩п╟я┬п╣п╫п╦я▐</A>
-<LI><A HREF="Ipchains-HOWTO-7.html#ss7.2">7.2 п╕п╣п╩п╦</A>
-<LI><A HREF="Ipchains-HOWTO-7.html#ss7.3">7.3 п÷п╣я─п╣п╢ я└п╦п╩я▄я┌я─п╟я├п╦п╣п╧ п©п╟п╨п╣я┌п╬п╡</A>
-<LI><A HREF="Ipchains-HOWTO-7.html#ss7.4">7.4 п╓п╦п╩я▄я┌я─п╟я├п╦я▐ п©я─п╬я┘п╬п╢я▐я┴п╦я┘ п©п╟п╨п╣я┌п╬п╡ </A>
-<LI><A HREF="Ipchains-HOWTO-7.html#ss7.5">7.5 п▓ п╥п╟п╨п╩я▌я┤п╣п╫п╦п╣</A>
+<LI><A HREF="Ipchains-HOWTO-7.html#ss7.1">7.1 Соглашения</A>
+<LI><A HREF="Ipchains-HOWTO-7.html#ss7.2">7.2 Цели</A>
+<LI><A HREF="Ipchains-HOWTO-7.html#ss7.3">7.3 Перед фильтрацией пакетов</A>
+<LI><A HREF="Ipchains-HOWTO-7.html#ss7.4">7.4 Фильтрация проходящих пакетов </A>
+<LI><A HREF="Ipchains-HOWTO-7.html#ss7.5">7.5 В заключение</A>
 </UL>
 <P>
-<H2><A NAME="toc8">8.</A> <A HREF="Ipchains-HOWTO-8.html">п÷я─п╦п╩п╬п╤п╣п╫п╦п╣. п═п╟п╥п╩п╦я┤п╦я▐ п╪п╣п╤п╢я┐ ipchains п╦ ipfwadm.</A></H2>
+<H2><A NAME="toc8">8.</A> <A HREF="Ipchains-HOWTO-8.html">Приложение. Различия между ipchains и ipfwadm.</A></H2>
 
 <UL>
-<LI><A HREF="Ipchains-HOWTO-8.html#ss8.1">8.1 п я─п╟я┌п╨п╟я▐ я┌п╟п╠п╩п╦я├п╟ п©п╣я─п╣п╨я─п╣я│я┌п╫я▀я┘ я│я│я▀п╩п╬п╨.</A>
-<LI><A HREF="Ipchains-HOWTO-8.html#ss8.2">8.2 п÷я─п╦п╪п╣я─я▀ я┌я─п╟п╫я│п╩п╦я─я┐п╣п╪я▀я┘ п╨п╬п╪п╟п╫п╢ ipfwadm</A>
+<LI><A HREF="Ipchains-HOWTO-8.html#ss8.1">8.1 Краткая таблица перекрестных ссылок.</A>
+<LI><A HREF="Ipchains-HOWTO-8.html#ss8.2">8.2 Примеры транслируемых команд ipfwadm</A>
 </UL>
 <P>
-<H2><A NAME="toc9">9.</A> <A HREF="Ipchains-HOWTO-9.html">п÷я─п╦п╩п╬п╤п╣п╫п╦п╣. п≤я│п©п╬п╩я▄п╥п╬п╡п╟п╫п╦п╣ я│п╨я─п╦п©я┌п╟ ipfwadm-wrapper.</A></H2>
+<H2><A NAME="toc9">9.</A> <A HREF="Ipchains-HOWTO-9.html">Приложение. Использование скрипта ipfwadm-wrapper.</A></H2>
 
 <P>
-<H2><A NAME="toc10">10.</A> <A HREF="Ipchains-HOWTO-10.html">п÷я─п╦п╩п╬п╤п╣п╫п╦п╣. п▒п╩п╟пЁп╬п╢п╟я─п╫п╬я│я┌п╦.</A></H2>
+<H2><A NAME="toc10">10.</A> <A HREF="Ipchains-HOWTO-10.html">Приложение. Благодарности.</A></H2>
 
 <HR>
 <A HREF="Ipchains-HOWTO-1.html">Next</A>

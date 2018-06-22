@@ -8,18 +8,18 @@
   <link rel="PREVIOUS" title="Creating a new partition" href="creatingpart.html">
   <link rel="NEXT" title="Mounting the new partition" href="mounting.html"></head><body class="sect1" bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#840084" alink="#006000">
 <div class="NAVHEADER"><table summary="Header navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><th colspan="3" align="Center">Linux
-From Scratch: Р±Р•РџРЇРҐРЄ 4.0</th></tr><tr><td width="10%" align="Left" valign="Bottom"><a href="creatingpart.html" accesskey="P">РјР®Р“Р®Р”</a></td><td width="80%" align="Center" valign="Bottom">С†РљР®Р‘Р® 4. СЏРќР“Р”Р®Р•Р› РњРќР‘РЁР РџР®Р“Р”Р•Рљ</td><td width="10%" align="Right" valign="Bottom"><a href="mounting.html" accesskey="N">Р±РћР•РџР•Р”</a></td></tr></tbody></table><hr align="Left" width="100%"></div>
-<div class="sect1"><h1 class="sect1"><a name="ch04-creatingfs">СЏРќР“Р”Р®Р•Р› РўР®РРљРќР‘РЎР§ РЇРҐРЇР Р•Р›РЎ РњР® РњРќР‘РќР› РџР®Р“Р”Р•РљР•</a></h1><p>РѕРќРЇРљР•
-Р РќР¦Рќ Р™Р®Р™ РњРќР‘РЁР РџР®Р“Р”Р•Рљ РЇРќР“Р”Р®Рњ, РЇРќР“Р”Р®Р”РҐР› РњР® РњР•Р› РўР®РРљРќР‘РЎР§ РЇРҐРЇР Р•Р›РЎ. РјР® Р”Р®РњРњРЁР
-Р›РќР›Р•РњР  РЇР Р®РњР”Р®РџР РњР®РЄ РўР®РРљРќР‘Р®РЄ РЇРҐРЇР Р•Р›Р® - ext2, РќР”РњР®Р™Рќ Р Р®Р™ РњР®Р“РЁР‘Р®Р•Р›РЁР• Р¤РЎРџРњР®РљРҐРџРЎР•Р›РЁР•
-РўР®РРљРќР‘РЁР• РЇРҐРЇР Р•Р›РЁ РЇР Р®РњРќР‘РЄР РЇРЄ РќР’Р•РњР­ РћРќРћРЎРљРЄРџРњРЁР›РҐ. Р»РЁ РђРЎР”Р•Р› РћРќР”РџР®Р“РЎР›Р•Р‘Р®Р Р­, Р’Р Рќ
-Р‘РЁ РЇРќРђРҐРџР®Р•Р Р•РЇР­ РҐРЇРћРќРљР­Р“РќР‘Р®Р Р­ ext2. С…РњРЇР РџРЎР™Р–РҐРҐ РћРќ РЇРќР“Р”Р®РњРҐР§ Р”РџРЎР¦РҐРЈ РўР®РРљРќР‘РЁРЈ
-РЇРҐРЇР Р•Р› РЇР›. РњР® <a href="http://beyond.linuxfromscratch.org/view/cvs/postlfs/filesystems.html" target="_top">http://beyond.linuxfromscratch.org/view/cvs/postlfs/filesystems.html</a>.</p><p>РґРљРЄ
-РЇРќР“Р”Р®РњРҐРЄ РўР®РРљРќР‘РќР РЇРҐРЇР Р•Р›РЁ ext2, РҐРЇРћРќРљР­Р“РЎРР Р• Р™РќР›Р®РњР”РЎ mke2fs. РјР®РҐР›Р•РњРќР‘Р®РњРҐР•
-РџР®Р“Р”Р•РљР® LFS - Р•Р”РҐРњРЇР Р‘Р•РњРњР®РЄ РќРћР–РҐРЄ Р™ Р™РќР›Р®РњР”Р•, РҐ РўР®РРљРќР‘Р®РЄ РЇРҐРЇР Р•Р›Р® РЇРќР“Р”Р®РњР®.</p><p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>mke2fs /dev/xxx</b></tt></pre></td></tr></tbody></table></p><p>РіР®Р›Р•РњРҐР Р• "xxx" РњР® РњР®РҐР›Р•РњРќР‘Р®РњРҐР• РџР®Р“Р”Р•РљР® LFS (РњР®РћРџРҐР›Р•Рџ
+From Scratch: Версия 4.0</th></tr><tr><td width="10%" align="Left" valign="Bottom"><a href="creatingpart.html" accesskey="P">Назад</a></td><td width="80%" align="Center" valign="Bottom">Глава 4. Создаем новый раздел</td><td width="10%" align="Right" valign="Bottom"><a href="mounting.html" accesskey="N">Вперед</a></td></tr></tbody></table><hr align="Left" width="100%"></div>
+<div class="sect1"><h1 class="sect1"><a name="ch04-creatingfs">Создаем файловую систему на новом разделе</a></h1><p>После
+того как новый раздел создан, создадим на нем файловую систему. На данный
+момент стандартная файловая система - ext2, однако так называемые журналируемые
+файловые системы становятся очень популярными. Мы будем подразумевать, что
+вы собираетесь использовать ext2. Инструкции по созданию других файловых
+систем см. на <a href="http://beyond.linuxfromscratch.org/view/cvs/postlfs/filesystems.html" target="_top">http://beyond.linuxfromscratch.org/view/cvs/postlfs/filesystems.html</a>.</p><p>Для
+создания файловой системы ext2, используйте команду mke2fs. Наименование
+раздела LFS - единственная опция к команде, и файловая система создана.</p><p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>mke2fs /dev/xxx</b></tt></pre></td></tr></tbody></table></p><p>Замените "xxx" на наименование раздела LFS (например
 hda11).</p></div>
-<div class="NAVFOOTER"><hr align="Left" width="100%"><table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="33%" align="Left" valign="Top"><a href="creatingpart.html" accesskey="P">РјР®Р“Р®Р”</a></td><td width="34%" align="Center" valign="Top"><a href="../index.html" accesskey="H">РґРќР›РќР</a></td><td width="33%" align="Right" valign="Top"><a href="mounting.html" accesskey="N">Р±РћР•РџР•Р”</a></td></tr><tr><td width="33%" align="Left" valign="Top">СЏРќР“Р”Р®Р•Р› РњРќР‘РЁР РџР®Р“Р”Р•Рљ<br>
-</td><td width="34%" align="Center" valign="Top"><a href="chapter04.html" accesskey="U">РјР®Р‘Р•РџРЈ</a></td><td width="33%" align="Right" valign="Top">Р»РќРњР РҐРџРЎР•Р› РњРќР‘РЁР РџР®Р“Р”Р•Рљ<br>
+<div class="NAVFOOTER"><hr align="Left" width="100%"><table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="33%" align="Left" valign="Top"><a href="creatingpart.html" accesskey="P">Назад</a></td><td width="34%" align="Center" valign="Top"><a href="../index.html" accesskey="H">Домой</a></td><td width="33%" align="Right" valign="Top"><a href="mounting.html" accesskey="N">Вперед</a></td></tr><tr><td width="33%" align="Left" valign="Top">Создаем новый раздел<br>
+</td><td width="34%" align="Center" valign="Top"><a href="chapter04.html" accesskey="U">Наверх</a></td><td width="33%" align="Right" valign="Top">Монтируем новый раздел<br>
 </td></tr></tbody></table></div>
 <br>
 

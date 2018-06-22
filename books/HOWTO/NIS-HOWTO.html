@@ -16,81 +16,81 @@ Contents
 
 <H2>Thorsten Kukuk, 
 <A HREF="mailto:kukuk@suse.de">kukuk@suse.de</A> <BR>
-п÷п╣я─п╣п╡п╬п╢ п╫п╟ я─я┐я│я│п╨п╦п╧ я▐п╥я▀п╨ п▓п╦п╨я┌п╬я─ п▓п╦я│п╩п╬п╠п╬п╨п╬п╡. 08.09.2000</H2> v1.0, 9 March 1999 
+Перевод на русский язык Виктор Вислобоков. 08.09.2000</H2> v1.0, 9 March 1999 
 <P><HR>
-<EM>   п╜я┌п╬я┌ п╢п╬п╨я┐п╪п╣п╫я┌ п╬п©п╦я│я▀п╡п╟п╣я┌ п╨п╟п╨ п╫п╟я│я┌я─п╬п╦я┌я▄ Linux п╡ п╨п╟я┤п╣я│я┌п╡п╣ NIS(YP) п╦п╩п╦
-   NIS+ п╨п╩п╦п╣п╫я┌п╟ п╦ п╨п╟п╨ я┐я│я┌п╟п╫п╬п╡п╦я┌я▄ NIS я│п╣я─п╡п╣я─.</EM>
+<EM>   Этот документ описывает как настроить Linux в качестве NIS(YP) или
+   NIS+ клиента и как установить NIS сервер.</EM>
 <HR>
 <P>
-<H2><A NAME="toc1">1.</A> <A HREF="NIS-HOWTO-1.html">п▓п╡п╣п╢п╣п╫п╦п╣</A></H2>
+<H2><A NAME="toc1">1.</A> <A HREF="NIS-HOWTO-1.html">Введение</A></H2>
 
 <UL>
-<LI><A HREF="NIS-HOWTO-1.html#ss1.1">1.1 п²п╬п╡я▀п╣ п╡п╣я─я│п╦п╦ я█я┌п╬пЁп╬ п╢п╬п╨я┐п╪п╣п╫я┌п╟</A>
-<LI><A HREF="NIS-HOWTO-1.html#ss1.2">1.2 п·я┌я─п╣я┤п╣п╫п╦п╣</A>
-<LI><A HREF="NIS-HOWTO-1.html#ss1.3">1.3 п·п╠я─п╟я┌п╫п╟я▐ я│п╡я▐п╥я▄ п╦ п©я─п╟п╡п╨п╦</A>
-<LI><A HREF="NIS-HOWTO-1.html#ss1.4">1.4 п▒п╩п╟пЁп╬п╢п╟я─п╫п╬я│я┌п╦</A>
+<LI><A HREF="NIS-HOWTO-1.html#ss1.1">1.1 Новые версии этого документа</A>
+<LI><A HREF="NIS-HOWTO-1.html#ss1.2">1.2 Отречение</A>
+<LI><A HREF="NIS-HOWTO-1.html#ss1.3">1.3 Обратная связь и правки</A>
+<LI><A HREF="NIS-HOWTO-1.html#ss1.4">1.4 Благодарности</A>
 </UL>
 <P>
-<H2><A NAME="toc2">2.</A> <A HREF="NIS-HOWTO-2.html">п⌠п╩п╬я│я│п╟я─п╦п╧ п╦ п╬я│п╫п╬п╡п╫п╟я▐ п╦п╫я└п╬я─п╪п╟я├п╦я▐</A></H2>
+<H2><A NAME="toc2">2.</A> <A HREF="NIS-HOWTO-2.html">Глоссарий и основная информация</A></H2>
 
 <UL>
-<LI><A HREF="NIS-HOWTO-2.html#ss2.1">2.1 п⌠п╩п╬я│я│п╟я─п╦п╧ я┌п╣я─п╪п╦п╫п╬п╡</A>
-<LI><A HREF="NIS-HOWTO-2.html#ss2.2">2.2 п²п╣п╨п╬я┌п╬я─п╟я▐ п╬я│п╫п╬п╡п╫п╟я▐ п╦п╫я└п╬я─п╪п╟я├п╦я▐</A>
+<LI><A HREF="NIS-HOWTO-2.html#ss2.1">2.1 Глоссарий терминов</A>
+<LI><A HREF="NIS-HOWTO-2.html#ss2.2">2.2 Некоторая основная информация</A>
 </UL>
 <P>
-<H2><A NAME="toc3">3.</A> <A HREF="NIS-HOWTO-3.html">NIS, NYS п╦п╩п╦ NIS+ ?</A></H2>
+<H2><A NAME="toc3">3.</A> <A HREF="NIS-HOWTO-3.html">NIS, NYS или NIS+ ?</A></H2>
 
 <UL>
-<LI><A HREF="NIS-HOWTO-3.html#ss3.1">3.1 libc 4/5 я│ я┌я─п╟п╢п╦я├п╦п╬п╫п╫п╬п╧ NIS п╦п╩п╦ NYS ?</A>
-<LI><A HREF="NIS-HOWTO-3.html#ss3.2">3.2 glibc 2 п╦ NIS/NIS+</A>
-<LI><A HREF="NIS-HOWTO-3.html#ss3.3">3.3 NIS п╦п╩п╦ NIS+ ?</A>
+<LI><A HREF="NIS-HOWTO-3.html#ss3.1">3.1 libc 4/5 с традиционной NIS или NYS ?</A>
+<LI><A HREF="NIS-HOWTO-3.html#ss3.2">3.2 glibc 2 и NIS/NIS+</A>
+<LI><A HREF="NIS-HOWTO-3.html#ss3.3">3.3 NIS или NIS+ ?</A>
 </UL>
 <P>
-<H2><A NAME="toc4">4.</A> <A HREF="NIS-HOWTO-4.html">п п╟п╨ я█я┌п╬ я─п╟п╠п╬я┌п╟п╣я┌</A></H2>
+<H2><A NAME="toc4">4.</A> <A HREF="NIS-HOWTO-4.html">Как это работает</A></H2>
 
 <UL>
-<LI><A HREF="NIS-HOWTO-4.html#ss4.1">4.1 п п╟п╨ я─п╟п╠п╬я┌п╟п╣я┌ NIS</A>
-<LI><A HREF="NIS-HOWTO-4.html#ss4.2">4.2 п п╟п╨ я─п╟п╠п╬я┌п╟п╣я┌ NIS+</A>
+<LI><A HREF="NIS-HOWTO-4.html#ss4.1">4.1 Как работает NIS</A>
+<LI><A HREF="NIS-HOWTO-4.html#ss4.2">4.2 Как работает NIS+</A>
 </UL>
 <P>
 <H2><A NAME="toc5">5.</A> <A HREF="NIS-HOWTO-5.html">RPC Portmapper</A></H2>
 
 <P>
-<H2><A NAME="toc6">6.</A> <A HREF="NIS-HOWTO-6.html">п╖я┌п╬ п╫я┐п╤п╫п╬ я│п╢п╣п╩п╟я┌я▄ п╢п╩я▐ п╫п╟я│я┌я─п╬п╧п╨п╦ NIS?</A></H2>
+<H2><A NAME="toc6">6.</A> <A HREF="NIS-HOWTO-6.html">Что нужно сделать для настройки NIS?</A></H2>
 
 <UL>
-<LI><A HREF="NIS-HOWTO-6.html#ss6.1">6.1 п·п©я─п╣п╢п╣п╩п╦я┌п╣ я┤я┌п╬ п╡п╟п╪ п╫я┐п╤п╫п╬: я│п╣я─п╡п╣я─, п©п╬п╢я┤п╦п╫п╣п╫п╫я▀п╧ я│п╣я─п╡п╣я─ п╦п╩п╦ п╨п╩п╦п╣п╫я┌.</A>
-<LI><A HREF="NIS-HOWTO-6.html#ss6.2">6.2 п÷я─п╬пЁя─п╟п╪п╪п╫п╬п╣ п╬п╠п╣я│п©п╣я┤п╣п╫п╦п╣</A>
-<LI><A HREF="NIS-HOWTO-6.html#ss6.3">6.3 п■п╣п╪п╬п╫ ypbind</A>
-<LI><A HREF="NIS-HOWTO-6.html#ss6.4">6.4 пёя│я┌п╟п╫п╬п╡п╨п╟ п╨п╩п╦п╣п╫я┌п╟ NIS п╦я│п©п╬п╩я▄п╥я┐я▐ я┌я─п╟п╢п╦я├п╦п╬п╫п╬я▀п╨ OIS</A>
-<LI><A HREF="NIS-HOWTO-6.html#ss6.5">6.5 пёя│я┌п╟п╫п╬п╡п╨п╟ п╨п╩п╦п╣п╫я┌п╟ NIS п╦я│п©п╬п╩я▄п╥я┐я▐ NYS</A>
-<LI><A HREF="NIS-HOWTO-6.html#ss6.6">6.6 пёя│я┌п╟п╫п╬п╡п╨п╟ п╨п╩п╦п╣п╫я┌п╟ NIS Client п╦я│п©п╬п╩я▄п╥я┐я▐ glibc 2.x</A>
-<LI><A HREF="NIS-HOWTO-6.html#ss6.7">6.7 п╓п╟п╧п╩ nsswitch.conf</A>
-<LI><A HREF="NIS-HOWTO-6.html#ss6.8">6.8 п╒п╣п╫п╣п╡я▀п╣ п©п╟я─п╬п╩п╦ п╡ NIS</A>
+<LI><A HREF="NIS-HOWTO-6.html#ss6.1">6.1 Определите что вам нужно: сервер, подчиненный сервер или клиент.</A>
+<LI><A HREF="NIS-HOWTO-6.html#ss6.2">6.2 Программное обеспечение</A>
+<LI><A HREF="NIS-HOWTO-6.html#ss6.3">6.3 Демон ypbind</A>
+<LI><A HREF="NIS-HOWTO-6.html#ss6.4">6.4 Установка клиента NIS используя традиционоык OIS</A>
+<LI><A HREF="NIS-HOWTO-6.html#ss6.5">6.5 Установка клиента NIS используя NYS</A>
+<LI><A HREF="NIS-HOWTO-6.html#ss6.6">6.6 Установка клиента NIS Client используя glibc 2.x</A>
+<LI><A HREF="NIS-HOWTO-6.html#ss6.7">6.7 Файл nsswitch.conf</A>
+<LI><A HREF="NIS-HOWTO-6.html#ss6.8">6.8 Теневые пароли в NIS</A>
 </UL>
 <P>
-<H2><A NAME="toc7">7.</A> <A HREF="NIS-HOWTO-7.html">п╖я┌п╬ п╪п╫п╣ п╫я┐п╤п╫п╬ п╢п╩я▐ я┐я│я┌п╟п╫п╬п╡п╨п╦ NIS+ ?</A></H2>
+<H2><A NAME="toc7">7.</A> <A HREF="NIS-HOWTO-7.html">Что мне нужно для установки NIS+ ?</A></H2>
 
 <UL>
-<LI><A HREF="NIS-HOWTO-7.html#ss7.1">7.1 п÷я─п╬пЁя─п╟п╪п╪п╫п╬п╣ п╬п╠п╣я│п©п╣я┤п╣п╫п╦п╣</A>
-<LI><A HREF="NIS-HOWTO-7.html#ss7.2">7.2 пёя│я┌п╟п╫п╬п╡п╨п╟ п╨п╩п╦п╣п╫я┌п╟ NIS+</A>
-<LI><A HREF="NIS-HOWTO-7.html#ss7.3">7.3 NIS+, keylogin, login п╦ PAM</A>
-<LI><A HREF="NIS-HOWTO-7.html#ss7.4">7.4 п╓п╟п╧п╩ nsswitch.conf</A>
+<LI><A HREF="NIS-HOWTO-7.html#ss7.1">7.1 Программное обеспечение</A>
+<LI><A HREF="NIS-HOWTO-7.html#ss7.2">7.2 Установка клиента NIS+</A>
+<LI><A HREF="NIS-HOWTO-7.html#ss7.3">7.3 NIS+, keylogin, login и PAM</A>
+<LI><A HREF="NIS-HOWTO-7.html#ss7.4">7.4 Файл nsswitch.conf</A>
 </UL>
 <P>
-<H2><A NAME="toc8">8.</A> <A HREF="NIS-HOWTO-8.html">пёя│я┌п╟п╫п╬п╡п╨п╟ я│п╣я─п╡п╣я─п╟ NIS</A></H2>
+<H2><A NAME="toc8">8.</A> <A HREF="NIS-HOWTO-8.html">Установка сервера NIS</A></H2>
 
 <UL>
-<LI><A HREF="NIS-HOWTO-8.html#ss8.1">8.1 п÷я─п╬пЁя─п╟п╪п╪п╟-я│п╣я─п╡п╣я─ ypserv</A>
-<LI><A HREF="NIS-HOWTO-8.html#ss8.2">8.2 п÷я─п╬пЁя─п╟п╪п╪п╟-я│п╣я─п╡п╣я─ yps</A>
-<LI><A HREF="NIS-HOWTO-8.html#ss8.3">8.3 п÷я─п╬пЁя─п╟п╪п╪п╟ rpc.ypxfrd</A>
-<LI><A HREF="NIS-HOWTO-8.html#ss8.4">8.4 п÷я─п╬пЁя─п╟п╪п╪п╟ rpc.yppasswdd</A>
+<LI><A HREF="NIS-HOWTO-8.html#ss8.1">8.1 Программа-сервер ypserv</A>
+<LI><A HREF="NIS-HOWTO-8.html#ss8.2">8.2 Программа-сервер yps</A>
+<LI><A HREF="NIS-HOWTO-8.html#ss8.3">8.3 Программа rpc.ypxfrd</A>
+<LI><A HREF="NIS-HOWTO-8.html#ss8.4">8.4 Программа rpc.yppasswdd</A>
 </UL>
 <P>
-<H2><A NAME="toc9">9.</A> <A HREF="NIS-HOWTO-9.html">п÷я─п╬п╡п╣я─п╨п╟ NIS/NYS</A></H2>
+<H2><A NAME="toc9">9.</A> <A HREF="NIS-HOWTO-9.html">Проверка NIS/NYS</A></H2>
 
 <P>
-<H2><A NAME="toc10">10.</A> <A HREF="NIS-HOWTO-10.html">п·п╠я┴п╦п╧ п©я─п╬п╠п╩п╣п╪я▀ п╦ п╫п╣п╦я│п©я─п╟п╡п╫п╬я│я┌п╦ NIS</A></H2>
+<H2><A NAME="toc10">10.</A> <A HREF="NIS-HOWTO-10.html">Общий проблемы и неисправности NIS</A></H2>
 
 <P>
 <H2><A NAME="toc11">11.</A> <A HREF="NIS-HOWTO-11.html">Frequently Asked Questions</A></H2>

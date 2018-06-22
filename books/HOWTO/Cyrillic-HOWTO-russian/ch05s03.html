@@ -1,157 +1,157 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=koi8-r"><title>п▓п╡п╬п╢ я│ п╨п╩п╟п╡п╦п╟я┌я┐я─я▀</title><meta name="generator" content="DocBook XSL Stylesheets V1.59.1"><link rel="home" href="index.html" title="The Linux Cyrillic HOWTO (russian)"><link rel="up" href="ch05.html" title="п⌠п╩п╟п╡п╟ 5. X Window"><link rel="previous" href="ch05s02.html" title="п≤я│п©п╬п╩я▄п╥п╬п╡п╟п╫п╦п╣ я┬я─п╦я└я┌п╬п╡ TrueType"><link rel="next" href="ch05s04.html" title="п²п╣я─я┐я│я│п╨п╟я▐ п╨п╦я─п╦п╩п╩п╦я├п╟ п╢п╩я▐ X Window"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">п▓п╡п╬п╢ я│ п╨п╩п╟п╡п╦п╟я┌я┐я─я▀</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch05s02.html">п÷я─п╣п╢.</a>б═</td><th width="60%" align="center">п⌠п╩п╟п╡п╟ 5. X Window</th><td width="20%" align="right">б═<a accesskey="n" href="ch05s04.html">п║п╩п╣п╢.</a></td></tr></table><hr></div><div class="sect1" lang="ru"><div class="titlepage"><div><h2 class="title" style="clear: both"><a name="id2881390"></a>п▓п╡п╬п╢ я│ п╨п╩п╟п╡п╦п╟я┌я┐я─я▀</h2></div></div><a class="indexterm" name="id2881397"></a><p>п▓ п©п╬я│п╩п╣п╢п╫п╦я┘ п╡я▀п©я┐я│п╨п╟я┘ X (X11R61 п╦ п╡я▀я┬п╣) п╦п╪п╣я▌я┌я│я▐ п╢п╡п╟
-&quot;я│я┌п╟п╫п╢п╟я─я┌п╫я▀я┘&quot;б═ я│п©п╬я│п╬п╠п╟ п╡п╡п╬п╢п╟ я│ п╨п╩п╟п╡п╦п╟я┌я┐я─я▀: Xkb п╦п╩п╦ X KeyBoard
-(я─п╟п╥п╢п╣п╩ <a href="ch05s03.html#CyrCommonXkb" title="п²п╟я│я┌я─п╬п╧п╨п╟ Xkb">&#8220;п²п╟я│я┌я─п╬п╧п╨п╟ Xkb&#8221;</a>) п╦ я│я┌п╟я─я▀п╧ я│п©п╬я│п╬п╠, я─п╟п╠п╬я┌п╟я▌я┴п╦п╧
-я┤п╣я─п╣п╥ я┐я┌п╦п╩п╦я┌я┐ xmodmap (я│п╪. я─п╟п╥п╢п╣п╩ <a href="ch05s03.html#xmodmap" title="xmodmap">&#8220;xmodmap&#8221;</a>).</p><div class="sect2" lang="ru"><div class="titlepage"><div><h3 class="title"><a name="CyrCommonXkb"></a>п²п╟я│я┌я─п╬п╧п╨п╟ Xkb</h3></div></div><a class="indexterm" name="id2881445"></a><a class="indexterm" name="id2881460"></a><a class="indexterm" name="id2881471"></a><p>п÷п╬п╩п╫я┐я▌ п╦ п╦я│я┤п╣я─п©я▀п╡п╟я▌я┴я┐я▌ (п╢п╟п╤п╣ я│п╩п╦я┬п╨п╬п╪ п╦я│я┤п╣я─п©я▀п╡п╟я▌я┴я┐я▌)
-п╢п╬п╨я┐п╪п╣п╫я┌п╟я├п╦я▌ п©п╬ п╫п╟я│я┌я─п╬п╧п╨п╣ <span class="emphasis"><em>Xkb</em></span> п╪п╬п╤п╫п╬ п╫п╟п╧я┌п╦ я┐
-<a href="http://www.tsu.ru/~pascal/other/xkb/" target="_top">п≤п╡п╟п╫п╟
-п÷п╟я│п╨п╟п╩я▐</a>.</p><div class="sect3" lang="ru"><div class="titlepage"><div><h4 class="title"><a name="id2881506"></a>п²п╣п╪п╫п╬пЁп╬ я┌п╣п╬я─п╦п╦</h4></div></div><a class="indexterm" name="id2881513"></a><p>п÷я─п╦ я│я┌п╟я─я┌п╣ X-я│п╣я─п╡п╣я─п╟, п╪п╬п╢я┐п╩я▄ <span class="emphasis"><em>XKB</em></span>
-п╥п╟я┤п╦я┌я▀п╡п╟п╣я┌ п╡я│п╣ п╫п╣п╬п╠я┘п╬п╢п╦п╪я▀п╣ п╢п╟п╫п╫я▀п╣ п╦п╥ я┌п╣п╨я│я┌п╬п╡я▀я┘ я└п╟п╧п╩п╬п╡, п╨п╬я┌п╬я─я▀п╣
-п╬п╠я─п╟п╥я┐я▌я┌ &quot;п╠п╟п╥я┐ п╢п╟п╫п╫я▀я┘&quot;б═ п╫п╟я│я┌я─п╬п╣п╨ <span class="emphasis"><em>XKB</em></span>.</p><p>п║я┌я─п╬пЁп╬ пЁп╬п╡п╬я─я▐, п╠п╬п╩я▄я┬п╦п╫я│я┌п╡п╬ п╦п╥ я█я┌п╦я┘ я└п╟п╧п╩п╬п╡ я│п╟п╪ п╪п╬п╢я┐п╩я▄
-XKB п╫п╣ я┤п╦я┌п╟п╣я┌.  п·п╫ п╡я▀п╥я▀п╡п╟п╣я┌ п©я─п╬пЁя─п╟п╪п╪я┐ <span class="emphasis"><em>xkbcomp</em></span>,
-п╨п╬я┌п╬я─п╟я▐ п©п╣я─п╣п╡п╬п╢п╦я┌ я│п╬п╢п╣я─п╤п╦п╪п╬п╣ я█я┌п╦я┘ я└п╟п╧п╩п╬п╡ п╡ п╢п╡п╬п╦я┤п╫я▀п╧ я└п╬я─п╪п╟я┌, п©п╬п╫я▐я┌п╫я▀п╧
-п╫п╣п©п╬я│я─п╣п╢я│я┌п╡п╣п╫п╫п╬ п╪п╬п╢я┐п╩я▌ <span class="emphasis"><em>XKB</em></span>.</p><p>п²п╬ п╢п╩я▐ п╫п╟я│я┌я─п╬п╧п╨п╦ я█я┌п╬ п╫п╣ я┌п╟п╨ я┐п╤ п╡п╟п╤п╫п╬, п©п╬я│п╨п╬п╩я▄п╨я┐ п╡я▀п╥п╬п╡
-<span class="emphasis"><em>xkbcomp</em></span> п©я─п╬п╦я│я┘п╬п╢п╦я┌ п╟п╡я┌п╬п╪п╟я┌п╦я┤п╣я│п╨п╦, п╫п╣п╥п╟п╪п╣я┌п╫п╬ п╢п╩я▐
-п©п╬п╩я▄п╥п╬п╡п╟я┌п╣п╩я▐.</p><p>п▒п╟п╥п╟ п╢п╟п╫п╫я▀я┘, п╫п╣п╬п╠я┘п╬п╢п╦п╪я▀я┘ XKB, я│п╬я│я┌п╬п╦я┌ п╦п╥ 5
-п╨п╬п╪п©п╬п╫п╣п╫я┌п╬п╡:</p><div class="itemizedlist"><ul type="disc"><li><p> <span class="emphasis"><em>keycodes</em></span> п╒п╟п╠п╩п╦я├я▀,
-п╨п╬я┌п╬я─я▀п╣ п©я─п╬я│я┌п╬ п╥п╟п╢п╟я▌я┌ я│п╦п╪п╡п╬п╩п╦я┤п╣я│п╨п╦п╣ п╦п╪п╣п╫п╟ п╢п╩я▐ я│п╨п╟п╫-п╨п╬п╢п╬п╡.
-п²п╟п©я─п╦п╪п╣я─:</p><pre class="programlisting">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=koi8-r"><title>Ввод с клавиатуры</title><meta name="generator" content="DocBook XSL Stylesheets V1.59.1"><link rel="home" href="index.html" title="The Linux Cyrillic HOWTO (russian)"><link rel="up" href="ch05.html" title="Глава 5. X Window"><link rel="previous" href="ch05s02.html" title="Использование шрифтов TrueType"><link rel="next" href="ch05s04.html" title="Нерусская кириллица для X Window"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Ввод с клавиатуры</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch05s02.html">Пред.</a> </td><th width="60%" align="center">Глава 5. X Window</th><td width="20%" align="right"> <a accesskey="n" href="ch05s04.html">След.</a></td></tr></table><hr></div><div class="sect1" lang="ru"><div class="titlepage"><div><h2 class="title" style="clear: both"><a name="id2881390"></a>Ввод с клавиатуры</h2></div></div><a class="indexterm" name="id2881397"></a><p>В последних выпусках X (X11R61 и выше) имеются два
+&quot;стандартных&quot;  способа ввода с клавиатуры: Xkb или X KeyBoard
+(раздел <a href="ch05s03.html#CyrCommonXkb" title="Настройка Xkb">&#8220;Настройка Xkb&#8221;</a>) и старый способ, работающий
+через утилиту xmodmap (см. раздел <a href="ch05s03.html#xmodmap" title="xmodmap">&#8220;xmodmap&#8221;</a>).</p><div class="sect2" lang="ru"><div class="titlepage"><div><h3 class="title"><a name="CyrCommonXkb"></a>Настройка Xkb</h3></div></div><a class="indexterm" name="id2881445"></a><a class="indexterm" name="id2881460"></a><a class="indexterm" name="id2881471"></a><p>Полную и исчерпывающую (даже слишком исчерпывающую)
+документацию по настройке <span class="emphasis"><em>Xkb</em></span> можно найти у
+<a href="http://www.tsu.ru/~pascal/other/xkb/" target="_top">Ивана
+Паскаля</a>.</p><div class="sect3" lang="ru"><div class="titlepage"><div><h4 class="title"><a name="id2881506"></a>Немного теории</h4></div></div><a class="indexterm" name="id2881513"></a><p>При старте X-сервера, модуль <span class="emphasis"><em>XKB</em></span>
+зачитывает все необходимые данные из текстовых файлов, которые
+образуют &quot;базу данных&quot;  настроек <span class="emphasis"><em>XKB</em></span>.</p><p>Строго говоря, большинство из этих файлов сам модуль
+XKB не читает.  Он вызывает программу <span class="emphasis"><em>xkbcomp</em></span>,
+которая переводит содержимое этих файлов в двоичный формат, понятный
+непосредственно модулю <span class="emphasis"><em>XKB</em></span>.</p><p>Но для настройки это не так уж важно, поскольку вызов
+<span class="emphasis"><em>xkbcomp</em></span> происходит автоматически, незаметно для
+пользователя.</p><p>База данных, необходимых XKB, состоит из 5
+компонентов:</p><div class="itemizedlist"><ul type="disc"><li><p> <span class="emphasis"><em>keycodes</em></span> Таблицы,
+которые просто задают символические имена для скан-кодов.
+Например:</p><pre class="programlisting">
 &lt;TLDE&gt;= 49;
 &lt;AE01&gt; = 10;
-</pre></li><li><p><span class="emphasis"><em>types</em></span> п·п©п╦я│я▀п╡п╟п╣я┌ я┌п╦п©я▀
-п╨п╩п╟п╡п╦я┬. п╒п╦п© п╨п╩п╟п╡п╦я┬п╦ п╬п©я─п╣п╢п╣п╩я▐п╣я┌ &#8212; п╨п╟п╨ п╢п╬п╩п╤п╫п╬ п╪п╣п╫я▐я┌я▄я│я▐ п╥п╫п╟я┤п╣п╫п╦п╣,
-п╡я▀п╢п╟п╡п╟п╣п╪п╬п╣ п╨п╩п╟п╡п╦я┬п╣п╧ п╡ п╥п╟п╡п╦я│п╦п╪п╬я│я┌п╦ п╬я┌ п╪п╬п╢п╦я└п╦п╨п╟я┌п╬я─п╬п╡
-(<span class="emphasis"><em>Control</em></span>, <span class="emphasis"><em>Shift</em></span> п╦ я┌.п©.).
-п╒п╟п╨, п╫п╟п©я─п╦п╪п╣я─, &quot;п╠я┐п╨п╡п╣п╫п╫я▀п╣&quot;б═ п╨п╩п╟п╡п╦я┬п╦ п╬я┌п╫п╬я│я▐я┌я│я▐ п╨ я┌п╦п©я┐
-<span class="emphasis"><em>ALPHABETIC</em></span>, я┤я┌п╬ п╬п╥п╫п╟я┤п╟п╣я┌, я┤я┌п╬ п╬п╫п╦ п╦п╪п╣я▌я┌ я─п╟п╥п╫п╬п╣
-п╥п╫п╟я┤п╣п╫п╦п╣ п╡ п╥п╟п╡п╦я│п╦п╪п╬я│я┌п╦ п╬я┌ я│п╬я│я┌п╬я▐п╫п╦я▐ <span class="emphasis"><em>Shift</em></span> п╦
-<span class="emphasis"><em>CapsLock</em></span>. п░ п╨п╩п╟п╡п╦я┬п╟
-<span class="emphasis"><em>[Enter]</em></span> п╦п╪п╣п╣я┌ я┌п╦п© &#8212;
-<span class="emphasis"><em>ONE_LEVEL</em></span>, я┤я┌п╬ п╬п╥п╫п╟я┤п╟п╣я┌, я┤я┌п╬ п╣я▒ п╥п╫п╟я┤п╣п╫п╦п╣
-п╡я│п╣пЁп╢п╟ п╬п╢п╫п╬ п╦ я┌п╬ п╤п╣, п╫п╣п╥п╟п╡п╦я│п╦п╪п╬ п╬я┌ я│п╬я│я┌п╬я▐п╫п╦я▐
-п╪п╬п╢п╦я└п╦п╨п╟я┌п╬я─п╬п╡.</p></li><li><p> <span class="emphasis"><em>compat</em></span> (я│п╬п╨я─п╟я┴я▒п╫п╫п╬п╣
-п╬я┌ compability) п·п©п╦я│я▀п╡п╟п╣я┌ &quot;п©п╬п╡п╣п╢п╣п╫п╦п╣&quot;б═ п╪п╬п╢п╦я└п╦п╨п╟я┌п╬я─п╬п╡. п▓
-<span class="emphasis"><em>XKB</em></span> п╦п╪п╣п╣я┌я│я▐ п╫п╣я│п╨п╬п╩я▄п╨п╬ п╡п╫я┐я┌я─п╣п╫п╫п╦я┘ п©п╣я─п╣п╪п╣п╫п╫я▀я┘,
-п╨п╬я┌п╬я─я▀п╣, п╡ п╨п╬п╫п╣я┤п╫п╬п╪ я│я┤я▒я┌п╣, п╦ п╬п©я─п╣п╢п╣п╩я▐я▌я┌ &#8212; п╨п╟п╨п╬п╧ я│п╦п╪п╡п╬п╩ п╠я┐п╢п╣я┌
-пЁп╣п╫п╣я─п╦я─п╬п╡п╟я┌я▄я│я▐ п©я─п╦ п╫п╟п╤п╟я┌п╦п╦ п╨п╩п╟п╡п╦я┬п╦ п╡ п╨п╬п╫п╨я─п╣я┌п╫п╬п╧ я│п╦я┌я┐п╟я├п╦п╦. п╒п╟п╨ п╡п╬я┌, п╡
-<span class="emphasis"><em>compat</em></span> п╨п╟п╨ я─п╟п╥ п╬п©п╦я│я▀п╡п╟п╣я┌я│я▐ &#8212; п╨п╟п╨ п╢п╬п╩п╤п╫я▀
-п╪п╣п╫я▐я┌я▄я│я▐ я█я┌п╦ п©п╣я─п╣п╪п╣п╫п╫я▀п╣ п©я─п╦ п╫п╟п╤п╟я┌п╦п╦ я─п╟п╥п╩п╦я┤п╫я▀я┘ п╨п╩п╟п╡п╦я┬-п╪п╬п╢п╦я└п╦п╨п╟я┌п╬я─п╬п╡. п▓
-я█я┌п╬п╪ п╤п╣ я─п╟п╥п╢п╣п╩п╣ п╬п╠я▀я┤п╫п╬ п╬п©п╦я│я▀п╡п╟п╣я┌я│я▐ п╦ п©п╬п╡п╣п╢п╣п╫п╦п╣
-&quot;п╩п╟п╪п©п╬я┤п╣п╨-п╦п╫п╢п╦п╨п╟я┌п╬я─п╬п╡&quot;б═ п╫п╟ п╨п╩п╟п╡п╦п╟я┌я┐я─п╣.</p></li><li><p> <span class="emphasis"><em>symbols</em></span> п╒п╟п╠п╩п╦я├я▀, п╡
-п╨п╬я┌п╬я─я▀я┘ п╢п╩я▐ п╨п╟п╤п╢п╬пЁп╬ я│п╨п╟п╫-п╨п╬п╢п╟ (п╦п╪п╣п╫п╦ я│п╨п╟п╫-п╨п╬п╢п╟, п╬п©я─п╣п╢п╣п╩я▒п╫п╫п╬пЁп╬ п╡
-<span class="emphasis"><em>keycodes</em></span>) п©п╣я─п╣я┤п╦я│п╩я▐я▌я┌я│я▐ п╡я│п╣ п╥п╫п╟я┤п╣п╫п╦я▐
-(<span class="emphasis"><em>symbols</em></span>), п╨п╬я┌п╬я─я▀п╣ п╢п╬п╩п╤п╫п╟ п╡я▀п╢п╟п╡п╟я┌я▄ п╨п╩п╟п╡п╦я┬п╟.
-п∙я│я┌п╣я│я┌п╡п╣п╫п╫п╬, п╨п╬п╩п╦я┤п╣я│я┌п╡п╬ я─п╟п╥п╩п╦я┤п╫я▀я┘ п╥п╫п╟я┤п╣п╫п╦п╧ п╥п╟п╡п╦я│п╦я┌ п╬я┌ я┌п╦п©п╟ п╨п╩п╟п╡п╦я┬п╦
-(п╨п╬я┌п╬я─я▀п╣ п╬п©п╦я│я▀п╡п╟я▌я┌я│я▐ п╡ <span class="emphasis"><em>types</em></span>), п╟ п╨п╟п╨п╬п╣ п╦п╪п╣п╫п╫п╬
-п╥п╫п╟я┤п╣п╫п╦п╣ п╠я┐п╢п╣я┌ п╡я▀п╢п╟п╫п╬ п╡ п╨п╬п╫п╨я─п╣я┌п╫п╬п╧ я│п╦я┌я┐п╟я├п╦п╦, п╬п©я─п╣п╢п╣п╩я▐п╣я┌я│я▐ я│п╬я│я┌п╬я▐п╫п╦п╣п╪
-п╪п╬п╢п╦я└п╦п╨п╟я┌п╬я─п╬п╡ п╦ п╦я┘ &quot;п©п╬п╡п╣п╢п╣п╫п╦п╣п╪&quot;б═ (п╨п╬я┌п╬я─п╬п╣ п╬п©п╦я│я▀п╡п╟п╣я┌я│я▐ п╡
-<span class="emphasis"><em>compat</em></span>).</p></li><li><p> <span class="emphasis"><em>geometry</em></span> п·п©п╦я│я▀п╡п╟п╣я┌
-&quot;пЁп╣п╬п╪п╣я┌я─п╦я▌&quot;б═ п╨п╩п╟п╡п╦п╟я┌я┐я─я▀ &#8212; я┌п╬ п╣я│я┌я▄ я─п╟я│п©п╬п╩п╬п╤п╣п╫п╦п╣ п╨п╩п╟п╡п╦я┬ п╫п╟
-п╨п╩п╟п╡п╦п╟я┌я┐я─п╣.  п╜я┌п╦ п╬п©п╦я│п╟п╫п╦я▐ п╫я┐п╤п╫я▀ п╫п╣ я│я┌п╬п╩я▄п╨п╬ я│п╟п╪п╬п╪я┐ X-я│п╣я─п╡п╣я─я┐, я│п╨п╬п╩я▄п╨п╬
-п©я─п╦п╨п╩п╟п╢п╫я▀п╪ п©я─п╬пЁя─п╟п╪п╪п╟п╪, п╨п╬я┌п╬я─я▀п╣ я─п╦я│я┐я▌я┌ п╦п╥п╬п╠я─п╟п╤п╣п╫п╦п╣
-п╨п╩п╟п╡п╦п╟я┌я┐я─я▀.</p></li></ul></div><p>п▓я│п╣ я█я┌п╦ п╨п╬п╪п©п╬п╫п╣п╫я┌я▀ я─п╟п╥п╩п╬п╤п╣п╫я▀ п©п╬ п╬п╢п╫п╬п╦п╪я▒п╫п╫я▀п╪
-п╢п╦я─п╣п╨я┌п╬я─п╦я▐п╪ п╡ п╢п╦я─п╣п╨я┌п╬я─п╦п╦
-<tt>{XROOT}/lib/X11/xkb</tt> (п╡ п╢п╟п╩я▄п╫п╣п╧я┬п╣п╪, я▐ п╠я┐п╢я┐
-п╬п╠п╬п╥п╫п╟я┤п╟я┌я▄ п╣я▒ <tt>{XKBROOT}</tt>).</p><p>п▓п╣я│я▄ п╫п╟п╠п╬я─ п╨п╬п╪п©п╬п╫п╣п╫я┌п╬п╡, п╫п╣п╬п╠я┘п╬п╢п╦п╪я▀я┘ п╢п╩я▐ п╫п╟я│я┌я─п╬п╧п╨п╦ XKB,
-п╬п©п╦я│я▀п╡п╟п╣я┌я│я▐ п╡ я└п╟п╧п╩п╣ п╨п╬п╫я└п╦пЁя┐я─п╟я├п╦п╦ X-я│п╣я─п╡п╣я─п╟ п╡ я│п╣п╨я├п╦п╦
-<span class="emphasis"><em>Keyboard</em></span>.</p></div><div class="sect3" lang="ru"><div class="titlepage"><div><h4 class="title"><a name="xwin-option"></a>п²п╟я│я┌я─п╬п╧п╨п╟</h4></div></div><a class="indexterm" name="id2881790"></a><p>п╖я┌п╬п╠я▀ п╫п╟я│я┌я─п╬п╦я┌я▄ XKB, п╡ я└п╟п╧п╩п╣ п╨п╬п╫я└п╦пЁя┐я─п╟я├п╦п╦ X-я│п╣я─п╡п╣я─п╟
-п╫п╟п╢п╬ п╥п╟п╢п╟я┌я▄ п©п╟я─п╟п╪п╣я┌я─я▀ <span class="emphasis"><em>XkbRules</em></span>,
-<span class="emphasis"><em>XkbModel</em></span>, <span class="emphasis"><em>XkbLayout</em></span> п╦, п╣я│п╩п╦
-п╡п╟п╪ п╫я┐п╤п╫п╬ я┤я┌п╬-я┌п╬ п╫п╣ я│п╬п╡я│п╣п╪ я│я┌п╟п╫п╢п╟я─я┌п╫п╬п╣ &#8212;
-<span class="emphasis"><em>XkbVariant</em></span> п╦
-<span class="emphasis"><em>XkbOptions</em></span>.</p><p>п²п╟п©я─п╦п╪п╣я─,</p><pre class="programlisting">
+</pre></li><li><p><span class="emphasis"><em>types</em></span> Описывает типы
+клавиш. Тип клавиши определяет &#8212; как должно меняться значение,
+выдаваемое клавишей в зависимости от модификаторов
+(<span class="emphasis"><em>Control</em></span>, <span class="emphasis"><em>Shift</em></span> и т.п.).
+Так, например, &quot;буквенные&quot;  клавиши относятся к типу
+<span class="emphasis"><em>ALPHABETIC</em></span>, что означает, что они имеют разное
+значение в зависимости от состояния <span class="emphasis"><em>Shift</em></span> и
+<span class="emphasis"><em>CapsLock</em></span>. А клавиша
+<span class="emphasis"><em>[Enter]</em></span> имеет тип &#8212;
+<span class="emphasis"><em>ONE_LEVEL</em></span>, что означает, что её значение
+всегда одно и то же, независимо от состояния
+модификаторов.</p></li><li><p> <span class="emphasis"><em>compat</em></span> (сокращённое
+от compability) Описывает &quot;поведение&quot;  модификаторов. В
+<span class="emphasis"><em>XKB</em></span> имеется несколько внутренних переменных,
+которые, в конечном счёте, и определяют &#8212; какой символ будет
+генерироваться при нажатии клавиши в конкретной ситуации. Так вот, в
+<span class="emphasis"><em>compat</em></span> как раз описывается &#8212; как должны
+меняться эти переменные при нажатии различных клавиш-модификаторов. В
+этом же разделе обычно описывается и поведение
+&quot;лампочек-индикаторов&quot;  на клавиатуре.</p></li><li><p> <span class="emphasis"><em>symbols</em></span> Таблицы, в
+которых для каждого скан-кода (имени скан-кода, определённого в
+<span class="emphasis"><em>keycodes</em></span>) перечисляются все значения
+(<span class="emphasis"><em>symbols</em></span>), которые должна выдавать клавиша.
+Естественно, количество различных значений зависит от типа клавиши
+(которые описываются в <span class="emphasis"><em>types</em></span>), а какое именно
+значение будет выдано в конкретной ситуации, определяется состоянием
+модификаторов и их &quot;поведением&quot;  (которое описывается в
+<span class="emphasis"><em>compat</em></span>).</p></li><li><p> <span class="emphasis"><em>geometry</em></span> Описывает
+&quot;геометрию&quot;  клавиатуры &#8212; то есть расположение клавиш на
+клавиатуре.  Эти описания нужны не столько самому X-серверу, сколько
+прикладным программам, которые рисуют изображение
+клавиатуры.</p></li></ul></div><p>Все эти компоненты разложены по одноимённым
+директориям в директории
+<tt>{XROOT}/lib/X11/xkb</tt> (в дальнейшем, я буду
+обозначать её <tt>{XKBROOT}</tt>).</p><p>Весь набор компонентов, необходимых для настройки XKB,
+описывается в файле конфигурации X-сервера в секции
+<span class="emphasis"><em>Keyboard</em></span>.</p></div><div class="sect3" lang="ru"><div class="titlepage"><div><h4 class="title"><a name="xwin-option"></a>Настройка</h4></div></div><a class="indexterm" name="id2881790"></a><p>Чтобы настроить XKB, в файле конфигурации X-сервера
+надо задать параметры <span class="emphasis"><em>XkbRules</em></span>,
+<span class="emphasis"><em>XkbModel</em></span>, <span class="emphasis"><em>XkbLayout</em></span> и, если
+вам нужно что-то не совсем стандартное &#8212;
+<span class="emphasis"><em>XkbVariant</em></span> и
+<span class="emphasis"><em>XkbOptions</em></span>.</p><p>Например,</p><pre class="programlisting">
 XkbRules        &quot;xfree86&quot;
 XkbModel        &quot;pc104&quot;
 XkbLayout       &quot;ru&quot;
 XkbVariant      &quot;winkeys&quot;
 XkbOptions      &quot;grp:shift_toggle,grp_led:scroll&quot;
-</pre><p>п╬п╥п╫п╟я┤п╟п╣я┌, я┤я┌п╬ XKB п╢п╬п╩п╤п╣п╫ п╡ я│п╬п╬я┌п╡п╣я┌я│я┌п╡п╦п╦ я│ п©я─п╟п╡п╦п╩п╟п╪п╦,
-п╬п©п╦я│п╟п╫п╫я▀п╪п╦ п╡ я└п╟п╧п╩п╣
-<tt>{XKBROOT}/rules/xfree86</tt>, п╡я▀п╠я─п╟я┌я▄
-п╫п╟я│я┌я─п╬п╧п╨п╦ п╢п╩я▐ п╨п╩п╟п╡п╦п╟я┌я┐я─я▀ я┌п╦п©п╟ &quot;pc104&quot;б═ (104 п╨п╫п╬п©п╨п╦), я─я┐я│я│п╨п╬пЁп╬
-п╟п╩я└п╟п╡п╦я┌п╟ (п╟п╫пЁп╩п╦п╧я│п╨п╦п╧ п╟п╩я└п╟п╡п╦я┌ п╠я┐п╢п╣я┌ п╡п╨п╩я▌я┤я▒п╫ &quot;п©п╬ я┐п╪п╬п╩я┤п╟п╫п╦я▌&quot;). п∙я│п╩п╦ я┐ п╡п╟я│
-&quot;windows&quot;б═ п╨п╩п╟п╡п╦п╟я┌я┐я─п╟ (я┤я┌п╬ п╡п╣я─п╫п╬ п╡ 99% я│п╩я┐я┤п╟п╣п╡), я┌п╬ п©п╬п╩п╣п╥п╫п╬
-я┐п╨п╟п╥п╟я┌я▄ <span class="emphasis"><em>XkbVariant</em></span> п╨п╟п╨ &quot;winkeys&quot;, п╡ п©я─п╬я┌п╦п╡п╫п╬п╪
-я│п╩я┐я┤п╟п╣ п╬я│я┌п╟п╡я▄я┌п╣ я█я┌я┐ п╬п©я├п╦я▌ п©я┐я│я┌п╬п╧ &#8212; &quot;&quot;.  п▓ я│п╟п╪п╬п╪ п╨п╬п╫я├п╣ п╦п╢я┐я┌
-п╢п╬п©п╬п╩п╫п╦я┌п╣п╩я▄п╫я▀п╣ п╬п©я├п╦п╦ п╢п╩я▐ п╡п╟я┬п╣п╧ &quot;я─п╟я│п╨п╩п╟п╢п╨п╦ п╨п╩п╟п╡п╦п╟я┌я┐я─я▀&quot;б═ &#8212;
-&quot;grp:shift_toggle,grp_led:scroll&quot;, п╨п╬я┌п╬я─я▀п╣ п╬п©п╦я│я▀п╡п╟я▌я┌
-п╪п╣я┌п╬п╢ &#8212; п©п╣я─п╣п╨п╩я▌я┤п╣п╫п╦я▐: п╢п╡п╣ п╨п╩п╟п╡п╦я┬п╦ &quot;Shift&quot;б═ , п©я─п╦ я█я┌п╬п╪
-п╥п╟пЁп╬я─п╟п╣я┌я│я▐ п╩п╟п╪п©п╬я┤п╨п╟ Scroll Lock п╫п╟ п╨п╩п╟п╡п╦п╟я┌я┐я─п╣.</p></div><div class="sect3" lang="ru"><div class="titlepage"><div><h4 class="title"><a name="id2881883"></a>п²п╣я│п╨п╬п╩я▄п╨п╬ п©я─п╟п╨я┌п╦я┤п╣я│п╨п╦я┘ я─п╣п╨п╬п╪п╣п╫п╢п╟я├п╦п╧.</h4></div></div><a class="indexterm" name="id2881891"></a><a class="indexterm" name="id2881907"></a><p>п²п╣п╠п╬п╩я▄я┬п╬п╣ п╬я┌я│я┌я┐п©п╩п╣п╫п╦п╣ &#8212; &quot;п╬ п╨п╩п╟п╡п╦я┬п╣-п©п╣я─п╣п╨п╩я▌я┤п╟я┌п╣п╩п╣
-я─я┐я│/п╩п╟я┌&quot;.</p><p>п■я─я┐пЁп╦п╣ п╡п╟я─п╦п╟п╫я┌я▀ я│п╪п╣п╫я▀ п╨п╬п╢п╦я─п╬п╡п╨п╦:</p><div class="orderedlist"><ol type="1"><li><p> <span class="emphasis"><em>grp:toggle</em></span> &#8212;
-	    п©п╣я─п╣п╨п╩я▌я┤п╣п╫п╦п╣ п©я─п╟п╡я▀п╪ Alt;</p></li><li><p>
-	    <span class="emphasis"><em>grp:shift_toggle</em></span> &#8212; п╢п╡я┐п╪я▐
-	    п╨п╩п╟п╡п╦я┬п╟п╪п╦ shift;</p></li><li><p>
+</pre><p>означает, что XKB должен в соответствии с правилами,
+описанными в файле
+<tt>{XKBROOT}/rules/xfree86</tt>, выбрать
+настройки для клавиатуры типа &quot;pc104&quot;  (104 кнопки), русского
+алфавита (английский алфавит будет включён &quot;по умолчанию&quot;). Если у вас
+&quot;windows&quot;  клавиатура (что верно в 99% случаев), то полезно
+указать <span class="emphasis"><em>XkbVariant</em></span> как &quot;winkeys&quot;, в противном
+случае оставьте эту опцию пустой &#8212; &quot;&quot;.  В самом конце идут
+дополнительные опции для вашей &quot;раскладки клавиатуры&quot;  &#8212;
+&quot;grp:shift_toggle,grp_led:scroll&quot;, которые описывают
+метод &#8212; переключения: две клавиши &quot;Shift&quot;  , при этом
+загорается лампочка Scroll Lock на клавиатуре.</p></div><div class="sect3" lang="ru"><div class="titlepage"><div><h4 class="title"><a name="id2881883"></a>Несколько практических рекомендаций.</h4></div></div><a class="indexterm" name="id2881891"></a><a class="indexterm" name="id2881907"></a><p>Небольшое отступление &#8212; &quot;о клавише-переключателе
+рус/лат&quot;.</p><p>Другие варианты смены кодировки:</p><div class="orderedlist"><ol type="1"><li><p> <span class="emphasis"><em>grp:toggle</em></span> &#8212;
+	    переключение правым Alt;</p></li><li><p>
+	    <span class="emphasis"><em>grp:shift_toggle</em></span> &#8212; двумя
+	    клавишами shift;</p></li><li><p>
 	    <span class="emphasis"><em>grp:ctrl_shift_toggle</em></span>
 	    &#8212; ctrl+shift;</p></li><li><p>
 	    <span class="emphasis"><em>grp:ctrl_alt_toggle</em></span>
 	    &#8212; ctrl+alt;</p></li><li><p><span class="emphasis"><em>grp:caps_toggle</em></span>&#8212;
-	      п©п╣я─п╣п╨п╩я▌я┤п╣п╫п╦п╣ п©п╬ CapsLock;</p></li><li><p><span class="emphasis"><em>grp:lwin_toggle</em></span>&#8212;
-	      п©п╣я─п╣п╨п╩я▌я┤п╣п╫п╦п╣ п©п╬ п╩п╣п╡п╬п╧ &quot;Win&quot; п╨п╩п╟п╡п╦я┬п╣ п╫п╟ Windows
-	      п╨п╩п╟п╡п╦п╟я┌я┐я─п╣ (п╢п╩я▐ X Window я│я┌п╟я─я┬п╣ 4.2);</p></li><li><p><span class="emphasis"><em>grp:rwin_toggle</em></span>&#8212;
-	      п©п╣я─п╣п╨п╩я▌я┤п╣п╫п╦п╣ п©п╬ п©я─п╟п╡п╬п╧ &quot;Win&quot; п╨п╩п╟п╡п╦я┬п╣ п╫п╟ Windows
-	      п╨п╩п╟п╡п╦п╟я┌я┐я─п╣ (п╢п╩я▐ X Window я│я┌п╟я─я┬п╣ 4.2);</p></li><li><p><span class="emphasis"><em>grp:menu_toggle</em></span>&#8212;
-	      п©п╣я─п╣п╨п╩я▌я┤п╣п╫п╦п╣ п©п╬ п╨п╩п╟п╡п╦я┬п╣ &quot;п п╬п╫я┌п╣п╨я│я┌п╫п╬п╣ п╪п╣п╫я▌&quot; п╫п╟ Windows
-	      п╨п╩п╟п╡п╦п╟я┌я┐я─п╣ (п╢п╩я▐ X Window я│я┌п╟я─я┬п╣ 4.2);</p></li><li><p>  <span class="emphasis"><em>ctrl:ctrl_ac</em></span>
+	      переключение по CapsLock;</p></li><li><p><span class="emphasis"><em>grp:lwin_toggle</em></span>&#8212;
+	      переключение по левой &quot;Win&quot; клавише на Windows
+	      клавиатуре (для X Window старше 4.2);</p></li><li><p><span class="emphasis"><em>grp:rwin_toggle</em></span>&#8212;
+	      переключение по правой &quot;Win&quot; клавише на Windows
+	      клавиатуре (для X Window старше 4.2);</p></li><li><p><span class="emphasis"><em>grp:menu_toggle</em></span>&#8212;
+	      переключение по клавише &quot;Контекстное меню&quot; на Windows
+	      клавиатуре (для X Window старше 4.2);</p></li><li><p>  <span class="emphasis"><em>ctrl:ctrl_ac</em></span>
 	    &#8212; CapsLock;</p></li><li><p> <span class="emphasis"><em>grp:switch</em></span>&#8212;
-	    п©п╣я─п╣п╨п╩я▌я┤п╣п╫п╦п╣ п©п╬ п©я─п╟п╡п╬п╪я┐ Alt я┌п╬п╩я▄п╨п╬ п╫п╟ п╪п╬п╪п╣п╫я┌
-	    п╫п╟п╤п╟я┌п╦я▐<sup>[<a name="id2882059" href="ch05s03.html#ftn.id2882059">6</a>]</sup>;</p></li></ol></div><p>п п╬пЁп╢п╟ п╠я▀п╩ п╫п╟п©п╦я│п╟п╫ п©п╣я─п╡я▀п╧ п╡п╟я─п╦п╟п╫я┌ я█я┌п╦я┘ я─п╣п╨п╬п╪п╣п╫п╢п╟я├п╦п╧,
-я│п╟п╪п╟ я─п╟я│п╨п╩п╟п╢п╨п╟ &quot;я─я┐я│я│п╨п╬п╧&quot;б═ п╨п╩п╟п╡п╦п╟я┌я┐я─я▀
-(<span class="emphasis"><em>symbols/ru</em></span>) п╡п╨п╩я▌я┤п╟п╩п╟ п╡ я│п╣п╠я▐ п╦ &quot;п©п╣я─п╣п╨п╩я▌я┤п╟я┌п╣п╩я▄
-пЁя─я┐п©п©&quot;б═ я─я┐я│/п╩п╟я┌, &quot;п©п╬п╢п╡п╣я┬п╣п╫п╫я▀п╧&quot;б═ п╫п╟ п╨п╩п╟п╡п╦я┬я┐
-<span class="emphasis"><em>CapsLock</em></span>. п║ п╬п╢п╫п╬п╧ я│я┌п╬я─п╬п╫я▀, я█я┌п╬ п╠я▀п╩п╬ я┐п╢п╬п╠п╫п╬
-&#8212; п╡ п©я─п╬я│я┌п╣п╧я┬п╣п╪ я│п╩я┐я┤п╟п╣ п╢п╬я│я┌п╟я┌п╬я┤п╫п╬ п╠я▀п╩п╬ п╡я▀п╠я─п╟я┌я▄ &quot;я─я┐я│я│п╨я┐я▌
-я─п╟я│п╨п╩п╟п╢п╨я┐&quot;, п╦ п╡я▀ п╟п╡я┌п╬п╪п╟я┌п╦я┤п╣я│п╨п╦ п©п╬п╩я┐я┤п╟п╩п╦ п╦ п╨п╩п╟п╡п╦я┬я┐ п╢п╩я▐ п©п╣я─п╣п╨п╩я▌я┤п╣п╫п╦я▐ &quot;п╫п╟
-я─я┐я│я│п╨п╦п╧&quot;. п²п╬, я│ п╢я─я┐пЁп╬п╧ я│я┌п╬я─п╬п╫я▀, я█я┌п╬ п╠я▀п╩п╬ п╫п╣я┐п╢п╬п╠п╫п╬ п╢п╩я▐ я┌п╣я┘, п╨я┌п╬
-п©я─п╣п╢п©п╬я┤п╦я┌п╟п╣я┌ п╡ п╨п╟я┤п╣я│я┌п╡п╣ п©п╣я─п╣п╨п╩я▌я┤п╟я┌п╣п╩я▐ я─я┐я│/п╩п╟я┌ п╢я─я┐пЁя┐я▌ п╨п╩п╟п╡п╦я┬я┐ (п╦п╩п╦
-п╨п╬п╪п╠п╦п╫п╟я├п╦я▌ п╨п╩п╟п╡п╦я┬).  п п╬п╫п╣я┤п╫п╬, п╡я▀п╠я─п╟я┌я▄ п╢я─я┐пЁп╬п╧ п©п╣я─п╣п╨п╩я▌я┤п╟я┌п╣п╩я▄ п╫п╣
-я│п╬я│я┌п╟п╡п╩я▐п╩п╬ я┌я─я┐п╢п╟, п╫п╬ п©я─п╦ я█я┌п╬п╪ п╬я│я┌п╟п╡п╟п╩я│я▐ п╦ п©п╣я─п╣п╨п╩я▌я┤п╟я┌п╣п╩я▄ п╫п╟
-<span class="emphasis"><em>CapsLock</em></span>, я┤я┌п╬ п╪п╫п╬пЁп╦п╪ п╫п╣ п╫я─п╟п╡п╦п╩п╬я│я▄. п■п╩я▐ я┌п╬пЁп╬,
-я┤я┌п╬п╠я▀ я┐п╠я─п╟я┌я▄ п╣пЁп╬, п╫п╟п╢п╬ п╠я▀п╩п╬ &quot;п╥п╟п╩п╣п╥я┌я▄&quot; п╡ я│п╬п╬я┌п╡п╣я┌я│я┌п╡я┐я▌я┴п╦п╧ я└п╟п╧п╩ п╦ п╡я─я┐я┤п╫я┐я▌
-п©п╬п╢п©я─п╟п╡п╩я▐я┌я▄ я│п╬п╬я┌п╡п╣я┌я│я┌п╡я┐я▌я┴я┐я▌ я─п╟я│п╨п╩п╟п╢п╨я┐.</p><p>п▓ п╨п╬п╫я├п╣ п╨п╬п╫я├п╬п╡ (п╫п╟я┤п╦п╫п╟я▐ я│ п╡п╣я─я│п╦п╦ 3.3.4) я│п╟п╪п╦
-я─п╟п╥я─п╟п╠п╬я┌я┤п╦п╨п╦ <span class="emphasis"><em>XFree</em></span> я┐п╠я─п╟п╩п╦ я█я┌п╬я┌
-&quot;п©п╣я─п╣п╨п╩я▌я┤п╟я┌п╣п╩я▄&quot;б═ п╦п╥ &quot;я─я┐я│я│п╨п╬п╧ я─п╟я│п╨п╩п╟п╢п╨п╦&quot;. п²п╬ п╡ я│п╡я▐п╥п╦ я│ я█я┌п╦п╪
-п©п╬я▐п╡п╦п╩п╦я│я▄ п╦ п╫п╣п╨п╬я┌п╬я─я▀п╣ п©я─п╬п╠п╩п╣п╪я▀ &#8212; я┌п╣п©п╣я─я▄ п╨п╩п╟п╡п╦я┬я┐-п©п╣я─п╣п╨п╩я▌я┤п╟я┌п╣п╩я▄
-п╫п╟п╢п╬ я▐п╡п╫п╬ &quot;п╥п╟п╨п╟п╥я▀п╡п╟я┌я▄&quot;б═ п©я─п╦ п╨п╬п╫я└п╦пЁя┐я─п╦я─п╬п╡п╟п╫п╦п╦
-<span class="emphasis"><em>XKB</em></span>.</p><p>п║п╟п╪я▀п╧ п©я─п╬я│я┌п╬п╧ я│п©п╬я│п╬п╠ п╫п╟я│я┌я─п╬п╧п╨п╦ &#8212; п╦я│п©п╬п╩я▄п╥п╬п╡п╟я┌я▄
-п©я─п╬пЁя─п╟п╪п╪я┐ п╢п╩я▐ п╟п╡я┌п╬п╪п╟я┌п╦я┤п╣я│п╨п╬п╧ п╫п╟я│я┌я─п╬п╧п╨п╦ <span class="emphasis"><em>X
-Window</em></span>.</p><p>п▓ <span class="emphasis"><em>XFree86</em></span> я┌п╟п╨п╟я▐ п©я─п╬пЁя─п╟п╪п╪п╟
-п╫п╟п╥я▀п╡п╟п╣я┌я│я▐ <span class="emphasis"><em>XF86Setup</em></span>.</p><p>п÷я─п╦ я█я┌п╬п╪ &quot;п©п╬ я┐п╪п╬п╩я┤п╟п╫п╦я▌&quot;б═ п╦я│п©п╬п╩я▄п╥я┐я▌я┌я│я▐
-&quot;п©я─п╟п╡п╦п╩п╟&quot;б═ (<span class="emphasis"><em>XkbRules</em></span>) &#8212;
-<span class="emphasis"><em>xfree86</em></span>.  п▓п╟п╪ п╫я┐п╤п╫п╬ п╠я┐п╢п╣я┌ я┌п╬п╩я▄п╨п╬ п╡я▀п╠я─п╟я┌я▄
-&quot;п╪п╬п╢п╣п╩я▄&quot;б═ (<span class="emphasis"><em>XkbModel</em></span>), &quot;я│я┘п╣п╪я┐&quot;б═
-(<span class="emphasis"><em>XkbLayout</em></span>) п╦ &quot;я│п©п╬я│п╬п╠ п©п╣я─п╣п╨п╩я▌я┤п╣п╫п╦я▐ пЁя─я┐п©п©&quot;б═
-(п©п╣я─п╣п╨п╩я▌я┤п╟я┌п╣п╩я▄ &quot;п═пёп║/п⌡п░п╒&quot;).</p><p>п я─п╬п╪п╣ я┌п╬пЁп╬, п©я─п╦ п╤п╣п╩п╟п╫п╦п╦ п╡я▀ п╪п╬п╤п╣я┌п╣ п╦п╥п╪п╣п╫п╦я┌я▄ &quot;п©п╬п╩п╬п╤п╣п╫п╦п╣
-п╨п╩п╟п╡п╦я┬п╦ <span class="emphasis"><em>Ctrl</em></span>&quot;. п∙я│я┌п╣я│я┌п╡п╣п╫п╫п╬, п╡ п╨п╬п╫я└п╦пЁя┐я─п╟я├п╦п╦ я█я┌п╬
-п╠я┐п╢п╣я┌ п╡я▀пЁп╩я▐п╢п╣я┌я▄ п╨п╟п╨ я│п╬п╬я┌п╡п╣я┌я│я┌п╡я┐я▌я┴п╦п╣ я│я┌я─п╬я┤п╨п╦
-<span class="emphasis"><em>XkbOptions</em></span>.</p><p>п≤я┌п╟п╨. п≈п╟п©я┐я│я┌п╦я┌п╣ п©я─п╬пЁя─п╟п╪п╪я┐
-<tt>XF86Setup</tt>, п╡я▀п╠п╣я─п╦я┌п╣ я─п╟п╥п╢п╣п╩
-<span class="emphasis"><em>Keyboard</em></span>.  п▓ я█я┌п╬п╪ я─п╟п╥п╢п╣п╩п╣ п╡я▀п╠п╣я─п╦я┌п╣ п╦п╥ п╪п╣п╫я▌
-<span class="emphasis"><em>Model</em></span> (я┌п╦п© п╨п╩п╟п╡п╦п╟я┌я┐я─я▀) п╦
-<span class="emphasis"><em>Layout</em></span> (я▐п╥я▀п╨). п²п╣ п╥п╟п╠я┐п╢я▄я┌п╣ п╬я┌п╪п╣я┌п╦я┌я▄ п╡ п╬я┌п╢п╣п╩я▄п╫я▀я┘
-я│п©п╦я│п╨п╟я┘ (п╡ п©я─п╟п╡п╬п╧ я┤п╟я│я┌п╦) п©п╬п╢я┘п╬п╢я▐я┴п╦п╧ &quot;п©п╣я─п╣п╨п╩я▌я┤п╟я┌п╣п╩я▄ пЁя─я┐п©п©&quot;б═ п╦,
-п╣я│п╩п╦ я┘п╬я┌п╦я┌п╣ &#8212; &quot;я─п╟я│п©п╬п╩п╬п╤п╣п╫п╦п╣ <span class="emphasis"><em>Ctrl</em></span>&quot;.</p><p>п÷я─п╦ п╡я▀я┘п╬п╢п╣ п╦п╥ п©я─п╬пЁя─п╟п╪п╪я▀ п╬п╫п╟ п╥п╟п©п╦я┬п╣я┌ я│п╬п╬я┌п╡п╣я┌я│я┌п╡я┐я▌я┴п╦п╣
-я│я┌я─п╬я┤п╨п╦ п╡ я└п╟п╧п╩ п╨п╬п╫я└п╦пЁя┐я─п╟я├п╦п╦ <span class="emphasis"><em>XFree</em></span> п╡ я│п╣п╨я├п╦п╦
-<span class="emphasis"><em>Keyboard</em></span>.</p><p>п■п╩я▐ я│п╪п╣п╫я▀ п╨п╬п╢п╦я─п╬п╡п╨п╦ п╪п╬п╤п╫п╬ п╡п╬я│п©п╬п╩я▄п╥п╬п╡п╟я┌я▄я│я▐ п╩я▌п╠п╬п╧ п╦п╥
-п╪п╫п╬пЁп╬я┤п╦я│п╩п╣п╫п╫я▀я┘ п©я─п╬пЁя─п╟п╪п╪ п©п╣я─п╣п╨п╩я▌я┤п╣п╫п╦я▐ п╨п╬п╢п╬п╡я▀я┘ я│я┌я─п╟п╫п╦я├ я┤п╣я─п╣п╥
-<span class="emphasis"><em>xkb</em></span> &#8212; п╫п╟п©я─п╦п╪п╣я─, я▐ п©п╬п╩я▄п╥я┐я▌я│я▄ п©я─п╬пЁя─п╟п╪п╪п╬п╧
-<span class="emphasis"><em>xxkb</em></span> <a href="http://www.tsu.ru/~pascal/" target="_top">п≤п╡п╟п╫п╟ п÷п╟я│п╨п╟п╩я▐</a>.</p></div></div><div class="sect2" lang="ru"><div class="titlepage"><div><h3 class="title"><a name="xmodmap"></a>xmodmap</h3></div></div><a class="indexterm" name="id2882291"></a><a class="indexterm" name="id2882307"></a><p>п·п©п╦я│п╟п╫п╫п╬п╣ п╫п╦п╤п╣ п╬я┌п╫п╬я│п╦я┌я│я▐ п╨ п╬я┌п╫п╬я│п╦я┌п╣п╩я▄п╫п╬ я│я┌п╟я─я▀п╪ п╡п╣я─я│п╦я▐п╪
-<span class="emphasis"><em>X Window</em></span> (п≈п╟п╡п╣п╢п╬п╪п╬ п╨ п╡п╣я─я│п╦я▐п╪, п╪п╣п╫я▄я┬п╦п╪ 3.3.3), п╡
-п╨п╬я┌п╬я─я▀я┘ я│п©п╬я│п╬п╠ <span class="emphasis"><em>Xkb</em></span> (я─п╟п╥п╢п╣п╩ <a href="ch05s03.html#CyrCommonXkb" title="п²п╟я│я┌я─п╬п╧п╨п╟ Xkb">&#8220;п²п╟я│я┌я─п╬п╧п╨п╟ Xkb&#8221;</a>) п╫п╣ я─п╟п╠п╬я┌п╟п╣я┌.</p><p>п▓ я│п╩я┐я┤п╟п╣ я─я┐я│п╦я└п╦п╨п╟я├п╦п╦ я┤п╣я─п╣п╥ <span class="emphasis"><em>xmodmap</em></span>
-п©п╣я─п╡п╬п╣, я┤я┌п╬ п╡я▀ п╢п╬п╩п╤п╫я▀ я│п╢п╣п╩п╟я┌я▄, &#8212; я█я┌п╬ <span class="emphasis"><em>п╬я┌п╨п╩я▌я┤п╦я┌я▄
-Xkb</em></span>!</p><p>п╖я┌п╬п╠я▀ п╬я┌п╨п╩я▌я┤п╦я┌я▄ п©п╬п╢п╢п╣я─п╤п╨я┐ <span class="emphasis"><em>Xkb</em></span>, п╡
-я└п╟п╧п╩п╣ <tt>XF86Config</tt> п╦п╥я┐я┤п╦я┌п╣ я─п╟п╥п╢п╣п╩
-<tt>Keyboard</tt> п╦ п╥п╟п╨п╬п╪п╪п╣п╫я┌п╦я─я┐п╧я┌п╣ п╡я│п╣ я│я┌я─п╬п╨п╦, п╫п╟я┤п╦п╫п╟я▌я┴п╦п╣я│я▐
-я│ <span class="emphasis"><em>Xkb</em></span> (я─п╣пЁп╦я│я┌я─ п╫п╣ п╦п╪п╣п╣я┌ п╥п╫п╟я┤п╣п╫п╦я▐).  п▓п╥п╟п╪п╣п╫
-п╢п╬п╠п╟п╡я▄я┌п╣ я│п╩п╣п╢я┐я▌я┴я┐я▌ я│я┌я─п╬п╨я┐:</p><pre class="programlisting">
+	    переключение по правому Alt только на момент
+	    нажатия<sup>[<a name="id2882059" href="ch05s03.html#ftn.id2882059">6</a>]</sup>;</p></li></ol></div><p>Когда был написан первый вариант этих рекомендаций,
+сама раскладка &quot;русской&quot;  клавиатуры
+(<span class="emphasis"><em>symbols/ru</em></span>) включала в себя и &quot;переключатель
+групп&quot;  рус/лат, &quot;подвешенный&quot;  на клавишу
+<span class="emphasis"><em>CapsLock</em></span>. С одной стороны, это было удобно
+&#8212; в простейшем случае достаточно было выбрать &quot;русскую
+раскладку&quot;, и вы автоматически получали и клавишу для переключения &quot;на
+русский&quot;. Но, с другой стороны, это было неудобно для тех, кто
+предпочитает в качестве переключателя рус/лат другую клавишу (или
+комбинацию клавиш).  Конечно, выбрать другой переключатель не
+составляло труда, но при этом оставался и переключатель на
+<span class="emphasis"><em>CapsLock</em></span>, что многим не нравилось. Для того,
+чтобы убрать его, надо было &quot;залезть&quot; в соответствующий файл и вручную
+подправлять соответствующую раскладку.</p><p>В конце концов (начиная с версии 3.3.4) сами
+разработчики <span class="emphasis"><em>XFree</em></span> убрали этот
+&quot;переключатель&quot;  из &quot;русской раскладки&quot;. Но в связи с этим
+появились и некоторые проблемы &#8212; теперь клавишу-переключатель
+надо явно &quot;заказывать&quot;  при конфигурировании
+<span class="emphasis"><em>XKB</em></span>.</p><p>Самый простой способ настройки &#8212; использовать
+программу для автоматической настройки <span class="emphasis"><em>X
+Window</em></span>.</p><p>В <span class="emphasis"><em>XFree86</em></span> такая программа
+называется <span class="emphasis"><em>XF86Setup</em></span>.</p><p>При этом &quot;по умолчанию&quot;  используются
+&quot;правила&quot;  (<span class="emphasis"><em>XkbRules</em></span>) &#8212;
+<span class="emphasis"><em>xfree86</em></span>.  Вам нужно будет только выбрать
+&quot;модель&quot;  (<span class="emphasis"><em>XkbModel</em></span>), &quot;схему&quot; 
+(<span class="emphasis"><em>XkbLayout</em></span>) и &quot;способ переключения групп&quot; 
+(переключатель &quot;РУС/ЛАТ&quot;).</p><p>Кроме того, при желании вы можете изменить &quot;положение
+клавиши <span class="emphasis"><em>Ctrl</em></span>&quot;. Естественно, в конфигурации это
+будет выглядеть как соответствующие строчки
+<span class="emphasis"><em>XkbOptions</em></span>.</p><p>Итак. Запустите программу
+<tt>XF86Setup</tt>, выберите раздел
+<span class="emphasis"><em>Keyboard</em></span>.  В этом разделе выберите из меню
+<span class="emphasis"><em>Model</em></span> (тип клавиатуры) и
+<span class="emphasis"><em>Layout</em></span> (язык). Не забудьте отметить в отдельных
+списках (в правой части) подходящий &quot;переключатель групп&quot;  и,
+если хотите &#8212; &quot;расположение <span class="emphasis"><em>Ctrl</em></span>&quot;.</p><p>При выходе из программы она запишет соответствующие
+строчки в файл конфигурации <span class="emphasis"><em>XFree</em></span> в секции
+<span class="emphasis"><em>Keyboard</em></span>.</p><p>Для смены кодировки можно воспользоваться любой из
+многочисленных программ переключения кодовых страниц через
+<span class="emphasis"><em>xkb</em></span> &#8212; например, я пользуюсь программой
+<span class="emphasis"><em>xxkb</em></span> <a href="http://www.tsu.ru/~pascal/" target="_top">Ивана Паскаля</a>.</p></div></div><div class="sect2" lang="ru"><div class="titlepage"><div><h3 class="title"><a name="xmodmap"></a>xmodmap</h3></div></div><a class="indexterm" name="id2882291"></a><a class="indexterm" name="id2882307"></a><p>Описанное ниже относится к относительно старым версиям
+<span class="emphasis"><em>X Window</em></span> (Заведомо к версиям, меньшим 3.3.3), в
+которых способ <span class="emphasis"><em>Xkb</em></span> (раздел <a href="ch05s03.html#CyrCommonXkb" title="Настройка Xkb">&#8220;Настройка Xkb&#8221;</a>) не работает.</p><p>В случае русификации через <span class="emphasis"><em>xmodmap</em></span>
+первое, что вы должны сделать, &#8212; это <span class="emphasis"><em>отключить
+Xkb</em></span>!</p><p>Чтобы отключить поддержку <span class="emphasis"><em>Xkb</em></span>, в
+файле <tt>XF86Config</tt> изучите раздел
+<tt>Keyboard</tt> и закомментируйте все строки, начинающиеся
+с <span class="emphasis"><em>Xkb</em></span> (регистр не имеет значения).  Взамен
+добавьте следующую строку:</p><pre class="programlisting">
 XkbDisable
-</pre><p>п÷я─п╬пЁя─п╟п╪п╪п╟ <tt>xmodmap</tt> п©п╬п╥п╡п╬п╩я▐п╣я┌ п╫п╟я│я┌я─п╬п╦я┌я▄
-п╨п╬п╢я▀, я│п╬п╬я┌п╡п╣я┌я│я┌п╡я┐я▌я┴п╦п╣ я─п╟п╥п╩п╦я┤п╫я▀п╪п╦ я│п╦п╪п╡п╬п╩п╟п╪ п╦ п╦я┘ п╨п╬п╪п╠п╦п╫п╟я├п╦я▐п╪.  п╜я┌п╟
-п╫п╟я│я┌я─п╬п╧п╨п╟ п╬я│п╫п╬п╡п╟п╫п╟ п╫п╟ я└п╟п╧п╩п╣, я│п╬п╢п╣я─п╤п╟я┴п╣п╪ я┌п╟п╠п╩п╦я├я┐ п©п╣я─п╣п╨п╬п╢п╦я─п╬п╡п╨п╦.</p><p>п╞ п╫п╟я│я┌п╬я▐я┌п╣п╩я▄п╫п╬ я│п╬п╡п╣я┌я┐я▌ п╡п╟п╪ я│п╟п╪п╬я│я┌п╬я▐я┌п╣п╩я▄п╫п╬ п╫п╣ я─п╟п╥п╠п╦я─п╟я┌я▄я│я▐
-я│ <tt>xmodmap</tt>, п©п╬ п╨я─п╟п╧п╫п╣п╧ п╪п╣я─п╣ п╢п╩я▐ п╫п╟я┤п╟п╩п╟.  п▓я▀ п╫п╣
-п©п╬п╩я┐я┤п╦я┌п╣ п╫п╦я┤п╣пЁп╬, п╨я─п╬п╪п╣ пЁп╬п╩п╬п╡п╫п╬п╧ п╠п╬п╩п╦ п╦ я─п╟п╥п╬я┤п╟я─п╬п╡п╟п╫п╦я▐.  п▓п╪п╣я│я┌п╬ я█я┌п╬пЁп╬ я▐
-я─п╣п╨п╬п╪п╣п╫п╢я┐я▌ п╡п╟п╪ я┐я│я┌п╟п╫п╬п╡п╦я┌я▄ п©п╟п╨п╣я┌ <a href="ftp://ftp.relcom.ru/pub/x11/cyrillic/" target="_top">xruskb</a>, п╨п╬я┌п╬я─я▀п╧
-п©п╬п╥п╡п╬п╩я▐п╣я┌ п╡п╟п╪ я│п╨п╬п╫я└п╦пЁя┐я─п╦я─п╬п╡п╟я┌я▄ п╠п╬п╩я▄я┬п╦п╫я│я┌п╡п╬ п╡я┘п╬п╢п╫я▀я┘ п©п╟я─п╟п╪п╣я┌я─п╬п╡
-п©п╣я─п╣п╨п╬п╢п╦я─п╬п╡п╨п╦ п╠п╣п╥ п╫п╣п╬п╠я┘п╬п╢п╦п╪п╬я│я┌п╦ я│я┌п╟п╩п╨п╦п╡п╟я┌я▄я│я▐ я│
-<tt>xmodmap</tt>.</p></div><div class="footnotes"><br><hr width="100" align="left"><div class="footnote"><p><sup>[<a name="ftn.id2882059" href="ch05s03.html#id2882059">6</a>] </sup>п▓ я│п╩я┐я┤п╟п╣ п╥п╟п╪п╣п╫я▀ toggle п╫п╟ switch п╡
-	    п╨п╬п╪п╠п╦п╫п╟я├п╦я▐я┘, п╬п©п╦я│п╟п╫п╫я▀я┘ п╡я▀я┬п╣, п©п╣я─п╣п╨п╩я▌я┤п╣п╫п╦п╣ я─п╣пЁп╦я│я┌я─п╟
-	    п╡п╬п╥п╫п╦п╨п╟п╣я┌ я┌п╬п╩я▄п╨п╬ п╫п╟ п╪п╬п╪п╣п╫я┌ п╫п╟п╤п╟я┌п╦я▐ п╨п╬п╪п╠п╦п╫п╟я├п╦п╦.</p></div></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch05s02.html">п÷я─п╣п╢.</a>б═</td><td width="20%" align="center"><a accesskey="u" href="ch05.html">пёя─п╬п╡п╣п╫я▄ п╡я▀я┬п╣</a></td><td width="40%" align="right">б═<a accesskey="n" href="ch05s04.html">п║п╩п╣п╢.</a></td></tr><tr><td width="40%" align="left" valign="top">п≤я│п©п╬п╩я▄п╥п╬п╡п╟п╫п╦п╣ я┬я─п╦я└я┌п╬п╡ TrueTypeб═</td><td width="20%" align="center"><a accesskey="h" href="index.html">п²п╟я┤п╟п╩п╬</a></td><td width="40%" align="right" valign="top">б═п²п╣я─я┐я│я│п╨п╟я▐ п╨п╦я─п╦п╩п╩п╦я├п╟ п╢п╩я▐ X Window</td></tr></table></div></body></html>
+</pre><p>Программа <tt>xmodmap</tt> позволяет настроить
+коды, соответствующие различными символам и их комбинациям.  Эта
+настройка основана на файле, содержащем таблицу перекодировки.</p><p>Я настоятельно советую вам самостоятельно не разбираться
+с <tt>xmodmap</tt>, по крайней мере для начала.  Вы не
+получите ничего, кроме головной боли и разочарования.  Вместо этого я
+рекомендую вам установить пакет <a href="ftp://ftp.relcom.ru/pub/x11/cyrillic/" target="_top">xruskb</a>, который
+позволяет вам сконфигурировать большинство входных параметров
+перекодировки без необходимости сталкиваться с
+<tt>xmodmap</tt>.</p></div><div class="footnotes"><br><hr width="100" align="left"><div class="footnote"><p><sup>[<a name="ftn.id2882059" href="ch05s03.html#id2882059">6</a>] </sup>В случае замены toggle на switch в
+	    комбинациях, описанных выше, переключение регистра
+	    возникает только на момент нажатия комбинации.</p></div></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch05s02.html">Пред.</a> </td><td width="20%" align="center"><a accesskey="u" href="ch05.html">Уровень выше</a></td><td width="40%" align="right"> <a accesskey="n" href="ch05s04.html">След.</a></td></tr><tr><td width="40%" align="left" valign="top">Использование шрифтов TrueType </td><td width="20%" align="center"><a accesskey="h" href="index.html">Начало</a></td><td width="40%" align="right" valign="top"> Нерусская кириллица для X Window</td></tr></table></div></body></html>

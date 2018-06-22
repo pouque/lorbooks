@@ -2,74 +2,74 @@
 <HTML>
 <HEAD>
  <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
- <TITLE>п≤я│п©п╬п╩я▄п╥п╬п╡п╟п╫п╦п╣ п©п╣я┤п╟я┌п╦ п╡ Linux, HOWTO</TITLE>
+ <TITLE>Использование печати в Linux, HOWTO</TITLE>
  <LINK HREF="Printing-Usage-HOWTO-1.html" REL=next>
 
 
 </HEAD>
 <BODY>
-<A HREF="Printing-Usage-HOWTO-1.html">п║п╩п╣п╢я┐я▌я┴п╦п╧</A>
-п÷я─п╣п╢я▀п╢я┐я┴п╦п╧
-п║п╬п╢п╣я─п╤п╟п╫п╦п╣
+<A HREF="Printing-Usage-HOWTO-1.html">Следующий</A>
+Предыдущий
+Содержание
 <HR>
-<H1>п≤я│п©п╬п╩я▄п╥п╬п╡п╟п╫п╦п╣ п©п╣я┤п╟я┌п╦ п╡ Linux, HOWTO</H1>
+<H1>Использование печати в Linux, HOWTO</H1>
 
-<H2>by Mark Komarinski &lt;markk@auratek.com&gt;, п©п╣я─п╣п╡п╬п╢ Alex Ott
-<CODE>ott@phtd.tpu.edu.ru</CODE></H2>v1.2.2, 6 February 1998<P><B>п÷я─п╦п╪п╣я┤п╟п╫п╦п╣ п©п╣я─п╣п╡п╬п╢я┤п╦п╨п╟:</B> п╗п╩п╦я┌п╣ п╪п╫п╣ п╩я▌п╠я▀п╧ п╨п╬п╪п╪п╣п╫я┌п╟я─п╦п╦ п╦
-п╥п╟п╪п╣я┤п╟п╫п╦я▐, п╢п╟п╤п╣ п╫п╣п╠п╬п╩я▄я┬п╦п╣.
+<H2>by Mark Komarinski &lt;markk@auratek.com&gt;, перевод Alex Ott
+<CODE>ott@phtd.tpu.edu.ru</CODE></H2>v1.2.2, 6 February 1998<P><B>Примечание переводчика:</B> Шлите мне любый комментарии и
+замечания, даже небольшие.
 <P>
 <P>
-<H2><A NAME="toc1">1.</A> <A HREF="Printing-Usage-HOWTO-1.html">п▓п╡п╣п╢п╣п╫п╦п╣</A></H2>
-
-<UL>
-<LI><A HREF="Printing-Usage-HOWTO-1.html#ss1.1">1.1 п≤я│я┌п╬я─п╦я▐ Linux Printing HOWTO</A>
-<LI><A HREF="Printing-Usage-HOWTO-1.html#ss1.2">1.2 п≤я│я┌п╬я─п╦я▐ п╡п╣я─я│п╦п╧</A>
-<LI><A HREF="Printing-Usage-HOWTO-1.html#ss1.3">1.3 п░п╡я┌п╬я─я│п╨п╦п╣ п©я─п╟п╡п╟ п╦ я┌п╬я─пЁп╬п╡я▀п╣ п╪п╟я─п╨п╦</A>
-<LI><A HREF="Printing-Usage-HOWTO-1.html#ss1.4">1.4 п÷п╬п╩я┐я┤п╣п╫п╦п╣|п╥п╟пЁя─я┐п╥п╨п╟  the Linux Printing HOWTOs</A>
-<LI><A HREF="Printing-Usage-HOWTO-1.html#ss1.5">1.5 п·п╠я─п╟я┌п╫п╟я▐ я│п╡я▐п╥я▄</A>
-<LI><A HREF="Printing-Usage-HOWTO-1.html#ss1.6">1.6 п▒п╩п╟пЁп╬п╢п╟я─п╫п╬я│я┌п╦</A>
-</UL>
-<P>
-<H2><A NAME="toc2">2.</A> <A HREF="Printing-Usage-HOWTO-2.html">п÷п╣я┤п╟я┌я▄ п©п╬п╢ Linux</A></H2>
+<H2><A NAME="toc1">1.</A> <A HREF="Printing-Usage-HOWTO-1.html">Введение</A></H2>
 
 <UL>
-<LI><A HREF="Printing-Usage-HOWTO-2.html#ss2.1">2.1 п≤я│я┌п╬я─п╦я▐ Linux Printing</A>
-<LI><A HREF="Printing-Usage-HOWTO-2.html#ss2.2">2.2 п÷п╣я┤п╟я┌я▄ я└п╟п╧п╩п╬п╡ п╦я│п©п╬п╩я▄п╥я┐я▐ <EM>lpr</EM></A>
-<LI><A HREF="Printing-Usage-HOWTO-2.html#ss2.3">2.3 п÷я─п╬я│п╪п╬я┌я─ п╬я┤п╣я─п╣п╢п╦ п©п╣я┤п╟я┌п╦ я│ п©п╬п╪п╬я┴я▄я▌ <EM>lpq</EM></A>
-<LI><A HREF="Printing-Usage-HOWTO-2.html#ss2.4">2.4 п·я┌п╪п╣п╫п╟ п╥п╟п╢п╟п╫п╦я▐ п©п╣я┤п╟я┌п╦ я│ п╦я│п©п╬п╩я▄п╥п╬п╡п╟п╫п╦п╣п╪ п╨п╬п╪п╟п╫п╢я▀ <EM>lprm</EM></A>
-<LI><A HREF="Printing-Usage-HOWTO-2.html#ss2.5">2.5 п п╬п╫я┌я─п╬п╩я▄ п╢п╣п╪п╬п╫п╟ lpd я│ п©п╬п╪п╬я┴я▄я▌ <EM>lpc</EM></A>
-<LI><A HREF="Printing-Usage-HOWTO-2.html#ss2.6">2.6 п≤я│п©п╬п╩я▄п╥п╬п╡п╟п╫п╦п╣ printtool п╡ RedHat</A>
+<LI><A HREF="Printing-Usage-HOWTO-1.html#ss1.1">1.1 История Linux Printing HOWTO</A>
+<LI><A HREF="Printing-Usage-HOWTO-1.html#ss1.2">1.2 История версий</A>
+<LI><A HREF="Printing-Usage-HOWTO-1.html#ss1.3">1.3 Авторские права и торговые марки</A>
+<LI><A HREF="Printing-Usage-HOWTO-1.html#ss1.4">1.4 Получение|загрузка  the Linux Printing HOWTOs</A>
+<LI><A HREF="Printing-Usage-HOWTO-1.html#ss1.5">1.5 Обратная связь</A>
+<LI><A HREF="Printing-Usage-HOWTO-1.html#ss1.6">1.6 Благодарности</A>
 </UL>
 <P>
-<H2><A NAME="toc3">3.</A> <A HREF="Printing-Usage-HOWTO-3.html">п÷п╣я┤п╟я┌я▄ я└п╟п╧п╩п╬п╡</A></H2>
+<H2><A NAME="toc2">2.</A> <A HREF="Printing-Usage-HOWTO-2.html">Печать под Linux</A></H2>
 
 <UL>
-<LI><A HREF="Printing-Usage-HOWTO-3.html#ss3.1">3.1 п÷п╣я┤п╟я┌я▄ пЁя─п╟я└п╦я┤п╣я│п╨п╦я┘ я└п╟п╧п╩п╬п╡</A>
-<LI><A HREF="Printing-Usage-HOWTO-3.html#ss3.2">3.2 п÷п╣я┤п╟я┌я▄ PostScript я└п╟п╧п╩п╬п╡</A>
-<LI><A HREF="Printing-Usage-HOWTO-3.html#ss3.3">3.3 п÷п╣я┤п╟я┌я▄ PDF-я└п╟п╧п╩п╬п╡</A>
-<LI><A HREF="Printing-Usage-HOWTO-3.html#ss3.4">3.4 п÷п╣я┤п╟я┌я▄ я└п╟п╧п╩п╬п╡ TeX</A>
-<LI><A HREF="Printing-Usage-HOWTO-3.html#ss3.5">3.5 п÷п╣я┤п╟я┌я▄ я└п╟п╧п╩п╬п╡ п╬я┌я└п╬я─п╪п╟я┌п╦я─п╬п╡п╟п╫п╫я▀я┘ п©я─п╬пЁя─п╟п╪п╪п╬п╧ <CODE>troff</CODE></A>
-<LI><A HREF="Printing-Usage-HOWTO-3.html#ss3.6">3.6 п÷п╣я┤п╟я┌я▄ я│я┌я─п╟п╫п╦я├ <CODE>man</CODE> </A>
+<LI><A HREF="Printing-Usage-HOWTO-2.html#ss2.1">2.1 История Linux Printing</A>
+<LI><A HREF="Printing-Usage-HOWTO-2.html#ss2.2">2.2 Печать файлов используя <EM>lpr</EM></A>
+<LI><A HREF="Printing-Usage-HOWTO-2.html#ss2.3">2.3 Просмотр очереди печати с помощью <EM>lpq</EM></A>
+<LI><A HREF="Printing-Usage-HOWTO-2.html#ss2.4">2.4 Отмена задания печати с использованием команды <EM>lprm</EM></A>
+<LI><A HREF="Printing-Usage-HOWTO-2.html#ss2.5">2.5 Контроль демона lpd с помощью <EM>lpc</EM></A>
+<LI><A HREF="Printing-Usage-HOWTO-2.html#ss2.6">2.6 Использование printtool в RedHat</A>
 </UL>
 <P>
-<H2><A NAME="toc4">4.</A> <A HREF="Printing-Usage-HOWTO-4.html">п═п╟п╥п╫я▀п╣ п╥п╟п╪п╣я┌п╨п╦</A></H2>
+<H2><A NAME="toc3">3.</A> <A HREF="Printing-Usage-HOWTO-3.html">Печать файлов</A></H2>
 
 <UL>
-<LI><A HREF="Printing-Usage-HOWTO-4.html#ss4.1">4.1 п╓п╬я─п╪п╟я┌п╦я─п╬п╡п╟п╫п╦п╣ п╢п╬ п©п╣я┤п╟я┌п╦</A>
-<LI><A HREF="Printing-Usage-HOWTO-4.html#ss4.2">4.2 п÷п╣я─п╣п╪п╣п╫п╫п╟я▐ я│я─п╣п╢я▀ PRINTER</A>
+<LI><A HREF="Printing-Usage-HOWTO-3.html#ss3.1">3.1 Печать графических файлов</A>
+<LI><A HREF="Printing-Usage-HOWTO-3.html#ss3.2">3.2 Печать PostScript файлов</A>
+<LI><A HREF="Printing-Usage-HOWTO-3.html#ss3.3">3.3 Печать PDF-файлов</A>
+<LI><A HREF="Printing-Usage-HOWTO-3.html#ss3.4">3.4 Печать файлов TeX</A>
+<LI><A HREF="Printing-Usage-HOWTO-3.html#ss3.5">3.5 Печать файлов отформатированных программой <CODE>troff</CODE></A>
+<LI><A HREF="Printing-Usage-HOWTO-3.html#ss3.6">3.6 Печать страниц <CODE>man</CODE> </A>
 </UL>
 <P>
-<H2><A NAME="toc5">5.</A> <A HREF="Printing-Usage-HOWTO-5.html">п·я┌п╡п╣я┌я▀ п╫п╟ п╖п╟я│я┌п╬ п≈п╟п╢п╟п╡п╟п╣п╪я▀п╣ п▓п╬п©я─п╬я│я▀ FAQ</A></H2>
+<H2><A NAME="toc4">4.</A> <A HREF="Printing-Usage-HOWTO-4.html">Разные заметки</A></H2>
+
+<UL>
+<LI><A HREF="Printing-Usage-HOWTO-4.html#ss4.1">4.1 Форматирование до печати</A>
+<LI><A HREF="Printing-Usage-HOWTO-4.html#ss4.2">4.2 Переменная среды PRINTER</A>
+</UL>
+<P>
+<H2><A NAME="toc5">5.</A> <A HREF="Printing-Usage-HOWTO-5.html">Ответы на Часто Задаваемые Вопросы FAQ</A></H2>
 
 <P>
-<H2><A NAME="toc6">6.</A> <A HREF="Printing-Usage-HOWTO-6.html">п═п╣я┬п╣п╫п╦п╣ п©я─п╬п╠п╩п╣п╪</A></H2>
+<H2><A NAME="toc6">6.</A> <A HREF="Printing-Usage-HOWTO-6.html">Решение проблем</A></H2>
 
 <P>
-<H2><A NAME="toc7">7.</A> <A HREF="Printing-Usage-HOWTO-7.html">п║я│я▀п╩п╨п╦</A></H2>
+<H2><A NAME="toc7">7.</A> <A HREF="Printing-Usage-HOWTO-7.html">Ссылки</A></H2>
 
 <HR>
-<A HREF="Printing-Usage-HOWTO-1.html">п║п╩п╣п╢я┐я▌я┴п╦п╧</A>
-п÷я─п╣п╢я▀п╢я┐я┴п╦п╧
-п║п╬п╢п╣я─п╤п╟п╫п╦п╣
+<A HREF="Printing-Usage-HOWTO-1.html">Следующий</A>
+Предыдущий
+Содержание
 </BODY>
 </HTML>

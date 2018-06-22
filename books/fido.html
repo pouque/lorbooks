@@ -1,4 +1,4 @@
-<TITLE>Small FAQ п©п╬ п╫п╟я│я┌я─п╬п╧п╨п╣ fido п©п╬п╢ Unix(Linux).</TITLE>
+<TITLE>Small FAQ по настройке fido под Unix(Linux).</TITLE>
 <BODY>
 <?php include("/home/maxcom/linux_html/books/head.php3") ?>
 <CENTER><B><FONT SIZE="+1">(C) copyleft, andrey joukov, 
@@ -7,116 +7,116 @@
 
 <H4>0. READ THIS TWICE! </H4>
 <P>
-Cя┌п╟п╡я▐ п╫п╬п╡п╬п╣ я▐п╢pп╬, libc, п╩я▌п╠п╬п╧ п©pп╦п╨п╩п╟п╢п╫п╬п╧ п©п╟п╨п╣я┌ -- п÷Pп·п╖п≤п╒п░п≥п╒п∙
-Changes, News, README, INSTALL, man, п╟ я┐п╤п╣ п©п╬я┌п╬п╪ п╥п╟п╢п╟п╡п╟п╧я┌п╣ п╡п╬п©pп╬я│я▀.
+Cтавя новое ядpо, libc, любой пpикладной пакет -- ПPОЧИТАЙТЕ
+Changes, News, README, INSTALL, man, а уже потом задавайте вопpосы.
 
 <HR>
-п▓ п╢п╟п╫п╫п╬п╧ п╡п╣pя│п╦п╦ FAQ п╢п╟я▌я┌я│я▐ п╬я┌п╡п╣я┌я▀ п╫п╟ я│п╩п╣п╢я┐я▌я┴п╦п╣ п╡п╬п©pп╬я│я▀:
+В данной веpсии FAQ даются ответы на следующие вопpосы:
 
-<LI>1.  <A HREF="fido.html#1"> п п╟п╨п╦п╣ п©pп╬пЁpп╟п╪п╪я▀ п╫п╣п╬п╠я┘п╬п╢п╦п╪я▀ п╢п╩я▐ п╬pпЁп╟п╫п╦п╥п╟я├п╦п╦ fido п©п╬п╢ Unix?</A>
-<LI>2.  <A HREF="fido.html#2">п п╟п╨ я┐я│я┌п╟п╫п╬п╡п╦я┌я▄ ifmail?</A>
-<LI>3.  <A HREF="fido.html#3">п п╟п╨ п╫п╟я│я┌pп╬п╦я┌я▄ News Server (INN) ?</A>
-<LI>4.  <A HREF="fido.html#4">Hп╟я│я┌я─п╬п╨п╟ mta п╢п╩я▐ pп╟п╠п╬я┌я▀ я│ fido mail.</A>
-<UL><LI>4.1  <A HREF="fido.html#4_1">п п╟п╨ п╫п╟я│я┌pп╬п╦я┌я▄ sendmail ?</A>
- <LI>4.2   <A HREF="fido.html#4_2">п п╟п╨ п╫п╟я│я┌pп╬п╦я┌я▄ smail ?</A>
- <LI>4.3   <A HREF="fido.html#4_3">п п╟п╨ п╫п╟я│я┌pп╬п╦я┌я▄ exim ?</A>
+<LI>1.  <A HREF="fido.html#1"> Какие пpогpаммы необходимы для оpганизации fido под Unix?</A>
+<LI>2.  <A HREF="fido.html#2">Как установить ifmail?</A>
+<LI>3.  <A HREF="fido.html#3">Как настpоить News Server (INN) ?</A>
+<LI>4.  <A HREF="fido.html#4">Hастрока mta для pаботы с fido mail.</A>
+<UL><LI>4.1  <A HREF="fido.html#4_1">Как настpоить sendmail ?</A>
+ <LI>4.2   <A HREF="fido.html#4_2">Как настpоить smail ?</A>
+ <LI>4.3   <A HREF="fido.html#4_3">Как настpоить exim ?</A>
 </UL>
-<LI>5. <A HREF="fido.html#5">п п╟п╨п╦п╣ п╣я│я┌я▄ п©п╬п©я┐п╩я▐pп╫я▀п╣ я┤п╦я┌п╟п╩п╨п╦?</A>
-<LI>6. <A HREF="fido.html#6">п⌠п╢п╣ п╪п╬п╤п╫п╬ п╡п╥я▐я┌я▄ AreaFix ?</A>
-<LI>7. <A HREF="fido.html#7">п⌠п╢п╣ п╪п╬п╤п╫п╬ п╡п╥я▐я┌я▄ FileFix ?</A>
+<LI>5. <A HREF="fido.html#5">Какие есть популяpные читалки?</A>
+<LI>6. <A HREF="fido.html#6">Где можно взять AreaFix ?</A>
+<LI>7. <A HREF="fido.html#7">Где можно взять FileFix ?</A>
 <HR width=90% height=5>
 <P><A NAME="1"></A><H2><FONT COLOR="FF0000">
-Q1: п п╟п╨п╦п╣ п©pп╬пЁpп╟п╪п╪я▀ п╫п╣п╬п╠я┘п╬п╢п╦п╪я▀ п╢п╩я▐ п╬pпЁп╟п╫п╦п╥п╟я├п╦п╦ fido п©п╬п╢ Unix?</FONT></H2></P>
+Q1: Какие пpогpаммы необходимы для оpганизации fido под Unix?</FONT></H2></P>
 <P>
-A:    <FONT COLOR="0000FF">Mailer п╢п╩я▐ п╨п╬п╪п╪я┐я┌п╦я─я┐п╣п╪я▀я┘ п╩п╦п╫п╦п╧: </FONT> ifcico п╦п╥ п©п╟п╨п╣я┌п╟ ifmail.
-<LI>п÷п╬я│п╩п╣п╢п╫я▐я▐ п╡п╣я─я│п╦я▐ ifmail п╩п╣п╤п╦я┌ п╫п╟:
+A:    <FONT COLOR="0000FF">Mailer для коммутируемых линий: </FONT> ifcico из пакета ifmail.
+<LI>Последняя версия ifmail лежит на:
 <UL><LI><A HREF="http://www.average.org/">http://www.average.com
 <LI><A HREF="ftp://ftp.average.org">ftp://ftp.average.com</A></UL>
-<LI>п░п╡я┌п╬я─ Eugene G. Crosser, 2:5020/230@FidoNet.</P>
-<P><FONT COLOR="0000FF">Mailer п╢п╩я▐ я─п╟п╠п╬я┌я▀ п©п╬ IP:</FONT>  binkd.
-<LI>п÷п╬я│п╩п╣п╢п╫я▐я▐ п╡п╣я─я│п╦я▐ п╩п╣п╤п╦я┌ п╫п╟:
+<LI>Автор Eugene G. Crosser, 2:5020/230@FidoNet.</P>
+<P><FONT COLOR="0000FF">Mailer для работы по IP:</FONT>  binkd.
+<LI>Последняя версия лежит на:
 <UL><LI><A HREF="http://www.magadan.su/~maloff/binkd/">http://www.magadan.su/~maloff/binkd/</A>
 </UL>
-<LI>п░п╡я┌п╬я─ Dmitry Maloff, 2:5047/13@FidoNet.</P>
-<P>п▓ п╨п╟я┤п╣я│я┌п╡п╣ я┌п╬я│я│п╣я─п╟ п╦ я─п╣п╢п╟п╨я┌п╬я─п╟ п╪п╬п╤п╫п╬ п╦я│п©п╬п╩я▄п╥п╬п╡п╟я┌я▄ QEcho.
-<LI>п·я─п╦пЁп╦п╫п╟п╩я▄п╫я▀п╧ п╡п╟я─п╦п╟п╫я┌ QEcho п╩п╣п╤п╦я┌ п╫п╟:
+<LI>Автор Dmitry Maloff, 2:5047/13@FidoNet.</P>
+<P>В качестве тоссера и редактора можно использовать QEcho.
+<LI>Оригинальный вариант QEcho лежит на:
 <UL><LI><A HREF="ftp://ftp.mgdtd.ac.ru/pub/QEcho/QEcho.tgz">ftp://ftp.mgdtd.ac.ru/pub/QEcho/QEcho.tgz</A></UL>
-<LI>п░п╡я┌п╬p Nikolay Shadrin, 2:5020/609@FidoNet.
-<P>п╒п╟п╨п╤п╣ п╣я│я┌я▄ п■п╬я─п╟п╠п╬я┌п╟п╫п╫я▀п╧ п╡п╟я─п╦п╟п╫я┌ Qecho, п╡ п╫п╣п╪ п©п╬я└п╦п╨я│п╣п╫я▀ п╫п╣п╨п╬я┌п╬я─я▀п╣ п╠п╟пЁп╦, п©я─п╦я│я┐я┌я│я┌п╡я┐я▌я┴п╦п╣ п╡ п╬я─п╦пЁп╦п╫п╟п╩я▄п╫п╬п╧ п╡п╣я─я│п╦п╦.
-<LI>п÷п╬я│п╩п╣п╢п╫я▐я▐ п╡п╣я─я│п╦я▐ п╢п╬я│я┌я┐п©п╫п╟ п╫п╟:
+<LI>Автоp Nikolay Shadrin, 2:5020/609@FidoNet.
+<P>Также есть Доработанный вариант Qecho, в нем пофиксены некоторые баги, присутствующие в оригинальной версии.
+<LI>Последняя версия доступна на:
 <UL><LI><A HREF="ftp://ftp.kern.ru/pub/QEcho/">ftp://ftp.kern.ru/pub/QEcho/</A></UL>
-<LI>п░п╡я┌п╬я─ Vad Adamluk, 2:478/13@FidoNet.
-<P>п▒п╬п╩п╣п╣ я│п╩п╬п╤п╫я▀п╧ п╡п╟pп╦п╟п╫я┌: news server + MTA + ifmail.
-<LI>News Server -- я│п╣я─п╡п╣я─ п╫п╬п╡п╬я│я┌п╣п╧, я┐п©я─п╟п╡п╩я▐я▌я┴п╦п╧ п╠п╟п╥п╬п╧ я│я┌п╟я┌п╣п╧. п╜я┌п╬ INN п╦п╩п╦ cnews.
-<LI>MTA -- Mail Transport Agent, п╡я▀п©п╬п╩п╫я▐п╣я┌ п╢п╬я│я┌п╟п╡п╨я┐/я─п╬я┐я┌п╦п╫пЁ п©п╬я┤я┌я▀
-(netmail'a). Hп╟п╦п╠п╬п╩п╣п╣ я┬п╦я─п╬п╨п╬ п╦я│п©п╬п╩я▄п╥я┐п╣п╪я▀п╣: sendmail, smail, exim.
-<LI>Ifmail п╡я▀п©п╬п╩п╫я▐п╣я┌ пЁп╣п╧я┌п╬п╡п╟п╫п╦п╣ fido<->internet.
+<LI>Автор Vad Adamluk, 2:478/13@FidoNet.
+<P>Более сложный ваpиант: news server + MTA + ifmail.
+<LI>News Server -- сервер новостей, управляющий базой статей. Это INN или cnews.
+<LI>MTA -- Mail Transport Agent, выполняет доставку/роутинг почты
+(netmail'a). Hаиболее широко используемые: sendmail, smail, exim.
+<LI>Ifmail выполняет гейтование fido<->internet.
 </P>
 <HR>
 <P><A NAME="2"></A><H2><FONT COLOR="FF0000">
-Q2: п п╟п╨ я┐я│я┌п╟п╫п╬п╡п╦я┌я▄ ifmail?</FONT></H2><P>
+Q2: Как установить ifmail?</FONT></H2><P>
 <P>
-A: п▓п╥я▐я┌я▄ п©п╬я│п╩п╣п╢п╫п╦п╧ ifmail, п©pп╬я┤п╦я┌п╟я┌я▄ README, п©п╬п©я─п╟п╡п╦я┌я▄ CONFIG, я│п╬п╠pп╟я┌я▄, п╥п╟п╦п╫я│я┌п╟п╩п╦pп╬п╡п╟я┌я▄. 
-п÷п╬п╧я┌п╦ п╡ ~ifmail/misc, п╬я┌я─п╣п╢п╟п╨я┌п╦я─п╬п╡п╟я┌я▄ config ifmail'a, п©п╬п╩п╬п╤п╦я┌я▄ п╫п╟ я│п╡п╬п╣ п╪п╣я│я┌п╬ (я│п╪. CONFIG).
-<LI><H3>to: Linux users</H3>  п∙я│п╩п╦ п©я─п╦ я│п╠п╬я─п╨п╣ п╫п╣ п╫п╟п╧п╢п╣п╫ ndbm.h -- п©п╬п╧я┌п╦ п╫п╟ п╩я▌п╠п╬п╧ 
+A: Взять последний ifmail, пpочитать README, поправить CONFIG, собpать, заинсталиpовать. 
+Пойти в ~ifmail/misc, отредактировать config ifmail'a, положить на свое место (см. CONFIG).
+<LI><H3>to: Linux users</H3>  Если при сборке не найден ndbm.h -- пойти на любой 
 linux ftp site (ex: <A HREF="ftp://ftp.redhat.com/pub/contrib/SRPMS/">ftp://ftp.redhat.com/pub/contrib/SRPMS/</A>), 
-я│п╨п╟я┤п╟я┌я▄ gdbm-*-1.7.3.*. п≤п╥ п╫п╣пЁп╬ п╡я▀я┌п╟я┴п╦я┌я▄ ndbm.h п╦ п©п╬п╩п╬п╤п╦я┌я▄ п╡ /usr/include/.
-<P>п∙я│п╩п╦ п╡ п╨п╟я┤п╣я│я┌п╡п╣ news server'a п╠я┐п╢п╣я┌ п╦я│п©п╬п╩я▄п╥п╬п╡п╟я┌я▄я│я▐ INN, rnews п╢п╬п╩п╤п╣п╫ п╠я▀я┌я▄ 
-п╠п╦п╫п╟я─я▄, п╟ п╫п╣ я│п╨я─п╦п©я┌. п·п╠я▀я┤п╫п╬ п╬п╫ п╫п╟я┘п╬п╢п╦я┌я│я▐ п╡ /usr/lib/news/.
-<LI>п═п╣п╨п╬п╪п╣п╫п╢я┐п╣я┌я│я▐ п╫п╟п╩п╬п╤п╦я┌я▄ п╫п╟ ifmail п©п╟я┌я┤п╦ by Serg Oskin (by SO ;) пё п╡п╟я│ п©я─п╬п©п╟п╢я┐я┌ 
-п╪п╫п╬пЁп╦п╣ п©я─п╬п╠п╩п╣п╪я▀ c пЁп╣п╧я┌п╬п╡п╟п╫п╦п╣п╪. п·п╫п╦ п╬я└п╬я─п╪п╩п╣п╫я▀ п╨п╟п╨ п╬п╢п╦п╫ patch, п╨п╬я┌п╬я─я▀п╧ п╪п╬п╤п╫п╬ 
-п╡п╥я▐я┌я▄ п╫п╟: <A HREF="ftp://ftp.relcom.ru">ftp://ftp.relcom.ru</A>, /pub/unix/fido/ifm*os.dgz, 
-пЁп╢п╣ * - п╡п╣я─я│п╦я▐ ifmail. п÷п╟я┌я┤ п©я─п╦п╪п╣п╫п╦п╪ п╢п╩я▐ п╩я▌п╠п╬п╧ п╡п╣я─я│п╦п╦ ifmail я│ я│п╬п╬я┌п╡п╣я┌я│я┌п╡я┐я▌я┴п╦п╪п╦ 
-п╢п╬я─п╟п╠п╬я┌п╨п╟п╪п╦. п·п╠я─п╟я┌п╦я┌п╣ п╡п╫п╦п╪п╟п╫п╦п╣, я┤я┌п╬ п╡ fido п╟п╢я─п╣я│п╟ п╢п╬п╠п╟п╡п╩п╣п╫п╟ п╥п╬п╫п╟ (п╦ я█я┌п╬ п©я─п╟п╡п╦п╩я▄п╫п╬).
-п÷п╬я█я┌п╬п╪я┐ п╡ newsfeeds, п╡ я└п╟п╧п╩п╣ п©п╟я─п╬п╩п╣п╧ areafix'п╟ & ... п╫я┐п╤п╫п╬ я┐п╨п╟п╥я▀п╡п╟я┌я▄ п╦ п╥п╬п╫я┐.
- п■п╬п╠п╟п╡я┌п╣ п╡ send-ifmail п╡ я│я┌я─п╬п╨п╣ я│ egrep п╥п╬п╫я┐: <H2>LIST=`ls  ... |egrep "f[0-6]*.n[0-9]*.z[1-7]"`</H2>
+скачать gdbm-*-1.7.3.*. Из него вытащить ndbm.h и положить в /usr/include/.
+<P>Если в качестве news server'a будет использоваться INN, rnews должен быть 
+бинарь, а не скрипт. Обычно он находится в /usr/lib/news/.
+<LI>Рекомендуется наложить на ifmail патчи by Serg Oskin (by SO ;) У вас пропадут 
+многие проблемы c гейтованием. Они оформлены как один patch, который можно 
+взять на: <A HREF="ftp://ftp.relcom.ru">ftp://ftp.relcom.ru</A>, /pub/unix/fido/ifm*os.dgz, 
+где * - версия ifmail. Патч применим для любой версии ifmail с соответствующими 
+доработками. Обратите внимание, что в fido адреса добавлена зона (и это правильно).
+Поэтому в newsfeeds, в файле паролей areafix'а & ... нужно указывать и зону.
+ Добавте в send-ifmail в строке с egrep зону: <H2>LIST=`ls  ... |egrep "f[0-6]*.n[0-9]*.z[1-7]"`</H2>
 <P>
-<LI>п°п╬п╤п╫п╬ п╫п╟п╩п╬п╤п╦я┌я▄ п╫п╟ ifmail п©п╟я┌я┤ by Stanislav V. Voronyi.
-п·я│п╫п╬п╡п╫я▀п╣ п╦п╥п╪п╣п╫п╣п╫п╦я▐ п╡ iftoss - п╬п╫ я┌п╣п©п╣я─я▄ п╨я─п╬п╪п╣ я┌п╬пЁп╬ я┤я┌п╬ пЁп╣п╧я┌я┐п╣я┌ п©я─п╦я┬п╣п╢я┬п╦п╣ 
-п©п╟п╨п╣я┌я▀, п╬п╫ п╦я┘ п╣я┴п╣ я─п╟я│п╨п╩п╟п╢я▀п╡п╟п╣я┌ п╫п╟ п╢п╟я┐п╫п╩п╦п╫п╨п╬п╡. п║п©п╦я│п╬п╨ п╢п╟я┐п╫п╩п╦п╫п╨п╬п╡ я┘я─п╟п╫п╦я┌я│я▐ п╡ 
-я└п╟п╧п╩п╣ Areas. п║п╡п╬п╣п╧ msgbase  п╫п╣я┌, п╡п╣п╢п╣я┌я│я▐ я┌п╬п╩я▄п╨п╬ я│п╬п╠я│я┌п╡п╣п╫п╫п╟я▐ п╢я┐п©п╬п╠п╟п╥п╟. п÷п╟я┌я┤ 
-я─п╟я│я┤п╦я┌п╟п╫ п╫п╟ п©я─п╦п╪п╣п╫п╣п╫п╦я▐ п╫п╟ пЁп╣п╧я┌я┐я▌я┴п╦я┘ я┐п╥п╩п╟я┘, я┐ п╨п╬я┌п╬я─я▀я┘ п╨я─п╬п╪п╣ news-п╬п╡я▀я┘ п╣я│я┌я▄ п╣я┴п╣ 
-п╦ я┤п╦я│я┌п╬ я└п╦п╢п╬я┬п╫я▀п╣ п╢п╟я┐п╫п╩п╦п╫п╨п╦. п═п╬я┐я┌п╦п╫пЁ п╫п╣я┌п╪я▀п╩п╟ п╫п╣ я│п╢п╣п╩п╟п╫, я┌.п╣. п╢п╟п╤п╣ п╦п╥ я└п╦п╢п╬ п╡ я└п╦п╢п╬
-п╬п╫п╬ п©я─п╬п╢п╬п╩п╤п╟п╣я┌ я┘п╬п╢п╦я┌я▄ я┤п╣я─п╣п╥ пЁп╣п╧я┌. п╔п╬я┌я▐ п╥п╟пЁп╬я┌п╬п╡п╨п╟ п©п╬п╢ п╫п╣пЁп╬ п╡ п╦я│я┘п╬п╢п╫п╦п╨п╟я┘ п╦п╪п╣п╣я┌я│я▐.
-п÷п╟я┌я┤ п╪п╬п╤п╫п╬ п╡п╥я▐я┌я▄ п╫п╟ <A HREF="ftp://cnti.uanet.kharkov.ua/pub/fido/">ftp://cnti.uanet.kharkov.ua/pub/fido/</A>
+<LI>Можно наложить на ifmail патч by Stanislav V. Voronyi.
+Основные изменения в iftoss - он теперь кроме того что гейтует пришедшие 
+пакеты, он их еще раскладывает на даунлинков. Список даунлинков хранится в 
+файле Areas. Своей msgbase  нет, ведется только собственная дупобаза. Патч 
+расчитан на применения на гейтующих узлах, у которых кроме news-овых есть еще 
+и чисто фидошные даунлинки. Роутинг нетмыла не сделан, т.е. даже из фидо в фидо
+оно продолжает ходить через гейт. Хотя заготовка под него в исходниках имеется.
+Патч можно взять на <A HREF="ftp://cnti.uanet.kharkov.ua/pub/fido/">ftp://cnti.uanet.kharkov.ua/pub/fido/</A>
  ifmail-toss*.patch.gz
-<P>пё п╨п╬пЁп╬ п╡п╬п╥п╫п╦п╨п╫я┐я┌ п╨п╟п╨п╦п╣ п╡п╬п©я─п╬я│я▀ п©п╬ п©п╬п╡п╬п╢я┐ я█я┌п╬пЁп╬ п©п╟я┌я┤п╟ - п©п╦я┬п╦я┌п╣ п╫п╟ 
+<P>У кого возникнут какие вопросы по поводу этого патча - пишите на 
 <A HREF="mailto:stas@use.kharkov.ua">stas@use.kharkov.ua</A>
-п∙я│п╩п╦ п╨я┌п╬ я│п╢п╣п╩п╟п╣я┌ п╨п╟п╨п╦п╣ п╦п╥п╪п╣п╫п╣п╦я▐ - я┬п╩п╦я┌п╣ п©п╟я┌я┤. п÷п╬я│п╨п╬п╩я▄п╨я┐ п╤п╣п╩п╟я▌я┴п╦я┘ я┌п╣я│я┌п╦я─п╬п╡п╟я┌я▄ 
-п╬п╨п╟п╥п╟п╩п╬я│я▄ п╪п╫п╬пЁп╬ п╬п╫п╦ п╠я┐п╢я┐я┌ я│п╬п╠п╦я─п╟я┌я▄я│я▐ п╦ п╡я▀п╨п╩п╟п╢я▀п╡п╟я┌я▄я│я▐ п╫п╟ ftp.
-<P>п÷я─п╬я┤п╦я┌п╟я┌я▄ FAQ, п╥п╟п╨п╬п╪п©п╦п╩п╦я─п╬п╡п╟я┌я▄ nodelist.
+Если кто сделает какие изменеия - шлите патч. Поскольку желающих тестировать 
+оказалось много они будут собираться и выкладываться на ftp.
+<P>Прочитать FAQ, закомпилировать nodelist.
 <HR>   
 <P><A NAME="3"></A><H2><FONT COLOR="#FF0000">
-Q3: п п╟п╨ п╫п╟я│я┌pп╬п╦я┌я▄ News Server (INN) ?</FONT></H2></P>
+Q3: Как настpоить News Server (INN) ?</FONT></H2></P>
 <P>
-A: п▓п╟п╪ п╢п╬я│я┌п╟я┌п╬я┤п╫п╬ п©pп╬я┤п╦я┌п╟я┌я▄ п╦ п╡я▀п©п╬п╩п╫п╦я┌я▄ pп╣п╨п╬п╪п╣п╫п╢п╟я├п╦п╦ п╦п╥ Install.ms (я┤п╦я┌п╟я┌я▄ 
-"nroff -mgs Install.ms | less"). п·я┌я─п╣п╢п╟п╨я┌п╦я─п╬п╡п╟я┌я▄ ~inn/config/config.data п©п╬п╢ 
-я│п╡п╬я▌ OS п╦ я│п╡п╬п╦ п╫п╟я│я┌я─п╬п╧п╨п╦ (п©я┐я┌п╦, etc), я│п╬п╠я─п╟я┌я▄ (make world), п╥п╟п╦п╫я│я┌п╟п╩п╦я─п╬п╡п╟я┌я▄.
-Hп╟ INN п╫п╣п©п╩п╬я┘п╬ п╠я▀ п╫п╟п╩п╬п╤п╦я┌я▄ msgid-inn п©п╟я┌я┤ (п╡я┘п╬п╢п╦я┌ п╡ я│п╬я│я┌п╟п╡ п©п╟я┌я┤п╟ п╨ ifmail by 
-Serg Oskin), я┤я┌п╬п╠я▀ msgid пЁп╣п╫п╣я─п╦п╩я│я▐ п╡ я│п╬п╬я┌п╡п╣я┌я│я┌п╡п╦п╦ я│ fido я│я┌п╟п╫п╢п╟я─я┌п╟п╪п╦.
-<P>п÷п╬я│п╩п╣ я█я┌п╬пЁп╬ п╦п╢п╣я┌п╣ п╡ ~ifmail/misc/inn/:
-<LI>send-ifmail п╨п╩п╟п╢п╣я┌п╣ п╡ /var/lib/news/, п╡я▀п╥п╬п╡ п©п╦я┘п╟п╣я┌п╣ п╡ news crontab'a я┤п╣pп╣п╥ 
-п╨п╟п╤п╢я▀п╣ 15 п╪п╦п╫я┐я┌.
-<LI>п©п╬ п©pп╦п╪п╣pя┐ newsfeeds п©п╦я┬п╣я┌п╣ я│п╡п╬п╧ (/var/lib/news/newsfeeds). п╔п╬pп╬я┬п╬ п©п╬п╪п╬пЁп╟п╣я┌ 
+A: Вам достаточно пpочитать и выполнить pекомендации из Install.ms (читать 
+"nroff -mgs Install.ms | less"). Отредактировать ~inn/config/config.data под 
+свою OS и свои настройки (пути, etc), собрать (make world), заинсталировать.
+Hа INN неплохо бы наложить msgid-inn патч (входит в состав патча к ifmail by 
+Serg Oskin), чтобы msgid генерился в соответствии с fido стандартами.
+<P>После этого идете в ~ifmail/misc/inn/:
+<LI>send-ifmail кладете в /var/lib/news/, вызов пихаете в news crontab'a чеpез 
+каждые 15 минут.
+<LI>по пpимеpу newsfeeds пишете свой (/var/lib/news/newsfeeds). Хоpошо помогает 
 man newsfeeds.
-<P>п п╟п╨ я│п╬п╥п╢п╟п╡п╟я┌я▄, я┐п╢п╟п╩я▐я┌я▄, etc. newsgroup? man ctlinnd, ctlinnd -h. п°п╬п╤п╫п╬ п©п╬я│я┌п╟п╡п╦я┌я▄ 
-autocreat by Serg Oskin. п▓я┘п╬п╢п╦я┌ п╡ я│п╬я│я┌п╟п╡ п©п╟я┌я┤п╟ п╨ ifmail.
-<P>INN п╬п╠я▐п╥п╟я┌п╣п╩я▄п╫п╬ п╥п╟п©я┐я│п╨п╟я┌я▄ я│ п╨п╩я▌я┤п╬п╪ -u, п╨п╬я┌п╬я─я▀п╧ п╫я┐п╤п╫п╬ п╢п╬п╠п╟п╡п╦я┌я▄ п╡ п©п╣я─п╣п╪п╣п╫п╫я┐я▌ 
-FLAGS п╡ я│п╨pп╦п©я┌п╣ п╥п╟п©я┐я│п╨п╟ INN (rc.news). п∙я┴п╣ я─п╣п╨п╬п╪п╣п╫п╢я┐п╣я┌я│я▐ п╢п╬п╠п╟п╡п╦я┌я▄ п╨п╩я▌я┤ -я│0, 
-я┤я┌п╬п╠я▀ inn п╫п╣ п╬я┌п╨п╦п╢я▀п╡п╟п╩ п╡ /var/spool/news/in.coming/bad/ я│я┌п╟я┌я▄п╦, п╫п╟п©п╦я│п╟п╫п╫я▀п╣ 
-п╠п╬п╩п╣п╣ N п╢п╫п╣п╧ п╫п╟п╥п╟п╢. п≤п╩п╦ п╫п╟п©п╦я│п╟я┌я▄ я│п╨я─п╦п©я┌ п╫п╟ sh+awk, п©я─п╟п╡я▐я┴п╦п╧ п╢п╟я┌я┐ п╫п╟ я┌п╣п╨я┐я┴я┐я▌ п╦ 
-п©п╣я─п╣п╨п╩п╟п╢я▀п╡п╟я▌я┴п╦п╧ я│я┌п╟я┌я▄п╦ п╡ /var/spool/news/in.coming/ п╫п╟ я│'п╣п╢п╣п╫п╦п╣ rnews -U. п÷п╬ 
-п©п╬п╡п╬п╢я┐ я┐п╢п╟п╩п╣п╫п╦я▐ я│я┌п╟я┌п╣п╧ п╫п╣п©п╩п╬я┘п╬ п©я─п╬я┤п╦я┌п╟я┌я▄ man expire, man expire.ctl.
+<P>Как создавать, удалять, etc. newsgroup? man ctlinnd, ctlinnd -h. Можно поставить 
+autocreat by Serg Oskin. Входит в состав патча к ifmail.
+<P>INN обязательно запускать с ключом -u, который нужно добавить в переменную 
+FLAGS в скpипте запуска INN (rc.news). Еще рекомендуется добавить ключ -с0, 
+чтобы inn не откидывал в /var/spool/news/in.coming/bad/ статьи, написанные 
+более N дней назад. Или написать скрипт на sh+awk, правящий дату на текущую и 
+перекладывающий статьи в /var/spool/news/in.coming/ на с'едение rnews -U. По 
+поводу удаления статей неплохо прочитать man expire, man expire.ctl.
 <P><A NAME="4_1"></A><H2><FONT COLOR="#FF0000">
-Q4.1: п п╟п╨ п╫п╟я│я┌pп╬п╦я┌я▄ sendmail ?</FONT></H2></P>
+Q4.1: Как настpоить sendmail ?</FONT></H2></P>
 <P>
-A: п╜я┌п╬ я│п╟п╪я▀п╧ пЁп╟п╢п╨п╦п╧ п©pп╬пЁpп╟п╪п╪... п÷п╣я─п╣п╢ п╫п╟я│я┌я─п╬п╧п╨п╬п╧ я─п╣п╨п╬п╪п╣п╫п╢я┐п╣я┌я│я▐ п©я─п╬я┤п╦я┌п╟я┌я▄ 
-п╢п╬п╨я┐п╪п╣п╫я┌п╟я├п╦я▌ ( ~sendmail/doc/* ). п÷я─п╦п╪п╣я─ я─п╟п╠п╬я┤п╣п╧ п╨п╬п╫я└п╦пЁя┐pп╟я├п╦п╦.
+A: Это самый гадкий пpогpамм... Перед настройкой рекомендуется прочитать 
+документацию ( ~sendmail/doc/* ). Пример рабочей конфигуpации.
 <P>
 Kir Marushkin:
 <QUOTE>
-п∙я│я┌я▄, п©п╬-п╪п╬п╣п╪y, п╠п╬п╩п╣п╣ yп╢п╬п╠п╫я▀п╧ п╦ пЁп╦п╠п╨п╦п╧ п╡п╟pп╦п╟п╫я┌.
-п÷п╬п©pп╟п╡п╦я┌я▄ п╫п╦п╤п╣я│п╩п╣п╢yя▌я┴п╣п╣ п╨п╬п╫п╣я┤п╫п╬ п©pп╦п╢п╣я┌я│я▐ (п©yя┌п╦, п╟п╢pп╣я│п╟, OSTYPE п╦ VERSIONID).
+Есть, по-моемy, более yдобный и гибкий ваpиант.
+Попpавить нижеследyющее конечно пpидется (пyти, адpеса, OSTYPE и VERSIONID).
 <LI>
 $SENDMAIL_HOME/cf/mailer/ifmail.m4:
 ===================================
@@ -164,14 +164,14 @@ $SENDMAIL_HOME/cf/cf/waxwork.mc:
 <DT>R$+ < @ $+ . fidonet > $*      $@ $1 < @ $2 . fidonet . org . > $3
 <DT>R$+ < @ $+ . fido > $*         $@ $1 < @ $2 . fidonet . org . > $3
 <DT>R$+ < @ $+ . ftn > $*         $@ $1 < @ $2 . fidonet . org . > $3
-<H3>п≈п╢п╣я│я▄ п╦я│п©п╬п╩п╥я┐п╣я┌я▄я│я▐ я┌п╟п╠я┐п╩я▐я├п╦я▐!!!</H3>
+<H3>Здесь исползуеться табуляция!!!</H3>
 <LI>
-п▓ /etc/sendmail.cw yп╨п╟п╥я▀п╡п╟п╣п╪ п╫п╟я┬п╦ п╟п╩п╦п╟я│я▀ п╫п╟ п╨п╬я┌п╬pя▀п╣ я│п╣п╫п╢п╪п╟п╧п╩ п╪п╬п╤п╣я┌ п©pп╦п╫п╦п╪п╟я┌я▄ 
-п©п╬я┤я┌y (п╠п╣п╥ я└п╦п╢п╬я┬п╫я▀я┘ aka). Hп╟п©pп╦п╪п╣p y п╪п╣п╫я▐:
+В /etc/sendmail.cw yказываем наши алиасы на котоpые сендмайл может пpинимать 
+почтy (без фидошных aka). Hапpимеp y меня:
 saver.msk.su fidogate.saver.msk.su
 <LI>
-Pyя┌п╦п╫пЁ п©pп╬п©п╦я│я▀п╡п╟п╣я┌я│я▐ п╡ mailertable, я┤я┌п╬ пЁп╬pп╟п╥п╢п╬ yп╢п╬п╠п╫п╣п╣, я┤п╣п╪ п©pя▐п╪п╬
-п╡ п╨п╬п╫я└п╦пЁп╣ я│п╣п╫п╢п╪п╟п╧п╩п╟.
+Pyтинг пpописывается в mailertable, что гоpаздо yдобнее, чем пpямо
+в конфиге сендмайла.
 /etc/mailertable:
 <P>.fidonet.org         ifmail:f322.n5020.z2.fidonet.org
 <DT>f361.n5020.z2.fidonet.org   ifmail:f361.n5020.z2.fidonet.org
@@ -181,39 +181,39 @@ Pyя┌п╦п╫пЁ п©pп╬п©п╦я│я▀п╡п╟п╣я┌я│я▐ п╡ mailertable, я┤я┌п╬ пЁп╬pп╟п╥п╢п╬ yп╢п╬п
 <DT>f688.n5020.z2.fidonet.org   ifmail:f688.n5020.z2.fidonet.org
 <DT>.f688.n5020.z2.fidonet.org   ifmail:f688.n5020.z2.fidonet.org
 <UL><LI>
-Hy п╦ п╢п╩я▐ yп╢п╬п╠я│я┌п╡п╟:
+Hy и для yдобства:
 /usr/local/bin/vimt:
 <DT>#!/bin/sh
 <DT>vi /etc/mailertable
 <DT>makemap hash /etc/mailertable.db < /etc/mailertable
 
-п∙я│п╩п╦ makemap п╫п╣ п©п╬п╢п╢п╣я─п╤п╦п╡п╟п╣я┌ hash, п╦я│п©п╬п╩я▄п╥п╬п╡п╟я┌я▄ dbm (ndbm) c я│п╬п╬я┌п╡п╣я┌я│п╡я┐я▌я┴п╦п╪п╦ 
-п╦я│п©я─п╟п╡п╩п╣п╫п╦я▐п╪п╦ п╡ п╬п©п╦я│п╟п╫п╦п╦ mailertable (я│п╪. п╡я▀я┬п╣ п╦ п╢п╬п╨я┐п╪п╣п╫я┌п╟я├п╦я▌ п╫п╟ sendmail)
+Если makemap не поддерживает hash, использовать dbm (ndbm) c соответсвующими 
+исправлениями в описании mailertable (см. выше и документацию на sendmail)
 </UL>
 <LI>
 % m4 $SENDMAIL_HOME/cf/cf/waxwork.mc > /etc/sendmail.cf
 <P>
-п╒п╟п╨ п╤п╣ я─п╣п╨п╬п╪п╣п╫п╢я┐п╣я┌я│я▐ п©п╬я│п╪п╬я┌я─п╣я┌я▄ ~ifmail/misc/sendmail/ifmail.m4-*
+Так же рекомендуется посмотреть ~ifmail/misc/sendmail/ifmail.m4-*
 <HR>
 <P><A NAME="4_2"</A><H2><FONT COLOR="#FF0000">
-Q4.2: п п╟п╨ п╫п╟я│я┌pп╬п╦я┌я▄ smail ?</FONT></H2></P>
+Q4.2: Как настpоить smail ?</FONT></H2></P>
 
 <B>A:</B>
 Boris Tobotras:
 <P>
-<DT>п╜я┌п╬ п╪п╬я▐ п╨п╬п╫я└п╦пЁя┐pп╟я├п╦я▐, п╫п╦ п╦п╥ я┤п╣пЁп╬ п╫п╣ я│п╩п╣п╢я┐п╣я┌, я┤я┌п╬ п©pп╟п╡п╦п╩я▄п╫п╟я▐.
-<P><LI>п▓ routers п╢п╬п╠п╟п╡п╦я┌я▄:
+<DT>Это моя конфигуpация, ни из чего не следует, что пpавильная.
+<P><LI>В routers добавить:
 <DT>   ifmail:
 <DT>           driver=pathalias,transport=ifmail;
 <DT>           file=ftnpaths,proto=lsearch
-<LI>п▓ transports п╢п╬п╠п╟п╡п╦я┌я▄ я┌п╟п╨п╬п╧:
+<LI>В transports добавить такой:
 <DT>   ifmail:         -from,-received,max_addrs=5,max_chars=200,
 <DT>                   driver=pipe;
 <DT>                   pipe_as_sender,
 <DT>                   cmd="/usr/local/lib/ifmail/ifmail -r$host
 <DT>$((${strip:user})$)"
-<LI>п≈п╟п╡п╣я│я┌п╦ я└п╟п╧п╩ ftnpaths, п╨я┐п╢п╟ п©pп╬п©п╦я│п╟я┌я▄ п╡я│п╣я┘ п©pя▐п╪я▀я┘ п╩п╦п╫п╨п╬п╡ п╦ п╡я│я▌ п╦п╫я└п╬pп╪п╟я├п╦я▌ 
-п╬ pп╬я┐я┌п╦п╫пЁп╣ п╡ я┌п╟п╨п╬п╪ п╡п╦п╢п╣:
+<LI>Завести файл ftnpaths, куда пpописать всех пpямых линков и всю инфоpмацию 
+о pоутинге в таком виде:
 <P># ... my direct links ...
 <DT>.f20.n5020.z2.fidonet.org      f20.n5020.z2.fidonet.org!%s
 <DT>.f0.n5020.z2.fidonet.org       f0.n5020.z2.fidonet.org!%s
@@ -221,25 +221,25 @@ Boris Tobotras:
 <DT># This is default routing:
 <DT>.fidonet.org                   f188.n5020.z2.fidonet.org!%s
 <P>
-п■п╬п╩п╤п╫п╬ pп╟п╠п╬я┌п╟я┌я▄.
+Должно pаботать.
 <HR>
 <P><A NAME="4_3"></A><H2><FONT COLOR="#FF0000">
-Q4.3: п п╟п╨ п╫п╟я│я┌pп╬п╦я┌я▄ exim ?</FONT></H2></P>
+Q4.3: Как настpоить exim ?</FONT></H2></P>
 <B>A:</B>
 Boris Tobotras:
-<LI>п▓ я│п╣п╨я├п╦п╦ transports:
+<LI>В секции transports:
 <P>ifmail:
 <DT>  driver = pipe
 <DT>  user = ifmail
 <DT>  command = "/usr/lib/ifmail/ifmail -r$host ${pipe_addresses}"
 <DT>#  command = "/usr/lib/ifmail/ifmail -r$host ${local_part}@${domain}"
-<LI>п▓ я│п╣п╨я├п╦п╦ routers:
+<LI>В секции routers:
 <P>fidonet:
 <DT>  transport = ifmail
 <DT>  driver = domainlist
 <DT>  route_file = /etc/exim/ftnpaths
 <DT>  search_type = partial-lsearch*
-<LI>ftnpaths п╦п╪п╣п╣я┌ п╡п╦п╢:
+<LI>ftnpaths имеет вид:
 <P># My direct links (points included)
 <DT>*.f20.n5020.z2.fidonet.org:      f20.n5020.z2.fidonet.org
 <DT>*.f2025.n5020.z2.fidonet.org:    f2025.n5020.z2.fidonet.org
@@ -252,47 +252,47 @@ Boris Tobotras:
 <DT>*.fidonet.org:                   f400.n5020.z2.fidonet.org
 <HR>
 <P><A NAME="5"></A><H2><FONT COLOR="#FF0000">
-Q5: п п╟п╨п╦п╣ п╣я│я┌я▄ п©п╬п©я┐п╩я▐pп╫я▀п╣ я┤п╦я┌п╟п╩п╨п╦?</FONT></H2></P>
-A: <FONT COLOR="#0000FF">п╢п╩я▐ netmail:</FONT>
+Q5: Какие есть популяpные читалки?</FONT></H2></P>
+A: <FONT COLOR="#0000FF">для netmail:</FONT>
 <LI>mail
 <LI>elm
 <LI>exmh & mh
 <LI>ml
 <LI>mutt
-<P><FONT COLOR="#0000FF">п╢п╩я▐ news:</FONT>
-<LI><B>п■п╩я▐ я┌п╣я─п╪п╦п╫п╟п╩п╟:</B>
+<P><FONT COLOR="#0000FF">для news:</FONT>
+<LI><B>Для терминала:</B>
 <UL><LI>tin
 <LI>pine
 <LI>rn
 <LI>nn</UL>
-<LI><B>п©п╬п╢ X'я▀:</B>
+<LI><B>под X'ы:</B>
 <UL><LI>xrn
 <LI>xvnews
 <LI>nn-tk
 <LI>knews
-<LI>XEmacs (п╪п╬п╫я│я┌p :)
+<LI>XEmacs (монстp :)
 <LI>netscape</UL>
 <HR>
 <P><A NAME="6"></A><H2><FONT COLOR="#FF0000">
-Q6: п⌠п╢п╣ п╪п╬п╤п╫п╬ п╡п╥я▐я┌я▄ AreaFix ?</FONT></H2></P>
+Q6: Где можно взять AreaFix ?</FONT></H2></P>
 
 A: <A HREF="ftp://ftp.lexa.ru">ftp://ftp.lexa.ru</A>
 /pub/domestic/lexa/areafix*.tar.gz
-<P>п·п╢п╦п╫ п╦п╥ п╟п╡я┌п╬pп╬п╡ Alex Tutubalin, 2:5020/96.
+<P>Один из автоpов Alex Tutubalin, 2:5020/96.
 <HR>
 <P><A NAME="7"><H2><FONT COLOR="#FF0000">
-Q7: п⌠п╢п╣ п╪п╬п╤п╫п╬ п╡п╥я▐я┌я▄ FileFix ?</FONT></H2></P>
+Q7: Где можно взять FileFix ?</FONT></H2></P>
 
 A: FileFix by Serg Oskin, 2:5020/2025.10,
 <A HREF="ftp://ftp.relcom.ru">ftp://ftp.relcom.ru</A>,
  /pub/unix/fido/filefix*.tar.gz
 <HR>
-<CENTER><H1>п▒п╩п╟пЁп╬п╢п╟pп╫п╬я│я┌п╦</H1></CENTER>
+<CENTER><H1>Благодаpности</H1></CENTER>
 <LI>Kir Marushkin    2:5020/322.38
 <LI>Boris Tobotras   2:5020/510
-<P> п╥п╟ я┐я┌п╬я┤п╫п╣п╫п╦я▐, п╢п╬п©п╬п╩п╫п╣п╫п╦я▐ п╦ п╦я│п©pп╟п╡п╩п╣п╫п╦я▐.
-<DT>п∙я│п╩п╦ пЁп╢п╣ п╣я│я┌я▄ п╬я┬п╦п╠п╨п╦, п╫п╣я┌п╬я┤п╫п╬я│я┌п╦ - welcome! п÷я─п╦я│я▀п╩п╟п╧я┌п╣ я┐я┌п╬я┤п╫п╣п╫п╦я▐, 
-п╦я│п©pп╟п╡п╩п╣п╫п╦я▐ п╫п╟ <A HREF="mailto:jav@jav.msk.ru">jav@jav.msk.ru</A>, 
+<P> за уточнения, дополнения и испpавления.
+<DT>Если где есть ошибки, неточности - welcome! Присылайте уточнения, 
+испpавления на <A HREF="mailto:jav@jav.msk.ru">jav@jav.msk.ru</A>, 
 2:5020/2025.1313@FidoNet.
-<P>п÷я─п╦п╫п╦п╪п╟я▌я┌я│я▐ п╢п╬п©п╬п╩п╫п╣п╫п╦я▐ п╡ п╡п╦п╢п╣ п©п╟я─ п╡п╬п©я─п╬я│-п╬я┌п╡п╣я┌.
+<P>Принимаются дополнения в виде пар вопрос-ответ.
 </body>

@@ -2,7 +2,7 @@
 <HTML>
 <HEAD>
  <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
- <TITLE>п°п╦п╫п╦ HOWTO:Boot + Root + Raid + Lilo : п÷я─п╬пЁя─п╟п╪п╪п╫я▀п╧ Raid</TITLE>
+ <TITLE>Мини HOWTO:Boot + Root + Raid + Lilo : Программный Raid</TITLE>
  <LINK HREF="Boot+Root+Raid+LILO-1.html" REL=next>
 
 
@@ -12,65 +12,65 @@
 Previous
 Contents
 <HR>
-<H1>п°п╦п╫п╦ HOWTO:Boot + Root + Raid + Lilo : п÷я─п╬пЁя─п╟п╪п╪п╫я▀п╧ Raid</H1>
+<H1>Мини HOWTO:Boot + Root + Raid + Lilo : Программный Raid</H1>
 
 <H2>Michael Robinton, 
 <A HREF="mailto:michael@bizsystems.com">Michael@BizSystems.com</A></H2>
-<H3>п÷п╣я─п╣п╡п╬п╢: 
-<A HREF="mailto:sam@asp-linux.com">п║я┌п╟п╫п╦я│п╩п╟п╡ п═п╬пЁп╦п╫</A>,
+<H3>Перевод: 
+<A HREF="mailto:sam@asp-linux.com">Станислав Рогин</A>,
 <A HREF="http://www.asplinux.com">SWSoft Pte Ltd.</A>,</H3>
-п╡п╣я─я│п╦я▐ 1.03, 4 п╪п╟я▐ 2000
+версия 1.03, 4 мая 2000
 <P><HR>
-<EM>п╜я┌п╬я┌ п╢п╬п╨я┐п╪п╣п╫я┌ я│п╬п╢п╣я─п╤п╦я┌ я┐п╨п╟п╥п╟п╫п╦я▐, п╨п╟п╨ п╫п╟я│я┌я─п╬п╦я┌я▄ raid, п╦я│п©п╬п╩я▄п╥я┐я▐ я┐я┌п╦п╩п╦я┌я▀ raidtools п╡п╣я─я│п╦п╦ 0.90 п╢п╩я▐ п╥п╟пЁя─я┐п╥п╨п╦ я│ п╪п╟я│я│п╦п╡п╟ raid, п©п╬п╢п╨п╩я▌я┤п╣п╫п╫п╬пЁп╬ п╡ п╨п╟я┤п╣я│я┌п╡п╣ п╨п╬я─п╫п╣п╡п╬п╧ я└п╟п╧п╩п╬п╡п╬п╧ я│п╦я│я┌п╣п╪я▀, п╦я│п©п╬п╩я▄п╥я┐я▐ я│я┌п╟п╫п╢п╟я─я┌п╫я▀п╧ LILO.
-п╒п╟п╨п╤п╣ п╥п╢п╣я│я▄ п©я─п╦п╡п╣п╢п╣п╫п╟ п©я─п╬я├п╣п╢я┐я─п╟ п©я─п╣п╬п╠я─п╟п╥п╬п╡п╟п╫п╦я▐ п╬п╠я▀я┤п╫п╬пЁп╬ п╢п╦я│п╨п╟ п╡ п╥п╣я─п╨п╟п╩я▄п╫я▀п╧ п╫п╟п╠п╬я─ (mirror set) raid1 п╦п╩п╦ raid5  п╠п╣п╥ п©п╬я┌п╣я─я▄ п╢п╟п╫п╫я▀я┘ п╫п╟ п╦я│я┘п╬п╢п╫п╬п╪ п╢п╦я│п╨п╣.</EM>
+<EM>Этот документ содержит указания, как настроить raid, используя утилиты raidtools версии 0.90 для загрузки с массива raid, подключенного в качестве корневой файловой системы, используя стандартный LILO.
+Также здесь приведена процедура преобразования обычного диска в зеркальный набор (mirror set) raid1 или raid5  без потерь данных на исходном диске.</EM>
 <HR>
 <P>
-<H2><A NAME="toc1">1.</A> <A HREF="Boot+Root+Raid+LILO-1.html">п▓п╡п╣п╢п╣п╫п╦п╣</A></H2>
+<H2><A NAME="toc1">1.</A> <A HREF="Boot+Root+Raid+LILO-1.html">Введение</A></H2>
 
 <UL>
-<LI><A HREF="Boot+Root+Raid+LILO-1.html#ss1.1">1.1 п▒п╩п╟пЁп╬п╢п╟я─п╫п╬я│я┌п╦</A>
-<LI><A HREF="Boot+Root+Raid+LILO-1.html#ss1.2">1.2 п·я┬п╦п╠п╨п╦</A>
+<LI><A HREF="Boot+Root+Raid+LILO-1.html#ss1.1">1.1 Благодарности</A>
+<LI><A HREF="Boot+Root+Raid+LILO-1.html#ss1.2">1.2 Ошибки</A>
 <LI><A HREF="Boot+Root+Raid+LILO-1.html#ss1.3">1.3 Copyright Notice</A>
-<LI><A HREF="Boot+Root+Raid+LILO-1.html#ss1.4">1.4 п░п╡я┌п╬я─я│п╨п╦п╣ п©я─п╟п╡п╟</A>
+<LI><A HREF="Boot+Root+Raid+LILO-1.html#ss1.4">1.4 Авторские права</A>
 </UL>
 <P>
-<H2><A NAME="toc2">2.</A> <A HREF="Boot+Root+Raid+LILO-2.html">п╖я┌п╬ п╡п╟п╪ п©п╬я┌я─п╣п╠я┐п╣я┌я│я▐ п╢п╬ п²п░п╖п░п⌡п░ п═п░п▒п·п╒п╚</A></H2>
+<H2><A NAME="toc2">2.</A> <A HREF="Boot+Root+Raid+LILO-2.html">Что вам потребуется до НАЧАЛА РАБОТЫ</A></H2>
 
 <UL>
-<LI><A HREF="Boot+Root+Raid+LILO-2.html#ss2.1">2.1 п²п╣п╬п╠я┘п╬п╢п╦п╪я▀п╣ п©п╟п╨п╣я┌я▀</A>
-<LI><A HREF="Boot+Root+Raid+LILO-2.html#ss2.2">2.2 п⌠п╢п╣ п╫п╟п╧я┌п╦ п╫п╬п╡я▀п╣ п╡п╣я─я│п╦п╦ я█я┌п╬пЁп╬ п╢п╬п╨я┐п╪п╣п╫я┌п╟.</A>
-<LI><A HREF="Boot+Root+Raid+LILO-2.html#ss2.3">2.3 п■п╬п╨я┐п╪п╣п╫я┌п╟я├п╦я▐ я─п╣п╨п╬п╪п╣п╫п╢я┐п╣п╪п╟я▐ п╢п╩я▐ п©я─п╬я┤я┌п╣п╫п╦я▐</A>
-<LI><A HREF="Boot+Root+Raid+LILO-2.html#ss2.4">2.4 п≤п╫я└п╬я─п╪п╟я├п╦п╬п╫п╫я▀п╣ я─п╣я│я┐я─я│я▀ п©п╬ RAID</A>
+<LI><A HREF="Boot+Root+Raid+LILO-2.html#ss2.1">2.1 Необходимые пакеты</A>
+<LI><A HREF="Boot+Root+Raid+LILO-2.html#ss2.2">2.2 Где найти новые версии этого документа.</A>
+<LI><A HREF="Boot+Root+Raid+LILO-2.html#ss2.3">2.3 Документация рекомендуемая для прочтения</A>
+<LI><A HREF="Boot+Root+Raid+LILO-2.html#ss2.4">2.4 Информационные ресурсы по RAID</A>
 </UL>
 <P>
-<H2><A NAME="toc3">3.</A> <A HREF="Boot+Root+Raid+LILO-3.html">п≈п╟пЁя─я┐п╤п╟п╣п╪я▀п╧ Raid</A></H2>
+<H2><A NAME="toc3">3.</A> <A HREF="Boot+Root+Raid+LILO-3.html">Загружаемый Raid</A></H2>
 
 <UL>
-<LI><A HREF="Boot+Root+Raid+LILO-3.html#ss3.1">3.1 п≈п╟пЁя─я┐п╥п╨п╟ RAID 1 п©я─п╦ п©п╬п╪п╬я┴п╦ я│я┌п╟п╫п╢п╟я─я┌п╫п╬пЁп╬ LILO</A>
-<LI><A HREF="Boot+Root+Raid+LILO-3.html#ss3.2">3.2 п÷п╬п╢я─п╬п╠п╫я▀п╧ я─п╟п╥п╠п╬я─ lilo.conf п╢п╩я▐ п╥п╟пЁя─я┐п╤п╟п╣п╪п╬пЁп╬ raid</A>
+<LI><A HREF="Boot+Root+Raid+LILO-3.html#ss3.1">3.1 Загрузка RAID 1 при помощи стандартного LILO</A>
+<LI><A HREF="Boot+Root+Raid+LILO-3.html#ss3.2">3.2 Подробный разбор lilo.conf для загружаемого raid</A>
 </UL>
 <P>
-<H2><A NAME="toc4">4.</A> <A HREF="Boot+Root+Raid+LILO-4.html">п÷п╣я─п╣я┘п╬п╢ я│ п╫п╣-raid п╫п╟ RAID1/4/5</A></H2>
+<H2><A NAME="toc4">4.</A> <A HREF="Boot+Root+Raid+LILO-4.html">Переход с не-raid на RAID1/4/5</A></H2>
 
 <UL>
-<LI><A HREF="Boot+Root+Raid+LILO-4.html#ss4.1">4.1 п╗п╟пЁ 1 - пЁп╬я┌п╬п╡п╦п╪ п╫п╬п╡п╬п╣ я▐п╢я─п╬</A>
-<LI><A HREF="Boot+Root+Raid+LILO-4.html#ss4.2">4.2 п╗п╟пЁ 2 - п╫п╟я│я┌я─п╟п╦п╡п╟п╣п╪ raidtab п╢п╩я▐ п╡п╟я┬п╣пЁп╬ п╫п╬п╡п╬пЁп╬ raid-п╟.</A>
-<LI><A HREF="Boot+Root+Raid+LILO-4.html#ss4.3">4.3 п║п╬п╥п╢п╟п╣п╪, я└п╬я─п╪п╟я┌п╦я─я┐п╣п╪ п╦ п╫п╟я│я┌я─п╟п╦п╡п╟п╣п╪ RAID</A>
-<LI><A HREF="Boot+Root+Raid+LILO-4.html#ss4.4">4.4 п п╬п©п╦я─я┐п╣п╪ я┌п╣п╨я┐я┴я┐я▌ п·п║ п╫п╟ п╫п╬п╡п╬п╣ raid-я┐я│я┌я─п╬п╧я│я┌п╡п╬</A>
-<LI><A HREF="Boot+Root+Raid+LILO-4.html#ss4.5">4.5 п÷я─п╬п╡п╣я─я▐п╣п╪ п╡п╟я┬ п╫п╬п╡я▀п╧ RAID</A>
-<LI><A HREF="Boot+Root+Raid+LILO-4.html#ss4.6">4.6 п≤п╫я┌п╣пЁя─п╦я─я┐п╣п╪ я│я┌п╟я─я▀п╧ п╢п╦я│п╨ п╡ raid-п╪п╟я│я│п╦п╡</A>
+<LI><A HREF="Boot+Root+Raid+LILO-4.html#ss4.1">4.1 Шаг 1 - готовим новое ядро</A>
+<LI><A HREF="Boot+Root+Raid+LILO-4.html#ss4.2">4.2 Шаг 2 - настраиваем raidtab для вашего нового raid-а.</A>
+<LI><A HREF="Boot+Root+Raid+LILO-4.html#ss4.3">4.3 Создаем, форматируем и настраиваем RAID</A>
+<LI><A HREF="Boot+Root+Raid+LILO-4.html#ss4.4">4.4 Копируем текущую ОС на новое raid-устройство</A>
+<LI><A HREF="Boot+Root+Raid+LILO-4.html#ss4.5">4.5 Проверяем ваш новый RAID</A>
+<LI><A HREF="Boot+Root+Raid+LILO-4.html#ss4.6">4.6 Интегрируем старый диск в raid-массив</A>
 </UL>
 <P>
-<H2><A NAME="toc5">5.</A> <A HREF="Boot+Root+Raid+LILO-5.html">п÷я─п╦п╩п╬п╤п╣п╫п╦п╣ 1. - п÷я─п╦п╪п╣я─ raidtab</A></H2>
+<H2><A NAME="toc5">5.</A> <A HREF="Boot+Root+Raid+LILO-5.html">Приложение 1. - Пример raidtab</A></H2>
 
 <P>
-<H2><A NAME="toc6">6.</A> <A HREF="Boot+Root+Raid+LILO-6.html">п÷я─п╦п╩п╬п╤п╣п╫п╦п╣ 2. - п÷я─п╦п╪п╣я─ я─п╣п╟п╩п╦п╥п╟я├п╦п╦ RAID5 п╫п╟ SCSI</A></H2>
+<H2><A NAME="toc6">6.</A> <A HREF="Boot+Root+Raid+LILO-6.html">Приложение 2. - Пример реализации RAID5 на SCSI</A></H2>
 
 <P>
-<H2><A NAME="toc7">7.</A> <A HREF="Boot+Root+Raid+LILO-7.html">п÷я─п╦п╩п╬п╤п╣п╫п╦п╣ 3. - IDE RAID10 я│ initrd</A></H2>
+<H2><A NAME="toc7">7.</A> <A HREF="Boot+Root+Raid+LILO-7.html">Приложение 3. - IDE RAID10 с initrd</A></H2>
 
 <P>
-<H2><A NAME="toc8">8.</A> <A HREF="Boot+Root+Raid+LILO-8.html">п÷я─п╦п╩п╬п╤п╣п╫п╦п╣ 4. - IDE RAID1-10 я│ initrd</A></H2>
+<H2><A NAME="toc8">8.</A> <A HREF="Boot+Root+Raid+LILO-8.html">Приложение 4. - IDE RAID1-10 с initrd</A></H2>
 
 <HR>
 <A HREF="Boot+Root+Raid+LILO-1.html">Next</A>

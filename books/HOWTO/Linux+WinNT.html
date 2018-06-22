@@ -15,8 +15,8 @@ Contents
 <H1>Linux+WindowsNT mini-HOWTO</H1>
 
 <H2>Miroslav Skoric, <CODE>m.skoric@eunet.yu</CODE></H2>
-<H3>п÷п╣я─п╣п╡п╬п╢: 
-<A HREF="mailto:ave@asp-linux.com">п░п╩п╣п╨я│п╟п╫п╢я─ п∙я─п╪п╬п╩п╟п╣п╡</A>,
+<H3>Перевод: 
+<A HREF="mailto:ave@asp-linux.com">Александр Ермолаев</A>,
 <A HREF="http://www.asplinux.com">SWSoft Pte Ltd.</A>,</H3>
 v2.2, 07 August 2000
 <P><HR>
@@ -25,41 +25,41 @@ v2.2, 07 August 2000
 windows nt
 -->
 
-п╜я┌п╬я┌ mini-HOWTO п╬п©п╦я│я▀п╡п╟п╣я┌ я│п©п╬я│п╬п╠, п╨п╟п╨ я┐я│я┌п╟п╫п╬п╡п╦я┌я▄ п╢п╡п╣ п╬п©п╣я─п╟я├п╦п╬п╫п╫я▀п╣ я│п╦я│я┌п╣п╪я▀:
-Linux п╦ Windows NT п╫п╟ п╬п╢п╦п╫ п╨п╬п╪п©я▄я▌я┌п╣я─, п╦ п╨п╟п╨ п╥п╟пЁя─я┐п╤п╟я┌я▄ п╩я▌п╠я┐я▌ п╦п╥ п╫п╦я┘ я┤п╣я─п╣п╥ п╪п╣п╫я▌
+Этот mini-HOWTO описывает способ, как установить две операционные системы:
+Linux и Windows NT на один компьютер, и как загружать любую из них через меню
 LILO.
-п≤п╪п╣п╣я┌я│я▐ я┌п╟п╨п╤п╣ п╢я─я┐пЁп╬п╧ mini-HOWTO "Linux+NT-Loader", п╨п╬я┌п╬я─я▀п╧ п╬п©п╦я│я▀п╡п╟п╣я┌, п╨п╟п╨
-п╥п╟пЁя─я┐п╥п╦я┌я▄ п╩я▌п╠я┐я▌ п╦п╥ я█я┌п╦я┘ я│п╦я│я┌п╣п╪ я┤п╣я─п╣п╥ п╥п╟пЁя─я┐п╥п╬я┤п╫п╬п╣ п╪п╣п╫я▌ Windows NT.</EM>
+Имеется также другой mini-HOWTO "Linux+NT-Loader", который описывает, как
+загрузить любую из этих систем через загрузочное меню Windows NT.</EM>
 <HR>
 <P>
-<H2><A NAME="toc1">1.</A> <A HREF="Linux+WinNT-1.html">п▓п▓п∙п■п∙п²п≤п∙</A></H2>
+<H2><A NAME="toc1">1.</A> <A HREF="Linux+WinNT-1.html">ВВЕДЕНИЕ</A></H2>
 
 <P>
-<H2><A NAME="toc2">2.</A> <A HREF="Linux+WinNT-2.html">п п░п  пёп║п╒п░п²п·п▓п≤п╒п╛: п║п²п░п╖п░п⌡п░ LINUX, п≈п░п╒п∙п° WINDOWS NT</A></H2>
+<H2><A NAME="toc2">2.</A> <A HREF="Linux+WinNT-2.html">КАК УСТАНОВИТЬ: СНАЧАЛА LINUX, ЗАТЕМ WINDOWS NT</A></H2>
 
 <P>
-<H2><A NAME="toc3">3.</A> <A HREF="Linux+WinNT-3.html">п п░п  пёп║п╒п░п²п·п▓п≤п╒п╛: п║п²п░п╖п░п⌡п░ NT, п≈п░п╒п∙п° WINDOWS LINUX</A></H2>
+<H2><A NAME="toc3">3.</A> <A HREF="Linux+WinNT-3.html">КАК УСТАНОВИТЬ: СНАЧАЛА NT, ЗАТЕМ WINDOWS LINUX</A></H2>
 
 <UL>
-<LI><A HREF="Linux+WinNT-3.html#ss3.1">3.1 п∙я│п╩п╦ я┐ п╡п╟я│ <EM>я┌п╬п╩я▄п╨п╬ п╬п╢п╦п╫</EM> п╤п╣я│я┌п╨п╦п╧ п╢п╦я│п╨ IDE</A>
-<LI><A HREF="Linux+WinNT-3.html#ss3.2">3.2 п∙я│п╩п╦ я┐ п╡п╟я│ <EM>п╠п╬п╩я▄я┬п╣ я┤п╣п╪ п╬п╢п╦п╫</EM> (SCSI) п╤п╣я│я┌п╨п╦п╧ п╢п╦я│п╨</A>
+<LI><A HREF="Linux+WinNT-3.html#ss3.1">3.1 Если у вас <EM>только один</EM> жесткий диск IDE</A>
+<LI><A HREF="Linux+WinNT-3.html#ss3.2">3.2 Если у вас <EM>больше чем один</EM> (SCSI) жесткий диск</A>
 </UL>
 <P>
-<H2><A NAME="toc4">4.</A> <A HREF="Linux+WinNT-4.html">п■п░п⌡п╛п²п∙п≥п╗п░п╞ п≤п²п╓п·п═п°п░п╕п≤п╞</A></H2>
+<H2><A NAME="toc4">4.</A> <A HREF="Linux+WinNT-4.html">ДАЛЬНЕЙШАЯ ИНФОРМАЦИЯ</A></H2>
 
 <UL>
 <LI><A HREF="Linux+WinNT-4.html#ss4.1">4.1 Copyright</A>
-<LI><A HREF="Linux+WinNT-4.html#ss4.2">4.2 п░п╡я┌п╬я─я│п╨п╦п╣ п©я─п╟п╡п╟</A>
-<LI><A HREF="Linux+WinNT-4.html#ss4.3">4.3 п·я┌п╡п╣я┌я│я┌п╡п╣п╫п╫п╬я│я┌я▄</A>
-<LI><A HREF="Linux+WinNT-4.html#ss4.4">4.4 п²п╬п╡п╬я│я┌п╦</A>
-<LI><A HREF="Linux+WinNT-4.html#ss4.5">4.5 п▒п╩п╟пЁп╬п╢п╟я─п╫п╬я│я┌п╦</A>
+<LI><A HREF="Linux+WinNT-4.html#ss4.2">4.2 Авторские права</A>
+<LI><A HREF="Linux+WinNT-4.html#ss4.3">4.3 Ответственность</A>
+<LI><A HREF="Linux+WinNT-4.html#ss4.4">4.4 Новости</A>
+<LI><A HREF="Linux+WinNT-4.html#ss4.5">4.5 Благодарности</A>
 <LI><A HREF="Linux+WinNT-4.html#ss4.6">4.6 HOWTO</A>
 <LI><A HREF="Linux+WinNT-4.html#ss4.7">4.7 Mini-HOWTO</A>
-<LI><A HREF="Linux+WinNT-4.html#ss4.8">4.8 п⌡п╬п╨п╟п╩я▄п╫я▀п╣ я─п╣я│я┐я─я│я▀</A>
-<LI><A HREF="Linux+WinNT-4.html#ss4.9">4.9 Web я│я┌я─п╟п╫п╦я├я▀</A>
+<LI><A HREF="Linux+WinNT-4.html#ss4.8">4.8 Локальные ресурсы</A>
+<LI><A HREF="Linux+WinNT-4.html#ss4.9">4.9 Web страницы</A>
 </UL>
 <P>
-<H2><A NAME="toc5">5.</A> <A HREF="Linux+WinNT-5.html">п÷п·п⌡пёп╖п∙п²п≤п∙ п÷п·п°п·п╘п≤</A></H2>
+<H2><A NAME="toc5">5.</A> <A HREF="Linux+WinNT-5.html">ПОЛУЧЕНИЕ ПОМОЩИ</A></H2>
 
 <HR>
 <A HREF="Linux+WinNT-1.html">Next</A>

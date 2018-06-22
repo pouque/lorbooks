@@ -10,22 +10,22 @@ INSTALLATION AND OPERATION GUIDE</P></h1>
 eric@Sendmail.ORG</P>
 <P>Version 8.129<BR>
 For Sendmail Version 8.9</P>
-<P>п÷п╣я─п╣п╡п╬п╢ <A HREF="mailto:asp@pvrr.ru"> п÷п╩п╬я┌п╫п╦п╨п╬п╡п╟ п░.п║.</A></P>
-<p>п║п╟п╪я┐я▌ п©п╬я│п╩п╣п╢п╫я▌я▌ п╡п╣я─я│п╦я▌ я█я┌п╬п╧ п╢п╬п╨я┐п╪п╣п╫я┌п╟я├п╦п╦, п╦ п╫п╣ я┌п╬п╩я▄п╨п╬ п╣п╣, п╡я▀ п╪п╬п╤п╣я┌п╣ п╫п╟п╧я┌п╦ <a href="http://gyro.pvrr.ru">п╥п╢п╣я│я▄<a>.
+<P>Перевод <A HREF="mailto:asp@pvrr.ru"> Плотникова А.С.</A></P>
+<p>Самую последнюю версию этой документации, и не только ее, вы можете найти <a href="http://gyro.pvrr.ru">здесь<a>.
 <P><HR></P>
-<FONT COLOR="#ff0000"><H1>п║п·п■п∙п═п√п░п²п≤п∙</H1> </FONT>
+<FONT COLOR="#ff0000"><H1>СОДЕРЖАНИЕ</H1> </FONT>
 </CENTER>
-<P>1. <A HREF="sendmail1.html#toc1">  п·п║п²п·п▓п²п░п╞ пёп║п╒п░п²п·п▓п п░</A><br>
+<P>1. <A HREF="sendmail1.html#toc1">  ОСНОВНАЯ УСТАНОВКА</A><br>
 <DIR>
-1.1. <A HREF="sendmail1.html#toc11">  п п╬п╪п©п╦п╩я▐я├п╦я▐ Sendmail  </A> <br>
+1.1. <A HREF="sendmail1.html#toc11">  Компиляция Sendmail  </A> <br>
 <DIR>
-1.1.1. <A HREF="sendmail1.html#toc111">  п÷п╬п╢пЁп╬п╫п╨п╟   Build   </A><BR>
-1.1.2. <A HREF="sendmail1.html#toc112">  п║п╬п╥п╢п╟п╫п╦п╣ п╓п╟п╧п╩п╟ п п╬п╫я└п╦пЁя┐я─п╟я├п╦п╦ пёп╥п╩п╟  </A> <BR>
-1.1.3. <A HREF="sendmail1.html#toc113">  п÷п╬п╢пЁп╬п╫п╨п╟ Makefile   </A><BR>
-1.1.4. <A HREF="sendmail1.html#toc114">  п п╬п╪п©п╦п╩я▐я├п╦я▐ п╦ я┐я│я┌п╟п╫п╬п╡п╨п╟  </A> <br>
+1.1.1. <A HREF="sendmail1.html#toc111">  Подгонка   Build   </A><BR>
+1.1.2. <A HREF="sendmail1.html#toc112">  Создание Файла Конфигурации Узла  </A> <BR>
+1.1.3. <A HREF="sendmail1.html#toc113">  Подгонка Makefile   </A><BR>
+1.1.4. <A HREF="sendmail1.html#toc114">  Компиляция и установка  </A> <br>
 </DIR>
-1.2. <A HREF="sendmail1.html#toc12">  п╓п╟п╧п╩я▀ п п╬п╫я└п╦пЁя┐я─п╟я├п╦п╦  </A> <BR>
-1.3. <A HREF="sendmail1.html#toc13">  п÷п╬п╢я─п╬п╠п╫п╬я│я┌п╦ п╓п╟п╧п╩п╬п╡ п≤п╫я│я┌п╟п╩п╩я▐я├п╦п╦  </A> <br>
+1.2. <A HREF="sendmail1.html#toc12">  Файлы Конфигурации  </A> <BR>
+1.3. <A HREF="sendmail1.html#toc13">  Подробности Файлов Инсталляции  </A> <br>
 <DIR>
 1.3.1. <A HREF="sendmail1.html#toc131">  /usr/sbin/sendmail  </A> <BR>
 1.3.2. <A HREF="sendmail1.html#toc132">  /etc/sendmail.cf  </A> <BR>
@@ -35,173 +35,173 @@ For Sendmail Version 8.9</P>
 1.3.6. <A HREF="sendmail1.html#toc136">  /var/spool/mqueue  </A> <BR>
 1.3.7.<A HREF="sendmail1.html#toc137">   /var/spool/mqueue/.hoststat  </A> <BR>
 1.3.8. <A HREF="sendmail1.html#toc138">  /etc/aliases*  </A> <BR>
-1.3.9. <A HREF="sendmail1.html#toc139">  /etc/rc   п╦п╩п╦   /etc/init.d/sendmail  </A> <BR>
+1.3.9. <A HREF="sendmail1.html#toc139">  /etc/rc   или   /etc/init.d/sendmail  </A> <BR>
 1.3.10. <A HREF="sendmail1.html#toc1310">  /usr/lib/sendmail.hf  </A> <BR>
 1.3.11. <A HREF="sendmail1.html#toc1311">  /etc/sendmail.st  </A> <BR>
 1.3.12. <A HREF="sendmail1.html#toc1312">  /usr/bin/mailq  </A> 
 </P>
 </DIR></DIR>
-<P>2. <A HREF="sendmail2.html#toc2">  п²п·п═п°п░п⌡п╛п²п░п╞ п═п░п▒п·п╒п░ </A><br>
+<P>2. <A HREF="sendmail2.html#toc2">  НОРМАЛЬНАЯ РАБОТА </A><br>
 <DIR>
-2.1. <A HREF="sendmail2.html#toc21">  п║п╦я│я┌п╣п╪п╫я▀п╧ п÷я─п╬я┌п╬п╨п╬п╩  </A><br>
+2.1. <A HREF="sendmail2.html#toc21">  Системный Протокол  </A><br>
 <DIR>
-2.1.1. <A HREF="sendmail2.html#toc211">  п╓п╬я─п╪п╟я┌  </A><BR>
-2.1.2. <A HREF="sendmail2.html#toc212">  пёя─п╬п╡п╫п╦  </A><br>
+2.1.1. <A HREF="sendmail2.html#toc211">  Формат  </A><BR>
+2.1.2. <A HREF="sendmail2.html#toc212">  Уровни  </A><br>
 </DIR>
-2.2. <A HREF="sendmail2.html#toc22">  п║п╬я│я┌п╬я▐п╫п╦п╣ п║п╠я─п╬я│п╟ </A><BR>
-2.3. <A HREF="sendmail2.html#toc23">  п÷п╬я┤я┌п╬п╡п╟я▐ п·я┤п╣я─п╣п╢я▄  </A> <br>
+2.2. <A HREF="sendmail2.html#toc22">  Состояние Сброса </A><BR>
+2.3. <A HREF="sendmail2.html#toc23">  Почтовая Очередь  </A> <br>
 <DIR>
-2.3.1. <A HREF="sendmail2.html#toc231">  п÷п╣я┤п╟я┌я▄ п·я┤п╣я─п╣п╢п╦  </A> <BR>
-2.3.2. <A HREF="sendmail2.html#toc232">  пёя│п╨п╬я─п╣п╫п╦п╣ п·я┤п╣я─п╣п╢п╦  </A> <br>
+2.3.1. <A HREF="sendmail2.html#toc231">  Печать Очереди  </A> <BR>
+2.3.2. <A HREF="sendmail2.html#toc232">  Ускорение Очереди  </A> <br>
 </DIR>
-2.4. <A HREF="sendmail2.html#toc24">  п■п╦я│п╨п╬п╡п╟я▐ п≤п╫я└п╬я─п╪п╟я├п╦я▐ п╬ п║п╬п╣п╢п╦п╫п╣п╫п╦п╦   </A><BR>
-2.5. <A HREF="sendmail2.html#toc25">  п║п╣я─п╡п╦я│п╫я▀п╧ п÷п╣я─п╣п╨п╩я▌я┤п╟я┌п╣п╩я▄  </A> <BR>
-2.6. <A HREF="sendmail2.html#toc26">  п▒п╟п╥п╟ п■п╟п╫п╫я▀я┘ п÷я│п╣п╡п╢п╬п╫п╦п╪п╬п╡   </A><br>
+2.4. <A HREF="sendmail2.html#toc24">  Дисковая Информация о Соединении   </A><BR>
+2.5. <A HREF="sendmail2.html#toc25">  Сервисный Переключатель  </A> <BR>
+2.6. <A HREF="sendmail2.html#toc26">  База Данных Псевдонимов   </A><br>
 <DIR>
-2.6.1. <A HREF="sendmail2.html#toc261">  п÷п╣я─п╣я│я┌я─п╬п╣п╫п╦п╣ п▒п╟п╥я▀ п■п╟п╫п╫я▀я┘ п÷я│п╣п╡п╢п╬п╫п╦п╪п╬п╡   </A><BR>
-2.6.2. <A HREF="sendmail2.html#toc262">  п÷п╬я┌п╣п╫я├п╦п╟п╩я▄п╫я▀п╣ п©я─п╬п╠п╩п╣п╪я▀   </A><BR>
-2.6.3. <A HREF="sendmail2.html#toc263">  п▓п╩п╟п╢п╣п╩я▄я├я▀ п║п©п╦я│п╨п╬п╡   </A><br>
+2.6.1. <A HREF="sendmail2.html#toc261">  Перестроение Базы Данных Псевдонимов   </A><BR>
+2.6.2. <A HREF="sendmail2.html#toc262">  Потенциальные проблемы   </A><BR>
+2.6.3. <A HREF="sendmail2.html#toc263">  Владельцы Списков   </A><br>
 </DIR>
-2.7. <A HREF="sendmail2.html#toc27">  п▒п╟п╥п╟ п■п╟п╫п╫я▀я┘ п÷п╬п╩я▄п╥п╬п╡п╟я┌п╣п╩я▄я│п╨п╬п╧ п≤п╫я└п╬я─п╪п╟я├п╦п╦   </A><BR>
-2.8. <A HREF="sendmail2.html#toc28">  п÷п╬п╩я▄п╥п╬п╡п╟я┌п╣п╩я▄я│п╨п╟я▐ п©п╣я─п╣я│я▀п╩п╨п╟ (я└п╟п╧п╩я▀ .forward)   </A><BR>
-2.9. <A HREF="sendmail2.html#toc29">  п║п©п╣я├п╦п╟п╩я▄п╫я▀п╣ п║я┌я─п╬п╨п╦ п≈п╟пЁп╬п╩п╬п╡п╨п╟   </A><br>
+2.7. <A HREF="sendmail2.html#toc27">  База Данных Пользовательской Информации   </A><BR>
+2.8. <A HREF="sendmail2.html#toc28">  Пользовательская пересылка (файлы .forward)   </A><BR>
+2.9. <A HREF="sendmail2.html#toc29">  Специальные Строки Заголовка   </A><br>
 <DIR>
 2.9.1. <A HREF="sendmail2.html#toc291">  Errors-To:   </A><BR>
 2.9.2. <A HREF="sendmail2.html#toc292">  Apparently-To:   </A><BR>
 2.9.3. <A HREF="sendmail2.html#toc293">  Precedence  </A> <br>
 </DIR>
-2.10. <A HREF="sendmail2.html#toc210">  п÷п╬п╢п╢п╣я─п╤п╨п╟ п÷я─п╬я┌п╬п╨п╬п╩п╟ IDENT   </A>
+2.10. <A HREF="sendmail2.html#toc210">  Поддержка Протокола IDENT   </A>
 </P>
 </DIR>
-<P>3. <A HREF="sendmail3.html#toc3">  п░п═п⌠пёп°п∙п²п╒п╚  </A><br>
+<P>3. <A HREF="sendmail3.html#toc3">  АРГУМЕНТЫ  </A><br>
 <DIR>
-3.1. <A HREF="sendmail3.html#toc31">  п≤п╫я┌п╣я─п╡п╟п╩ п·я┤п╣я─п╣п╢п╦  </A><BR>
-3.2. <A HREF="sendmail3.html#toc32">  п═п╣п╤п╦п╪ п■п╣п╪п╬п╫п╟  </A><BR>
-3.3. <A HREF="sendmail3.html#toc33">  пёя│п╨п╬я─п╣п╫п╦п╣ п·я┤п╣я─п╣п╢п╦  </A><BR>
-3.4. <A HREF="sendmail3.html#toc34">  п·я┌п╩п╟п╢п╨п╟  </A><BR>
-3.5. <A HREF="sendmail3.html#toc35">  п≤п╥п╪п╣п╫п╣п╫п╦п╣ п≈п╫п╟я┤п╣п╫п╦п╧ п·п©я├п╦п╧  </A><BR>
-3.6. <A HREF="sendmail3.html#toc36">  п≤я│п©п╬п╩я▄п╥п╬п╡п╟п╫п╦п╣ п■я─я┐пЁп╬пЁп╬ п╓п╟п╧п╩п╟ п п╬п╫я└п╦пЁя┐я─п╟я├п╦п╦  </A><BR>
-3.7. <A HREF="sendmail3.html#toc37">  п÷я─п╬я┌п╬п╨п╬п╩п╦я─п╬п╡п╟п╫п╦п╣ п╒я─п╟я└я└п╦п╨п╟  </A><BR>
-3.8. <A HREF="sendmail3.html#toc38">  п╒п╣я│я┌п╦я─п╬п╡п╟п╫п╦п╣ п╓п╟п╧п╩п╬п╡ п п╬п╫я└п╦пЁя┐я─п╟я├п╦п╦  </A><BR>
-3.9. <A HREF="sendmail3.html#toc39">  п║я┐я┴п╣я│я┌п╡я┐я▌я┴п╟я▐ п≤п╫я└п╬я─п╪п╟я├п╦я▐ п╬ п║я┌п╟я┌я┐я│п╣ п╔п╬я│я┌п╟  </A>
+3.1. <A HREF="sendmail3.html#toc31">  Интервал Очереди  </A><BR>
+3.2. <A HREF="sendmail3.html#toc32">  Режим Демона  </A><BR>
+3.3. <A HREF="sendmail3.html#toc33">  Ускорение Очереди  </A><BR>
+3.4. <A HREF="sendmail3.html#toc34">  Отладка  </A><BR>
+3.5. <A HREF="sendmail3.html#toc35">  Изменение Значений Опций  </A><BR>
+3.6. <A HREF="sendmail3.html#toc36">  Использование Другого Файла Конфигурации  </A><BR>
+3.7. <A HREF="sendmail3.html#toc37">  Протоколирование Траффика  </A><BR>
+3.8. <A HREF="sendmail3.html#toc38">  Тестирование Файлов Конфигурации  </A><BR>
+3.9. <A HREF="sendmail3.html#toc39">  Существующая Информация о Статусе Хоста  </A>
 </P>
 </DIR>
-<P>4. <A HREF="sendmail4.html#toc4">  п²п╟я│я┌я─п╬п╧п╨п╟  </A><br>
+<P>4. <A HREF="sendmail4.html#toc4">  Настройка  </A><br>
 <DIR>
-4.1. <A HREF="sendmail4.html#toc41">  п╒п╟п╧п╪п╟я┐я┌я▀  </A><br>
+4.1. <A HREF="sendmail4.html#toc41">  Таймауты  </A><br>
 <DIR>
-4.1.1. <A HREF="sendmail4.html#toc411">  п≤п╫я┌п╣я─п╡п╟п╩ п·я┤п╣я─п╣п╢п╦  </A><BR>
-4.1.2. <A HREF="sendmail4.html#toc412">  п╒п╟п╧п╪п╟я┐я┌я▀ п╖я┌п╣п╫п╦я▐  </A><BR>
-4.1.3. <A HREF="sendmail4.html#toc413">  п╒п╟п╧п╪п╟я┐я┌я▀ п║п╬п╬п╠я┴п╣п╫п╦п╧  </A><br>
+4.1.1. <A HREF="sendmail4.html#toc411">  Интервал Очереди  </A><BR>
+4.1.2. <A HREF="sendmail4.html#toc412">  Таймауты Чтения  </A><BR>
+4.1.3. <A HREF="sendmail4.html#toc413">  Таймауты Сообщений  </A><br>
 </DIR>
-4.2. <A HREF="sendmail4.html#toc42">  п▓п╣я┌п╡п╩п╣п╫п╦п╣ п╡п╬ п╡я─п╣п╪я▐ п©я─п╬я┘п╬п╢п╬п╡ п╬я┤п╣я─п╣п╢п╦  </A><BR>
-4.3. <A HREF="sendmail4.html#toc43">  п÷я─п╦п╬я─п╦я┌п╣я┌я▀ п·я┤п╣я─п╣п╢п╦  </A><BR>
-4.4. <A HREF="sendmail4.html#toc44">  п·пЁя─п╟п╫п╦я┤п╣п╫п╦п╣ п≈п╟пЁя─я┐п╥п╨п╦  </A><BR>
-4.5. <A HREF="sendmail4.html#toc45">  п═п╣п╤п╦п╪ п■п╬я│я┌п╟п╡п╨п╦  </A><BR>
-4.6. <A HREF="sendmail4.html#toc46">  пёя─п╬п╡п╫п╦ п÷я─п╬я┌п╬п╨п╬п╩п╦я─п╬п╡п╟п╫п╦я▐  </A><BR>
-4.7. <A HREF="sendmail4.html#toc47">  п╓п╟п╧п╩п╬п╡я▀п╣ п═п╣п╤п╦п╪я▀  </A><br>
+4.2. <A HREF="sendmail4.html#toc42">  Ветвление во время проходов очереди  </A><BR>
+4.3. <A HREF="sendmail4.html#toc43">  Приоритеты Очереди  </A><BR>
+4.4. <A HREF="sendmail4.html#toc44">  Ограничение Загрузки  </A><BR>
+4.5. <A HREF="sendmail4.html#toc45">  Режим Доставки  </A><BR>
+4.6. <A HREF="sendmail4.html#toc46">  Уровни Протоколирования  </A><BR>
+4.7. <A HREF="sendmail4.html#toc47">  Файловые Режимы  </A><br>
 <DIR>
-4.7.1. <A HREF="sendmail4.html#toc471">  suid п╦п╩п╦ п╫п╣ suid?  </A><BR>
-4.7.2. <A HREF="sendmail4.html#toc472">  п·я┌п╨п╩я▌я┤п╣п╫п╦п╣ п©я─п╬п╡п╣я─п╬п╨ п╠п╣п╥п╬п©п╟я│п╫п╬я│я┌п╦  </A><br>
+4.7.1. <A HREF="sendmail4.html#toc471">  suid или не suid?  </A><BR>
+4.7.2. <A HREF="sendmail4.html#toc472">  Отключение проверок безопасности  </A><br>
 </DIR>
-4.8. <A HREF="sendmail4.html#toc48">  п я█я┬п╦я─п╬п╡п╟п╫п╦п╣ п║п╬п╣п╢п╦п╫п╣п╫п╦я▐  </A> <BR>
-4.9. <A HREF="sendmail4.html#toc49">  п■п╬я│я┌я┐п© п╨ п║п╣я─п╡п╣я─я┐ п≤п╪п╣п╫  </A><BR>
-4.10. <A HREF="sendmail4.html#toc410">  п÷п╣я─п╣п╪п╣я┴п╣п╫п╦п╣ п÷п╬п╩я▄п╥п╬п╡п╟я┌п╣п╩я▄я│п╨п╦я┘ п╓п╟п╧п╩п╬п╡ п÷п╣я─п╣п╫п╟п©я─п╟п╡п╩п╣п╫п╦я▐  </A><BR>
-4.11. <A HREF="sendmail4.html#toc411a">  п║п╡п╬п╠п╬п╢п╫п╬п╣ п÷я─п╬я│я┌я─п╟п╫я│я┌п╡п╬  </A> <BR>
-4.12. <A HREF="sendmail4.html#toc412a">  п°п╟п╨я│п╦п╪п╟п╩я▄п╫я▀п╧ я─п╟п╥п╪п╣я─ я│п╬п╬п╠я┴п╣п╫п╦я▐  </A> <BR>
-4.13. <A HREF="sendmail4.html#toc413a">  п╓п╩п╟пЁп╦ п п╬п╫я└п╦п╢п╣п╫я├п╦п╟п╩я▄п╫п╬я│я┌п╦   </A><BR>
-4.14. <A HREF="sendmail4.html#toc414">  п≤ п°п╫п╣ п╒п╬п╤п╣ п÷я─п╦я┬п╩п╦я┌п╣  </A> 
+4.8. <A HREF="sendmail4.html#toc48">  Кэширование Соединения  </A> <BR>
+4.9. <A HREF="sendmail4.html#toc49">  Доступ к Серверу Имен  </A><BR>
+4.10. <A HREF="sendmail4.html#toc410">  Перемещение Пользовательских Файлов Перенаправления  </A><BR>
+4.11. <A HREF="sendmail4.html#toc411a">  Свободное Пространство  </A> <BR>
+4.12. <A HREF="sendmail4.html#toc412a">  Максимальный размер сообщения  </A> <BR>
+4.13. <A HREF="sendmail4.html#toc413a">  Флаги Конфиденциальности   </A><BR>
+4.14. <A HREF="sendmail4.html#toc414">  И Мне Тоже Пришлите  </A> 
 </P>
 </DIR>
-<P>5. <A HREF="sendmail5.html#toc5">  п÷п╬п╩п╫п╬п╣ п·п©п╦я│п╟п╫п╦п╣ п╓п╟п╧п╩п╟ п п╬п╫я└п╦пЁя┐я─п╟я├п╦п╦  </A><br>
+<P>5. <A HREF="sendmail5.html#toc5">  Полное Описание Файла Конфигурации  </A><br>
 <DIR>
-5.1. <A HREF="sendmail5.html#toc51">  R   п╦   S -  п÷я─п╟п╡п╦п╩п╟ п÷п╣я─п╣п╥п╟п©п╦я│п╦  </A><br>
+5.1. <A HREF="sendmail5.html#toc51">  R   и   S -  Правила Перезаписи  </A><br>
 <DIR>
-5.1.1. <A HREF="sendmail5.html#toc511">  п⌡п╣п╡п╬я│я┌п╬я─п╬п╫п╫я▐я▐ я┤п╟я│я┌я▄  </A><BR>
-5.1.2. <A HREF="sendmail5.html#toc512">  п÷я─п╟п╡п╬я│я┌п╬я─п╬п╫п╫я▐я▐ я┤п╟я│я┌я▄  </A><BR>
-5.1.3. <A HREF="sendmail5.html#toc513">  п║п╣п╪п╟п╫я┌п╦п╨п╟ п²п╟п╠п╬я─п╬п╡ п÷я─п╟п╡п╦п╩ п÷п╣я─п╣п╥п╟п©п╦я│п╦  </A><BR>
-5.1.4. <A HREF="sendmail5.html#toc514">  п⌡п╬п╡я┐я┬п╨п╦ п²п╟п╠п╬я─п╬п╡ п÷я─п╟п╡п╦п╩  </A><br>
+5.1.1. <A HREF="sendmail5.html#toc511">  Левосторонняя часть  </A><BR>
+5.1.2. <A HREF="sendmail5.html#toc512">  Правосторонняя часть  </A><BR>
+5.1.3. <A HREF="sendmail5.html#toc513">  Семантика Наборов Правил Перезаписи  </A><BR>
+5.1.4. <A HREF="sendmail5.html#toc514">  Ловушки Наборов Правил  </A><br>
 <DIR>
 5.1.4.1. <A HREF="sendmail5.html#toc5141">  check_relay   </A><BR>
 5.1.4.2. <A HREF="sendmail5.html#toc5142">  check_mail   </A><BR>
 5.1.4.3. <A HREF="sendmail5.html#toc5143">  check_rcpt   </A><BR>
 5.1.4.4. <A HREF="sendmail5.html#toc5144">  check_compat   </A><br>
 </DIR>
-5.1.5. <A HREF="sendmail5.html#toc515">  п÷п╬я┤я┌п╬п╡я▀п╣ п÷я─п╬пЁя─п╟п╪п╪я▀ IPC  </A><br>
+5.1.5. <A HREF="sendmail5.html#toc515">  Почтовые Программы IPC  </A><br>
 </DIR>
-5.2. <A HREF="sendmail5.html#toc52">  D - п·п©я─п╣п╢п╣п╩п╣п╫п╦п╣ п°п╟п╨я─п╬я│п╟   </A><BR>
-5.3. <A HREF="sendmail5.html#toc53">  C п╦ F - п·п©я─п╣п╢п╣п╩п╣п╫п╦п╣ п п╩п╟я│я│п╟  </A><BR>
-5.4. <A HREF="sendmail5.html#toc54">  M - п·п©я─п╣п╢п╣п╩п╣п╫п╦п╣ п÷п╬я┤я┌п╬п╡п╬п╧ п©я─п╬пЁя─п╟п╪п╪я▀  </A><BR>
-5.5. <A HREF="sendmail5.html#toc55">  H - п·п©я─п╣п╢п╣п╩п╣п╫п╦п╣ п≈п╟пЁп╬п╩п╬п╡п╨п╟  </A><BR>
-5.6. <A HREF="sendmail5.html#toc56">  O - п·п©я├п╦я▐ п²п╟п╥п╫п╟я┤п╣п╫п╦я▐  </A><BR>
-5.7. <A HREF="sendmail5.html#toc57">  P - п·п©я─п╣п╢п╣п╩п╣п╫п╦п╣ п║я┌п╟я─я┬п╦п╫я│я┌п╡п╟  </A><BR>
-5.8. <A HREF="sendmail5.html#toc58">  V - пёя─п╬п╡п╣п╫я▄ п▓п╣я─я│п╦п╦ п п╬п╫я└п╦пЁя┐я─п╟я├п╦п╦  </A><BR>
-5.9. <A HREF="sendmail5.html#toc59">  K - п·п©я─п╣п╢п╣п╩п╣п╫п╦п╣ п╓п╟п╧п╩п╟ п п╩я▌я┤п╣п╧  </A><BR>
-5.10. <A HREF="sendmail5.html#toc510">  п÷п╬п╩я▄п╥п╬п╡п╟я┌п╣п╩я▄я│п╨п╟я▐ п▒п╟п╥п╟ п■п╟п╫п╫я▀я┘  </A><br>
+5.2. <A HREF="sendmail5.html#toc52">  D - Определение Макроса   </A><BR>
+5.3. <A HREF="sendmail5.html#toc53">  C и F - Определение Класса  </A><BR>
+5.4. <A HREF="sendmail5.html#toc54">  M - Определение Почтовой программы  </A><BR>
+5.5. <A HREF="sendmail5.html#toc55">  H - Определение Заголовка  </A><BR>
+5.6. <A HREF="sendmail5.html#toc56">  O - Опция Назначения  </A><BR>
+5.7. <A HREF="sendmail5.html#toc57">  P - Определение Старшинства  </A><BR>
+5.8. <A HREF="sendmail5.html#toc58">  V - Уровень Версии Конфигурации  </A><BR>
+5.9. <A HREF="sendmail5.html#toc59">  K - Определение Файла Ключей  </A><BR>
+5.10. <A HREF="sendmail5.html#toc510">  Пользовательская База Данных  </A><br>
 <DIR>
-5.10.1. <A HREF="sendmail5.html#toc5101">  п║я┌я─я┐п╨я┌я┐я─п╟ п÷п╬п╩я▄п╥п╬п╡п╟я┌п╣п╩я▄я│п╨п╬п╧ п▒п╟п╥я▀ п■п╟п╫п╫я▀я┘  </A><BR>
-5.10.2. <A HREF="sendmail5.html#toc5102">  п║п╣п╪п╟п╫я┌п╦п╨п╟ п÷п╬п╩я▄п╥п╬п╡п╟я┌п╣п╩я▄я│п╨п╬п╧ п▒п╟п╥я▀ п■п╟п╫п╫я▀я┘  </A><BR>
-5.10.3. <A HREF="sendmail5.html#toc5103">  п║п╬п╥п╢п╟п╫п╦п╣ п▒п╟п╥я▀ п■п╟п╫п╫я▀я┘  </A>
+5.10.1. <A HREF="sendmail5.html#toc5101">  Структура Пользовательской Базы Данных  </A><BR>
+5.10.2. <A HREF="sendmail5.html#toc5102">  Семантика Пользовательской Базы Данных  </A><BR>
+5.10.3. <A HREF="sendmail5.html#toc5103">  Создание Базы Данных  </A>
 </P>
 </DIR></DIR>
 
-<P>6. <A HREF="sendmail6.html#toc6">  п■я─я┐пЁп╟я▐ п п╬п╫я└п╦пЁя┐я─п╟я├п╦я▐  </A><br>
+<P>6. <A HREF="sendmail6.html#toc6">  Другая Конфигурация  </A><br>
 <DIR>
-6.1. <A HREF="sendmail6.html#toc61">  п÷п╟я─п╟п╪п╣я┌я─я▀ п╡   BuildTools/OS/$oscf  </A><BR>
-6.2. <A HREF="sendmail6.html#toc62">  п÷п╟я─п╟п╪п╣я┌я─я▀ п╡ src/conf.h  </A> <BR>
-6.3. <A HREF="sendmail6.html#toc63">  п п╬п╫я└п╦пЁя┐я─п╟я├п╦я▐ п╡ src/conf.c  </A> <br>
+6.1. <A HREF="sendmail6.html#toc61">  Параметры в   BuildTools/OS/$oscf  </A><BR>
+6.2. <A HREF="sendmail6.html#toc62">  Параметры в src/conf.h  </A> <BR>
+6.3. <A HREF="sendmail6.html#toc63">  Конфигурация в src/conf.c  </A> <br>
 <DIR>
-6.3.1. <A HREF="sendmail6.html#toc631">  п▓я│я┌я─п╬п╣п╫п╫я▀п╣ п║п╣п╪п╟п╫я┌п╦п╨п╦ п≈п╟пЁп╬п╩п╬п╡п╨п╬п╡  </A><BR>
-6.3.2. <A HREF="sendmail6.html#toc632">  п·пЁя─п╟п╫п╦я┤п╣п╫п╦п╣ п╦я│п©п╬п╩я▄п╥п╬п╡п╟п╫п╦я▐ Email  </A><BR>
-6.3.3. <A HREF="sendmail6.html#toc634">  п п╩п╟я│я│я▀ п÷я─п╣п╬п╠я─п╟п╥п╬п╡п╟п╫п╦п╧ п²п╬п╡п╬п╧ п▒п╟п╥я▀ п■п╟п╫п╫я▀я┘   </A><BR>
-6.3.4. <A HREF="sendmail6.html#toc635">  п╓я┐п╫п╨я├п╦я▐ п·я─пЁп╟п╫п╦п╥п╟я├п╦п╦ п·я┤п╣я─п╣п╢п╦  </A><BR>
-6.3.5. <A HREF="sendmail6.html#toc636">  п·я┌п╡п╣я─п╤п╣п╫п╦п╣ п▓я┘п╬п╢я▐я┴п╦я┘ п║п╬п╣п╢п╦п╫п╣п╫п╦п╧ SMTP  </A><BR>
-6.3.6. <A HREF="sendmail6.html#toc637">  п÷п╬п╢я│я┤п╣я┌ п║я─п╣п╢п╫п╣п╧ п≈п╟пЁя─я┐п╥п╨п╦  </A><br>
+6.3.1. <A HREF="sendmail6.html#toc631">  Встроенные Семантики Заголовков  </A><BR>
+6.3.2. <A HREF="sendmail6.html#toc632">  Ограничение использования Email  </A><BR>
+6.3.3. <A HREF="sendmail6.html#toc634">  Классы Преобразований Новой Базы Данных   </A><BR>
+6.3.4. <A HREF="sendmail6.html#toc635">  Функция Организации Очереди  </A><BR>
+6.3.5. <A HREF="sendmail6.html#toc636">  Отвержение Входящих Соединений SMTP  </A><BR>
+6.3.6. <A HREF="sendmail6.html#toc637">  Подсчет Средней Загрузки  </A><br>
 </DIR>
-6.4. <A HREF="sendmail6.html#toc64">  п п╬п╫я└п╦пЁя┐я─п╟я├п╦я▐ п╡ src/daemon.c  </A>
+6.4. <A HREF="sendmail6.html#toc64">  Конфигурация в src/daemon.c  </A>
 </P>
 </DIR>
 
-<P>7. <A HREF="sendmail7.html#toc7">  п≤п╥п╪п╣п╫п╣п╫п╦я▐ п╡ п▓п╣я─я│п╦п╦ 8  </A> <br>
+<P>7. <A HREF="sendmail7.html#toc7">  Изменения в Версии 8  </A> <br>
 <DIR>
-7.1. <A HREF="sendmail7.html#toc71">  п я█я┬п╦я─п╬п╡п╟п╫п╦п╣ п║п╬п╣п╢п╦п╫п╣п╫п╦п╧   </A><BR>
-7.2. <A HREF="sendmail7.html#toc72">  п▓п╩п╬п╤п╣п╫п╦п╣ MX   </A><BR>
-7.3. <A HREF="sendmail7.html#toc73">  п║п╬п╬я┌п╡п╣я┌я│я┌п╡п╦п╣ RFC   1123   </A><BR>
-7.4. <A HREF="sendmail7.html#toc74">  п÷п╬п╢п╢п╣я─п╤п╨п╟ ESMTP   </A><BR>
-7.5. <A HREF="sendmail7.html#toc75">  п÷п╬п╩п╫п╟я▐ п▓п╬я│я▄п╪п╦п╠п╦я┌п╫п╬я│я┌я▄   </A><BR>
-7.6. <A HREF="sendmail7.html#toc76">  п÷п╬п╩я▄п╥п╬п╡п╟я┌п╣п╩я▄я│п╨п╟я▐ п▒п╟п╥п╟ п■п╟п╫п╫я▀я┘   </A><BR>
-7.7. <A HREF="sendmail7.html#toc77">  пёп╩я┐я┤я┬п╣п╫п╫п╟я▐ п÷п╬п╢п╢п╣я─п╤п╨п╟ BIND   </A><BR>
-7.8. <A HREF="sendmail7.html#toc78">  п п╩я▌я┤п╣п╡я▀п╣ п╓п╟п╧п╩я▀   </A><BR>
-7.9. <A HREF="sendmail7.html#toc79">  п°п╫п╬пЁп╬я│п╩п╬п╡п╫я▀п╣ п п╩п╟я│я│я▀   </A><BR>
-7.10. <A HREF="sendmail7.html#toc710">  п·я┌п╩п╬п╤п╣п╫п╫я▀п╣ п═п╟я│я┬п╦я─п╣п╫п╦я▐ п°п╟п╨я─п╬я│п╬п╡   </A><BR>
-7.11. <A HREF="sendmail7.html#toc711">  п÷п╬п╢п╢п╣я─п╤п╨п╟ п©я─п╬я┌п╬п╨п╬п╩п╟ IDENT   </A><BR>
-7.12. <A HREF="sendmail7.html#toc712">  пёя│я┌я─п╟п╫п╣п╫п╦п╣ п▒п╟пЁп╬п╡   </A><BR>
-7.13. <A HREF="sendmail7.html#toc713">  п═п╟п╥п╢п╣п╩я▄п╫п╟я▐ п╬п╠я─п╟п╠п╬я┌п╨п╟ п п╬п╫п╡п╣я─я┌п╟ п╦ п≈п╟пЁп╬п╩п╬п╡п╨п╟   </A><BR>
-7.14. <A HREF="sendmail7.html#toc714">  п═п╟я│п©я─п╬я│я┌я─п╟п╫п╣п╫п╦п╣ п║п©п╦я│п╨п╟ п▓п╩п╟п╢п╣п╩я▄я├п╣п╡ п╫п╟ п п╬п╫п╡п╣я─я┌   </A><BR>
-7.15. <A HREF="sendmail7.html#toc715">  п■п╦п╫п╟п╪п╦я┤п╣я│п╨п╬п╣ п▓я▀п╢п╣п╩п╣п╫п╦п╣ п≈п╟пЁп╬п╩п╬п╡п╨п╟   </A><BR>
-7.16. <A HREF="sendmail7.html#toc716">  п²п╬п╡я▀п╣ я└п╩п╟пЁп╦ п п╬п╪п╟п╫п╢п╫п╬п╧ п║я┌я─п╬п╨п╦   </A><BR>
-7.17. <A HREF="sendmail7.html#toc717">  п═п╟я│я┬п╦я─п╣п╫п╫я▀п╣ я└п╩п╟пЁп╦ п п╬п╪п╟п╫п╢п╫п╬п╧ п║я┌я─п╬п╨п╦   </A><BR>
-7.18. <A HREF="sendmail7.html#toc718">  п²п╬п╡я▀п╣ п╦ п║я┌п╟я─я▀п╣ п╒п╦п©я▀ п║я┌я─п╬п╨ п п╬п╫я└п╦пЁя┐я─п╟я├п╦п╦   </A><BR>
-7.19. <A HREF="sendmail7.html#toc719">  п²п╬п╡я▀п╣ п·п©я├п╦п╦   </A><BR>
-7.20. <A HREF="sendmail7.html#toc720">  п═п╟я│я┬п╦я─п╣п╫п╫я▀п╣ п·п©я├п╦п╦     </A><BR>
-7.21. <A HREF="sendmail7.html#toc721">  п²п╬п╡я▀п╣ п╓п╩п╟пЁп╦ п÷п╬я┤я┌п╬п╡п╬п╧ п÷я─п╬пЁя─п╟п╪п╪я▀   </A><BR>
-7.22. <A HREF="sendmail7.html#toc722">  п■п╩п╦п╫п╫я▀п╣ п≤п╪п╣п╫п╟ п·п©я├п╦п╧   </A><BR>
-7.23. <A HREF="sendmail7.html#toc723">  п²п╬п╡я▀п╣ п÷я─п╣п╢п╬п©я─п╣п╢п╣п╩п╣п╫п╫я▀п╣ п°п╟п╨я─п╬я│я▀   </A><BR>
-7.24. <A HREF="sendmail7.html#toc724">  п²п╬п╡п╟я▐ п⌡п╣п╨я│п╣п╪п╟ LHS   </A><BR>
-7.25. <A HREF="sendmail7.html#toc725">  п▒п╬п╩я▄я┬п╦п╣ пёп╪п╬п╩я┤п╟п╫п╦я▐   </A><BR>
-7.26. <A HREF="sendmail7.html#toc726">  п■я─я┐пЁп╦п╣ п÷п╟я─п╟п╪п╣я┌я─я▀ п²п╟я│я┌я─п╬п╧п╨п╦ п©п╬ пёп╪п╬п╩я┤п╟п╫п╦я▌   </A><BR>
-7.27. <A HREF="sendmail7.html#toc727">  п░п╡я┌п╬п╪п╟я┌п╦я┤п╣я│п╨п╬п╣ п п╡п╬я┌п╦я─п╬п╡п╟п╫п╦п╣ п░п╢я─п╣я│п╟   </A><BR>
-7.28. <A HREF="sendmail7.html#toc728">  п║п╦п╪п╡п╬п╩п╦я┤п╣я│п╨п╦п╣ п≤п╪п╣п╫п╟ п■п╩я▐ п÷п╬я┤я┌п╬п╡п╬п╧ п÷я─п╬пЁя─п╟п╪п╪я▀ п·я┬п╦п╠п╬п╨   </A><BR>
-7.29. <A HREF="sendmail7.html#toc729">  SMTP VRFY п²п╣ п═п╟я│я┬п╦я─я▐п╣я┌я│я▐   </A><BR>
-7.30. <A HREF="sendmail7.html#toc730">  [IPC] п÷п╬я┤я┌п╬п╡я▀п╣ п÷я─п╬пЁя─п╟п╪п╪я▀ п÷п╬п╥п╡п╬п╩я▐я▌я┌ п°п╫п╬п╤п╣я│я┌п╡п╬ п╔п╬я│я┌п╬п╡   </A><BR>
-7.31. <A HREF="sendmail7.html#toc731">  п÷я│п╣п╡п╢п╬п╫п╦п╪я▀ п═п╟я│я┬п╦я─п╣п╫я▀   </A><BR>
-7.32. <A HREF="sendmail7.html#toc732">  пёп╩я┐я┤я┬п╣п╫п╦п╣ п÷п╣я─п╣п╫п╬я│п╦п╪п╬я│я┌п╦ п╦ п▒п╣п╥п╬п©п╟я│п╫п╬я│я┌п╦   </A><BR>
-7.33. <A HREF="sendmail7.html#toc733">  п═п╟п╥п╫п╬п╬п╠я─п╟п╥п╫я▀п╣ п≤п╥п╪п╣п╫п╣п╫п╦я▐   </A>
+7.1. <A HREF="sendmail7.html#toc71">  Кэширование Соединений   </A><BR>
+7.2. <A HREF="sendmail7.html#toc72">  Вложение MX   </A><BR>
+7.3. <A HREF="sendmail7.html#toc73">  Соответствие RFC   1123   </A><BR>
+7.4. <A HREF="sendmail7.html#toc74">  Поддержка ESMTP   </A><BR>
+7.5. <A HREF="sendmail7.html#toc75">  Полная Восьмибитность   </A><BR>
+7.6. <A HREF="sendmail7.html#toc76">  Пользовательская База Данных   </A><BR>
+7.7. <A HREF="sendmail7.html#toc77">  Улучшенная Поддержка BIND   </A><BR>
+7.8. <A HREF="sendmail7.html#toc78">  Ключевые Файлы   </A><BR>
+7.9. <A HREF="sendmail7.html#toc79">  Многословные Классы   </A><BR>
+7.10. <A HREF="sendmail7.html#toc710">  Отложенные Расширения Макросов   </A><BR>
+7.11. <A HREF="sendmail7.html#toc711">  Поддержка протокола IDENT   </A><BR>
+7.12. <A HREF="sendmail7.html#toc712">  Устранение Багов   </A><BR>
+7.13. <A HREF="sendmail7.html#toc713">  Раздельная обработка Конверта и Заголовка   </A><BR>
+7.14. <A HREF="sendmail7.html#toc714">  Распространение Списка Владельцев на Конверт   </A><BR>
+7.15. <A HREF="sendmail7.html#toc715">  Динамическое Выделение Заголовка   </A><BR>
+7.16. <A HREF="sendmail7.html#toc716">  Новые флаги Командной Строки   </A><BR>
+7.17. <A HREF="sendmail7.html#toc717">  Расширенные флаги Командной Строки   </A><BR>
+7.18. <A HREF="sendmail7.html#toc718">  Новые и Старые Типы Строк Конфигурации   </A><BR>
+7.19. <A HREF="sendmail7.html#toc719">  Новые Опции   </A><BR>
+7.20. <A HREF="sendmail7.html#toc720">  Расширенные Опции     </A><BR>
+7.21. <A HREF="sendmail7.html#toc721">  Новые Флаги Почтовой Программы   </A><BR>
+7.22. <A HREF="sendmail7.html#toc722">  Длинные Имена Опций   </A><BR>
+7.23. <A HREF="sendmail7.html#toc723">  Новые Предопределенные Макросы   </A><BR>
+7.24. <A HREF="sendmail7.html#toc724">  Новая Лексема LHS   </A><BR>
+7.25. <A HREF="sendmail7.html#toc725">  Большие Умолчания   </A><BR>
+7.26. <A HREF="sendmail7.html#toc726">  Другие Параметры Настройки по Умолчанию   </A><BR>
+7.27. <A HREF="sendmail7.html#toc727">  Автоматическое Квотирование Адреса   </A><BR>
+7.28. <A HREF="sendmail7.html#toc728">  Символические Имена Для Почтовой Программы Ошибок   </A><BR>
+7.29. <A HREF="sendmail7.html#toc729">  SMTP VRFY Не Расширяется   </A><BR>
+7.30. <A HREF="sendmail7.html#toc730">  [IPC] Почтовые Программы Позволяют Множество Хостов   </A><BR>
+7.31. <A HREF="sendmail7.html#toc731">  Псевдонимы Расширены   </A><BR>
+7.32. <A HREF="sendmail7.html#toc732">  Улучшение Переносимости и Безопасности   </A><BR>
+7.33. <A HREF="sendmail7.html#toc733">  Разнообразные Изменения   </A>
 </P>
 </DIR>
 <P>8. <A HREF="sendmail8.html#toc8">  ACKNOWLEDGEMENTS   </A><BR>
-п÷п═п≤п⌡п·п√п∙п²п≤п∙ A.  <A HREF="sendmail-appa.html">  п╓п⌡п░п⌠п≤ п п·п°п░п²п■п²п·п≥ п║п╒п═п·п п≤ </A><BR>
-п÷п═п≤п⌡п·п√п∙п²п≤п∙ B.  <A HREF="sendmail-appb.html">  п╓п·п═п°п░п╒п╚ п╓п░п≥п⌡п·п▓ п·п╖п∙п═п∙п■п≤ </A><BR>
-п÷п═п≤п⌡п·п√п∙п²п≤п∙ C.  <A HREF="sendmail-appc.html">  п п═п░п╒п п·п∙ п·п÷п≤п║п░п²п≤п∙ п║п·п÷п═п·п▓п·п√п■п░п╝п╘п≤п╔ п╓п░п≥п⌡п·п▓ </A><BR>
+ПРИЛОЖЕНИЕ A.  <A HREF="sendmail-appa.html">  ФЛАГИ КОМАНДНОЙ СТРОКИ </A><BR>
+ПРИЛОЖЕНИЕ B.  <A HREF="sendmail-appb.html">  ФОРМАТЫ ФАЙЛОВ ОЧЕРЕДИ </A><BR>
+ПРИЛОЖЕНИЕ C.  <A HREF="sendmail-appc.html">  КРАТКОЕ ОПИСАНИЕ СОПРОВОЖДАЮЩИХ ФАЙЛОВ </A><BR>
 </P></BODY>
 </HTML>

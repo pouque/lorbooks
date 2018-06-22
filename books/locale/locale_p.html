@@ -8,122 +8,122 @@
 
 <body bgcolor="#FFFFFF">
 
-<h1>п╖я┌п╬ п╥п╫п╟я┤п╦я┌ &quot;п©я─п╬пЁя─п╟п╪п╪п╟ п©я─п╟п╡п╦п╩я▄п╫п╬ п╫п╟п©п╦я│п╟п╫п╟&quot;
+<h1>Что значит &quot;программа правильно написана&quot;
 ?</h1>
 
-<p>&nbsp;&nbsp;&nbsp; п■п╟п╡п╟п╧я┌п╣ я─п╟я│я│п╪п╬я┌я─п╦п╪ я┌п╣п©п╣я─я▄, п╨п╟п╨
-п©п╦я│п╟я┌я▄ &quot;п©я─п╟п╡п╦п╩я▄п╫я▀п╣&quot; я│ я┌п╬я┤п╨п╦ п╥я─п╣п╫п╦я▐
-п╩п╬п╨п╟п╩п╦п╥п╟я├п╦п╦ п©я─п╬пЁя─п╟п╪п╪я▀. п·я│п╫п╬п╡п╫п╬п╣ п╡п╫п╦п╪п╟п╫п╦п╣ я┐п╢п╣п╩п╦п╪ <strong>я│я┌п╟п╫п╢п╟я─я┌п╟п╪</strong>.
+<p>&nbsp;&nbsp;&nbsp; Давайте рассмотрим теперь, как
+писать &quot;правильные&quot; с точки зрения
+локализации программы. Основное внимание уделим <strong>стандартам</strong>.
 </p>
 
-<p>&nbsp;&nbsp;&nbsp; (п²п╬ п╦ я┐ я│я┌п╟п╫п╢п╟я─я┌п╬п╡ п╣я│я┌я▄ я│п╡п╬п╦ п©я─п╬п╠п╩п╣п╪я▀.
-п÷п╬я█я┌п╬п╪я┐ - п╫п╣п╪п╫п╬пЁп╬ <a href="locale_p.html#critique">п╨я─п╦я┌п╦п╨п╦</a>).</p>
+<p>&nbsp;&nbsp;&nbsp; (Но и у стандартов есть свои проблемы.
+Поэтому - немного <a href="locale_p.html#critique">критики</a>).</p>
 
 <hr>
 
-<p>&nbsp;&nbsp;&nbsp; &quot;п÷я─п╟п╡п╦п╩я▄п╫п╬&quot; п╫п╟п©п╦я│п╟п╫п╫п╟я▐
-п©я─п╬пЁя─п╟п╪п╪п╟ я│ п╦я│п©п╬п╩я▄п╥п╬п╡п╟п╫п╦п╣п╪ <strong>POSIX locale</strong> п╫п╣
-п╢п╬п╩п╤п╫п╟ п╥п╟п╡п╦я│п╦я┌я▄ п╬я┌ я│п©п╬я│п╬п╠п╟ п╨п╬п╢п╦я─п╬п╡п╟п╫п╦я▐ (&quot;<a href="locale_c.html">п╨п╬п╢п╦я─п╬п╡п╨п╦</a>&quot;) я│п╦п╪п╡п╬п╩п╬п╡. п╒п╟п╨п╟я▐
-п©я─п╬пЁя─п╟п╪п╪п╟ п╫п╣ п╢п╬п╩п╤п╫п╟ п╠я▀я┌я▄ п©я─п╦п╡я▐п╥п╟п╫п╟ п╨ 7-п╪п╦
-п╠п╦я┌п╫п╬я│я┌п╦ <strong>ASCII</strong> я│п╦п╪п╡п╬п╩п╬п╡, п╦ п╢п╬п╩п╤п╫п╟
-п©п╬п╩я▄п╥п╬п╡п╟я┌я▄я│я▐ я│я┌п╟п╫п╢п╟я─я┌п╫я▀п╪п╦ п╠п╦п╠п╩п╦п╬я┌п╣я┤п╫я▀п╪п╦ (<strong>API</strong>)
-я└я┐п╫п╨я├п╦я▐п╪п╦ <strong>locale</strong> :&nbsp; <a href="http://www.linux.org.ru/books/man/man3/isalpha.html"><em>isalpha()</em></a>,
-<a href="http://www.linux.org.ru/books/man/man3/isupper.html"><em>isupper()</em></a>,<em> isxxx()</em> п╦ <a href="http://www.linux.org.ru/books/man/man3/tolower.html"><em>tolower()</em></a><strong>/</strong><a href="http://www.linux.org.ru/books/man/man3/toupper.html"><em>toupper()</em></a> п╫п╣ п©п╬п╩п╟пЁп╟я▐я│я▄, я┤я┌п╬ <code>Upper=Lower+0x20</code>
-п╦ я┌.п╢.&nbsp; п п╬п╫я│я┌я─я┐п╨я├п╦п╦, п©п╬п╢п╬п╠п╫я▀п╣ я█я┌п╬п╧ я┌п╟п╨п╤п╣ <font color="#FF0080">п╫п╣п╢п╬п©я┐я│я┌п╦п╪я▀ :</font></p>
+<p>&nbsp;&nbsp;&nbsp; &quot;Правильно&quot; написанная
+программа с использованием <strong>POSIX locale</strong> не
+должна зависить от способа кодирования (&quot;<a href="locale_c.html">кодировки</a>&quot;) символов. Такая
+программа не должна быть привязана к 7-ми
+битности <strong>ASCII</strong> символов, и должна
+пользоваться стандартными библиотечными (<strong>API</strong>)
+функциями <strong>locale</strong> :&nbsp; <a href="http://www.linux.org.ru/books/man/man3/isalpha.html"><em>isalpha()</em></a>,
+<a href="http://www.linux.org.ru/books/man/man3/isupper.html"><em>isupper()</em></a>,<em> isxxx()</em> и <a href="http://www.linux.org.ru/books/man/man3/tolower.html"><em>tolower()</em></a><strong>/</strong><a href="http://www.linux.org.ru/books/man/man3/toupper.html"><em>toupper()</em></a> не полагаясь, что <code>Upper=Lower+0x20</code>
+и т.д.&nbsp; Конструкции, подобные этой также <font color="#FF0080">недопустимы :</font></p>
 
 <pre>      <font color="#FF0080">if (c &gt;= 'A' &amp;&amp; c &lt;= 'Z') { ...</font></pre>
 
-<p>п÷п╬п╩я▄п╥я┐п╧я┌п╣я│я▄ :</p>
+<p>Пользуйтесь :</p>
 
-<pre>      <font color="#008000">if (isalpha(c) &amp;&amp; isupper(c)) { ...</font> п╦п╩п╦<font color="#008000">
+<pre>      <font color="#008000">if (isalpha(c) &amp;&amp; isupper(c)) { ...</font> или<font color="#008000">
       if (isascii(c) &amp;&amp; isupper(c))</font></pre>
 
-<p>&nbsp;&nbsp;&nbsp; п п╟п╨ п©я─п╟п╡п╦п╩п╬, п╫п╟я├п╦п╬п╫п╟п╩я▄п╫я▀п╣ п╟п╩я└п╟п╡п╦я┌я▀
-я─п╟я│п©п╬п╩п╬п╤п╣п╫я▀ п╫п╟я┤п╦п╫п╟я▐ я│ п╨п╬п╢п╟ (codepoint) <strong>0x80</strong>,
-п©п╬я█я┌п╬п╪я┐ п╢п╩я▐ я│п╬п╡п╪п╣я│я┌п╦п╪п╬я│я┌п╦ я│п╬ я│я┌п╟я─я▀п╪п╦
-я─п╣п╟п╩п╦п╥п╟я├п╦я▐п╪п╦ <strong>locale</strong> п╪п╬п╤п╫п╬ п╬п╠я┼я▐п╡п╦я┌я▄ п╡я│п╣
-я│п╦п╪п╡п╬п╩я▀ п╨п╟п╨ <strong>unsigned char</strong>, п╫п╟п©я─п╦п╪п╣я─ п╨п╩я▌я┤п╬п╪
-п╨п╬п╪п©п╦п╩я▐я┌п╬я─п╟ (п╢п╩я▐ gcc -funsigned-char) п╦п╩п╦ я▐п╡п╫п╬.</p>
+<p>&nbsp;&nbsp;&nbsp; Как правило, национальные алфавиты
+расположены начиная с кода (codepoint) <strong>0x80</strong>,
+поэтому для совместимости со старыми
+реализациями <strong>locale</strong> можно объявить все
+символы как <strong>unsigned char</strong>, например ключом
+компилятора (для gcc -funsigned-char) или явно.</p>
 
-<p>&nbsp;&nbsp;&nbsp; п╔п╬я─п╬я┬п╬ п╫п╟п©п╦я│п╟п╫п╫п╟я▐ п©я─п╬пЁя─п╟п╪п╪п╟ п╢п╬п╩п╤п╫п╟
-п╠я▀я┌я▄ п©п╬п╩я▄п╫п╬я│я┌я▄я▌ 8-п╠п╦я┌ п©я─п╬п╥я─п╟я┤п╫п╟. п²п╟п©я─п╦п╪п╣я─
-п╬я┌п╪п╣я┌п╨п╟&nbsp;я┐п╢п╟п╩п╣п╫п╫п╬пЁп╬ я└п╟п╧п╩п╟ п╡ MS-DOS п╨п╬п╢п╬п╪ <code>0x0E5</code>
-- п╫п╣ п╬я┤п╣п╫я▄ я┘п╬я─п╬я┬п╣п╣ я─п╣я┬п╣п╫п╦п╣. п∙я┴п╣ п©я─п╦п╪п╣я─я▀ п©п╩п╬я┘п╦я┘
-я─п╣я┬п╣п╫п╦п╧ :&nbsp; п╥п╫п╟п╪п╣п╫п╦я┌п╟я▐ я─я┐я│я│п╨п╟я▐ п╠я┐п╨п╡п╟ &quot;п²&quot; п╡
-я─п╣п╢п╟п╨я┌п╬я─п╣ GoldEd п╦п╩п╦ я─я┐я│я│п╨п╟я▐ п╠я┐п╨п╡п╟ &quot;я─&quot; п╡ Norton
+<p>&nbsp;&nbsp;&nbsp; Хорошо написанная программа должна
+быть польностью 8-бит прозрачна. Например
+отметка&nbsp;удаленного файла в MS-DOS кодом <code>0x0E5</code>
+- не очень хорошее решение. Еще примеры плохих
+решений :&nbsp; знаменитая русская буква &quot;Н&quot; в
+редакторе GoldEd или русская буква &quot;р&quot; в Norton
 Commander...</p>
 
 <p>&nbsp;</p>
 
-<p>&nbsp;&nbsp;&nbsp; п▓п╬-п╡я┌п╬я─я▀я┘, п©я─п╬пЁя─п╟п╪п╪п╟ п╢п╬п╩п╤п╫п╟ <font color="#FF0080">я▐п╡п╫п╬</font> п╫п╟я┤п╦п╫п╟я┌я▄я│я▐ я│ п╡я▀п╥п╬п╡п╟ <a href="http://www.linux.org.ru/books/man/man3/setlocale.html"><em>setlocale(<strong>LC_ALL</strong>,&quot;&quot;)</em></a>
-(я┌п╟п╨п╟я▐ я└п╬я─п╪п╟ п╡я▀п╥п╬п╡п╟ п╬п╥п╫п╟я┤п╟п╣я┌, я┤я┌п╬ п╡я│п╣п╪ п╨п╟я┌п╣пЁп╬я─п╦я▐п╪
-п╩п╬п╨п╟п╩п╦п╥п╟я├п╦п╦ <strong>п╬п╢п╫п╬п╡я─п╣п╪п╣п╫п╫п╬</strong> п╠я┐п╢п╣я┌
-п©я─п╦я│п╡п╬п╣п╫п╬ п╥п╫п╟я┤п╣п╫п╦п╣ п©п╣я─п╣п╪п╣п╫п╫п╬п╧ п╬п╨я─я┐п╤п╣п╫п╦я▐ <a href="http://www.linux.org.ru/books/man/man_e/lang.html"><strong>LANG</strong></a>). п■п╬ п╡я▀п╥п╬п╡п╟ я█я┌п╬п╧
-я└я┐п╫п╨я├п╦п╦ (п╦п╩п╦ я│п╬п╡я│п╣п╪ п╠п╣п╥ п╫п╣пЁп╬) п©я─п╬пЁя─п╟п╪п╪п╟ п╫п╣
-п╬п╠я─п╟я┴п╟п╣я┌ п╡п╫п╦п╪п╟п╫п╦я▐ п╫п╟ <strong>LANG=</strong> п╦ я└я┐п╫я├п╦п╦ <em>isalpha()...</em>
-я─п╟п╠п╬я┌п╟я▌я┌ п╡ п╩п╬п╨п╟п╩п╦п╥п╟я├п╦п╦ <strong>POSIX</strong> (<strong>п║</strong>) п╦
-я│ п╫п╟п╠п╬я─п╬п╪ я│п╦п╪п╡п╬п╩п╬п╡ <strong>ASCII</strong>. п╒п╬ п╣я│я┌я▄, п╫п╣
-п╠я▀п╡п╟п╣я┌ &quot;п╫п╦п╨п╟п╨п╬п╧&quot; п╩п╬п╨п╟п╩п╦п╥п╟я├п╦п╦.</p>
+<p>&nbsp;&nbsp;&nbsp; Во-вторых, программа должна <font color="#FF0080">явно</font> начинаться с вызова <a href="http://www.linux.org.ru/books/man/man3/setlocale.html"><em>setlocale(<strong>LC_ALL</strong>,&quot;&quot;)</em></a>
+(такая форма вызова означает, что всем категориям
+локализации <strong>одновременно</strong> будет
+присвоено значение переменной окружения <a href="http://www.linux.org.ru/books/man/man_e/lang.html"><strong>LANG</strong></a>). До вызова этой
+функции (или совсем без него) программа не
+обращает внимания на <strong>LANG=</strong> и фунции <em>isalpha()...</em>
+работают в локализации <strong>POSIX</strong> (<strong>С</strong>) и
+с набором символов <strong>ASCII</strong>. То есть, не
+бывает &quot;никакой&quot; локализации.</p>
 
 <table border="1">
   <tr>
-    <td>п÷п═п≤п°п∙п╖п░Hп≤п∙: п▓п╬ <strong>FreeBSD</strong> п╪п╬п╤п╫п╬ п╡я▀п╩п╣я┤п╦я┌я▄
-    п╫п╣п╨п╬я┌п╬я─я▀п╣ п©я─п╬пЁя─п╟п╪п╪я▀, п╡ п╨п╬я┌п╬я─я▀я┘ п╥п╟п╠я▀я┌ п╡я▀п╥п╬п╡ <strong><em>setlocale()</em></strong>
-    п©я┐я┌п╣п╪ п╥п╟п╢п╟п╫п╦я▐ я│я┌я─п╬п╨п╦ п╬п╨я─я┐п╤п╣п╫п╦я▐ :<br>
+    <td>ПРИМЕЧАHИЕ: Во <strong>FreeBSD</strong> можно вылечить
+    некоторые программы, в которых забыт вызов <strong><em>setlocale()</em></strong>
+    путем задания строки окружения :<br>
     <strong>$ export ENABLE_STARTUP_LOCALE=&quot;&quot; <br>
-    </strong>я┌п╬пЁп╢п╟ <em><strong>setlocale(LC_ALL,&quot;&quot;)</strong></em> п╠я┐п╢п╣я┌
-    п╡я▀п╥я▀п╡п╟я┌я▄я│я▐ <strong>п╟п╡я┌п╬п╪п╟я┌п╦я┤п╣я│п╨п╦</strong> п©я─п╦ я│я┌п╟я─я┌п╣
-    п©я─п╬пЁя─п╟п╪п╪ (п╠п╣п╥ п╦я┘ п©п╣я─п╣п╨п╬п╪п©п╦п╩я▐я├п╦п╦).<p>&nbsp;&nbsp; п▓ <strong>Linux
-    libc</strong> я┌п╟п╨п╬пЁп╬ п╫п╣я┌ (п©п╬п╨п╟?) п╦ п©п╬ я┐п╪п╬п╩я┤п╟п╫п╦я▌ п╡я│п╣пЁп╢п╟
-    п╡п╨п╩я▌я┤п╣п╫п╬ <strong>LANG=&quot;C</strong>&quot; п╦п╩п╦ &quot;<strong>POSIX</strong>&quot;.
-    п·п╢п╫п╟п╨п╬ п╪п╬п╤п╫п╬ п©п╣я─п╣я│п╬п╠я─п╟я┌я▄ Linux libc, я┐п╨п╟п╥п╟п╡ п╢я─я┐пЁп╬п╣
-    п╥п╫п╟я┤п╣п╫п╦п╣ п©п╬ я┐п╪п╬п╩я┤п╟п╫п╦я▌. п²п╬ я│п╩п╣п╢я┐п╣я┌ п╬я┌п╪п╣я┌п╦я┌я▄, я┤я┌п╬
-    я┌п╟п╨п╬п╣ я─п╣я┬п╣п╫п╦п╣ п╠я┐п╢п╣я┌ п©я─п╬я┌п╦п╡п╬я─п╣я┤п╦я┌я▄ я│я┌п╟п╫п╢п╟я─я┌я┐, п©п╬
-    п╨п╬я┌п╬я─п╬п╪я┐ п©я─п╬пЁя─п╟п╪п╪п╟ я│я┌п╟я─я┌я┐п╣я┌ п╡ <strong>POSIX</strong> (п╢п╬
-    п©п╣я─п╡п╬пЁп╬ п╡я▀п╥п╬п╡п╟ <em>setlocale()</em>).</td>
+    </strong>тогда <em><strong>setlocale(LC_ALL,&quot;&quot;)</strong></em> будет
+    вызываться <strong>автоматически</strong> при старте
+    программ (без их перекомпиляции).<p>&nbsp;&nbsp; В <strong>Linux
+    libc</strong> такого нет (пока?) и по умолчанию всегда
+    включено <strong>LANG=&quot;C</strong>&quot; или &quot;<strong>POSIX</strong>&quot;.
+    Однако можно пересобрать Linux libc, указав другое
+    значение по умолчанию. Но следует отметить, что
+    такое решение будет противоречить стандарту, по
+    которому программа стартует в <strong>POSIX</strong> (до
+    первого вызова <em>setlocale()</em>).</td>
   </tr>
 </table>
 
-<p>&nbsp;&nbsp;&nbsp; п■п╩я▐ п©п╬п╩я┐я┤п╣п╫п╦я▐ <strong>locale</strong>-п╥п╟п╡п╦я│п╦п╪п╬п╧
-п╦п╫я└п╬я─п╪п╟я├п╦п╦ я│п╩п╣п╢я┐п╣я┌ п©п╬п╩я▄п╥п╬п╡п╟я┌я│я▐ п╢п╟п╫п╫я▀п╪п╦
-я│я┌я─я┐п╨я┌я┐я─я▀ <em>lconv</em>, п╨п╬я┌п╬я─я▀п╣ п╪п╬п╤п╫п╬ п©п╬п╩я┐я┤п╦я┌я▄
-п╡я▀п╥п╬п╡п╬п╪ я└я┐п╫п╨я├п╦п╦ <a href="http://www.linux.org.ru/books/man/man3/localeconv.html"><em>localeconv()</em></a>
-. п■п╩я▐ п©п╬п╩я┐я┤п╣п╫п╦я▐ п╢п╣я┌п╟п╩я▄п╫п╬п╧ п╦п╫я└п╬я─п╪п╟я├п╦п╦ п©п╬
-п╨п╟я┌п╣пЁп╬я─п╦я▐п╪ п╩п╬п╨п╟п╩п╦п╥п╟я├п╦п╦ (п╬п©п╦я│п╟п╫п╫я▀п╪ п╡ я└п╟п╧п╩п╣ <a href="http://www.linux.org.ru/books/man/man_h/langinfo.html"><em>&lt;langinfo.h&gt;</em></a> ) п╪п╬п╤п╫п╬
-п©п╬п╩я▄п╥п╬п╡я┌я▄я│я▐ я└я┐п╫п╨я├п╦п╣п╧ <a href="http://www.linux.org.ru/books/man/man3/nl_langinfo.html"><em>nl_langinfo()</em></a>.
-(п╜я┌п╟ я└я┐п╫п╨я├п╦я▐ п╫п╣ п╡я┘п╬п╢п╦я┌ п╡ <strong>POSIX</strong>, п╫п╬ п╡я┘п╬п╢п╦я┌ п╡ <strong>XPG</strong>,
-п╦ п╠п╬п╩я▄я┬п╦п╫я│я┌п╡п╬ я│п╦я│я┌п╣п╪ п╣п╣ п╦п╪п╣я▌я┌).</p>
+<p>&nbsp;&nbsp;&nbsp; Для получения <strong>locale</strong>-зависимой
+информации следует пользоватся данными
+структуры <em>lconv</em>, которые можно получить
+вызовом функции <a href="http://www.linux.org.ru/books/man/man3/localeconv.html"><em>localeconv()</em></a>
+. Для получения детальной информации по
+категориям локализации (описанным в файле <a href="http://www.linux.org.ru/books/man/man_h/langinfo.html"><em>&lt;langinfo.h&gt;</em></a> ) можно
+пользовться функцией <a href="http://www.linux.org.ru/books/man/man3/nl_langinfo.html"><em>nl_langinfo()</em></a>.
+(Эта функция не входит в <strong>POSIX</strong>, но входит в <strong>XPG</strong>,
+и большинство систем ее имеют).</p>
 
-<p>&nbsp;&nbsp;&nbsp; п■п╩я▐ я│я─п╟п╡п╫п╣п╫п╦я▐ я│я┌я─п╬п╨ я│п╦п╪п╡п╬п╩п╬п╡ я│п╩п╣п╢я┐п╣я┌
-п©п╬п╩я▄п╥п╬п╡п╟я┌я▄я│я▐ я└я┐п╫п╨я├п╦я▐п╪п╦ <a href="http://www.linux.org.ru/books/man/man3/strcoll.html"><em>strcoll()</em></a>
-п╦ <a href="http://www.linux.org.ru/books/man/man3/strxfrm.html"><em>strxfrm()</em></a> п╡п╪п╣я│я┌п╬ <a href="http://www.linux.org.ru/books/man/man3/strcmp.html"><em>strcmp()</em></a>.</p>
+<p>&nbsp;&nbsp;&nbsp; Для сравнения строк символов следует
+пользоваться функциями <a href="http://www.linux.org.ru/books/man/man3/strcoll.html"><em>strcoll()</em></a>
+и <a href="http://www.linux.org.ru/books/man/man3/strxfrm.html"><em>strxfrm()</em></a> вместо <a href="http://www.linux.org.ru/books/man/man3/strcmp.html"><em>strcmp()</em></a>.</p>
 
 <p>&nbsp;</p>
 
-<p>&nbsp;&nbsp;&nbsp; п■п╩я▐ п©п╬п╩п╫п╬п╧ п©п╬п╢п╢п╣я─п╤п╨п╦ я│п╬п╬п╠я┴п╣п╫п╦п╧ п╫п╟
-я─п╬п╢п╫п╬п╪ я▐п╥я▀п╨п╣ (<a href="locale_n.html">NLS</a>) п╡п╣я│я▄ п╡я▀п╡п╬п╢
-я│п╬п╬п╠я┴п╣п╫п╦п╧ п©п╬п╩я▄п╥п╬п╡п╟я┌п╣п╩я▌ п╢п╬п╩п╤п╣п╫ п©я─п╬п╦я│я┘п╬п╢п╦я┌я▄ c
-п╦я│п©п╬п╩я▄п╥п╬п╡п╟п╫п╦п╣п╪ я└я┐п╫п╨я├п╦п╧ <strong>NLS</strong> п╦ п╢п╬п╩п╤п╣п╫ п╠я▀я┌я▄
-я│п╬п╥п╢п╟п╫ <strong>п╨п╟я┌п╟п╩п╬пЁ я│п╬п╬п╠я┴п╣п╫п╦п╧ (message catalog)</strong> п╢п╩я▐
-п╢п╟п╫п╫п╬п╧ п©я─п╬пЁя─п╟п╪п╪я▀ (п╦ п╢п╟п╫п╫п╬пЁп╬ я▐п╥я▀п╨п╟). </p>
+<p>&nbsp;&nbsp;&nbsp; Для полной поддержки сообщений на
+родном языке (<a href="locale_n.html">NLS</a>) весь вывод
+сообщений пользователю должен происходить c
+использованием функций <strong>NLS</strong> и должен быть
+создан <strong>каталог сообщений (message catalog)</strong> для
+данной программы (и данного языка). </p>
 
-<p>&nbsp;&nbsp;&nbsp; п░ п╡ п╥п╟п╨п╩я▌я┤п╣п╫п╦п╣, п╫п╣п©п╩п╬я┘п╬ п╠я▀ п╦п╪п╣я┌я▄ <strong><em>man</em></strong>
-п╫п╟ я─п╟п╥п╫я▀я┘ я▐п╥я▀п╨п╟я┘. :-)</p>
+<p>&nbsp;&nbsp;&nbsp; А в заключение, неплохо бы иметь <strong><em>man</em></strong>
+на разных языках. :-)</p>
 
 <hr>
 
-<h2>п╓я┐п╫п╨я├п╦я▐ <em>setlocale()</em> .</h2>
+<h2>Функция <em>setlocale()</em> .</h2>
 
-<p>&nbsp;&nbsp;&nbsp; п·я│п╫п╬п╡п╫п╬п╧ я└я┐п╫п╨я├п╦п╣п╧ <strong>POSIX</strong> <strong>locale</strong>
-<strong>API</strong> я▐п╡п╩я▐п╣я┌я│я▐ я└я┐п╫п╨я├п╦я▐ <a href="http://www.linux.org.ru/books/man/man3/setlocale.html"><em>selocale()</em></a>.
-п■п╟п╫п╫п╟я▐ я└я┐п╫п╨я├п╦я▐ п╬п©я─п╣п╢п╣п╩п╣п╫п╟ п╡ #include я└п╟п╧п╩п╣ <em><a href="http://www.linux.org.ru/books/man/man_h/locale.html">locale.h</a></em> п╨п╟п╨ :</p>
+<p>&nbsp;&nbsp;&nbsp; Основной функцией <strong>POSIX</strong> <strong>locale</strong>
+<strong>API</strong> является функция <a href="http://www.linux.org.ru/books/man/man3/setlocale.html"><em>selocale()</em></a>.
+Данная функция определена в #include файле <em><a href="http://www.linux.org.ru/books/man/man_h/locale.html">locale.h</a></em> как :</p>
 
 <blockquote>
   <pre>char *setlocale(int category, const char * locale);</pre>
 </blockquote>
 
-<p>&nbsp;&nbsp;&nbsp; п║я┐я┴п╣я│я┌п╡я┐п╣я┌ я┌я─п╦ п╬я│п╫п╬п╡п╫я▀я┘ я└п╬я─п╪я▀ п╡я▀п╥п╬п╡п╟
-я█я┌п╬п╧ я└я┐п╫п╨я├п╦п╦ : 
+<p>&nbsp;&nbsp;&nbsp; Существует три основных формы вызова
+этой функции : 
 
 <ol>
   <li>setlocale(LC_XXX,&quot;language_TERRITORY.Codeset&quot;);</li>
@@ -131,60 +131,60 @@ Commander...</p>
   <li>char * str; str=setlocale(LC_XXX,NULL);</li>
 </ol>
 
-<p>&nbsp;&nbsp;&nbsp; п÷п╣я─п╡п╟я▐ я└п╬я─п╪п╟ п©я─п╦п╪п╣п╫я▐п╣я┌я│я▐ п╢п╩я▐
-я┐я│я┌п╟п╫п╬п╡п╨п╦ п╨п╬п╫п╨я─п╣я┌п╫п╬п╧ п╨п╟я┌п╣пЁп╬я─п╦п╦ п╩п╬п╨п╟п╩п╦п╥п╟я├п╦п╦ п╡
-п╨п╬п╫п╨я─п╣я┌п╫п╬п╣ п╥п╫п╟я┤п╣п╫п╦п╣.</p>
+<p>&nbsp;&nbsp;&nbsp; Первая форма применяется для
+установки конкретной категории локализации в
+конкретное значение.</p>
 
-<p>&nbsp;&nbsp;&nbsp; п▓я┌п╬я─п╟я▐ я└п╬я─п╪п╟ п©я─п╦п╪п╣п╫я▐п╣я┌я│я▐ п╢п╩я▐
-я┐я│я┌п╟п╫п╬п╡п╨п╦ п╨п╟я┌п╣пЁп╬я─п╦п╦ п╩п╬п╨п╟п╩п╦п╥п╟я├п╦п╦ &quot;п©п╬
-я┐п╪п╬п╩я┤п╟п╫п╦я▌&quot;. п▓ я█я┌п╬п╪ я│п╩я┐я┤п╟п╣ п╥п╫п╟я┤п╣п╫п╦п╣ п╨п╟я┌п╣пЁп╬я─п╦п╦
-п╩п╬п╨п╟п╩п╦п╥п╟я├п╦п╦ п╠п╣я─п╣я┌я│я▐ п╦п╥ п©п╣я─п╣п╪п╣п╫п╫я▀я┘ п╬п╨я─я┐п╤п╣п╫п╦я▐ LANG,
+<p>&nbsp;&nbsp;&nbsp; Вторая форма применяется для
+установки категории локализации &quot;по
+умолчанию&quot;. В этом случае значение категории
+локализации берется из переменных окружения LANG,
 LC_CTYPE, e.t.c..</p>
 
-<p>&nbsp;&nbsp;&nbsp; п╒я─п╣я┌я▄я▐ я└п╬я─п╪п╟ - я█я┌п╬ я│п╨п╬я─п╣п╣ я└п╬я─п╪п╟ GET -
-п©п╬п╥п╡п╬п╩я▐п╣я┌ п©п╬п╩я┐я┤п╦я┌я▄ я┌п╣п╨я┐я┴п╣п╣ п╥п╫п╟я┤п╣п╫п╦п╣ п╨п╟я┌п╣пЁп╬я─п╦п╦
-п╩п╬п╨п╟п╩п╦п╥п╟я├п╦п╦.</p>
+<p>&nbsp;&nbsp;&nbsp; Третья форма - это скорее форма GET -
+позволяет получить текущее значение категории
+локализации.</p>
 
 <hr>
 
-<h2><a name="critique">п⌡п╬п╨п╟п╩п╦п╥п╟я├п╦я▐ п╦ POSIX.</a></h2>
+<h2><a name="critique">Локализация и POSIX.</a></h2>
 
-<p>&nbsp;&nbsp;&nbsp; п∙я│п╩п╦ п╪я▀ пЁп╬п╡п╬я─п╦п╪ п╬ <strong>я└п╟п╧п╩п╣</strong>, я┌п╬ п╡
-п╦п╢п╣п╬п╩п╬пЁп╦п╦ <strong>POSIX</strong>, <a href="locale_io.html#file">я└п╟п╧п╩</a> -
-я█я┌п╬ п©я─п╬я│я┌п╬ п©п╩п╬я│п╨п╟я▐ п©п╬я│п╩п╣п╢п╬п╡п╟я┌п╣п╩я▄п╫п╬я│я┌я▄ п╠п╟п╧я┌п╬п╡.
-п▓п╫я┐я┌я─п╣п╫п╫п╣п╣ я│п╬п╢п╣я─п╤п╦п╪п╬п╣ <font color="#FF0080">п╫п╣
-я│я┌п╟п╫п╢п╟я─я┌п╦п╥п╬п╡п╟п╫п╬</font><font color="#000000"> п╫п╦п╨п╟п╨</font>.
-п÷п╬я█я┌п╬п╪я┐ п╫п╣п╡п╬п╥п╪п╬п╤п╫п╬ п╬п©я─п╣п╢п╣п╩п╦я┌я▄, п╨п╟п╨я┐я▌ п╦п╫я└п╬я─п╪п╟я├п╦я▌
-я│п╬п╢п╣я─п╤п╦я┌ я└п╟п╧п╩, п╟ п╣я│п╩п╦ п╬п╫ я│п╬п╢п╣я─п╤п╦я┌ я┌п╣п╨я│я┌п╬п╡я┐я▌
-п╦п╫я└п╬я─п╪п╟я├п╦я▌ -- п╡ п╨п╟п╨п╬п╧ п╬п╫п╟ п╨п╬п╢п╦я─п╬п╡п╨п╣. п╒п╬ п╤п╣ я│п╟п╪п╬п╣
-п╪п╬п╤п╫п╬ я│п╨п╟п╥п╟я┌я▄ п╬ <strong>п©п╬я┌п╬п╨п╟я┘</strong> : <strong>stdin/stdout</strong>
--- я█я┌п╬ п©п╬я┌п╬п╨п╦ <font color="#FF0080">п╠п╟п╧я┌п╬п╡</font> (п╨п╬п╢п╬п╡).
-п п╬п╢п╦я─п╬п╡п╨п╟ (я┌.п╣. я│п╬п╬я┌п╡п╣я┌я│я┌п╡п╦п╣ я│п╦п╪п╡п╬п╩-п╨п╬п╢ (<strong>CES</strong>))
-п©п╬п╩п╫п╬я│я┌я▄я▌ п©п╬я┌п╣я─я▐п╫п╟ п╦ п╫п╦пЁп╢п╣ п╫п╣ я┐п╨п╟п╥я▀п╡п╟п╣я┌я│я▐. п≤ <strong>POSIX</strong>
-п╡п╬п╡я│п╣ п╫п╣ пЁп╟я─п╟п╫я┌п╦я─я┐п╣я┌, я┤я┌п╬ <strong>CES</strong> (п╨п╬п╢п╦я─п╬п╡п╨п╟) <strong>stdin</strong>
-п╠я┐п╢п╣я┌ я│п╬п╡п©п╟п╢п╟я┌я▄ я│ я┌п╣п╨я┐я┴п╣п╧ п╩п╬п╨п╟п╩п╦п╥п╟я├п╦п╣п╧, п╥п╟п╢п╟п╫п╫п╬п╧
-я┤п╣я─п╣п╥ <strong>LANG=.</strong></p>
+<p>&nbsp;&nbsp;&nbsp; Если мы говорим о <strong>файле</strong>, то в
+идеологии <strong>POSIX</strong>, <a href="locale_io.html#file">файл</a> -
+это просто плоская последовательность байтов.
+Внутреннее содержимое <font color="#FF0080">не
+стандартизовано</font><font color="#000000"> никак</font>.
+Поэтому невозможно определить, какую информацию
+содержит файл, а если он содержит текстовую
+информацию -- в какой она кодировке. То же самое
+можно сказать о <strong>потоках</strong> : <strong>stdin/stdout</strong>
+-- это потоки <font color="#FF0080">байтов</font> (кодов).
+Кодировка (т.е. соответствие символ-код (<strong>CES</strong>))
+полностью потеряна и нигде не указывается. И <strong>POSIX</strong>
+вовсе не гарантирует, что <strong>CES</strong> (кодировка) <strong>stdin</strong>
+будет совпадать с текущей локализацией, заданной
+через <strong>LANG=.</strong></p>
 
-<p>&nbsp;&nbsp;&nbsp; п╒п╬я┤п╫п╬ я┌п╟п╨я┌п╟я▐ п╤п╣ я│п╦я┌я┐п╟я├п╦я▐ я│
-я┌п╣я─п╪п╦п╫п╟п╩я▄п╫я▀п╪ <a href="locale_io.html#dev">п╡п╡п╬п╢п╬п╪/п╡я▀п╡п╬п╢п╬п╪</a> :
-п╨п╬п╢п╦я─п╬п╡п╨п╟ я┌п╣я─п╪п╦п╫п╟п╩п╟ я│п╬п╡п╣я─я┬п╣п╫п╫п╬ п╫п╣п╦п╥п╡п╣я│я┌п╫п╟
-п©я─п╦п╩п╬п╤п╣п╫п╦я▌.</p>
+<p>&nbsp;&nbsp;&nbsp; Точно тактая же ситуация с
+терминальным <a href="locale_io.html#dev">вводом/выводом</a> :
+кодировка терминала совершенно неизвестна
+приложению.</p>
 
-<p>&nbsp;&nbsp; п  я│п╬п╤п╟п╩п╣п╫п╦я▌, п╡ я│я┌п╟п╫п╢п╟я─я┌п╣ <strong>POSIX</strong>
-п©п╬п╢п╢п╣я─п╤п╨п╟ <strong>Charset</strong> п╫п╣ п╦п╪п╣п╣я┌ п©п╬п╩п╫п╬я│я┌я▄я▌
-п╦п╢п╣п╬п╩п╬пЁп╦я┤п╣я│п╨п╦ я│я┌я─п╬п╧п╫п╬п╧ п╦ я▐я│п╫п╬п╧ п╨п╬п╫я├п╣п©я├п╦п╦.
-п÷п╬п╫я▐я┌п╦п╣ <strong>Charset</strong> я│я┐я┴п╣я│я┌п╡я┐п╣я┌ я┌п╬п╩я▄п╨п╬ п╢п╩я▐ <strong>locale
-API</strong> п╦ я┌п╣я┘ я└я┐п╫п╨я├п╦п╧, п╨п╬я┌п╬я─я▀п╣ п╥п╟п╡п╦я│я▐я┌ п╬я┌ <strong>locale</strong>.</p>
+<p>&nbsp;&nbsp; К сожалению, в стандарте <strong>POSIX</strong>
+поддержка <strong>Charset</strong> не имеет полностью
+идеологически стройной и ясной концепции.
+Понятие <strong>Charset</strong> существует только для <strong>locale
+API</strong> и тех функций, которые зависят от <strong>locale</strong>.</p>
 
-<p>&nbsp;&nbsp;&nbsp; п▒п╬п╩п╣п╣ я┌п╬пЁп╬, п╡ &quot;я┤п╦я│я┌п╬п╪&quot; <strong>POSIX</strong>
-п╡п╬п╬п╠я┴п╣ <font color="#FF0080"><strong>п╫п╣п╡п╬п╥п╪п╬п╤п╫п╬</strong></font>
-я┐п╥п╫п╟я┌я▄ (п©п╬п╩я┐я┤п╦я┌я▄) п╦п╪я▐ <strong>Charset</strong> п©п╬я│п╩п╣ п╡я▀п╥п╬п╡п╟ <a href="http://www.linux.org.ru/books/man/man3/setlocale.html"><em>setlocale()</em></a>. п∙п╢п╦п╫я│я┌п╡п╣п╫п╫я▀п╧
-я│п©п╬я│п╬п╠, я┐п╥п╫п╟я┌я▄ <strong>Charset</strong> я┌п╣п╨я┐я┴п╣п╧ <strong>locale</strong>
-- я█я┌п╬ п╡п╬я│п©п╬п╩я▄п╥п╬п╡п╟я┌я▄я│я▐ п╫п╣-<strong>POSIX</strong> я└я┐п╫п╨я├п╦п╣п╧ <strong>XPG</strong>
-(п╫п╬<strong> </strong>п╬п©я─п╣п╢п╣п╩п╣п╫п╫п╬п╧ п╡ <strong>Single UNIX</strong>,&nbsp; <strong>SVID</strong>
-п╦ <strong>Unix98</strong>) : <a href="http://www.linux.org.ru/books/man/man3/nl_langinfo.html"><em>nl_langinfo(CODESET</em>)</a>
-(п╬п©я─п╣п╢п╣п╩п╣п╫п╟ п╡ я└п╟п╧п╩п╣ <a href="http://www.linux.org.ru/books/man/man_h/langinfo.html">&lt;langinfo.h&gt;</a>
-). п╒п╬пЁп╢п╟ я┌п╣п╨я┐я┴п╦п╧ <strong>п║harset</strong> п╪п╬п╤п╫п╬ п©п╬п╩я┐я┤п╦я┌я▄ я┌п╟п╨
+<p>&nbsp;&nbsp;&nbsp; Более того, в &quot;чистом&quot; <strong>POSIX</strong>
+вообще <font color="#FF0080"><strong>невозможно</strong></font>
+узнать (получить) имя <strong>Charset</strong> после вызова <a href="http://www.linux.org.ru/books/man/man3/setlocale.html"><em>setlocale()</em></a>. Единственный
+способ, узнать <strong>Charset</strong> текущей <strong>locale</strong>
+- это воспользоваться не-<strong>POSIX</strong> функцией <strong>XPG</strong>
+(но<strong> </strong>определенной в <strong>Single UNIX</strong>,&nbsp; <strong>SVID</strong>
+и <strong>Unix98</strong>) : <a href="http://www.linux.org.ru/books/man/man3/nl_langinfo.html"><em>nl_langinfo(CODESET</em>)</a>
+(определена в файле <a href="http://www.linux.org.ru/books/man/man_h/langinfo.html">&lt;langinfo.h&gt;</a>
+). Тогда текущий <strong>Сharset</strong> можно получить так
 :</p>
 
 <table border="1">
@@ -199,25 +199,25 @@ printf (&quot;Current charset = %s\n&quot;,nl_langinfo(CODESET));</pre>
   </tr>
 </table>
 
-<p>&nbsp;&nbsp;&nbsp;&nbsp; п²п╟п╢п╬ п╩п╦ пЁп╬п╡п╬я─п╦я┌я▄, я┤я┌п╬ п╫п╣п╨п╬я┌п╬я─я▀п╣ <strong>UNIX</strong>
-(п╫п╟п©я─п╦п╪п╣я─ <a href="http://www.freebsd.org">FreeBSD</a>) п╫п╣ п╦п╪п╣я▌я┌ я█я┌п╦я┘ <strong>XPG</strong>-extensions
-п╦ п╫п╣ п╦п╪п╣я▌я┌ я└я┐п╫п╨я├п╦п╦ <a href="http://www.linux.org.ru/books/man/man3/nl_langinfo.html"><em>nl_langinfo()</em></a>
-п╨п╟п╨ я┌п╟п╨п╬п╡п╬п╧ п╡п╬п╬п╠я┴п╣. (п╖я┌п╬ п╬я┤п╣п╫я▄ я│я┌я─п╟п╫п╫п╬, п©п╬я│п╨п╬п╩я▄п╨я┐
-п╡ я┌п╬п╪ п╤п╣ <strong>POSIX</strong> п╬п©я─п╣п╢п╣п╩п╣п╫п╟ я┐я┌п╦п╩п╦я┌п╟ <a href="http://www.linux.org.ru/books/man/man1/locale.html"><em>locale</em></a> c keyword-п╬п╪ codeset п╨п╬я┌п╬я─п╟я▐
-&quot;п╨п╟п╨-я┌п╬&quot; я█я┌п╬ п╦п╪я▐ п╬п©я─п╣п╢п╣п╩я▐п╣я┌...) п²п╟п©я─п╦п╪п╣я─,
-п©п╬п©я┐п╩я▐я─п╫п╟я▐ я│п╦я│я┌п╣п╪п╟ <a href="http://www.freebsd.org">FreeBSD</a> п╢п╬
-я│п╦я┘ п©п╬я─ п╫п╣ п╦п╪п╣п╣я┌ я└я┐п╫п╨я├п╦п╦ <a href="http://www.linux.org.ru/books/man/man3/nl_langinfo.html"><em>nl_langinfo()</em></a>
-(п╨п╟п╨ п╡п©я─п╬я┤п╣п╪ п╫п╣ п╦п╪п╣п╣я┌ п╦ я┐я┌п╦п╩п╦я┌я▀ <a href="http://www.linux.org.ru/books/man/man1/locale.html"><em>locale</em></a>,
-я┐п╡я▀ !). </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; Надо ли говорить, что некоторые <strong>UNIX</strong>
+(например <a href="http://www.freebsd.org">FreeBSD</a>) не имеют этих <strong>XPG</strong>-extensions
+и не имеют функции <a href="http://www.linux.org.ru/books/man/man3/nl_langinfo.html"><em>nl_langinfo()</em></a>
+как таковой вообще. (Что очень странно, поскольку
+в том же <strong>POSIX</strong> определена утилита <a href="http://www.linux.org.ru/books/man/man1/locale.html"><em>locale</em></a> c keyword-ом codeset которая
+&quot;как-то&quot; это имя определяет...) Например,
+популярная система <a href="http://www.freebsd.org">FreeBSD</a> до
+сих пор не имеет функции <a href="http://www.linux.org.ru/books/man/man3/nl_langinfo.html"><em>nl_langinfo()</em></a>
+(как впрочем не имеет и утилиты <a href="http://www.linux.org.ru/books/man/man1/locale.html"><em>locale</em></a>,
+увы !). </p>
 
-<p>&nbsp;&nbsp;&nbsp; п∙я┴п╣ п╬п╢п╦п╫ я│п©п╬я│п╬п╠ п╬п©я─п╣п╢п╣п╩п╣п╫п╦я▐ я┌п╣п╨я┐я┴п╣пЁп╬
-<strong>Charset</strong>-п╟ - я█я┌п╬ <font color="#FF0080">я─п╟п╥п╠п╬я─</font>
-п©п╣я─п╣п╪п╣п╫п╫п╬п╧ п╬п╨я─я┐п╤п╣п╫п╦я▐ <a href="http://www.linux.org.ru/books/man/man_e/lang.html"><strong>LANG=</strong></a>
-. п÷п╬ я│я┌п╟п╫п╢п╟я─я┌я┐ <strong>POSIX</strong> п©п╣я─п╣п╪п╣п╫п╫п╟я▐ <strong>LANG=</strong>
-п╥п╟п╢п╟п╣я┌я│я▐ п╡ я└п╬я─п╪п╣ <font color="#FF0080"><strong>LANG=language_TERRITORY.Codeset</strong></font>.
-п²п╟п©я─п╦п╪п╣я─, п©п╣я─п╣п╪п╣п╫п╫п╟я▐ <strong><a href="http://www.linux.org.ru/books/man/man_e/nlspath.html">NLSPATH=</a></strong>
-(я┐п©я─п╟п╡п╩я▐я▌я┴п╟я▐ п©п╬п╡п╣п╢п╣п╫п╦п╣п╪ п©п╬п╢я│п╦я│я┌п╣п╪я▀ <a href="locale_n.html">NLS</a>
-)п╪п╬п╤п╣я┌ п╦п╪п╣я┌я▄ &quot;п©п╬п╢я│я┌п╟п╫п╬п╡п╨п╦&quot; :</p>
+<p>&nbsp;&nbsp;&nbsp; Еще один способ определения текущего
+<strong>Charset</strong>-а - это <font color="#FF0080">разбор</font>
+переменной окружения <a href="http://www.linux.org.ru/books/man/man_e/lang.html"><strong>LANG=</strong></a>
+. По стандарту <strong>POSIX</strong> переменная <strong>LANG=</strong>
+задается в форме <font color="#FF0080"><strong>LANG=language_TERRITORY.Codeset</strong></font>.
+Например, переменная <strong><a href="http://www.linux.org.ru/books/man/man_e/nlspath.html">NLSPATH=</a></strong>
+(управляющая поведением подсистемы <a href="locale_n.html">NLS</a>
+)может иметь &quot;подстановки&quot; :</p>
 
 <blockquote>
   <dl compact>
@@ -232,8 +232,8 @@ printf (&quot;Current charset = %s\n&quot;,nl_langinfo(CODESET));</pre>
   </dl>
 </blockquote>
 
-<p>&nbsp;&nbsp;&nbsp; п╒п╟п╨п╦п╪ п╬п╠я─п╟п╥п╬п╪, п╣я│п╩п╦ п╥п╟п╢п╟я┌я▄ <strong>LANG=&quot;ru_RU.KOI8-R&quot;</strong>,
-я┌п╬ п╪я▀ п©п╬п╩я┐я┤п╦п╪ :</p>
+<p>&nbsp;&nbsp;&nbsp; Таким образом, если задать <strong>LANG=&quot;ru_RU.KOI8-R&quot;</strong>,
+то мы получим :</p>
 
 <blockquote>
   <dl compact>
@@ -248,54 +248,54 @@ printf (&quot;Current charset = %s\n&quot;,nl_langinfo(CODESET));</pre>
   </dl>
 </blockquote>
 
-<p>&nbsp;&nbsp;&nbsp; п≤я│я┘п╬п╢п╫я▀п╣ я┌п╣п╨я│я┌я▀ я█я┌п╦я┘ я└я┐п╫п╨я├п╦п╧ п╬я┌п╨я─я▀я┌я▀
-п╦ я┬п╦я─п╬п╨п╬ п╢п╬я│я┌я┐п©п╫я▀.</p>
+<p>&nbsp;&nbsp;&nbsp; Исходные тексты этих функций открыты
+и широко доступны.</p>
 
-<p>&nbsp;&nbsp;&nbsp; п╒п╟п╨п╦п╪ п╬п╠я─п╟п╥п╬п╪, я┐я│я┌п╟п╫п╬п╡п╦п╡ <strong>LANG=ru_RU.KOI8-R</strong>
-п╪я▀ п©п╬п╩я┐я┤п╦п╪ я│п╬п╬п╠я┴п╣п╫п╦я▐ п╫п╟ я─я┐я│я│п╨п╬п╪ я▐п╥я▀п╨п╣ п╡
-п╨п╬п╢п╦я─п╬п╡п╨п╣ <strong>KOI8-R</strong>, п╟ я┐я│я┌п╟п╫п╬п╡п╦п╡ <strong>LANG=ru_RU.ISO_8859-5</strong>
-- п╡ п╨п╬п╢п╦я─п╬п╡п╨п╣ <strong>ISO</strong>. п²п╟ п╫п╣п╨п╬я┌п╬я─я▀я┘ я│п╦я│я┌п╣п╪п╟я┘
-я┌п╬я┤п╫п╬ я┌п╟п╨ п╤п╣ я─п╟п╠п╬я┌п╟п╣я┌ п©п╣я─п╣п╪п╣п╫п╫п╟я▐ <strong>MANPATH=</strong>.</p>
+<p>&nbsp;&nbsp;&nbsp; Таким образом, установив <strong>LANG=ru_RU.KOI8-R</strong>
+мы получим сообщения на русском языке в
+кодировке <strong>KOI8-R</strong>, а установив <strong>LANG=ru_RU.ISO_8859-5</strong>
+- в кодировке <strong>ISO</strong>. На некоторых системах
+точно так же работает переменная <strong>MANPATH=</strong>.</p>
 
-<p>&nbsp;&nbsp;&nbsp; п  я│п╬п╤п╟п╩п╣п╫п╦я▌, п©п╬п╩п╣ <strong>Charset</strong> -
-п╬п©я├п╦п╬п╫п╟п╩я▄п╫п╬ п╦ п©п╬ я│я┌п╟п╫п╢п╟я─я┌я┐ п╪п╬п╤п╫п╬ п╦я│п©п╬п╩я▄п╥п╬п╡п╟я┌я▄
-я│п╬п╨я─п╟я┴п╣п╫п╫я┐я▌ я└п╬я─п╪я┐ : <strong>LANG=ru_RU</strong> п╦п╩п╦ п╢п╟п╤п╣ <strong>LANG=ru</strong>.
-(п║п╪. <a href="http://www.linux.org.ru/books/man/man1/localedef.html"><em>localedef</em></a> п╨п╩я▌я┤ <em>-f </em>).
-п÷п╬я█я┌п╬п╪я┐, п╣я│п╩п╦ п╡п╟я┬п╟ я│п╦я│я┌п╣п╪п╟ я█я┌п╬ п©п╬п╢п╢п╣я─п╤п╦п╡п╟п╣я┌,
-п╥п╟п╢п╟п╡п╟п╧я┌п╣ п╪п╟п╨я│п╦п╪п╟п╩я▄п╫п╬ п╢п╩п╦п╫п╫п╬п╣ п╦п╪я▐ п╢п╩я▐ <strong>LANG=</strong>
-, я┐п╨п╟п╥я▀п╡п╟я▐ <strong>Charset</strong>. (п©п╬п╩я┐я┤п╦я┌я▄ я│п©п╦я│п╬п╨ п╪п╬п╤п╫п╬
-п©п╬ <a href="http://www.linux.org.ru/books/man/man1/locale.html"><em>locale -a</em></a>). п  я│п╬п╤п╟п╩п╣п╫п╦я▌,
-я│п╟п╪п╬ <a href="other/charsets.html">п╦п╪я▐ <strong>Charset</strong>-п╟</a> я┌п╬п╤п╣
-п╪п╬п╤п╣я┌ я─п╟п╥п╩п╦я┤п╟я┌я▄я│я▐.</p>
+<p>&nbsp;&nbsp;&nbsp; К сожалению, поле <strong>Charset</strong> -
+опционально и по стандарту можно использовать
+сокращенную форму : <strong>LANG=ru_RU</strong> или даже <strong>LANG=ru</strong>.
+(См. <a href="http://www.linux.org.ru/books/man/man1/localedef.html"><em>localedef</em></a> ключ <em>-f </em>).
+Поэтому, если ваша система это поддерживает,
+задавайте максимально длинное имя для <strong>LANG=</strong>
+, указывая <strong>Charset</strong>. (получить список можно
+по <a href="http://www.linux.org.ru/books/man/man1/locale.html"><em>locale -a</em></a>). К сожалению,
+само <a href="other/charsets.html">имя <strong>Charset</strong>-а</a> тоже
+может различаться.</p>
 
 <p>&nbsp;</p>
 
-<p>&nbsp;&nbsp;&nbsp; п■п╬п╡п╬п╩я▄п╫п╬ п╥п╫п╟я┤п╦я┌п╣п╩я▄п╫п╬п╣ я┤п╦я│п╩п╬ п╬я┬п╦п╠п╬п╨
-п©я─п╬п╦я│я┘п╬п╢п╦я┌ п╦п╥ п╥п╟ я┌п╬пЁп╬, я┤я┌п╬ п╡ я▐п╥я▀п╨п╣ <strong>п║</strong>
-п╬п©я─п╣п╢п╣п╩п╣п╫ я┌п╦п© п©п╣я─п╣п╪п╣п╫п╫я▀я┘ <strong>char</strong> (я┘п╬я┌я▐
-я┌п╬я┤п╫п╣п╣ п╠я▀п╩п╬ п╠я▀ п╫п╟п╥п╡п╟я┌я▄ п╣пЁп╬ : <strong>byte</strong>). п╜я┌п╬
-п╡п╬-п©п╣я─п╡я▀я┘, п╤п╣я│я┌п╨п╬ п©я─п╦п╡я▐п╥я▀п╡п╟п╣я┌ п╫п╟я│ п╨ 8-п╪п╦ п╠п╦я┌п╫я▀п╪
-п╨п╬п╢п╦я─п╬п╡п╨п╟п╪. п░ п╡п╬-п╡я┌п╬я─я▀я┘, п╨п╬п╢п╦я─п╬п╡п╨п╟ <font color="#FF0080">п╫п╣
-п╬п©я─п╣п╢п╣п╩п╣п╫п╟</font>. п÷п╬я█я┌п╬п╪я┐, п╣я│п╩п╦ п╪я▀ п╥п╟п╢п╟п╣п╪ я│я┌я─п╬п╨я┐
-(п╪п╟я│я│п╦п╡ <strong>char</strong>), п╡ п╨п╬я┌п╬я─п╬п╧ я┐п©п╬я┌я─п╣п╠п╩я▐я▌я┌я│я▐
-я│п╦п╪п╡п╬п╩я▀ п╫п╣ ASCII (я│ п╨п╬п╢п╟п╪п╦ &gt;128) : <font color="#FF0080"><code>char
-string[]=&quot;п÷я─п╬п╡п╣я─п╨п╟&quot;;</code></font> -- я─п╣п╥я┐п╩я▄я┌п╟я┌ <font color="#FF0080"><strong>я│п╬п╡п╣я─я┬п╣п╫п╫п╬</strong></font> п╫п╣п©я─п╣п╢я│п╨п╟п╥я┐п╣п╪ п╦
-п╫п╣п©п╣я─п╣п╫п╬я│п╦п╪. п∙я┴п╣ п╠п╬п╩я▄я┬п╣ п©я─п╬п╠п╩п╣п╪ п╡я▀п╥я▀п╡п╟п╣я┌ п╦п╢п╣я▐ <a href="other/multibyte.html">multibyte chars</a>.</p>
+<p>&nbsp;&nbsp;&nbsp; Довольно значительное число ошибок
+происходит из за того, что в языке <strong>С</strong>
+определен тип переменных <strong>char</strong> (хотя
+точнее было бы назвать его : <strong>byte</strong>). Это
+во-первых, жестко привязывает нас к 8-ми битным
+кодировкам. А во-вторых, кодировка <font color="#FF0080">не
+определена</font>. Поэтому, если мы задаем строку
+(массив <strong>char</strong>), в которой употребляются
+символы не ASCII (с кодами &gt;128) : <font color="#FF0080"><code>char
+string[]=&quot;Проверка&quot;;</code></font> -- результат <font color="#FF0080"><strong>совершенно</strong></font> непредсказуем и
+непереносим. Еще больше проблем вызывает идея <a href="other/multibyte.html">multibyte chars</a>.</p>
 
-<p>&nbsp;&nbsp;&nbsp; п╒п╟п╨п╤п╣ п╡я▀п╥я▀п╡п╟п╣я┌ я┐п╢п╦п╡п╩п╣п╫п╦п╣
-я│я┐я┴п╣я│я┌п╡п╬п╡п╟п╫п╦п╣ (п╦ я│п╦п╫я┌п╟п╨я│п╦я┤п╣я│п╨п╟я▐ п╨п╬я─я─п╣п╨я┌п╫п╬я│я┌я▄)
-я┌п╦п©п╬п╡ <strong>signed / unsigned char</strong> (я┤я┌п╬ я┌п╟п╨п╬п╣
-&quot;п╬я┌я─п╦я├п╟я┌п╣п╩я▄п╫я▀п╧&quot; я│п╦п╪п╡п╬п╩? п▓п╬я┌ <strong>unsigned short int</strong>
--- п©п╬п╫я▐я┌п╫п╬)... п∙я│п╩п╦ п╡я▀ п©п╩п╟п╫п╦я─я┐п╣я┌п╣ я─п╟п╠п╬я┌я┐ п╡п╟я┬п╣п╧
-п©я─п╬пЁя─п╟п╪п╪я▀ п╡ п╪п╫п╬пЁп╬я▐п╥я▀я┤п╫п╬п╪ п╬п╨я─я┐п╤п╣п╫п╦п╦, п╫п╣п©п╩п╬я┘п╬ п╠я▀
-п©я─п╣п╢я┐я│п╪п╬я┌я─п╣я┌я▄ п╟я┌я─п╦п╠я┐я┌ <strong>п║harset</strong> я┐ п╩я▌п╠п╬п╧
-я│я┌я─п╬п╨п╦ я│п╦п╪п╡п╬п╩п╬п╡ <strong>char *</strong>. п≤п╩п╦ п©п╬п╩п╫п╬я│я┌я▄я▌
-п©п╣я─п╣я┘п╬п╢п╦я┌я▄ п╫п╟ <strong>UNICODE</strong> (<strong>wchar_t</strong>) п╡
-п╨п╟я┤п╣я│я┌п╡п╣ п╡п╫я┐я┌я─п╣п╫п╫п╣п╧ п╨п╬п╢п╦я─п╬п╡п╨п╦.</p>
+<p>&nbsp;&nbsp;&nbsp; Также вызывает удивление
+существование (и синтаксическая корректность)
+типов <strong>signed / unsigned char</strong> (что такое
+&quot;отрицательный&quot; символ? Вот <strong>unsigned short int</strong>
+-- понятно)... Если вы планируете работу вашей
+программы в многоязычном окружении, неплохо бы
+предусмотреть атрибут <strong>Сharset</strong> у любой
+строки символов <strong>char *</strong>. Или полностью
+переходить на <strong>UNICODE</strong> (<strong>wchar_t</strong>) в
+качестве внутренней кодировки.</p>
 
 <hr>
 
-<p>п║п╬п╢п╣я─п╤п╟п╫п╦п╣ &quot;<a href="index.html#toc">Locale AS IT IS</a>&quot;</p>
+<p>Содержание &quot;<a href="index.html#toc">Locale AS IT IS</a>&quot;</p>
 
 <hr>
 

@@ -2,19 +2,19 @@
 <HEAD>
 <!-- Created by texi2html 1.56k from automake-ru.texi on 11 July 2000 -->
 
-<TITLE>automake - п▓п╨п╩я▌я┤п╣п╫п╦п╣ п╢п╬п©п╬п╩п╫п╦я┌п╣п╩я▄п╫я▀я┘ я└п╟п╧п╩п╬п╡</TITLE>
+<TITLE>automake - Включение дополнительных файлов</TITLE>
 </HEAD>
 <BODY>
 Go to the <A HREF="automake-ru_1.html">first</A>, <A HREF="automake-ru_16.html">previous</A>, <A HREF="automake-ru_18.html">next</A>, <A HREF="automake-ru_25.html">last</A> section, <A HREF="automake-ru_toc.html">table of contents</A>.
 <P><HR><P>
 
 
-<H1><A NAME="SEC59" HREF="automake-ru_toc.html#TOC59">п▓п╨п╩я▌я┤п╣п╫п╦п╣ п╢п╬п©п╬п╩п╫п╦я┌п╣п╩я▄п╫я▀я┘ я└п╟п╧п╩п╬п╡</A></H1>
+<H1><A NAME="SEC59" HREF="automake-ru_toc.html#TOC59">Включение дополнительных файлов</A></H1>
 
 <P>
 <A NAME="IDX463"></A>
-п■п╩я▐ п╡п╨п╩я▌я┤п╣п╫п╦я▐ п╢я─я┐пЁп╦я┘ я└п╟п╧п╩п╬п╡ (п╪п╬п╤п╣я┌ п╠я▀я┌я▄ п╢п╩я▐ п©п╬п╢п╨п╩я▌я┤п╣п╫п╦я▐ п╬п╠я┴п╦я┘ п©я─п╟п╡п╦п╩)
-п©п╬п╢п╢п╣я─п╤п╦п╡п╟п╣я┌я│я▐ я│п╩п╣п╢я┐я▌я┴п╦п╧ я│п╦п╫я┌п╟п╨я│п╦я│:
+Для включения других файлов (может быть для подключения общих правил)
+поддерживается следующий синтаксис:
 
 
 
@@ -23,7 +23,7 @@ include ($(srcdir)|$(top_srcdir))/filename
 </PRE>
 
 <P>
-п≤я│п©п╬п╩я▄п╥я┐я▐ я└п╟п╧п╩я▀ п╡ я┌п╣п╨я┐я┴п╣п╪ п╨п╟я┌п╟п╩п╬пЁп╣:
+Используя файлы в текущем каталоге:
 
 
 
@@ -37,7 +37,7 @@ include Makefile.generated
 </PRE>
 
 <P>
-п≤я│п©п╬п╩я▄п╥я┐я▐ я└п╟п╧п╩я▀ п╡ п╨п╟я┌п╟п╩п╬пЁп╣ п╡п╣я─я┘п╫п╣пЁп╬ я┐я─п╬п╡п╫я▐:
+Используя файлы в каталоге верхнего уровня:
 
 <PRE>
 include $(top_srcdir)/filename

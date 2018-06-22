@@ -7,8 +7,8 @@ original version by:  Nikos Drakos, CBLU, University of Leeds
   Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
 <HTML>
 <HEAD>
-<TITLE>п п╬п╫я└п╦пЁя┐я─п╟я├п╦я▐</TITLE>
-<META NAME="description" CONTENT="п п╬п╫я└п╦пЁя┐я─п╟я├п╦я▐">
+<TITLE>Конфигурация</TITLE>
+<META NAME="description" CONTENT="Конфигурация">
 <META NAME="resource-type" CONTENT="document">
 <META NAME="distribution" CONTENT="global">
 
@@ -40,25 +40,25 @@ original version by:  Nikos Drakos, CBLU, University of Leeds
   HREF="IntroToLinux.html">
 <IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A>  
 <BR>
-<B> п║п╩п╣п╢.:</B> <A NAME="tex2html956"
-  HREF="node63.html">п≤я│п©п╬п╩я▄п╥п╬п╡п╟п╫п╦п╣</A>
-<B> п▓п╡п╣я─я┘:</B> <A NAME="tex2html952"
-  HREF="node59.html">п▓п╡п╣п╢п╣п╫п╦п╣ п╡ ViM</A>
-<B> п÷я─п╣п╢.:</B> <A NAME="tex2html946"
-  HREF="node61.html">п·я│п╫п╬п╡п╫я▀п╣ п╡п╬п╥п╪п╬п╤п╫п╬я│я┌п╦</A>
+<B> След.:</B> <A NAME="tex2html956"
+  HREF="node63.html">Использование</A>
+<B> Вверх:</B> <A NAME="tex2html952"
+  HREF="node59.html">Введение в ViM</A>
+<B> Пред.:</B> <A NAME="tex2html946"
+  HREF="node61.html">Основные возможности</A>
  &nbsp; <B>  <A NAME="tex2html954"
-  HREF="IntroToLinux.html">п║п╬п╢п╣я─п╤п╟п╫п╦п╣</A></B> 
+  HREF="IntroToLinux.html">Содержание</A></B> 
 <BR>
 <BR></DIV>
 <!--End of Navigation Panel-->
 
 <H3><A NAME="SECTION00054300000000000000">
-п п╬п╫я└п╦пЁя┐я─п╟я├п╦я▐</A>
+Конфигурация</A>
 </H3>
 
 <P>
-п·я│п╫п╬п╡п╫я▀п╪ п╨п╬п╫я└п╦пЁя┐я─п╟я├п╦п╬п╫п╫я▀п╪ я└п╟п╧п╩п╬п╪ я▐п╡п╩я▐п╣я┌я│я▐, п╣я│я┌п╣я│я┌п╡п╣п╫п╫п╬, <TT>~/.vimrc</TT>.
-п░п╨я┌п╦п╡п╟я├п╦я▐ я─я┐я│я│п╨п╬пЁп╬ я┬я─п╦я└я┌п╟ п╡ GUI-я─п╣п╤п╦п╪п╣, п©п╩я▌я│ п╡я▀п╠п╬я─ я┌п╣п╪я▀ п╢п╩я▐ п╬п╠п╬п╦я┘ я─п╣п╤п╦п╪п╬п╡ п╬я│я┐я┴п╣я│я┌п╡п╩я▐п╣я┌я│я▐, п╫п╟п©я─п╦п╪п╣я─, я│п╩п╣п╢я┐я▌я┴п╦п╪ п╨п╬п╢п╬п╪:
+Основным конфигурационным файлом является, естественно, <TT>~/.vimrc</TT>.
+Активация русского шрифта в GUI-режиме, плюс выбор темы для обоих режимов осуществляется, например, следующим кодом:
 <PRE>
 if has("gui_running")
     colorscheme candy
@@ -71,25 +71,25 @@ endif
 </PRE>
 
 <P>
-п▒я▀я│я┌я─я▀п╣ п╦, п╡п╣я─п╬я▐я┌п╫п╬, п©я─п╦п╡я▀я┤п╫я▀п╣ п╨п╩п╟п╡п╦я┬п╦:
+Быстрые и, вероятно, привычные клавиши:
 <PRE>
-"п▓я▀я┘п╬п╢ п©п╬ F10
+"Выход по F10
 nmap &lt;F10&gt; :qall&lt;CR&gt;
 imap &lt;F10&gt; &lt;ESC&gt;:qall&lt;CR&gt;
-"п║п╬я┘я─п╟п╫п╣п╫п╦п╣ п©п╬ F2
+"Сохранение по F2
 nmap &lt;F2&gt; :w&lt;CR&gt;
 imap &lt;F2&gt; &lt;ESC&gt;:w&lt;CR&gt;i&lt;Right&gt;
-"п п╬п╪п©п╦п╩я▐я├п╦я▐ п©п╬ F9
+"Компиляция по F9
 nmap &lt;F9&gt; :make&lt;CR&gt;
 imap &lt;F9&gt; &lt;ESC&gt;:make&lt;CR&gt;
 </PRE>
 
 <P>
-п п╬п╫п╣я┤п╫п╬ п╤п╣ п╡ <SPAN  CLASS="textit">ViM</SPAN>п©я─п╦я│я┐я┌я│я┌п╡я┐п╣я┌ п©п╬п╢я─п╬п╠п╫п╟я▐ п╢п╬п╨я┐п╪п╣п╫я┌п╟я├п╦я▐ п©п╬ п╫п╟я│я┌я─п╬п╧п╨п╟п╪&nbsp;-- <TT>:options</TT>.
-п╒п╟п╨п╤п╣ я─п╣п╨п╬п╪п╣п╫п╢я┐я▌ п╬п╥п╫п╟п╨п╬п╪п╦я┌я▄я│я▐ я│ я└п╟п╧п╩п╬п╪ <SPAN  CLASS="textbf">vimrc.forall</SPAN>, п╟п╡я┌п╬я─ п╨п╬я┌п╬я─п╬пЁп╬ п©п╬я│я┌п╟я─п╟п╩я│я▐ п©п╬я▐я│п╫п╦я┌я▄ п╨п╟п╤п╢я▀п╧, п╪п╬пЁя┐я┴п╦п╧ п╬п╨п╟п╥п╟я┌я▄я│я▐ п╡п╟п╪ п©п╬п╩п╣п╥п╫я▀п╪ п©п╟я─п╟п╪п╣я┌я─ п╫п╟я│я┌я─п╬п╧п╨п╦ <SPAN  CLASS="textit">ViM</SPAN>...
+Конечно же в <SPAN  CLASS="textit">ViM</SPAN>присутствует подробная документация по настройкам&nbsp;-- <TT>:options</TT>.
+Также рекомендую ознакомиться с файлом <SPAN  CLASS="textbf">vimrc.forall</SPAN>, автор которого постарался пояснить каждый, могущий оказаться вам полезным параметр настройки <SPAN  CLASS="textit">ViM</SPAN>...
 
 <P>
-п╒п╟п╨п╤п╣ п╡я▀ п╪п╬п╤п╣я┌п╣ п╬п╥п╫п╟п╨п╬п╪п╦я┌я▄я│я▐ я│ п╪п╬п╦п╪ я└п╟п╧п╩п╬п╪ <A HREF="http://www.uic.nnov.ru/~nik/articles/IntroToLinux/.vimrc"><SPAN  CLASS="textbf">.vimrc</SPAN></A>.
+Также вы можете ознакомиться с моим файлом <A HREF="http://www.uic.nnov.ru/~nik/articles/IntroToLinux/.vimrc"><SPAN  CLASS="textbf">.vimrc</SPAN></A>.
 
 <P>
 
@@ -108,17 +108,17 @@ imap &lt;F9&gt; &lt;ESC&gt;:make&lt;CR&gt;
   HREF="IntroToLinux.html">
 <IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A>  
 <BR>
-<B> п║п╩п╣п╢.:</B> <A NAME="tex2html956"
-  HREF="node63.html">п≤я│п©п╬п╩я▄п╥п╬п╡п╟п╫п╦п╣</A>
-<B> п▓п╡п╣я─я┘:</B> <A NAME="tex2html952"
-  HREF="node59.html">п▓п╡п╣п╢п╣п╫п╦п╣ п╡ ViM</A>
-<B> п÷я─п╣п╢.:</B> <A NAME="tex2html946"
-  HREF="node61.html">п·я│п╫п╬п╡п╫я▀п╣ п╡п╬п╥п╪п╬п╤п╫п╬я│я┌п╦</A>
+<B> След.:</B> <A NAME="tex2html956"
+  HREF="node63.html">Использование</A>
+<B> Вверх:</B> <A NAME="tex2html952"
+  HREF="node59.html">Введение в ViM</A>
+<B> Пред.:</B> <A NAME="tex2html946"
+  HREF="node61.html">Основные возможности</A>
  &nbsp; <B>  <A NAME="tex2html954"
-  HREF="IntroToLinux.html">п║п╬п╢п╣я─п╤п╟п╫п╦п╣</A></B> </DIV>
+  HREF="IntroToLinux.html">Содержание</A></B> </DIV>
 <!--End of Navigation Panel-->
 <ADDRESS>
-<TABLE border="0" cellpadding="0" cellspacing="0" width="100%"><TR bgcolor="#336699"><TD bgcolor="#8080c0"><P align="center"><FONT color="#FFFFFF" size="1"><A href="http://www.gnu.org/copyleft/fdl.html"><FONT color="#FFFFFF" size="1">Copyleft</FONT></A> б╘ 2002-2003 пЁ. &nbsp; Nikolay A. Panov, <A href="http://www.uic.nnov.ru/~nik/articles/IntroToLinux/"><FONT color="#FFFFFF">"Intro To Linux" (orig)</FONT></A>, &nbsp;<a href="mailto:&#110;&#105;&#107;&#115;&#105;&#116;&#101;&#64;&#109;&#97;&#105;&#108;&#46;&#114;&#117;"><FONT color="#FFFFFF">&#110;&#105;&#107;&#115;&#105;&#116;&#101;&#64;&#109;&#97;&#105;&#108;&#46;&#114;&#117;</FONT></A>, &nbsp;ICQ: 122-40-8888</FONT></P></TD></TR></TABLE>
+<TABLE border="0" cellpadding="0" cellspacing="0" width="100%"><TR bgcolor="#336699"><TD bgcolor="#8080c0"><P align="center"><FONT color="#FFFFFF" size="1"><A href="http://www.gnu.org/copyleft/fdl.html"><FONT color="#FFFFFF" size="1">Copyleft</FONT></A> © 2002-2003 г. &nbsp; Nikolay A. Panov, <A href="http://www.uic.nnov.ru/~nik/articles/IntroToLinux/"><FONT color="#FFFFFF">"Intro To Linux" (orig)</FONT></A>, &nbsp;<a href="mailto:&#110;&#105;&#107;&#115;&#105;&#116;&#101;&#64;&#109;&#97;&#105;&#108;&#46;&#114;&#117;"><FONT color="#FFFFFF">&#110;&#105;&#107;&#115;&#105;&#116;&#101;&#64;&#109;&#97;&#105;&#108;&#46;&#114;&#117;</FONT></A>, &nbsp;ICQ: 122-40-8888</FONT></P></TD></TR></TABLE>
 </ADDRESS>
 </BODY>
 </HTML>

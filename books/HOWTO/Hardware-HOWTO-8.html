@@ -2,7 +2,7 @@
 <HTML>
 <HEAD>
  <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
- <TITLE>Linux Hardware Compatibility HOWTO: п п╬п╫я┌я─п╬п╩п╩п╣я─я▀ (п■п╦я│п╨п╬п╡я▀п╣ п╪п╟я│я│п╦п╡я▀ RAID)</TITLE>
+ <TITLE>Linux Hardware Compatibility HOWTO: Контроллеры (Дисковые массивы RAID)</TITLE>
  <LINK HREF="Hardware-HOWTO-9.html" REL=next>
  <LINK HREF="Hardware-HOWTO-7.html" REL=previous>
  <LINK HREF="Hardware-HOWTO.html#toc8" REL=contents>
@@ -12,20 +12,20 @@
 <A HREF="Hardware-HOWTO-7.html">Previous</A>
 <A HREF="Hardware-HOWTO.html#toc8">Contents</A>
 <HR>
-<H2><A NAME="s8">8. п п╬п╫я┌я─п╬п╩п╩п╣я─я▀ (п■п╦я│п╨п╬п╡я▀п╣ п╪п╟я│я│п╦п╡я▀ RAID)</A></H2>
+<H2><A NAME="s8">8. Контроллеры (Дисковые массивы RAID)</A></H2>
 
 <P>
 <UL>
-<LI>Tekram D690CD IDE PCI Cache Controller (я│ RAID п©п╣я─п╡п╬пЁп╬ я┐я─п╬п╡п╫я▐,
-п╢я┐п╠п╩п╦п╨п╟я├п╦п╣п╧ п╦ п╨я█я┬п╦я─п╬п╡п╟п╫п╦п╣п╪)</LI>
+<LI>Tekram D690CD IDE PCI Cache Controller (с RAID первого уровня,
+дубликацией и кэшированием)</LI>
 <LI>ARCO Inc. DupliDisk IDE disk mirroring controller<BR>
-п÷п╬п╢п╢п╣я─п╤п╨п╟ п╢п╩я▐ ATA, IDE, E-IDE п╦ UDMA п╢п╦я│п╨п╬п╡.
-п÷п╬я│я┌п╟п╡п╩я▐п╣п╪я▀п╣ п╨п╬п╫я┌я─п╬п╩п╩п╣я─я▀ п╪п╬пЁя┐я┌ п╠я▀я┌я▄ п©п╬п╢п╨п╩я▌я┤п╣п╫я▀ п╨ ISA,PCI
-я│п╩п╬я┌п╟п╪ п╦п╩п╦ п╫п╣п©п╬я│я─п╣п╢я│я┌п╡п╣п╫п╫п╬ п╨ IDE п╨п╬п╫я┌я─п╬п╩п╩п╣я─я┐.
-п▒п╬п╩п╣п╣ я┌п╬пЁп╬ я│я┐я┴п╣я│я┌п╡я┐я▌я┌ 3.5 п╦ 5.25-п╢я▌п╧п╪п╬п╡я▀п╣ Bay Mount я┐я│я┌я─п╬п╧я│я┌п╡п╟ , п╨п╬я┌п╬я─я▀п╣ я┐я│я┌п╟п╫п╟п╡п╩п╦п╡п╟я▌я┌я│я▐ п╡ я│п╬п╬я┌п╡п╣я┌я│я┌п╡я┐я▌я┴п╦п╣ я│п╩п╬я┌я▀ п╢п╩я▐ я└п╩п╬п©п©п╦-п╢п╦я│п╨п╬п╡п╬п╢п╬п╡.п≤п╫я└п╬я─п╪п╟я├п╦я▌ п╪п╬п╤п╫п╬ п╫п╟п╧я┌п╦ п©п╬ п╟п╢я─п╣я│я┐ : 
-<A HREF="http://www.arcoide.com">http://www.arcoide.com</A>. пёп╠п╣п╢п╦я┌п╣я│я▄ я┤я┌п╬ п╡я▀ п╬п╠п╩п╟п╢п╟п╣я┌п╣ п╨п╟п╨ п╪п╦п╫п╦п╪я┐п╪ 3п╧ п╡п╣я─я│п╦п╣п╧ я└п╦я─п╪п╣п╫п╫п╬пЁп╬ п©я─п╬пЁя─п╟п╪п╪п╫п╬пЁп╬ п╬п╠п╣я│п©п╣я┤п╣п╫п╦я▐. </LI>
+Поддержка для ATA, IDE, E-IDE и UDMA дисков.
+Поставляемые контроллеры могут быть подключены к ISA,PCI
+слотам или непосредственно к IDE контроллеру.
+Более того существуют 3.5 и 5.25-дюймовые Bay Mount устройства , которые устанавливаются в соответствующие слоты для флоппи-дисководов.Информацию можно найти по адресу : 
+<A HREF="http://www.arcoide.com">http://www.arcoide.com</A>. Убедитесь что вы обладаете как минимум 3й версией фирменного программного обеспечения. </LI>
 <LI>Mylex RAID controllers<BR>
-п▒п╬п╩п╣п╣ п©п╬п╢я─п╬п╠п╫я┐я▌ п╦п╫я└п╬я─п╪п╟я├п╦я▌ я│п╪п╬я┌я─п╦я┌п╣ п©п╬ п╟п╢я─п╣я│я┐ 
+Более подробную информацию смотрите по адресу 
 <A HREF="http://www.dandelion.com/Linux/DAC960.html">http://www.dandelion.com/Linux/DAC960.html</A></LI>
 </UL>
 <HR>

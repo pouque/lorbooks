@@ -7,8 +7,8 @@ original version by:  Nikos Drakos, CBLU, University of Leeds
   Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
 <HTML>
 <HEAD>
-<TITLE>п║п╠п╬я─п╨п╟ п©п╟п╨п╣я┌п╬п╡ п╦п╥ п╦я│я┘п╬п╢п╫п╦п╨п╬п╡</TITLE>
-<META NAME="description" CONTENT="п║п╠п╬я─п╨п╟ п©п╟п╨п╣я┌п╬п╡ п╦п╥ п╦я│я┘п╬п╢п╫п╦п╨п╬п╡">
+<TITLE>Сборка пакетов из исходников</TITLE>
+<META NAME="description" CONTENT="Сборка пакетов из исходников">
 <META NAME="resource-type" CONTENT="document">
 <META NAME="distribution" CONTENT="global">
 
@@ -39,32 +39,32 @@ original version by:  Nikos Drakos, CBLU, University of Leeds
   HREF="IntroToLinux.html">
 <IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A>  
 <BR>
-<B> п║п╩п╣п╢.:</B> <A NAME="tex2html1128"
-  HREF="node77.html">п·п╠ я█я┌п╬п╪ п╢п╬п╨я┐п╪п╣п╫я┌п╣</A>
-<B> п▓п╡п╣я─я┘:</B> <A NAME="tex2html1124"
-  HREF="node66.html">п÷п╬п╩п╣п╥п╫я▀п╣ п©я─п╬пЁя─п╟п╪п╪я▀</A>
-<B> п÷я─п╣п╢.:</B> <A NAME="tex2html1120"
-  HREF="node75.html">п÷п╣я─п╣п╨п╬п╢п╦я─п╬п╡п╨п╟</A>
+<B> След.:</B> <A NAME="tex2html1128"
+  HREF="node77.html">Об этом документе</A>
+<B> Вверх:</B> <A NAME="tex2html1124"
+  HREF="node66.html">Полезные программы</A>
+<B> Пред.:</B> <A NAME="tex2html1120"
+  HREF="node75.html">Перекодировка</A>
  &nbsp; <B>  <A NAME="tex2html1126"
-  HREF="IntroToLinux.html">п║п╬п╢п╣я─п╤п╟п╫п╦п╣</A></B> 
+  HREF="IntroToLinux.html">Содержание</A></B> 
 <BR>
 <BR></DIV>
 <!--End of Navigation Panel-->
 
 <H2><A NAME="SECTION00068000000000000000">
-п║п╠п╬я─п╨п╟ п©п╟п╨п╣я┌п╬п╡ п╦п╥ п╦я│я┘п╬п╢п╫п╦п╨п╬п╡</A>
+Сборка пакетов из исходников</A>
 </H2>
 
 <P>
-п≤п╫п╬пЁп╢п╟ п╫я┐п╤п╫п╬пЁп╬ п©п╟п╨п╣я┌п╟ п╡ п╢п╦я│я┌я─п╦п╠я┐я┌п╦п╡п╣ п╫п╣ п╫п╟я┘п╬п╢п╦я┌я│я▐ (п╣пЁп╬ я┌п╟п╪ п╩п╦п╠п╬ п╫п╣я┌ п╦ п╫п╣ п╠я┐п╢п╣я┌, п╩п╦п╠п╬ п╣я┴п╣ п╫п╣я┌, п╩п╦п╠п╬ п╣я│я┌я▄ я│п╩п╦я┬п╨п╬п╪ я│я┌п╟я─п╟я▐ п╡п╣я─я│п╦я▐), п╟ п╡ я│п╣я┌п╦ я│я┐я┴п╣я│я┌п╡я┐п╣я┌ я┌п╬п╩я▄п╨п╬ п╣пЁп╬ tar.gz, п╟ я┌п╬ п╦ RPM п╡п╣я─я│п╦я▐.
-п÷я─п╬я│я┌п╬ я┌п╟п╨ п╦я┘ я│я┌п╟п╡п╦я┌я▄ п╫п╣ я─п╣п╨п╬п╪п╣п╫п╢я┐п╣я┌я│я▐ п╡п╬ п╦п╥п╠п╣п╤п╟п╫п╦п╣ п©я─п╬п╠п╩п╣п╪ п©я─п╦ п©п╬я│п╩п╣п╢я┐я▌я┴п╣п╪ я┐п╢п╟п╩п╣п╫п╦п╦.
+Иногда нужного пакета в дистрибутиве не находится (его там либо нет и не будет, либо еще нет, либо есть слишком старая версия), а в сети существует только его tar.gz, а то и RPM версия.
+Просто так их ставить не рекомендуется во избежание проблем при последующем удалении.
 
 <P>
-пёп╫п╦п╡п╣я─я│п╟п╩я▄п╫я▀п╧ п╡я▀я┘п╬п╢ п©я─п╣п╢п╩п╟пЁп╟п╣я┌ п©я─п╬пЁя─п╟п╪п╪п╟ alien, п╨п╬я┌п╬я─п╟я▐ п©я─п╣п╢п╫п╟п╥п╫п╟я┤п╣п╫п╟ п╢п╩я▐ п╨п╬п╫п╡п╣я─я┌п╟я├п╦п╦ п©п╟п╨п╣я┌п╟ п╦п╥ п╦я│я┘п╬п╢п╫п╬пЁп╬ п╣пЁп╬ я└п╬я─п╪п╟я┌п╟ п╡ п╦п╫п╬п╧ (п╫п╟п©я─п╦п╪п╣я─, DEB).
+Универсальный выход предлагает программа alien, которая предназначена для конвертации пакета из исходного его формата в иной (например, DEB).
 
 <P>
-п╒п╟п╨п╤п╣ п╢п╩я▐ п╥п╟п╡п╬я─п╟я┤п╦п╡п╟п╫п╦я▐ п©я─п╬п╢я┐п╨я├п╦п╦ <TT>make install</TT> (п╦п╩п╦ п╦п╫п╬п╧  <TT>make</TT>-п╨п╬п╪п╟п╫п╢я▀) п╡ DEB (п╦п╩п╦ п╦п╫п╬п╧) я└п╬я─п╪п╟я┌ я─п╣п╨п╬п╪п╣п╫п╢я┐я▌ п©я─п╬пЁя─п╟п╪п╪я┐ checkinstall.
-п║п╦п╫я┌п╟п╨я│п╦я│ п╣пЁп╬ п╦я│п©п╬п╩я▄п╥п╬п╡п╟п╫п╦я▐ я█п╩п╣п╪п╣п╫я┌п╟я─п╣п╫ - п╫п╟п©я─п╦п╪п╣я─, <TT>checkinstall make install</TT>, п©п╬я│п╩п╣ я┤п╣пЁп╬ п©я─п╬пЁя─п╟п╪п╪п╟ я│п©я─п╬я│п╦я┌ я┐ п╡п╟я│ п╢п╣я┌п╟п╩п╦ INFO-я│п╣п╨я├п╦п╦ п©п╟п╨п╣я┌п╟ (п╫п╣ п╥п╟п╠я┐п╢я▄я┌п╣, я┤я┌п╬ п╡п╣я─я│п╦я▐ п©п╟п╨п╣я┌п╟ я│п╬п╢п╣я─п╤п╦я┌ я┌п╬п╩я▄п╨п╬ я├п╦я└я─я▀ п╦ я┌п╬я┤п╨п╦)...
+Также для заворачивания продукции <TT>make install</TT> (или иной  <TT>make</TT>-команды) в DEB (или иной) формат рекомендую программу checkinstall.
+Синтаксис его использования элементарен - например, <TT>checkinstall make install</TT>, после чего программа спросит у вас детали INFO-секции пакета (не забудьте, что версия пакета содержит только цифры и точки)...
 
 <P>
 
@@ -83,17 +83,17 @@ original version by:  Nikos Drakos, CBLU, University of Leeds
   HREF="IntroToLinux.html">
 <IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A>  
 <BR>
-<B> п║п╩п╣п╢.:</B> <A NAME="tex2html1128"
-  HREF="node77.html">п·п╠ я█я┌п╬п╪ п╢п╬п╨я┐п╪п╣п╫я┌п╣</A>
-<B> п▓п╡п╣я─я┘:</B> <A NAME="tex2html1124"
-  HREF="node66.html">п÷п╬п╩п╣п╥п╫я▀п╣ п©я─п╬пЁя─п╟п╪п╪я▀</A>
-<B> п÷я─п╣п╢.:</B> <A NAME="tex2html1120"
-  HREF="node75.html">п÷п╣я─п╣п╨п╬п╢п╦я─п╬п╡п╨п╟</A>
+<B> След.:</B> <A NAME="tex2html1128"
+  HREF="node77.html">Об этом документе</A>
+<B> Вверх:</B> <A NAME="tex2html1124"
+  HREF="node66.html">Полезные программы</A>
+<B> Пред.:</B> <A NAME="tex2html1120"
+  HREF="node75.html">Перекодировка</A>
  &nbsp; <B>  <A NAME="tex2html1126"
-  HREF="IntroToLinux.html">п║п╬п╢п╣я─п╤п╟п╫п╦п╣</A></B> </DIV>
+  HREF="IntroToLinux.html">Содержание</A></B> </DIV>
 <!--End of Navigation Panel-->
 <ADDRESS>
-<TABLE border="0" cellpadding="0" cellspacing="0" width="100%"><TR bgcolor="#336699"><TD bgcolor="#8080c0"><P align="center"><FONT color="#FFFFFF" size="1"><A href="http://www.gnu.org/copyleft/fdl.html"><FONT color="#FFFFFF" size="1">Copyleft</FONT></A> б╘ 2002-2003 пЁ. &nbsp; Nikolay A. Panov, <A href="http://www.uic.nnov.ru/~nik/articles/IntroToLinux/"><FONT color="#FFFFFF">"Intro To Linux" (orig)</FONT></A>, &nbsp;<a href="mailto:&#110;&#105;&#107;&#115;&#105;&#116;&#101;&#64;&#109;&#97;&#105;&#108;&#46;&#114;&#117;"><FONT color="#FFFFFF">&#110;&#105;&#107;&#115;&#105;&#116;&#101;&#64;&#109;&#97;&#105;&#108;&#46;&#114;&#117;</FONT></A>, &nbsp;ICQ: 122-40-8888</FONT></P></TD></TR></TABLE>
+<TABLE border="0" cellpadding="0" cellspacing="0" width="100%"><TR bgcolor="#336699"><TD bgcolor="#8080c0"><P align="center"><FONT color="#FFFFFF" size="1"><A href="http://www.gnu.org/copyleft/fdl.html"><FONT color="#FFFFFF" size="1">Copyleft</FONT></A> © 2002-2003 г. &nbsp; Nikolay A. Panov, <A href="http://www.uic.nnov.ru/~nik/articles/IntroToLinux/"><FONT color="#FFFFFF">"Intro To Linux" (orig)</FONT></A>, &nbsp;<a href="mailto:&#110;&#105;&#107;&#115;&#105;&#116;&#101;&#64;&#109;&#97;&#105;&#108;&#46;&#114;&#117;"><FONT color="#FFFFFF">&#110;&#105;&#107;&#115;&#105;&#116;&#101;&#64;&#109;&#97;&#105;&#108;&#46;&#114;&#117;</FONT></A>, &nbsp;ICQ: 122-40-8888</FONT></P></TD></TR></TABLE>
 </ADDRESS>
 </BODY>
 </HTML>

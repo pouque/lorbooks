@@ -8,106 +8,106 @@
 
 <body bgcolor="#FFFFFF">
 
-<h2>п÷я─п╬п╠п╩п╣п╪я▀ п╩п╬п╨п╟п╩п╦п╥п╟я├п╦п╦ п╡ RedHat 5.2 (GNU libc 2.0.7).</h2>
+<h2>Проблемы локализации в RedHat 5.2 (GNU libc 2.0.7).</h2>
 
-<p>&nbsp;&nbsp;&nbsp; п п╬пЁп╢п╟ п╪п╫п╣ п©я─п╦п╫п╣я│п╩п╦ CD c п╫п╬п╡п╬п╧ п╡п╣я─я│п╦п╣п╧ <font
-color="#FF0080"><strong>RedHat Linux 5.2</strong></font> (Apollo), я▐, я│п╨п╟п╤п╣п╪
-я┌п╟п╨, я│п╩п╣пЁп╨п╟ п╡п╬п╩п╫п╬п╡п╟п╩я│я▐ ;-). п²п╟п╨п╬п╫п╣я├, я┌п╬, п╢я┐п╪п╟п╩ я▐,
-п©п╬я▐п╡п╦я┌я│я▐ п╡п╣я─я│п╦я▐ <strong>Linux</strong> п╡ п╨п╬я┌п╬я─п╬п╧ п©я─п╬п╠п╩п╣п╪я▀
-п╩п╬п╨п╟п╩п╦п╥п╟я├п╦п╦ п╣я│п╩п╦ п╫п╣ п╦я│я┤п╣п╥п╫я┐я┌, я┌п╬ я┘п╬я┌я▐ п╠я▀ я│п╬п╧п╢я┐я┌
-п╫п╟ я┐я─п╬п╡п╣п╫я▄ п╨п╬я│п╪п╣я┌п╦я┤п╣я│п╨п╦я┘ п╫п╣п╢п╬я┤п╣я┌п╬п╡.</p>
+<p>&nbsp;&nbsp;&nbsp; Когда мне принесли CD c новой версией <font
+color="#FF0080"><strong>RedHat Linux 5.2</strong></font> (Apollo), я, скажем
+так, слегка волновался ;-). Наконец, то, думал я,
+появится версия <strong>Linux</strong> в которой проблемы
+локализации если не исчезнут, то хотя бы сойдут
+на уровень косметических недочетов.</p>
 
-<p>&nbsp;&nbsp;&nbsp; п п╟п╨ п╠я▀ п╫п╣ я┌п╟п╨!</p>
+<p>&nbsp;&nbsp;&nbsp; Как бы не так!</p>
 
-<p>&nbsp;&nbsp;&nbsp; п≤я┌п╟п╨, &quot;п╦п╥ я┤п╣пЁп╬ п╤п╣&quot; я│п╢п╣п╩п╟п╫ <strong>RedHat
-5.2</strong> ? п▓п╬-п©п╣я─п╡я▀я┘, я█я┌п╬ <strong>libc6</strong> (glibc2)
-п╢п╦я│я┌я─п╦п╠я┐я┌п╦п╡. п²п╟ п╠п╦п╠п╩п╦п╬я┌п╣п╨я┐ glibc RPM я─п╟п©п╬я─я┌я┐п╣я┌
-п╨п╟п╨&nbsp; <strong>glibc-2.0.7-29</strong> . п²п╟ я│п╟п╪п╬п╪ п╢п╣п╩п╣,
-п╬я└п╦я├п╦п╟п╩я▄п╫п╬ я┌п╟п╨п╬п╧ п╠п╦п╠п╩п╦п╬я┌п╣п╨п╦ п╫п╣я┌, п©п╬я│п╩п╣п╢п╫я▐я▐ п╫п╟ <a
-href="ftp://ftp.gnu.org">ftp://ftp.gnu.org</a> - <strong>glibc-2.0.6</strong> . п╒п╬,
-я┤я┌п╬ п╡я┘п╬п╢п╦я┌ п╡ я│п╬я│я┌п╟п╡ <strong>RedHat 5.2</strong> - я█я┌п╬ snap <strong>glibc-2.0.7-981012</strong>
-я│ п╬пЁя─п╬п╪п╫я▀п╪ п╨п╬п╩п╦я┤п╣я│я┌п╡п╬п╪ п©п╟я┌я┤п╣п╧ п╬я┌ <strong>RedHat</strong>.
-п╒п╟п╨п╤п╣, п╡ п╢п╦я│я┌я─п╦п╠я┐я┌п╦п╡ п╡я┘п╬п╢п╦я┌ <strong>libc5</strong> (<strong>libc-5.3.12-28</strong>)
-п╢п╩я▐ я│п╬п╡п╪п╣я│я┌п╦п╪п╬я│я┌п╦ я│п╬ я│я┌п╟я─я▀п╪ binary я│п╬я└я┌п╬п╪. 
+<p>&nbsp;&nbsp;&nbsp; Итак, &quot;из чего же&quot; сделан <strong>RedHat
+5.2</strong> ? Во-первых, это <strong>libc6</strong> (glibc2)
+дистрибутив. На библиотеку glibc RPM рапортует
+как&nbsp; <strong>glibc-2.0.7-29</strong> . На самом деле,
+официально такой библиотеки нет, последняя на <a
+href="ftp://ftp.gnu.org">ftp://ftp.gnu.org</a> - <strong>glibc-2.0.6</strong> . То,
+что входит в состав <strong>RedHat 5.2</strong> - это snap <strong>glibc-2.0.7-981012</strong>
+с огромным количеством патчей от <strong>RedHat</strong>.
+Также, в дистрибутив входит <strong>libc5</strong> (<strong>libc-5.3.12-28</strong>)
+для совместимости со старым binary софтом. 
 
 <ol>
-  <li><a href="glibc-trbl.html#theory">п╒п╣п╬я─п╦я▐.</a></li>
-  <li><a href="glibc-trbl.html#test">п÷я─п╬п╡п╣я─п╨п╟.</a></li>
-  <li><a href="glibc-trbl.html#21f99">п║п╢п╣п╩п╟п╧ я│п╟п╪.</a></li>
-  <li><a href="glibc-trbl.html#repair">п п╟п╨ п╦я│п©я─п╟п╡п╦я┌я▄ ?</a></li>
-  <li><a href="glibc-trbl.html#3mar99">п░ п╡п╬я┌ п╣я┴п╣ !</a></li>
-  <li><a href="glibc-trbl.html#more">п╖я┌п╬ я┤п╦я┌п╟я┌я▄ ?</a></li>
+  <li><a href="glibc-trbl.html#theory">Теория.</a></li>
+  <li><a href="glibc-trbl.html#test">Проверка.</a></li>
+  <li><a href="glibc-trbl.html#21f99">Сделай сам.</a></li>
+  <li><a href="glibc-trbl.html#repair">Как исправить ?</a></li>
+  <li><a href="glibc-trbl.html#3mar99">А вот еще !</a></li>
+  <li><a href="glibc-trbl.html#more">Что читать ?</a></li>
 </ol>
 
-<p>&nbsp;&nbsp;&nbsp; п≤п╩п╦ я┤п╦я┌п╟п╧ я│я─п╟п╥я┐ <a
-href="http://www.linux.org.ru/books/unix/redhat/ru-rh52.html">п═я┐я│п╦я└п╦п╨п╟я├п╦я▐ Linux RedHat 5.2</a> .</p>
+<p>&nbsp;&nbsp;&nbsp; Или читай сразу <a
+href="http://www.linux.org.ru/books/unix/redhat/ru-rh52.html">Русификация Linux RedHat 5.2</a> .</p>
 
 <hr align="left">
 
-<p><a name="theory"></a>&nbsp;&nbsp; п·п╢п╫п╟ п╦п╥ <strong>RedHat</strong>-п╬п╡я│п╨п╦я┘
-п©я─п╟п╡п╬п╨ п╢п╬п╠п╟п╡п╩я▐п╣я┌ п©п╬п╢п╢п╣я─п╤п╨я┐ <strong>locale</strong> я─я┐я│п╨п╬пЁп╬
-я▐п╥я▀п╨п╟ п╡ KOI8-R. п²п╬ п╢п╟п╡п╟п╧я┌п╣ п╡я│п©п╬п╪п╫п╦п╪ <a href="../locale_o.html">я┌п╣п╬я─п╦я▌</a></p>
+<p><a name="theory"></a>&nbsp;&nbsp; Одна из <strong>RedHat</strong>-овских
+правок добавляет поддержку <strong>locale</strong> руского
+языка в KOI8-R. Но давайте вспомним <a href="../locale_o.html">теорию</a></p>
 
 <table border="1">
   <tr>
-    <td><p align="left">&nbsp; п÷п╬ п╫п╬п╡п╬п╪я┐ я│я┌п╟п╫п╢п╟я─я┌я┐ (<strong>POSIX.2</strong>
-    п©я─п╦п╩п╬п╤п╣п╫п╦п╣ E (?)) п╥п╫п╟я┤п╣п╫п╦я▐ п╩п╬п╨п╟п╩п╦п╥п╟я├п╦п╦
-    п╥п╟п©п╦я│я▀п╡п╟я▌я┌я│я▐ п╡ я└п╬я─п╪п╣:</p>
+    <td><p align="left">&nbsp; По новому стандарту (<strong>POSIX.2</strong>
+    приложение E (?)) значения локализации
+    записываются в форме:</p>
     <pre>	<strong>language_TERRITORY.Codeset</strong></pre>
-    <p align="left">п╦п╩п╦ я└п╬я─п╪п╟п╩я▄п╫п╬: </p>
+    <p align="left">или формально: </p>
     <div align="left"><pre>	<strong>language[_TERRITORY[.Codeset[@modyfier]]]</strong></pre>
-    </div><p>&nbsp;&nbsp; T.e. п╢п╬п©я┐я│я┌п╦п╪я▀ п╨п╬я─п╬я┌п╨п╦п╣ п╦п╪п╣п╫п╬п╡п╟п╫п╦я▐
-    п╥п╫п╟я┤п╣п╫п╦п╧ <strong>locale</strong>, п╨п╬я┌п╬я─я▀п╣ я┤п╟я│я┌п╬ п╬я└п╬я─п╪п╩я▐я▌я┌я│я▐
-    п╨п╟п╨ <strong>aliases</strong> (п©я│п╣п╡п╢п╬п╫п╦п╪я▀) п©п╬п╩п╫п╬пЁп╬
-    п╫п╟п╦п╪п╣п╫п╬п╡п╟п╫п╦я▐. Hп╟п©я─п╦п╪п╣я─ &quot;<strong>C</strong>&quot; --&gt; &quot;<strong>POSIX</strong>&quot;
+    </div><p>&nbsp;&nbsp; T.e. допустимы короткие именования
+    значений <strong>locale</strong>, которые часто оформляются
+    как <strong>aliases</strong> (псевдонимы) полного
+    наименования. Hапример &quot;<strong>C</strong>&quot; --&gt; &quot;<strong>POSIX</strong>&quot;
     --&gt; &quot;<strong>en_US</strong>&quot;. </p>
-    <p>&nbsp;&nbsp;&nbsp; п║я┌п╟п╫п╢п╟я─я┌ <a
+    <p>&nbsp;&nbsp;&nbsp; Стандарт <a
     href="http://www.unicode.org/unicode/onlinedat/languages.htm">ISO 639</a>
-    п╬п©п╦я│я▀п╡п╟п╣я┌ &quot;<strong>language names</strong>&quot;, <a
+    описывает &quot;<strong>language names</strong>&quot;, <a
     href="http://www.unicode.org/unicode/onlinedat/countries.html">ISO 3166</a> - &quot;<strong>territory
     names</strong>&quot;.</td>
   </tr>
 </table>
 
-<p>&nbsp;&nbsp;&nbsp; п÷п╬ я│я┌п╟п╫п╢п╟я─я┌я┐, <strong>language</strong> п╢п╩я▐ п═п╬я│п╦п╦
-п╠я┐п╢п╣я┌ <strong>&quot;ru&quot;</strong>, п╟ <strong>TERRITORY</strong> - <strong>&quot;RU&quot;</strong>.
-(<font color="#FF0080">п≈п╫п╟я┤п╣п╫п╦п╣ <strong>TERRITORY &quot;SU&quot;</strong> <strong>п╠п╬п╩я▄я┬п╣
-п╫п╣ я│я┐я┴п╣я│я┌п╡я┐п╣я┌ !</strong></font><font color="#000000"> )</font></p>
+<p>&nbsp;&nbsp;&nbsp; По стандарту, <strong>language</strong> для Росии
+будет <strong>&quot;ru&quot;</strong>, а <strong>TERRITORY</strong> - <strong>&quot;RU&quot;</strong>.
+(<font color="#FF0080">Значение <strong>TERRITORY &quot;SU&quot;</strong> <strong>больше
+не существует !</strong></font><font color="#000000"> )</font></p>
 
-<p>&nbsp;&nbsp;&nbsp; п║ <a href="../locale_c.html">п╨п╬п╢п╦я─п╬п╡п╨п╟п╪п╦</a> п╡я│п╣
-п╠п╬п╩п╣п╣ п╪п╣п╫п╣п╣ п©п╬п╫я▐я┌п╫п╬. п≈п╟ п©п╣я─п╦п╬п╢ &quot;я┌п╣п╪п╫я▀я┘
-п╡я─п╣п╪п╣п╫&quot; п╦я┘ я─п╟я│п©п╩п╬п╢п╦п╩п╬я│я▄ <a
-href="http://czyborra.com/charsets/cyrillic.html">п©я─п╣п╢п╬я│я┌п╟я┌п╬я┤п╫п╬</a> :<br>
+<p>&nbsp;&nbsp;&nbsp; С <a href="../locale_c.html">кодировками</a> все
+более менее понятно. За период &quot;темных
+времен&quot; их расплодилось <a
+href="http://czyborra.com/charsets/cyrillic.html">предостаточно</a> :<br>
 <strong>IBM866<br>
 KOI8-R<br>
 ISO8859-5<br>
 Windows-1251<br>
-X-mac-cyrillic</strong> п╦ п╣я┴п╣ п╫п╣я│п╨п╬п╩я▄п╨п╬ я│п╬п╡я│п╣п╪ я─п╣п╢п╨п╦я┘.</p>
+X-mac-cyrillic</strong> и еще несколько совсем редких.</p>
 
-<p>&nbsp;&nbsp;&nbsp; п·п╢п╫п╟п╨п╬, я█я┌п╬ п╫п╣ я│я┌я─п╟я┬п╫п╬. п▓ п╫п╟я│я┌п╬я▐я┴п╣п╣
-п╡я─п╣п╪я▐ п╦я┘ я─п╟п╥п╪п╫п╬п╤п╣п╫п╦п╣ п╬я│я┌п╟п╫п╬п╡п╦п╩п╬я│я▄ (п╦п╩п╦ п╫п╟п╧п╢п╣я┌я│я▐
-я┤я┐п╢п╟п╨ ?), п╡я│п╣ п╬п╫п╦ п╥п╟я─п╣пЁп╦я│я┌я─п╬п╡п╟п╫я▀ п╡ <strong>IANA</strong>
-(п╨я─п╬п╪п╣ mac-cyrillic), п╡я│п╣ п╬п╫п╦ п╪п╬пЁя┐я┌ п╡я▀я│я┌я┐п©п╟я┌я▄ п╨п╟п╨ <strong>Charset</strong>
-п╡ <strong>MIME</strong>, п╦ я┌п╟п╠п╩п╦я├я▀ п©п╣я─п╣п╨п╬п╢п╦я─п╬п╡п╬п╨ п╬п╢п╫п╬п╧ п╡
-п╢я─я┐пЁя┐я▌ п╢п╟п╡п╫п╬ п╦п╥п╡п╣я│я┌п╫я▀. п÷я┐я│я┌я▄ п╤п╦п╡я┐я┌. (п║п╪. <a
-href="charsets.html">Charset п╦ п╣пЁп╬ п╦п╪я▐</a>).</p>
+<p>&nbsp;&nbsp;&nbsp; Однако, это не страшно. В настоящее
+время их размножение остановилось (или найдется
+чудак ?), все они зарегистрованы в <strong>IANA</strong>
+(кроме mac-cyrillic), все они могут выступать как <strong>Charset</strong>
+в <strong>MIME</strong>, и таблицы перекодировок одной в
+другую давно известны. Пусть живут. (См. <a
+href="charsets.html">Charset и его имя</a>).</p>
 
 <hr align="left">
 
-<p><a name="test"></a>&nbsp;&nbsp;&nbsp; <strong>п≤я┌п╟п╨, RedHat 5.2</strong>.
-п▓п╨п╩я▌я┤п╟я▌ п╩п╬п╨п╟п╩п╦п╥п╟я├п╦я▌ :</p>
+<p><a name="test"></a>&nbsp;&nbsp;&nbsp; <strong>Итак, RedHat 5.2</strong>.
+Включаю локализацию :</p>
 
 <pre><strong>$ export LANG=ru_RU</strong></pre>
 
-<p>&nbsp;&nbsp;&nbsp; п÷я─п╬п╡п╣я─я▐я▌ я┐я┌п╦п╩п╦я┌п╬п╧ <a
+<p>&nbsp;&nbsp;&nbsp; Проверяю утилитой <a
 href="http://www.linux.org.ru/books/man/man1/locale.html"><em>locale</em></a> :</p>
 
 <pre><strong>$ locale mon
-п╬я┴я─п©п╝п·;п╢я┐я─п╝п©я┬п·;?п©п╝п▒;б╟я┼п╝я┐я┬п·;?п©я▀;я▒п²я┴п·;я▒п²я┬п·;б╟я─я│п╕п░п▒п©;п╟я┐я┴п▒п·я▐п╝п·;?п╥п▒п·я▐п╝п·;?я┤п·я▐п╝п·;?я┐п╥п©я▐п╝п·
+ощрпЮО;дурЮпшО;?пЮБ;°ъЮушО;?пы;ёНщО;ёНшО;°рсЦАБп;аущБОяЮО;?зБОяЮО;?чОяЮО;?узпяЮО
 $ </strong></pre>
 
-<p>&nbsp;&nbsp;&nbsp; OOSP ! п≈п╟я┤п╣п╪ п╪п╫п╣ <strong>ISO8859-5</strong> ??? &nbsp;
-п÷я─п╬п╡п╣я─п╦п╪, я┤я┌п╬ я┐ п╫п╟я│ п╣я│я┌я▄ п╫п╟ п╡я▀п╠п╬я─ :</p>
+<p>&nbsp;&nbsp;&nbsp; OOSP ! Зачем мне <strong>ISO8859-5</strong> ??? &nbsp;
+Проверим, что у нас есть на выбор :</p>
 
 <pre><strong>$ locale -a
 ...
@@ -117,28 +117,28 @@ ru_SU
 russian
 ...</strong></pre>
 
-<p>&nbsp;&nbsp;&nbsp; п▓п╨п╩я▌я┤п╟я▌ :</p>
+<p>&nbsp;&nbsp;&nbsp; Включаю :</p>
 
 <pre><strong>$ export LANG=ru_SU
 $ locale mon
-п╞п╫п╡п╟я─я▐;п╓п╣п╡я─п╟п╩я▐;п°п╟я─я┌;п░п©я─п╣п╩я▐;п°п╟п╧;п≤я▌п╫я▐;п≤я▌п╩я▐;п░п╡пЁя┐я│я┌п╟;п║п╣п╫я┌я▐п╠я─я▐;п·п╨я┌я▐п╠я─я▐;п²п╬я▐п╠я─я▐;п■п╣п╨п╟п╠я─я▐
+Января;Февраля;Март;Апреля;Май;Июня;Июля;Августа;Сентября;Октября;Ноября;Декабря
 $</strong></pre>
 
-<p>&nbsp;&nbsp;&nbsp; п÷я─п╣п╨я─п╟я│п╫п╬. п≈п╟ п╦я│п╨п╩я▌я┤п╣п╫п╦п╣п╪ <font
-color="#FF0080">п╫п╣я│я┐я┴п╣я│я┌п╡я┐я▌я┴п╣п╧</font> я│я┌я─п╟п╫я▀ <font color="#FF0080"><strong>SU</strong></font>.
-п²п╬ я─п╟п╥ п╡ я│я┌п╟п╫п╢п╟я─я┌п╣ п╫п╟п©п╦я│п╟п╫п╬, я┤я┌п╬ п╪п╬п╤п╫п╬ п╥п╟п╢п╟п╡п╟я┌я▄ [<strong>.CODESET</strong>]
-, п©п╬п©я─п╬п╠я┐я▌ п╥п╟п╢п╟я┌я▄ п╣пЁп╬ <strong><font color="#FF0080">я▐п╡п╫п╬</font></strong>.</p>
+<p>&nbsp;&nbsp;&nbsp; Прекрасно. За исключением <font
+color="#FF0080">несуществующей</font> страны <font color="#FF0080"><strong>SU</strong></font>.
+Но раз в стандарте написано, что можно задавать [<strong>.CODESET</strong>]
+, попробую задать его <strong><font color="#FF0080">явно</font></strong>.</p>
 
 <pre><strong>$ export LANG=ru_RU.KOI8-R</strong></pre>
 
-<p>&nbsp;&nbsp;&nbsp; п÷я─п╬п╡п╣я─я▐п╣п╪ :</p>
+<p>&nbsp;&nbsp;&nbsp; Проверяем :</p>
 
 <pre><strong>$ locale mon
-п╬я┴я─п©п╝п·;п╢я┐я─п╝п©я┬п·;?п©п╝п▒;б╟я┼п╝я┐я┬п·;?п©я▀;я▒п²я┴п·;я▒п²я┬п·;б╟я─я│п╕п░п▒п©;п╟я┐я┴п▒п·я▐п╝п·;?п╥п▒п·я▐п╝п·;?я┤п·я▐п╝п·;?я┐п╥п©я▐п╝п·
+ощрпЮО;дурЮпшО;?пЮБ;°ъЮушО;?пы;ёНщО;ёНшО;°рсЦАБп;аущБОяЮО;?зБОяЮО;?чОяЮО;?узпяЮО
 $</strong></pre>
 
-<p>&nbsp;&nbsp;&nbsp; п²п╬ п╪п╬п╤п╣я┌ п╠я▀я┌я▄ п╢п╟п╫п╫п╬пЁп╬ CODESET п╫п╣я┌я┐ ? п²п╣я┌,
-п╣я│я┌я▄ :</p>
+<p>&nbsp;&nbsp;&nbsp; Но может быть данного CODESET нету ? Нет,
+есть :</p>
 
 <pre><strong>$ locale -m
 ...
@@ -147,23 +147,23 @@ ISO-8859-5
 KOI8-R
 ...</strong></pre>
 
-<p>&nbsp;&nbsp;&nbsp; п÷я─п╬п╠п╩п╣п╪п╟ п╬п╨п╟п╥п╟п╩п╟я│я▄ п╢п╟п╤п╣ я┘я┐п╤п╣, я┤п╣п╪ я▐
-п©я─п╣п╢п©п╬п╩п╟пЁп╟п╩.<font color="#FF0080"> <strong>RedHat 5.2</strong> glibc2 </font><font
-color="#000000">(п╡ п╠п╟п╥п╬п╡п╬п╧ п©п╬я│я┌п╟п╡п╨п╣)</font><font color="#FF0080"><strong>
-п©я─п╦п╫я├п╦п©п╦п╟п╩я▄п╫п╬</strong> п╫п╣ п╡п╬я│п©я─п╦п╫п╦п╪п╟п╣я┌ п©п╟я─п╟п╪п╣я┌я─ CODESET
-locale</font>. п∙я│я┌п╣я│я┌п╡п╣п╫п╫п╬, я█я┌п╬ п╬п╨п╟п╥я▀п╡п╟п╣я┌ я─п╟п╥я─я┐я┬п╟я▌я┴п╣п╣
-п╡п╬п╥п╢п╣п╧я│я┌п╡п╦п╣ я┌п╟п╨п╤п╣ п╫п╟ я│п╦я│я┌п╣п╪я┐&nbsp; <a href="../locale_n.html">NLS</a>
-(п╨п╬п╢п╦я─п╬п╡п╨п╟ я│п╬п╬п╠я┴п╣п╫п╦п╧). п░ п©я─п╟п╪п╣я┌я─ CODESET п©я─п╬я│я┌п╬ <font
-color="#FF0080">п╦пЁп╫п╬я─п╦я─я┐п╣я┌я│я▐</font>.</p>
+<p>&nbsp;&nbsp;&nbsp; Проблема оказалась даже хуже, чем я
+предполагал.<font color="#FF0080"> <strong>RedHat 5.2</strong> glibc2 </font><font
+color="#000000">(в базовой поставке)</font><font color="#FF0080"><strong>
+принципиально</strong> не воспринимает параметр CODESET
+locale</font>. Естественно, это оказывает разрушающее
+воздействие также на систему&nbsp; <a href="../locale_n.html">NLS</a>
+(кодировка сообщений). А праметр CODESET просто <font
+color="#FF0080">игнорируется</font>.</p>
 
-<p>&nbsp;&nbsp;&nbsp; п≤п╪п╣п╫п╫п╬ п╢п╩я▐ п╬п╠я┘п╬п╢п╟ я█я┌п╬п╧
-&quot;п╫п╣я└я┐п╫п╨я├п╦п╬п╫п╟п╩я▄п╫п╬я│я┌п╦&quot; п╦ п╠я▀п╩п╟ п╡п╡п╣п╢п╣п╫п╟
-п╫п╣я│я┐я┴п╣я│я┌п╡я┐я▌я┴п╟я▐ я│я┌я─п╟п╫п╟ <strong>_SU</strong> п╦ п╫п╬п╡п╬п╣
-п╥п╫п╟я┤п╣п╫п╦п╣ п╩п╬п╨п╟п╩п╦п╥п╟я├п╦п╦ <strong>ru_SU</strong>. п║п╫п╟я┤п╟п╩п╟ п╡ п╡п╦п╢п╣
-&quot;п╥п╟п©п╩п╟я┌п╨п╦&quot; п╬я┌ RedHat, п╟ п©п╬я┌п╬п╪ п╦ п╡ alpha п╡п╣я─я│п╦п╦ <a
+<p>&nbsp;&nbsp;&nbsp; Именно для обхода этой
+&quot;нефункциональности&quot; и была введена
+несуществующая страна <strong>_SU</strong> и новое
+значение локализации <strong>ru_SU</strong>. Сначала в виде
+&quot;заплатки&quot; от RedHat, а потом и в alpha версии <a
 href="ftp:/ftp.kernel.org/pub/software/libs/glibc/glibc-2.0.112.tar.gz">glibc 2.1</a></p>
 
-<p>&nbsp;&nbsp;&nbsp; п≤я┌п╟п╨, п╬я┌п╫я▀п╫п╣ (п╨п╟п╨ я─п╣я┬п╦п╩ п╥п╟ п╫п╟я│ RedHat):</p>
+<p>&nbsp;&nbsp;&nbsp; Итак, отныне (как решил за нас RedHat):</p>
 <div align="center"><center>
 
 <table border="1">
@@ -178,24 +178,24 @@ href="ftp:/ftp.kernel.org/pub/software/libs/glibc/glibc-2.0.112.tar.gz">glibc 2.
 </table>
 </center></div>
 
-<p>&nbsp;&nbsp;&nbsp; п²п╣я│я┌п╟п╫п╢п╟я─я┌п╫я▀я┘ я─п╣я┬п╣п╫п╦п╧ п©я─п╦п╠я▀п╩п╬ ! п²п╟
-я█я┌п╬я┌ я─п╟п╥ п╬я┌ <a href="http://www.gnu.org/software/libc/libc.html">GNU</a> п╦ <a
+<p>&nbsp;&nbsp;&nbsp; Нестандартных решений прибыло ! На
+этот раз от <a href="http://www.gnu.org/software/libc/libc.html">GNU</a> и <a
 href="http://www.redhat.com">RedHat</a> !</p>
 
 <hr align="left">
 
-<h2><a name="21f99"></a>п■п╬п©п╬п╩п╫п╣п╫п╦п╣ п╫п╟ 21 Feb 1999</h2>
+<h2><a name="21f99"></a>Дополнение на 21 Feb 1999</h2>
 
-<p>&nbsp;&nbsp;&nbsp; п²п╬ п©я─п╣п╢п©п╬п╩п╬п╤п╦п╪, я┤я┌п╬ п╪я▀ п╫п╣п©п╩п╬я┘п╬
-я─п╟п╥п╠п╦я─п╟п╣п╪я│я▐ п╡ <strong>POSIX locale</strong> п╦ я┘п╬я┌п╦п╪ я│п╟п╪п╦
-я┐я│я┌п╟п╫п╬п╡п╦я┌я▄ п╫п╬п╡п╬п╣ п╥п╫п╟я┤п╣п╫п╦п╣ п╩п╬п╨п╟п╩п╦п╥п╟я├п╦п╦ :</p>
+<p>&nbsp;&nbsp;&nbsp; Но предположим, что мы неплохо
+разбираемся в <strong>POSIX locale</strong> и хотим сами
+установить новое значение локализации :</p>
 
 <pre><strong>$ localedef -c -i ru_RU -f KOI8-R ru_RU.KOI8-R
 Computing table size for character classes might take a while... done
 Computing table size for collation information might take a while... done
 $ </strong></pre>
 
-<p>&nbsp;&nbsp;&nbsp; п÷я─п╬п╡п╣я─я▐п╣п╪ :</p>
+<p>&nbsp;&nbsp;&nbsp; Проверяем :</p>
 
 <pre><strong>$ locale -a
 ...
@@ -206,12 +206,12 @@ ru_SU
 russian
 ...</strong></pre>
 
-<p>&nbsp;&nbsp;&nbsp; п·п©я▐я┌я▄ п╫п╣ п╩п╣пЁя┤п╣, п©п╬я│п╨п╬п╩я▄п╨я┐ п╫п╟я┬ пЁп╬я─я▐я┤п╬
-п╩я▌п╠п╦п╪я▀п╧ <strong>KOI8-R</strong> (п╬п©п╦я│п╟п╫п╫я▀п╧ п╡ я│я┌п╟п╫п╢п╟я─я┌п╣ <a
+<p>&nbsp;&nbsp;&nbsp; Опять не легче, поскольку наш горячо
+любимый <strong>KOI8-R</strong> (описанный в стандарте <a
 href="http://www.cis.ohio-state.edu/htbin/rfc/rfc1489.html">RFC-1489</a>)
-п©я─п╣п╡я─п╟я┌п╦п╩я│я▐ п╡ п╤п╟п╩п╨п╦п╧ <strong>koi8r</strong> ! п░ п©п╬я┤п╣п╪я┐ ? п■п╟
-п©п╬я┌п╬п╪я┐ я┤я┌п╬ <a href="mailto:drepper@cygnus.com">Ulrich Drepper</a> п╢п╬п╠п╟п╡п╦п╩
-п╡ <strong><em>localedef</em></strong> я┌п╟п╨п╬п╣ :</p>
+превратился в жалкий <strong>koi8r</strong> ! А почему ? Да
+потому что <a href="mailto:drepper@cygnus.com">Ulrich Drepper</a> добавил
+в <strong><em>localedef</em></strong> такое :</p>
 
 <table border="1">
   <tr>
@@ -227,20 +227,20 @@ normalize_codeset (codeset, name_len)
   </tr>
 </table>
 
-<p>&nbsp;&nbsp;&nbsp; п²п╣п©п╬п╫я▐я┌п╫п╬, п©п╬я┤п╣п╪я┐ Ulrich я│я┤п╦я┌п╟п╣я┌, я┤я┌п╬
-п╫п╣я┌ я│я┌п╟п╫п╢п╟я─я┌п╟ п╫п╟ CODESET. п■п╬я│я┌п╟я┌п╬я┤п╫п╬ п╥п╟п╧я┌п╦ п╫п╟ <a
+<p>&nbsp;&nbsp;&nbsp; Непонятно, почему Ulrich считает, что
+нет стандарта на CODESET. Достаточно зайти на <a
 href="http://www.isi.edu/in-notes/iana/assignments/character-sets">http://www.isi.edu/in-notes/iana/assignments/character-sets</a>
-п╦ п©п╬п╩я┐я┤я┌я▄ я│п©п╦я│п╬п╨ п╡я│п╣я┘ CHARSET, <strong>п╥п╟я─п╣пЁп╦я│я┌я─п╦я─п╬п╡п╟п╫п╫я▀я┘</strong>
-п╡ <a href="http://www.iana.org">IANA</a>, п╢п╟п╤п╣ я│ <strong>Alias</strong>:... (п║п╪. <a
-href="charsets.html">Charset п╦ п╣пЁп╬ п╦п╪я▐</a>)</p>
+и получть список всех CHARSET, <strong>зарегистрированных</strong>
+в <a href="http://www.iana.org">IANA</a>, даже с <strong>Alias</strong>:... (См. <a
+href="charsets.html">Charset и его имя</a>)</p>
 
 <hr>
 
-<h3><a name="repair"></a>&nbsp;&nbsp;&nbsp; п╖я┌п╬ я│ я█я┌п╦п╪ п╢п╣п╩п╟я┌я▄ ?</h3>
+<h3><a name="repair"></a>&nbsp;&nbsp;&nbsp; Что с этим делать ?</h3>
 
-<p>&nbsp;&nbsp;&nbsp; п║п╟п╪п╬п╣ п©я─п╬я│я┌п╬п╣ я─п╣я┬п╣п╫п╦п╣ :
-я│п╨п╬п╪п©п╦п╩п╦я─п╬п╡п╟я┌я▄ <strong>locale</strong> п╦ п©п╣я─п╣п╦п╪п╣п╫п╬п╡п╟я┌я▄
-п╨п╟я┌п╟п╩п╬пЁ :</p>
+<p>&nbsp;&nbsp;&nbsp; Самое простое решение :
+скомпилировать <strong>locale</strong> и переименовать
+каталог :</p>
 
 <pre><strong>$ localedef -c -i ru_RU -f KOI8-R ru_RU.KOI8-R
 Computing table size for character classes might take a while... done
@@ -249,24 +249,24 @@ $
 $ cd /usr/share/locale
 $ mv ru_RU.koi8r ru_RU.KOI8-R</strong></pre>
 
-<p>&nbsp;&nbsp;&nbsp; п©п╬я│п╨п╬п╩я▄п╨я┐ я│п╬п╥п╢п╟п╣я┌-я┌п╬ <em><strong>localedef</strong></em>
-п╡я│п╣ п©я─п╟п╡п╦п╩я▄п╫п╬. п÷п╬я│п╩п╣ я█я┌п╬пЁп╬ п©я─п╬я│я┌п╟п╡п╦я┌я▄ <strong>LANG=ru_RU.KOI8-R</strong>
-п╦ я─п╟п╢п╬п╡п╟я┌я▄я│я▐ п╤п╦п╥п╫п╦ (п║п╪. <a href="../locale_o.html">п п╟п╨
-п╡п╨п╩я▌я┤п╦я┌я▄ п╩п╬п╨п╟п╩п╦п╥п╟я├п╦я▌</a> п╦ <a href="http://www.linux.org.ru/books/unix/redhat/ru-rh52.html">п═я┐я│п╦я└п╦п╨п╟я├п╦я▐
+<p>&nbsp;&nbsp;&nbsp; поскольку создает-то <em><strong>localedef</strong></em>
+все правильно. После этого проставить <strong>LANG=ru_RU.KOI8-R</strong>
+и радоваться жизни (См. <a href="../locale_o.html">Как
+включить локализацию</a> и <a href="http://www.linux.org.ru/books/unix/redhat/ru-rh52.html">Русификация
 RedHat 5.2</a>).</p>
 
-<p>&nbsp;&nbsp;&nbsp; п°п╬п╤п╫п╬ я┌п╟п╨п╤п╣ п©п╬п©я─п╟п╡п╦я┌я▄ <strong>/usr/share/locale/locale.alias</strong>,
-п╫п╬ я█я┌п╬я┌ п╪п╣я┌п╬п╢ п╫п╣я│п╨п╬п╩я▄п╨п╬ я┘я┐п╤п╣.</p>
+<p>&nbsp;&nbsp;&nbsp; Можно также поправить <strong>/usr/share/locale/locale.alias</strong>,
+но этот метод несколько хуже.</p>
 
 <hr>
 
-<p>&nbsp;&nbsp;&nbsp; п²п╟ п╪п╬п╧ п╡п╬п©я─п╬я│ Ulrich-я┐, я┤я┌п╬ п╪п╬п╩ я┌п╟п╨ п©п╩п╬я┘п╬,
-я▐ п©п╬п╩я┐я┤п╦п╩ п╬я┌п╡п╣я┌ : &quot;<strong>glibc 2.2 will have support for all the
-automatic character set conversions.</strong>&quot; п╜я┌п╬ п©я─п╦ я┌п╬п╪, я┤я┌п╬
-я│п╣п╧я┤п╟я│ glibc 2.1 alpha. п²п╣ п╩я▌п╠я▐я┌ п╫п╟я│ п╠я┐я─п╤я┐п╦...</p>
+<p>&nbsp;&nbsp;&nbsp; На мой вопрос Ulrich-у, что мол так плохо,
+я получил ответ : &quot;<strong>glibc 2.2 will have support for all the
+automatic character set conversions.</strong>&quot; Это при том, что
+сейчас glibc 2.1 alpha. Не любят нас буржуи...</p>
 
-<p>&nbsp;&nbsp;&nbsp; п·п╢п╫п╟п╨п╬, п╫п╣ п╡п╣п╥п╢п╣ п╡я│п╣ я┌п╟п╨ п©п╩п╬я┘п╬. п▓п╬я┌
-п╢я─я┐пЁп╬п╧ п©я─п╦п╪п╣я─ (я│п╡п╣п╤п╣п©п╬я│я┌п╟п╡п╩п╣п╫п╫п╟я▐ я│п╦я│я┌п╣п╪п╟) :</p>
+<p>&nbsp;&nbsp;&nbsp; Однако, не везде все так плохо. Вот
+другой пример (свежепоставленная система) :</p>
 
 <pre><strong>$ ls -l /usr/share/locale
 ...
@@ -283,19 +283,19 @@ drwxr-xr-x   2 bin   bin   512 Aug 30 21:14 ru_RU.KOI8-R
 ...
 $</strong></pre>
 
-<p>&nbsp;&nbsp;&nbsp; п п╟п╨ п╡п╦п╢п╦я┌п╣, п╣я│я┌я▄ п©п╬п╢п╢п╣я─п╤п╨п╟ <strong>ru --&gt;
-ru_RU --&gt; ru_RU.ISO_8859-5</strong> п╦ п©я─п╣я│п╩п╬п╡я┐я┌п╬пЁп╬ <strong>ru_SU --&gt;
-ru_RU.KOI8-R</strong> (п╡я│п╣ я│п╢п╣п╩п╟п╫п╬ п╫п╟ <strong>symlinks</strong>). п²п╬ п╨
-я│п╬п╤п╟п╩п╣п╫п╦я▌, я█я┌п╟ я│п╦я│я┌п╣п╪п╟ -- п╫п╣ Linux...</p>
+<p>&nbsp;&nbsp;&nbsp; Как видите, есть поддержка <strong>ru --&gt;
+ru_RU --&gt; ru_RU.ISO_8859-5</strong> и пресловутого <strong>ru_SU --&gt;
+ru_RU.KOI8-R</strong> (все сделано на <strong>symlinks</strong>). Но к
+сожалению, эта система -- не Linux...</p>
 
 <hr>
 
-<h2><a name="3mar99"></a>п■п╬п©п╬п╩п╫п╣п╫п╦п╣ п╫п╟ 3 п╪п╟я─я┌п╟ 1999.</h2>
+<h2><a name="3mar99"></a>Дополнение на 3 марта 1999.</h2>
 
-<p>&nbsp;&nbsp;&nbsp; п²п╬п╡я▀п╣ пЁп╩я▌п╨п╦. п²п╟ я█я┌п╬я┌ я─п╟п╥ п╡ п╬п╠я▀я┤п╫п╬п╪ <strong><em>ls</em></strong>.
-п²п╣ я│п╬я─я┌п╦я─я┐п╣я┌ п╦п╪п╣п╫п╟ я└п╟п╧п╩п╬п╡.</p>
+<p>&nbsp;&nbsp;&nbsp; Новые глюки. На этот раз в обычном <strong><em>ls</em></strong>.
+Не сортирует имена файлов.</p>
 
-<p>&nbsp;&nbsp;&nbsp; п╖п╦я┌п╟п╣п╪ <strong>man ls</strong> :</p>
+<p>&nbsp;&nbsp;&nbsp; Читаем <strong>man ls</strong> :</p>
 
 <pre>...
   This manual page documents the GNU version of <strong>ls</strong>. <strong>dir</strong> and
@@ -310,7 +310,7 @@ color="#FF0080">Directory contents are sorted alphabetically.</font> For
   files are by default listed in long format.
 ...</pre>
 
-<p>&nbsp;&nbsp;&nbsp; п÷я─п╬п╡п╣я─п╦п╪ ?</p>
+<p>&nbsp;&nbsp;&nbsp; Проверим ?</p>
 
 <pre><strong>$ locale
 LANG=ru_RU.KOI8-R
@@ -323,53 +323,53 @@ LC_MESSAGES=&quot;ru_RU.KOI8-R&quot;
 LC_ALL=
 $ </strong></pre>
 
-<p>&nbsp;&nbsp;&nbsp; пёя│я┌п╟п╫п╬п╡п╩п╣п╫п╫п╟я▐<strong> locale</strong> -
-я│п╟п╪п╬п╢п╣п╩я▄п╫п╟я▐ : п╦п╥пЁп╬я┌п╬п╡п╩п╣п╫п╟ я┤п╣я─п╣п╥ <em><strong>localedef</strong></em>,
-п╟ п©п╬я┌п╬п╪ <em><strong>mv</strong></em>.</p>
+<p>&nbsp;&nbsp;&nbsp; Установленная<strong> locale</strong> -
+самодельная : изготовлена через <em><strong>localedef</strong></em>,
+а потом <em><strong>mv</strong></em>.</p>
 
 <pre><strong>$ ls -l /usr/share/locale/ru_RU.KOI8-R
 total 45
--rw-rw-r-- 1 root root 29370 п°п╟я─  2 19:02 LC_COLLATE
--rw-r--r-- 1 root root 10424 п°п╟я─  2 16:05 LC_CTYPE
-drwxrwxr-x 2 root root  1024 п°п╟я─  2 19:03 LC_MESSAGES
--rw-rw-r-- 1 root root    95 п°п╟я─  2 19:02 LC_MONETARY
--rw-rw-r-- 1 root root    27 п°п╟я─  2 19:02 LC_NUMERIC
--rw-rw-r-- 1 root root   492 п°п╟я─  2 19:02 LC_TIME
+-rw-rw-r-- 1 root root 29370 Мар  2 19:02 LC_COLLATE
+-rw-r--r-- 1 root root 10424 Мар  2 16:05 LC_CTYPE
+drwxrwxr-x 2 root root  1024 Мар  2 19:03 LC_MESSAGES
+-rw-rw-r-- 1 root root    95 Мар  2 19:02 LC_MONETARY
+-rw-rw-r-- 1 root root    27 Мар  2 19:02 LC_NUMERIC
+-rw-rw-r-- 1 root root   492 Мар  2 19:02 LC_TIME
 $</strong></pre>
 
-<p>&nbsp;&nbsp;&nbsp; <strong>LC_COLLATE</strong> п╣я│я┌я▄. п·п╠я─п╟я┌п╦я┌п╣
-п╡п╫п╦п╪п╟п╫п╦п╣ -- п╢п╟я┌я▀ я─я┐я│я│п╨п╦п╣, я┌п╬ п╣я│я┌я▄ <strong>LC_NUMERIC</strong>
-я─п╟п╠п╬я┌п╟п╣я┌. п п╬п╫я│п╬п╩я▄ я─я┐я│п╦я└п╦я├п╦я─п╬п╡п╟п╫п╟ п╡ KOI8-R.</p>
+<p>&nbsp;&nbsp;&nbsp; <strong>LC_COLLATE</strong> есть. Обратите
+внимание -- даты русские, то есть <strong>LC_NUMERIC</strong>
+работает. Консоль русифицирована в KOI8-R.</p>
 
 <pre><strong>$ ls -l
 total 1
--rw-rw-r--   1 alec   alec    0 п°п╟я─  3 19:02 Anna
--rw-rw-r--   1 alec   alec    0 п°п╟я─  3 19:03 Bravo
--rw-rw-r--   1 alec   alec    0 п°п╟я─  3 19:03 Center
--rw-rw-r--   1 alec   alec    0 п°п╟я─  3 19:07 Zero
--rw-rw-r--   1 alec   alec    0 п°п╟я─  3 19:03 anna
--rw-rw-r--   1 alec   alec    0 п°п╟я─  3 19:03 bravo
--rw-rw-r--   1 alec   alec    0 п°п╟я─  3 19:03 center
--rw-rw-r--   1 alec   alec    0 п°п╟я─  3 19:07 zero
--rw-rw-r--   1 alec   alec    0 п°п╟я─  3 19:10 я▌п╩п╦я▐
--rw-rw-r--   1 alec   alec    0 п°п╟я─  3 19:03 п╟п╫п╫п╟
--rw-rw-r--   1 alec   alec    0 п°п╟я─  3 19:04 п╠п╬я─п╦я│
--rw-rw-r--   1 alec   alec    0 п°п╟я─  3 19:06 я├п╣п╫я┌я─
--rw-rw-r--   1 alec   alec    0 п°п╟я─  3 19:05 п╡п╦п╨я┌п╬я─
--rw-rw-r--   1 alec   alec    0 п°п╟я─  3 19:10 п╝п╩п╦я▐
--rw-rw-r--   1 alec   alec    0 п°п╟я─  3 19:02 п░п╫п╫п╟
--rw-rw-r--   1 alec   alec    0 п°п╟я─  3 19:04 п▒п╬я─п╦я│
--rw-rw-r--   1 alec   alec    0 п°п╟я─  3 19:06 п╕п╣п╫я┌я─
--rw-rw-r--   1 alec   alec    0 п°п╟я─  3 19:05 п▓п╦п╨я┌п╬я─
+-rw-rw-r--   1 alec   alec    0 Мар  3 19:02 Anna
+-rw-rw-r--   1 alec   alec    0 Мар  3 19:03 Bravo
+-rw-rw-r--   1 alec   alec    0 Мар  3 19:03 Center
+-rw-rw-r--   1 alec   alec    0 Мар  3 19:07 Zero
+-rw-rw-r--   1 alec   alec    0 Мар  3 19:03 anna
+-rw-rw-r--   1 alec   alec    0 Мар  3 19:03 bravo
+-rw-rw-r--   1 alec   alec    0 Мар  3 19:03 center
+-rw-rw-r--   1 alec   alec    0 Мар  3 19:07 zero
+-rw-rw-r--   1 alec   alec    0 Мар  3 19:10 юлия
+-rw-rw-r--   1 alec   alec    0 Мар  3 19:03 анна
+-rw-rw-r--   1 alec   alec    0 Мар  3 19:04 борис
+-rw-rw-r--   1 alec   alec    0 Мар  3 19:06 центр
+-rw-rw-r--   1 alec   alec    0 Мар  3 19:05 виктор
+-rw-rw-r--   1 alec   alec    0 Мар  3 19:10 Юлия
+-rw-rw-r--   1 alec   alec    0 Мар  3 19:02 Анна
+-rw-rw-r--   1 alec   alec    0 Мар  3 19:04 Борис
+-rw-rw-r--   1 alec   alec    0 Мар  3 19:06 Центр
+-rw-rw-r--   1 alec   alec    0 Мар  3 19:05 Виктор
 $</strong></pre>
 
-<p>&nbsp;&nbsp;&nbsp; п▓я│п╣ п©п╩п╬я┘п╬. п║п╬я─я┌п╦я─п╬п╡п╨п╟ <strong>я▌п╟п╠я├п╝п░п▒п╕</strong>
--- я█я┌п╬ я│п╬я─я┌п╦я─п╬п╡п╨п╟ <strong>п©п╬ п╨п╬п╢п╟п╪</strong> п╡ KOI8-R. п■п╟п╫п╫я▀п╧ <em><strong>ls</strong></em>
-п╦п╥ <strong>RedHat 5.2</strong> (Linux/GNU). п÷п╬п©я─п╬п╠я┐п╣п╪ п╫п╟ п╢я─я┐пЁп╬п╧
-я│п╦я│я┌п╣п╪п╣ : я│я┌п╟я─п╣п╫я▄п╨п╟я▐ <strong>FreeBSD 2.2.5</strong> п©п╬п╧п╢п╣я┌ ?
-п═я┐я│п╦я└п╦п╨п╟я├п╦я▐ п╨п╬п╫я│п╬п╩п╦ п╡ KOI8-R. пёя┌п╦п╩п╦я┌я▀ <em><strong>locale</strong></em>
-я┌п╟п╪ п╡я│п╣ п╣я┴п╣ п╫п╣я┌. п·п╢п╫п╟п╨п╬ я│п╬я─я┌п╦я─п╬п╡п╨п╟ п╡<em><strong> ls</strong></em>
-я─п╟п╠п╬я┌п╟п╣я┌ :</p>
+<p>&nbsp;&nbsp;&nbsp; Все плохо. Сортировка <strong>юабцЮАБЦ</strong>
+-- это сортировка <strong>по кодам</strong> в KOI8-R. Данный <em><strong>ls</strong></em>
+из <strong>RedHat 5.2</strong> (Linux/GNU). Попробуем на другой
+системе : старенькая <strong>FreeBSD 2.2.5</strong> пойдет ?
+Русификация консоли в KOI8-R. Утилиты <em><strong>locale</strong></em>
+там все еще нет. Однако сортировка в<em><strong> ls</strong></em>
+работает :</p>
 
 <pre><strong>$ uname -sr
 FreeBSD 2.2.5-RELEASE
@@ -379,41 +379,41 @@ ru_RU.KOI8-R
 $
 $ ls -l
 total 0
--rw-r--r-- 1 root wheel 0 п╪п╟я─ 2 23:01 п░п╫п╫п╟
--rw-r--r-- 1 root wheel 0 п╪п╟я─ 2 23:01 п▒п╬я─п╦я│
--rw-r--r-- 1 root wheel 0 п╪п╟я─ 2 23:01 п▓п╦п╨я┌п╬я─
--rw-r--r-- 1 root wheel 0 п╪п╟я─ 2 23:02 п╕п╣п╫я┌я─
--rw-r--r-- 1 root wheel 0 п╪п╟я─ 2 23:02 п╝п╩п╦я▐
--rw-r--r-- 1 root wheel 0 п╪п╟я─ 2 23:01 п╟п╫п╫п╟
--rw-r--r-- 1 root wheel 0 п╪п╟я─ 2 23:01 п╠п╬я─п╦я│
--rw-r--r-- 1 root wheel 0 п╪п╟я─ 2 23:01 п╡п╦п╨я┌п╬я─
--rw-r--r-- 1 root wheel 0 п╪п╟я─ 2 23:02 я├п╣п╫я┌я─
--rw-r--r-- 1 root wheel 0 п╪п╟я─ 2 23:02 я▌п╩п╦я▐
+-rw-r--r-- 1 root wheel 0 мар 2 23:01 Анна
+-rw-r--r-- 1 root wheel 0 мар 2 23:01 Борис
+-rw-r--r-- 1 root wheel 0 мар 2 23:01 Виктор
+-rw-r--r-- 1 root wheel 0 мар 2 23:02 Центр
+-rw-r--r-- 1 root wheel 0 мар 2 23:02 Юлия
+-rw-r--r-- 1 root wheel 0 мар 2 23:01 анна
+-rw-r--r-- 1 root wheel 0 мар 2 23:01 борис
+-rw-r--r-- 1 root wheel 0 мар 2 23:01 виктор
+-rw-r--r-- 1 root wheel 0 мар 2 23:02 центр
+-rw-r--r-- 1 root wheel 0 мар 2 23:02 юлия
 $ </strong></pre>
 
-<p>&nbsp;&nbsp;&nbsp; п÷п╬п╢п╨я─я┐я┌п╦я┌я▄ п╫п╟п╢п╬ я┤я┌п╬-я┌п╬ п╡
-п╨п╬п╫я│п╣я─п╡п╟я┌п╬я─п╦п╦, п╬п╢п╫п╟п╨п╬...</p>
+<p>&nbsp;&nbsp;&nbsp; Подкрутить надо что-то в
+консерватории, однако...</p>
 
 <hr>
 
-<p><a name="more"></a>&nbsp;&nbsp;&nbsp; п■п╬п©п╬п╩п╫п╦я┌п╣п╩я▄п╫п╟я▐ п╦п╫я└п╬я─п╪п╟я├п╦я▐
+<p><a name="more"></a>&nbsp;&nbsp;&nbsp; Дополнительная информация
 :</p>
 
 <p><a href="http://www.sensi.org/~alec/locale">Locale &quot;AS IT IS&quot;</a>
-п⌡п╬п╨п╟п╩п╦п╥п╟я├п╦я▐ &quot;п п╟п╨ п╬п╫п╟ п╣я│я┌я▄&quot; - п╡п╡п╣п╢п╣п╫п╦п╣ п╡ <strong>POSIX
+Локализация &quot;Как она есть&quot; - введение в <strong>POSIX
 locale</strong>.</p>
 
-<p><a href="http://aship.attend.to/kolumns/bzhs.htm">п▒п╬п╩я▄я┬п╬п╧
-п√я┐я─п╫п╟п╩п╦я│я┌я│п╨п╦п╧ п║п╣п╨я─п╣я┌</a>. п╖я┌п╬ пЁп╬п╡п╬я─п╦я┌я▄ п©я─п╬ Linux.</p>
+<p><a href="http://aship.attend.to/kolumns/bzhs.htm">Большой
+Журналистский Секрет</a>. Что говорить про Linux.</p>
 
-<p><a href="http://www.iplabs.ru/Linux/Coment/arhiv_15.html">п∙я┴п╣ п╬п╢п╦п╫ п╠п╬я─п╣я├
-я│п╬ я│я┌п╟п╫п╢п╟я─я┌п╟п╪п╦ : KSI Linux.</a></p>
+<p><a href="http://www.iplabs.ru/Linux/Coment/arhiv_15.html">Еще один борец
+со стандартами : KSI Linux.</a></p>
 
-<p><a href="http://www.iplabs.ru/Linux/Coment/arhiv_16.html">п п╬п╪п╪п╣п╫я┌п╟я─п╦п╦</a> п╨
-п©я─п╣п╢я▀п╢я┐я┴п╣п╧ п╥п╟п╪п╣я┌п╨п╣ (п╡ п╨п╬п╫я├п╣).</p>
+<p><a href="http://www.iplabs.ru/Linux/Coment/arhiv_16.html">Комментарии</a> к
+предыдущей заметке (в конце).</p>
 
-<p><a href="humor.html">п■п╣п╫я▄ я│п╩п╟п╡я▐п╫я│п╨п╬п╧ п©п╦я│я▄п╪п╣п╫п╫п╬я│я┌п╦.</a>
-п▓п╬п╬п╠я┴п╣-я┌п╬, я█я┌п╬ я▌п╪п╬я─...</p>
+<p><a href="humor.html">День славянской письменности.</a>
+Вообще-то, это юмор...</p>
 
 <hr align="left">
 

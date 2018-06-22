@@ -8,100 +8,100 @@
 
 </HEAD>
 <BODY>
-<A HREF="NFS-HOWTO-1.html">п║п╩п╣п╢я┐я▌я┴п╦п╧</A>
-п÷я─п╣п╢я▀п╢я┐я┴п╦п╧
-п║п╬п╢п╣я─п╤п╟п╫п╦п╣
+<A HREF="NFS-HOWTO-1.html">Следующий</A>
+Предыдущий
+Содержание
 <HR>
 <H1>NFS HOWTO</H1>
 
-<H2>Nicolai Langfeldt <CODE>janl@linpro.no</CODE>, п©п╣я─п╣п╡п╬п╢ Alex Ott
-<CODE>ott@phtd.tpu.edu.ru</CODE></H2>v1.0, 1 п·п╨я┌я▐п╠я─я▐ 1999
+<H2>Nicolai Langfeldt <CODE>janl@linpro.no</CODE>, перевод Alex Ott
+<CODE>ott@phtd.tpu.edu.ru</CODE></H2>v1.0, 1 Октября 1999
 <P><HR>
-<EM>п п╟п╨ я┐я│я┌п╟п╫п╬п╡п╦я┌я▄ п╫п╟я│я┌я─п╬п╦я┌я▄ п╨п╩п╦п╣п╫я┌ п╦ я│п╣я─п╡п╣я─ NFS</EM>
+<EM>Как установить настроить клиент и сервер NFS</EM>
 <HR>
-<P><B>п÷я─п╦п╪п╣я┤п╟п╫п╦п╣ п©п╣я─п╣п╡п╬п╢я┤п╦п╨п╟:</B> п╗п╩п╦я┌п╣ п╪п╫п╣ п╩я▌п╠я▀п╣ п╨п╬п╪п╪п╣п╫я┌п╟я─п╦п╦ п╦
-п╥п╟п╪п╣я┤п╟п╫п╦я▐, п╢п╟п╤п╣ п╫п╣п╠п╬п╩я▄я┬п╦п╣.
+<P><B>Примечание переводчика:</B> Шлите мне любые комментарии и
+замечания, даже небольшие.
 <P>
 <P>
 <P>
-<H2><A NAME="toc1">1.</A> <A HREF="NFS-HOWTO-1.html">п÷я─п╣п╟п╪п╠я┐п╩п╟</A></H2>
+<H2><A NAME="toc1">1.</A> <A HREF="NFS-HOWTO-1.html">Преамбула</A></H2>
 
 <UL>
-<LI><A HREF="NFS-HOWTO-1.html#ss1.1">1.1 п·я└п╦я├п╦п╟п╩я▄п╫п╟я▐ я┤п╟я│я┌я▄</A>
-<LI><A HREF="NFS-HOWTO-1.html#ss1.2">1.2 п·я┌п╨п╟п╥ п╬я┌ п╬я┌п╡п╣я┌я│я┌п╡п╣п╫п╫п╬я│я┌п╦</A>
-<LI><A HREF="NFS-HOWTO-1.html#ss1.3">1.3 п·п╠я─п╟я┌п╫п╟я▐ я│п╡я▐п╥я▄</A>
-<LI><A HREF="NFS-HOWTO-1.html#ss1.4">1.4 п·я│я┌п╟п╩я▄п╫п╬п╣</A>
-<LI><A HREF="NFS-HOWTO-1.html#ss1.5">1.5 п÷п╬я│п╡я▐я┴п╣п╫п╦п╣</A>
+<LI><A HREF="NFS-HOWTO-1.html#ss1.1">1.1 Официальная часть</A>
+<LI><A HREF="NFS-HOWTO-1.html#ss1.2">1.2 Отказ от ответственности</A>
+<LI><A HREF="NFS-HOWTO-1.html#ss1.3">1.3 Обратная связь</A>
+<LI><A HREF="NFS-HOWTO-1.html#ss1.4">1.4 Остальное</A>
+<LI><A HREF="NFS-HOWTO-1.html#ss1.5">1.5 Посвящение</A>
 </UL>
 <P>
 <H2><A NAME="toc2">2.</A> <A HREF="NFS-HOWTO-2.html">README.first</A></H2>
 
 <P>
-<H2><A NAME="toc3">3.</A> <A HREF="NFS-HOWTO-3.html">пёя│я┌п╟п╫п╬п╡п╨п╟ я│п╣я─п╡п╣я─п╟ NFS</A></H2>
+<H2><A NAME="toc3">3.</A> <A HREF="NFS-HOWTO-3.html">Установка сервера NFS</A></H2>
 
 <UL>
-<LI><A HREF="NFS-HOWTO-3.html#ss3.1">3.1 п²п╣п©я─п╣п╪п╣п╫п╫я▀п╣ я┐я│п╩п╬п╡п╦я▐</A>
-<LI><A HREF="NFS-HOWTO-3.html#ss3.2">3.2 п÷п╣я─п╡я▀п╧ я┬п╟пЁ</A>
+<LI><A HREF="NFS-HOWTO-3.html#ss3.1">3.1 Непременные условия</A>
+<LI><A HREF="NFS-HOWTO-3.html#ss3.2">3.2 Первый шаг</A>
 <LI><A HREF="NFS-HOWTO-3.html#ss3.3">3.3 Portmapper</A>
-<LI><A HREF="NFS-HOWTO-3.html#ss3.4">3.4 Mountd п╦ nfsd</A>
+<LI><A HREF="NFS-HOWTO-3.html#ss3.4">3.4 Mountd и nfsd</A>
 </UL>
 <P>
-<H2><A NAME="toc4">4.</A> <A HREF="NFS-HOWTO-4.html">п²п╟я│я┌я─п╬п╧п╨п╟ п╨п╩п╦п╣п╫я┌п╟ NFS</A></H2>
+<H2><A NAME="toc4">4.</A> <A HREF="NFS-HOWTO-4.html">Настройка клиента NFS</A></H2>
 
 <UL>
-<LI><A HREF="NFS-HOWTO-4.html#ss4.1">4.1 п·п©я├п╦п╦ п╪п╬п╫я┌п╦я─п╬п╡п╟п╫п╦я▐</A>
-<LI><A HREF="NFS-HOWTO-4.html#ss4.2">4.2 п·п©я┌п╦п╪п╦п╥п╟я├п╦я▐ NFS</A>
+<LI><A HREF="NFS-HOWTO-4.html#ss4.1">4.1 Опции монтирования</A>
+<LI><A HREF="NFS-HOWTO-4.html#ss4.2">4.2 Оптимизация NFS</A>
 </UL>
 <P>
-<H2><A NAME="toc5">5.</A> <A HREF="NFS-HOWTO-5.html">NFS я┤п╣я─п╣п╥ п╪п╣п╢п╩п╣п╫п╫я▀п╣ п╩п╦п╫п╦п╦</A></H2>
+<H2><A NAME="toc5">5.</A> <A HREF="NFS-HOWTO-5.html">NFS через медленные линии</A></H2>
 
 <P>
-<H2><A NAME="toc6">6.</A> <A HREF="NFS-HOWTO-6.html">п▒п╣п╥п╬п©п╟я│п╫п╬я│я┌я▄ п╦ NFS</A></H2>
+<H2><A NAME="toc6">6.</A> <A HREF="NFS-HOWTO-6.html">Безопасность и NFS</A></H2>
 
 <UL>
-<LI><A HREF="NFS-HOWTO-6.html#ss6.1">6.1 п▒п╣п╥п╬п©п╟я│п╫п╬я│я┌я▄ п╨п╩п╦п╣п╫я┌п╟</A>
-<LI><A HREF="NFS-HOWTO-6.html#ss6.2">6.2 п▒п╣п╥п╬п©п╟я│п╫п╬я│я┌я▄ я│п╣я─п╡п╣я─п╟: nfsd</A>
-<LI><A HREF="NFS-HOWTO-6.html#ss6.3">6.3 п▒п╣п╥п╬п©п╟я│п╫п╬я│я┌я▄ я│п╣я─п╡п╣я─п╟: portmapper</A>
-<LI><A HREF="NFS-HOWTO-6.html#ss6.4">6.4 NFS п╦ firewall</A>
-<LI><A HREF="NFS-HOWTO-6.html#ss6.5">6.5 п═п╣п╥я▌п╪п╣</A>
+<LI><A HREF="NFS-HOWTO-6.html#ss6.1">6.1 Безопасность клиента</A>
+<LI><A HREF="NFS-HOWTO-6.html#ss6.2">6.2 Безопасность сервера: nfsd</A>
+<LI><A HREF="NFS-HOWTO-6.html#ss6.3">6.3 Безопасность сервера: portmapper</A>
+<LI><A HREF="NFS-HOWTO-6.html#ss6.4">6.4 NFS и firewall</A>
+<LI><A HREF="NFS-HOWTO-6.html#ss6.5">6.5 Резюме</A>
 </UL>
 <P>
-<H2><A NAME="toc7">7.</A> <A HREF="NFS-HOWTO-7.html">п п╬п╫я┌я─п╬п╩я▄п╫я▀п╧ я│п©п╦я│п╬п╨ я─п╟п╥я─п╣я┬п╣п╫п╦я▐ п©я─п╬п╠п╩п╣п╪ п╪п╬п╫я┌п╦я─п╬п╡п╟п╫п╦я▐</A></H2>
+<H2><A NAME="toc7">7.</A> <A HREF="NFS-HOWTO-7.html">Контрольный список разрешения проблем монтирования</A></H2>
 
 <P>
-<H2><A NAME="toc8">8.</A> <A HREF="NFS-HOWTO-8.html">п╖п╟я│я┌п╬ п≈п╟п╢п╟п╡п╟п╣п╪я▀п╣ п▓п╬п©я─п╬я│я▀ (FAQ)</A></H2>
+<H2><A NAME="toc8">8.</A> <A HREF="NFS-HOWTO-8.html">Часто Задаваемые Вопросы (FAQ)</A></H2>
 
 <P>
-<H2><A NAME="toc9">9.</A> <A HREF="NFS-HOWTO-9.html">п╜п╨я│п©п╬я─я┌п╦я─п╬п╡п╟п╫п╦п╣ я└п╟п╧п╩п╬п╡я▀я┘ я│п╦я│я┌п╣п╪</A></H2>
+<H2><A NAME="toc9">9.</A> <A HREF="NFS-HOWTO-9.html">Экспортирование файловых систем</A></H2>
 
 <UL>
 <LI><A HREF="NFS-HOWTO-9.html#ss9.1">9.1 IRIX, HP-UX, Digital-UNIX, Ultrix, SunOS 4 (Solaris 1), AIX</A>
 <LI><A HREF="NFS-HOWTO-9.html#ss9.2">9.2 Solaris 2</A>
 </UL>
 <P>
-<H2><A NAME="toc10">10.</A> <A HREF="NFS-HOWTO-10.html">NFS п╡ Linux 2.2 </A></H2>
+<H2><A NAME="toc10">10.</A> <A HREF="NFS-HOWTO-10.html">NFS в Linux 2.2 </A></H2>
 
 <UL>
-<LI><A HREF="NFS-HOWTO-10.html#ss10.1">10.1 п п╩п╦п╣п╫я┌</A>
-<LI><A HREF="NFS-HOWTO-10.html#ss10.2">10.2 п║п╣я─п╡п╣я─</A>
+<LI><A HREF="NFS-HOWTO-10.html#ss10.1">10.1 Клиент</A>
+<LI><A HREF="NFS-HOWTO-10.html#ss10.2">10.2 Сервер</A>
 </UL>
 <P>
-<H2><A NAME="toc11">11.</A> <A HREF="NFS-HOWTO-11.html">NFS-я│п╣я─п╡п╣я─ п╫п╟ п╢п╦я│п╨п╣я┌п╣</A></H2>
+<H2><A NAME="toc11">11.</A> <A HREF="NFS-HOWTO-11.html">NFS-сервер на дискете</A></H2>
 
 <UL>
-<LI><A HREF="NFS-HOWTO-11.html#ss11.1">11.1 п▓п╡п╣п╢п╣п╫п╦п╣</A>
-<LI><A HREF="NFS-HOWTO-11.html#ss11.2">11.2 п·п╤п╦п╢п╟п╫п╦я▐</A>
-<LI><A HREF="NFS-HOWTO-11.html#ss11.3">11.3 п╒я─п╣п╠п╬п╡п╟п╫п╦я▐</A>
-<LI><A HREF="NFS-HOWTO-11.html#ss11.4">11.4 пёя│я┌п╟п╫п╬п╡п╨п╟ я│п╣я─п╡п╣я─п╟</A>
-<LI><A HREF="NFS-HOWTO-11.html#ss11.5">11.5 п═п╟п╥я─п╣я┬п╣п╫п╦п╣ п©я─п╬п╠п╩п╣п╪</A>
-<LI><A HREF="NFS-HOWTO-11.html#ss11.6">11.6 п╖я┌п╬ я│п╢п╣п╩п╟я┌я▄</A>
+<LI><A HREF="NFS-HOWTO-11.html#ss11.1">11.1 Введение</A>
+<LI><A HREF="NFS-HOWTO-11.html#ss11.2">11.2 Ожидания</A>
+<LI><A HREF="NFS-HOWTO-11.html#ss11.3">11.3 Требования</A>
+<LI><A HREF="NFS-HOWTO-11.html#ss11.4">11.4 Установка сервера</A>
+<LI><A HREF="NFS-HOWTO-11.html#ss11.5">11.5 Разрешение проблем</A>
+<LI><A HREF="NFS-HOWTO-11.html#ss11.6">11.6 Что сделать</A>
 </UL>
 <P>
 <H2><A NAME="toc12">12.</A> <A HREF="NFS-HOWTO-12.html">PC-NFS</A></H2>
 
 <HR>
-<A HREF="NFS-HOWTO-1.html">п║п╩п╣п╢я┐я▌я┴п╦п╧</A>
-п÷я─п╣п╢я▀п╢я┐я┴п╦п╧
-п║п╬п╢п╣я─п╤п╟п╫п╦п╣
+<A HREF="NFS-HOWTO-1.html">Следующий</A>
+Предыдущий
+Содержание
 </BODY>
 </HTML>

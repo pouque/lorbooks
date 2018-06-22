@@ -7,37 +7,37 @@
   <link rel="UP" title="Preparing the LFS system" href="chapter05.html">
   <link rel="PREVIOUS" title="Creating the $LFS/static directory" href="creatingstaticdir.html">
   <link rel="NEXT" title="Installing Bash-2.05a" href="bash.html"></head><body class="sect1" bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#840084" alink="#006000">
-<div class="NAVHEADER"><table summary="Header navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><th colspan="3" align="Center">Linux From Scratch: Р±Р•РџРЇРҐРЄ 4.0</th></tr><tr><td width="10%" align="Left" valign="Bottom"><a href="creatingstaticdir.html" accesskey="P">РјР®Р“Р®Р”</a></td><td width="80%" align="Center" valign="Bottom">С†РљР®Р‘Р® 5. РѕРќР”Р¦РќР РќР‘Р™Р® РЇРҐРЇР Р•Р›РЁ LFS</td><td width="10%" align="Right" valign="Bottom"><a href="bash.html" accesskey="N">Р±РћР•РџР•Р”</a></td></tr></tbody></table><hr align="Left" width="100%"></div>
-<div class="sect1"><h1 class="sect1"><a name="ch05-installasuser">СЃРЇР Р®РњРќР‘Р™Р® Р‘РЇР•РЈ Р™РќР›РћРќРњР•РњР РќР‘ Р‘ РџР•Р¤РҐР›Р• РњР•РћРџРҐР‘РҐРљР•Р¦РҐРџРќР‘Р®РњРњРќР¦Рќ
-РћРќРљР­Р“РќР‘Р®Р Р•РљРЄ</a></h1><p>РµРЇРљРҐ
-РћРџРҐ Р‘РЁРћРќРљРњР•РњРҐРҐ Р¬Р®Р¦РќР‘, РќРћРҐРЇР®РњРњРЁРЈ Р‘ С†РљР®Р‘Р• 5, Р‘РЁ РђРЎР”Р•Р Р• Р“Р®РџР•Р¦РҐРЇР РџРҐРџРќР‘Р®РњРЁ Р‘ РЇРҐРЇР Р•Р›Р•
-Р™Р®Р™ root, Р•РЇР Р­ Р‘Р•РџРќРЄР РњРќРЇР Р­, Р’Р Рќ РњР•Р™РќР РќРџРЁР• РўР®РРљРЁ РЇРҐРЇР Р•Р›РЁ РђРЎР”РЎР  Р“Р®Р›Р•РњР•РњРЁ РўР®РРљР®Р›РҐ,
-Р™РќР РќРџРЁР• РђРЎР”РЎР  РЇР™РќР›РћРҐРљРҐРџРќР‘Р®РњРЁ Р‘ С†РљР®Р‘Р• 5. РјР® Р©Р Рќ Р•РЇР Р­ РџРЄР” РћРџРҐР’РҐРњ, РњР•РќРћРџР•Р”Р•РљР•РњРњР®РЄ
-РћР•РџР•Р›Р•РњРњР®РЄ $LFS - РќР”РњР® РҐР“ РњРҐРЈ. РіР®Р›Р•РњР® РўР®РРљРќР‘ РњР® Р‘Р®Р¬Р•Р РЇРҐРЇР Р•Р›Р• РЇР™РќРџР•Р• Р‘РЇР•Р¦Рќ
-РћРџРҐР‘Р•Р”Р•Р  Р™ Р‘РќР“РњРҐР™РњРќР‘Р•РњРҐР§ Р‘РЇРЄР™РќР¦Рќ РџРќР”Р® РћРџРќРђРљР•Р›, РћРќР©Р РќР›РЎ РџР•Р™РќР›Р•РњР”РЎР•Р РЇРЄ Р‘РЁРћРќРљРњРЄР Р­
-Р¬Р®Р¦РҐ С†РљР®Р‘РЁ 5 РќР  РҐР›Р•РњРҐ РњР•РћРџРҐР‘РҐРљР•Р¦РҐРџРќР‘Р®РњРњРќР¦Рќ РћРќРљР­Р“РќР‘Р®Р Р•РљРЄ. РґРљРЄ Р’РҐРЇР РќР РЁ Р©Р™РЇРћР•РџРҐР›Р•РњР Р®
-РЇРќР“Р”Р®Р”РҐР› РњРќР‘РЎР§ РЎР’Р•Р РњРЎР§ Р“Р®РћРҐРЇР­ "lfs", Р™РќР РќРџРЎР§ РђРЎР”Р•Р› РҐРЇРћРќРљР­Р“РќР‘Р®Р Р­ РњР® РЇР Р®Р”РҐРҐ
-Р™РќР›РћРҐРљРЄР–РҐРҐ РЇРќ РЇР Р®Р РҐР’Р•РЇР™РҐР›РҐ РЇРЇРЁРљР™Р®Р›РҐ. РґРљРЄ Р”РќРђР®Р‘РљР•РњРҐРЄ РњРќР‘РќР РЎР’Р•Р РњРќР Р“Р®РћРҐРЇРҐ,
-Р‘РЁРћРќРљРњРҐР Р• РЇРљР•Р”РЎР§Р«РҐР• Р™РќР›Р®РњР”РЁ Р‘ РџР•Р¤РҐР›Р• РћРќРљР­Р“РќР‘Р®Р Р•РљРЄ root:</p><p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>useradd -s /bin/bash -m lfs &amp;&amp;<br>passwd lfs</b></tt></pre></td></tr></tbody></table></p><p>СЂР•РћР•РџР­ РЇР™РќРџРџР•Р™Р РҐРџРЎР•Р› РћРџР®Р‘Р® РњР®
-Р”РҐРџР•Р™Р РќРџРҐР§ <tt class="filename">$LFS/static, Р’Р РќРђРЁ РћРќРљР­Р“РќР‘Р®Р Р•РљР­</tt> "lfs" РҐР›Р•Рљ Р™ РњР•Р Р”РќРЇР РЎРћ РњР® Р“Р®РћРҐРЇР­:</p><p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>chown -R lfs $LFS/static</b></tt></pre></td></tr></tbody></table></p><p>СЂР•РћР•РџР­
-Р‘РќРР”РҐР Р• Р‘ РЇРҐРЇР Р•Р›РЎ РћРќР” РЎР’Р•Р РњРќР Р“Р®РћРҐРЇР­Р§ "lfs". С‰Р Рќ Р›РќР¤РњРќ РЇР”Р•РљР®Р Р­ Р”Р‘РЎР›РЄ РЇРћРќРЇРќРђР®Р›РҐ:
-Р’Р•РџР•Р“ РњРќР‘РЎР§ Р‘РҐРџР РЎР®РљР­РњРЎР§ Р™РќРњРЇРќРљР­ РҐРљРҐ РќР™РќРњРњРЁР Р›Р•РњР•Р”Р¤Р•Рџ, РҐРљРҐ Р™РќР›Р®РњР”РќР <tt class="userinput"><b>su - lfs</b></tt>. РѕРќРЇРљР• Р©Р РќР¦Рќ Р‘РЁРћРќРљРњРҐР Р•
-РЇРљР•Р”РЎР§Р«РҐР• Р™РќР›Р®РњР”РЁ РќР  РҐР›Р•РњРҐ РћРќРљР­Р“РќР‘Р®Р Р•РљРЄ "lfs" Р”РљРЄ РЇРќР“Р”Р®РњРҐРЄ РђРљР®Р¦РќРћРџРҐРЄР РњРќР РЇРџР•Р”РЁ:</p><p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>cat &gt; ~/.bash_profile &lt;&lt; "EOF"<br>umask<br>022<br><br>LFS=/mnt/lfs<br>LC_ALL=POSIX<br>CC='gcc -s'<br>export LFS LC_ALL CC<br>EOF<br>source ~/.bash_profile</b></tt></pre></td></tr></tbody></table></p><p>С‰Р РќР 
-РћРџРќРўРҐРљР­ РЎРЇР Р®РњР®Р‘РљРҐР‘Р®Р•Р  umask РџР®Р‘РњРЁР› 022, Р’Р РќРђРЁ РЇРќР“Р”Р®РњРњРЁР• РўР®РРљРЁ РҐ Р”РҐРџР•Р™Р РќРџРҐРҐ
-Р®Р‘Р РќР›Р®Р РҐР’Р•РЇР™РҐ РћРќРљРЎР’Р®РљРҐ РћРџР®Р‘РҐРљР­РњРЁР• РћРџР®Р‘Р®. РјР®РЇР РќРЄР Р•РљР­РњРќ РџР•Р™РќР›Р•РњР”РЎР•Р РЇРЄ РҐРЇРћРќРљР­Р“РќР‘Р®РњРҐР•
-Р©Р РќР РЎРЇР Р®РњРќР‘Р™РҐ РњР® РћРџРќР РЄР¤Р•РњРҐРҐ Р‘РЇР•Р РҐРњРЇР Р®РљРљРЄР–РҐРҐ LFS. СЂР®Р™Р¤Р• РђРЁРљРҐ Р“Р®Р”Р®РњРЁ РћР•РџР•Р›Р•РњРњРЁР•
-$LFS, $LC_ALL, РҐ $CC. РѕРџРќ РћР•РџР•Р›Р•РњРњРЎР§ $LFS Р›РЁ РЎР¤Р• РњР• РџР®Р“ Р¦РќР‘РќРџРҐРљРҐ. РѕР•РџР•Р›Р•РњРњР®РЄ
-$LC_ALL РҐРЇРћРќРљР­Р“РЎР•Р РЇРЄ Р”РљРЄ РҐРњР Р•РџРњР®Р–РҐРќРњР®РљРҐР“Р®Р–РҐРҐ.</p><p>РµРЇРљРҐ
-РњР® Р‘Р®Р¬Р•Р› РђР®Р“РќР‘РќР› Р”РҐРЇР РџРҐРђРЎР РҐР‘Р• РЎРЇР Р®РњРќР‘РљР•РњР® РђРҐРђРљРҐРќР Р•Р™Р® glibc Р‘Р•РџРЇРҐРҐ 2.2.4 РҐ
-РџР®РњР•Р•, РҐ РњР® РћРџРќР РЄР¤Р•РњРҐРҐ С†РљР®Р‘РЁ 5 РћР•РџР•Р›Р•РњРњР®РЄ $LC_ALL РќРћРџР•Р”Р•РљР•РњР® РњР• Р™Р®Р™ "C" РҐРљРҐ
-"POSIX", Р›РќР¦РЎР  Р‘РќР“РњРҐР™РњРЎР Р­ РћРџРќРђРљР•Р›РЁ РћРџРҐ Р‘РЁРЈРќР”Р•РҐ РћРќР‘Р РќРџРњРќР› Р‘РЈРќР”Р• Р‘ РЇРџР•Р”РЎ chroot
-Р‘ С†РљР®Р‘Р• 6. РґРљРЄ Р РќР¦Рќ Р’Р РќРђРЁ РђРЁР Р­ РЎР‘Р•РџР•РњРњРЁР› Р‘ Р РќР›, Р’Р Рќ Р‘ РЇРџР•Р”Р• chroot Р‘РЇР• РђРЎР”Р•Р 
-РџР®РђРќР Р®Р Р­ Р™РќРџРџР•Р™Р РњРќ, РћРџРҐРЇР‘РќРР Р• Р©Р РќР РћР•РџР•Р›Р•РњРњРќР Р“РњР®Р’Р•РњРҐР• "POSIX" ("C" is an
-alias for "POSIX").</p><p>С…РЇРћРќРљР­Р“РќР‘Р®РњРҐР• РћР•РџР•Р›Р•РњРњРќР $CC Р‘РЁР“Р‘Р®РњРќ РњР•РќРђРЈРќР”РҐР›РќРЇР Р­Р§
-РћРџР•Р”РќР Р‘РџР®Р РҐР Р­ Р™РќР›РћРҐРљРЄР–РҐР§ РќР РљР®Р”РќР’РњРЁРЈ РЇРҐР›Р‘РќРљРќР‘ Р‘ РЇР Р®Р РҐР’Р•РЇР™РҐР• РћР®Р™Р•Р РЁ. СЂР®Р™РҐР›
-РќРђРџР®Р“РќР› Р©Р™РќРњРќР›РҐР РЇРЄ Р”РҐРЇР™РќР‘РќР• РћРџРќРЇР РџР®РњРЇР Р‘Рќ РҐ РЇРЎР«Р•РЇР Р‘Р•РњРњРќ РЇРќР™РџР®Р«Р®Р•Р РЇРЄ Р‘РџР•Р›РЄ
-Р™РќР›РћРҐРљРЄР–РҐРҐ.</p></div>
-<div class="NAVFOOTER"><hr align="Left" width="100%"><table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="33%" align="Left" valign="Top"><a href="creatingstaticdir.html" accesskey="P">РјР®Р“Р®Р”</a></td><td width="34%" align="Center" valign="Top"><a href="../index.html" accesskey="H">РґРќР›РќР</a></td><td width="33%" align="Right" valign="Top"><a href="bash.html" accesskey="N">Р±РћР•РџР•Р”</a></td></tr><tr><td width="33%" align="Left" valign="Top">СЏРќР“Р”Р®Р•Р› Р”РҐРџР•Р™Р РќРџРҐР§ $LFS/static</td><td width="34%" align="Center" valign="Top"><a href="chapter05.html" accesskey="U">РјР®Р‘Р•РџРЈ</a></td><td width="33%" align="Right" valign="Top">СЃРЇР Р®РњРќР‘Р™Р®
+<div class="NAVHEADER"><table summary="Header navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><th colspan="3" align="Center">Linux From Scratch: Версия 4.0</th></tr><tr><td width="10%" align="Left" valign="Bottom"><a href="creatingstaticdir.html" accesskey="P">Назад</a></td><td width="80%" align="Center" valign="Bottom">Глава 5. Подготовка системы LFS</td><td width="10%" align="Right" valign="Bottom"><a href="bash.html" accesskey="N">Вперед</a></td></tr></tbody></table><hr align="Left" width="100%"></div>
+<div class="sect1"><h1 class="sect1"><a name="ch05-installasuser">Установка всех компонентов в режиме непривилегированного
+пользователя</a></h1><p>Если
+при выполнении шагов, описанных в Главе 5, вы будете зарегистрированы в системе
+как root, есть вероятность, что некоторые файлы системы будут заменены файлами,
+которые будут скомпилированы в Главе 5. На это есть ряд причин, неопределенная
+переменная $LFS - одна из них. Замена файлов на вашей системе скорее всего
+приведет к возникновению всякого рода проблем, поэтому рекомендуется выполнять
+шаги Главы 5 от имени непривилегированного пользователя. Для чистоты эксперимента
+создадим новую учетную запись "lfs", которую будем использовать на стадии
+компиляции со статическими ссылками. Для добавления новой учетной записи,
+выполните следующие команды в режиме пользователя root:</p><p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>useradd -s /bin/bash -m lfs &amp;&amp;<br>passwd lfs</b></tt></pre></td></tr></tbody></table></p><p>Теперь скорректируем права на
+директорию <tt class="filename">$LFS/static, чтобы пользователь</tt> "lfs" имел к ней доступ на запись:</p><p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>chown -R lfs $LFS/static</b></tt></pre></td></tr></tbody></table></p><p>Теперь
+войдите в систему под учетной записью "lfs". Это можно сделать двумя способами:
+через новую виртуальную консоль или оконный менеджер, или командой <tt class="userinput"><b>su - lfs</b></tt>. После этого выполните
+следующие команды от имени пользователя "lfs" для создания благоприятной среды:</p><p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>cat &gt; ~/.bash_profile &lt;&lt; "EOF"<br>umask<br>022<br><br>LFS=/mnt/lfs<br>LC_ALL=POSIX<br>CC='gcc -s'<br>export LFS LC_ALL CC<br>EOF<br>source ~/.bash_profile</b></tt></pre></td></tr></tbody></table></p><p>Этот
+профиль устанавливает umask равным 022, чтобы созданные файлы и директории
+автоматически получали правильные права. Настоятельно рекомендуется использование
+этой установки на протяжении всей инсталляции LFS. Также были заданы переменные
+$LFS, $LC_ALL, и $CC. Про переменную $LFS мы уже не раз говорили. Переменная
+$LC_ALL используется для интернационализации.</p><p>Если
+на вашем базовом дистрибутиве установлена библиотека glibc версии 2.2.4 и
+ранее, и на протяжении Главы 5 переменная $LC_ALL определена не как "C" или
+"POSIX", могут возникнуть проблемы при выходеи повторном входе в среду chroot
+в Главе 6. Для того чтобы быть уверенным в том, что в среде chroot все будет
+работать корректно, присвойте этой переменной значение "POSIX" ("C" is an
+alias for "POSIX").</p><p>Использование переменной $CC вызвано необходимостью
+предотвратить компиляцию отладочных символов в статические пакеты. Таким
+образом экономится дисковое пространство и существенно сокращается время
+компиляции.</p></div>
+<div class="NAVFOOTER"><hr align="Left" width="100%"><table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="33%" align="Left" valign="Top"><a href="creatingstaticdir.html" accesskey="P">Назад</a></td><td width="34%" align="Center" valign="Top"><a href="../index.html" accesskey="H">Домой</a></td><td width="33%" align="Right" valign="Top"><a href="bash.html" accesskey="N">Вперед</a></td></tr><tr><td width="33%" align="Left" valign="Top">Создаем директорию $LFS/static</td><td width="34%" align="Center" valign="Top"><a href="chapter05.html" accesskey="U">Наверх</a></td><td width="33%" align="Right" valign="Top">Установка
 Bash-2.05a</td></tr></tbody></table></div>
 <br>
 

@@ -14,112 +14,112 @@ Contents
 <HR>
 <H1>Linux Networking Overview HOWTO</H1>
 
-<H2>Daniel Lя┐pez Ridruejo 
+<H2>Daniel Lуpez Ridruejo 
 <A HREF="mailto:ridruejo@esi.us.es">mailto:ridruejo@esi.us.es</A>
-п═я┐я│я│п╨п╦п╧ п©п╣я─п╣п╡п╬п╢
+Русский перевод
 Ilgiz Kalmetev, 
-<A HREF="mailto:ilgiz@mail.rb.ru">ilgiz@mail.rb.ru</A></H2>  V0.2, 10 п╦я▌п╩я▐ 1998
+<A HREF="mailto:ilgiz@mail.rb.ru">ilgiz@mail.rb.ru</A></H2>  V0.2, 10 июля 1998
 <P><HR>
-<EM>  п╕п╣п╩я▄ я█я┌п╬пЁп╬ п╢п╬п╨я┐п╪п╣п╫я┌п╟ я│п╬я│я┌п╬п╦я┌ п╡ я┌п╬п╪, я┤я┌п╬п╠я▀ п╢п╟я┌я▄ п╨я─п╟я┌п╨п╦п╧ п╬п╠п╥п╬я─ п╡п╬п╥п╪п╬п╤п╫п╬я│я┌п╣п╧
-  я─п╟п╠п╬я┌я▀ я│ я│п╣я┌я▐п╪п╦ п╬п©п╣я─п╟я├п╦п╬п╫п╫п╬п╧ я│п╦я│я┌п╣п╪я▀ Linux п╦ п╬п╠п╣я│п©п╣я┤п╦я┌я▄ я┐п╨п╟п╥п╟п╫п╦я▐ п©п╬ п©п╬п╦я│п╨я┐
-  п╢п╟п╩я▄п╫п╣п╧я┬п╣п╧ п╦п╫я└п╬я─п╪п╟я├п╦п╦ п╦ п©п╬п╢я─п╬п╠п╫п╬я│я┌п╣п╧ я─п╣п╟п╩п╦п╥п╟я├п╦п╦.</EM>
+<EM>  Цель этого документа состоит в том, чтобы дать краткий обзор возможностей
+  работы с сетями операционной системы Linux и обеспечить указания по поиску
+  дальнейшей информации и подробностей реализации.</EM>
 <HR>
 <P>
-<H2><A NAME="toc1">1.</A> <A HREF="Networking-Overview-HOWTO-1.html">п▓п╡п╣п╢п╣п╫п╦п╣. </A></H2>
+<H2><A NAME="toc1">1.</A> <A HREF="Networking-Overview-HOWTO-1.html">Введение. </A></H2>
 
 <P>
 <H2><A NAME="toc2">2.</A> <A HREF="Networking-Overview-HOWTO-2.html">Linux.</A></H2>
 
 <UL>
-<LI><A HREF="Networking-Overview-HOWTO-2.html#ss2.1">2.1 п╖я┌п╬ я┌п╟п╨п╬п╣ Linux?</A>
-<LI><A HREF="Networking-Overview-HOWTO-2.html#ss2.2">2.2 п╖п╣п╪ п╥п╟п╪п╣я┤п╟я┌п╣п╩п╣п╫ Linux?</A>
+<LI><A HREF="Networking-Overview-HOWTO-2.html#ss2.1">2.1 Что такое Linux?</A>
+<LI><A HREF="Networking-Overview-HOWTO-2.html#ss2.2">2.2 Чем замечателен Linux?</A>
 </UL>
 <P>
-<H2><A NAME="toc3">3.</A> <A HREF="Networking-Overview-HOWTO-3.html">п║п╣я┌п╣п╡я▀п╣ п©я─п╬я┌п╬п╨п╬п╩я▀.</A></H2>
+<H2><A NAME="toc3">3.</A> <A HREF="Networking-Overview-HOWTO-3.html">Сетевые протоколы.</A></H2>
 
 <UL>
 <LI><A HREF="Networking-Overview-HOWTO-3.html#ss3.1">3.1 TCP/IP</A>
-<LI><A HREF="Networking-Overview-HOWTO-3.html#ss3.2">3.2 TCP/IP п╡п╣я─я│п╦я▐ 6</A>
+<LI><A HREF="Networking-Overview-HOWTO-3.html#ss3.2">3.2 TCP/IP версия 6</A>
 <LI><A HREF="Networking-Overview-HOWTO-3.html#ss3.3">3.3 IPX/SPX</A>
-<LI><A HREF="Networking-Overview-HOWTO-3.html#ss3.4">3.4 п²п╟п╠п╬я─ п©я─п╬я┌п╬п╨п╬п╩п╬п╡ AppleTalk</A>
-<LI><A HREF="Networking-Overview-HOWTO-3.html#ss3.5">3.5 п⌠п╩п╬п╠п╟п╩я▄п╫я▀п╣ я│п╣я┌п╦: X. 25, Frame-Relay, п╦ я┌.п╢ ...</A>
+<LI><A HREF="Networking-Overview-HOWTO-3.html#ss3.4">3.4 Набор протоколов AppleTalk</A>
+<LI><A HREF="Networking-Overview-HOWTO-3.html#ss3.5">3.5 Глобальные сети: X. 25, Frame-Relay, и т.д ...</A>
 <LI><A HREF="Networking-Overview-HOWTO-3.html#ss3.6">3.6 ISDN</A>
 <LI><A HREF="Networking-Overview-HOWTO-3.html#ss3.7">3.7 PPP, SLIP, PLIP</A>
-<LI><A HREF="Networking-Overview-HOWTO-3.html#ss3.8">3.8 п⌡я▌п╠п╦я┌п╣п╩я▄я│п╨п╬п╣ п═п╟п╢п╦п╬ (HAM)</A>
+<LI><A HREF="Networking-Overview-HOWTO-3.html#ss3.8">3.8 Любительское Радио (HAM)</A>
 <LI><A HREF="Networking-Overview-HOWTO-3.html#ss3.9">3.9 ATM</A>
 </UL>
 <P>
-<H2><A NAME="toc4">4.</A> <A HREF="Networking-Overview-HOWTO-4.html">п║п╣я┌п╣п╡я▀п╣ п╟п©п©п╟я─п╟я┌п╫я▀п╣ я│я─п╣п╢я│я┌п╡п╟, п©п╬п╢п╢п╣я─п╤п╦п╡п╟п╣п╪я▀п╣ Linux</A></H2>
+<H2><A NAME="toc4">4.</A> <A HREF="Networking-Overview-HOWTO-4.html">Сетевые аппаратные средства, поддерживаемые Linux</A></H2>
 
 <P>
-<H2><A NAME="toc5">5.</A> <A HREF="Networking-Overview-HOWTO-5.html">п║п╬п╡п╪п╣я│я┌п╫п╬п╣ п╦я│п©п╬п╩я▄п╥п╬п╡п╟п╫п╦п╣ я└п╟п╧п╩п╬п╡ п╦ п©п╣я┤п╟я┌я▄</A></H2>
+<H2><A NAME="toc5">5.</A> <A HREF="Networking-Overview-HOWTO-5.html">Совместное использование файлов и печать</A></H2>
 
 <UL>
-<LI><A HREF="Networking-Overview-HOWTO-5.html#ss5.1">5.1 п÷п╩п╟я┌я└п╬я─п╪п╟ Apple</A>
-<LI><A HREF="Networking-Overview-HOWTO-5.html#ss5.2">5.2 п÷п╩п╟я┌я└п╬я─п╪п╟ Windows</A>
-<LI><A HREF="Networking-Overview-HOWTO-5.html#ss5.3">5.3 Novell п÷п╩п╟я┌я└п╬я─п╪п╟</A>
-<LI><A HREF="Networking-Overview-HOWTO-5.html#ss5.4">5.4 UNIX п÷п╩п╟я┌я└п╬я─п╪п╟</A>
+<LI><A HREF="Networking-Overview-HOWTO-5.html#ss5.1">5.1 Платформа Apple</A>
+<LI><A HREF="Networking-Overview-HOWTO-5.html#ss5.2">5.2 Платформа Windows</A>
+<LI><A HREF="Networking-Overview-HOWTO-5.html#ss5.3">5.3 Novell Платформа</A>
+<LI><A HREF="Networking-Overview-HOWTO-5.html#ss5.4">5.4 UNIX Платформа</A>
 </UL>
 <P>
 <H2><A NAME="toc6">6.</A> <A HREF="Networking-Overview-HOWTO-6.html">Internet/Intranet</A></H2>
 
 <UL>
-<LI><A HREF="Networking-Overview-HOWTO-6.html#ss6.1">6.1 п÷п╬я┤я┌п╟</A>
-<LI><A HREF="Networking-Overview-HOWTO-6.html#ss6.2">6.2 п▓п╣п╠ я│п╣я─п╡п╣я─п╟</A>
-<LI><A HREF="Networking-Overview-HOWTO-6.html#ss6.3">6.3 п▓п╣п╠ п╠я─п╟я┐п╥п╣я─я▀</A>
-<LI><A HREF="Networking-Overview-HOWTO-6.html#ss6.4">6.4 FTP я│п╣я─п╡п╣я─п╟ п╦ п╨п╩п╦п╣п╫я┌я▀</A>
-<LI><A HREF="Networking-Overview-HOWTO-6.html#ss6.5">6.5 п≤п╫я└п╬я─п╪п╟я├п╦п╬п╫п╫п╟я▐ я│п╩я┐п╤п╠п╟</A>
+<LI><A HREF="Networking-Overview-HOWTO-6.html#ss6.1">6.1 Почта</A>
+<LI><A HREF="Networking-Overview-HOWTO-6.html#ss6.2">6.2 Веб сервера</A>
+<LI><A HREF="Networking-Overview-HOWTO-6.html#ss6.3">6.3 Веб браузеры</A>
+<LI><A HREF="Networking-Overview-HOWTO-6.html#ss6.4">6.4 FTP сервера и клиенты</A>
+<LI><A HREF="Networking-Overview-HOWTO-6.html#ss6.5">6.5 Информационная служба</A>
 <LI><A HREF="Networking-Overview-HOWTO-6.html#ss6.6">6.6 DNS</A>
 <LI><A HREF="Networking-Overview-HOWTO-6.html#ss6.7">6.7 DHCP, bootp</A>
 <LI><A HREF="Networking-Overview-HOWTO-6.html#ss6.8">6.8 NIS</A>
-<LI><A HREF="Networking-Overview-HOWTO-6.html#ss6.9">6.9 п░я┐я┌п╣п╫я┌п╦я└п╦п╨п╟я├п╦я▐</A>
+<LI><A HREF="Networking-Overview-HOWTO-6.html#ss6.9">6.9 Аутентификация</A>
 </UL>
 <P>
-<H2><A NAME="toc7">7.</A> <A HREF="Networking-Overview-HOWTO-7.html">пёп╢п╟п╩п╣п╫п╫п╬п╣ п╡я▀п©п╬п╩п╫п╣п╫п╦п╣ п©я─п╦п╨п╩п╟п╢п╫я▀я┘ п©я─п╬пЁя─п╟п╪п╪</A></H2>
+<H2><A NAME="toc7">7.</A> <A HREF="Networking-Overview-HOWTO-7.html">Удаленное выполнение прикладных программ</A></H2>
 
 <UL>
 <LI><A HREF="Networking-Overview-HOWTO-7.html#ss7.1">7.1 Telnet</A>
-<LI><A HREF="Networking-Overview-HOWTO-7.html#ss7.2">7.2 п п╬п╪п╟п╫п╢я▀ я┐п╢п╟п╩п╣п╫п╫п╬пЁп╬ п╡я▀п©п╬п╩п╫п╣п╫п╦я▐</A>
+<LI><A HREF="Networking-Overview-HOWTO-7.html#ss7.2">7.2 Команды удаленного выполнения</A>
 <LI><A HREF="Networking-Overview-HOWTO-7.html#ss7.3">7.3 X Window System</A>
 </UL>
 <P>
-<H2><A NAME="toc8">8.</A> <A HREF="Networking-Overview-HOWTO-8.html">п║п╣я┌п╣п╡я▀п╣ я│п╬п╣п╢п╦п╫п╣п╫п╦я▐</A></H2>
+<H2><A NAME="toc8">8.</A> <A HREF="Networking-Overview-HOWTO-8.html">Сетевые соединения</A></H2>
 
 <UL>
-<LI><A HREF="Networking-Overview-HOWTO-8.html#ss8.1">8.1 п°п╟я─я┬я─я┐я┌п╦п╥п╟я┌п╬я─</A>
-<LI><A HREF="Networking-Overview-HOWTO-8.html#ss8.2">8.2 п°п╬я│я┌</A>
+<LI><A HREF="Networking-Overview-HOWTO-8.html#ss8.1">8.1 Маршрутизатор</A>
+<LI><A HREF="Networking-Overview-HOWTO-8.html#ss8.2">8.2 Мост</A>
 <LI><A HREF="Networking-Overview-HOWTO-8.html#ss8.3">8.3 IP-Masquerading</A>
 <LI><A HREF="Networking-Overview-HOWTO-8.html#ss8.4">8.4 Ip-accounting</A>
 <LI><A HREF="Networking-Overview-HOWTO-8.html#ss8.5">8.5 IP aliasing</A>
 <LI><A HREF="Networking-Overview-HOWTO-8.html#ss8.6">8.6 Traffic shaper</A>
 <LI><A HREF="Networking-Overview-HOWTO-8.html#ss8.7">8.7 Firewall</A>
 <LI><A HREF="Networking-Overview-HOWTO-8.html#ss8.8">8.8 Port Forwarding</A>
-<LI><A HREF="Networking-Overview-HOWTO-8.html#ss8.9">8.9 п▓я▀я─п╟п╡п╫п╦п╡п╟п╫п╦п╣ п╫п╟пЁя─я┐п╥п╨п╦</A>
+<LI><A HREF="Networking-Overview-HOWTO-8.html#ss8.9">8.9 Выравнивание нагрузки</A>
 <LI><A HREF="Networking-Overview-HOWTO-8.html#ss8.10">8.10 EQL</A>
-<LI><A HREF="Networking-Overview-HOWTO-8.html#ss8.11">8.11 п÷я─п╬п╨я│п╦-я│п╣я─п╡п╣я─</A>
-<LI><A HREF="Networking-Overview-HOWTO-8.html#ss8.12">8.12 п■п╬п╥п╡п╬п╫ п©п╬ я┌я─п╣п╠п╬п╡п╟п╫п╦я▌</A>
-<LI><A HREF="Networking-Overview-HOWTO-8.html#ss8.13">8.13 Tunnelling, п╪п╬п╠п╦п╩я▄п╫я▀п╧ IP п╦ п╡п╦я─я┌я┐п╟п╩я▄п╫я▀п╣ я┤п╟я│я┌п╫я▀п╣ я│п╣я┌п╦</A>
+<LI><A HREF="Networking-Overview-HOWTO-8.html#ss8.11">8.11 Прокси-сервер</A>
+<LI><A HREF="Networking-Overview-HOWTO-8.html#ss8.12">8.12 Дозвон по требованию</A>
+<LI><A HREF="Networking-Overview-HOWTO-8.html#ss8.13">8.13 Tunnelling, мобильный IP и виртуальные частные сети</A>
 </UL>
 <P>
-<H2><A NAME="toc9">9.</A> <A HREF="Networking-Overview-HOWTO-9.html">п║п╣я┌п╣п╡п╬п╣ пёп©я─п╟п╡п╩п╣п╫п╦п╣</A></H2>
+<H2><A NAME="toc9">9.</A> <A HREF="Networking-Overview-HOWTO-9.html">Сетевое Управление</A></H2>
 
 <UL>
-<LI><A HREF="Networking-Overview-HOWTO-9.html#ss9.1">9.1 п÷я─п╦п╨п╩п╟п╢п╫я▀п╣ п©я─п╬пЁя─п╟п╪п╪я▀ я│п╣я┌п╣п╡п╬пЁп╬ я┐п©я─п╟п╡п╩п╣п╫п╦я▐</A>
+<LI><A HREF="Networking-Overview-HOWTO-9.html#ss9.1">9.1 Прикладные программы сетевого управления</A>
 <LI><A HREF="Networking-Overview-HOWTO-9.html#ss9.2">9.2 SNMP</A>
 </UL>
 <P>
-<H2><A NAME="toc10">10.</A> <A HREF="Networking-Overview-HOWTO-10.html">п÷я─п╬п╦п╥п╡п╬п╢я│я┌п╡п╣п╫п╫я▀п╣ я│п╣я┌п╦ п╦ Linux</A></H2>
+<H2><A NAME="toc10">10.</A> <A HREF="Networking-Overview-HOWTO-10.html">Производственные сети и Linux</A></H2>
 
 <UL>
-<LI><A HREF="Networking-Overview-HOWTO-10.html#ss10.1">10.1 п▓я▀я│п╬п╨п╟я▐ п╫п╟п╢п╣п╤п╫п╬я│я┌я▄</A>
+<LI><A HREF="Networking-Overview-HOWTO-10.html#ss10.1">10.1 Высокая надежность</A>
 <LI><A HREF="Networking-Overview-HOWTO-10.html#ss10.2">10.2 RAID</A>
-<LI><A HREF="Networking-Overview-HOWTO-10.html#ss10.3">10.3 п≤п╥п╠я▀я┌п╬я┤п╫п╬я│я┌я▄ п╡ я│п╣я┌я▐я┘</A>
+<LI><A HREF="Networking-Overview-HOWTO-10.html#ss10.3">10.3 Избыточность в сетях</A>
 </UL>
 <P>
-<H2><A NAME="toc11">11.</A> <A HREF="Networking-Overview-HOWTO-11.html">п≤я│я┌п╬я┤п╫п╦п╨п╦ п≤п╫я└п╬я─п╪п╟я├п╦п╦</A></H2>
+<H2><A NAME="toc11">11.</A> <A HREF="Networking-Overview-HOWTO-11.html">Источники Информации</A></H2>
 
 <P>
-<H2><A NAME="toc12">12.</A> <A HREF="Networking-Overview-HOWTO-12.html">п÷п╬п╢я┌п╡п╣я─п╤п╢п╣п╫п╦я▐ п╦ п╬пЁп╬п╡п╬я─п╨п╦</A></H2>
+<H2><A NAME="toc12">12.</A> <A HREF="Networking-Overview-HOWTO-12.html">Подтверждения и оговорки</A></H2>
 
 <HR>
 <A HREF="Networking-Overview-HOWTO-1.html">Next</A>

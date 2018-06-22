@@ -2,7 +2,7 @@
 <HTML>
 <HEAD>
  <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
- <TITLE>Linux Hardware Compatibility HOWTO: п║я┌я─п╦п╪п╪п╣я─я▀ </TITLE>
+ <TITLE>Linux Hardware Compatibility HOWTO: Стриммеры </TITLE>
  <LINK HREF="Hardware-HOWTO-16.html" REL=next>
  <LINK HREF="Hardware-HOWTO-14.html" REL=previous>
  <LINK HREF="Hardware-HOWTO.html#toc15" REL=contents>
@@ -12,34 +12,34 @@
 <A HREF="Hardware-HOWTO-14.html">Previous</A>
 <A HREF="Hardware-HOWTO.html#toc15">Contents</A>
 <HR>
-<H2><A NAME="s15">15. п║я┌я─п╦п╪п╪п╣я─я▀ </A></H2>
+<H2><A NAME="s15">15. Стриммеры </A></H2>
 
-<H2><A NAME="ss15.1">15.1 п÷п╬п╢п╢п╣я─п╤п╦п╡п╟я▌я┌я│я▐</A>
+<H2><A NAME="ss15.1">15.1 Поддерживаются</A>
 </H2>
 
 <P>
 <UL>
-<LI>SCSI я┐я│я┌я─п╬п╧я│я┌п╡п╟ <BR>
-(я└я─п╟пЁп╪п╣п╫я┌ п╦п╥ SCSI HOWTO) "...п©п╬п╢п╢п╣я─п╤п╦п╡п╟я▌я┌я│я▐ п╢п╦я│п╨п╬п╡п╬п╢я▀ п╦я│п©п╬п╩я▄п╥я┐я▌я┴п╦п╣ п╨п╟п╨ я└п╦п╨я│п╦я─п╬п╡п╟п╫п╫я▀п╣ п╠п╩п╬п╨п╦ я┌п╟п╨ п╦ п╠п╩п╬п╨п╦ я│ п╦п╥п╪п╣п╫я▐я▌я┴п╣п╧я│я▐ п╢п╩п╦п╫п╬п╧, п╪п╣п╫я▄я┬п╣п╧ я┤п╣п╪ п╢п╩п╦п╫п╟ п╠я┐я└п╣я─п╟ я┐я│я┌я─п╬п╧я│я┌п╡п╟. п²п╟ п©я─п╟п╨я┌п╦п╨п╣ п©п╬я┤я┌п╦ п╡я│п╣ я┐я│я┌я─п╬п╧я│я┌п╡п╟ п╠я┐п╢я┐я┌ я─п╟п╠п╬я┌п╟я┌я▄." 
+<LI>SCSI устройства <BR>
+(фрагмент из SCSI HOWTO) "...поддерживаются дисководы использующие как фиксированные блоки так и блоки с изменяющейся длиной, меньшей чем длина буфера устройства. На практике почти все устройства будут работать." 
 <UL>
-<LI>Seagate Sidewinder 50 AIT (я│ ICP 6527 RAID-п╨п╬п╫я┌я─п╬п╩п╩п╣я─п╬п╪)</LI>
+<LI>Seagate Sidewinder 50 AIT (с ICP 6527 RAID-контроллером)</LI>
 </UL>
 </LI>
-<LI>QIC-02 я┐я│я┌я─п╬п╧я│я┌п╡п╟</LI>
-<LI>Iomega Ditto internal (ftape 3.04c п╦ п©п╬п╥п╢п╫п╣п╣)</LI>
+<LI>QIC-02 устройства</LI>
+<LI>Iomega Ditto internal (ftape 3.04c и позднее)</LI>
 </UL>
 <P>
-<H2><A NAME="ss15.2">15.2 п░п╩я▄я└п╟,п▒п╣я┌п╟ п╢я─п╟п╧п╡п╣я─п╟</A>
+<H2><A NAME="ss15.2">15.2 Альфа,Бета драйвера</A>
 </H2>
 
 <P>
 <UL>
-<LI>QIC-117, QIC-40/80, QIC-3010/3020 (QIC-WIDE) п╢п╦я│п╨п╬п╡п╬п╢я▀<BR>
-п▒п╬п╩я▄я┬п╦п╫я│я┌п╡п╬ я┐я│я┌я─п╬п╧я│я┌п╡ п╦я│п©п╬п╩я▄п╥я┐я▌я┴п╦я┘ floppy п╨п╬п╫я┌я─п╬п╩п╣я─ п╠я┐п╢я┐я┌ я─п╟п╠п╬я┌п╟я┌я▄.
-п═п╟п╥п╩п╦я┤п╫я▀п╣ "п©п╬я│п╡я▐я┴п╣п╫п╫я▀п╣" п╨п╬п╫я┌я─п╬п╩п╣я─я▀  (Colorado FC-10/FC-20, Mountain Mach-2, Iomega Tape Controller II) я┌п╟п╨п╤п╣ п©п╬п╢п╢п╣я─п╤п╦п╡п╟я▌я┌я│я▐<BR>
+<LI>QIC-117, QIC-40/80, QIC-3010/3020 (QIC-WIDE) дисководы<BR>
+Большинство устройств использующих floppy контролер будут работать.
+Различные "посвященные" контролеры  (Colorado FC-10/FC-20, Mountain Mach-2, Iomega Tape Controller II) также поддерживаются<BR>
 <A HREF="ftp://metalab.unc.edu/pub/Linux/kernel/tapes">ftp://metalab.unc.edu/pub/Linux/kernel/tapes</A></LI>
-<LI>ATAPI п╢п╦я│п╨п╬п╡п╬п╢я▀<BR>
-п■п╩я▐ п©п╬п╢п╢п╣я─п╤п╨п╦ я┌п╟п╨п╦я┘ я┐я│я┌я─п╬п╧я│я┌п╡ я│я┐я┴п╣я│я┌п╡я┐п╣я┌ п╟п╩я▄я└п╟ п╡п╣я─я│п╦я▐ п╢я─п╟п╧п╡п╣я─п╟ (ide-tape.c) п≤п╪ п©п╬п╢п╢п╣я─п╤п╦п╡п╟я▌я┌я│я▐ я│п╩п╣п╢я┐я▌я┴п╦п╣ я┐я│я┌я─п╬п╧я│я┌п╡п╟:
+<LI>ATAPI дисководы<BR>
+Для поддержки таких устройств существует альфа версия драйвера (ide-tape.c) Им поддерживаются следующие устройства:
 <UL>
 <LI>Seagate TapeStor 8000</LI>
 <LI>Conner CTMA 4000 IDE ATAPI Streaming tape drive</LI>
@@ -47,16 +47,16 @@
 </LI>
 </UL>
 <P>
-<H2><A NAME="ss15.3">15.3 п²п╣п©п╬п╢п╢п╣я─п╤п╦п╡п╟я▌я┌я▄я│я▐</A>
+<H2><A NAME="ss15.3">15.3 Неподдерживаються</A>
 </H2>
 
 <P>
 <UL>
-<LI>Emerald п╦ Tecmar QIC-02 п╨п╟я─я┌я▀</LI>
-<LI>пёя│я┌я─п╬п╧я│я┌п╡п╟ п╢п╩я▐ п©п╟я─я─п╟п╩п╣п╩я▄п╫п╬пЁп╬ п©п╬я─я┌п╟ (п╫п╟п©я─п╦п╪п╣я─: Colorado Trakker)</LI>
-<LI>п²п╣п╨п╬я┌п╬я─я▀п╣ п╡я▀я│п╬п╨п╬я│п╨п╬я─п╬я│я┌п╫я▀п╣ я│я┌я─п╦п╪п╪п╣я─я▀ (Colorado TC-15)</LI>
-<LI>Irwin AX250L/Accutrak 250 (п╫п╣ QIC-80)</LI>
-<LI>IBM Internal Tape Backup Unit (п╫п╣ QIC-80)</LI>
+<LI>Emerald и Tecmar QIC-02 карты</LI>
+<LI>Устройства для парралельного порта (например: Colorado Trakker)</LI>
+<LI>Некоторые высокоскоростные стриммеры (Colorado TC-15)</LI>
+<LI>Irwin AX250L/Accutrak 250 (не QIC-80)</LI>
+<LI>IBM Internal Tape Backup Unit (не QIC-80)</LI>
 <LI>COREtape Light</LI>
 </UL>
 <P>

@@ -1,52 +1,52 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>Installing Ncurses-5.2</title><meta name="GENERATOR" content="Microsoft FrontPage 4.0" /=""><link rel="HOME" title="Linux From Scratch" href="http://www.linuxfromscratch.org/view/4.0/index.html" /=""><link rel="UP" title="Installing basic system software" href="http://www.linuxfromscratch.org/view/4.0/chapter06/chapter06.html" /=""><link rel="PREVIOUS" title="Installing Gawk-3.1.1" href="http://www.linuxfromscratch.org/view/4.0/chapter06/gawk.html" /=""><link rel="NEXT" title="Installing Vim-6.1" href="http://www.linuxfromscratch.org/view/4.0/chapter06/vim.html" /=""></head><body class="sect1" bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#840084" alink="#006000"><div class="NAVHEADER"><table summary="Header navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><th colspan="3" align="Center">Linux From Scratch: Р±Р•РџРЇРҐРЄ 4.0</th></tr><tr><td width="10%" align="Left" valign="Bottom"><a href="gawk.html" accesskey="P">РјР®Р“Р®Р”</a></td><td width="80%" align="Center" valign="Bottom">С†РљР®Р‘Р® 6. СЃРЇР Р®РњРќР‘Р™Р® РќРЇРњРќР‘РњРЁРЈ Р™РќР›РћРќРњР•РњР РќР‘
-        РЇРҐРЇР Р•Р›РЁ</td><td width="10%" align="Right" valign="Bottom"><a href="vim.html" accesskey="N">Р±РћР•РџР•Р”</a></td></tr></tbody></table><hr align="Left" width="100%" /=""></div><div class="sect1"><h1 class="sect1"><a name="ch06-ncurses">СЃРЇР Р®РњРќР‘Р™Р® Ncurses-5.2</a></h1><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen">РѕРџРҐРђРљРҐР“РҐР Р•РљР­РњРќР• Р‘РџР•Р›РЄ Р™РќР›РћРҐРљРЄР–РҐРҐ:           1.88 SBU<br>РјР•РќРђРЈРќР”РҐР›РќР• Р”РҐРЇР™РќР‘РќР• РћРџРќРЇР РџР®РњРЇР Р‘Рќ:  22 MB</pre></td></tr></tbody></table><div class="sect2"><h2 class="sect2"><a name="AEN2867">С…РњРЇР Р®РљРљРЄР–РҐРЄ Ncurses</a></h2><p>РѕР•РџР•Р” РЎРЇР Р®РњРќР‘Р™РќР РћР®Р™Р•Р Р® РћРџРҐР›Р•РњРҐР Р• РћР®Р Р’.
-    СЃР”РќРЇР РќР‘Р•РџР­Р Р•РЇР­, Р’Р Рќ РћР®Р Р’ РҐ РћР®Р™Р•Р 
-    РџР®РЇРћР®Р™РќР‘Р®РњРЁ РћР•РџР•Р” РҐРњРЇР Р®РљРљРЄР–РҐР•Р.</p><p>РґРљРЄ РҐРњРЇР Р®РљРљРЄР–РҐРҐ Ncurses Р‘РЁРћРќРљРњРҐР Р•:</p><p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>patch -Np1 -i ../ncurses-5.2-2.patch &amp;&amp;<br>./configure --prefix=/usr --with-shared &amp;&amp;<br>make &amp;&amp;<br>make install &amp;&amp;<br>chmod 755 /usr/lib/*.5.2 &amp;&amp;<br>mv /usr/lib/libncurses.so.5* /lib &amp;&amp;<br>ln -s libncurses.a /usr/lib/libcurses.a &amp;&amp;<br>ln -sf ../../lib/libncurses.so.5 /usr/lib/libncurses.so &amp;&amp;<br>ln -sf ../../lib/libncurses.so.5 /usr/lib/libcurses.so</b></tt></pre></td></tr></tbody></table></p></div><div class="sect2"><h2 class="sect2"><a name="AEN2874">РѕРќРЄРЇРњР•РњРҐРЄ Р™РќР›Р®РњР”</a></h2><p><tt class="userinput"><b>patch -Np1 -i ../ncurses-5.2-patch:</b></tt>
-    С‰Р РќР  РћР®Р Р’ РЎРЇР РџР®РњРЄР•Р  РћРџРќРђРљР•Р›РЎ Р™РќР›РћРҐРљРЄР–РҐРҐ
-    РћР®Р™Р•Р Р® РЇ GCC-3.2, Р .Р™. Ncurses РҐРЇРћРќРљР­Р“РЎР•Р 
-    Р™РќРњРЇР РџРЎР™Р–РҐРҐ, РђРќРљР•Р• РњР•Р”Р•РРЇР Р‘РҐР Р•РљР­РњРЁР• Р‘
-    РњРќР‘РќР› РЇР Р®РњР”Р®РџР Р• СЏ++.</p><p><tt class="userinput"><b>--with-shared:</b></tt>  С‰Р Р® РќРћР–РҐРЄ РЎР™Р®Р“РЁР‘Р®Р•Р  Р™РќР›РћРҐРљРҐРџРќР‘Р®Р Р­
-    РђРҐРђРљРҐРќР Р•Р™РҐ ncurses РЇРќР‘Р›Р•РЇР РњРќР¦Рќ РћРќРљР­Р“РќР‘Р®РњРҐРЄ.</p><p><tt class="userinput"><b>chmod 755 *.5.2:</b></tt>  Р°РҐРђРљРҐРќР Р•Р™РҐ РЇРќР‘Р›Р•РЇР РњРќР¦Рќ РћРќРљР­Р“РќР‘Р®РњРҐРЄ
-    Р”РќРљР¤РњРЁ РђРЁР Р­ РҐРЇРћРќРљРњРЄР•Р›РЁР›РҐ. РЅР”РњР®Р™Рќ
-    РћРџРќР–Р•Р”РЎРџР® РҐРњРЇР Р®РљРљРЄР–РҐРҐ Ncurses РњР•Р‘Р•РџРњРќ
-    РЎРЇР Р®РњР®Р‘РљРҐР‘Р®Р•Р  РћРџР®Р‘Р®, РҐ РћРџРҐРЈРќР”РҐР РЇРЄ
-    РҐР“Р›Р•РњРЄР Р­ РҐРЈ Р‘РџРЎР’РњРЎР§.</p><p><tt class="userinput"><b>ln -sf libncurses.a libcurses.a:</b></tt>  РјР•Р™РќР РќРџРЁР• РћРџРќР¦РџР®Р›Р›РЁ Р”РљРЄ Р™РќР›РћРќРњРќР‘Р™РҐ
-    РҐРЇРћРќРљР­Р“РЎР§Р  -lcurses Р‘Р›Р•РЇР Рќ -lncurses. СЏРќР“Р”Р®РњРҐР•
-    Р©Р РќР РЇРҐР›Р‘РќРљРҐР’Р•РЇР™РќР РЇРЇРЁРљР™РҐ РЎРЇР РџР®РњРЄР•Р 
-    РћРџРќРђРљР•Р›РЎ.</p></div><div class="sect2">
-<div class="sect2"><h2 class="sect2"><a name="AEN7802">СЏРќР”Р•РџР¤РҐР›РќР• Ncurses</a></h2><p>РѕРќРЇРљР•Р”РњРЄРЄ РћРџРќР‘Р•РџР™Р®: Р‘Р•РџРЇРҐРЄ 5.2.</p><div class="sect3"><h3 class="sect3"><a name="AEN7805">РѕРџРќР¦РџР®Р›Р›РЁ</a></h3><p>captoinfo (РЇРЇРЁРљР™Р® РњР® tic), clear, infocmp, infotocap (РЇРЇРЁРљР™Р® РњР®
-tic), reset (РЇРЇРЁРљР™Р® РњР® tset), tack, tic, toe, tput РҐ tset.</p></div><div class="sect3"><h3 class="sect3"><a name="AEN7808">РЅРћРҐРЇР®РњРҐРЄ</a></h3><div class="sect4"><h4 class="sect4"><a name="AEN7810">captoinfo</a></h4><p>captoinfo Р™РќРњР‘Р•РџР РҐРџРЎР•Р  РќРћРҐРЇР®РњРҐРЄ termcap Р‘ РќРћРҐРЇР®РњРҐРЄ terminfo.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7813">clear</a></h4><p>clear РќР’РҐР«Р®Р•Р  Р©Р™РџР®Рњ, Р•РЇРљРҐ Р©Р Рќ Р‘РќР“Р›РќР¤РњРќ. СЂРҐРћ Р Р•РџР›РҐРњР®РљР® РҐР«Р•Р РЇРЄ Р‘
-РћР•РџР•Р›Р•РњРњРЁРЈ РќР™РџРЎР¤Р•РњРҐРЄ РҐ РђР®Р“Р• terminfo, РћРџРќР–Р•Р”РЎРџР® РќР’РҐРЇР Р™РҐ Р©Р™РџР®РњР® Р“Р®Р‘РҐРЇРҐР 
-РќР  РњР®РР”Р•РњРњРќР¦Рќ Р РҐРћР®.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7816">infocmp</a></h4><p>infocmp РҐРЇРћРќРљР­Р“РЎР•Р РЇРЄ Р”РљРЄ РЇРџР®Р‘РњР•РњРҐРЄ РђРҐРњР®РџРњРќР Р“Р®РћРҐРЇРҐ terminfo РЇ
-Р”РџРЎР¦РҐР›РҐ Р“Р®РћРҐРЇРЄР›РҐ, РћР•РџР•Р“Р®РћРҐРЇР®Р Р­ РќРћРҐРЇР®РњРҐР• terminfo, РҐРЇРћРќРљР­Р“РќР‘Р®Р Р­ РћРќРљР•
-terminfo use=, РҐРљРҐ Р‘РЁР‘Р•РЇР РҐ РќРћРҐРЇР®РњРҐР• terminfo РҐР“ РђРҐРњР®РџРњРќР¦Рќ РўР®РРљР® (term) Р‘
-РџР®Р“РљРҐР’РњРЁРЈ РўРќРџР›Р®Р Р®РЈ (РћРџРќР РҐР‘РќРћРќРљРќР¤РњРќРЇР Р­ Р РќР›РЎ. Р’Р Рќ Р”Р•РљР®Р•Р  tic).</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7819">infotocap</a></h4><p>infotocap Р™РќРњР‘Р•РџР РҐРџРЎР•Р  РќРћРҐРЇР®РњРҐРЄ terminfo Р‘ РќРћРҐРЇР®РњРҐРЄ termcap.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7822">reset</a></h4><p>reset РЎРЇР Р®РњР®Р‘РљРҐР‘Р®Р•Р  РџР•Р¤РҐР›РЁ cooked РҐ echo, РќР Р™РљР§Р’Р®Р•Р  РџР•Р¤РҐР›РЁ cbreak РҐ
-raw, Р‘Р™РљР§Р’Р®Р•Р  Р РџР®РњРЇРљРЄР–РҐР§ РЇРҐР›Р‘РќРљРќР‘ РњРќР‘РќР РЇР РџРќР™РҐ РҐ РЇРђРџР®РЇРЁР‘Р®Р•Р  Р‘РЇР•
-РњР•РЎРЇР Р®РњРќР‘РљР•РњРњРЁР• РЇРћР•Р–РҐР®РљР­РњРЁР• РЇРҐР›Р‘РќРљРЁ РњР® Р“РњР®Р’Р•РњРҐРЄ РћРќ РЎР›РќРљР’Р®РњРҐР§ РћР•РџР•Р”
-РҐРњРҐР–РҐР®РљРҐР“Р®Р–РҐР•Р Р Р•РџР›РҐРњР®РљР® Р‘РџРќР”Р• tset.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7825">tack</a></h4><p>tack - РћРџРќР‘Р•РџРЄР•Р  Р”Р•РРЇР Р‘РҐРЄ terminfo.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7828">tic</a></h4><p>tic - Р™РќР›РћРҐРљРЄР РќРџ РќРћРҐРЇР®РњРҐР Р“Р®РћРҐРЇР•Р terminfo. РѕРџРќР¦РџР®Р›Р›Р® Р РџР®РњРЇРљРҐРџРЎР•Р 
-РўР®РРљ terminfo РҐР“ РҐРЇРЈРќР”РњРќР¦Рќ Р‘ РђРҐРњР®РџРњРЁР РўРќРџР›Р®Р  Р”РљРЄ РҐРЇРћРќРљР­Р“РќР‘Р®РҐРЄ
-РђРҐРђРљРҐРќР Р•Р™РќР ncurses. С‚Р®РРљРЁ terminfo РЇРќР”Р•РџР¤Р®Р  РҐРњРўРќРџР›Р®Р–РҐР§ Рќ Р‘РќР“Р›РќР¤РњРќРЇР РЄРЈ
-Р Р•РџР›РҐРњР®РљР®.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7831">toe</a></h4><p>toe РћР•РџР•Р’РҐРЇРљРЄР•Р  Р‘РЇР• Р”РќРЇР РЎРћРњРЁР• Р РҐРћРЁ Р Р•РџР›РҐРњР®РљРќР‘ РћРќ РќРЇРњРќР‘РњРќР›РЎ РҐР›Р•РњРҐ
-Р‘Р›Р•РЇР Р• РЇ РќРћРҐРЇР®РњРҐРЄР›РҐ.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7834">tput</a></h4><p>tput РҐРЇРћРќРљР­Р“РЎР•Р  РђР®Р“РЎ terminfo, Р’Р РќРђРЁ РЇР”Р•РљР®Р Р­ РҐРњРўРќРџР®Р›Р®Р–РҐР§ Рќ Р Р•РџР›РҐРњР®РљР•
-Р”РќРЇР РЎРћРњРќР Р™РќР›Р®РњР”РњРќР›РЎ РҐРњР Р•РџРћРџР•Р Р®Р РќРџРЎ, РҐРњРҐР–РҐР®РљРҐР“РҐРџРќР‘Р®Р Р­ РҐРљРҐ РЇРђРџРќРЇРҐР Р­
-Р Р•РџР›РҐРњР®Рљ, РљРҐРђРќ Р‘Р•РџРњРЎР Р­ РћРќРљРњРќР• РҐР›РЄ Р“Р®РћРџРќР¬Р•РњРњРќР¦Рќ Р РҐРћР® Р Р•РџР›РҐРњР®РљР®.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7837">tset</a></h4><p>tset РҐРњРҐР–РҐР®РљРҐР“РҐРџРЎР•Р  Р Р•РџР›РҐРњР®РљРЁ, Р’Р Рќ РЎР¤Р• РњР• РҐРЇРћРќРљР­Р“РЎР•Р РЇРЄ Р¬РҐРџРќР™Рќ.
-РјР•РќРђРЈРќР”РҐР›Рќ Р”РљРЄ РЇРќР‘Р›Р•РЇР РҐР›РќРЇР РҐ РЇ 4.4BSD.</p></div></div><div class="sect3"><h3 class="sect3"><a name="AEN7840">Р°РҐРђРљРҐРќР Р•Р™РҐ</a></h3><p>libcurses.[a,so] (РЇРЇРЁРљР™Р® РњР® libncurses.[a,so]), libform.[a,so],
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>Installing Ncurses-5.2</title><meta name="GENERATOR" content="Microsoft FrontPage 4.0" /=""><link rel="HOME" title="Linux From Scratch" href="http://www.linuxfromscratch.org/view/4.0/index.html" /=""><link rel="UP" title="Installing basic system software" href="http://www.linuxfromscratch.org/view/4.0/chapter06/chapter06.html" /=""><link rel="PREVIOUS" title="Installing Gawk-3.1.1" href="http://www.linuxfromscratch.org/view/4.0/chapter06/gawk.html" /=""><link rel="NEXT" title="Installing Vim-6.1" href="http://www.linuxfromscratch.org/view/4.0/chapter06/vim.html" /=""></head><body class="sect1" bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#840084" alink="#006000"><div class="NAVHEADER"><table summary="Header navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><th colspan="3" align="Center">Linux From Scratch: Версия 4.0</th></tr><tr><td width="10%" align="Left" valign="Bottom"><a href="gawk.html" accesskey="P">Назад</a></td><td width="80%" align="Center" valign="Bottom">Глава 6. Установка основных компонентов
+        системы</td><td width="10%" align="Right" valign="Bottom"><a href="vim.html" accesskey="N">Вперед</a></td></tr></tbody></table><hr align="Left" width="100%" /=""></div><div class="sect1"><h1 class="sect1"><a name="ch06-ncurses">Установка Ncurses-5.2</a></h1><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen">Приблизительное время компиляции:           1.88 SBU<br>Необходимое дисковое пространство:  22 MB</pre></td></tr></tbody></table><div class="sect2"><h2 class="sect2"><a name="AEN2867">Инсталляция Ncurses</a></h2><p>Перед установкой пакета примените патч.
+    Удостоверьтесь, что патч и пакет
+    распакованы перед инсталляцией.</p><p>Для инсталляции Ncurses выполните:</p><p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>patch -Np1 -i ../ncurses-5.2-2.patch &amp;&amp;<br>./configure --prefix=/usr --with-shared &amp;&amp;<br>make &amp;&amp;<br>make install &amp;&amp;<br>chmod 755 /usr/lib/*.5.2 &amp;&amp;<br>mv /usr/lib/libncurses.so.5* /lib &amp;&amp;<br>ln -s libncurses.a /usr/lib/libcurses.a &amp;&amp;<br>ln -sf ../../lib/libncurses.so.5 /usr/lib/libncurses.so &amp;&amp;<br>ln -sf ../../lib/libncurses.so.5 /usr/lib/libcurses.so</b></tt></pre></td></tr></tbody></table></p></div><div class="sect2"><h2 class="sect2"><a name="AEN2874">Пояснения команд</a></h2><p><tt class="userinput"><b>patch -Np1 -i ../ncurses-5.2-patch:</b></tt>
+    Этот патч устраняет проблему компиляции
+    пакета с GCC-3.2, т.к. Ncurses использует
+    конструкции, более недействительные в
+    новом стандарте С++.</p><p><tt class="userinput"><b>--with-shared:</b></tt>  Эта опция указывает компилировать
+    библиотеки ncurses совместного пользования.</p><p><tt class="userinput"><b>chmod 755 *.5.2:</b></tt>  Библиотеки совместного пользования
+    должны быть исполняемыми. Однако
+    процедура инсталляции Ncurses неверно
+    устанавливает права, и приходится
+    изменять их вручную.</p><p><tt class="userinput"><b>ln -sf libncurses.a libcurses.a:</b></tt>  Некоторые программы для компоновки
+    используют -lcurses вместо -lncurses. Создание
+    этой символической ссылки устраняет
+    проблему.</p></div><div class="sect2">
+<div class="sect2"><h2 class="sect2"><a name="AEN7802">Содержимое Ncurses</a></h2><p>Последняя проверка: версия 5.2.</p><div class="sect3"><h3 class="sect3"><a name="AEN7805">Программы</a></h3><p>captoinfo (ссылка на tic), clear, infocmp, infotocap (ссылка на
+tic), reset (ссылка на tset), tack, tic, toe, tput и tset.</p></div><div class="sect3"><h3 class="sect3"><a name="AEN7808">Описания</a></h3><div class="sect4"><h4 class="sect4"><a name="AEN7810">captoinfo</a></h4><p>captoinfo конвертирует описания termcap в описания terminfo.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7813">clear</a></h4><p>clear очищает экран, если это возможно. Тип терминала ищется в
+переменных окружения и базе terminfo, процедура очистки экрана зависит
+от найденного типа.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7816">infocmp</a></h4><p>infocmp используется для сравнения бинарной записи terminfo с
+другими записями, перезаписать описание terminfo, использовать поле
+terminfo use=, или вывести описание terminfo из бинарного файла (term) в
+различных форматах (противоположность тому. что делает tic).</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7819">infotocap</a></h4><p>infotocap конвертирует описания terminfo в описания termcap.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7822">reset</a></h4><p>reset устанавливает режимы cooked и echo, отключает режимы cbreak и
+raw, включает трансляцию символов новой строки и сбрасывает все
+неустановленные специальные символы на значения по умолчанию перед
+инициализацией терминала вроде tset.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7825">tack</a></h4><p>tack - проверяет действия terminfo.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7828">tic</a></h4><p>tic - компилятор описаний записей terminfo. Программа транслирует
+файл terminfo из исходного в бинарный формат для использоваия
+библиотекой ncurses. Файлы terminfo содержат информацию о возможностях
+терминала.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7831">toe</a></h4><p>toe перечисляет все доступные типы терминалов по основному имени
+вместе с описаниями.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7834">tput</a></h4><p>tput использует базу terminfo, чтобы сделать инфорамацию о терминале
+доступной командному интерпретатору, инициализировать или сбросить
+терминал, либо вернуть полное имя запрошенного типа терминала.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7837">tset</a></h4><p>tset инициализирует терминалы, что уже не используется широко.
+Необходимо для совместимости с 4.4BSD.</p></div></div><div class="sect3"><h3 class="sect3"><a name="AEN7840">Библиотеки</a></h3><p>libcurses.[a,so] (ссылка на libncurses.[a,so]), libform.[a,so],
 libform_g.a, libmenu.[a,so], libmenu_g.a, libncurses++.a,
-libncurses.[a,so], libncurses_g.a, libpanel.[a,so] РҐ libpanel_g.a</p><div class="sect4"><h4 class="sect4"><a name="AEN7843">libcurses, libncurses++,
-libncurses, libncurses_g</a></h4><p>С‰Р Рќ - РќРЇРњРќР‘РњРЁР• РђРҐРђРљРҐРќР Р•Р™РҐ РћР®Р™Р•Р Р®, РҐРЇРћРќРљР­Р“Р§Р РЇРЄ Р”РљРЄ РќР РќРђРџР®Р¤Р•РњРҐРЄ Р Р•Р™РЇР Р®
-РњР® Р©Р™РџР®РњР• (Р“Р®Р’Р®РЇР РЎР§ РњР•РЇР Р®РњР”Р®РџР РњРЁР› РЇРћРќРЇРќРђРќР›). РѕРџРҐР›Р•Рџ РҐРЇРћРќРљР­Р“РќР‘Р®РњРҐРЄ
-ncurses - РћРџРќР–Р•Р”РЎРџР® <span class="QUOTE">"make menuconfig"</span> РЇРђРќРџР™РҐ
-РЄР”РџР®.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7847">libform, libform_g</a></h4><p>libform РҐРЇРћРќРљР­Р“РЎР•Р РЇРЄ Р”РљРЄ РџР•Р®РљРҐР“Р®Р–РҐРҐ РўРќРџР› Р‘ ncurses.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7850">libmenu, libmenu_g</a></h4><p>libmenu РҐРЇРћРќРљР­Р“РЎР•Р РЇРЄ Р”РљРЄ РџР•Р®РљРҐР“Р®Р–РҐРҐ Р›Р•РњР§ Р‘ ncurses.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7853">libpanel, libpanel_g</a></h4><p>libpanel РҐРЇРћРќРљР­Р“РЎР•Р РЇРЄ Р”РљРЄ РџР•Р®РљРҐР“Р®Р–РҐРҐ РћР®РњР•РљР•Р Р‘ ncurses.</p></div></div></div>
-<div class="sect2"><h2 class="sect2"><a name="AEN7856">РіР®Р‘РҐРЇРҐР›РќРЇР РҐ Ncurses</a></h2><p>РѕРќРЇРљР•Р”РњРЄРЄ РћРџРќР‘Р•РџР™Р®: Р‘Р•РџРЇРҐРЄ 5.2.</p><p class="literallayout">Bash:в•ђsh<br>
-Binutils:в•ђar,в•ђas,в•ђld,в•ђranlib<br>
-Diffutils:в•ђcmp<br>
-Fileutils:в•ђchmod,в•ђcp,в•ђinstall,в•ђln,в•ђmkdir,в•ђmv,в•ђrm<br>
-Gcc:в•ђc++,в•ђcc1,в•ђcc1plus,в•ђcollect2,в•ђcpp0,в•ђgcc<br>
-Glibc:в•ђldconfig<br>
-Grep:в•ђegrep,в•ђfgrep,в•ђgrep<br>
-Make:в•ђmake<br>
-Gawk:в•ђgawk<br>
-Sed:в•ђsed<br>
-Sh-utils:в•ђbasename,в•ђdate,в•ђecho,в•ђexpr,в•ђhostname,в•ђuname<br>
-Textutils:в•ђcat,в•ђsort,в•ђtr,в•ђwc</p></div>
-<h2 class="sect2"></h2></div></div><div class="NAVFOOTER"><hr align="Left" width="100%" /=""><table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="33%" align="Left" valign="Top"><a href="gawk.html" accesskey="P">РјР®Р“Р®Р”</a></td><td width="34%" align="Center" valign="Top"><a href="../index.html" accesskey="H">РґРќР›РќР</a></td><td width="33%" align="Right" valign="Top"><a href="vim.html" accesskey="N">Р±РћР•РџР•Р”</a></td></tr><tr><td width="33%" align="Left" valign="Top">СЃРЇР Р®РњРќР‘Р™Р® Gawk-3.1.1</td><td width="34%" align="Center" valign="Top"><a href="chapter06.html" accesskey="U">РјР®Р‘Р•РџРЈ</a></td><td width="33%" align="Right" valign="Top">СЃРЇР Р®РњРќР‘Р™Р® Vim-6.1</td></tr></tbody></table></div></body></html>
+libncurses.[a,so], libncurses_g.a, libpanel.[a,so] и libpanel_g.a</p><div class="sect4"><h4 class="sect4"><a name="AEN7843">libcurses, libncurses++,
+libncurses, libncurses_g</a></h4><p>Это - основные библиотеки пакета, использются для отображения текста
+на экране (зачастую нестандартным способом). Пример использования
+ncurses - процедура <span class="QUOTE">"make menuconfig"</span> сборки
+ядра.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7847">libform, libform_g</a></h4><p>libform используется для реализации форм в ncurses.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7850">libmenu, libmenu_g</a></h4><p>libmenu используется для реализации меню в ncurses.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7853">libpanel, libpanel_g</a></h4><p>libpanel используется для реализации панелей в ncurses.</p></div></div></div>
+<div class="sect2"><h2 class="sect2"><a name="AEN7856">Зависимости Ncurses</a></h2><p>Последняя проверка: версия 5.2.</p><p class="literallayout">Bash: sh<br>
+Binutils: ar, as, ld, ranlib<br>
+Diffutils: cmp<br>
+Fileutils: chmod, cp, install, ln, mkdir, mv, rm<br>
+Gcc: c++, cc1, cc1plus, collect2, cpp0, gcc<br>
+Glibc: ldconfig<br>
+Grep: egrep, fgrep, grep<br>
+Make: make<br>
+Gawk: gawk<br>
+Sed: sed<br>
+Sh-utils: basename, date, echo, expr, hostname, uname<br>
+Textutils: cat, sort, tr, wc</p></div>
+<h2 class="sect2"></h2></div></div><div class="NAVFOOTER"><hr align="Left" width="100%" /=""><table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="33%" align="Left" valign="Top"><a href="gawk.html" accesskey="P">Назад</a></td><td width="34%" align="Center" valign="Top"><a href="../index.html" accesskey="H">Домой</a></td><td width="33%" align="Right" valign="Top"><a href="vim.html" accesskey="N">Вперед</a></td></tr><tr><td width="33%" align="Left" valign="Top">Установка Gawk-3.1.1</td><td width="34%" align="Center" valign="Top"><a href="chapter06.html" accesskey="U">Наверх</a></td><td width="33%" align="Right" valign="Top">Установка Vim-6.1</td></tr></tbody></table></div></body></html>

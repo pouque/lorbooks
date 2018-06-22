@@ -1,39 +1,39 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>Installing Man-1.5k</title><meta name="GENERATOR" content="Microsoft FrontPage 4.0" /=""><link rel="HOME" title="Linux From Scratch" href="http://www.linuxfromscratch.org/view/4.0/index.html" /=""><link rel="UP" title="Installing basic system software" href="http://www.linuxfromscratch.org/view/4.0/chapter06/chapter06.html" /=""><link rel="PREVIOUS" title="Installing Gzip-1.2.4a" href="http://www.linuxfromscratch.org/view/4.0/chapter06/gzip.html" /=""><link rel="NEXT" title="Installing Lilo-22.2" href="http://www.linuxfromscratch.org/view/4.0/chapter06/lilo.html" /=""></head><body class="sect1" bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#840084" alink="#006000"><div class="NAVHEADER"><table summary="Header navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><th colspan="3" align="Center">Linux From Scratch: Р±Р•РџРЇРҐРЄ 4.0</th></tr><tr><td width="10%" align="Left" valign="Bottom"><a href="gzip.html" accesskey="P">РјР®Р“Р®Р”</a></td><td width="80%" align="Center" valign="Bottom">С†РљР®Р‘Р® 6. СЃРЇР Р®РњРќР‘Р™Р® РќРЇРњРќР‘РњРЁРЈ Р™РќР›РћРќРњР•РњР РќР‘
-        РЇРҐРЇР Р•Р›РЁ</td><td width="10%" align="Right" valign="Bottom"><a href="lilo.html" accesskey="N">Р±РћР•РџР•Р”</a></td></tr></tbody></table><hr align="Left" width="100%" /=""></div><div class="sect1"><h1 class="sect1"><a name="ch06-man">СЃРЇР Р®РњРќР‘Р™Р® Man-1.5k</a></h1><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen">РѕРџРҐРђРљРҐР“РҐР Р•РљР­РњРќР• Р‘РџР•Р›РЄ Р™РќР›РћРҐРљРЄР–РҐРҐ:           0.05 SBU<br>РјР•РќРђРЈРќР”РҐР›РќР• Р”РҐРЇР™РќР‘РќР• РћРџРќРЇР РџР®РњРЇР Р‘Рќ:  2 MB</pre></td></tr></tbody></table><div class="sect2"><h2 class="sect2"><a name="AEN4774">С…РњРЇР Р®РљРљРЄР–РҐРЄ Man</a></h2><p>РґРљРЄ РЎРЇР Р®РњРќР‘Р™РҐ man Р‘РЁРћРќРљРњРҐР Р•:</p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>patch -Np1 -i ../man-1.5k.patch &amp;&amp;<br>PATH=$PATH:/usr/bin:/bin \<br>в•ђв•ђв•ђв•ђ./configure -default -confdir=/etc &amp;&amp;<br>make &amp;&amp;<br>make install</b></tt></pre></td></tr></tbody></table><p>РѕРџРҐР›Р•Р’Р®РњРҐР•: РµРЇРљРҐ Р‘РЁ РЈРќР РҐР Р• РќР Р™РљР§Р’РҐР Р­
-    РћРќРЇРљР•Р”РќР‘Р®Р Р•РљР­РњРќРЇР Р­ Р‘РЁРЈРќР”Р® SGR,
-    РќР РџР•Р”Р®Р™Р РҐРџРЎРР Р• РўР®РРљ man.conf РҐ Р”РќРђР®Р‘Р­Р Р• Р™
-    Р™РќР›Р®РњР”Р• nroff Р®РџР¦РЎР›Р•РњР  <tt class="userinput"><b>-c</b></tt>.</p><p>РґРљРЄ РћРќРљРЎР’Р•РњРҐРЄ РҐРњРўРќРџР›Р®Р–РҐРҐ РћРќ
-    РўРќРџР›Р®Р РҐРџРќР‘Р®РњРҐР§ РҐ РЇР¤Р®Р РҐР§ РЇР РџР®РњРҐР–
-    РџРЎР™РќР‘РќР”РЇР Р‘Р® (man pages), РЇР›.в•ђ <a href="http://hints.linuxfromscratch.org/hints/man.txt" target="_top">http://hints.linuxfromscratch.org/hints/man.txt</a>.</p></div><div class="sect2"><h2 class="sect2"><a name="AEN4784">РѕРќРЄРЇРњР•РњРҐРЄ Р™РќР›Р®РњР”</a></h2><p><tt class="userinput"><b>PATH=$PATH:/usr/bin:/bin ./configure -default</b></tt>: Р± РўР®РРљРЁ man РћРџРќРћРҐРЇРЁР‘Р®Р§Р РЇРЄ РћРЎР РҐ Р™ РњР•Р™РќР РќРџРЁР›
-    РћРџРќР¦РџР®Р›Р®Р›. Р№ РЇРќР¤Р®РљР•РњРҐР§, РЇР™РџРҐРћР 
-configure Р‘РЁРђРҐРџР®Р•Р  РњР• РћР•РџР‘РќР• (Р¦Р”Р• РњР®РЈРќР”РҐР РЇРЄ
-    РћРџРќР¦РџР®Р›Р›Р®), Р® РћРќРЇРљР•Р”РњР•Р• Р›Р•РЇР РќРњР®РЈРќР¤Р”Р•РњРҐР•
-    РћРџРќР¦РџР®Р›Р›РЁ Р‘ PATH. СЏ РћРќР›РќР«Р­Р§ Р”РќРђР®Р‘РљР•РњРҐРЄ /usr/bin:/bin
-    Р™ PATH Р”РљРЄ Р™РќР›Р®РњР”РЁ ./configure, Р‘Р•РџРќРЄР РњРќРЇР Р­
-    РҐРЇРћРќРљР­Р“РќР‘Р®РњРҐРЄ Р™РќР›Р®РњР”РќР man РЇР Р®Р РҐР’Р•РЇР™РҐРЈ
-    Р‘Р•РџРЇРҐР РћРџРќР¦РџР®Р›Р› РђРЎР”Р•Р  РЎРЇР РџР®РњР•РњР®.</p><p><tt class="userinput"><b>patch -Np1 -i ../man-1.5k.patch:</b></tt>
-    РґР®РњРњРЁР РћР®Р Р’ РЎРђРҐРџР®Р•Р  РќР”РҐРњ РҐР“ РўР®РРљРќР‘ Р‘ <tt class="filename">man.conf</tt>в•ђ (MANPATH /usr/man), Р .Р™. РќРњ РЇРќР“Р”Р®Р•Р 
-    РҐР“РђРЁР РќР’РњРЁР•в•ђ РџР•Р“РЎРљР­Р Р®Р РЁ РћРџРҐ
-    РҐРЇРћРќРљР­Р“РќР‘Р®РњРҐРҐ РћРџРќР¦РџР®Р›Р› Р РҐРћР® <tt class="userinput"><b>whatis</b></tt>. РґРљРЄ Р™РќРџРџР•Р™Р РњРќР¦Рќ РќР РќРђРџР®Р¤Р•РњРҐРЄ РЇР РџР®РњРҐР–
-    РџРЎР™РќР‘РќР”РЇР Р‘Р®, РћР®Р Р’ Р Р®Р™Р¤Р• Р”РќРђР®Р‘РљРЄР•Р  Р™
-    РћР•РџР•Р›Р•РњРњРќР <em>PAGER</em>  РќРћР–РҐР§ <i>-R</i>.</p></div><div class="sect2">
-<div class="sect2"><h2 class="sect2"><a name="AEN7689">СЏРќР”Р•РџР¤РҐР›РќР• Man</a></h2><p>РѕРќРЇРљР•Р”РњРЄРЄ РћРџРќР‘Р•РџР™Р®: Р‘Р•РџРЇРҐРЄ 1.5k.</p><div class="sect3"><h3 class="sect3"><a name="AEN7692">РѕРџРќР¦РџР®Р›Р›РЁ</a></h3><p>apropos, makewhatis, man, man2dvi, man2html РҐ whatis</p></div><div class="sect3"><h3 class="sect3"><a name="AEN7695">РЅРћРҐРЇР®РњРҐРЄ</a></h3><div class="sect4"><h4 class="sect4"><a name="AEN7697">apropos</a></h4><p>apropos РҐР«Р•Р  Р™РљР§Р’Р•Р‘РЁР• РЇРљРќР‘Р® Р‘ РђР®Р“Р®РЈ Р”Р®РњРњРЁРЈ, РЇРќР”Р•РџР¤Р®Р«РҐРЈ Р™РџР®Р РњРќР•
-РќРћРҐРЇР®РњРҐР• РЇРҐРЇР Р•Р›РњРЁРЈ Р™РќР›Р®РњР”, РҐ РќР РќРђРџР®Р¤Р®Р•Р  РџР•Р“РЎРљР­Р Р®Р  РњР® РЇР Р®РњР”Р®РџР РњРЁР Р‘РЁР‘РќР”.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7700">makewhatis</a></h4><p>makewhatis Р’РҐР Р®Р•Р  РЇР РџР®РњРҐР–РЁ РџРЎР™РќР‘РќР”РЇР Р‘Р®, РњР®РЈРќР”РЄР«РҐР•РЇРЄ Р‘ Р“Р®Р”Р®РњРњРЁРЈ
-Р’Р®РЇР РЄРЈ manpath, РҐРљРҐ РћРџР•РўРќРџР›Р®Р РҐРџРќР‘Р®РњРњРЁР• РЇР РџР®РњРҐР–РЁ, РњР®РЈРќР”РЄР«РҐР•РЇРЄ Р‘
-Р“Р®Р”Р®РњРњРЁРЈ Р’Р®РЇР РЄРЈв•ђ catpath. РґРљРЄ Р™Р®Р¤Р”РќР РЇР РџР®РњРҐР–РЁ Р”Р•РљР®Р•Р РЇРЄ Р“Р®РћРҐРЇР­ Р‘ РђР®Р“Р•
-whatis. Р№Р®Р¤Р”Р®РЄ Р“Р®РћРҐРЇР­ РЇРќРЇР РќРҐР  РҐР“ РҐР›Р•РњРҐ РЇР РџР®РњРҐР–РЁ РҐ Р™РџР®Р Р™РќР¦Рќ РќРћРҐРЇР®РњРҐРЄ,
-РџР®Р“Р”Р•РљР•РњРњРЁРЈ Р”Р•РўРҐРЇРќР›. РЅРћРҐРЇР®РњРҐР• РҐР“Р‘РљР•Р™Р®Р•Р РЇРЄ, РҐРЇРћРќРљР­Р“РЎРЄ РЇРќР”Р•РџР¤РҐР›РќР• РЇР•Р™Р–РҐРҐ
-NAME РЇР РџР®РњРҐР–РЁ РџРЎР™РќР‘РќР”РЇР Р‘Р®.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7703">man</a></h4><p>man РўРќРџР›Р®Р РҐРџРЎР•Р  РҐ Р‘РЁР‘РќР”РҐР  Р“Р®РћРџР®Р¬РҐР‘Р®Р•Р›РЁР• РЇР РџР®РњРҐР–РЁ РџРЎР™РќР‘РќР”РЇР Р‘Р®.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7706">man2dvi</a></h4><p>man2dvi Р™РќРњР‘Р•РџР РҐРџРЎР•Р  РЇР РџР®РњРҐР–РЎ РџРЎР™РќР‘РќР”РЇР Р‘Р® Р‘ РўРќРџР›Р®Р  dvi.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7709">man2html</a></h4><p>man2html Р™РќРњР‘Р•РџР РҐРџРЎР•Р  РЇР РџР®РњРҐР–РЎ РџРЎР™РќР‘РќР”РЇР Р‘Р® Р‘ Р¦РҐРћР•РџР Р•Р™РЇР .</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7712">whatis</a></h4><p>whatisв•ђРҐР«Р•Р  Р™РљР§Р’Р•Р‘РЁР• РЇРљРќР‘Р® Р‘ РђР®Р“Р®РЈ Р”Р®РњРњРЁРЈ, РЇРќР”Р•РџР¤Р®Р«РҐРЈ Р™РџР®Р РњРќР•
-РќРћРҐРЇР®РњРҐР• РЇРҐРЇР Р•Р›РњРЁРЈ Р™РќР›Р®РњР”, РҐ РќР РќРђРџР®Р¤Р®Р•Р  РџР•Р“РЎРљР­Р Р®Р  РњР® РЇР Р®РњР”Р®РџР РњРЁР Р‘РЁР‘РќР”.
-Р±РЁР‘РќР”РЄР РЇРЄ РљРҐР¬Р­ РћРќРљРњРќРЇР Р­Р§ РЇРќР‘РћР®Р”Р®Р§Р«РҐР• РЇРќР’Р•Р Р®РњРҐРЄ.</p></div></div></div>
-<div class="sect2"><h2 class="sect2"><a name="AEN7715">РіР®Р‘РҐРЇРҐР›РќРЇР РҐ Man</a></h2><p>РѕРќРЇРљР•Р”РњРЄРЄ РћРџРќР‘Р•РџР™Р®: Р‘Р•РџРЇРҐРЄ 1.5i2.</p><p class="literallayout">Bash:в•ђsh<br>
-Binutils:в•ђas,в•ђld<br>
-Fileutils:в•ђchmod,в•ђcp,в•ђinstall,в•ђmkdir,в•ђrm<br>
-Gcc:в•ђc11,в•ђcollect2,в•ђcpp0,в•ђgcc<br>
-Grep:в•ђgrep<br>
-Make:в•ђmake<br>
-Gawk:в•ђawk<br>
-Sed:в•ђsed<br>
-Sh-utils:в•ђecho<br>
-Textutils:в•ђcat</p></div>
-<h2 class="sect2"></h2></div></div><div class="NAVFOOTER"><hr align="Left" width="100%" /=""><table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="33%" align="Left" valign="Top"><a href="gzip.html" accesskey="P">РјР®Р“Р®Р”</a></td><td width="34%" align="Center" valign="Top"><a href="../index.html" accesskey="H">РґРќР›РќР</a></td><td width="33%" align="Right" valign="Top"><a href="lilo.html" accesskey="N">Р±РћР•РџР•Р”</a></td></tr><tr><td width="33%" align="Left" valign="Top">СЃРЇР Р®РњРќР‘Р™Р® Gzip-1.2.4a</td><td width="34%" align="Center" valign="Top"><a href="chapter06.html" accesskey="U">РјР®Р‘Р•РџРЈ</a></td><td width="33%" align="Right" valign="Top">СЃРЇР Р®РњРќР‘Р™Р® Lilo-22.2</td></tr></tbody></table></div></body></html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>Installing Man-1.5k</title><meta name="GENERATOR" content="Microsoft FrontPage 4.0" /=""><link rel="HOME" title="Linux From Scratch" href="http://www.linuxfromscratch.org/view/4.0/index.html" /=""><link rel="UP" title="Installing basic system software" href="http://www.linuxfromscratch.org/view/4.0/chapter06/chapter06.html" /=""><link rel="PREVIOUS" title="Installing Gzip-1.2.4a" href="http://www.linuxfromscratch.org/view/4.0/chapter06/gzip.html" /=""><link rel="NEXT" title="Installing Lilo-22.2" href="http://www.linuxfromscratch.org/view/4.0/chapter06/lilo.html" /=""></head><body class="sect1" bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#840084" alink="#006000"><div class="NAVHEADER"><table summary="Header navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><th colspan="3" align="Center">Linux From Scratch: Версия 4.0</th></tr><tr><td width="10%" align="Left" valign="Bottom"><a href="gzip.html" accesskey="P">Назад</a></td><td width="80%" align="Center" valign="Bottom">Глава 6. Установка основных компонентов
+        системы</td><td width="10%" align="Right" valign="Bottom"><a href="lilo.html" accesskey="N">Вперед</a></td></tr></tbody></table><hr align="Left" width="100%" /=""></div><div class="sect1"><h1 class="sect1"><a name="ch06-man">Установка Man-1.5k</a></h1><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen">Приблизительное время компиляции:           0.05 SBU<br>Необходимое дисковое пространство:  2 MB</pre></td></tr></tbody></table><div class="sect2"><h2 class="sect2"><a name="AEN4774">Инсталляция Man</a></h2><p>Для установки man выполните:</p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>patch -Np1 -i ../man-1.5k.patch &amp;&amp;<br>PATH=$PATH:/usr/bin:/bin \<br>    ./configure -default -confdir=/etc &amp;&amp;<br>make &amp;&amp;<br>make install</b></tt></pre></td></tr></tbody></table><p>Примечание: Если вы хотите отключить
+    последовательность выхода SGR,
+    отредактируйте файл man.conf и добавьте к
+    команде nroff аргумент <tt class="userinput"><b>-c</b></tt>.</p><p>Для получения информации по
+    форматированию и сжатию страниц
+    руководства (man pages), см.  <a href="http://hints.linuxfromscratch.org/hints/man.txt" target="_top">http://hints.linuxfromscratch.org/hints/man.txt</a>.</p></div><div class="sect2"><h2 class="sect2"><a name="AEN4784">Пояснения команд</a></h2><p><tt class="userinput"><b>PATH=$PATH:/usr/bin:/bin ./configure -default</b></tt>: В файлы man прописываются пути к некоторым
+    програмам. К сожалению, скрипт
+configure выбирает не первое (где находится
+    программа), а последнее местонахождение
+    программы в PATH. С помощью добавления /usr/bin:/bin
+    к PATH для команды ./configure, вероятность
+    использования командой man статических
+    версий программ будет устранена.</p><p><tt class="userinput"><b>patch -Np1 -i ../man-1.5k.patch:</b></tt>
+    Данный патч убирает один из файлов в <tt class="filename">man.conf</tt>  (MANPATH /usr/man), т.к. он создает
+    избыточные  результаты при
+    использовании программ типа <tt class="userinput"><b>whatis</b></tt>. Для корректного отображения страниц
+    руководства, патч также добавляет к
+    переменной <em>PAGER</em>  опцию <i>-R</i>.</p></div><div class="sect2">
+<div class="sect2"><h2 class="sect2"><a name="AEN7689">Содержимое Man</a></h2><p>Последняя проверка: версия 1.5k.</p><div class="sect3"><h3 class="sect3"><a name="AEN7692">Программы</a></h3><p>apropos, makewhatis, man, man2dvi, man2html и whatis</p></div><div class="sect3"><h3 class="sect3"><a name="AEN7695">Описания</a></h3><div class="sect4"><h4 class="sect4"><a name="AEN7697">apropos</a></h4><p>apropos ищет ключевые слова в базах данных, содержащих кратное
+описание системных команд, и отображает результат на стандартный вывод.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7700">makewhatis</a></h4><p>makewhatis читает страницы руководства, находящиеся в заданных
+частях manpath, или преформатированные страницы, находящиеся в
+заданных частях  catpath. Для каждой страницы делается запись в базе
+whatis. Каждая запись состоит из имени страницы и краткого описания,
+разделенных дефисом. Описание извлекается, используя содержимое секции
+NAME страницы руководства.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7703">man</a></h4><p>man форматирует и выводит запрашиваемые страницы руководства.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7706">man2dvi</a></h4><p>man2dvi конвертирует страницу руководства в формат dvi.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7709">man2html</a></h4><p>man2html конвертирует страницу руководства в гипертекст.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7712">whatis</a></h4><p>whatis ищет ключевые слова в базах данных, содержащих кратное
+описание системных команд, и отображает результат на стандартный вывод.
+Выводятся лишь полностью совпадающие сочетания.</p></div></div></div>
+<div class="sect2"><h2 class="sect2"><a name="AEN7715">Зависимости Man</a></h2><p>Последняя проверка: версия 1.5i2.</p><p class="literallayout">Bash: sh<br>
+Binutils: as, ld<br>
+Fileutils: chmod, cp, install, mkdir, rm<br>
+Gcc: c11, collect2, cpp0, gcc<br>
+Grep: grep<br>
+Make: make<br>
+Gawk: awk<br>
+Sed: sed<br>
+Sh-utils: echo<br>
+Textutils: cat</p></div>
+<h2 class="sect2"></h2></div></div><div class="NAVFOOTER"><hr align="Left" width="100%" /=""><table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="33%" align="Left" valign="Top"><a href="gzip.html" accesskey="P">Назад</a></td><td width="34%" align="Center" valign="Top"><a href="../index.html" accesskey="H">Домой</a></td><td width="33%" align="Right" valign="Top"><a href="lilo.html" accesskey="N">Вперед</a></td></tr><tr><td width="33%" align="Left" valign="Top">Установка Gzip-1.2.4a</td><td width="34%" align="Center" valign="Top"><a href="chapter06.html" accesskey="U">Наверх</a></td><td width="33%" align="Right" valign="Top">Установка Lilo-22.2</td></tr></tbody></table></div></body></html>

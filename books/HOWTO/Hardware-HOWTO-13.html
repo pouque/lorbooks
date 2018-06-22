@@ -2,7 +2,7 @@
 <HTML>
 <HEAD>
  <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
- <TITLE>Linux Hardware Compatibility HOWTO: п≈п╡я┐п╨п╬п╡я▀п╣ п╨п╟я─я┌я▀</TITLE>
+ <TITLE>Linux Hardware Compatibility HOWTO: Звуковые карты</TITLE>
  <LINK HREF="Hardware-HOWTO-14.html" REL=next>
  <LINK HREF="Hardware-HOWTO-12.html" REL=previous>
  <LINK HREF="Hardware-HOWTO.html#toc13" REL=contents>
@@ -12,17 +12,17 @@
 <A HREF="Hardware-HOWTO-12.html">Previous</A>
 <A HREF="Hardware-HOWTO.html#toc13">Contents</A>
 <HR>
-<H2><A NAME="s13">13. п≈п╡я┐п╨п╬п╡я▀п╣ п╨п╟я─я┌я▀</A></H2>
+<H2><A NAME="s13">13. Звуковые карты</A></H2>
 
-<P>п≤п╫я└п╬я─п╪п╟я├п╦я▐ п╬ п╥п╡я┐п╨п╬п╡я▀я┘ п╨п╟я─я┌п╟я┘ п╦ п╢я─п╟п╧п╡п╣я─п╟я┘ п╣я│я┌я▄ п©п╬ п╟п╢я─п╣я│п╟п╪ : 
-<A HREF="http://www.opensound.com/ossfree">http://www.opensound.com/ossfree</A> п╦п╩п╦ 
+<P>Информация о звуковых картах и драйверах есть по адресам : 
+<A HREF="http://www.opensound.com/ossfree">http://www.opensound.com/ossfree</A> или 
 <A HREF="http://www.opensound.com/oss.html">http://www.opensound.com/oss.html</A>. 
-<H2><A NAME="ss13.1">13.1 п÷п╬п╢п╢п╣я─п╤п╦п╡п╟п╣п╪я▀п╣ п╪п╬п╢п╣п╩п╦</A>
+<H2><A NAME="ss13.1">13.1 Поддерживаемые модели</A>
 </H2>
 
 <P>
 <UL>
-<LI>4Front Technology Virtual Mixer (п╡п╨п╩я▌я┤п╟я▐ SoftOSS)</LI>
+<LI>4Front Technology Virtual Mixer (включая SoftOSS)</LI>
 <LI>4Front Technology Virtual Synth (SoftOSS)</LI>
 <LI>6850 UART MIDI</LI>
 <LI>A-Plus Sound of Music (OPL3-SA)</LI>
@@ -33,9 +33,9 @@
 <LI>AMD Interwave reference card</LI>
 <LI>ARC Probook</LI>
 <LI>Audio Excell DSP16</LI>
-<LI>Avance Logic п▒п╟п╥п╦я─я┐я▌я┴п╦п╣я│я▐ п╫п╟ я┤п╦п©п╣ ALS-007 .<BR>
-п п╬п╢ п╢п╩я▐ я█я┌п╬пЁп╬ я┤п╦п©п╟ п╦п╫я┌п╣пЁя─п╦я─п╬п╡п╟п╫ п╡ п╢я─п╟п╧п╡п╣я─ п╢п╩я▐ Sound Blaster 16
-. п≤я│п©п╬п╩я▄п╥я┐п╧я┌п╣ isapnptools п╢п╩я▐ п╫п╟я│я┌я─п╬п╧п╨п╦.</LI>
+<LI>Avance Logic Базирующиеся на чипе ALS-007 .<BR>
+Код для этого чипа интегрирован в драйвер для Sound Blaster 16
+. Используйте isapnptools для настройки.</LI>
 <LI>AW32 Pro (R2.2-W2)</LI>
 <LI>AW35 (CS4237)</LI>
 <LI>AW37 Pro (CS4235)</LI>
@@ -54,17 +54,17 @@
 <LI>Creative Sound Blaster Pro</LI>
 <LI>Creative Sound Blaster 16</LI>
 <LI>Creative Sound Blaster 16 ASP</LI>
-<LI>Creative Sound Blaster 16 PnP (я│ type-1 п╢п╬ type-10)</LI>
+<LI>Creative Sound Blaster 16 PnP (с type-1 до type-10)</LI>
 <LI>Creative Sound Blaster 16 Vibra</LI>
 <LI>Creative Sound Blaster 2.x</LI>
 <LI>Creative Sound Blaster 32/AWE</LI>
-<LI>Creative Sound Blaster 32/AWE PnP (я│ type-1 п╢п╬ type-10)</LI>
-<LI>Creative Sound Blaster AWE64 (я│ type-1 п╢п╬ type-7)</LI>
-<LI>Creative Sound Blaster AWE64 Gold (я│ type-1 п╢п╬ type-2)</LI>
+<LI>Creative Sound Blaster 32/AWE PnP (с type-1 до type-10)</LI>
+<LI>Creative Sound Blaster AWE64 (с type-1 до type-7)</LI>
+<LI>Creative Sound Blaster AWE64 Gold (с type-1 до type-2)</LI>
 <LI>Creative Sound Blaster PCI64/128</LI>
-<LI>Creative Sound Blaster AWE64/Gold п╦ 16/32/AWE PnP п╨п╟я─я┌я▀ п╫п╣п╬п╠я┘п╬п╢п╦п╪п╬  п╟п╨я┌п╦п╡п╦я─п╬п╡п╟я┌я▄ п╦я│п©п╬п╩я▄п╥я┐я▐ isapnptools.</LI>
-<LI>Creative ViBRA16C/CL/S (я│ type-1 п╢п╬ type-2) PnP</LI>
-<LI>Creative ViBRA16X PnP (я┌п╬п╩я▄п╨п╬ п©п╬п╩я┐-п╢я┐п©п╩п╣п╨я│п╫я▀п╧ п╡п╟я─п╦п╟п╫я┌)</LI>
+<LI>Creative Sound Blaster AWE64/Gold и 16/32/AWE PnP карты необходимо  активировать используя isapnptools.</LI>
+<LI>Creative ViBRA16C/CL/S (с type-1 до type-2) PnP</LI>
+<LI>Creative ViBRA16X PnP (только полу-дуплексный вариант)</LI>
 <LI>CrystaLake Crystal Clear Series 100</LI>
 <LI>Crystal Audio (CS4235)</LI>
 <LI>Crystal CRD4236B-1E</LI>
@@ -76,60 +76,60 @@
 <LI>Diamond Crystal MM PC/104</LI>
 <LI>Digital AXP builtin audio</LI>
 <LI>ECHO-PSS cards (Orchid SoundWave32, Cardinal DSP16)</LI>
-<LI>ESS 1868, 1869 (type-1 п╦ type-2), 1878, 1879, 1968 PnP  AudioDrive</LI>
+<LI>ESS 1868, 1869 (type-1 и type-2), 1878, 1879, 1968 PnP  AudioDrive</LI>
 <LI>Ensoniq AudioPCI (ES1371)</LI>
 <LI>Ensoniq AudioPCI / SoundBlaster PCI (ES1370)</LI>
 <LI>Ensoniq Soundscape Elite</LI>
-<LI>Ensoniq Soundscape PnP (п╪п╬п╢п╣п╩п╦ 1 п╦ 2)</LI>
+<LI>Ensoniq Soundscape PnP (модели 1 и 2)</LI>
 <LI>Ensoniq Soundscape S-2000</LI>
 <LI>Ensoniq Soundscape VIVO, VIVO90</LI>
 <LI>Ensoniq ActionNote 880 C/CX</LI>
-<LI>Gallant's sound card (п▒п╟п╥п╦я─я┐я▌я┴п╦п╣я│я▐ п╫п╟ SC-6000 п╦ SC-66000 я┤п╦п©я│п╣я┌п╟я┘)</LI>
+<LI>Gallant's sound card (Базирующиеся на SC-6000 и SC-66000 чипсетах)</LI>
 <LI>Generic AD1815 based soundcard (PnP)</LI>
 <LI>Generic CMI8330 based soundcard (PnP)</LI>
-<LI>Generic Crystal CS4232 п╠п╟п╥п╦я─я┐я▌я┴п╟я▐я│я▐ п╨п╟я─я┌п╟ п╦п╩п╦ п╪п╟я┌п╣я─п╦п╫я│п╨п╟я▐ п©п╩п╟я┌п╟ (п╫п╣ PnP)</LI>
-<LI>Generic Crystal CS4232 by Acer (PnP я─п╣п╤п╦п╪)</LI>
-<LI>Generic Crystal CS4232 я│ type-1 п╢п╬ type-3 (PnP я─п╣п╤п╦п╪)</LI>
+<LI>Generic Crystal CS4232 базирующаяся карта или материнская плата (не PnP)</LI>
+<LI>Generic Crystal CS4232 by Acer (PnP режим)</LI>
+<LI>Generic Crystal CS4232 с type-1 до type-3 (PnP режим)</LI>
 <LI>Generic Crystal CS4235 type-1</LI>
-<LI>Generic Crystal CS4236 (я│ type-1 п╢п╬ type-3)</LI>
-<LI>Generic Crystal CS4236 п╠п╟п╥п╦я─я┐я▌я┴п╟я▐я│я▐ п╨п╟я─я┌п╟ п╦п╩п╦ п╪п╟я┌п╣я─п╦п╫я│п╨п╟я▐ п©п╩п╟я┌п╟ (п╫п╣ PnP)</LI>
-<LI>Generic Crystal CS4236A (я│ type-1 п╢п╬ type-2), CS4236B</LI>
-<LI>Generic Crystal CS4237 п╠п╟п╥п╦я─я┐я▌я┴п╟я▐я│я▐ п╨п╟я─я┌п╟ п╦п╩п╦ п╪п╟я┌п╣я─п╦п╫я│п╨п╟я▐ п©п╩п╟я┌п╟ (п╫п╣ PnP)</LI>
-<LI>Generic Crystal CS4237B (я│ type-1 п╢п╬ type-2)</LI>
-<LI>Generic Crystal CS4238 п╠п╟п╥п╦я─я┐я▌я┴п╟я▐я│я▐ п╨п╟я─я┌п╟ п╦п╩п╦ п╪п╟я┌п╣я─п╦п╫я│п╨п╟я▐ п©п╩п╟я┌п╟ (п╫п╣ PnP)</LI>
-<LI>Generic ESS ES688, ES1688, ES1788, ES1868, ES1869, ES1887, ES1888 п╠п╟п╥п╦я─я┐я▌я┴п╟я▐я│я▐ п╨п╟я─я┌п╟ п╦п╩п╦ п╪п╟я┌п╣я─п╦п╫я│п╨п╟я▐ п©п╩п╟я┌п╟.</LI>
-<LI>Generic Jazz16 п╨п╟я─я┌п╟.</LI>
+<LI>Generic Crystal CS4236 (с type-1 до type-3)</LI>
+<LI>Generic Crystal CS4236 базирующаяся карта или материнская плата (не PnP)</LI>
+<LI>Generic Crystal CS4236A (с type-1 до type-2), CS4236B</LI>
+<LI>Generic Crystal CS4237 базирующаяся карта или материнская плата (не PnP)</LI>
+<LI>Generic Crystal CS4237B (с type-1 до type-2)</LI>
+<LI>Generic Crystal CS4238 базирующаяся карта или материнская плата (не PnP)</LI>
+<LI>Generic ESS ES688, ES1688, ES1788, ES1868, ES1869, ES1887, ES1888 базирующаяся карта или материнская плата.</LI>
+<LI>Generic Jazz16 карта.</LI>
 <LI>Generic MAD16 (OPTi 82C928), MAD16 Pro, MAD16 Pro (duplex) (OPTi 82C929)</LI>
-<LI>Generic Mozart soundcard (OAK OTI-601 я┤п╦п©)</LI>
-<LI>Generic OPTi 82C924, 82C925 п╨п╟я─я┌п╟ (PnP)</LI>
-<LI>Generic OPTi 82C924 п╨п╟я─я┌п╟ (п╫п╣  PnP я─п╣п╤п╦п╪). п≤я│п©п╬п╩я▄п╥я┐п╧я┌п╣ MSS п╢я─п╟п╧п╡п╣я─
-п╦ isapnptools.</LI>
+<LI>Generic Mozart soundcard (OAK OTI-601 чип)</LI>
+<LI>Generic OPTi 82C924, 82C925 карта (PnP)</LI>
+<LI>Generic OPTi 82C924 карта (не  PnP режим). Используйте MSS драйвер
+и isapnptools.</LI>
 <LI>Generic OPTi 82C930</LI>
 <LI>Generic OPTi 82C931<BR>
-п║п╪п╬я┌я─п╦ : 
+Смотри : 
 <A HREF="http://spoke.nols.com/~drees/opti931.html">http://spoke.nols.com/~drees/opti931.html</A></LI>
-<LI>Generic Soundscape п╨п╟я─я┌п╟</LI>
-<LI>Generic Windows Sound System я│п╬п╡п╪п╣я│я┌п╦п╪п╟я▐</LI>
-<LI>Generic Yamaha OPL3-SA1 (YMF701) п╨п╟я─я┌п╟</LI>
-<LI>Generic Yamaha OPL3-SA2 (YMF711) п╨п╟я─я┌п╟ (type-1, type-3, type-4)</LI>
-<LI>Generic Yamaha OPL3-SA3 (YMF715) п╨п╟я─я┌п╟</LI>
-<LI>Generic Yamaha OPL3-SAx (YMF715/YMF719) п╫п╣ PnP</LI>
+<LI>Generic Soundscape карта</LI>
+<LI>Generic Windows Sound System совместимая</LI>
+<LI>Generic Yamaha OPL3-SA1 (YMF701) карта</LI>
+<LI>Generic Yamaha OPL3-SA2 (YMF711) карта (type-1, type-3, type-4)</LI>
+<LI>Generic Yamaha OPL3-SA3 (YMF715) карта</LI>
+<LI>Generic Yamaha OPL3-SAx (YMF715/YMF719) не PnP</LI>
 <LI>Gravis Ultrasound</LI>
 <LI>Gravis Ultrasound Extreme</LI>
 <LI>Gravis Ultrasound 16-bit sampling daughterboard</LI>
 <LI>Gravis Ultrasound MAX</LI>
 <LI>Gravis Ultrasound ACE</LI>
-<LI>Gravis Ultrasound PnP (я│ RAM), PnP Pro</LI>
+<LI>Gravis Ultrasound PnP (с RAM), PnP Pro</LI>
 <LI>HP OmniBook 2100 (CS4236)</LI>
-<LI>Home Studio 64 (п╟п╫п╟п╩п╬пЁп╬п╡п╬п╣ п╟я┐п╢п╦п╬ я┌п╬п╩я▄п╨п╬)</LI>
+<LI>Home Studio 64 (аналоговое аудио только)</LI>
 <LI>IBM Audio Feature (CS423x)</LI>
-<LI>Logitech SoundMan Games (SBPro, 44kHz я│я┌п╣я─п╣п╬)</LI>
+<LI>Logitech SoundMan Games (SBPro, 44kHz стерео)</LI>
 <LI>Logitech SoundMan Wave (Jazz16/OPL4)</LI>
-<LI>Logitech SoundMan 16 (PAS-16 я│п╬п╡п╪п╣я│я┌п╦п╪п╟я▐)</LI>
-<LI>MED3201 п╥п╡я┐п╨п╬п╡п╟я▐ п╨п╟я─я┌п╟</LI>
-<LI>Maxi Sound 32 PnP (я┌п╬п╩я▄п╨п╬ п╟п╫п╟п╩п╬пЁп╬п╡п╬п╣ п╟я┐п╢п╦п╬)</LI>
-<LI>Maxi Sound 64 Dynamic 3D (я┌п╬п╩я▄п╨п╬ п╟п╫п╟п╩п╬пЁп╬п╡п╬п╣ п╟я┐п╢п╦п╬)</LI>
-<LI>Media Sound SW/32 (п╫п╣ PnP я─п╣п╤п╦п╪)</LI>
+<LI>Logitech SoundMan 16 (PAS-16 совместимая)</LI>
+<LI>MED3201 звуковая карта</LI>
+<LI>Maxi Sound 32 PnP (только аналоговое аудио)</LI>
+<LI>Maxi Sound 64 Dynamic 3D (только аналоговое аудио)</LI>
+<LI>Media Sound SW/32 (не PnP режим)</LI>
 <LI>MediaTriX AudioTriX Pro, 3D XG</LI>
 <LI>Media Vision Premium 3D (Jazz16)</LI>
 <LI>Media Vision Pro Sonic 16 (Jazz)</LI>
@@ -140,9 +140,9 @@
 <LI>MiroSound PCM!-pro</LI>
 <LI>MultiWave AudioWave Green 16</LI>
 <LI>Music Quest MIDI connector card (MCC)</LI>
-<LI>Music Quest MQX-16, MQX-16S MIDI п╨п╟я─я┌п╟</LI>
-<LI>Music Quest MQX-32, MQX-32M MIDI п╨п╟я─я┌п╟</LI>
-<LI>Music Quest PC MIDI п╨п╟я─я┌п╟</LI>
+<LI>Music Quest MQX-16, MQX-16S MIDI карта</LI>
+<LI>Music Quest MQX-32, MQX-32M MIDI карта</LI>
+<LI>Music Quest PC MIDI карта</LI>
 <LI>NEC Harmony</LI>
 <LI>Orchid SoundDrive 16EZ</LI>
 <LI>Pine PT201</LI>
@@ -150,15 +150,15 @@
 <LI>Pro Audio Spectrum 16, Studio 16</LI>
 <LI>RME Digi32, Digi32 Pro, Digi32/8</LI>
 <LI>Reveal SC300</LI>
-<LI>Reveal WaveExtreme Pro (я│ RAM)</LI>
-<LI>Roland MPU IPC-T MIDI п╨п╟я─я┌п╟</LI>
+<LI>Reveal WaveExtreme Pro (с RAM)</LI>
+<LI>Roland MPU IPC-T MIDI карта</LI>
 <LI>S3 SonicVibes</LI>
 <LI>Shark Mako</LI>
 <LI>Sharp PC8800</LI>
 <LI>Shuttle Sound System 48</LI>
 <LI>Spacewalker HOT-255 PCI 3D (<B>PCI</B>)</LI>
 <LI>TerraTec Maestro 32/96</LI>
-<LI>Terratec EWS64XL (я┌п╬п╩я▄п╨п╬ п╟я┐п╢п╦п╬)</LI>
+<LI>Terratec EWS64XL (только аудио)</LI>
 <LI>Terratec Sound System Base 1 (AD1816)</LI>
 <LI>Terratec Sound System Base 64 (AD1816)</LI>
 <LI>Tomato Sound System (OPTi 82C930)</LI>
@@ -167,60 +167,60 @@
 <LI>Turtle Beach Maui</LI>
 <LI>Turtle Beach Monte Carlo 928, Monte Carlo 929</LI>
 <LI>Turtle Beach Pinnacle/Fiji</LI>
-<LI>Turtle Beach Tropez, Tropez Plus (я┌п╬п╩я▄п╨п╬ п╟я┐п╢п╦п╬)</LI>
-<LI>Turtle Beach Daytona (я┌п╬п╩я▄п╨п╬ п╟я┐п╢п╦п╬)</LI>
+<LI>Turtle Beach Tropez, Tropez Plus (только аудио)</LI>
+<LI>Turtle Beach Daytona (только аудио)</LI>
 <LI>Wearnes Classic 16</LI>
 <LI>Yamaha Sound Edge SW20-PC</LI>
-<LI>Zefiro Acoustics ZA2 (п²п∙ п═п∙п п·п°п∙п²п■пёп∙п╒п║п╞)</LI>
+<LI>Zefiro Acoustics ZA2 (НЕ РЕКОМЕНДУЕТСЯ)</LI>
 <LI>Zenith Z-Player</LI>
 </UL>
 <P>
 <UL>
-<LI>п÷п╬п╢п╢п╣я─п╤п╨п╟ AWE32/64 п╡п╨п╩я▌я┤п╣п╫п╟ п╡ я▐п╢я─п╟ я│п╣я─п╦п╧  2.1.x (я│п╪. я┌п╟п╨п╤п╣ SoundBlaster AWE mini-HOWTO п╬я┌ Marcus Brinkmann п╢п╩я▐ п©п╬п╩я┐я┤п╣п╫п╦я▐ п╢п╣я┌п╟п╩я▄п╫я▀я┘ п╦п╫я│я┌я─я┐п╨я├п╦п╧ п©п╬ я┐я│я┌п╟п╫п╬п╡п╨п╣)</LI>
-<LI>MPU-401 MIDI п≤п╫я┌п╣п╩п╩п╣п╨я┌я┐п╟п╩я▄п╫я▀п╧ я─п╣п╤п╦п╪ (п╫п╣ п╡п╨п╩я▌я┤п╟п╧я┌п╣ п╫п╣ п╬п╠п╢я┐п╪п╟п╫п╬)
+<LI>Поддержка AWE32/64 включена в ядра серий  2.1.x (см. также SoundBlaster AWE mini-HOWTO от Marcus Brinkmann для получения детальных инструкций по установке)</LI>
+<LI>MPU-401 MIDI Интеллектуальный режим (не включайте не обдумано)
 <UL>
 <LI>MPU IPC-T</LI>
 <LI>MQX-32M</LI>
 </UL>
 </LI>
-<LI>MPU-401 MIDI UART я┌п╬п╩я▄п╨п╬ "пЁп╩я┐п©я▀п╧" п©п╬я─я┌ (п╫п╣ п╡п╨п╩я▌я┤п╟п╧я┌п╣ п╫п╣п╬п╠п╢я┐п╪п╟п╫п╫п╬)</LI>
-<LI>Yamaha FM я│п╦п╫я┌п╣п╥п╟я┌п╬я─я▀ (OPL2, OPL3, OPL3-SAx (п╫п╟я┤п╦п╫п╟я▐ я│ я▐п╢п╣я─ 2.1.x) п╦ OPL4)</LI>
+<LI>MPU-401 MIDI UART только "глупый" порт (не включайте необдуманно)</LI>
+<LI>Yamaha FM синтезаторы (OPL2, OPL3, OPL3-SAx (начиная с ядер 2.1.x) и OPL4)</LI>
 </UL>
-<P>OSS п©п╬п╢п╢п╣я─п╤п╦п╡п╟п╣я┌ п╡я│п╣ MIDI п©п╩п╟я┌я▀ п╡п╨п╩я▌я┤п╟я▐ Wave Blaster, TB Rio п╦ Yamaha DB50XG. п∙п╢п╦п╫я│я┌п╡п╣п╫п╫п╬п╣ я┌я─п╣п╠п╬п╡п╟п╫п╦п╣ - п©п╬п╢п╢п╣я─п╤п╨п╟ п╢п╩я▐ п╨п╟я─я┌я▀ я┘п╬я│я┌п╟ + п╫п╟я│я┌я─п╬п╧п╨п╟
-п╨п╟я─я┌я▀-я┘п╬я│я┌п╟ я│ п©п╬п╪п╬я┴я▄я▌ soundconf.п■п╬я┤п╣я─п╫я▐я▐ п©п╩п╟я┌п╟ п╠я┐п╢п╣я┌ п╢п╬я│я┌я┐п©п╫п╟ я┤п╣я─п╣п╥ MIDI
-п╦п╫я┌п╣я─я└п╣п╧я│ п╨п╟я─я┌я▀-я┘п╬я│я┌п╟.
+<P>OSS поддерживает все MIDI платы включая Wave Blaster, TB Rio и Yamaha DB50XG. Единственное требование - поддержка для карты хоста + настройка
+карты-хоста с помощью soundconf.Дочерняя плата будет доступна через MIDI
+интерфейс карты-хоста.
 <P>
-<H2><A NAME="ss13.2">13.2 п░п╩я▄я└п╟ , п▒п╣я┌п╟ п╢я─п╟п╧п╡п╣я─п╟</A>
+<H2><A NAME="ss13.2">13.2 Альфа , Бета драйвера</A>
 </H2>
 
 <P>
 <UL>
 <LI>4Front Tech. Waveloop loopback audio device</LI>
-<LI>Acer FX-3D (AD1816 п╠п╟п╥п╦я─я┐я▌я┴п╦п╣я│я▐)</LI>
-<LI>AVM Apex Pro card (AD1816 п╠п╟п╥п╦я─я┐я▌я┴п╦п╣я│я▐)</LI>
+<LI>Acer FX-3D (AD1816 базирующиеся)</LI>
+<LI>AVM Apex Pro card (AD1816 базирующиеся)</LI>
 <LI>Aztech AZT1008, AZT2320, AZT3000</LI>
-<LI>Aztech SC-16 3D (AD1816 п╠п╟п╥п╦я─я┐я▌я┴п╦п╣я│я▐)</LI>
+<LI>Aztech SC-16 3D (AD1816 базирующиеся)</LI>
 <LI>Creative Sound Blaster Vibra16x</LI>
 <LI>Creative Sound Blaster Live! and Live! Value Edition<BR>
-п▓ Creative Labs п╦п╪п╣п╣я┌я│я▐ п╠п╣я┌п╟ п╡п╣я─я│п╦я▐ п╢я─п╟п╧п╡п╣я─п╟ п╢п╩я▐ я█я┌п╬п╧ п╨п╟я─я┌я▀ . п п╟я─я┌я▀ п╠я┐п╢я┐я┌ я─п╟п╠п╬я┌п╟я┌я▄ я│ я▐п╢я─п╟п╪п╦  2.0.36 п╦ 2.2.5 (п╦ п╢я─я┐пЁп╦п╪п╦ я▐п╢я─п╟п╪п╦ я█я┌п╦я┘ я│п╣я─п╦п╧).п■я─п╟п╧п╡п╣я─п╟ п╢п╬я│я┌я┐п©п╫я▀ п╢п╩я▐ п╥п╟пЁя─я┐п╥п╨п╦ п╫п╟ я│п╟п╧я┌п╣  Creative Labs : 
+В Creative Labs имеется бета версия драйвера для этой карты . Карты будут работать с ядрами  2.0.36 и 2.2.5 (и другими ядрами этих серий).Драйвера доступны для загрузки на сайте  Creative Labs : 
 <A HREF="http://www.creativelabs.com">http://www.creativelabs.com</A></LI>
-<LI>Highscreen Sound-Boostar 32 Wave 3D (AD1816 п╠п╟п╥п╦я─п╬п╡п╟п╫я▀п╣)</LI>
-<LI>Highscreen Sound-Boostar 16 (AD1816 п╠п╟п╥п╦я─п╬п╡п╟п╫я▀п╣)</LI>
-<LI>HP Kayak (AD1816 п╠п╟п╥п╦я─п╬п╡п╟п╫я▀п╣)</LI>
+<LI>Highscreen Sound-Boostar 32 Wave 3D (AD1816 базированые)</LI>
+<LI>Highscreen Sound-Boostar 16 (AD1816 базированые)</LI>
+<LI>HP Kayak (AD1816 базированые)</LI>
 <LI>IBM MWave</LI>
-<LI>Newcom SC-16 3D (AD1816 п╠п╟п╥п╦я─п╬п╡п╟п╫я▀п╣)</LI>
+<LI>Newcom SC-16 3D (AD1816 базированые)</LI>
 <LI>PC speaker / Parallel port DAC<BR>
 <A HREF="ftp://ftp.informatik.hu-berlin.de/pub/os/linux/hu-sound/">ftp://ftp.informatik.hu-berlin.de/pub/os/linux/hu-sound/</A></LI>
-<LI>Rockwell WaveArtist я┤п╦п©я│п╣я┌</LI>
+<LI>Rockwell WaveArtist чипсет</LI>
 <LI>Sonorus STUDI/O</LI>
-<LI>SY-1816 (AD1816 п╠п╟п╥п╦я─я┐я▌я┴п╦п╣я│я▐)</LI>
-<LI>Terratec Base 1, Base 64 (AD1816 п╠п╟п╥п╦я─п╬п╡п╟п╫я▀п╣)</LI>
-<LI>Terratec EWS64S (AD1816 п╠п╟п╥п╦я─п╬п╡п╟п╫я▀п╣)</LI>
+<LI>SY-1816 (AD1816 базирующиеся)</LI>
+<LI>Terratec Base 1, Base 64 (AD1816 базированые)</LI>
+<LI>Terratec EWS64S (AD1816 базированые)</LI>
 <LI>Turtle Beach Malibu
 <A HREF="ftp://ftp.cs.colorado.edu/users/mccreary/archive/tbeach/multisound/">ftp://ftp.cs.colorado.edu/users/mccreary/archive/tbeach/multisound/</A></LI>
 </UL>
-<P>п■п╩я▐ п╨п╟я─я┌ п╠п╟п╥п╦я─я┐я▌я┴п╦я┘я│я▐ п╫п╟ я┤п╦п©я│п╣я┌п╣ AD1816 п╫п╣п╬п╠я┘п╬п╢п╦п╪п╟ п╫п╟я│я┌я─п╬п╧п╨п╟ п©я─п╦ п©п╬п╪п╬я┴п╦ isapnptools. 
-<H2><A NAME="ss13.3">13.3 п²п╣п©п╬п╢п╢п╣я─п╤п╦п╡п╟я▌я┌я▄я│я▐</A>
+<P>Для карт базирующихся на чипсете AD1816 необходима настройка при помощи isapnptools. 
+<H2><A NAME="ss13.3">13.3 Неподдерживаються</A>
 </H2>
 
 <P>
@@ -242,7 +242,7 @@ q </LI>
 <LI>ESS Maestro-1 (<B>PCI</B>), Maestro-2 (<B>PCI</B>)</LI>
 <LI>ESS Solo-1 (<B>PCI</B>)</LI>
 <LI>Echo Personal Sound System</LI>
-<LI>Generic ALS007, ALS100 п╬я│п╫п╬п╡п╟п╫я▀п╣ п╨п╟я─я┌я▀</LI>
+<LI>Generic ALS007, ALS100 основаные карты</LI>
 <LI>Orchid NuSound 3D</LI>
 <LI>Orchid SoundWave 32</LI>
 <LI>Paradise DSP-16</LI>
@@ -255,10 +255,10 @@ q </LI>
 <LI>Western Digital Paradise DSP-16</LI>
 <LI>Yamaha YMF724 (<B>PCI</B>)</LI>
 </UL>
-<P>п╖п╦п© ASP я│п╣я─п╦п╦ SB16 п╫п╣ п©п╬п╢п╢п╣я─п╤п╦п╡п╟п╣я┌я│я▐. MIDI я│п╦п╫я┌п╣п╥п╟я┌п╬я─ п╡я│я┌я─п╬п╣п╫п╫я▀п╧ п╡ п©п╩п╟я┌я┐ AWE32 п╫п╣ п©п╬п╢п╢п╣я─п╤п╦п╡п╟п╣я┌я│я▐. 
-<P>SB'16 я│ DSP 4.11 п╦ 4.12 п╦п╪п╣п╣я┌ п╬я┬п╦п╠п╨я┐ , п╨п╬я┌п╬я─п╟я▐ п©я─п╦п╡п╬п╢п╦я┌ п╨ п╥п╟п╡п╦я│п╟п╫п╦я▌ п©я─п╦
-п╬п╢п╫п╬п╡я─п╣п╪п╣п╫п╫п╬п╪ п©я─п╬п╦пЁя─я▀п╡п╟п╫п╦п╦ MIDI п╦ я├п╦я└я─п╬п╡п╬пЁп╬ п╟я┐п╢п╦п╬ п╬п╢п╫п╬п╡я─п╣п╪п╣п╫п╫п╬.
-п÷я─п╬п╠п╩п╣п╪п╟ п╡п╬п╥п╫п╦п╨п╟п╣я┌ п©я─п╦ п©п╬п╢п╨п╩я▌я┤п╣п╫п╦п╦ Wave Blaster п©п╩п╟я┌ п╦п╩п╦ MIDI я┐я│я┌я─п╬п╧я│я┌п╡.
+<P>Чип ASP серии SB16 не поддерживается. MIDI синтезатор встроенный в плату AWE32 не поддерживается. 
+<P>SB'16 с DSP 4.11 и 4.12 имеет ошибку , которая приводит к зависанию при
+одновременном проигрывании MIDI и цифрового аудио одновременно.
+Проблема возникает при подключении Wave Blaster плат или MIDI устройств.
 <P>
 <HR>
 <A HREF="Hardware-HOWTO-14.html">Next</A>

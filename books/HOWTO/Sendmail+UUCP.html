@@ -7,110 +7,110 @@
 <BODY LINK="#0000ff" VLINK="#0000ff">
 
 <H1>Sendmail + UUCP HOWTO</H1>
-<FONT FACE="Times New Roman"><ADDRESS>п░п╡я┌п╬я─: Jamal Hadi Salim (jamal@glcom.com п╦п╩п╦ hadi@cyberus.ca)</ADDRESS>
-<I><P>п÷п╣я─п╣п╡п╬п╢: <a href="mailto:sam@asp-linux.com">п║я┌п╟п╫п╦я│п╩п╟п╡
-п═п╬пЁп╦п╫</a>, <a href="http://www.asp-linux.com">SWSoft Pte Ltd.</a></P>
-</I><H3>п≤я│я┌п╬я─п╦я▐:</H3>
+<FONT FACE="Times New Roman"><ADDRESS>Автор: Jamal Hadi Salim (jamal@glcom.com или hadi@cyberus.ca)</ADDRESS>
+<I><P>Перевод: <a href="mailto:sam@asp-linux.com">Станислав
+Рогин</a>, <a href="http://www.asp-linux.com">SWSoft Pte Ltd.</a></P>
+</I><H3>История:</H3>
 
 <UL>
-<LI>п÷п╣я─п╡п╬п╣ п╦п╥п╢п╟п╫п╦п╣: (п≤я▌п╩я▄ 96) я─п╟п╠п╬я┌п╟п╣я┌ я┌п╬п╩я▄п╨п╬ я│ п©п╬я│я┌п╟п╡п╨п╬п╧ sendmail п╠п╣п╥ п©п╬п╢п╢п╣я─п╤п╨п╦ </FONT>DNS</LI>
-<FONT FACE="Times New Roman"><LI>1 п╬п╨я┌я▐п╠я─я▐ 96: я─п╟п╠п╬я┌п╟п╣я┌ я│ п©я─п╬пЁя─п╟п╪п╪п╬п╧, п©п╬я│я┌п╟п╡п╩я▐п╣п╪п╬п╧ п╡ Redha</FONT>t </LI>
-<FONT FACE="Times New Roman"><LI>7 п╬п╨я┌я▐п╠я─я▐ 96: п╢п╬п╠п╟п╡п╩п╣п╫я▀/п╦я│п©я─п╟п╡п╩п╣п╫я▀ я│п╬п╡п╣я┌я▀ п©п╬ п╨п╬п╪п©п╦п╩я▐я├п╦п╦ п╫п╣п╥п╟п╡п╦я│п╦п╪п╬пЁп╬ sendmail-п╟ </LI>
-<LI>25 п╬п╨я┌я▐п╠я─я▐ 96: п╢п╬п╠п╟п╡п╩п╣п╫я▀/п╦я│п©я─п╟п╡п╩п╣п╫я▀ я│п╬п╡п╣я┌я▀ п©п╬ я│п╬п╡п╪п╣я┴п╣п╫п╦я▌ я└я┐п╫п╨я├п╦п╦ getHostbuAddr() sendmail-п╟, п©я┐я┌п╣п╪ п╡я│я┌п╟п╡п╨п╦ п©п╬п╢я│я┌п╟п╡п╫п╬п╧ я│я┌я─п╬п╨п╦ п╡ я└п╟п╧п╩ /etc/hosts </LI>
-<LI>15 п╪п╟я─я┌п╟ 97: я▐ п©п╬я─п╟п╤п╣п╫ п╨п╬п╩п╦я┤п╣я│я┌п╡п╬п╪ п╬я┌п╥я▀п╡п╬п╡ п╦ я│п╬п╡п╣я┌п╬п╡, п╨п╬я┌п╬я─я▀п╣ я▐ п©п╬п╩я┐я┤п╦п╩, п╦ п©п╬я█я┌п╬п╪я┐ я─п╣я┬п╦п╩ п╫п╣п╪п╫п╬пЁп╬ п╢п╬я─п╟п╠п╬я┌п╟я┌я▄&nbsp; п╢п╬п╨я┐п╪п╣п╫я┌. п≤я│п©я─п╟п╡п╩п╣п╫я▀ п╫п╣п╨п╬я┌п╬я─я▀п╣ п╬я┬п╦п╠п╨п╦; п╢п╬п╠п╟п╡п╩п╣п╫я▀ п╢п╦п╟пЁя─п╟п╪п╪я▀ п╦ я│я│я▀п╩п╨п╦. </LI>
-<LI>25 п╬п╨я┌я▐п╠я─я▐ 97 : п÷п╣я─п╣п╡п╬п╢ п╡ я└п╬я─п╪п╟я┌ HTML. п■п╬п╠п╟п╡п╩п╣п╫п╬ п╫п╣я│п╨п╬п╩я▄п╨п╬ я│п╩п╬п╡ п╬ п╪п╟я┬п╦п╫п╟я┘ я│ я─п╟п╠п╬я┌п╟я▌я┴п╦п╪ DNS </LI></UL>
+<LI>Первое издание: (Июль 96) работает только с поставкой sendmail без поддержки </FONT>DNS</LI>
+<FONT FACE="Times New Roman"><LI>1 октября 96: работает с программой, поставляемой в Redha</FONT>t </LI>
+<FONT FACE="Times New Roman"><LI>7 октября 96: добавлены/исправлены советы по компиляции независимого sendmail-а </LI>
+<LI>25 октября 96: добавлены/исправлены советы по совмещению функции getHostbuAddr() sendmail-а, путем вставки подставной строки в файл /etc/hosts </LI>
+<LI>15 марта 97: я поражен количеством отзывов и советов, которые я получил, и поэтому решил немного доработать&nbsp; документ. Исправлены некоторые ошибки; добавлены диаграммы и ссылки. </LI>
+<LI>25 октября 97 : Перевод в формат HTML. Добавлено несколько слов о машинах с работающим DNS </LI></UL>
 
 </FONT><P><HR SIZE=1>
-<FONT FACE="Times New Roman"><P>п÷п╬я│п╩п╣ я┌п╬пЁп╬ п╨п╟п╨ я▐ п╬п╨п╬п╫я┤п╟я┌п╣п╩я▄п╫п╬ я┐я│п©п╬п╨п╬п╦п╩я│я▐ п╦ п©я─п╬я┤п╦я┌п╟п╩ п╢п╬п╨я┐п╪п╣п╫я┌п╟я├п╦я▌ (я┌п╬я┤п╫п╣п╣ Bat Book), я▐ я─п╟п╥я─п╣я┬п╦п╩ п╥п╟пЁп╟п╢п╨я┐ я└п╟я─п╟п╬п╫п╬п╡! п╗п╟пЁп╦, п╬п©п╦я│п╟п╫п╫я▀п╣ п╫п╦п╤п╣, я┌п╣я│я┌п╦я─п╬п╡п╟п╩п╦я│я▄ я│ п©п╟п╨п╣я┌п╬п╪ sendmail, п©п╬я│я┌п╟п╡п╩я▐п╣п╪п╬п╪ п╡ Redhat. п▓п╬п╥п╪п╬п╤п╫п╬, п╫п╟п╢п╬ п╠я▀п╩п╬ я┌п╟п╨п╤п╣ п╬я┌п╬я│п╩п╟я┌я▄ я█я┌п╦ я│п╬п╡п╣я┌я▀ я┌п╬п╪я┐, п╨я┌п╬ я│п╬п©я─п╬п╡п╬п╤п╢п╟п╣я┌ FAQ Sen</FONT>d<FONT FACE="Times New Roman">mail-п╟, п©п╬я┌п╬п╪я┐ я┤я┌п╬ я┌п╟п╪ п╫п╣я┌ п╫п╦ п╣п╢п╦п╫п╬пЁп╬ я┐п©п╬п╪п╦п╫п╟п╫п╦я▐ п╬ п╡п╥п╟п╦п╪п╬п╢п╣п╧я│я┌п╡п╦п╦ sendmail п╦ UUCP. <BR>
+<FONT FACE="Times New Roman"><P>После того как я окончательно успокоился и прочитал документацию (точнее Bat Book), я разрешил загадку фараонов! Шаги, описанные ниже, тестировались с пакетом sendmail, поставляемом в Redhat. Возможно, надо было также отослать эти советы тому, кто сопровождает FAQ Sen</FONT>d<FONT FACE="Times New Roman">mail-а, потому что там нет ни единого упоминания о взаимодействии sendmail и UUCP. <BR>
 &nbsp;</P>
-<H2>п■п╩я▐ я┤п╣пЁп╬ п╠я▀п╩ п╫п╟п©п╦я│п╟п╫ я█я┌п╬я┌ п╢п╬п╨я┐п╪п╣п╫я┌</H2>
-<P>п≈п╢п╣я│я▄ п╢п╟п╫п╟ п╦п╫я└п╬я─п╪п╟я├п╦я▐ п╬ я┌п╬п╪, п╨п╟п╨ п╫п╟я│я┌я─п╬п╦я┌я▄ п╬я┌п╢п╣п╩я▄п╫я┐я▌ п╪п╟я┬п╦п╫я┐, я┐п©п╬п╪п╦п╫п╟п╣п╪я┐я▌ п╥п╢п╣я│я▄ п╨п╟п╨&nbsp; me.com (п╨п╟п╨ п©я─п╦п╪п╣я─), п╫п╣ п╦п╪п╣я▌я┴я┐я▌ п©п╬я│я┌п╬я▐п╫п╫п╬пЁп╬ п╢п╬я│я┌я┐п©п╟ п╡
-п≤п╫я┌п╣я─п╫п╣я┌, я┌п╟п╨, я┤я┌п╬п╠я▀ п╬п╫п╟ п©п╬я│я▀п╩п╟п╩п╟ п╡п╟я┬я┐ п©п╬я┤я┌я┐ я┤п╣я─п╣п╥ sendmail п╦ UUCP п╨ "п╠п╬п╩п╣п╣
-я│п╬п╡п╣я─я┬п╣п╫п╫п╬п╧" (smarter) п╪п╟я┬п╦п╫п╣, я┌.п╣. п╨ п╡п╟я┬п╣п╪я┐ п©я─п╬п╡п╟п╧п╢п╣я─я┐. <BR>
-п≈п╟п╬п╢п╫п╬, п╡я▀ п╪п╬п╤п╣я┌п╣ п╫п╟я│я┌я─п╬п╦я┌я▄ п╡п╟я┬я┐ п╪п╟я┬п╦п╫я┐ п╢п╩я▐
-п©п╣я─п╣я│я▀п╩п╨п╦ п©п╬я┤я┌я▀ я│ п╢я─я┐пЁп╦я┘ п╪п╟я┬п╦п╫, я┌.п╣. п╡п╟п╪, п╡ я│п╡п╬я▌ п╬я┤п╣я─п╣п╢я▄, я│я┌п╟я┌я▄ "п╠п╬п╩п╣п╣
-я│п╬п╡п╣я─я┬п╣п╫п╫п╬п╧" п╪п╟я┬п╦п╫п╬п╧ п╦п╩п╦ я┬п╩я▌п╥п╬п╪&nbsp; (gateway).</P>
-<H2>п╖я┌п╬ п╡ я█я┌п╬п╪ п╢п╬п╨я┐п╪п╣п╫я┌п╣ п╫п╣ п╬п©п╦я│я▀п╡п╟п╣я┌я│я▐</H2>
-<P>п╞ п©п╬п╩я┐я┤п╟я▌ п╬пЁя─п╬п╪п╫п╬п╣ п╨п╬п╩п╦я┤п╣я│я┌п╡п╬ п╡п╬п©я─п╬я│п╬п╡, п╬я┌п╫п╬я│я▐я┴п╦я┘я│я▐ п╨ я┌п╣п╪п╟п╪, п╫п╟я┘п╬п╢я▐я┴п╦п╪я│я▐ п╥п╟ п©я─п╣п╢п╣п╩п╟п╪п╦ я█я┌п╬пЁп╬ HOWTO. п╜я┌п╬я┌ п╢п╬п╨я┐п╪п╣п╫я┌ п╫п╣ п╪п╬п╤п╣я┌ п╬я┘п╡п╟я┌п╦я┌я▄ п╡я│п╣, п©п╬я█я┌п╬п╪я┐ п╫п╣ п©я─п╦я│я▀п╩п╟п╧я┌п╣ п╡п╬п©я─п╬я│п╬п╡ я┌п╦п©п╟: <BR>
+<H2>Для чего был написан этот документ</H2>
+<P>Здесь дана информация о том, как настроить отдельную машину, упоминаемую здесь как&nbsp; me.com (как пример), не имеющую постоянного доступа в
+Интернет, так, чтобы она посылала вашу почту через sendmail и UUCP к "более
+совершенной" (smarter) машине, т.е. к вашему провайдеру. <BR>
+Заодно, вы можете настроить вашу машину для
+пересылки почты с других машин, т.е. вам, в свою очередь, стать "более
+совершенной" машиной или шлюзом&nbsp; (gateway).</P>
+<H2>Что в этом документе не описывается</H2>
+<P>Я получаю огромное количество вопросов, относящихся к темам, находящимся за пределами этого HOWTO. Этот документ не может охватить все, поэтому не присылайте вопросов типа: <BR>
 &nbsp; </P>
-<H3>п╟) п п╟п╨ п╫п╟я│я┌я─п╬п╦я┌я▄ </FONT>UUCP.</H3>
-<FONT FACE="Times New Roman"><P>п╖п╦я┌п╟п╧я┌п╣ п╢я─я┐пЁп╦п╣, п╫п╣ п╪п╣п╫п╣п╣ п©я─п╣п╨я─п╟я│п╫я▀п╣ п╦я│я┌п╬я┤п╫п╦п╨п╦, п╫п╟п©я─п╦п╪п╣я─: </P>
+<H3>а) Как настроить </FONT>UUCP.</H3>
+<FONT FACE="Times New Roman"><P>Читайте другие, не менее прекрасные источники, например: </P>
 
 <UL>
 </FONT><LI>UUCP HOWTO (Vince Skahan)</LI>
-<FONT FACE="Times New Roman"><LI>п≤я│п©п╬п╩я▄п╥п╬п╡п╟п╫п╦п╣ п╦ я┐п©я─п╟п╡п╩п╣п╫п╦п╣ UUCP (п╟п╡я┌п╬я─ Ed Ravin -- п╦п╥п╢п╟я┌п╣п╩я▄ O'reilly), п©п╬ п╪п╬п╣п╪я┐ п╪п╫п╣п╫п╦я▌, п╫п╟п╦п╠п╬п╩п╣п╣ п╟п╡я┌п╬я─п╦я┌п╣я┌п╫п╬п╣ п╦п╥п╢п╟п╫п╦п╣ п╬ UUCP </LI>
-<LI>п═я┐п╨п╬п╡п╬п╢я│я┌п╡п╬ я│п╣я┌п╣п╡п╬пЁп╬ п╟п╢п╪п╦п╫п╦я│я┌я─п╟я┌п╬я─п╟ Linux (п╟п╡я┌п╬я─ O</FONT>laf Kirch) </LI></UL>
+<FONT FACE="Times New Roman"><LI>Использование и управление UUCP (автор Ed Ravin -- издатель O'reilly), по моему мнению, наиболее авторитетное издание о UUCP </LI>
+<LI>Руководство сетевого администратора Linux (автор O</FONT>laf Kirch) </LI></UL>
 
 <P>&nbsp;</P>
-<FONT FACE="Times New Roman"><H3>п╠) п╨п╟п╨ п╫п╟я│я┌я─п╬п╦я┌я▄ DNS.</H3>
-<P>п╖п╦я┌п╟п╧я┌п╣ п╢я─я┐пЁп╦п╣ п╦я│я┌п╬я┤п╫п╦п╨п╦, п╫п╟п©я─п╦п╪п╣я─: </P>
+<FONT FACE="Times New Roman"><H3>б) как настроить DNS.</H3>
+<P>Читайте другие источники, например: </P>
 
 <UL>
-<LI>п╪п╦п╫п╦-HOWTO "п╨я█я┬п╦я─я┐я▌я┴п╦п╧ named" (Nicolai Langfeldt) </LI>
-<LI>The bat book (Sendmail;Costalles, Allman, Rickert;п╦п╥п╢п╟я┌п╣п╩я▄ O'reilly)</LI>
-<LI>DNS п╦ BIND (п≤п╥п╢п╟я┌п╣п╩я▄ O'reilly) </LI>
-<LI>п░п╢п╪п╦п╫п╦я│я┌я─п╦я─п╬п╡п╟п╫п╦п╣ я│п╣я┌п╣п╧ TCP/IP (Hunt, Craig;п╦п╥п╢п╟я┌п╣п╩я▄ O'reilly) </LI>
-<LI>п═я┐п╨п╬п╡п╬п╢я│я┌п╡п╬ я│п╣я┌п╣п╡п╬пЁп╬ п╟п╢п╪п╦п╫п╦я│я┌я─п╟я┌п╬я─п╟ Linux (п╟п╡я┌п╬я─ Olaf Kirch) </LI>
-<LI>п╒п╣п╬я─п╦я▐ п╦ п©я─п╟п╨я┌п╦п╨п╟ sendmail (Avolio п╦ Vixie; п╦п╥п╢п╟я┌п╣п╩я▄ Digital press) </LI></UL>
+<LI>мини-HOWTO "кэширующий named" (Nicolai Langfeldt) </LI>
+<LI>The bat book (Sendmail;Costalles, Allman, Rickert;издатель O'reilly)</LI>
+<LI>DNS и BIND (Издатель O'reilly) </LI>
+<LI>Администрирование сетей TCP/IP (Hunt, Craig;издатель O'reilly) </LI>
+<LI>Руководство сетевого администратора Linux (автор Olaf Kirch) </LI>
+<LI>Теория и практика sendmail (Avolio и Vixie; издатель Digital press) </LI></UL>
 
 </FONT><P>&nbsp;</P>
-<FONT FACE="Times New Roman"><H3>п╡) п╨п╟п╨ п╫п╟я│я┌я─п╬п╦я┌я▄ п╠п╟п╥я▀ п╢п╟п╫п╫я▀я┘ (п╨я─п╬п╪п╣ я┌п╟п╠п╩п╦я├я▀ mailer-п╬п╡) п╢п╩я▐ я─п╟п╠п╬я┌я▀ я│ sendmail.</H3>
-<P>п╖п╦я┌п╟п╧я┌п╣ п╢я─я┐пЁп╦п╣ п╦я│я┌п╬я┤п╫п╦п╨п╦, п╫п╟п©я─п╦п╪п╣я─: </P>
+<FONT FACE="Times New Roman"><H3>в) как настроить базы данных (кроме таблицы mailer-ов) для работы с sendmail.</H3>
+<P>Читайте другие источники, например: </P>
 
 <UL>
-<LI>The bat book (Sendmail;Costalles, Allman, Rickert -- п╦п╥п╢п╟я┌п╣п╩я▄ O'reilly)&lt;o:p&lt;/o:p </LI>
-<LI>п░п╢п╪п╦п╫п╦я│я┌я─п╦я─п╬п╡п╟п╫п╦п╣ TCP/IP (п╦п╥п╢п╟я┌п╣п╩я▄ O'reilly) </LI>
-<LI>п╒п╣п╬я─п╦я▐ п╦ п©я─п╟п╨я┌п╦п╨п╟ Sendmail (Avolio п╦ Vixie; п╦п╥п╢п╟я┌п╣п╩я▄ Digital press) </LI>
+<LI>The bat book (Sendmail;Costalles, Allman, Rickert -- издатель O'reilly)&lt;o:p&lt;/o:p </LI>
+<LI>Администрирование TCP/IP (издатель O'reilly) </LI>
+<LI>Теория и практика Sendmail (Avolio и Vixie; издатель Digital press) </LI>
 </FONT><LI>Docs bundled with sendmail&nbsp;&lt;o:p&lt;/o:p </LI></UL>
 
-<FONT FACE="Times New Roman"><H3>пЁ) п╨п╟п╨ я│п╬п╥п╢п╟п╡п╟я┌я▄ п╦п╩п╦ п╦п╥п╪п╣п╫я▐я┌я▄ п╫п╟п╠п╬я─я▀ п©я─п╟п╡п╦п╩ (rulesets) п╦п╩п╦ mailer-я▀.</H3>
+<FONT FACE="Times New Roman"><H3>г) как создавать или изменять наборы правил (rulesets) или mailer-ы.</H3>
 
 <UL>
-<LI>п║п╪п╬я┌я─п╦я┌п╣ я│я│я▀п╩п╨п╦ п╡ п©я┐п╫п╨я┌п╣ c) </LI></UL>
+<LI>Смотрите ссылки в пункте c) </LI></UL>
 
-<P>п╒п╟п╨п╤п╣ п╡я▀ п╪п╬п╤п╣я┌п╣ п╬п╠я─п╟я┌п╦я┌я▄я│я▐ п╨ я│п╩п╣п╢я┐я▌я┴п╦п╪ пЁя─я┐п©п©п╟п╪ п╫п╬п╡п╬я│я┌п╣п╧: <BR>
+<P>Также вы можете обратиться к следующим группам новостей: <BR>
 </FONT><A HREF="news:comp.mail.sendmail">comp.mail.sendmail</A> <BR>
 <A HREF="news:comp.mail.uucp">comp.mail.uucp</A> <BR>
 <A HREF="news:comp.os.linux.networking">comp.os.linux.networking</A><FONT FACE="Times New Roman"> <BR>
-п п╟п╫п╟п╩я▀ IRC <BR>
+Каналы IRC <BR>
 #linux, #unix <BR>
 &nbsp; </P>
 </FONT><P><HR SIZE=1>
-<FONT FACE="Times New Roman"><H2>п²п░п║п╒п═п·п≥п п░</H2>
-<P>п╜я┌п╟ п╫п╟я│я┌я─п╬п╧п╨п╟ п©я─п╦п╡п╣п╢п╣п╫п╟ п╢п╩я▐ я│п╦я│я┌п╣п╪я▀, пЁп╦п©п╬я┌п╣я┌п╦я┤п╣я│п╨п╦ п╫п╟п╥п╡п╟п╫п╫п╬п╧ me.com, я┤я▄я▐ п©п╬я┤я┌п╟ п╬я┌п©я─п╟п╡п╩я▐п╣я┌я│я▐ я┌п╬п╩я▄п╨п╬ я┤п╣я─п╣п╥ UUCP. mysmarthost - я█я┌п╬ п╫п╟п╥п╡п╟п╫п╦п╣
-п╪п╟я┬п╦п╫я▀ п©я─п╬п╡п╟п╧п╢п╣я─п╟, п╫п╟п©п╦я│п╟п╫п╫п╬п╣ п╡ я└п╟п╧п╩п╣ sys UUCP п╦ me.com - я█я┌п╬ п╫п╟п╥п╡п╟п╫п╦п╣
-п╪п╟я┬п╦п╫я▀, п╨п╬я┌п╬я─я▀п╧ п╪я▀ п╦я│п©п╬п╩я▄п╥я┐п╣п╪, п╦ п╨п╬я┌п╬я─я▀п╧ п╦п╥п╡п╣я│я┌п╣п╫ п╡
-п≤п╫я┌п╣я─п╫п╣я┌п╣ п╡ п╥п╟п©п╦я│я▐я┘ MX DNS. <BR>
-mysmarthost п©п╬п╢п╨п╩я▌я┤п╣п╫п╟ п╨ п≤п╫я┌п╣я─п╫п╣я┌я┐. п°я▀ п╫п╟ я│п╟п╪п╬п╪ п╢п╣п╩п╣ п╫п╣ п╥п╫п╟п╣п╪, п╨п╟п╨ п╬п╫п╟</FONT> <FONT FACE="Times New Roman">п©п╬п╢п╨п╩я▌я┤п╣п╫п╟, п╪я▀ п©я─п╬я│я┌п╬ п╥п╫п╟п╣п╪, я┤я┌п╬ п╬п╫п╟ п╢п╬я│я┌п╟п╡п╦я┌ п╫п╟я┬я┐ п©п╬я┤я┌я┐. <BR>
-me.com, я┤я▄я▐ п╫п╟я│я┌я─п╬п╧п╨п╟ п╬п©п╦я│п╟п╫п╟ п╫п╦п╤п╣, я│п╬п╠п╦я─п╟п╣я┌ п╦&nbsp;п©п╣я─п╣я│я▀п╩п╟п╣я┌ (feed) п©п╬я┤я┌я┐
-п╪п╟я┬п╦п╫ down.com п╦ system1.org п╦ п╦я┘ п©п╬п╢я┐п╥п╩п╬п╡ (subnodes). me.com я│п╬п╣п╢п╦п╫я▐п╣я┌я│я▐ я│&nbsp;down.com я┤п╣я─п╣п╥ TCP/IP п╦ я│п╬п╣п╢п╦п╫я▐п╣я┌я│я▐ я│ system1.org я┤п╣я─п╣п╥ п╬п╠я▀я┤п╫п╬п╣ UUCP я│п╬п╣п╢п╦п╫п╣п╫п╦п╣, я│ п╦я│п©п╬п╩я▄п╥п╬п╡п╟п╫п╦п╣п╪ я┌п╣п╩п╣я└п╬п╫п╫я▀я┘ п╩п╦п╫п╦п╧. <BR>
-п·п©п╦я│п╟п╫п╦п╣ п╫п╟я│я┌я─п╬п╧п╨п╦ п©я─п╦п╡п╣п╢п╣п╫п╬ п╫п╦п╤п╣: <BR>
+<FONT FACE="Times New Roman"><H2>НАСТРОЙКА</H2>
+<P>Эта настройка приведена для системы, гипотетически названной me.com, чья почта отправляется только через UUCP. mysmarthost - это название
+машины провайдера, написанное в файле sys UUCP и me.com - это название
+машины, который мы используем, и который известен в
+Интернете в записях MX DNS. <BR>
+mysmarthost подключена к Интернету. Мы на самом деле не знаем, как она</FONT> <FONT FACE="Times New Roman">подключена, мы просто знаем, что она доставит нашу почту. <BR>
+me.com, чья настройка описана ниже, собирает и&nbsp;пересылает (feed) почту
+машин down.com и system1.org и их подузлов (subnodes). me.com соединяется с&nbsp;down.com через TCP/IP и соединяется с system1.org через обычное UUCP соединение, с использованием телефонных линий. <BR>
+Описание настройки приведено ниже: <BR>
 &nbsp;</P>
 </FONT><PRE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ------------------------
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
-<FONT FACE="Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp; п≤п╫я┌п╣я─п╫п╣я┌&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
+<FONT FACE="Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp; Интернет&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
 </FONT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -----------------------
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;
-<FONT FACE="Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | PPP/п╡я▀п╢п╣п╩п╣п╫п╫п╟я▐ п╩п╦п╫п╦я▐, п╦я│п©п╬п╩я▄п╥я┐я▌я┴п╟я▐ TCP-IP
+<FONT FACE="Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | PPP/выделенная линия, использующая TCP-IP
 </FONT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -------------
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
-<FONT FACE="Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |mysmarthost | п░п╡я┌п╬я─п╦я┌п╣я┌п╫я▀п╧ (Authoritative)я│п╣я─п╡п╣я─ DNS п╢п╩я▐
+<FONT FACE="Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |mysmarthost | Авторитетный (Authoritative)сервер DNS для
 </FONT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | *.me.com, *.down.com, *.system1.org
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --------------
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
-<FONT FACE="Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | UUCP-я│п╬п╣п╢п╦п╫п╣п╫п╦п╣ п©п╬ я┌п╣п╩п╣я└п╬п╫п╫п╬п╧ п╩п╦п╫п╦п╦, п©п╣я─п╣п╢п╟я▌я┴п╣п╣ п©п╬я┤я┌я┐
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | п╢п╩я▐ system1.org, *.system1.org,*.down.com, down.com,
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | п╟ я┌п╟п╨п╤п╣ п╢п╩я▐ me.com and *.me.com
+<FONT FACE="Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | UUCP-соединение по телефонной линии, передающее почту
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | для system1.org, *.system1.org,*.down.com, down.com,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | а также для me.com and *.me.com
 </FONT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ------------
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | * *****&nbsp; *&nbsp; |
 &nbsp;&nbsp; ------------ | * me.com *&nbsp; | ------
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | *&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
 &nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | * *****&nbsp; *&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
 &nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ------------&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;
-<FONT FACE="Courier New">&nbsp;&nbsp; |UUCP п©п╬ я┌п╣п╩п╣я└п╬п╫п╫п╬п╧ п╩п╦п╫п╦п╦&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | UUCP я┤п╣я─п╣п╥ TCP/IP
+<FONT FACE="Courier New">&nbsp;&nbsp; |UUCP по телефонной линии&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | UUCP через TCP/IP
 </FONT>&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
 &nbsp;-----------&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -----------
 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
@@ -119,54 +119,54 @@ me.com, я┤я▄я▐ п╫п╟я│я┌я─п╬п╧п╨п╟ п╬п©п╦я│п╟п╫п╟ п╫п╦п╤п╣, я│п╬п╠п╦я─п╟п╣я┌ п╦&n
 &nbsp;----------&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ------------&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
 &nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
 &nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
-&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<FONT FACE="Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | п⌡п╬п╨п╟п╩я▄п╫п╟я▐ я│п╣я┌я▄: SMTP п╨ я┐п╥п╩п╟п╪
-&nbsp;&nbsp;&nbsp;&nbsp; | UUCP п©п╬ я┌п╣п╩п╣я└п╬п╫п╫п╬п╧ п╩п╦п╫п╦п╦
+&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<FONT FACE="Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Локальная сеть: SMTP к узлам
+&nbsp;&nbsp;&nbsp;&nbsp; | UUCP по телефонной линии
 </FONT>&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
 -----------&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -------------
-<FONT FACE="Courier New">|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | п⌡п╬п╨п╟п╩я▄п╫п╟я▐ |
-| п©п╬п╢я┐п╥п╩я▀ |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | я│п╣я┌я▄ я┐п╥п╩п╟ |
+<FONT FACE="Courier New">|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Локальная |
+| подузлы |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | сеть узла |
 </FONT>| system1 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp; down&nbsp;&nbsp;&nbsp; |
 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ------------
 ----------</PRE>
-<FONT FACE="Times New Roman"><H2>п÷я─п╣п╢п╡п╟я─п╦я┌п╣п╩я▄п╫я▀п╣ я┐я│п╩п╬п╡п╦я▐</H2>
-<P>1) п∙я│п╩п╦ я┐ п╡п╟я│ я┐п╤п╣ я─п╟п╠п╬я┌п╟п╣я┌ DNS, п╦п╩п╦ п╣я│я┌я▄ я│я│я▀п╩п╨п╟ п╫п╟ DNS-я│п╣я─п╡п╣я─ (п╡ я└п╟п╧п╩п╣ /etc/resolv.conf), п╦ я┐ п╡п╟я│ "п╤п╦п╡п╬п╣" я│п╬п╣п╢п╦п╫п╣п╫п╦п╣ я│
-п≤п╫я┌п╣я─п╫п╣я┌п╬п╪, я┌п╬пЁп╢п╟ п©я─п╬п©я┐я│я┌п╦я┌п╣ я█я┌я┐ я┤п╟я│я┌я▄. пё п╡п╟я│ п╡я│п╣ п╡ п©п╬я─я▐п╢п╨п╣. п▓п╟п╪ п╫п╣ п╫п╟п╢п╬ п╢п╣п╩п╟я┌я▄ п╫п╦я┤п╣пЁп╬ "п╬я┤п╣п╫я▄ я┐п╪п╫п╬пЁп╬". п║п©я┐я│п╨п╟п╧я┌п╣я│я▄ п╨ я┤п╟я│я┌п╦ 2)</P>
-<P>п∙я│п╩п╦ я┐ п╡п╟я│ п╪п╟я┬п╦п╫п╟, п╦я│п©п╬п╩я▄п╥я┐я▌я┴п╟я▐ UUCP п╢п╩я▐ п©п╬я┤я┌я▀, я┌п╬ п╡п╟п╪, п╫п╟ я│п╟п╪п╬п╪ п╢п╣п╩п╣, п╫п╣ п╫п╟п╢п╬ я│п╬п╠п╦я─п╟я┌я▄ bind/resolv п╡ sendmail;</P>
-<H3>п п╟п╨ я│п©я─п╟п╡п╦я┌я▄я│я▐ я│ п╨п╟п╫п╬п╫п╦п╥п╟я├п╦п╣п╧ п╦п╪п╣п╫ п╫п╟ п╬я┌п╢п╣п╩я▄п╫п╬п╧ п╪п╟я┬п╦п╫п╣, п╫п╣ п╦п╪п╣я▌я┴п╣п╧ DNS</H3>
-<P>п╖п░п║п╒п╛ I <BR>
-п∙я│п╩п╦ я┐ п╡п╟я│ п╥п╟я─п╟п╫п╣п╣ я│п╬п╠я─п╟п╫п╫я▀п╧ sendmail я│ п©п╬п╢п╢п╣я─п╤п╨п╬п╧ BIND, п╡я▀ я│п╪п╬п╤п╣я┌п╣ п╤п╦я┌я▄ п╦ я│ п╫п╦п╪&nbsp;(п п╟п╨ п╡ я│п╩я┐я┤п╟п╣ я│ Redhat, п╡ п©п╬я│я┌п╟п╡п╨я┐ п╨п╬я┌п╬я─п╬пЁп╬ п╡я┘п╬п╢п╦я┌ sendmail).</P>
-<P>п╟) п≤я│п©п╬п╩я▄п╥я┐п╧я┌п╣ п╪п╬п╣ я─п╣я┬п╣п╫п╦п╣, п╬я│п╫п╬п╡п╟п╫п╫п╬п╣ п╫п╟ m4-я└п╟п╧п╩п╣, п╬п©п╦я│п╟п╫п╫п╬п╪ п╫п╦п╤п╣. п÷п╬п©я─п╬п╠я┐п╧я┌п╣ я█я┌п╬я┌ п╡п╟я─п╦п╟п╫я┌, п╣я│п╩п╦ п╡я▀ п╫п╣
-п╫п╟я│я┌п╟п╦п╡п╟п╣я┌п╣ п╫п╟ п©я┐п╫п╨я┌п╟я┘ п╠) п╦п╩п╦ п╡), п©я─п╦п╡п╣п╢п╣п╫п╫я▀я┘ п╫п╦п╤п╣;</P>
-<P>п╠) п∙я│п╩п╦ п╡я▀ п©п╣я─п╣пЁп╬п╡п╬я─п╦я┌п╣ я│п╬ п╪п╫п╬п╧, я▐ п╪п╬пЁя┐ я│п╫п╟п╠п╢п╦я┌я▄ п╡п╟я│ я│п╬п╠я─п╟п╫п╫я▀п╪ sendmail-п╬п╪ п╠п╣п╥ BIND (п╡п╣я─я│п╦п╦ 8.8.5). п▓п╬п╥п╪п╬п╤п╫п╬, Redhat я│я┌п╬п╦я┌ я│п╫п╟п╠п╢п╦я┌я▄ я│п╡п╬я▌ п©п╬я│я┌п╟п╡п╨я┐ п╢п╡я┐п╪я▐ я│п╬п╠я─п╟п╫п╫я▀п╪п╦ п©п╟п╨п╣я┌п╟п╪п╦ sendmail (п╨п╟п╨ п╡ Slackware) - п╬п╢п╦п╫ я│ BIND, п╟ п╢я─я┐пЁп╬п╧ п╠п╣п╥;</P>
-<P>п╡) п²п╟п╦п╠п╬п╩п╣п╣ п╠я▀я│я┌я─я▀п╧ я│п©п╬я│п╬п╠ п©п╬п╩я┐я┤п╦я┌я▄ sendmail п╠п╣п╥ п©п╬п╢п╢п╣я─п╤п╨п╦ BIND - п╬я┌я─п╣п╢п╟п╨я┌п╦я─п╬п╡п╟я┌я▄ я└п╟п╧п╩ src/conf.h я┌п╟п╨, п╨п╟п╨ п©п╬п╨п╟п╥п╟п╫п╬ п╫п╦п╤п╣: </P>
-</FONT><P># ifndef NAMED_BIND <FONT FACE="Times New Roman">conf.h:# define NAMED_BIND 0 /* п╦я│п©. Berkeley Internet Domain Server */ </P>
-<P>п╖п░п║п╒п╛ II: <BR>
-Sendmail п╬п╠я▀я┤п╫п╬ п╫п╟я│я┌п╟п╦п╡п╟п╣я┌ п╫п╟ п©я─п╬п╦п╥п╡п╣п╢п╣п╫п╦п╦ п©п╬п╦я│п╨п╟ п╦п╪п╣п╫п╦ (name look ups) , я┤я┌п╬п╠я▀ п©п╬п╩я┐я┤п╦я┌я▄ п╦п╪я▐
-п╪п╟я┬п╦п╫я▀(resolve), п╦я│п©п╬п╩я▄п╥я┐я▐ gethostbyaddr() п╢п╩я▐ п╨п╟п╤п╢п╬пЁп╬ п©п╦я│я▄п╪п╟, п╨п╬я┌п╬я─п╬п╣ п╬п╫ п©п╬я│я▀п╩п╟п╣я┌ (п╢п╟п╤п╣ п╣я│п╩п╦ п╡я▀ п╥п╟п©я─п╣я┌п╦я┌п╣ п╣п╪я┐ п╨п╟п╫п╬п╫п╦п╥п╦я─п╬п╡п╟я┌я▄ п╦п╪п╣п╫п╟).</P>
-<P>п╟) п╦я│п©п╬п╩я▄п╥я┐п╧я┌п╣ IP п╟п╢я─п╣я│п╟ п╡ я│п╬п╬я┌п╡п╣я┌я│я┌п╡п╦п╦ я│ RFC1597 IP (10.0.0.0-10.255.255.255, 172.16.0.0-172.31.255.255, 192.168.0.0-192.168.255.255) <BR>
-п·я┌я─п╣п╢п╟п╨я┌п╦я─я┐п╧я┌п╣ я└п╟п╧п╩ /etc/hosts п╦ п╢п╬п╠п╟п╡я▄я┌п╣ п╡ п╫п╣пЁп╬ я│я┌я─п╬п╨п╦, п╡ я│п╬п╬я┌п╡п╣я┌я│я┌п╡п╦п╦ я│ п©я─п╦п╪п╣я─п╬п╪ п╢п╩я▐ myhost: <BR>
-10.0.0.1 myhost.me.com myhost п╦п╩п╦ <BR>
-п╠) п∙я│п╩п╦ п╡я▀ п╦я│п©п╬п╩я▄п╥я┐п╣я┌п╣ NIS (п╨я│я┌п╟я┌п╦ п╡я─п╬п╢п╣ п╦ NIS я│п╬п╠я─п╟п╫ п╡ sendmail п╡ п╢п╦я│я┌я─п╦п╠я┐я┌п╦п╡п╣ Redhat), я┌п╬ я┐п╠п╣п╢п╦я┌п╣я│я▄ п╡ я┌п╬п╪, я┤я┌п╬ п╡п╟я┬ я└п╟п╧п╩ /etc/nsswitch.conf я│п╬п╢п╣я─п╤п╦я┌: <BR>
+<FONT FACE="Times New Roman"><H2>Предварительные условия</H2>
+<P>1) Если у вас уже работает DNS, или есть ссылка на DNS-сервер (в файле /etc/resolv.conf), и у вас "живое" соединение с
+Интернетом, тогда пропустите эту часть. У вас все в порядке. Вам не надо делать ничего "очень умного". Спускайтесь к части 2)</P>
+<P>Если у вас машина, использующая UUCP для почты, то вам, на самом деле, не надо собирать bind/resolv в sendmail;</P>
+<H3>Как справиться с канонизацией имен на отдельной машине, не имеющей DNS</H3>
+<P>ЧАСТЬ I <BR>
+Если у вас заранее собранный sendmail с поддержкой BIND, вы сможете жить и с ним&nbsp;(Как в случае с Redhat, в поставку которого входит sendmail).</P>
+<P>а) Используйте мое решение, основанное на m4-файле, описанном ниже. Попробуйте этот вариант, если вы не
+настаиваете на пунктах б) или в), приведенных ниже;</P>
+<P>б) Если вы переговорите со мной, я могу снабдить вас собранным sendmail-ом без BIND (версии 8.8.5). Возможно, Redhat стоит снабдить свою поставку двумя собранными пакетами sendmail (как в Slackware) - один с BIND, а другой без;</P>
+<P>в) Наиболее быстрый способ получить sendmail без поддержки BIND - отредактировать файл src/conf.h так, как показано ниже: </P>
+</FONT><P># ifndef NAMED_BIND <FONT FACE="Times New Roman">conf.h:# define NAMED_BIND 0 /* исп. Berkeley Internet Domain Server */ </P>
+<P>ЧАСТЬ II: <BR>
+Sendmail обычно настаивает на произведении поиска имени (name look ups) , чтобы получить имя
+машины(resolve), используя gethostbyaddr() для каждого письма, которое он посылает (даже если вы запретите ему канонизировать имена).</P>
+<P>а) используйте IP адреса в соответствии с RFC1597 IP (10.0.0.0-10.255.255.255, 172.16.0.0-172.31.255.255, 192.168.0.0-192.168.255.255) <BR>
+Отредактируйте файл /etc/hosts и добавьте в него строки, в соответствии с примером для myhost: <BR>
+10.0.0.1 myhost.me.com myhost или <BR>
+б) Если вы используете NIS (кстати вроде и NIS собран в sendmail в дистрибутиве Redhat), то убедитесь в том, что ваш файл /etc/nsswitch.conf содержит: <BR>
 hosts: files dns &nbsp;<BR>
-п╦ п╡ я└п╟п╧п╩ /etc/hosts</FONT> <FONT FACE="Times New Roman">п╢п╬п╠п╟п╡я▄я┌п╣ п╡ п╫п╣пЁп╬ я│я┌я─п╬п╨п╦, п╡ я│п╬п╬я┌п╡п╣я┌я│я┌п╡п╦п╦ я│ п©я─п╦п╪п╣я─п╬п╪ п╢п╩я▐ myhost [я│п╫п╬п╡п╟ п╦я│п©п╬п╩я▄п╥я┐я▐ IP-п╟п╢я─п╣я│п╟, п╡ я│п╬п╬я┌п╡п╣я┌я│я┌п╡п╦п╦ я│ RFC1597] <BR>
+и в файл /etc/hosts</FONT> <FONT FACE="Times New Roman">добавьте в него строки, в соответствии с примером для myhost [снова используя IP-адреса, в соответствии с RFC1597] <BR>
 10.0.0.1 myhost.me.com myhost </P>
-<P>п≈п░п°п∙п╖п░п²п≤п∙: ---- п▓ п╬п╠п╬п╦я┘ я│п╩я┐я┤п╟я▐я┘ п╡п╟п╤п╫п╬, я┤я┌п╬п╠я▀ п╡я▀ п╦я│п©п╬п╩я▄п╥п╬п╡п╟п╩п╦ п╡ я└п╟п╧п╩п╣ /etc/hosts п©п╬п╩п╫п╬п╣ (fully qualified) п╦п╪я▐ п╢п╬п╪п╣п╫п╟, я┌п╬ п╣я│я┌я▄ п╡ я│я┌я─п╬п╨п╣ п╢п╬п╩п╤п╫п╬ п╠я▀я┌я▄ п╫п╟п©п╦я│п╟п╫п╬ 10.0.0.1 myhost.me.com myhost, п╟ п╫п╣ 10.0.0.1 myhost&nbsp;<BR>
-п▓п╟п╪ я┌п╟п╨п╤п╣ п©я─п╦п╢п╣я┌я│я▐ п╬п©я─п╣п╢п╣п╩п╦я┌я▄ п╪п╟п╨я─п╬я│ $w п╢п╩я▐ я│п╬я┘я─п╟п╫п╣п╫п╦я▐ myhost.me.com <BR>
-п■п╬п╠п╟п╡я▄я┌п╣ я│п╩п╣п╢я┐я▌я┴я┐я▌ я│я┌я─п╬я┤п╨я┐ п╡ я└п╟п╧п╩ /etc/sendmail.cf п©п╬я│п╩п╣ я┌п╬пЁп╬, п╨п╟п╨ п╬п╫ п╠я┐п╢п╣я┌ я│п╬п╠я─п╟п╫:<BR>
+<P>ЗАМЕЧАНИЕ: ---- В обоих случаях важно, чтобы вы использовали в файле /etc/hosts полное (fully qualified) имя домена, то есть в строке должно быть написано 10.0.0.1 myhost.me.com myhost, а не 10.0.0.1 myhost&nbsp;<BR>
+Вам также придется определить макрос $w для сохранения myhost.me.com <BR>
+Добавьте следующую строчку в файл /etc/sendmail.cf после того, как он будет собран:<BR>
 Djmyhost.me.com &nbsp;<BR>
-(п╦п╩п╦ п╡я▀ п╪п╬п╤п╣я┌п╣ п╦я│п©п╬п╩я▄п╥п╬п╡п╟я┌я▄ я└я┐п╫п╨я├п╦я▌ MASQUAREADE_AS(myhost.me.com) п╡&nbsp; .mc-я└п╟п╧п╩п╣, п╨п╬я┌п╬я─я▀п╣ п©я─п╦п╡п╣п╢п╣п╫ п╫п╦п╤п╣)</P>
-<P>п▓п²п≤п°п░п²п≤п∙!!!!! myhost - я█я┌п╬ п╦п╪я▐ п╪п╟я┬п╦п╫я▀, п╢п╟п╫п╫п╬п╣ п╢п╩я▐ п©я─п╦п╪п╣я─п╟; п╡я▀ п╫п╣ п╢п╬п╩п╤п╫я▀ п╦я│п©п╬п╩я▄п╥п╬п╡п╟я┌я▄ п╣пЁп╬. п▓я▀п╠п╣я─п╦я┌п╣ я│п╣п╠п╣ я│п╬п╠я│я┌п╡п╣п╫п╫п╬п╣ п╦п╪я▐
-п╪п╟я┬п╦п╫я▀, п╣я│п╩п╦ я┐ п╡п╟я│ п╣пЁп╬ п╣я┴п╣ п╫п╣я┌. </P>
+(или вы можете использовать функцию MASQUAREADE_AS(myhost.me.com) в&nbsp; .mc-файле, которые приведен ниже)</P>
+<P>ВНИМАНИЕ!!!!! myhost - это имя машины, данное для примера; вы не должны использовать его. Выберите себе собственное имя
+машины, если у вас его еще нет. </P>
 </FONT><P><HR SIZE=1>
-<FONT FACE="Times New Roman"><P>2) пёп╠п╣п╢п╦я┌п╣я│я▄ п╡ я┌п╬п╪, я┤я┌п╬ я┐ п╡п╟я│ п╣я│я┌я▄ makemap, п╦ п╬п╫ п©п╬п╢п╢п╣я─п╤п╦п╡п╟п╣я┌ я┘п╣я┬п╦я─п╬п╡п╟п╫п╫я▀п╧ я└п╬я─п╪п╟я┌ п╦п╩п╦ п╫п╟п╦п╠п╬п╩п╣п╣ я─п╟я│п©я─п╬я│я┌я─п╟п╫п╣п╫п╫я▀п╧ dbm я└п╬я─п╪п╟я┌, п╦п╩п╦ я┘п╬я┌я▐ п╠я▀ я└п╬я─п╪п╟я┌ btree (п▓п╣я─я│п╦я▐ п╡ Redhat п╫п╣ п©п╬п╢п╢п╣я─п╤п╦п╡п╟п╣я┌ dbm). Makemap п╬п╠я▀я┤п╫п╬ п©п╬я│я┌п╟п╡п╩я▐п╣я┌я│я▐ п╡п╪п╣я│я┌п╣ я│ sendmail. <BR>
+<FONT FACE="Times New Roman"><P>2) Убедитесь в том, что у вас есть makemap, и он поддерживает хешированный формат или наиболее распространенный dbm формат, или хотя бы формат btree (Версия в Redhat не поддерживает dbm). Makemap обычно поставляется вместе с sendmail. <BR>
 </P>
-<H3>п²п░п║п╒п═п·п≥п п░ (mc-я└п╟п╧п╩)</H3>
-<P>I) п║п╬п╥п╢п╟п╧я┌п╣ я│п╡п╬п╧ .mc-я└п╟п╧п╩, я│ п╦я│п©п╬п╩я▄п╥п╬п╡п╟п╫п╦п╣п╪ п╡п╟я┬п╣пЁп╬ п╩я▌п╠п╦п╪п╬пЁп╬ я─п╣п╢п╟п╨я┌п╬я─п╟, я▐ п╫п╟п╥я▀п╡п╟я▌ я█я┌п╬я┌ я└п╟п╧п╩ my.mc </P>
-<P>a) п▒п╣п╥ DNS Б┬  п╬я┌п╢п╣п╩я▄п╫п╬ я│я┌п╬я▐я┴п╟я▐ п╪п╟я┬п╦п╫п╟ </P>
+<H3>НАСТРОЙКА (mc-файл)</H3>
+<P>I) Создайте свой .mc-файл, с использованием вашего любимого редактора, я называю этот файл my.mc </P>
+<P>a) Без DNS √ отдельно стоящая машина </P>
 </FONT><P><HR SIZE=1>
 <FONT FACE="Times New Roman"><P><BR>
 include(`../m4/cf.m4') <BR>
-VERSIONID(`п²п╟я│я┌я─п╬п╧п╨п╟ п╪п╟я┬п╦п╫я▀ me.com c&nbsp; uucp, я│п╬п╥п╢п╟п╫п╟ xxxx -- п╠п╣п╥ DNS ')dnl&nbsp;<BR>
+VERSIONID(`Настройка машины me.com c&nbsp; uucp, создана xxxx -- без DNS ')dnl&nbsp;<BR>
 OSTYPE(linux)</FONT> <BR>
 FEATURE(nodns)dnl <BR>
 FEATURE(nocanonify)dnl <BR>
@@ -177,35 +177,35 @@ MAILER(smtp)dnl <BR>
 MAILER(uucp) <BR>
 define(`SMART_HOST', uucp-dom:mysmarthost) </P>
 <P><HR SIZE=1>
-<FONT FACE="Times New Roman"><P>п■п╟п╡п╟п╧я┌п╣ п©п╬п╢я─п╬п╠п╫п╬ я─п╟п╥п╠п╣я─п╣п╪я│я▐ я│ я█я┌п╦п╪: </P>
+<FONT FACE="Times New Roman"><P>Давайте подробно разберемся с этим: </P>
 
 <UL>
-<LI>include(`../m4/cf.m4') п╢п╬п╠п╟п╡п╩я▐п╣я┌ п╡ п╬п╠я─п╟п╠п╬я┌п╨я┐ m4-п╪п╟п╨я─п╬, п╫п╟я┘п╬п╢я▐я┴п╣п╣я│я▐ п╡ п╨п╟я┌п╟п╩п╬пЁп╣ ../m4/cf.m4, я┤я┌п╬п╠я▀ п©я─п╣п╢я┐я│п╪п╬я┌я─п╣я┌я▄ п╫п╣п╨п╬я┌п╬я─я▀п╣ п╡п╣я┴п╦ </LI>
-<LI>VERSIONID(`п²п╟я│я┌я─п╬п╧п╨п╟ п╪п╟я┬п╦п╫я▀ me.com c&nbsp; uucp, я│п╬п╥п╢п╟п╫п╟ xxxx -- п╠п╣п╥ DNS ')dnl&nbsp; - я█я┌п╬ п╫я┐п╤п╫п╬ п╢п╩я▐ я─п╟п╥п╢п╣п╩п╣п╫п╦я▐ я─п╟п╥п╫я▀я┘ п╡п╣я─я│п╦п╦ .cf-я└п╟п╧п╩п╬п╡, п╨п╬я┌п╬я─я▀п╣ п╡я▀ п╪п╬п╤п╣я┌п╣ я│п╬п╥п╢п╟я┌я▄. </LI>
-<LI>OSTYPE(linux) п╜я┌п╬ п╫я┐п╤п╫п╬, я┤я┌п╬п╠я▀ п╡п╡п╣я│я┌п╦ п╫п╣п╨п╬я┌п╬я─я▀п╣ п╨п╬я─я─п╣п╨я├п╦п╦, я│п╡я▐п╥п╟п╫п╫я▀п╣ я│ linux. п╜я┌п╬ п╪п╬п╤п╫п╬ п╥п╢п╣я│я▄ п╬я│я┌п╟п╡п╦я┌я▄. </LI>
-<LI>FEATURE(nodns)dnl - я█я┌п╬ пЁп╬п╡п╬я─п╦я┌ п╬ я┌п╬п╪, я┤я┌п╬ я┐ п╫п╟я│ п╫п╣я┌ DNS-я│п╣я─п╡п╣я─п╟ (п©п╬я█я┌п╬п╪я┐ п╪я▀ п╦я│п©п╬п╩я▄п╥я┐п╣п╪ п╢п╩я▐ п©п╬я┤я┌я▀ я┌п╬п╩я▄п╨п╬ UUCP. Sendmail п╢п╬п╩п╤п╣п╫ п╠я▀я┌я▄ я│п╨п╬п╪п©п╦п╩п╦я─п╬п╡п╟п╫ п╠п╣п╥ п©п╬п╢п╢п╣я─п╤п╨п╦ BIND) п╜я┌п╟ п╬п©я├п╦я▐ я┐я│я┌п╟я─п╣п╩п╟. п╞ п╬я│я┌п╟п╡п╩я▐я▌ п╣п╣ п╫п╟ я│п╩я┐я┤п╟п╧ я┌п╬пЁп╬, я┤я┌п╬ я┐ п╡п╟я│ п╠п╬п╩п╣п╣ я│я┌п╟я─п╟я▐ п╡п╣я─я│п╦я▐ п©п╟п╨п╣я┌п╟ sendmail. </LI>
-<LI>FEATURE(nocanonify)dnl п²п╣ п©п╬я│я▀п╩п╟я┌я▄ п╟п╢я─п╣я│п╟ п╫п╟ $[ ... $] п╢п╩я▐ п╨п╟п╫п╬п╫п╦п╥п╟я├п╦п╦. п·п╠я▀я┤п╫п╬, п╣я│п╩п╦ я┐ п╡п╟я│ sendmail я│п╬п╠я─п╟п╫ я│ п©п╬п╢п╢п╣я─п╤п╨п╬п╧ BIND, я┌п╬ п╬п╫ п╠я┐п╢п╣я┌ п©я▀я┌п╟я┌я▄я│я▐ п©я─п╣п╬п╠я─п╟п╥п╬п╡п╟я┌я▄ п©я│п╣п╡п╢п╬п╫п╦п╪/IP-п╟п╢я─п╣я│ п╡ п╨п╟п╫п╬п╫п╦я┤п╣я│п╨п╬п╣ п╦п╪я▐ я│ п╦я│п©п╬п╩я▄п╥п╬п╡п╟п╫п╦п╣п╪ DNS. п▓п╟п╪ я█я┌п╬ п╫п╣ п╫я┐п╤п╫п╬, п╣я│п╩п╦ п╡я│я▐ п╡п╟я┬п╟ п©п╬я┤я┌п╟ п╦п╢п╣я┌ я┤п╣я─п╣п╥ UUCP, я┌п╬ п╣я│я┌я▄ я┐ п╡п╟я│
-  п╡я▀п╢п╣п╩п╣п╫п╟ п╫п╟ я█я┌п╬ п╪п╟я┬п╦п╫п╟. </LI>
-<LI>FEATURE(always_add_domain)dnl п╜я┌п╟ я└я┐п╫п╨я├п╦я▐ п╢п╬п╠п╟п╡п╩я▐п╣я┌ п╢п╬п╪п╣п╫ п╨ п╦п╪п╣п╫п╦
-  п╪п╟я┬п╦п╫я▀ п╢п╟п╤п╣ п╫п╟ п╩п╬п╨п╟п╩я▄п╫п╬п╧ п©п╬я┤я┌п╣. п╜я┌п╬ п╫п╣ п╬п╠я▐п╥п╟я┌п╣п╩я▄п╫п╬, п©я─п╬я│я┌п╬ п╪п╫п╣ я█я┌п╬ п╫я─п╟п╡п╦я┌я│я▐; <B>п╜я┌п╟ я└я┐п╫п╨я├п╦я▐ п╪п╬п╤п╣я┌ п╠я▀я┌я▄ п╫п╣ я│п╬п╡я│п╣п╪ п╠п╣п╥п╬п©п╟я│п╫п╟, я┌.п╨. я│п©п╟п╪п╪п╣я─я▀ я│ я│п╬п╬я┌п╡п╣я┌я│я┌п╡я┐я▌я┴п╣п╧ п╫п╟я│я┌я─п╬п╧п╨п╬п╧ п╪п╬пЁя┐я┌ п╡п╬я│п©п╬п╩я▄п╥п╬п╡п╟я┌я▄я│я▐ я█я┌п╦п╪.</B></FONT> </LI></UL>
+<LI>include(`../m4/cf.m4') добавляет в обработку m4-макро, находящееся в каталоге ../m4/cf.m4, чтобы предусмотреть некоторые вещи </LI>
+<LI>VERSIONID(`Настройка машины me.com c&nbsp; uucp, создана xxxx -- без DNS ')dnl&nbsp; - это нужно для разделения разных версии .cf-файлов, которые вы можете создать. </LI>
+<LI>OSTYPE(linux) Это нужно, чтобы ввести некоторые коррекции, связанные с linux. Это можно здесь оставить. </LI>
+<LI>FEATURE(nodns)dnl - это говорит о том, что у нас нет DNS-сервера (поэтому мы используем для почты только UUCP. Sendmail должен быть скомпилирован без поддержки BIND) Эта опция устарела. Я оставляю ее на случай того, что у вас более старая версия пакета sendmail. </LI>
+<LI>FEATURE(nocanonify)dnl Не посылать адреса на $[ ... $] для канонизации. Обычно, если у вас sendmail собран с поддержкой BIND, то он будет пытаться преобразовать псевдоним/IP-адрес в каноническое имя с использованием DNS. Вам это не нужно, если вся ваша почта идет через UUCP, то есть у вас
+  выделена на это машина. </LI>
+<LI>FEATURE(always_add_domain)dnl Эта функция добавляет домен к имени
+  машины даже на локальной почте. Это не обязательно, просто мне это нравится; <B>Эта функция может быть не совсем безопасна, т.к. спаммеры с соответствующей настройкой могут воспользоваться этим.</B></FONT> </LI></UL>
 
-<FONT FACE="Times New Roman"><P>п²п╬ me.com п╫п╣ п©п╬п╢я│п╬п╣п╢п╦п╫п╣п╫ п╫п╟п©я─я▐п╪я┐я▌ п╨
-п≤п╫я┌п╣я─п╫п╣я┌я┐ п©п╬ TCP/IP п©п╬я█я┌п╬п╪я┐ п╫п╣ я│я┌я─п╟я┬п╫п╬ </P>
+<FONT FACE="Times New Roman"><P>Но me.com не подсоединен напрямую к
+Интернету по TCP/IP поэтому не страшно </P>
 
 <UL>
-<LI>FEATURE(mailertable, hash /etc/mailertable)dnl п╬п╥п╫п╟я┤п╟п╣я┌, я┤я┌п╬ п╡ я└п╟п╧п╩п╣&nbsp; /etc/mailertable п╫п╟я┘п╬п╢п╦я┌я│я▐ я┘п╣я┬п╦я─п╬п╡п╟п╫п╫п╟я▐ (hash) п╠п╟п╥п╟ п╢п╟п╫п╫я▀я┘, пЁп╢п╣ п╫п╟я┘п╬п╢я▐я┌я│я▐ п╦п╫я└п╬я─п╪п╟я├п╦я▐ п╬ п©я┐я┌я▐я┘ п╨ я│п╬п╬я┌п╡п╣я┌я│я┌п╡я┐я▌я┴п╦п╪ я│п╟п╧я┌п╟п╪. п∙я│п╩п╦ я┐ п╡п╟я│ п╫п╣я┌ п╫п╦п╨п╬пЁп╬, п╨п╬п╪я┐
-  п©п╣я─п╣п╢п╟я┌я▄ UUCP-п©п╬я┤я┌я┐, я┌п╬ п╡п╟п╪ я█я┌п╬ п╫п╣ п╫я┐п╤п╫п╬. п÷п╬п╢я─п╬п╠п╫п╣п╣ п╬п╠ я█я┌п╬п╪ п╫п╦п╤п╣. п∙я│п╩п╦ п╡я▀ я┘п╬я┌п╦я┌п╣ п╦я│п©п╬п╩я▄п╥п╬п╡п╟я┌я▄ я└п╬я─п╪п╟я┌ dbm, я┌п╬ п╡п╟п╪ я│п╩п╣п╢я┐п╣я┌ п╦я│п©п╬п╩я▄п╥п╬п╡п╟я┌я▄ FEATURE(mailertable, dbm /etc/mailertable)dnl&nbsp; п∙я│п╩п╦ п╡я▀ я┘п╬я┌п╦я┌п╣ п╦я│п©п╬п╩я▄п╥п╬п╡п╟я┌я▄ я└п╬я─п╪п╟я┌&nbsp;btree, я┌п╬ п╦я│п©п╬п╩я▄п╥я┐п╧я┌п╣ FEATURE(mailertable, b</FONT>tree /etc/mailertable)dnl </LI>
-<FONT FACE="Times New Roman"><LI>MAILER(local)dnl MAILER(smtp)dnl MAILER(uucp) п╜я┌п╬ я│п©п╬я│п╬п╠я▀ п╢п╬я│я┌п╟п╡п╨п╦, п╨п╬я┌п╬я─я▀п╣ п╪я▀ п╦я│п©п╬п╩я▄п╥я┐п╣п╪. </LI>
-<LI>define(`SMART_HOST', uucp-dom:mysmarthost) п²п╟я┬ я│п╪п╟я─я┌-я┘п╬я│я┌ (smart host) - п╪п╟я┬п╦п╫п╟
-  п╫п╟я┬п╣пЁп╬ п©я─п╬п╡п╟п╧п╢п╣я─п╟, п╨п╬я┌п╬я─я▀п╧ п╥п╟п╢п╟п╫ п╡ я└п╟п╧п╩п╣ sys UUCP п╨п╟п╨ system mysmarthost. п⌡я▌п╠я▀п╣ п©п╬я┤я┌п╬п╡я▀п╣ я│п╬п╬п╠я┴п╣п╫п╦я▐, я│ п╨п╬я┌п╬я─я▀п╪п╦ п╪я▀ п╫п╣ п╪п╬п╤п╣п╪ я│п©я─п╟п╡п╦я┌я▄я│я▐ (п╫п╟п©я─п╦п╪п╣я─, п╢п╩я▐ п╢п╬п╪п╣п╫п╬п╡ п╦п╩п╦ я│п©п╬я│п╬п╠п╬п╡ п╢п╬я│я┌п╟п╡п╨п╦, п╨п╬я┌п╬я─я▀п╣ п╫п╟п╪ п╫п╣ п╦п╥п╡п╣я│я┌п╫я▀),
-  п╠я┐п╢я┐я┌ п╬я┌п©я─п╟п╡п╩я▐я┌я▄я│я▐ я│п╪п╟я─я┌-п╪п╟я┬п╦п╫п╣ п╢п╩я▐ п╢п╟п╩я▄п╫п╣п╧я┬п╣п╧ п╬п╠я─п╟п╠п╬я┌п╨п╦ (п╥п╟п╪п╣я┌я▄я┌п╣, я┤я┌п╬ п╪я▀ п╦я│п©п╬п╩я▄п╥я┐п╣п╪ uucp-dom п╨п╟п╨ я│п©п╬я│п╬п╠ п╢п╬я│я┌п╟п╡п╨п╦ я┤п╣я─п╣п╥ UUCP). п╜я┌п╬ я│п©п╣я├п╦п╟п╩я▄п╫я▀п╧ я│п©п╬я│п╬п╠ п╢п╬я│я┌п╟п╡п╨п╦, п╦я│п©п╬п╩я▄п╥я┐я▌я┴п╦п╧ п©я─п╟п╡п╦п╩п╟ п©я─п╣п╬п╠я─п╟п╥п╬п╡п╟п╫п╦я▐ п╟п╢я─п╣я│п╬п╡, п╟п╫п╟п╩п╬пЁп╦я┤п╫я▀п╣ smtp. </LI></UL>
+<LI>FEATURE(mailertable, hash /etc/mailertable)dnl означает, что в файле&nbsp; /etc/mailertable находится хешированная (hash) база данных, где находятся информация о путях к соответствующим сайтам. Если у вас нет никого, кому
+  передать UUCP-почту, то вам это не нужно. Подробнее об этом ниже. Если вы хотите использовать формат dbm, то вам следует использовать FEATURE(mailertable, dbm /etc/mailertable)dnl&nbsp; Если вы хотите использовать формат&nbsp;btree, то используйте FEATURE(mailertable, b</FONT>tree /etc/mailertable)dnl </LI>
+<FONT FACE="Times New Roman"><LI>MAILER(local)dnl MAILER(smtp)dnl MAILER(uucp) Это способы доставки, которые мы используем. </LI>
+<LI>define(`SMART_HOST', uucp-dom:mysmarthost) Наш смарт-хост (smart host) - машина
+  нашего провайдера, который задан в файле sys UUCP как system mysmarthost. Любые почтовые сообщения, с которыми мы не можем справиться (например, для доменов или способов доставки, которые нам не известны),
+  будут отправляться смарт-машине для дальнейшей обработки (заметьте, что мы используем uucp-dom как способ доставки через UUCP). Это специальный способ доставки, использующий правила преобразования адресов, аналогичные smtp. </LI></UL>
 
 </FONT><P>&nbsp; </P>
-<FONT FACE="Times New Roman"><P>п╠) п║ п╦я│п©п╬п╩я▄п╥п╬п╡п╟п╫п╦п╣п╪ DNS </P>
+<FONT FACE="Times New Roman"><P>б) С использованием DNS </P>
 </FONT><P><HR SIZE=1>
 <FONT FACE="Times New Roman"><P><BR>
 include(`../m4/cf.m4') <BR>
-VERSIONID(`п²п╟я│я┌я─п╬п╧п╨п╟ п╪п╟я┬п╦п╫я▀ me.com c&nbsp; uucp, я│п╬п╥п╢п╟п╫п╟ xxxx -- я│ п╦я│п©п╬п╩я▄п╥п╬п╡п╟п╫п╦п╣п╪ </FONT>DNS ')dnl&nbsp; <BR>
+VERSIONID(`Настройка машины me.com c&nbsp; uucp, создана xxxx -- с использованием </FONT>DNS ')dnl&nbsp; <BR>
 OSTYPE(linux) <BR>
 FEATURE(always_add_domain)dnl <BR>
 FEATURE(mailertable, hash /etc/mailertable)dnl <BR>
@@ -215,88 +215,88 @@ MAILER(uucp) <BR>
 define(`SMART_HOST', uucp-dom:mysmarthost) </P>
 <P><HR SIZE=1>
 <P> </P>
-<FONT FACE="Times New Roman"><H3>II) п║п╬п╥п╢п╟п╣п╪ я│п╬п╠я│я┌п╡п╣п╫п╫я▀п╧ я└п╟п╧п╩ sendmail.cf</H3>
-<P>п╟) я│п╬я┘я─п╟п╫п╦я┌п╣ я─п╣п╥п╣я─п╡п╫я┐я▌ п╨п╬п©п╦я▌ п╡п╟я┬п╣пЁп╬ я│я┌п╟я─п╬пЁп╬ я└п╟п╧п╩п╟ /etc/sendmail.cf &nbsp;<BR>
-п╠) п╥п╟п©п╦я┬п╦я┌п╣ п╫п╬п╡я▀п╧ я└п╟п╧п╩ sendmail.cf п©п╬п╡п╣я─я┘ я│я┌п╟я─п╬пЁп╬
-п╨п╬п╪п╟п╫п╢п╬п╧ : m4 my.mc &gt; /etc/sendmail.cf <BR>
-п╡) п©я─п╬п╡п╣я─я▄я┌п╣, я┤я┌п╬ п╡п╟я┬ я└п╟п╧п╩ sendmail.cf п╠я▀п╩ п©я─п╟п╡п╦п╩я▄п╫п╬ я│п╬п╥п╢п╟п╫ п╫п╟ п╬я│п╫п╬п╡п╣ я│п©п╣я├п╦я└п╦п╨п╟я├п╦п╦. <BR>
-п║п╟п╪п╟я▐ я┤п╟я│я┌п╟я▐ п╬я┬п╦п╠п╨п╟, п╨п╬я┌п╬я─п╟я▐ п╠я▀п╩п╟ я┐ п╪п╣п╫я▐ : - missing uucp-dom mailer (п╬я┌я│я┐я┌я│я┌п╡я┐п╣я┌ я│п©п╬я│п╬п╠ п╢п╬я│я┌п╟п╡п╨п╦ uucp-dom) п·п╫п╟ п╡п╬п╥п╫п╦п╨п╟п╩п╟ п╬я┌ я┌п╬пЁп╬, я┤я┌п╬ я▐ п╫п╣ п╡я│я┌п╟п╡п╩я▐п╩ я│я┌я─п╬п╨я┐ п╬ я│п©п╬я│п╬п╠п╣ п╢п╬я│я┌п╟п╡п╨п╦ </FONT>smtp<FONT FACE="Times New Roman">. п п╟п╨ я▐ п©п╬п╫п╦п╪п╟я▌, п╡п╟п╤п╫п╬, я┤я┌п╬п╠я▀ я█я┌п╟ я│я┌я─п╬п╨п╟ я┬п╩п╟ я─п╟п╫я▄я┬п╣ я│п©п╬я│п╬п╠п╟ п╢п╬я│я┌п╟п╡п╨п╦ </FONT>uucp <BR>
+<FONT FACE="Times New Roman"><H3>II) Создаем собственный файл sendmail.cf</H3>
+<P>а) сохраните резервную копию вашего старого файла /etc/sendmail.cf &nbsp;<BR>
+б) запишите новый файл sendmail.cf поверх старого
+командой : m4 my.mc &gt; /etc/sendmail.cf <BR>
+в) проверьте, что ваш файл sendmail.cf был правильно создан на основе спецификации. <BR>
+Самая частая ошибка, которая была у меня : - missing uucp-dom mailer (отсутствует способ доставки uucp-dom) Она возникала от того, что я не вставлял строку о способе доставки </FONT>smtp<FONT FACE="Times New Roman">. Как я понимаю, важно, чтобы эта строка шла раньше способа доставки </FONT>uucp <BR>
 &nbsp;</P>
-<FONT FACE="Times New Roman"><H3>III) п║п╬п╥п╢п╟п╣п╪ я┌п╟п╠п╩п╦я├я┐ /etc/mailertable</H3>
-<P>п∙я│п╩п╦ п╡я▀ п╫п╦п╨п╬п╪я┐ п╫п╣ п©п╣я─п╣п╢п╟п╣я┌п╣ UUCP-п©п╬я┤я┌я┐, я┌п╬ п╡я▀ п╪п╬п╤п╣я┌п╣ п©я─п╬п©я┐я│я┌п╦я┌я▄ я█я┌п╬я┌ п©я┐п╫п╨я┌</P>
-<P>п╟) я│п╬п╥п╢п╟п╣п╪/я─п╣п╢п╟п╨я┌п╦я─я┐п╣п╪ я└п╟п╧п╩ /etc/mailertable </P>
-<P>п÷я─п╦п╪п╣я─ п╡п╬п╥п╪п╬п╤п╫п╬пЁп╬ я└п╟п╧п╩п╟ /etc/mailertable: </P>
+<FONT FACE="Times New Roman"><H3>III) Создаем таблицу /etc/mailertable</H3>
+<P>Если вы никому не передаете UUCP-почту, то вы можете пропустить этот пункт</P>
+<P>а) создаем/редактируем файл /etc/mailertable </P>
+<P>Пример возможного файла /etc/mailertable: </P>
 </FONT><P><HR SIZE=1>
 <P>system1.org uucp-dom:system1 <BR>
 .system1.org uucp-dom:system1 <BR>
 down.com uucp-dom:down <BR>
-up.down.com&nbsp; e<FONT FACE="Times New Roman">rror: п°п╟я┬п╦п╫п╟
-п╫п╣п╦п╥п╡п╣я│я┌п╫п╟ me.com <BR>
+up.down.com&nbsp; e<FONT FACE="Times New Roman">rror: Машина
+неизвестна me.com <BR>
 .down.com uucp-dom:down <BR>
-.me.com error: п°п╟я┬п╦п╫п╟ п╫п╣п╦п╥п╡п╣я│я┌п╫п╟ me.com </P>
+.me.com error: Машина неизвестна me.com </P>
 </FONT><P><HR SIZE=1>
-<FONT FACE="Times New Roman"><P>п≈п╢п╣я│я▄ я│п╨п╟п╥п╟п╫п╬, я┤я┌п╬ п╡я│п╣</FONT>,<FONT FACE="Times New Roman"> я┤я┌п╬ п©п╬я│я▀п╩п╟п╣я┌я│я▐ п╫п╟ п╟п╢я─п╣я│ system1.org п╦п╩п╦ *.system1.org</FONT>,<FONT FACE="Times New Roman"> п╠я┐п╢п╣я┌ п©п╣я─п╣я│я▀п╩п╟я┌я▄я│я▐ я│п╦я│я┌п╣п╪п╣ system1, я│ п╦я│п©п╬п╩я▄п╥п╬п╡п╟п╫п╦п╣п╪ п╢п╬я│я┌п╟п╡п╨п╦ uucp-dom (я│п╦я│я┌п╣п╪п╟ system1 п╢п╬п╩п╤п╫п╟ п╠я▀я┌я▄ п╬п©я─п╣п╢п╣п╩п╣п╫п╟ п╡ я└п╟п╧п╩п╣ sys UUCP), п╢я─я┐пЁп╦п╪п╦ я│п╩п╬п╡п╟п╪п╦, п╪я▀ п©я─п╬п╦п╥п╡п╬п╢п╦п╪ п╪п╟я─я┬я─я┐я┌п╦п╥п╟я├п╦я▌ п©п╬я┤я┌я▀ п╢п╩я▐ *.system1.org ; п©п╬я┘п╬п╤п╦п╧ п╪п╣я┘п╟п╫п╦п╥п╪ п©я─п╦п╪п╣п╫п╣п╫ п╢п╩я▐ down.com п╦ п╣пЁп╬ я│я┐п╠п╢п╬п╪п╣п╫п╬п╡, я┌п╬п╩я▄п╨п╬ я│ п╫п╣п╨п╬я┌п╬я─п╬п╧ п╢п╬п©п╬п╩п╫п╦я┌п╣п╩я▄п╫п╬п╧ я└п╦п╩я▄я┌я─п╟я├п╦п╣п╧; п╪я▀ п╡п╬п╥п╡я─п╟я┴п╟п╣п╪ п╫п╟п╥п╟п╢ п╩я▌п╠я┐я▌ п©п╬я┤я┌я┐, п╦п╢я┐я┴я┐я▌ п╫п╟ п╢п╬п╪п╣п╫ up.down.com, п╦я│п©п╬п╩я▄п╥я┐я▐ п╡я│я┌я─п╬п╣п╫п╫я▀п╧ "я│п©п╬я│п╬п╠ п╢п╬я│я┌п╟п╡п╨п╦" </FONT>error (<FONT FACE="Times New Roman">п╬я┬п╦п╠п╨п╟) я│ я│п╬п╬п╠я┴п╣п╫п╦п╣п╪ "п°п╟я┬п╦п╫п╟
-п╫п╣п╦п╥п╡п╣я│я┌п╫п╟ me.com"; п╜я┌п╬ я│я┌я─п╬п╨п╟ п╢п╬п╠п╟п╡п╩п╣п╫п╟ п©п╬ п©я─п╬я│я▄п╠п╣ п╟п╢п╪п╦п╫п╦я│я┌я─п╟я┌п╬я─п╟
-п╪п╟я┬п╦п╫я▀ down.com. п÷п╬я│п╩п╣п╢п╫я▐я▐ я│я┌я─п╬я┤п╨п╟ п╬я┌п©я─п╟п╡п╩я▐п╣я┌ п©п╬я┤я┌я┐ п╫п╟ п╡я│п╣ п╫п╟я┬п╦ я│я┐п╠п╢п╬п╪п╣п╫я▀ (п╨п╬я┌п╬я─я▀я┘ п╫п╣я┌)</FONT> <FONT FACE="Times New Roman">п╫п╟п╥п╟п╢. <BR>
-п╠) я│п╬п╥п╢п╟п╧я┌п╣ п╠п╟п╥я┐ п╢п╟п╫п╫я▀я┘ я│ п©п╬п╪п╬я┴я▄я▌ makemap </P>
-<P>п∙я│п╩п╦ п╡я▀ п╦я│п©п╬п╩я▄п╥я┐п╣я┌п╣ я┘п╣я┬п╦я─п╬п╡п╟п╫п╫я▀п╣ п╠п╟п╥я▀ (hash): <BR>
+<FONT FACE="Times New Roman"><P>Здесь сказано, что все</FONT>,<FONT FACE="Times New Roman"> что посылается на адрес system1.org или *.system1.org</FONT>,<FONT FACE="Times New Roman"> будет пересылаться системе system1, с использованием доставки uucp-dom (система system1 должна быть определена в файле sys UUCP), другими словами, мы производим маршрутизацию почты для *.system1.org ; похожий механизм применен для down.com и его субдоменов, только с некоторой дополнительной фильтрацией; мы возвращаем назад любую почту, идущую на домен up.down.com, используя встроенный "способ доставки" </FONT>error (<FONT FACE="Times New Roman">ошибка) с сообщением "Машина
+неизвестна me.com"; Это строка добавлена по просьбе администратора
+машины down.com. Последняя строчка отправляет почту на все наши субдомены (которых нет)</FONT> <FONT FACE="Times New Roman">назад. <BR>
+б) создайте базу данных с помощью makemap </P>
+<P>Если вы используете хешированные базы (hash): <BR>
 makemap hash /etc/mailertable &lt; /etc/mailertable <BR>
-п∙я│п╩п╦ п╡я▀ п╦я│п©п╬п╩я▄п╥я┐п╣я┌п╣ dbm: <BR>
+Если вы используете dbm: <BR>
 makemap dbm /etc/mailertable &lt;/etc/mailertable <BR>
-п∙я│п╩п╦ п╡я▀ п╦я│п©п╬п╩я▄п╥я┐п╣я┌п╣ btree: <BR>
+Если вы используете btree: <BR>
 makem</FONT>ap btree /etc/mailertable &lt;/etc/mailertable </P>
-<FONT FACE="Times New Roman"><P>п≤ п©я─п╬п╢п╣п╩я▀п╡п╟п╧я┌п╣ я█я┌п╬ п╨п╟п╤п╢я▀п╧ я─п╟п╥ п©п╬я│п╩п╣ п╦п╥п╪п╣п╫п╣п╫п╦я▐ я└п╟п╧п╩п╟ /etc/mailertable. <BR>
+<FONT FACE="Times New Roman"><P>И проделывайте это каждый раз после изменения файла /etc/mailertable. <BR>
 &nbsp; </P>
-<H3>IV) п÷п╣я─п╣п╥п╟п©я┐я│я┌п╦я┌п╣ sendmail</H3>
-<H3>V) п÷я─п╬я┌п╣я│я┌п╦я─я┐п╧я┌п╣ sendmail</H3>
-<P>п╟) sendmail -bv user@destination <BR>
-п╠) п╥п╟п©я┐я│я┌п╦я┌п╣ sendmail -bt п╦ п╡п╡п╬п╢п╦я┌п╣ я─п╟п╥п╩п╦я┤п╫я▀п╣ п╟п╢я─п╣я│п╟, п╦я│п©п╬п╩я▄п╥я┐я▐ п╫п╟п╠п╬я─ п©я─п╟п╡п╦п╩ 3,0, п╦ я│п╪п╬я┌я─п╦я┌п╣, п╡п╬ я┤я┌п╬ п©я─п╣п╡я─п╟я┴п╟я▌я┌я│я▐ п╟п╢я─п╣я│п╟, п╦ п╨п╟п╨п╦п╣ п©я─п╟п╡п╦п╩п╟ п©я─п╦ п©я─п╣п╬п╠я─п╟п╥п╬п╡п╟п╫п╦п╦ п╦я│п©п╬п╩я▄п╥я┐я▌я┌я│я▐. </P>
-<P>пё п╡п╟я│ п╡я│п╣ п╫п╟я│я┌я─п╬п╣п╫п╬! </P>
+<H3>IV) Перезапустите sendmail</H3>
+<H3>V) Протестируйте sendmail</H3>
+<P>а) sendmail -bv user@destination <BR>
+б) запустите sendmail -bt и вводите различные адреса, используя набор правил 3,0, и смотрите, во что превращаются адреса, и какие правила при преобразовании используются. </P>
+<P>У вас все настроено! </P>
 </FONT><P><HR SIZE=1>
-<FONT FACE="Times New Roman"><H3>п╖п╒п· п²пёп√п²п· п■п·п÷п≤п║п░п╒п╛</H3>
-<P>1) п■п╬п╠п╟п╡п╦я┌я▄ п╦п╫я└п╬я─п╪п╟я├п╦я▌, п╨п╟п╨ п╫п╟я│я┌я─п╬п╦я┌я▄ я│п╦я│я┌п╣п╪я┐ down.com (я┤я┌п╬п╠я▀ п©п╬п╨п╟п╥п╟я┌я▄, п╨п╟п╨ я─п╟п╠п╬я┌п╟я┌я▄ я│ я┌п╣п╪п╦ SMTP-п©п╬п╢я┐п╥п╩п╟п╪п╦) <BR>
-2) п■п╬п╠п╟п╡п╦я┌я▄ п╦п╫я└п╬я─п╪п╟я├п╦я▌, п╨п╟п╨ п©п╣я─п╣я│я▀п╩п╟я┌я▄ п╫п╬п╡п╬я│я┌п╦ (news) я┤п╣я─п╣п╥ UUCP <BR>
-(п©я─п╣п╢п©п╬я┤я┌п╦я┌п╣п╩п╣п╫ INN). п╜я┌п╬ п╪п╬п╤п╣я┌ п©п╬я┌я─п╣п╠п╬п╡п╟я┌я▄ п╦п╥п╪п╣п╫п╣п╫п╦я▐ п╥п╟пЁп╬п╩п╬п╡п╨п╟
-п╢п╟п╫п╫п╬пЁп╬ п╢п╬п╨я┐п╪п╣п╫я┌п╟. <BR>
+<FONT FACE="Times New Roman"><H3>ЧТО НУЖНО ДОПИСАТЬ</H3>
+<P>1) Добавить информацию, как настроить систему down.com (чтобы показать, как работать с теми SMTP-подузлами) <BR>
+2) Добавить информацию, как пересылать новости (news) через UUCP <BR>
+(предпочтителен INN). Это может потребовать изменения заголовка
+данного документа. <BR>
 &nbsp; </P></FONT>
 <hr>
-<h2>п░п╡я┌п╬я─я│п╨п╦п╣ п©я─п╟п╡п╟</h2>
-<p>п░п╡я┌п╬я─я│п╨п╦п╣ п©я─п╟п╡п╟ п╫п╟ я─я┐я│я│п╨п╦п╧ п©п╣я─п╣п╡п╬п╢ я█я┌п╬пЁп╬
-я┌п╣п╨я│я┌п╟ п©я─п╦п╫п╟п╢п╩п╣п╤п╟я┌ Б∙≤ 2000 SWSoft Pte Ltd. п▓я│п╣ п©я─п╟п╡п╟
-п╥п╟я─п╣п╥п╣я─п╡п╦я─п╬п╡п╟п╫я▀.</p>
-<p>п╜я┌п╬я┌ п╢п╬п╨я┐п╪п╣п╫я┌ я▐п╡п╩я▐п╣я┌я│я▐ я┤п╟я│я┌я▄я▌ п©я─п╬п╣п╨я┌п╟ Linux
+<h2>Авторские права</h2>
+<p>Авторские права на русский перевод этого
+текста принадлежат ╘ 2000 SWSoft Pte Ltd. Все права
+зарезервированы.</p>
+<p>Этот документ является частью проекта Linux
 HOWTO.</p>
-<p>п░п╡я┌п╬я─я│п╨п╦п╣ п©я─п╟п╡п╟ п╫п╟ п╢п╬п╨я┐п╪п╣п╫я┌я▀ Linux HOWTO
-п©я─п╦п╫п╟п╢п╩п╣п╤п╟я┌ п╦я┘ п╟п╡я┌п╬я─п╟п╪, п╣я│п╩п╦ я▐п╡п╫п╬ п╫п╣
-я┐п╨п╟п╥п╟п╫п╬ п╦п╫п╬п╣. п■п╬п╨я┐п╪п╣п╫я┌я▀ Linux HOWTO, п╟ я┌п╟п╨п╤п╣ п╦я┘
-п©п╣я─п╣п╡п╬п╢я▀, п╪п╬пЁя┐я┌ п╠я▀я┌я▄ п╡п╬я│п©я─п╬п╦п╥п╡п╣п╢п╣п╫я▀ п╦
-я─п╟я│п©я─п╬я│я┌я─п╟п╫п╣п╫я▀ п©п╬п╩п╫п╬я│я┌я▄я▌ п╦п╩п╦ я┤п╟я│я┌п╦я┤п╫п╬ п╫п╟
-п╩я▌п╠п╬п╪ п╫п╬я│п╦я┌п╣п╩п╣, я└п╦п╥п╦я┤п╣я│п╨п╬п╪ п╦п╩п╦ я█п╩п╣п╨я┌я─п╬п╫п╫п╬п╪,
-п©я─п╦ я┐я│п╩п╬п╡п╦п╦ я│п╬я┘я─п╟п╫п╣п╫п╦я▐ я█я┌п╬п╧ п╥п╟п╪п╣я┌п╨п╦ п╬п╠
-п╟п╡я┌п╬я─я│п╨п╦я┘ п©я─п╟п╡п╟я┘ п╫п╟ п╡я│п╣я┘ п╨п╬п©п╦я▐я┘.
-п п╬п╪п╪п╣я─я┤п╣я│п╨п╬п╣ я─п╟я│п©я─п╬я│я┌я─п╟п╫п╣п╫п╦п╣ я─п╟п╥я─п╣я┬п╟п╣я┌я│я▐
-п╦ п©п╬п╬я┴я─я▐п╣я┌я│я▐; п╫п╬, я┌п╟п╨ п╦п╩п╦ п╦п╫п╟я┤п╣, п╟п╡я┌п╬я─ я┌п╣п╨я│я┌п╟
-п╦ п╟п╡я┌п╬я─ п©п╣я─п╣п╡п╬п╢п╟ п╤п╣п╩п╟п╩п╦ п╠я▀ п╥п╫п╟я┌я▄ п╬ я┌п╟п╨п╦я┘
-п╢п╦я│я┌я─п╦п╠я┐я┌п╦п╡п╟я┘.</p>
-<p>п▓я│п╣ п©п╣я─п╣п╡п╬п╢я▀ п╦ п©я─п╬п╦п╥п╡п╬п╢п╫я▀п╣ я─п╟п╠п╬я┌я▀,
-п╡я▀п©п╬п╩п╫п╣п╫п╫я▀п╣ п©п╬ п╢п╬п╨я┐п╪п╣п╫я┌п╟п╪ Linux HOWTO, п╢п╬п╩п╤п╫я▀
-я│п╬п©я─п╬п╡п╬п╤п╢п╟я┌я▄я│я▐ я█я┌п╬п╧ п╥п╟п╪п╣я┌п╨п╬п╧ п╬п╠ п╟п╡я┌п╬я─я│п╨п╦я┘
-п©я─п╟п╡п╟я┘. п╜я┌п╬ п╢п╣п╩п╟п╣я┌я│я▐ п╡ я├п╣п╩я▐я┘ п©я─п╣п╢п╬я┌п╡я─п╟я┴п╣п╫п╦я▐
-я│п╩я┐я┤п╟п╣п╡ п╫п╟п╩п╬п╤п╣п╫п╦я▐ п╢п╬п©п╬п╩п╫п╦я┌п╣п╩я▄п╫я▀я┘
-п╬пЁя─п╟п╫п╦я┤п╣п╫п╦п╧ п╫п╟ я─п╟я│п©я─п╬я│я┌я─п╟п╫п╣п╫п╦п╣ п╢п╬п╨я┐п╪п╣п╫я┌п╬п╡
-HOWTO. п≤я│п╨п╩я▌я┤п╣п╫п╦я▐ п╪п╬пЁя┐я┌ я│п╬я│я┌п╟п╡п╦я┌я▄ я│п╩я┐я┤п╟п╦
-п©п╬п╩я┐я┤п╣п╫п╦я▐ я│п©п╣я├п╦п╟п╩я▄п╫п╬пЁп╬ я─п╟п╥я─п╣я┬п╣п╫п╦я▐ я┐
-п╨п╬п╬я─п╢п╦п╫п╟я┌п╬я─п╟ Linux HOWTO, я│ п╨п╬я┌п╬я─я▀п╪ п╪п╬п╤п╫п╬
-я│п╡я▐п╥п╟я┌я▄я│я▐ п©п╬ п╟п╢я─п╣я│я┐ п©я─п╦п╡п╣п╢п╣п╫п╫п╬п╪я┐ п╫п╦п╤п╣.</p>
-<p>п°я▀ п╠я▀ я┘п╬я┌п╣п╩п╦ я─п╟я│п©я─п╬я│я┌я─п╟п╫п╦я┌я▄ я█я┌я┐
-п╦п╫я└п╬я─п╪п╟я├п╦я▌ п©п╬ п╡я│п╣п╪ п╡п╬п╥п╪п╬п╤п╫я▀п╪ п╨п╟п╫п╟п╩п╟п╪. п²п╬
-п©я─п╦ я█я┌п╬п╪ я│п╬я┘я─п╟п╫п╦я┌я▄ п╟п╡я┌п╬я─я│п╨п╦п╣ п©я─п╟п╡п╟ п╦ п╠я▀я┌я▄
-я┐п╡п╣п╢п╬п╪п╩п╣п╫п╫я▀п╪п╦ п╬ п╡я│п╣я┘ п©п╩п╟п╫п╟я┘
-я─п╟я│п©я─п╬я│я┌я─п╟п╫п╣п╫п╦я▐ HOWTO. п∙я│п╩п╦ я┐ п╡п╟я│ п╡п╬п╥п╫п╦п╨п╩п╦
-п╡п╬п©я─п╬я│я▀, п©п╬п╤п╟п╩я┐п╧я│я┌п╟, п╬п╠я─п╟я┌п╦я┌п╣я│я▄ п╨
-п╨п╬п╬я─п╢п╦п╫п╟я┌п╬я─я┐ п©я─п╬п╣п╨я┌п╟ Linux HOWTO п©п╬ я█п╩п╣п╨я┌я─п╬п╫п╫п╬п╧
-п©п╬я┤я┌п╣: <tt CLASS="EMAIL">&lt;<a HREF="mailto:linux-howto@metalab.unc.edu">linux-howto@metalab.unc.edu</a>&gt;</tt>
-п╦п╩п╦ п╨ п╨п╬п╬я─п╢п╦п╫п╟я┌п╬я─я┐ я─я┐я│я│п╨п╬пЁп╬ п©п╣я─п╣п╡п╬п╢п╟ Linux HOWTO
-п╨п╬п╪п©п╟п╫п╦п╦ SWSoft Pte Ltd. п©п╬ п╟п╢я─п╣я│я┐ <tt CLASS="EMAIL">&lt;<a HREF="mailto:linux-howto@asplinux.ru">linux-howto@asplinux.ru</a>&gt;</tt></p>
+<p>Авторские права на документы Linux HOWTO
+принадлежат их авторам, если явно не
+указано иное. Документы Linux HOWTO, а также их
+переводы, могут быть воспроизведены и
+распространены полностью или частично на
+любом носителе, физическом или электронном,
+при условии сохранения этой заметки об
+авторских правах на всех копиях.
+Коммерческое распространение разрешается
+и поощряется; но, так или иначе, автор текста
+и автор перевода желали бы знать о таких
+дистрибутивах.</p>
+<p>Все переводы и производные работы,
+выполненные по документам Linux HOWTO, должны
+сопровождаться этой заметкой об авторских
+правах. Это делается в целях предотвращения
+случаев наложения дополнительных
+ограничений на распространение документов
+HOWTO. Исключения могут составить случаи
+получения специального разрешения у
+координатора Linux HOWTO, с которым можно
+связаться по адресу приведенному ниже.</p>
+<p>Мы бы хотели распространить эту
+информацию по всем возможным каналам. Но
+при этом сохранить авторские права и быть
+уведомленными о всех планах
+распространения HOWTO. Если у вас возникли
+вопросы, пожалуйста, обратитесь к
+координатору проекта Linux HOWTO по электронной
+почте: <tt CLASS="EMAIL">&lt;<a HREF="mailto:linux-howto@metalab.unc.edu">linux-howto@metalab.unc.edu</a>&gt;</tt>
+или к координатору русского перевода Linux HOWTO
+компании SWSoft Pte Ltd. по адресу <tt CLASS="EMAIL">&lt;<a HREF="mailto:linux-howto@asplinux.ru">linux-howto@asplinux.ru</a>&gt;</tt></p>
 <p>&nbsp;</BODY>
 </HTML>

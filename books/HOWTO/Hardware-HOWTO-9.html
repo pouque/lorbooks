@@ -2,7 +2,7 @@
 <HTML>
 <HEAD>
  <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
- <TITLE>Linux Hardware Compatibility HOWTO: п п╬п╫я┌я─п╬п╩п╣я─я▀ (SCSI)</TITLE>
+ <TITLE>Linux Hardware Compatibility HOWTO: Контролеры (SCSI)</TITLE>
  <LINK HREF="Hardware-HOWTO-10.html" REL=next>
  <LINK HREF="Hardware-HOWTO-8.html" REL=previous>
  <LINK HREF="Hardware-HOWTO.html#toc9" REL=contents>
@@ -12,45 +12,45 @@
 <A HREF="Hardware-HOWTO-8.html">Previous</A>
 <A HREF="Hardware-HOWTO.html#toc9">Contents</A>
 <HR>
-<H2><A NAME="s9">9. п п╬п╫я┌я─п╬п╩п╣я─я▀ (SCSI)</A></H2>
+<H2><A NAME="s9">9. Контролеры (SCSI)</A></H2>
 
-<P>п·я┤п╣п╫я▄ п╡п╟п╤п╫п╬ п╡я▀п╠я─п╟я┌я▄ я┘п╬я─п╬я┬п╦п╧ SCSI п╨п╬п╫я┌я─п╬п╩п╣я─. п°п╫п╬пЁп╦п╣ п╢п╣я┬п╣п╡я▀п╣ SCSI п╨п╬п╫я┌я─п╬п╩п╩п╣я─я▀ я─п╟п╥я─п╟п╠п╬я┌п╟п╫я▀ п╡ п╬я│п╫п╬п╡п╫п╬п╪ п╢п╩я▐ п©п╬п╢п╨п╩я▌я┤п╣п╫п╦я▐ CD-ROM п╢п╦я│п╨п╬п╡п╬п╢п╟
-п╦ п╫п╣ п©я─п╦п╫п╣я│я┐я┌ п╫п╦п╨п╟п╨п╬пЁп╬ п©я─п╦я─п╬я│я┌п╟ п©я─п╬п╦п╥п╡п╬п╢п╦я┌п╣п╩я▄п╫п╬я│я┌п╦ п©п╬ я│я─п╟п╡п╫п╣п╫п╦я▌ я│ IDE.
-п÷п╣я─п╣п╢ п©п╬п╨я┐п©п╨п╬п╧ п╨п╬п╫я┌я─п╬п╩п╩п╣я─п╟ , п©я─п╬я┤п╦я┌п╟п╧я┌п╣ SCSI HOWTO п╦ п╡п╫п╦п╪п╟я┌п╣п╩я▄п╫п╬ п╦п╥я┐я┤п╦я┌п╣
-я┌п╣я┘п╫п╦я┤п╣я│п╨п╦п╣ я┘п╟я─п╟п╨я┌п╣я─п╦я│я┌п╦п╨п╦ п©я─п╦п╬п╠я─п╣я┌п╟п╣п╪п╬пЁп╬ п╨п╬п╫я┌я─п╬п╩п╩п╣я─п╟.
+<P>Очень важно выбрать хороший SCSI контролер. Многие дешевые SCSI контроллеры разработаны в основном для подключения CD-ROM дисковода
+и не принесут никакого прироста производительности по сравнению с IDE.
+Перед покупкой контроллера , прочитайте SCSI HOWTO и внимательно изучите
+технические характеристики приобретаемого контроллера.
 <P>
-<H2><A NAME="ss9.1">9.1 п÷п╬п╢п╢п╣я─п╤п╦п╡п╟я▌я┌я│я▐</A>
+<H2><A NAME="ss9.1">9.1 Поддерживаются</A>
 </H2>
 
 <P>
 <UL>
-<LI>AMI Fast Disk (<B>VLB/EISA</B>) (BusLogic я│п╬п╡п╪п╣я│я┌п╦п╪я▀п╧)</LI>
+<LI>AMI Fast Disk (<B>VLB/EISA</B>) (BusLogic совместимый)</LI>
 <LI>Adaptec AVA-1502E (<B>ISA/VLB</B>) (AIC-6360) (<EM>AHA1520</EM>)</LI>
-<LI>Adaptec AVA-1505/1515 (<B>ISA</B>) (Adaptec AHA-152x я│п╬п╡п╪п╣я│я┌п╦п╪я▀п╧)</LI>
-<LI>Adaptec AVA-1825 (<B>VLB</B>) (Adaptec AHA-152x я│п╬п╡п╪п╣я│я┌п╦п╪я▀п╧)<BR>
-п²п╟ я█я┌п╬п╧ п╨п╟я─я┌п╣ п╦п╪п╣я▌я┌я│я▐ SCSI, EIDE п╦ floppy п©п╬я─я┌я▀ , п╡я│п╣ п╬п╫п╦ я└я┐п╫п╨я├п╦п╬п╫п╦я─я┐я▌я┌ п©п╬п╢ п⌡п╦п╫я┐п╨я│.</LI>
+<LI>Adaptec AVA-1505/1515 (<B>ISA</B>) (Adaptec AHA-152x совместимый)</LI>
+<LI>Adaptec AVA-1825 (<B>VLB</B>) (Adaptec AHA-152x совместимый)<BR>
+На этой карте имеются SCSI, EIDE и floppy порты , все они функционируют под Линукс.</LI>
 <LI>Adaptec AHA-1510/152x (<B>ISA/VLB</B>) (AIC-6260/6360)</LI>
-<LI>Adaptec AHA-154x (<B>ISA</B>) (п╡я│п╣ п╪п╬п╢п╣п╩п╦)</LI>
-<LI>Adaptec AHA-174x (<B>EISA</B>) (п╡ я─п╟я│я┬п╦я─п╣п╫п╫п╬п╪ я─п╣п╤п╦п╪п╣)</LI>
-<LI>Adaptec AHA-274x/274xT (<B>EISA</B>) (AIC-7771). 274xT п©п╬п╢п╢п╣я─п╤п╦п╡п╟я┌я▄я│я▐ п╫п╟я┤п╦п╫п╟я▐ я│ я│п╣я─п╦п╦ я▐п╢п╣я─ 2.1.x (<EM>AHA2740</EM>)</LI>
+<LI>Adaptec AHA-154x (<B>ISA</B>) (все модели)</LI>
+<LI>Adaptec AHA-174x (<B>EISA</B>) (в расширенном режиме)</LI>
+<LI>Adaptec AHA-274x/274xT (<B>EISA</B>) (AIC-7771). 274xT поддерживаться начиная с серии ядер 2.1.x (<EM>AHA2740</EM>)</LI>
 <LI>Adaptec AHA-284x (<B>VLB</B>) (AIC-7770) (<EM>AHA2740</EM>)</LI>
-<LI>Adaptec AHA-2910B (<B>PCI</B>) (я│ п╡п╣я─я│п╦п╦ 2.1.x)</LI>
-<LI>Adaptec AHA-2920 (<B>PCI</B>). п≤я│п©п╬п╩я▄п╥я┐п╧я┌п╣ Future Domain п╢я─п╟п╧п╡п╣я─. п²п╣п╬п╠я┘п╬п╢п╦п╪п╟ я│п©п╣я├п╦п╟п╩я▄п╫п╟я▐ п╫п╟я│я┌я─п╬п╧п╨п╟ Lilo.</LI>
+<LI>Adaptec AHA-2910B (<B>PCI</B>) (с версии 2.1.x)</LI>
+<LI>Adaptec AHA-2920 (<B>PCI</B>). Используйте Future Domain драйвер. Необходима специальная настройка Lilo.</LI>
 <LI>Adaptec AHA-2920C (<B>PCI</B>)</LI>
 <LI>Adaptec AHA-2930/U/U2 (<B>PCI</B>)</LI>
-<LI>Adaptec AHA-2940/U/W/AU/UW/U2W/U2/U2B/U2BOEM (<B>PCI</B>) (AIC-7861, AIC-7871, AIC-7844, AIC-7881, AIC-7884). п²п╣п╨п╬я┌п╬я─я▀п╣ п©п╬п╢п╢п╣я─п╤п╦п╡п╟я▌я┌я│я▐ я┌п╬п╩я▄п╨п╬ я│ я│п╣я─п╦п╦ 2.1.x (<EM>AHA2740</EM>)</LI>
-<LI>Adaptec AHA-2944D/WD/UD/UWD (<B>PCI</B>). п²п╣п╨п╬я┌п╬я─я▀п╣ я┌п╬п╩я▄п╨п╬ я│ я│п╣я─п╦п╦ 2.1.x(<EM>AHA2740</EM>)</LI>
+<LI>Adaptec AHA-2940/U/W/AU/UW/U2W/U2/U2B/U2BOEM (<B>PCI</B>) (AIC-7861, AIC-7871, AIC-7844, AIC-7881, AIC-7884). Некоторые поддерживаются только с серии 2.1.x (<EM>AHA2740</EM>)</LI>
+<LI>Adaptec AHA-2944D/WD/UD/UWD (<B>PCI</B>). Некоторые только с серии 2.1.x(<EM>AHA2740</EM>)</LI>
 <LI>Adaptec AHA-2950U2/U2B/U2W</LI>
-<LI>Adaptec AHA-3940/U/W/UW/AUW/U2W (<B>PCI</B>) (AIC-7872, AIC-7882) (since 1.3.6). п²п╣п╨п╬я┌п╬я─я▀п╣ я┌п╬п╩я▄п╨п╬ я│ я│п╣я─п╦п╦ 2.1.x</LI>
+<LI>Adaptec AHA-3940/U/W/UW/AUW/U2W (<B>PCI</B>) (AIC-7872, AIC-7882) (since 1.3.6). Некоторые только с серии 2.1.x</LI>
 <LI>Adaptec AHA-3950U2B/U2D</LI>
-<LI>Adaptec AHA-3985U/W/UW (<B>PCI</B>) (AIC-7873, AIC-7883). п²п╣п╨п╬я┌п╬я─я▀п╣ я┌п╬п╩я▄п╨п╬ я│ я│п╣я─п╦п╦ 2.1.x</LI>
-<LI>Adaptec <B>PCI</B> п╨п╬п╫я┌я─п╬п╩п╩п╣я─я▀ я│ AIC-7850, AIC-7855, AIC-7860</LI>
-<LI>Adaptec п╨п╬п╫я┌я─п╬п╩п╩п╣я─-п╫п╟-п©п╩п╟я┌п╣ я│ AIC-777x (<B>EISA</B>), AIC-785x, AIC-786x, AIC-787x (<B>PCI</B>), AIC-788x (<B>PCI</B>), AIC-789x, AIC-3860. AIC-786x and AIC-789x п÷п╬п╢п╢п╣я─п╤п╦п╡п╟я▌я┌я│я▐ я┌п╬п╩я▄п╨п╬ я│ я│п╣я─п╦п╦ 2.1.x</LI>
+<LI>Adaptec AHA-3985U/W/UW (<B>PCI</B>) (AIC-7873, AIC-7883). Некоторые только с серии 2.1.x</LI>
+<LI>Adaptec <B>PCI</B> контроллеры с AIC-7850, AIC-7855, AIC-7860</LI>
+<LI>Adaptec контроллер-на-плате с AIC-777x (<B>EISA</B>), AIC-785x, AIC-786x, AIC-787x (<B>PCI</B>), AIC-788x (<B>PCI</B>), AIC-789x, AIC-3860. AIC-786x and AIC-789x Поддерживаются только с серии 2.1.x</LI>
 <LI>AdvanSys ABP510/5150 Bus-Master (<B>ISA</B>)<BR>
 <A HREF="http://advansys.com/support/software/os/linux.htm">http://advansys.com/support/software/os/linux.htm</A></LI>
 <LI>AdvanSys ABP5140 Bus-Master (<B>ISA</B>) PnP<BR>
 <A HREF="http://advansys.com/support/software/os/linux.htm">http://advansys.com/support/software/os/linux.htm</A></LI>
-<LI>AdvanSys ABP5142 Bus-Master (<B>ISA</B>) PnP я│ floppy<BR>
+<LI>AdvanSys ABP5142 Bus-Master (<B>ISA</B>) PnP с floppy<BR>
 <A HREF="http://advansys.com/support/software/os/linux.htm">http://advansys.com/support/software/os/linux.htm</A></LI>
 <LI>AdvanSys ABP920 Bus-Master (<B>PCI</B>)<BR>
 <A HREF="http://advansys.com/support/software/os/linux.htm">http://advansys.com/support/software/os/linux.htm</A></LI>
@@ -58,22 +58,22 @@
 <A HREF="http://advansys.com/support/software/os/linux.htm">http://advansys.com/support/software/os/linux.htm</A></LI>
 <LI>AdvanSys ABP960/U Bus-Master (<B>PCI/ULTRA</B>) MAC/PC<BR>
 <A HREF="http://advansys.com/support/software/os/linux.htm">http://advansys.com/support/software/os/linux.htm</A></LI>
-<LI>AdvanSys ABP542 Bus-Master (<B>ISA</B>) я│ floppy (п╬п╢п╦п╫ п╨п╟п╫п╟п╩)<BR>
+<LI>AdvanSys ABP542 Bus-Master (<B>ISA</B>) с floppy (один канал)<BR>
 <A HREF="http://advansys.com/support/software/os/linux.htm">http://advansys.com/support/software/os/linux.htm</A></LI>
-<LI>AdvanSys ABP742 Bus-Master (<B>EISA</B>) (п╬п╢п╦п╫ п╨п╟п╫п╟п╩)<BR>
+<LI>AdvanSys ABP742 Bus-Master (<B>EISA</B>) (один канал)<BR>
 <A HREF="http://advansys.com/support/software/os/linux.htm">http://advansys.com/support/software/os/linux.htm</A></LI>
-<LI>AdvanSys ABP842 Bus-Master (<B>VL</B>) (п╬п╢п╦п╫ п╨п╟п╫п╟п╩)<BR>
+<LI>AdvanSys ABP842 Bus-Master (<B>VL</B>) (один канал)<BR>
 <A HREF="http://advansys.com/support/software/os/linux.htm">http://advansys.com/support/software/os/linux.htm</A></LI>
-<LI>AdvanSys ABP940/U Bus-Master (<B>PCI/Ultra</B>) (п╬п╢п╦п╫ п╨п╟п╫п╟п╩ )<BR>
+<LI>AdvanSys ABP940/U Bus-Master (<B>PCI/Ultra</B>) (один канал )<BR>
 <A HREF="http://advansys.com/support/software/os/linux.htm">http://advansys.com/support/software/os/linux.htm</A></LI>
-<LI>AdvanSys ABP970/U Bus-Master (<B>PCI/Ultra</B>) MAC/PC (п╬п╢п╦п╫ п╨п╟п╫п╟п╩)<BR>
+<LI>AdvanSys ABP970/U Bus-Master (<B>PCI/Ultra</B>) MAC/PC (один канал)<BR>
 <A HREF="http://advansys.com/support/software/os/linux.htm">http://advansys.com/support/software/os/linux.htm</A></LI>
-<LI>AdvanSys ABP752 Dual Channel Bus-Master (<B>EISA</B>) (п╢п╡п╟
-п╨п╟п╫п╟п╩п╟)<BR>
+<LI>AdvanSys ABP752 Dual Channel Bus-Master (<B>EISA</B>) (два
+канала)<BR>
 <A HREF="http://advansys.com/support/software/os/linux.htm">http://advansys.com/support/software/os/linux.htm</A></LI>
-<LI>AdvanSys ABP852 Dual Channel Bus-Master (<B>VL</B>) (п╢п╡п╟ п╨п╟п╫п╟п╩п╟ )<BR>
+<LI>AdvanSys ABP852 Dual Channel Bus-Master (<B>VL</B>) (два канала )<BR>
 <A HREF="http://advansys.com/support/software/os/linux.htm">http://advansys.com/support/software/os/linux.htm</A></LI>
-<LI>AdvanSys ABP950 Dual Channel Bus-Master (<B>PCI</B>) (п╢п╡п╟ п╨п╟п╫п╟п╩п╟)<BR>
+<LI>AdvanSys ABP950 Dual Channel Bus-Master (<B>PCI</B>) (два канала)<BR>
 <A HREF="http://advansys.com/support/software/os/linux.htm">http://advansys.com/support/software/os/linux.htm</A></LI>
 <LI>Always IN2000</LI>
 <LI>AMD AM53C974</LI>
@@ -81,49 +81,49 @@
 <A HREF="http://www.dandelion.com/Linux/">http://www.dandelion.com/Linux/</A></LI>
 <LI>Compaq Smart Array 2</LI>
 <LI>DPT PM2001, PM2012A (EATA-PIO)</LI>
-<LI>п║п╣п╪п╣п╧я│я┌п╡п╬ DPT Smartcache/SmartRAID Plus,III,IV  (<B>ISA/EISA/PCI</B>)<BR>
-п║п╪п╬я┌я─п╦я┌п╣ я┌п╟п╨п╤п╣ 
+<LI>Семейство DPT Smartcache/SmartRAID Plus,III,IV  (<B>ISA/EISA/PCI</B>)<BR>
+Смотрите также 
 <A HREF="http://www.uni-mainz.de/~neuffer/scsi/dpt/">http://www.uni-mainz.de/~neuffer/scsi/dpt/</A>(EATA-DMA)<BR>
-п п╟я─я┌я▀ я█я┌п╬п╧ я│п╣я─п╦п╦ : PM2011, PM2021, PM2041, PM3021, PM2012B, PM2022, PM2122, PM2322, PM2042, PM3122, PM3222, PM3332, PM2024, PM2124, PM2044, PM2144, PM3224, PM3334</LI>
+Карты этой серии : PM2011, PM2021, PM2041, PM3021, PM2012B, PM2022, PM2122, PM2322, PM2042, PM3122, PM3222, PM3332, PM2024, PM2124, PM2044, PM2144, PM3224, PM3334</LI>
 <LI>DTC 3180/3280</LI>
-<LI>DTC 329x (<B>EISA</B>) (Adaptec 154x я│п╬п╡п╪п╣я│я┌п╦п╪я▀п╧)</LI>
+<LI>DTC 329x (<B>EISA</B>) (Adaptec 154x совместимый)</LI>
 <LI>Future Domain TMC-16x0, TMC-3260 (<B>PCI</B>)</LI>
 <LI>Future Domain TMC-8xx, TMC-950</LI>
 <LI>Future Domain chips TMC-1800, TMC-18C50, TMC-18C30, TMC-36C70</LI>
-<LI>ICP-Vortex PCI-SCSI Disk Array Controllers (п╪п╫п╬пЁп╬ я┐я─п╬п╡п╫п╣п╡я▀п╧ RAID)<BR>
-п÷п╟я┌я┤п╦ п╢п╩я▐ Linux 1.2.13 п╦ 2.0.29 п╪п╬п╤п╫п╬ п╥п╟пЁя─я┐п╥п╦я┌я▄ я│ 
-<A HREF="ftp://icp-vortex.com/download/linux/">ftp://icp-vortex.com/download/linux/</A>. п п╬п╫я┌я─п╬п╩п╩п╣я─я▀ GDT6111RP, GDT6121RP, GDT6117RP, GDT6127RP, GDT6511RP, GDT6521RP, GDT6517RP, GDT6527RP, GDT6537RP п╦ GDT6557RP я┌п╟п╨п╤п╣ п©п╬п╢п╢п╣я─п╤п╦п╡п╟я▌я┌я│я▐. п°п╬п╤п╣я┌п╣ п╦я│п©п╬п╩я▄п╥п╬п╡п╟я┌я▄ pre-patch-2.0.31-4 п╢п╬ pre-patch-2.0.31-9.</LI>
-<LI>ICP-Vortex EISA-SCSI Controllers (п°п╫п╬пЁп╬я┐я─п╬п╡п╫п╣п╡я▀п╧ RAID)<BR>
-п÷п╟я┌я┤п╦ п╢п╩я▐ п⌡п╦п╫я┐п╨я│ 1.2.13 п╦ 2.0.29 п╣я│я┌я▄ п╫п╟ 
-<A HREF="ftp://icp-vortex.com/download/linux/">ftp://icp-vortex.com/download/linux/</A>. п÷п╬п╢п╢п╣я─п╤п╦п╡п╟я▌я┌я│я▐ п╨п╬п╫я┌я─п╬п╩п╣я─я▀  GDT3000B, GDT3000A, GDT3010A, GDT3020A п╦ GDT3050A . п°п╬п╤п╣я┌п╣ п╦я│п©п╬п╩я▄п╥п╬п╡п╟я┌я▄ pre-patch-2.0.31-4 п╢п╬ pre-patch-2.0.31-9.</LI>
-<LI>Iomega PPA3 SCSI п╟п╢п╟п©я┌п╣я─ п╫п╟ п©п╟я─я─п╟п╩п╣п╩я▄п╫я▀п╧ п©п╬я─я┌ п╡я│я┌я─п╬п╣п╫п╫я▀п╧ п╡ ZIP drive</LI>
+<LI>ICP-Vortex PCI-SCSI Disk Array Controllers (много уровневый RAID)<BR>
+Патчи для Linux 1.2.13 и 2.0.29 можно загрузить с 
+<A HREF="ftp://icp-vortex.com/download/linux/">ftp://icp-vortex.com/download/linux/</A>. Контроллеры GDT6111RP, GDT6121RP, GDT6117RP, GDT6127RP, GDT6511RP, GDT6521RP, GDT6517RP, GDT6527RP, GDT6537RP и GDT6557RP также поддерживаются. Можете использовать pre-patch-2.0.31-4 до pre-patch-2.0.31-9.</LI>
+<LI>ICP-Vortex EISA-SCSI Controllers (Многоуровневый RAID)<BR>
+Патчи для Линукс 1.2.13 и 2.0.29 есть на 
+<A HREF="ftp://icp-vortex.com/download/linux/">ftp://icp-vortex.com/download/linux/</A>. Поддерживаются контролеры  GDT3000B, GDT3000A, GDT3010A, GDT3020A и GDT3050A . Можете использовать pre-patch-2.0.31-4 до pre-patch-2.0.31-9.</LI>
+<LI>Iomega PPA3 SCSI адаптер на парралельный порт встроенный в ZIP drive</LI>
 <LI>Initio Corp. INI-9090U INI-9100, INI-9100W/A/UW, INI-9200U/UW, INI-9400U/UW, INI-9520U/UW, INI-A100U2W</LI>
 <LI>Initio Corp. INIC-950</LI>
 <LI>Media Vision Pro Audio Spectrum 16 SCSI (<B>ISA</B>)</LI>
-<LI>Mylex (formerly BusLogic) W я│п╣я─п╦я▐ (<B>PCI</B>) (BT-948, BT-958, BT-958D)</LI>
-<LI>Mylex (formerly BusLogic) C я│п╣я─п╦я▐ (<B>ISA/EISA/VLB/PCI</B>) (BT-946C, BT-956C, BT-956CD, BT-445, BT-747C, BT-757C, BT-757CD, BT-545C, BT-540CF)</LI>
-<LI>Mylex (formerly Buslogic) S я│п╣я─п╦я▐ (<B>ISA/EISA/VLB</B>) (BT-445S, BT-747S, BT-747D, BT-757S, BT-757D, BT-545S, BT-542D, BT-742A, BT-542B)</LI>
-<LI>Mylex (formerly BusLogic) A я│п╣я─п╦я▐ (<B>ISA/EISA</B>) (BT-742A, BT-542B)</LI>
-<LI>NCR 5380 я│я┌п╟п╫п╢п╟я─я┌п╫я▀п╣ п╨п╟я─я┌я▀</LI>
-<LI>NCR 53C400 (Trantor T130B) (п╦я│п©п╬п╩я▄п╥я┐п╧я┌п╣ я│я┌п╟п╫п╢п╟я─я┌п╫я▀п╧ NCR 5380 SCSI п╢я─п╟п╧п╡п╣я─)</LI>
+<LI>Mylex (formerly BusLogic) W серия (<B>PCI</B>) (BT-948, BT-958, BT-958D)</LI>
+<LI>Mylex (formerly BusLogic) C серия (<B>ISA/EISA/VLB/PCI</B>) (BT-946C, BT-956C, BT-956CD, BT-445, BT-747C, BT-757C, BT-757CD, BT-545C, BT-540CF)</LI>
+<LI>Mylex (formerly Buslogic) S серия (<B>ISA/EISA/VLB</B>) (BT-445S, BT-747S, BT-747D, BT-757S, BT-757D, BT-545S, BT-542D, BT-742A, BT-542B)</LI>
+<LI>Mylex (formerly BusLogic) A серия (<B>ISA/EISA</B>) (BT-742A, BT-542B)</LI>
+<LI>NCR 5380 стандартные карты</LI>
+<LI>NCR 53C400 (Trantor T130B) (используйте стандартный NCR 5380 SCSI драйвер)</LI>
 <LI>NCR 53C406a (Acculogic ISApport / Media Vision Premium 3D SCSI)</LI>
-<LI>NCR chips 53C7x0 (п©п╬п╢п╢п╣я─п╤п╨п╟ 53C710 я┌п╬п╩я▄п╨п╬ п╡ PCI п╡п╟я─п╦п╟п╫я┌п╣ )</LI>
-<LI>NCR chips 53C810(A), 53C815, 53C820, 53C825(A), 53C860, 53C875, 53C895 (53C895 п©п╬п╢п╢п╣я─п╤п╦п╡п╟я▌я┌я│я▐ я┌п╬п╩я▄п╨п╬ 'п╫п╟ п╠я┐п╪п╟пЁп╣')</LI>
+<LI>NCR chips 53C7x0 (поддержка 53C710 только в PCI варианте )</LI>
+<LI>NCR chips 53C810(A), 53C815, 53C820, 53C825(A), 53C860, 53C875, 53C895 (53C895 поддерживаются только 'на бумаге')</LI>
 <LI>Qlogic / Control Concepts SCSI/IDE (FAS408) (<B>ISA/VLB</B>)</LI>
-<LI>Qlogic FASXXX/FASXX я│п╣п╪п╣п╧я│я┌п╡п╬ я┤п╦п©п╬п╡ (<B>ISA/VLB</B>)</LI>
+<LI>Qlogic FASXXX/FASXX семейство чипов (<B>ISA/VLB</B>)</LI>
 <LI>QLogic IQ-PCI, IQ-PCI-10, IQ-PCI-D (<B>PCI</B>) (ISP1020 chip)</LI>
 <LI>Quantum ISA-200S, ISA-250MG</LI>
 <LI>Seagate ST-01/ST-02 (<B>ISA</B>)</LI>
-<LI>SIIG Ultrawide SCSI Pro (Initio chipset). п■я─п╟п╧п╡п╣я─п╟ п╦ п©п╟я┌я┤ п╢п╩я▐ я▐п╢я─п╟ 
+<LI>SIIG Ultrawide SCSI Pro (Initio chipset). Драйвера и патч для ядра 
 <A HREF="http://www.initio.com/suse.htm">http://www.initio.com/suse.htm</A></LI>
-<LI>SoundBlaster 16 SCSI-2 (Adaptec 152x я│п╬п╡п╪п╣я│я┌п╦п╪я▀п╧) (<B>ISA</B>)</LI>
+<LI>SoundBlaster 16 SCSI-2 (Adaptec 152x совместимый) (<B>ISA</B>)</LI>
 <LI>Tekram DC-390, DC-390W/U/F</LI>
 <LI>Trantor T128/T128F/T228 (<B>ISA</B>)</LI>
 <LI>UltraStor 14F (<B>ISA</B>), 24F (<B>EISA</B>), 34F (<B>VLB</B>)</LI>
 <LI>Western Digital WD7000 SCSI</LI>
 </UL>
 <P>
-<H2><A NAME="ss9.2">9.2 п░п╩я▄я└п╟ , п▒п╣я┌п╟ п╢я─п╟п╧п╡п╣я─п╟</A>
+<H2><A NAME="ss9.2">9.2 Альфа , Бета драйвера</A>
 </H2>
 
 <P>
@@ -140,7 +140,7 @@
 <A HREF="ftp://tsx-11.mit.edu/pub/linux/ALPHA/scsi/gsi8.tar.gz">ftp://tsx-11.mit.edu/pub/linux/ALPHA/scsi/gsi8.tar.gz</A></LI>
 </UL>
 <P>
-<H2><A NAME="ss9.3">9.3 п²п╣п©п╬п╢п╢п╣я─п╤п╦п╡п╟я▌я┌я▄я│я▐</A>
+<H2><A NAME="ss9.3">9.3 Неподдерживаються</A>
 </H2>
 
 <P>
@@ -149,8 +149,8 @@
 <LI>Adaptec AAA-13x RAID Adapters</LI>
 <LI>Adaptec AAA-113x Raid Port Cards</LI>
 <LI>Adaptec AIC-7810</LI>
-<LI>NCR chip 53C710 (<B>ISA</B>) (я┐я│я┌п╟я─п╣п╩ п╦ п©я─п╟п╨я┌п╦я┤п╣я│п╨п╦ п╡я▀я┬п╣п╩ п╦п╥ я┐п©п╬я┌я─п╣п╠п╩п╣п╫п╦я▐)</LI>
-<LI>п÷п╩п╟я┌я▀ п╫п╣ я│п╬п╡п╪п╣я│я┌п╦п╪я▀п╣ я│ Adaptec DTC п©п╩п╟я┌п╟п╪п╦ (327x, 328x)</LI>
+<LI>NCR chip 53C710 (<B>ISA</B>) (устарел и практически вышел из употребления)</LI>
+<LI>Платы не совместимые с Adaptec DTC платами (327x, 328x)</LI>
 </UL>
 <P>
 <HR>

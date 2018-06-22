@@ -1,20 +1,20 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=koi8-r"><title>п╖я┌п╬ п╢п╣п╩п╟я┌я▄, п╣я│п╩п╦ &quot;я│п╩п╣я┌п╣п╩п╟&quot;б═  п╨п╬п╫я│п╬п╩я▄?</title><meta name="generator" content="DocBook XSL Stylesheets V1.59.1"><link rel="home" href="index.html" title="The Linux Cyrillic HOWTO (russian)"><link rel="up" href="ch04.html" title="п⌠п╩п╟п╡п╟ 4. п п╬п╫я│п╬п╩я▄"><link rel="previous" href="ch04s04.html" title="п÷я─п╬п╡п╣я─п╨п╟ п©я─п╟п╡п╦п╩я▄п╫п╬я│я┌п╦ п╨п╦я─п╦п╩п╩п╦п╥п╟я├п╦п╦ п╨п╬п╫я│п╬п╩п╦"><link rel="next" href="ch05.html" title="п⌠п╩п╟п╡п╟ 5. X Window"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">п╖я┌п╬ п╢п╣п╩п╟я┌я▄, п╣я│п╩п╦ &quot;я│п╩п╣я┌п╣п╩п╟&quot;б═  п╨п╬п╫я│п╬п╩я▄?</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch04s04.html">п÷я─п╣п╢.</a>б═</td><th width="60%" align="center">п⌠п╩п╟п╡п╟ 4. п п╬п╫я│п╬п╩я▄</th><td width="20%" align="right">б═<a accesskey="n" href="ch05.html">п║п╩п╣п╢.</a></td></tr></table><hr></div><div class="sect1" lang="ru"><div class="titlepage"><div><h2 class="title" style="clear: both"><a name="DieConsole"></a>п╖я┌п╬ п╢п╣п╩п╟я┌я▄, п╣я│п╩п╦ &quot;я│п╩п╣я┌п╣п╩п╟&quot;б═  п╨п╬п╫я│п╬п╩я▄?</h2></div></div><a class="indexterm" name="id2880370"></a><a class="indexterm" name="id2880381"></a><p>п║п╨п╬я─п╣п╣ п╡я│п╣пЁп╬, п╫п╟ п╨п╬п╫я│п╬п╩я▄ п╠я▀п╩ я│п╨п╬п©п╦я─п╬п╡п╟п╫ п╨п╟п╨п╬п╧-я┌п╬ п╢п╡п╬п╦я┤п╫я▀п╧
-я└п╟п╧п╩, пЁп╢п╣ я│п╩я┐я┤п╟п╧п╫п╬ п╡я│я┌я─п╣я┌п╦п╩п╟я│я▄ п©п╣я─п╣п╨п╩я▌я┤п╟я▌я┴п╟я▐
-<span class="emphasis"><em>ESC</em></span>-п©п╬я│п╩п╣п╢п╬п╡п╟я┌п╣п╩я▄п╫п╬я│я┌я▄.  п╒п╬пЁп╢п╟:</p><p>п║п╠я─п╬я│ я┌п╣я─п╪п╦п╫п╟п╩п╟:</p><pre class="screen">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=koi8-r"><title>Что делать, если &quot;слетела&quot;   консоль?</title><meta name="generator" content="DocBook XSL Stylesheets V1.59.1"><link rel="home" href="index.html" title="The Linux Cyrillic HOWTO (russian)"><link rel="up" href="ch04.html" title="Глава 4. Консоль"><link rel="previous" href="ch04s04.html" title="Проверка правильности кириллизации консоли"><link rel="next" href="ch05.html" title="Глава 5. X Window"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Что делать, если &quot;слетела&quot;   консоль?</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch04s04.html">Пред.</a> </td><th width="60%" align="center">Глава 4. Консоль</th><td width="20%" align="right"> <a accesskey="n" href="ch05.html">След.</a></td></tr></table><hr></div><div class="sect1" lang="ru"><div class="titlepage"><div><h2 class="title" style="clear: both"><a name="DieConsole"></a>Что делать, если &quot;слетела&quot;   консоль?</h2></div></div><a class="indexterm" name="id2880370"></a><a class="indexterm" name="id2880381"></a><p>Скорее всего, на консоль был скопирован какой-то двоичный
+файл, где случайно встретилась переключающая
+<span class="emphasis"><em>ESC</em></span>-последовательность.  Тогда:</p><p>Сброс терминала:</p><pre class="screen">
 $ echo -ne &quot;\033c&quot;
-</pre><p>п╫п╟п╠я─п╟я┌я▄ п╡я│п╩п╣п©я┐я▌, п╦п╩п╦ я│ я─п╟п╠п╬я┌п╟я▌я┴п╣п╧ п╨п╬п╫я│п╬п╩п╦:</p><pre class="screen">
+</pre><p>набрать вслепую, или с работающей консоли:</p><pre class="screen">
 # echo -ne &quot;\033c&quot; &gt;/dev/ttyX
-</pre><p>п÷п╣я─п╣п╨п╩я▌я┤п╣п╫п╦п╣ п╫п╟ downloaded font</p><pre class="screen">
+</pre><p>Переключение на downloaded font</p><pre class="screen">
 $ echo -ne &quot;\033(K&quot;
-</pre><p>(п╡п╬п╥п╪п╬п╤п╫п╬, п╣я┴я▒ п©я─п╦п╢я▒я┌я│я▐ п©п╣я─п╣пЁя─я┐п╥п╦я┌я▄ я┬я─п╦я└я┌я▀, п╫п╬ я█я┌п╬ я│п╪п╬я┌я─я▐
-п╨п╟п╨ п╨п╬п╫я│п╬п╩я▄ я│п╬я─п╡п╟п╩п╬...)</p><p>п∙я│п╩п╦ п╡я▀п╡п╟п╩п╦п╩п╟я│я▄ п╨п╟п╨п╟я▐-я┌п╬ п©я─п╬пЁя─п╟п╪п╪п╟, п╨п╬я┌п╬я─п╟я▐ п╦я│п©п╬п╩я▄п╥я┐п╣я┌
-curses, я┌п╬ п©я─п╬я┴п╣</p><pre class="screen">
+</pre><p>(возможно, ещё придётся перегрузить шрифты, но это смотря
+как консоль сорвало...)</p><p>Если вывалилась какая-то программа, которая использует
+curses, то проще</p><pre class="screen">
 $ stty sane
-</pre><p>п▒я▀п╡п╟п╣я┌ я┤я┌п╬ п╡п╪п╣я│я┌п╬ я┤п╟я│я┌п╦ я│п╦п╪п╡п╬п╩п╬п╡ п╡я▀п╡п╬п╢п╦я┌я│я▐ п©я│п╣п╡п╢п╬пЁя─п╟я└п╦п╨п╟.
-я│ п©п╬п╪п╬я┴я▄я▌ <tt>stty sane</tt> я█я┌п╬ п╫п╣ п╩п╣я┤п╦я┌я│я▐. п▓ я█я┌п╬п╪ я│п╩я┐я┤п╟п╣
-п╫п╟п╠п╦я─п╟п╣п╪ п╡ я│п╩п╣п©я┐я▌:</p><pre class="screen">
+</pre><p>Бывает что вместо части символов выводится псевдографика.
+с помощью <tt>stty sane</tt> это не лечится. В этом случае
+набираем в слепую:</p><pre class="screen">
 $ echo -ne &quot;\017&quot; 
-</pre><p>п≤п╫п╬пЁп╢п╟ п╨п╬пЁп╢п╟ я█я┌п╬ я│п╩я┐я┤п╟п╣я┌я│я▐ п╪п╬п╤п╣я┌ п╫п╣ я─п╟п╠п╬я┌п╟я┌я▄
-    <tt>enter</tt>. п▓ я█я┌п╬п╪ я│п╩я┐я┤п╟п╣ п╡п╪п╣я│я┌п╬ п╫п╣пЁп╬ п╫п╟п╠п╦я─п╟п╣п╪
-    <tt>Ctrl+J</tt>.</p><p>п║п╪. 'man console_codes' п╦ 'man stty'</p></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch04s04.html">п÷я─п╣п╢.</a>б═</td><td width="20%" align="center"><a accesskey="u" href="ch04.html">пёя─п╬п╡п╣п╫я▄ п╡я▀я┬п╣</a></td><td width="40%" align="right">б═<a accesskey="n" href="ch05.html">п║п╩п╣п╢.</a></td></tr><tr><td width="40%" align="left" valign="top">п÷я─п╬п╡п╣я─п╨п╟ п©я─п╟п╡п╦п╩я▄п╫п╬я│я┌п╦ п╨п╦я─п╦п╩п╩п╦п╥п╟я├п╦п╦ п╨п╬п╫я│п╬п╩п╦б═</td><td width="20%" align="center"><a accesskey="h" href="index.html">п²п╟я┤п╟п╩п╬</a></td><td width="40%" align="right" valign="top">б═п⌠п╩п╟п╡п╟ 5. X Window</td></tr></table></div></body></html>
+</pre><p>Иногда когда это случается может не работать
+    <tt>enter</tt>. В этом случае вместо него набираем
+    <tt>Ctrl+J</tt>.</p><p>См. 'man console_codes' и 'man stty'</p></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch04s04.html">Пред.</a> </td><td width="20%" align="center"><a accesskey="u" href="ch04.html">Уровень выше</a></td><td width="40%" align="right"> <a accesskey="n" href="ch05.html">След.</a></td></tr><tr><td width="40%" align="left" valign="top">Проверка правильности кириллизации консоли </td><td width="20%" align="center"><a accesskey="h" href="index.html">Начало</a></td><td width="40%" align="right" valign="top"> Глава 5. X Window</td></tr></table></div></body></html>

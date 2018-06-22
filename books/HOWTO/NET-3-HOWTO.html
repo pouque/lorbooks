@@ -2,100 +2,100 @@
 <HTML>
 <HEAD>
  <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
- <TITLE>п║п╣я┌п╣п╡п╟я▐ п©п╬п╢п╢п╣я─п╤п╨п╟ п╡ п⌡п╦п╫я┐п╨я│п╣, Linux NET-3-HOWTO.</TITLE>
+ <TITLE>Сетевая поддержка в Линуксе, Linux NET-3-HOWTO.</TITLE>
  <LINK HREF="NET-3-HOWTO-1.html" REL=next>
 
 
 </HEAD>
 <BODY>
-<A HREF="NET-3-HOWTO-1.html">п║п╩п╣п╢я┐я▌я┴п╦п╧</A>
-п÷я─п╣п╢я▀п╢я┐я┴п╦п╧
-п║п╬п╢п╣я─п╤п╟п╫п╦п╣
+<A HREF="NET-3-HOWTO-1.html">Следующий</A>
+Предыдущий
+Содержание
 <HR>
-<H1>п║п╣я┌п╣п╡п╟я▐ п©п╬п╢п╢п╣я─п╤п╨п╟ п╡ п⌡п╦п╫я┐п╨я│п╣, Linux NET-3-HOWTO.</H1>
+<H1>Сетевая поддержка в Линуксе, Linux NET-3-HOWTO.</H1>
 
-<H2>п╒я█я─я─п╦ п■п╬я┐я│п╬п╫ (Terry Dawson) (п╬я│п╫п╬п╡п╫п╬п╧ п╟п╡я┌п╬я─), VK2KTJ;
-п░п╩п╣я│я│п╟п╫п╢я─п╬ п═я┐п╠п╦п╫п╦ (я│п╬п©я─п╬п╡п╬п╤п╢п╟я▌я┴п╦п╧), <CODE>alessandro.rubini@linux.it</CODE>
-п∙пЁп╬я─ п■я┐п╢п╟ (п©п╣я─п╣п╡п╬п╢) <CODE>deo@logos-m.ru</CODE></H2>v1.4, п░п╡пЁя┐я│я┌ 1998
+<H2>Тэрри Доусон (Terry Dawson) (основной автор), VK2KTJ;
+Алессандро Рубини (сопровождающий), <CODE>alessandro.rubini@linux.it</CODE>
+Егор Дуда (перевод) <CODE>deo@logos-m.ru</CODE></H2>v1.4, Август 1998
 <P><HR>
-<EM>  п║п╣я┌п╣п╡п╟я▐ п©п╬п╢п╢п╣я─п╤п╨п╟ п╡ п·п©п╣я─п╟я├п╦п╬п╫п╫п╬п╧ я│п╦я│я┌п╣п╪п╣ п⌡п╦п╫я┐п╨я│ п╫п╟п©п╦я│п╟п╫п╟ "я│ п╫я┐п╩я▐"
-  п©п╬я┤я┌п╦ я├п╣п╩п╦п╨п╬п╪. п÷я─п╬п╦п╥п╡п╬п╢п╦я┌п╣п╩я▄п╫п╬я│я┌я▄ п©п╬п╢я│п╦я│я┌п╣п╪я▀ tcp/ip п╡ п©п╬я│п╩п╣п╢п╫п╦я┘
-  п╡п╣я─я│п╦я▐я┘ я▐п╢я─п╟ п╢п╣п╩п╟п╣я┌ п╣п╣ п╢п╬я│я┌п╬п╧п╫п╬п╧ п╟п╩я▄я┌п╣я─п╫п╟я┌п╦п╡п╬п╧ п╢я─я┐пЁп╦п╪ я─п╣п╟п╩п╦п╥п╟я├п╦я▐п╪.
-  п▓ я█я┌п╬п╪ п╢п╬п╨я┐п╪п╣п╫я┌п╣ п╬п©п╦я│я▀п╡п╟п╣я┌я│я▐, п╨п╟п╨ я┐я│я┌п╟п╫п╬п╡п╦я┌я▄ п╦ п╫п╟я│я┌я─п╬п╦я┌я▄ я│п╣я┌п╣п╡я┐я▌
-  п©п╬п╢п╢п╣я─п╤п╨я┐ п╦ я│п╡я▐п╥п╟п╫п╫я▀п╣ я│ п╫п╣п╧ я┐я┌п╦п╩п╦я┌я▀.</EM>
+<EM>  Сетевая поддержка в Операционной системе Линукс написана "с нуля"
+  почти целиком. Производительность подсистемы tcp/ip в последних
+  версиях ядра делает ее достойной альтернативой другим реализациям.
+  В этом документе описывается, как установить и настроить сетевую
+  поддержку и связанные с ней утилиты.</EM>
 <HR>
 <P>
-<H2><A NAME="toc1">1.</A> <A HREF="NET-3-HOWTO-1.html">п·я┌п╩п╦я┤п╦я▐ п╬я┌ п╡п╣я─я│п╦п╦ 1.3 (п░п©я─п╣п╩я▄ 1998)</A></H2>
+<H2><A NAME="toc1">1.</A> <A HREF="NET-3-HOWTO-1.html">Отличия от версии 1.3 (Апрель 1998)</A></H2>
 
 <P>
-<H2><A NAME="toc2">2.</A> <A HREF="NET-3-HOWTO-2.html">п▓п╡п╣п╢п╣п╫п╦п╣.</A></H2>
-
-<UL>
-<LI><A HREF="NET-3-HOWTO-2.html#ss2.1">2.1 п·я┌п╥я▀п╡я▀</A>
-</UL>
-<P>
-<H2><A NAME="toc3">3.</A> <A HREF="NET-3-HOWTO-3.html">п≤я│п©п╬п╩я▄п╥п╬п╡п╟п╫п╦п╣ я█я┌п╬пЁп╬ п╢п╬п╨я┐п╪п╣п╫я┌п╟ (NET-3-HOWTO-HOWTO ?).</A></H2>
+<H2><A NAME="toc2">2.</A> <A HREF="NET-3-HOWTO-2.html">Введение.</A></H2>
 
 <UL>
-<LI><A HREF="NET-3-HOWTO-3.html#ss3.1">3.1 п·п╠п╬п╥п╫п╟я┤п╣п╫п╦я▐, п©я─п╦п╫я▐я┌я▀п╣ п╡ я█я┌п╬п╪ п╢п╬п╨я┐п╪п╣п╫я┌п╣</A>
+<LI><A HREF="NET-3-HOWTO-2.html#ss2.1">2.1 Отзывы</A>
 </UL>
 <P>
-<H2><A NAME="toc4">4.</A> <A HREF="NET-3-HOWTO-4.html">п·п╠я┴п╟я▐ п╦п╫я└п╬я─п╪п╟я├п╦я▐ п╬ я│п╣я┌п╣п╡я▀я┘ я│я─п╣п╢я│я┌п╡п╟я┘ п⌡п╦п╫я┐п╨я│п╟.</A></H2>
+<H2><A NAME="toc3">3.</A> <A HREF="NET-3-HOWTO-3.html">Использование этого документа (NET-3-HOWTO-HOWTO ?).</A></H2>
 
 <UL>
-<LI><A HREF="NET-3-HOWTO-4.html#ss4.1">4.1 п я─п╟я┌п╨п╟я▐ п╦я│я┌п╬я─п╦я▐ я─п╟п╥я─п╟п╠п╬я┌п╨п╦ я│п╣я┌п╣п╡п╬п╧ п©п╬п╢я│п╦я│я┌п╣п╪я▀ п⌡п╦п╫я┐п╨я│п╟.</A>
-<LI><A HREF="NET-3-HOWTO-4.html#ss4.2">4.2 п≤я│я┌п╬я┤п╫п╦п╨п╦ п╦п╫я└п╬я─п╪п╟я├п╦п╦ п╬ я│п╣я┌п╣п╡п╬п╧ п©п╬п╢я│п╦я│я┌п╣п╪п╣ п⌡п╦п╫я┐п╨я│п╟.</A>
-<LI><A HREF="NET-3-HOWTO-4.html#ss4.3">4.3 п≤я│я┌п╬я┤п╫п╦п╨п╦ п╦п╫я└п╬я─п╪п╟я├п╦п╦ п╬ я│п╣я┌я▐я┘, п╫п╣ я│п╡я▐п╥п╟п╫п╫я▀п╣ п╫п╣п©п╬я│я─п╣п╢я│я┌п╡п╣п╫п╫п╬ я│ п⌡п╦п╫я┐п╨я│п╬п╪</A>
+<LI><A HREF="NET-3-HOWTO-3.html#ss3.1">3.1 Обозначения, принятые в этом документе</A>
 </UL>
 <P>
-<H2><A NAME="toc5">5.</A> <A HREF="NET-3-HOWTO-5.html">п·п╠я┴п╟я▐ п╦п╫я└п╬я─п╪п╟я├п╦я▐ п©п╬ п╫п╟я│я┌я─п╬п╧п╨п╣ я│п╣я┌п╦.</A></H2>
+<H2><A NAME="toc4">4.</A> <A HREF="NET-3-HOWTO-4.html">Общая информация о сетевых средствах Линукса.</A></H2>
 
 <UL>
-<LI><A HREF="NET-3-HOWTO-5.html#ss5.1">5.1 п║ я┤п╣пЁп╬ п╫п╟я┤п╟я┌я▄?</A>
-<LI><A HREF="NET-3-HOWTO-5.html#ss5.2">5.2 п⌠п╢п╣ я─п╟п╥п╪п╣я┴п╟я┌я▄ п╨п╬п╪п╟п╫п╢я▀ п╨п╬п╫я└п╦пЁя┐я─п╟я├п╦п╦ ?</A>
-<LI><A HREF="NET-3-HOWTO-5.html#ss5.3">5.3 п║п╬п╥п╢п╟п╫п╦п╣ я│п╣я┌п╣п╡я▀я┘ п╦п╫я┌п╣я─я└п╣п╧я│п╬п╡.</A>
-<LI><A HREF="NET-3-HOWTO-5.html#ss5.4">5.4 п²п╟я│я┌я─п╬п╧п╨п╟ я│п╣я┌п╣п╡п╬пЁп╬ п╦п╫я┌п╣я─я└п╣п╧я│п╟.</A>
-<LI><A HREF="NET-3-HOWTO-5.html#ss5.5">5.5 п²п╟я│я┌я─п╬п╧п╨п╟ п║п╦я│я┌п╣п╪я▀ п÷я─п╣п╬п╠я─п╟п╥п╬п╡п╟п╫п╦я▐ п≤п╪п╣п╫ (Name Resolver)</A>
-<LI><A HREF="NET-3-HOWTO-5.html#ss5.6">5.6 п²п╟я│я┌я─п╬п╧п╨п╟ п╨п╬п╩я▄я├п╣п╡п╬пЁп╬ п╦п╫я┌п╣я─я└п╣п╧я│п╟.</A>
-<LI><A HREF="NET-3-HOWTO-5.html#ss5.7">5.7 п°п╟я─я┬я─я┐я┌п╦п╥п╟я├п╦я▐.</A>
-<LI><A HREF="NET-3-HOWTO-5.html#ss5.8">5.8 п²п╟я│я┌я─п╬п╧п╨п╟ я│п╣я┌п╣п╡я▀я┘ я│п╣я─п╡п╣я─п╬п╡ п╦ я│п╣я─п╡п╦я│п╬п╡.</A>
-<LI><A HREF="NET-3-HOWTO-5.html#ss5.9">5.9 п■я─я┐пЁп╦п╣ я└п╟п╧п╩я▀, я│п╡я▐п╥п╟п╫п╫я▀п╣ я│ п╫п╟я│я┌я─п╬п╧п╨п╬п╧ я│п╣я┌п╦.</A>
-<LI><A HREF="NET-3-HOWTO-5.html#ss5.10">5.10 п▒п╣п╥п╬п©п╟я│п╫п╬я│я┌я▄ п╦ я┐п©я─п╟п╡п╩п╣п╫п╦п╣ п╢п╬я│я┌я┐п©п╬п╪.</A>
+<LI><A HREF="NET-3-HOWTO-4.html#ss4.1">4.1 Краткая история разработки сетевой подсистемы Линукса.</A>
+<LI><A HREF="NET-3-HOWTO-4.html#ss4.2">4.2 Источники информации о сетевой подсистеме Линукса.</A>
+<LI><A HREF="NET-3-HOWTO-4.html#ss4.3">4.3 Источники информации о сетях, не связанные непосредственно с Линуксом</A>
 </UL>
 <P>
-<H2><A NAME="toc6">6.</A> <A HREF="NET-3-HOWTO-6.html">п≤п╫я└п╬я─п╪п╟я├п╦я▐ п╬п╠ IP- Ethernet-я│п╣я┌я▐я┘.</A></H2>
+<H2><A NAME="toc5">5.</A> <A HREF="NET-3-HOWTO-5.html">Общая информация по настройке сети.</A></H2>
+
+<UL>
+<LI><A HREF="NET-3-HOWTO-5.html#ss5.1">5.1 С чего начать?</A>
+<LI><A HREF="NET-3-HOWTO-5.html#ss5.2">5.2 Где размещать команды конфигурации ?</A>
+<LI><A HREF="NET-3-HOWTO-5.html#ss5.3">5.3 Создание сетевых интерфейсов.</A>
+<LI><A HREF="NET-3-HOWTO-5.html#ss5.4">5.4 Настройка сетевого интерфейса.</A>
+<LI><A HREF="NET-3-HOWTO-5.html#ss5.5">5.5 Настройка Системы Преобразования Имен (Name Resolver)</A>
+<LI><A HREF="NET-3-HOWTO-5.html#ss5.6">5.6 Настройка кольцевого интерфейса.</A>
+<LI><A HREF="NET-3-HOWTO-5.html#ss5.7">5.7 Маршрутизация.</A>
+<LI><A HREF="NET-3-HOWTO-5.html#ss5.8">5.8 Настройка сетевых серверов и сервисов.</A>
+<LI><A HREF="NET-3-HOWTO-5.html#ss5.9">5.9 Другие файлы, связанные с настройкой сети.</A>
+<LI><A HREF="NET-3-HOWTO-5.html#ss5.10">5.10 Безопасность и управление доступом.</A>
+</UL>
+<P>
+<H2><A NAME="toc6">6.</A> <A HREF="NET-3-HOWTO-6.html">Информация об IP- Ethernet-сетях.</A></H2>
 
 <UL>
 <LI><A HREF="NET-3-HOWTO-6.html#ss6.1">6.1 Ethernet</A>
-<LI><A HREF="NET-3-HOWTO-6.html#ss6.2">6.2 EQL -- п╠п╟п╩п╟п╫я│п╦я─п╬п╡я┴п╦п╨ п©п╬я┌п╬п╨п╟ п╢п╟п╫п╫я▀я┘.</A>
-<LI><A HREF="NET-3-HOWTO-6.html#ss6.3">6.3 IP-я┐я┤п╣я┌ (п╢п╩я▐ п╡п╣я─я│п╦п╧ я▐п╢я─п╟ 2.0).</A>
-<LI><A HREF="NET-3-HOWTO-6.html#ss6.4">6.4 IP-я┐я┤п╣я┌ (п╢п╩я▐ п╡п╣я─я│п╦п╧ я▐п╢я─п╟ 2.2)</A>
-<LI><A HREF="NET-3-HOWTO-6.html#ss6.5">6.5 IP-п©я│п╣п╡п╢п╬п╫п╦п╪я▀.</A>
-<LI><A HREF="NET-3-HOWTO-6.html#ss6.6">6.6 IP я└п╟п╧я─п╡п╬п╩п╩ (п╢п╩я▐ п╡п╣я─я│п╦п╧ я▐п╢я─п╟ 2.0).</A>
-<LI><A HREF="NET-3-HOWTO-6.html#ss6.7">6.7 IP-я└п╟п╧я─п╡п╬п╩п╩ (п╢п╩я▐ п╡п╣я─я│п╦п╧ я▐п╢я─п╟ 2.2)</A>
-<LI><A HREF="NET-3-HOWTO-6.html#ss6.8">6.8 IPIP-п╡п╨п╩я▌я┤п╣п╫п╦п╣</A>
-<LI><A HREF="NET-3-HOWTO-6.html#ss6.9">6.9 IP-п╪п╟я│п╨п╟я─п╟п╢ (п╢п╩я▐ п╡п╣я─я│п╦п╧ я▐п╢я─п╟ 2.0)</A>
-<LI><A HREF="NET-3-HOWTO-6.html#ss6.10">6.10 "п÷я─п╬п╥я─п╟я┤п╫п╬п╣" IP-п╨п╣я┬п╦я─п╬п╡п╟п╫п╦п╣.</A>
+<LI><A HREF="NET-3-HOWTO-6.html#ss6.2">6.2 EQL -- балансировщик потока данных.</A>
+<LI><A HREF="NET-3-HOWTO-6.html#ss6.3">6.3 IP-учет (для версий ядра 2.0).</A>
+<LI><A HREF="NET-3-HOWTO-6.html#ss6.4">6.4 IP-учет (для версий ядра 2.2)</A>
+<LI><A HREF="NET-3-HOWTO-6.html#ss6.5">6.5 IP-псевдонимы.</A>
+<LI><A HREF="NET-3-HOWTO-6.html#ss6.6">6.6 IP файрволл (для версий ядра 2.0).</A>
+<LI><A HREF="NET-3-HOWTO-6.html#ss6.7">6.7 IP-файрволл (для версий ядра 2.2)</A>
+<LI><A HREF="NET-3-HOWTO-6.html#ss6.8">6.8 IPIP-включение</A>
+<LI><A HREF="NET-3-HOWTO-6.html#ss6.9">6.9 IP-маскарад (для версий ядра 2.0)</A>
+<LI><A HREF="NET-3-HOWTO-6.html#ss6.10">6.10 "Прозрачное" IP-кеширование.</A>
 <LI><A HREF="NET-3-HOWTO-6.html#ss6.11">6.11 IPv6</A>
-<LI><A HREF="NET-3-HOWTO-6.html#ss6.12">6.12 п°п╬п╠п╦п╩я▄п╫п╬п╣ IP</A>
-<LI><A HREF="NET-3-HOWTO-6.html#ss6.13">6.13 IP-я─п╟я│я│я▀п╩п╨п╟ (IP multicast)</A>
-<LI><A HREF="NET-3-HOWTO-6.html#ss6.14">6.14 п╒я─п╟п╫я│п╩я▐я├п╦я▐ я│п╣я┌п╣п╡я▀я┘ п╟п╢я─п╣я│п╬п╡ (NAT, Network Address Translation)</A>
-<LI><A HREF="NET-3-HOWTO-6.html#ss6.15">6.15 п·пЁя─п╟п╫п╦я┤п╦я┌п╣п╩я▄ п©п╬я┌п╬п╨п╟ п╢п╟п╫п╫я▀я┘. (Traffic Shaper)</A>
-<LI><A HREF="NET-3-HOWTO-6.html#ss6.16">6.16 п°п╟я─я┬я─я┐я┌п╦п╥п╟я├п╦я▐ п╡ я▐п╢я─п╟я┘ п╡п╣я─я│п╦п╧ 2.2.*</A>
+<LI><A HREF="NET-3-HOWTO-6.html#ss6.12">6.12 Мобильное IP</A>
+<LI><A HREF="NET-3-HOWTO-6.html#ss6.13">6.13 IP-рассылка (IP multicast)</A>
+<LI><A HREF="NET-3-HOWTO-6.html#ss6.14">6.14 Трансляция сетевых адресов (NAT, Network Address Translation)</A>
+<LI><A HREF="NET-3-HOWTO-6.html#ss6.15">6.15 Ограничитель потока данных. (Traffic Shaper)</A>
+<LI><A HREF="NET-3-HOWTO-6.html#ss6.16">6.16 Маршрутизация в ядрах версий 2.2.*</A>
 </UL>
 <P>
-<H2><A NAME="toc7">7.</A> <A HREF="NET-3-HOWTO-7.html">п≤я│п©п╬п╩я▄п╥п╬п╡п╟п╫п╦п╣ я─п╟я│п©я─п╬я│я┌я─п╟п╫п╣п╫п╫п╬пЁп╬ я│п╣я┌п╣п╡п╬пЁп╬ п╬п╠п╬я─я┐п╢п╬п╡п╟п╫п╦я▐.</A></H2>
+<H2><A NAME="toc7">7.</A> <A HREF="NET-3-HOWTO-7.html">Использование распространенного сетевого оборудования.</A></H2>
 
 <UL>
 <LI><A HREF="NET-3-HOWTO-7.html#ss7.1">7.1 ISDN</A>
-<LI><A HREF="NET-3-HOWTO-7.html#ss7.2">7.2 п÷я─п╬я┌п╬п╨п╬п╩ PLIP п╡ п╡п╣я─я│п╦я▐я┘ я▐п╢я─п╟ 2.0.*</A>
-<LI><A HREF="NET-3-HOWTO-7.html#ss7.3">7.3 п÷я─п╬я┌п╬п╨п╬п╩ PLIP п╡ п╡п╣я─я│п╦я▐я┘ я▐п╢я─п╟ 2.2.*</A>
+<LI><A HREF="NET-3-HOWTO-7.html#ss7.2">7.2 Протокол PLIP в версиях ядра 2.0.*</A>
+<LI><A HREF="NET-3-HOWTO-7.html#ss7.3">7.3 Протокол PLIP в версиях ядра 2.2.*</A>
 <LI><A HREF="NET-3-HOWTO-7.html#ss7.4">7.4 PPP</A>
-<LI><A HREF="NET-3-HOWTO-7.html#ss7.5">7.5 SLIP-п╨п╩п╦п╣п╫я┌</A>
-<LI><A HREF="NET-3-HOWTO-7.html#ss7.6">7.6 SLIP-я│п╣я─п╡п╣я─.</A>
+<LI><A HREF="NET-3-HOWTO-7.html#ss7.5">7.5 SLIP-клиент</A>
+<LI><A HREF="NET-3-HOWTO-7.html#ss7.6">7.6 SLIP-сервер.</A>
 </UL>
 <P>
-<H2><A NAME="toc8">8.</A> <A HREF="NET-3-HOWTO-8.html">п■я─я┐пЁп╦п╣ я│п╣я┌п╣п╡я▀п╣ я┌п╣я┘п╫п╬п╩п╬пЁп╦п╦.</A></H2>
+<H2><A NAME="toc8">8.</A> <A HREF="NET-3-HOWTO-8.html">Другие сетевые технологии.</A></H2>
 
 <UL>
 <LI><A HREF="NET-3-HOWTO-8.html#ss8.1">8.1 ARCNet</A>
@@ -104,40 +104,40 @@
 <LI><A HREF="NET-3-HOWTO-8.html#ss8.4">8.4 AX25 (<CODE>AF_AX25</CODE>)</A>
 <LI><A HREF="NET-3-HOWTO-8.html#ss8.5">8.5 DECNet</A>
 <LI><A HREF="NET-3-HOWTO-8.html#ss8.6">8.6 FDDI</A>
-<LI><A HREF="NET-3-HOWTO-8.html#ss8.7">8.7 п║п╣я┌п╦ я│ я─п╣я┌я─п╟п╫я│п╩я▐я├п╦п╣п╧ п╨п╟п╢я─п╬п╡ (Frame Relay).</A>
+<LI><A HREF="NET-3-HOWTO-8.html#ss8.7">8.7 Сети с ретрансляцией кадров (Frame Relay).</A>
 <LI><A HREF="NET-3-HOWTO-8.html#ss8.8">8.8 IPX (<CODE>AF_IPX</CODE>)</A>
 <LI><A HREF="NET-3-HOWTO-8.html#ss8.9">8.9 NetRom (<CODE>AF_NETROM</CODE>)</A>
-<LI><A HREF="NET-3-HOWTO-8.html#ss8.10">8.10 п÷я─п╬я┌п╬п╨п╬п╩ Rose (<CODE>AF_ROSE</CODE>)</A>
-<LI><A HREF="NET-3-HOWTO-8.html#ss8.11">8.11 SAMBA - п©п╬п╢п╢п╣я─п╤п╨п╟ п©я─п╬я┌п╬п╨п╬п╩п╬п╡ `NetBEUI' п╦ `NetBios'.</A>
-<LI><A HREF="NET-3-HOWTO-8.html#ss8.12">8.12 п÷п╬п╢п╢п╣я─п╤п╨п╟ STRIP (Starmode Radio IP)</A>
-<LI><A HREF="NET-3-HOWTO-8.html#ss8.13">8.13 п║п╣я┌п╦ Token Ring</A>
+<LI><A HREF="NET-3-HOWTO-8.html#ss8.10">8.10 Протокол Rose (<CODE>AF_ROSE</CODE>)</A>
+<LI><A HREF="NET-3-HOWTO-8.html#ss8.11">8.11 SAMBA - поддержка протоколов `NetBEUI' и `NetBios'.</A>
+<LI><A HREF="NET-3-HOWTO-8.html#ss8.12">8.12 Поддержка STRIP (Starmode Radio IP)</A>
+<LI><A HREF="NET-3-HOWTO-8.html#ss8.13">8.13 Сети Token Ring</A>
 <LI><A HREF="NET-3-HOWTO-8.html#ss8.14">8.14 X.25</A>
-<LI><A HREF="NET-3-HOWTO-8.html#ss8.15">8.15 п║п╣я┌п╣п╡я▀п╣ п╨п╟я─я┌я▀ WaveLan</A>
+<LI><A HREF="NET-3-HOWTO-8.html#ss8.15">8.15 Сетевые карты WaveLan</A>
 </UL>
 <P>
-<H2><A NAME="toc9">9.</A> <A HREF="NET-3-HOWTO-9.html">п═п╟п╥п╡п╬п╢п╨п╟ п╨п╟п╠п╣п╩п╣п╧.</A></H2>
+<H2><A NAME="toc9">9.</A> <A HREF="NET-3-HOWTO-9.html">Разводка кабелей.</A></H2>
 
 <UL>
-<LI><A HREF="NET-3-HOWTO-9.html#ss9.1">9.1 п÷п╬я│п╩п╣п╢п╬п╡п╟я┌п╣п╩я▄п╫я▀п╧ п╫я┐п╩я▄-п╪п╬п╢п╣п╪п╫я▀п╧ п╨п╟п╠п╣п╩я▄.</A>
-<LI><A HREF="NET-3-HOWTO-9.html#ss9.2">9.2 п п╟п╠п╣п╩я▄ п╢п╩я▐ я│п╬п╣п╢п╦п╫п╣п╫п╦я▐ я┤п╣я─п╣п╥ п©п╟я─п╟п╩п╩п╣п╩я▄п╫я▀п╣ п©п╬я─я┌я▀ (PLIP)</A>
-<LI><A HREF="NET-3-HOWTO-9.html#ss9.3">9.3 10base2 (я┌п╬п╫п╨п╦п╧ п╨п╬п╟п╨я│п╦п╟п╩я▄п╫я▀п╧ Ethernet-п╨п╟п╠п╣п╩я▄)</A>
-<LI><A HREF="NET-3-HOWTO-9.html#ss9.4">9.4 Ethernet-п╨п╟п╠п╣п╩я▄ `п▓п╦я┌п╟я▐ п©п╟я─п╟'</A>
+<LI><A HREF="NET-3-HOWTO-9.html#ss9.1">9.1 Последовательный нуль-модемный кабель.</A>
+<LI><A HREF="NET-3-HOWTO-9.html#ss9.2">9.2 Кабель для соединения через параллельные порты (PLIP)</A>
+<LI><A HREF="NET-3-HOWTO-9.html#ss9.3">9.3 10base2 (тонкий коаксиальный Ethernet-кабель)</A>
+<LI><A HREF="NET-3-HOWTO-9.html#ss9.4">9.4 Ethernet-кабель `Витая пара'</A>
 </UL>
 <P>
-<H2><A NAME="toc10">10.</A> <A HREF="NET-3-HOWTO-10.html">п⌠п╩п╬я│я│п╟я─п╦п╧.</A></H2>
+<H2><A NAME="toc10">10.</A> <A HREF="NET-3-HOWTO-10.html">Глоссарий.</A></H2>
 
 <P>
-<H2><A NAME="toc11">11.</A> <A HREF="NET-3-HOWTO-11.html">п⌡п╦п╫я┐п╨я│ п╢п╩я▐ п╦п╫я┌п╣я─п╫п╣я┌-п©я─п╬п╡п╟п╧п╢п╣я─п╟ ?</A></H2>
+<H2><A NAME="toc11">11.</A> <A HREF="NET-3-HOWTO-11.html">Линукс для интернет-провайдера ?</A></H2>
 
 <P>
-<H2><A NAME="toc12">12.</A> <A HREF="NET-3-HOWTO-12.html">п▒п╩п╟пЁп╬п╢п╟я─п╫п╬я│я┌п╦</A></H2>
+<H2><A NAME="toc12">12.</A> <A HREF="NET-3-HOWTO-12.html">Благодарности</A></H2>
 
 <P>
-<H2><A NAME="toc13">13.</A> <A HREF="NET-3-HOWTO-13.html">п░п╡я┌п╬я─я│п╨п╦п╣ п©я─п╟п╡п╟.</A></H2>
+<H2><A NAME="toc13">13.</A> <A HREF="NET-3-HOWTO-13.html">Авторские права.</A></H2>
 
 <HR>
-<A HREF="NET-3-HOWTO-1.html">п║п╩п╣п╢я┐я▌я┴п╦п╧</A>
-п÷я─п╣п╢я▀п╢я┐я┴п╦п╧
-п║п╬п╢п╣я─п╤п╟п╫п╦п╣
+<A HREF="NET-3-HOWTO-1.html">Следующий</A>
+Предыдущий
+Содержание
 </BODY>
 </HTML>

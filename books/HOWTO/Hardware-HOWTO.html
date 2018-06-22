@@ -14,214 +14,214 @@ Contents
 <HR>
 <H1>Linux Hardware Compatibility HOWTO</H1>
 
-<H2>п░п╡я┌п╬я─: Patrick Reijnen <CODE>
-<A HREF="mailto:antispam.hardware_howto@antispam.reijnen.nl.com">antispam.hardware_howto@antispam.reijnen.nl.com</A> (пёп╢п╟п╩п╦я┌п╣ п╬п╠п╟ п©я─п╣я└п╦п╨я│п╟ "antispam.")</CODE><BR>
-п÷п╣я─п╣п╡п╬п╢: Alexsandr Mikhailov <BR>
-<A HREF="mailto:alexmikh@mail.ru">alexmikh@mail.ru</A></H2>v99.3, 15 п╢п╣п╨п╟п╠я─я▐ 1999
+<H2>Автор: Patrick Reijnen <CODE>
+<A HREF="mailto:antispam.hardware_howto@antispam.reijnen.nl.com">antispam.hardware_howto@antispam.reijnen.nl.com</A> (Удалите оба префикса "antispam.")</CODE><BR>
+Перевод: Alexsandr Mikhailov <BR>
+<A HREF="mailto:alexmikh@mail.ru">alexmikh@mail.ru</A></H2>v99.3, 15 декабря 1999
 <P><HR>
-<EM>п▓ я█я┌п╬п╪ п╢п╬п╨я┐п╪п╣п╫я┌п╣ п©п╣я─п╣я┤п╦я│п╩п╣п╫п╬ п╠п╬п╩я▄я┬п╦п╫я│я┌п╡п╬ я┐я│я┌я─п╬п╧я│я┌п╡ я│п╬п╡п╪п╣я│я┌п╦п╪я▀я┘ я│ п⌡п╦п╫я┐п╨я│ п╦ п╢п╟п╫п╟ п╦п╫я└п╬я─п╪п╟я├п╦я▐ п╬ я│п╬п╬я┌п╡п╣я┌я│я┌п╡я┐я▌я┴п╦я┘ п╢я─п╟п╧п╡п╣я─п╟я┘.</EM>
+<EM>В этом документе перечислено большинство устройств совместимых с Линукс и дана информация о соответствующих драйверах.</EM>
 <HR>
 <P>
-<H2><A NAME="toc1">1.</A> <A HREF="Hardware-HOWTO-1.html">п▓п╡п╣п╢п╣п╫п╦п╣</A></H2>
+<H2><A NAME="toc1">1.</A> <A HREF="Hardware-HOWTO-1.html">Введение</A></H2>
 
 <UL>
-<LI><A HREF="Hardware-HOWTO-1.html#ss1.1">1.1 п▓п╡п╣п╢п╣п╫п╦п╣</A>
-<LI><A HREF="Hardware-HOWTO-1.html#ss1.2">1.2 п·я┌ п©п╣я─п╣п╡п╬п╢я┤п╦п╨п╟</A>
-<LI><A HREF="Hardware-HOWTO-1.html#ss1.3">1.3 п░п╡я┌п╬я─я│п╨п╦п╣ п©я─п╟п╡п╟</A>
-<LI><A HREF="Hardware-HOWTO-1.html#ss1.4">1.4 п÷п╬п╢п╢п╣я─п╤п╦п╡п╟п╣п╪я▀п╣ п╟я─я┘п╦я┌п╣п╨я┌я┐я─я▀</A>
+<LI><A HREF="Hardware-HOWTO-1.html#ss1.1">1.1 Введение</A>
+<LI><A HREF="Hardware-HOWTO-1.html#ss1.2">1.2 От переводчика</A>
+<LI><A HREF="Hardware-HOWTO-1.html#ss1.3">1.3 Авторские права</A>
+<LI><A HREF="Hardware-HOWTO-1.html#ss1.4">1.4 Поддерживаемые архитектуры</A>
 </UL>
 <P>
-<H2><A NAME="toc2">2.</A> <A HREF="Hardware-HOWTO-2.html">п п╬п╪п©я▄я▌я┌п╣я─я▀/п°п╟я┌п╣я─п╦п╫я│п╨п╦п╣ п©п╩п╟я┌я▀/BIOS'я▀</A></H2>
+<H2><A NAME="toc2">2.</A> <A HREF="Hardware-HOWTO-2.html">Компьютеры/Материнские платы/BIOS'ы</A></H2>
 
 <UL>
-<LI><A HREF="Hardware-HOWTO-2.html#ss2.1">2.1 п═п╟п╥п╩п╦я┤п╫я▀п╣ я│п╦я│я┌п╣п╪я▀/п°п╟я┌п╣я─п╦п╫я│п╨п╦п╣ п©п╩п╟я┌я▀/BIOS'я▀</A>
-<LI><A HREF="Hardware-HOWTO-2.html#ss2.2">2.2 п²п╣ п©п╬п╢п╢п╣я─п╤п╦п╡п╟я▌я┌я│я▐</A>
+<LI><A HREF="Hardware-HOWTO-2.html#ss2.1">2.1 Различные системы/Материнские платы/BIOS'ы</A>
+<LI><A HREF="Hardware-HOWTO-2.html#ss2.2">2.2 Не поддерживаются</A>
 </UL>
 <P>
-<H2><A NAME="toc3">3.</A> <A HREF="Hardware-HOWTO-3.html">п⌡п╟п©я┌п╬п©я▀</A></H2>
+<H2><A NAME="toc3">3.</A> <A HREF="Hardware-HOWTO-3.html">Лаптопы</A></H2>
 
 <UL>
-<LI><A HREF="Hardware-HOWTO-3.html#ss3.1">3.1 п═п╟п╥п╩п╦я┤п╫я▀п╣ я│п╦я│я┌п╣п╪я▀</A>
+<LI><A HREF="Hardware-HOWTO-3.html#ss3.1">3.1 Различные системы</A>
 <LI><A HREF="Hardware-HOWTO-3.html#ss3.2">3.2 PCMCIA</A>
 </UL>
 <P>
-<H2><A NAME="toc4">4.</A> <A HREF="Hardware-HOWTO-4.html">п÷я─п╬я├п╣я│я│п╬я─я▀/п°п╟я┌п╣п╪п╟я┌п╦я┤п╣я│п╨п╦п╣ я│п╬п©я─п╬я├п╣я│я│п╬я─я▀</A></H2>
+<H2><A NAME="toc4">4.</A> <A HREF="Hardware-HOWTO-4.html">Процессоры/Математические сопроцессоры</A></H2>
 
 <P>
-<H2><A NAME="toc5">5.</A> <A HREF="Hardware-HOWTO-5.html">п·п©п╣я─п╟я┌п╦п╡п╫п╟я▐ п©п╟п╪я▐я┌я▄</A></H2>
+<H2><A NAME="toc5">5.</A> <A HREF="Hardware-HOWTO-5.html">Оперативная память</A></H2>
 
 <P>
-<H2><A NAME="toc6">6.</A> <A HREF="Hardware-HOWTO-6.html">п▓п╦п╢п╣п╬п╨п╟я─я┌я▀</A></H2>
+<H2><A NAME="toc6">6.</A> <A HREF="Hardware-HOWTO-6.html">Видеокарты</A></H2>
 
 <UL>
-<LI><A HREF="Hardware-HOWTO-6.html#ss6.1">6.1 п п╟я─я┌я▀ Diamond </A>
-<LI><A HREF="Hardware-HOWTO-6.html#ss6.2">6.2 SVGALIB (пЁя─п╟я└п╦п╨п╟ п╡ п╨п╬п╫я│п╬п╩я▄п╫п╬п╪ я─п╣п╤п╦п╪п╣)</A>
+<LI><A HREF="Hardware-HOWTO-6.html#ss6.1">6.1 Карты Diamond </A>
+<LI><A HREF="Hardware-HOWTO-6.html#ss6.2">6.2 SVGALIB (графика в консольном режиме)</A>
 <LI><A HREF="Hardware-HOWTO-6.html#ss6.3">6.3 XFree86 3.3.2 </A>
-<LI><A HREF="Hardware-HOWTO-6.html#ss6.4">6.4 S.u.S.E. X-я│п╣я─п╡п╣я─</A>
-<LI><A HREF="Hardware-HOWTO-6.html#ss6.5">6.5 п п╬п╪п╪п╣я─я┤п╣я│п╨п╦п╣ п╔ я│п╣я─п╡п╣я─п╟</A>
+<LI><A HREF="Hardware-HOWTO-6.html#ss6.4">6.4 S.u.S.E. X-сервер</A>
+<LI><A HREF="Hardware-HOWTO-6.html#ss6.5">6.5 Коммерческие Х сервера</A>
 </UL>
 <P>
-<H2><A NAME="toc7">7.</A> <A HREF="Hardware-HOWTO-7.html">п п╬п╫я┌я─п╬п╩п╣я─я▀ (п╤п╣я│я┌п╨п╦п╣ п╢п╦я│п╨п╦)</A></H2>
+<H2><A NAME="toc7">7.</A> <A HREF="Hardware-HOWTO-7.html">Контролеры (жесткие диски)</A></H2>
 
 <UL>
-<LI><A HREF="Hardware-HOWTO-7.html#ss7.1">7.1 п░п╩я▄я└п╟ , п▒п╣я┌п╟ п╢я─п╟п╧п╡п╣я─п╟</A>
+<LI><A HREF="Hardware-HOWTO-7.html#ss7.1">7.1 Альфа , Бета драйвера</A>
 </UL>
 <P>
-<H2><A NAME="toc8">8.</A> <A HREF="Hardware-HOWTO-8.html">п п╬п╫я┌я─п╬п╩п╩п╣я─я▀ (п■п╦я│п╨п╬п╡я▀п╣ п╪п╟я│я│п╦п╡я▀ RAID)</A></H2>
+<H2><A NAME="toc8">8.</A> <A HREF="Hardware-HOWTO-8.html">Контроллеры (Дисковые массивы RAID)</A></H2>
 
 <P>
-<H2><A NAME="toc9">9.</A> <A HREF="Hardware-HOWTO-9.html">п п╬п╫я┌я─п╬п╩п╣я─я▀ (SCSI)</A></H2>
+<H2><A NAME="toc9">9.</A> <A HREF="Hardware-HOWTO-9.html">Контролеры (SCSI)</A></H2>
 
 <UL>
-<LI><A HREF="Hardware-HOWTO-9.html#ss9.1">9.1 п÷п╬п╢п╢п╣я─п╤п╦п╡п╟я▌я┌я│я▐</A>
-<LI><A HREF="Hardware-HOWTO-9.html#ss9.2">9.2 п░п╩я▄я└п╟ , п▒п╣я┌п╟ п╢я─п╟п╧п╡п╣я─п╟</A>
-<LI><A HREF="Hardware-HOWTO-9.html#ss9.3">9.3 п²п╣п©п╬п╢п╢п╣я─п╤п╦п╡п╟я▌я┌я▄я│я▐</A>
+<LI><A HREF="Hardware-HOWTO-9.html#ss9.1">9.1 Поддерживаются</A>
+<LI><A HREF="Hardware-HOWTO-9.html#ss9.2">9.2 Альфа , Бета драйвера</A>
+<LI><A HREF="Hardware-HOWTO-9.html#ss9.3">9.3 Неподдерживаються</A>
 </UL>
 <P>
-<H2><A NAME="toc10">10.</A> <A HREF="Hardware-HOWTO-10.html">п п╬п╫я┌я─п╬п╩п╩п╣я─я▀ (I/O)</A></H2>
+<H2><A NAME="toc10">10.</A> <A HREF="Hardware-HOWTO-10.html">Контроллеры (I/O)</A></H2>
 
 <P>
-<H2><A NAME="toc11">11.</A> <A HREF="Hardware-HOWTO-11.html">п п╬п╫я┌я─п╬п╩п╩п╣я─я▀ (п╪я┐п╩я▄я┌п╦-п©п╬я─я┌п╬п╡я▀п╣)</A></H2>
+<H2><A NAME="toc11">11.</A> <A HREF="Hardware-HOWTO-11.html">Контроллеры (мульти-портовые)</A></H2>
 
 <UL>
-<LI><A HREF="Hardware-HOWTO-11.html#ss11.1">11.1 п²п╣ п╦п╫я┌п╣п╩п╩п╣п╨я┌я┐п╟п╩я▄п╫я▀п╣ п╨п╟я─я┌я▀</A>
-<LI><A HREF="Hardware-HOWTO-11.html#ss11.2">11.2 п≤п╫я┌п╣п╩п╩п╣п╨я┌я┐п╟п╩я▄п╫я▀п╣ п╨п╟я─я┌я▀</A>
+<LI><A HREF="Hardware-HOWTO-11.html#ss11.1">11.1 Не интеллектуальные карты</A>
+<LI><A HREF="Hardware-HOWTO-11.html#ss11.2">11.2 Интеллектуальные карты</A>
 </UL>
 <P>
-<H2><A NAME="toc12">12.</A> <A HREF="Hardware-HOWTO-12.html">п║п╣я┌п╣п╡я▀п╣ п╨п╟я─я┌я▀</A></H2>
+<H2><A NAME="toc12">12.</A> <A HREF="Hardware-HOWTO-12.html">Сетевые карты</A></H2>
 
 <UL>
-<LI><A HREF="Hardware-HOWTO-12.html#ss12.1">12.1 п÷п╬п╢п╢п╣я─п╤п╦п╡п╟п╣п╪я▀п╣</A>
-<LI><A HREF="Hardware-HOWTO-12.html#ss12.2">12.2 п░п╩я▄я└п╟,п▒п╣я┌п╟ п╢я─п╟п╧п╡п╣я─п╟</A>
-<LI><A HREF="Hardware-HOWTO-12.html#ss12.3">12.3 п²п╣п©п╬п╢п╢п╣я─п╤п╦п╡п╟я▌я┌я▄я│я▐</A>
+<LI><A HREF="Hardware-HOWTO-12.html#ss12.1">12.1 Поддерживаемые</A>
+<LI><A HREF="Hardware-HOWTO-12.html#ss12.2">12.2 Альфа,Бета драйвера</A>
+<LI><A HREF="Hardware-HOWTO-12.html#ss12.3">12.3 Неподдерживаються</A>
 </UL>
 <P>
-<H2><A NAME="toc13">13.</A> <A HREF="Hardware-HOWTO-13.html">п≈п╡я┐п╨п╬п╡я▀п╣ п╨п╟я─я┌я▀</A></H2>
+<H2><A NAME="toc13">13.</A> <A HREF="Hardware-HOWTO-13.html">Звуковые карты</A></H2>
 
 <UL>
-<LI><A HREF="Hardware-HOWTO-13.html#ss13.1">13.1 п÷п╬п╢п╢п╣я─п╤п╦п╡п╟п╣п╪я▀п╣ п╪п╬п╢п╣п╩п╦</A>
-<LI><A HREF="Hardware-HOWTO-13.html#ss13.2">13.2 п░п╩я▄я└п╟ , п▒п╣я┌п╟ п╢я─п╟п╧п╡п╣я─п╟</A>
-<LI><A HREF="Hardware-HOWTO-13.html#ss13.3">13.3 п²п╣п©п╬п╢п╢п╣я─п╤п╦п╡п╟я▌я┌я▄я│я▐</A>
+<LI><A HREF="Hardware-HOWTO-13.html#ss13.1">13.1 Поддерживаемые модели</A>
+<LI><A HREF="Hardware-HOWTO-13.html#ss13.2">13.2 Альфа , Бета драйвера</A>
+<LI><A HREF="Hardware-HOWTO-13.html#ss13.3">13.3 Неподдерживаються</A>
 </UL>
 <P>
-<H2><A NAME="toc14">14.</A> <A HREF="Hardware-HOWTO-14.html">п√п╣я│я┌п╨п╦п╣ п╢п╦я│п╨п╦ </A></H2>
+<H2><A NAME="toc14">14.</A> <A HREF="Hardware-HOWTO-14.html">Жесткие диски </A></H2>
 
 <UL>
-<LI><A HREF="Hardware-HOWTO-14.html#ss14.1">14.1 п²п╣п©п╬п╢п╢п╣я─п╤п╦п╡п╟я▌я┌я▄я│я▐</A>
+<LI><A HREF="Hardware-HOWTO-14.html#ss14.1">14.1 Неподдерживаються</A>
 </UL>
 <P>
-<H2><A NAME="toc15">15.</A> <A HREF="Hardware-HOWTO-15.html">п║я┌я─п╦п╪п╪п╣я─я▀ </A></H2>
+<H2><A NAME="toc15">15.</A> <A HREF="Hardware-HOWTO-15.html">Стриммеры </A></H2>
 
 <UL>
-<LI><A HREF="Hardware-HOWTO-15.html#ss15.1">15.1 п÷п╬п╢п╢п╣я─п╤п╦п╡п╟я▌я┌я│я▐</A>
-<LI><A HREF="Hardware-HOWTO-15.html#ss15.2">15.2 п░п╩я▄я└п╟,п▒п╣я┌п╟ п╢я─п╟п╧п╡п╣я─п╟</A>
-<LI><A HREF="Hardware-HOWTO-15.html#ss15.3">15.3 п²п╣п©п╬п╢п╢п╣я─п╤п╦п╡п╟я▌я┌я▄я│я▐</A>
+<LI><A HREF="Hardware-HOWTO-15.html#ss15.1">15.1 Поддерживаются</A>
+<LI><A HREF="Hardware-HOWTO-15.html#ss15.2">15.2 Альфа,Бета драйвера</A>
+<LI><A HREF="Hardware-HOWTO-15.html#ss15.3">15.3 Неподдерживаються</A>
 </UL>
 <P>
-<H2><A NAME="toc16">16.</A> <A HREF="Hardware-HOWTO-16.html">CD-ROM п╢п╦я│п╨п╬п╡п╬п╢я▀</A></H2>
+<H2><A NAME="toc16">16.</A> <A HREF="Hardware-HOWTO-16.html">CD-ROM дисководы</A></H2>
 
 <UL>
-<LI><A HREF="Hardware-HOWTO-16.html#ss16.1">16.1 п÷п╬п╢п╢п╣я─п╤п╦п╡п╟я▌я┌я│я▐</A>
-<LI><A HREF="Hardware-HOWTO-16.html#ss16.2">16.2 п░п╩я▄я└п╟,п▒п╣я┌п╟ п╢я─п╟п╧п╡п╣я─п╟</A>
-<LI><A HREF="Hardware-HOWTO-16.html#ss16.3">16.3 п÷я─п╦п╪п╣я┤п╟п╫п╦я▐</A>
+<LI><A HREF="Hardware-HOWTO-16.html#ss16.1">16.1 Поддерживаются</A>
+<LI><A HREF="Hardware-HOWTO-16.html#ss16.2">16.2 Альфа,Бета драйвера</A>
+<LI><A HREF="Hardware-HOWTO-16.html#ss16.3">16.3 Примечания</A>
 </UL>
 <P>
-<H2><A NAME="toc17">17.</A> <A HREF="Hardware-HOWTO-17.html">CDR п╢п╦я│п╨п╬п╡п╬п╢я▀</A></H2>
+<H2><A NAME="toc17">17.</A> <A HREF="Hardware-HOWTO-17.html">CDR дисководы</A></H2>
 
 <P>
-<H2><A NAME="toc18">18.</A> <A HREF="Hardware-HOWTO-18.html">п°п╟пЁп╫п╦я┌п╬п╬п©я┌п╦п╨п╟</A></H2>
+<H2><A NAME="toc18">18.</A> <A HREF="Hardware-HOWTO-18.html">Магнитооптика</A></H2>
 
 <P>
-<H2><A NAME="toc19">19.</A> <A HREF="Hardware-HOWTO-19.html">п°я▀я┬п╦</A></H2>
+<H2><A NAME="toc19">19.</A> <A HREF="Hardware-HOWTO-19.html">Мыши</A></H2>
 
 <UL>
-<LI><A HREF="Hardware-HOWTO-19.html#ss19.1">19.1 п÷п╬п╢п╢п╣я─п╤п╦п╡п╟я▌я┌я│я▐</A>
-<LI><A HREF="Hardware-HOWTO-19.html#ss19.2">19.2 п░п╩я▄я└п╟,п▒п╣я┌п╟ п╢я─п╟п╧п╡п╣я─п╟</A>
-<LI><A HREF="Hardware-HOWTO-19.html#ss19.3">19.3 п÷я─п╦п╪п╣я┤п╟п╫п╦я▐</A>
+<LI><A HREF="Hardware-HOWTO-19.html#ss19.1">19.1 Поддерживаются</A>
+<LI><A HREF="Hardware-HOWTO-19.html#ss19.2">19.2 Альфа,Бета драйвера</A>
+<LI><A HREF="Hardware-HOWTO-19.html#ss19.3">19.3 Примечания</A>
 </UL>
 <P>
-<H2><A NAME="toc20">20.</A> <A HREF="Hardware-HOWTO-20.html">п°п╬п╢п╣п╪я▀</A></H2>
+<H2><A NAME="toc20">20.</A> <A HREF="Hardware-HOWTO-20.html">Модемы</A></H2>
 
 <P>
-<H2><A NAME="toc21">21.</A> <A HREF="Hardware-HOWTO-21.html">п÷я─п╦п╫я┌п╣я─я▀ п╦ п©п╩п╬я┌я┌п╣я─я▀</A></H2>
+<H2><A NAME="toc21">21.</A> <A HREF="Hardware-HOWTO-21.html">Принтеры и плоттеры</A></H2>
 
 <UL>
 <LI><A HREF="Hardware-HOWTO-21.html#ss21.1">21.1 Ghostscript</A>
 </UL>
 <P>
-<H2><A NAME="toc22">22.</A> <A HREF="Hardware-HOWTO-22.html">п║п╨п╟п╫п╫п╣я─я▀</A></H2>
+<H2><A NAME="toc22">22.</A> <A HREF="Hardware-HOWTO-22.html">Сканнеры</A></H2>
 
 <UL>
-<LI><A HREF="Hardware-HOWTO-22.html#ss22.1">22.1 п÷п╬п╢п╢п╣я─п╤п╦п╡п╟я▌я┌я│я▐</A>
-<LI><A HREF="Hardware-HOWTO-22.html#ss22.2">22.2 п░п╩я▄я└п╟,п▒п╣я┌п╟ п╢я─п╟п╧п╡п╣я─п╟</A>
-<LI><A HREF="Hardware-HOWTO-22.html#ss22.3">22.3 п²п╣п©п╬п╢п╢п╣я─п╤п╦п╡п╟я▌я┌я▄я│я▐</A>
+<LI><A HREF="Hardware-HOWTO-22.html#ss22.1">22.1 Поддерживаются</A>
+<LI><A HREF="Hardware-HOWTO-22.html#ss22.2">22.2 Альфа,Бета драйвера</A>
+<LI><A HREF="Hardware-HOWTO-22.html#ss22.3">22.3 Неподдерживаються</A>
 </UL>
 <P>
-<H2><A NAME="toc23">23.</A> <A HREF="Hardware-HOWTO-23.html">п■я─я┐пЁп╬п╣ п╤п╣п╩п╣п╥п╬</A></H2>
+<H2><A NAME="toc23">23.</A> <A HREF="Hardware-HOWTO-23.html">Другое железо</A></H2>
 
 <UL>
 <LI><A HREF="Hardware-HOWTO-23.html#ss23.1">23.1 Amateur Radio</A>
-<LI><A HREF="Hardware-HOWTO-23.html#ss23.2">23.2 п°п╬п╫п╦я┌п╬я─я▀ я│п╬п╡п╪п╣я│я┌п╦п╪я▀п╣ я│ я█п╫п╣я─пЁп╬-я│п╠п╣я─п╣пЁп╟я▌я┴п╦п╪ п©я─п╬я┌п╬п╨п╬п╩п╬п╪ VESA (DPMS) </A>
-<LI><A HREF="Hardware-HOWTO-23.html#ss23.3">23.3 Touch я█п╨я─п╟п╫я▀</A>
-<LI><A HREF="Hardware-HOWTO-23.html#ss23.4">23.4 п╒п╣я─п╪п╦п╫п╟п╩я▀ п╫п╟ п©п╬я│п╩п╣п╢п╬п╡п╟я┌п╣п╩я▄п╫п╬п╪ п©п╬я─я┌я┐</A>
-<LI><A HREF="Hardware-HOWTO-23.html#ss23.5">23.5 п■п╤п╬п╧я│я┌п╦п╨п╦</A>
-<LI><A HREF="Hardware-HOWTO-23.html#ss23.6">23.6 п÷п╩п╟я┌я▀ п╡п╦п╢п╣п╬ п╥п╟я┘п╡п╟я┌я▀ / п╓я─п╣п╧п╪ п⌠я─п╟п╠п╠п╣я─я▀ / TV я┌я▌п╫п╣я─</A>
-<LI><A HREF="Hardware-HOWTO-23.html#ss23.7">23.7 п╕п╦я└я─п╬п╡я▀п╣ п╨п╟п╪п╣я─я▀</A>
+<LI><A HREF="Hardware-HOWTO-23.html#ss23.2">23.2 Мониторы совместимые с энерго-сберегающим протоколом VESA (DPMS) </A>
+<LI><A HREF="Hardware-HOWTO-23.html#ss23.3">23.3 Touch экраны</A>
+<LI><A HREF="Hardware-HOWTO-23.html#ss23.4">23.4 Терминалы на последовательном порту</A>
+<LI><A HREF="Hardware-HOWTO-23.html#ss23.5">23.5 Джойстики</A>
+<LI><A HREF="Hardware-HOWTO-23.html#ss23.6">23.6 Платы видео захваты / Фрейм Грабберы / TV тюнер</A>
+<LI><A HREF="Hardware-HOWTO-23.html#ss23.7">23.7 Цифровые камеры</A>
 <LI><A HREF="Hardware-HOWTO-23.html#ss23.8">23.8 UPS</A>
-<LI><A HREF="Hardware-HOWTO-23.html#ss23.9">23.9 п°я┐п╩я▄я┌п╦-я└я┐п╫п╨я├п╦п╬п╫п╟п╩я▄п╫я▀п╣ п╨п╟я─я┌я▀</A>
-<LI><A HREF="Hardware-HOWTO-23.html#ss23.10">23.10 п║п╠п╬я─ п╢п╟п╫п╫я▀я┘</A>
-<LI><A HREF="Hardware-HOWTO-23.html#ss23.11">23.11 Watchdog п╨п╟я─я┌п╟ - я┤п╟я│я▀</A>
-<LI><A HREF="Hardware-HOWTO-23.html#ss23.12">23.12 п÷я─п╬я┤п╣п╣ </A>
+<LI><A HREF="Hardware-HOWTO-23.html#ss23.9">23.9 Мульти-функциональные карты</A>
+<LI><A HREF="Hardware-HOWTO-23.html#ss23.10">23.10 Сбор данных</A>
+<LI><A HREF="Hardware-HOWTO-23.html#ss23.11">23.11 Watchdog карта - часы</A>
+<LI><A HREF="Hardware-HOWTO-23.html#ss23.12">23.12 Прочее </A>
 </UL>
 <P>
-<H2><A NAME="toc24">24.</A> <A HREF="Hardware-HOWTO-24.html">п■п╬п©п╬п╩п╫п╦я┌п╣п╩я▄п╫п╟я▐ п╦п╫я└п╬я─п╪п╟я├п╦я▐</A></H2>
+<H2><A NAME="toc24">24.</A> <A HREF="Hardware-HOWTO-24.html">Дополнительная информация</A></H2>
 
 <P>
-<H2><A NAME="toc25">25.</A> <A HREF="Hardware-HOWTO-25.html">п÷я─п╦п╩п╬п╤п╣п╫п╦п╣ A. S3 п╨п╟я─я┌я▀ п©п╬п╢п╢п╣я─п╤п╦п╡п╟п╣п╪я▀п╣ XFree86 п╡п╣я─я│п╦п╧ 3.3.x.</A></H2>
+<H2><A NAME="toc25">25.</A> <A HREF="Hardware-HOWTO-25.html">Приложение A. S3 карты поддерживаемые XFree86 версий 3.3.x.</A></H2>
 
 <P>
-<H2><A NAME="toc26">26.</A> <A HREF="Hardware-HOWTO-26.html">п÷я─п╦п╩п╬п╤п╣п╫п╦п╣ п▓. п÷п╬п╢п╢п╣я─п╤п╦п╡п╟п╣п╪я▀п╣ PCMCIA п╨п╟я─я┌я▀</A></H2>
+<H2><A NAME="toc26">26.</A> <A HREF="Hardware-HOWTO-26.html">Приложение В. Поддерживаемые PCMCIA карты</A></H2>
 
 <UL>
-<LI><A HREF="Hardware-HOWTO-26.html#ss26.1">26.1 Ethernet п п╟я─я┌я▀</A>
-<LI><A HREF="Hardware-HOWTO-26.html#ss26.2">26.2 Fast Ethernet (10/100baseT) п╨п╟я─я┌я▀</A>
-<LI><A HREF="Hardware-HOWTO-26.html#ss26.3">26.3 Token-ring п╨п╟я─я┌я▀</A>
-<LI><A HREF="Hardware-HOWTO-26.html#ss26.4">26.4 п▒п╣я│п©я─п╬п╡п╬п╢п╫я▀п╣ я│п╣я┌п╣п╡я▀п╣ п╨п╟я─я┌я▀</A>
+<LI><A HREF="Hardware-HOWTO-26.html#ss26.1">26.1 Ethernet Карты</A>
+<LI><A HREF="Hardware-HOWTO-26.html#ss26.2">26.2 Fast Ethernet (10/100baseT) карты</A>
+<LI><A HREF="Hardware-HOWTO-26.html#ss26.3">26.3 Token-ring карты</A>
+<LI><A HREF="Hardware-HOWTO-26.html#ss26.4">26.4 Беспроводные сетевые карты</A>
 <LI><A HREF="Hardware-HOWTO-26.html#ss26.5">26.5 ISDN</A>
-<LI><A HREF="Hardware-HOWTO-26.html#ss26.6">26.6 п°п╬п╢п╣п╪я▀ п╦ п╨п╟я─я┌я▀ п╫п╟ п©п╬я│п╩п╣п╢п╬п╡п╟я┌п╣п╩я▄п╫я▀п╧ п©п╬я─я┌</A>
-<LI><A HREF="Hardware-HOWTO-26.html#ss26.7">26.7 п п╟я─я┌я▀ п©п╟п╪я▐я┌п╦</A>
-<LI><A HREF="Hardware-HOWTO-26.html#ss26.8">26.8 SCSI п╟п╢п╟п©я┌п╣я─я▀</A>
-<LI><A HREF="Hardware-HOWTO-26.html#ss26.9">26.9 ATA/IDE CD-ROM п╟п╢п╟п©я┌п╣я─я▀</A>
-<LI><A HREF="Hardware-HOWTO-26.html#ss26.10">26.10 п°я┐п╩я▄я┌п╦-я└я┐п╫п╨я├п╦п╬п╫п╟п╩я▄п╫я▀п╣ п╨п╟я─я┌я▀</A>
-<LI><A HREF="Hardware-HOWTO-26.html#ss26.11">26.11 ATA/IDE п╨п╟я─я┌я▀-п╢п╦я│п╨п╦</A>
-<LI><A HREF="Hardware-HOWTO-26.html#ss26.12">26.12 ATA/IDE п≤п╫я┌п╣я─я└п╣п╧я│п╫я▀п╣ п╨п╟я─я┌я▀</A>
-<LI><A HREF="Hardware-HOWTO-26.html#ss26.13">26.13 п п╟я─я┌я▀ п╫п╟ п©п╟я─я─п╟п╩п╣п╩я▄п╫я▀п╧ п©п╬я─я┌:</A>
-<LI><A HREF="Hardware-HOWTO-26.html#ss26.14">26.14 п÷я─п╬я┤п╦п╣ п╨п╟я─я┌я▀</A>
-<LI><A HREF="Hardware-HOWTO-26.html#ss26.15">26.15 п▓п╣п╢я▒я┌я▄я│я▐ я─п╟п╠п╬я┌п╟ п╫п╟п╢ ...</A>
-<LI><A HREF="Hardware-HOWTO-26.html#ss26.16">26.16 п²п╣п©п╬п╢п╢п╣я─п╤п╦п╡п╟я▌я┌я▄я│я▐</A>
+<LI><A HREF="Hardware-HOWTO-26.html#ss26.6">26.6 Модемы и карты на последовательный порт</A>
+<LI><A HREF="Hardware-HOWTO-26.html#ss26.7">26.7 Карты памяти</A>
+<LI><A HREF="Hardware-HOWTO-26.html#ss26.8">26.8 SCSI адаптеры</A>
+<LI><A HREF="Hardware-HOWTO-26.html#ss26.9">26.9 ATA/IDE CD-ROM адаптеры</A>
+<LI><A HREF="Hardware-HOWTO-26.html#ss26.10">26.10 Мульти-функциональные карты</A>
+<LI><A HREF="Hardware-HOWTO-26.html#ss26.11">26.11 ATA/IDE карты-диски</A>
+<LI><A HREF="Hardware-HOWTO-26.html#ss26.12">26.12 ATA/IDE Интерфейсные карты</A>
+<LI><A HREF="Hardware-HOWTO-26.html#ss26.13">26.13 Карты на парралельный порт:</A>
+<LI><A HREF="Hardware-HOWTO-26.html#ss26.14">26.14 Прочие карты</A>
+<LI><A HREF="Hardware-HOWTO-26.html#ss26.15">26.15 Ведёться работа над ...</A>
+<LI><A HREF="Hardware-HOWTO-26.html#ss26.16">26.16 Неподдерживаються</A>
 </UL>
 <P>
-<H2><A NAME="toc27">27.</A> <A HREF="Hardware-HOWTO-27.html">п÷я─п╦п╩п╬п╤п╣п╫п╦п╣ C . п÷п╬п╢п╢п╣я─п╤п╦п╡п╟п╣п╪я▀п╣ я┐я│я┌я─п╬п╧я│я┌п╡п╟ п╫п╟ п©п╟я─я─п╟п╩п╣п╩я▄п╫я▀п╧ п©п╬я─я┌.</A></H2>
+<H2><A NAME="toc27">27.</A> <A HREF="Hardware-HOWTO-27.html">Приложение C . Поддерживаемые устройства на парралельный порт.</A></H2>
 
 <UL>
 <LI><A HREF="Hardware-HOWTO-27.html#ss27.1">27.1 Ethernet</A>
-<LI><A HREF="Hardware-HOWTO-27.html#ss27.2">27.2 п√п╣я│я┌п╨п╦п╣ п╢п╦я│п╨п╦</A>
-<LI><A HREF="Hardware-HOWTO-27.html#ss27.3">27.3 п║я┌я─п╦п╪п╪п╣я─я▀</A>
-<LI><A HREF="Hardware-HOWTO-27.html#ss27.4">27.4 CD-ROM п╢п╦я│п╨п╬п╡п╬п╢я▀</A>
-<LI><A HREF="Hardware-HOWTO-27.html#ss27.5">27.5 п÷п╣я─п╣п╫п╬я│п╦п╪я▀п╣ п╢п╦я│п╨п╦</A>
-<LI><A HREF="Hardware-HOWTO-27.html#ss27.6">27.6 IDE п╟п╢п╟п©я┌п╣я─я▀</A>
-<LI><A HREF="Hardware-HOWTO-27.html#ss27.7">27.7 SCSI п╟п╢п╟п©я┌п╣я─я▀</A>
-<LI><A HREF="Hardware-HOWTO-27.html#ss27.8">27.8 п╕п╦я└я─п╬п╡я▀п╣ п╨п╟п╪п╣я─я▀</A>
-<LI><A HREF="Hardware-HOWTO-27.html#ss27.9">27.9 п п╟я─я┌я▀ PCMCIA п╫п╟ п©п╟я─я─п╟п╩п╣п╩я▄п╫я▀п╧ п©п╬я─я┌ </A>
+<LI><A HREF="Hardware-HOWTO-27.html#ss27.2">27.2 Жесткие диски</A>
+<LI><A HREF="Hardware-HOWTO-27.html#ss27.3">27.3 Стриммеры</A>
+<LI><A HREF="Hardware-HOWTO-27.html#ss27.4">27.4 CD-ROM дисководы</A>
+<LI><A HREF="Hardware-HOWTO-27.html#ss27.5">27.5 Переносимые диски</A>
+<LI><A HREF="Hardware-HOWTO-27.html#ss27.6">27.6 IDE адаптеры</A>
+<LI><A HREF="Hardware-HOWTO-27.html#ss27.7">27.7 SCSI адаптеры</A>
+<LI><A HREF="Hardware-HOWTO-27.html#ss27.8">27.8 Цифровые камеры</A>
+<LI><A HREF="Hardware-HOWTO-27.html#ss27.9">27.9 Карты PCMCIA на парралельный порт </A>
 </UL>
 <P>
-<H2><A NAME="toc28">28.</A> <A HREF="Hardware-HOWTO-28.html">п÷я─п╦п╩п╬п╤п╣п╫п╦п╣ D. Plug п╦ Play я┐я│я┌я─п╬п╧я│я┌п╡п╟</A></H2>
+<H2><A NAME="toc28">28.</A> <A HREF="Hardware-HOWTO-28.html">Приложение D. Plug и Play устройства</A></H2>
 
 <P>
-<H2><A NAME="toc29">29.</A> <A HREF="Hardware-HOWTO-29.html">п÷я─п╦п╩п╬п╤п╣п╫п╦п╣ E. п√п╣п╩п╣п╥п╬ п╫п╣ я│п╬п╡п╪п╣я│я┌п╦п╪п╬п╧ я│ п⌡п╦п╫я┐п╨я│</A></H2>
+<H2><A NAME="toc29">29.</A> <A HREF="Hardware-HOWTO-29.html">Приложение E. Железо не совместимой с Линукс</A></H2>
 
 <P>
-<H2><A NAME="toc30">30.</A> <A HREF="Hardware-HOWTO-30.html">п║п╩п╬п╡п╟я─п╦п╨</A></H2>
+<H2><A NAME="toc30">30.</A> <A HREF="Hardware-HOWTO-30.html">Словарик</A></H2>
 
 <HR>
 <A HREF="Hardware-HOWTO-1.html">Next</A>
