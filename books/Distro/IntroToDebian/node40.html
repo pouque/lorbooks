@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Выбор редактора</TITLE>
+<META NAME="description" CONTENT="Выбор редактора">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<!-- Meta http equivalent was here                               -->
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="IntroToLinux.css">
+
+<LINK REL="next" HREF="node41.html">
+<LINK REL="previous" HREF="node31.html">
+<LINK REL="up" HREF="node22.html">
+<LINK REL="next" HREF="node41.html">
+</HEAD>
+
+<BODY background="backgr.jpg" vlink="#000099" bgcolor="#E6E6FA">
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A NAME="tex2html656"
+  HREF="node41.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html652"
+  HREF="node22.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html646"
+  HREF="node39.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html654"
+  HREF="IntroToLinux.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A>  
+<BR>
+<B> След.:</B> <A NAME="tex2html657"
+  HREF="node41.html">Выбор shell</A>
+<B> Вверх:</B> <A NAME="tex2html653"
+  HREF="node22.html">Проблема выбора...</A>
+<B> Пред.:</B> <A NAME="tex2html647"
+  HREF="node39.html">fvwm2</A>
+ &nbsp; <B>  <A NAME="tex2html655"
+  HREF="IntroToLinux.html">Содержание</A></B> 
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00043000000000000000">
+Выбор редактора</A>
+</H2>
+
+<P>
+Консольных (и не очень) редакторов в мире Linux сейчас существует великое множество.
+
+<P>
+Наиболее маститые из них давно уже выросли из понятия ``редактор'' в скорее ``интегратор'', став своеобразными операционными системами (то есть их пользователь может в Linux и не выходить - почти все, что ему может там понадобиться уже есть в ``редакторе'').
+
+<P>
+Лидером по части ``интеграторства'' заслуженно считается <SPAN  CLASS="textit">Emacs</SPAN>, что обусловлено тем, что он по сути не просто редактор, а Lisp-машина. 
+То есть при хорошем знании Lisp (а точнее его диалекта E-Lisp<A NAME="tex2html38"
+  HREF="node40.html#foot821"><SUP><SPAN CLASS="arabic">38</SPAN></SUP></A>) вы сможете превратить Emacs практически во что угодно. 
+Практическая неограниченность (то есть ограниченность только возможностями E-Lisp) настраиваемости Emacs`а привлекает к нему многих пользователей, являющихся, естественно, еще и программистами.
+Оные пользователи, желая облегчить себе жизнь, облегчают ее и вам.
+Так под Emacs появляются почтовые клиенты (Gnus - один из лучших почтовых клиентов и лучший ньюсридер, в частности и из-за конфигурябельности), файловые менеджеры и даже вездесущие игры тетрис и life...
+
+<P>
+Продолжением достоинств Emacs`а являются его недостатки.
+Мощнейшие возможности настроек зачастую отпугивают пользователей, не желающих разбираться в не особо нужном им e-lisp.
+Многим не нравятся монстры, каковым Emacs несомненно является&nbsp;-- большой, весьма многофункциональный, весьма не интуитивен новичкам<A NAME="tex2html39"
+  HREF="node40.html#foot358"><SUP><SPAN CLASS="arabic">39</SPAN></SUP></A>...
+
+<P>
+Нужна альтернатива? 
+Их есть у нас.
+ViM.
+Присутствует (хотя бы в своей инкарнации по имени vi) практически во всех системах, легок при загрузке (хотя это не сложно исправить), также весьма многофункционален (поддерживает плагины, макросы и многое другое), неплохо настраиваем и опять-таки имеет свой язык (впрочем есть возможность использования других - например, Perl).
+Этот редактор также может отпугнуть новичков, переходящих на Linux с WindowsOS (и привыкших к тамошним предефинированным клавиатурным комбинациям), но не спешите отчаиваться - читайте дальше.
+Данная статья пишется как раз в <SPAN  CLASS="textit">ViM</SPAN>(точнее в <TT>vim-athena-plain -g</TT>) и я постараюсь рассказать о некоторых особенностях работы в нем.
+О <SPAN  CLASS="textit">Emacs</SPAN> читайте в книгу его автора ``Руководство по GNU Emacs'', которая есть и в русском электронном виде (файл <SPAN  CLASS="textbf">emacs.pdf</SPAN>).
+
+<P>
+Заметьте, что функционально оба эти варианта равноправны, а отличаются больше идеологически: Emacs&nbsp;-- система (операционная), работа идет не столько <SPAN  CLASS="textit">с</SPAN> ним, сколь <SPAN  CLASS="textit">в</SPAN> нем; тогда как <SPAN  CLASS="textit">ViM</SPAN>&nbsp;-- более отвечает UNIX-way, ибо хотя и позволяет практически все, что и Emacs, но располагает именно к работе <SPAN  CLASS="textit">с</SPAN> ним, вызывая его когда нужен <SPAN  CLASS="textit">редактор</SPAN>, а из него запускать только то, что имеет непосредственное отношение к редактированию текстов...
+
+<P>
+<BR><HR><H4>Сноски</H4>
+<DL>
+<DT><A NAME="foot821">... E-Lisp</A><A
+ HREF="node40.html#tex2html38"><SUP><SPAN CLASS="arabic">38</SPAN></SUP></A></DT>
+<DD>То есть Emacs Lisp. Для тех, кому не  нужды глубокие в нем познания рекомендую <SPAN  CLASS="textbf">elisp-intro</SPAN>, кому же нужны&nbsp;-- <SPAN  CLASS="textbf">elisp-manual</SPAN>.
+
+</DD>
+<DT><A NAME="foot358">... новичкам</A><A
+ HREF="node40.html#tex2html39"><SUP><SPAN CLASS="arabic">39</SPAN></SUP></A></DT>
+<DD>Как сказал об этом Линус Торвальдс в своей книге Just For Fun: 
+``Gnu-emacs начинался как редактор, но его создатели встроили в него кучу разных функций. 
+Они хотели, чтоб это был редактор, который можно программировать, но потом программистская часть выросла до невообразимых размеров и редактор стал настоящим кошмаром. 
+В него входит все, кроме разве что кухонной раковины, именно поэтому кухонная раковина часто служит его значком. 
+Программа известна как чудовищный монстр, который включает больше функций, чем в принципе может понадобиться редактору.''
+
+</DD>
+</DL>
+<DIV CLASS="navigation"><HR>
+<!--Navigation Panel-->
+<A NAME="tex2html656"
+  HREF="node41.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html652"
+  HREF="node22.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html646"
+  HREF="node39.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html654"
+  HREF="IntroToLinux.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A>  
+<BR>
+<B> След.:</B> <A NAME="tex2html657"
+  HREF="node41.html">Выбор shell</A>
+<B> Вверх:</B> <A NAME="tex2html653"
+  HREF="node22.html">Проблема выбора...</A>
+<B> Пред.:</B> <A NAME="tex2html647"
+  HREF="node39.html">fvwm2</A>
+ &nbsp; <B>  <A NAME="tex2html655"
+  HREF="IntroToLinux.html">Содержание</A></B> </DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<TABLE border="0" cellpadding="0" cellspacing="0" width="100%"><TR bgcolor="#336699"><TD bgcolor="#8080c0"><P align="center"><FONT color="#FFFFFF" size="1"><A href="http://www.gnu.org/copyleft/fdl.html"><FONT color="#FFFFFF" size="1">Copyleft</FONT></A> © 2002-2003 г. &nbsp; Nikolay A. Panov, <A href="http://www.uic.nnov.ru/~nik/articles/IntroToLinux/"><FONT color="#FFFFFF">"Intro To Linux" (orig)</FONT></A>, &nbsp;<a href="mailto:&#110;&#105;&#107;&#115;&#105;&#116;&#101;&#64;&#109;&#97;&#105;&#108;&#46;&#114;&#117;"><FONT color="#FFFFFF">&#110;&#105;&#107;&#115;&#105;&#116;&#101;&#64;&#109;&#97;&#105;&#108;&#46;&#114;&#117;</FONT></A>, &nbsp;ICQ: 122-40-8888</FONT></P></TD></TR></TABLE>
+</ADDRESS>
+</BODY>
+</HTML>

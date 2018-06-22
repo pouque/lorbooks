@@ -1,0 +1,201 @@
+<HTML>
+<HEAD>
+<TITLE>DOSEmu: Using Windows and Winsock</TITLE>
+</HEAD>
+<BODY>
+<?php include("/home/maxcom/linux_html/books/head.php3") ?>
+<A HREF="README-17.html">Назад</A>
+Вперед
+<A HREF="README.html#toc18">Оглавление</A>
+<HR>
+<H2><A NAME="s18">18. Использование Windows и Winsock</A></H2>
+
+<P>This is the Windows Net Howto by Frisoni Gloriano 
+<A HREF="mailto:gfrisoni@hi-net.it">&lt;gfrisoni@hi-net.it&gt;</A> 
+on 15 may 1997</P>
+<P>
+Этот документ пытается описать, как запустить Windows trumpet winsock
+через встроенный в dosemu пакетный драйвер, и затем работать с любыми
+TCP/IP приложениями (netscape, eudora, mirc, free agent .....),
+работающими через winsock в windows. </P>
+<P>
+Это очень длинный пошаговый список действий, но вы можете написать
+небольшие программки, которые сделают все это очень быстро ;-)</P>
+<P>
+В этом примере я использую пакетный драйвер для dosnet. Это очень
+удобно, потому что вы можете работать в "виртуальной сети" между вашими
+dos-windows сессиями и linux, и запускать tcp-приложения без
+настоящей (аппаратной) сети.</P>
+
+
+<H2><A NAME="ss18.1">18.1 Список требуемого обеспечения</A></H2>
+
+<P>
+<UL>
+<LI> Виртуальный пакетный драйвер WINPKT.COM, версия 11.2
+Я нашел этот маленький резидент в дистрибутиве пакетный драйверов Crynwr,
+файл PKTD11.ZIP 
+</LI>
+<LI>Драйвер Trumpet Winsock 2.0 revision B для windows.</LI>
+</UL>
+</P>
+
+
+<H2><A NAME="ss18.2">18.2 Шаг за шагом (со стороны LINUX)</A></H2>
+
+<P>
+<UL>
+<LI>Включите пакетный драйвер dosemu для "dosnet": 
+
+<BLOCKQUOTE><CODE>
+<PRE>
+      cd ./src/dosext/net/net
+      select_packet      (Вопрос "single or multi" -&gt;  m)
+</PRE>
+</CODE></BLOCKQUOTE>
+ 
+</LI>
+<LI>Скомпилируйте модуль dosnet для linux:
+
+<BLOCKQUOTE><CODE>
+<PRE>
+      cd ./src/dosext/net/v-net
+      make
+</PRE>
+</CODE></BLOCKQUOTE>
+
+</LI>
+<LI>Скомпилируйте новый dosemu, c правильной встроенной поддержкой
+пакетного драйвера:
+
+<BLOCKQUOTE><CODE>
+<PRE>
+      make 
+      make install 
+</PRE>
+</CODE></BLOCKQUOTE>
+
+</LI>
+<LI>Теперь нужно загрузить модуль dosnet:
+
+<BLOCKQUOTE><CODE>
+<PRE>
+      insmod ./src/dosext/net/v-net/dosnet.o
+</PRE>
+</CODE></BLOCKQUOTE>
+
+</LI>
+<LI>
+Некоторые сетевые установки на Linux (активизация устройств,
+маршрутизация). Эти вещи зависят от вашей системы, я привожу просто
+пример.
+<P>
+Здесь вы настраиваете сетевой интерфейс dsn0 (интерфейс dosnet) с IP
+адресом 144.16.112.1 и добавляете маршрутизацию на этот интерфейс.</P>
+<P>Это хороший пример создания "виртуальной сети" из ваших dos/windows
+оболочек и linux.</P>
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+      ifconfig dsn0 144.16.112.1 broadcast 144.16.112.255 netmask 255.255.255.0
+      route add -net 144.16.112.0 dsn0
+</PRE>
+</CODE></BLOCKQUOTE>
+</P>
+</LI>
+</UL>
+</P>
+
+
+<H2><A NAME="ss18.3">18.3 Шаг за шагом (со стороны DOS)</A></H2>
+
+
+<P>Я предполагаю, что вы знаете, как запустить windows в dosemu.
+Вы можете прочитать главу <A HREF="README-11.html#Windows">Запуск Windows</A>
+если вам нужна дополнительная информация. Windows не очень стабильно,
+но работает.</P>
+<P>
+<UL>
+<LI>Запустите dosemu.
+</LI>
+<LI>скопируйте драйвер winpkt.com и драйвер trumpet winsock в
+какой-нибудь каталог dos.
+</LI>
+<LI>запустите программу winpkt. (dosemu отдает вектор прерывания 0x60
+встроенному пакетному драйверу)
+
+<BLOCKQUOTE><CODE>
+<PRE>
+        winpkt 0x60
+</PRE>
+</CODE></BLOCKQUOTE>
+
+</LI>
+<LI>
+отредактируйте файл настройки trumpwsk.ini. Вот пример этого файла:
+(я думаю что вы сможете использовать меньше параметров, если найдете
+время поэкспериментировать с этим файлом. Эти вещи можно установить
+также из меню настройки  winsock).
+
+<BLOCKQUOTE><CODE>
+<PRE>
+        [Trumpet Winsock]
+        netmask=255.255.255.0  &lt;-- маска сети класса C.
+        gateway=144.16.112.1   &lt;-- адрес шлюза по умолчанию.
+        dns=www.xxx.yyy.zzz    &lt;-- здесь правильый адрес dns.
+        domain=hi-net.it
+        ip=144.16.112.10       &lt;-- адрес Windows в dosnet.
+        vector=60              &lt;-- вектор прерывания пакетного драйвера.
+        mtu=1500
+        rwin=4096
+        mss=1460
+        rtomax=60
+        ip-buffers=32
+        slip-enabled=0         &lt;--- отключить slip
+        slip-port=2
+        slip-baudrate=57600
+        slip-handshake=1
+        slip-compressed=0
+        dial-option=1
+        online-check=0
+        inactivity-timeout=5
+        slip-timeout=0
+        slip-redial=0
+        dial-parity=0
+        font=Courier,9
+        registration-name=&quot;&quot;
+        registration-password=&quot;&quot;
+        use-socks=0
+        socks-host=0.0.0.0
+        socks-port=1080
+        socks-id=
+        socks-local1=0.0.0.0 0.0.0.0
+        socks-local2=0.0.0.0 0.0.0.0
+        socks-local3=0.0.0.0 0.0.0.0
+        socks-local4=0.0.0.0 0.0.0.0
+        ppp-enabled=0            &lt;-------- отключить ppp
+        ppp-usepap=0
+        ppp-username=&quot;&quot;
+        ppp-password=&quot;&quot;
+        win-posn=42 220 867 686 -1 -1 -4 -4 1
+        trace-options=16392
+        
+        [default vars]
+</PRE>
+</CODE></BLOCKQUOTE>
+
+</LI>
+<LI>Теперь можно загрузить windows, запустить trumpet winsock и .....  
+наслаждаться своим виндовым tcp/ip :-) </LI>
+</UL>
+</P>
+<P>Gloriano Frisoni. 
+<A HREF="mailto:gfrisoni@hi-net.it">&lt;gfrisoni@hi-net.it&gt;</A> </P>
+
+<HR>
+<A HREF="README-17.html">Назад</A>
+Вперед
+<A HREF="README.html#toc18">Оглавление</A>
+<HR><I>Перевод: Валерий Груздев (grue@vpti.vladimir.ru)</I>
+</BODY>
+</HTML>

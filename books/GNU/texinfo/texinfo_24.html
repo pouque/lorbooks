@@ -1,0 +1,95 @@
+<HTML>
+<HEAD>
+<!-- Created by texi2html 1.56k from texinfo.texi on 31 May 2000 -->
+
+<TITLE>Texinfo 4.0 - Пример Texinfo-файла</TITLE>
+</HEAD>
+<BODY>
+Go to the <A HREF="texinfo_1.html">first</A>, <A HREF="texinfo_23.html">previous</A>, <A HREF="texinfo_25.html">next</A>, <A HREF="texinfo_33.html">last</A> section, <A HREF="texinfo_toc.html">table of contents</A>.
+<P><HR><P>
+
+
+<H1><A NAME="SEC248" HREF="texinfo_toc.html#TOC248">Пример Texinfo-файла</A></H1>
+<P>
+<A NAME="IDX988"></A>
+
+
+<P>
+Это пример законченного короткого Texinfo-файла, без каких-либо
+комментариев.  Вы можете найти этот пример с комментариями в первой
+главе.  See section <A HREF="texinfo_2.html#SEC12">Короткий пример Texinfo-файла</A>.
+
+
+
+<PRE>
+\input texinfo   @c -*-texinfo-*-
+@c %**start of header
+@setfilename sample.info
+@settitle Пример документа
+@c %**end of header
+
+@setchapternewpage odd
+
+@ifinfo
+Это короткий пример законченного Texinfo-файла.
+
+Copyright @copyright{} 1999 Free Software Foundation, Inc.
+@end ifinfo
+
+@titlepage
+@sp 10
+@comment Заголовок печатается крупным шрифтом
+@center @titlefont{Пример заголовка}
+
+@c   Две следующие команды начинают страницу с
+@c   информацией об авторских правах
+@page
+@vskip 0pt plus 1filll
+Copyright @copyright{} 1999 Free Software Foundation, Inc.
+@end titlepage
+
+@node    Top,      Первая глава,           , (dir)
+@comment имя-ноды, следующая,    предыдущая, вверх
+
+@menu
+* Первая глава::       Первая и единственная глава в
+                       этом примере.
+* Указатель понятий::  В этом указателе есть два элемента.
+@end menu
+
+@node    Первая глава , Указатель понятий, Top   , Top
+@comment имя-ноды,      следующая,     предыдущая, вверх
+@chapter Первая глава
+@cindex Пример вхождения именного указателя
+
+Это содержимое первой главы.
+@cindex Другой пример вхождения именного указателя.
+
+Это нумерованный перечень.
+
+@enumerate
+@item
+Это первый пункт.
+
+@item
+Это второй пункт.
+@end enumerate
+
+Команды @code{makeinfo} и @code{texinfo-format-buffer}
+преобразуют Texinfo-файлы, такие как этот, в Info-файлы,
+а @TeX{} форматирует печатное руководство.
+
+@node    Указатель понятий,          , Первая глава, Top
+@comment имя-ноды         , следующая, предыдущая  , вверх
+@unnumbered Указатель понятий
+
+@printindex cp
+
+@contents
+@bye
+</PRE>
+
+<P><HR><P>
+Go to the <A HREF="texinfo_1.html">first</A>, <A HREF="texinfo_23.html">previous</A>, <A HREF="texinfo_25.html">next</A>, <A HREF="texinfo_33.html">last</A> section, <A HREF="texinfo_toc.html">table of contents</A>.
+</BODY>
+</HTML>

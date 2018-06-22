@@ -1,0 +1,285 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=koi8-r">
+<meta http-equiv="Content-Language" content="ru">
+<title>Сharset name</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2>CHARSET и его имя, или<br>
+Do you forget about Charset ?</h2>
+
+<p>&nbsp;&nbsp;&nbsp; Как оказывается, множество &quot;не
+наших&quot; пользователей и программистов никогда
+не задавались таким простым вопросом : в каком <strong>Charset</strong>-е
+они работают и живут. Почему ? А дело в том, что в
+большинстве стран и для большинства языков
+употребляется только один <strong>Charset</strong>.
+Например, для Америки (<strong>en_US</strong>) - <strong>Сharset</strong>
+будет однозначно : <strong>ASCII</strong>, а для Франции <strong>fr_FR</strong>
+- <strong>Charset</strong> будет однозначно : <strong>ISO-8859-1</strong>.
+И т.д. Россия в этом отношении - уникальная страна.
+См. [<a href="http://czyborra.com/charsets/cyrillic.html">CZYBORRA</a>]</p>
+
+<p>&nbsp;&nbsp;&nbsp; Давайте не будем уподобляться и
+рассмотрим такой вопрос : Зачем нам нужно знать <strong>Charset</strong>
+и каким образом выбирается <font color="#FF0080"><strong>имя</strong></font>
+для определенного <strong>Charset</strong>-а ?</p>
+
+<p>&nbsp;&nbsp;&nbsp; Во-первых, зачем нам требуются имена <strong>Charset</strong>-ов
+? 
+
+<ul>
+  <li>В стандарте <strong>MIME</strong> у Content-Type: определен
+    параметр <strong>Charset</strong> :<br>
+    <code>Content-Type: text/plain; charset=&quot;koi8-r&quot;</code></li>
+  <li>В стандарте <strong>HTTP</strong> также определен
+    параметр <strong>Charset</strong> :<br>
+    <code>Content-Type: text/plain; charset=&quot;koi8-r&quot;</code><br>
+    <code>Content-Type: text/html; charset=&quot;koi8-r&quot;</code></li>
+  <li>В стандарте <a href="http://www.cis.ohio-state.edu/htbin/rfc/rfc2045.html"><strong>MIME</strong></a>
+    имя <strong>Charset</strong>-а применяется при кодировании
+    заголоков :<br>
+    <code>Subject: Re: =?KOI8-R?Q?=C1?=</code></li>
+  <li>В <strong>POSIX locale</strong> имя <strong>Charset</strong>-а входит в
+    название категорий локализации :<br>
+    <code>$ export LANG=ru_RU.KOI8-R</code></li>
+  <li>В <strong>X Window</strong> поле <strong>Charset</strong> присутствует
+    в <strong>XLFD</strong> и <strong>CTEXT</strong></li>
+</ul>
+
+<p>&nbsp;&nbsp;&nbsp; Таким образом, каждый <strong>Charset</strong>
+должен иметь определенное <font color="#FF0080"><strong>имя</strong></font>.
+(Технически, <font color="#FF0080">имя</font> - это строка
+символов.)</p>
+
+<p>&nbsp;&nbsp;&nbsp; К сожалению, в деле стандартизации
+имен <strong>Charset</strong>-ов царит некоторый беспорядок.
+А проблема состоит в том, что в настоящее время <font color="#FF0080"><strong>не существует</strong></font> строгого
+стандарта на имена <strong>Charset</strong>-ов.</p>
+
+<p>&nbsp;&nbsp;&nbsp; Например,&nbsp; даже в стандарте <strong>ISO</strong>
+для <strong>Charset</strong>-ов семейства <strong>ISO-8859</strong>&nbsp;определено
+все : состав символов, e.t.c., но совершенно <font color="#FF0080">не определены</font> правила написания
+имени. Поэтому, даже для имен из стандарта <strong>ISO</strong>
+возможны варианты записи:</p>
+<div align="center"><center>
+
+<table border="1">
+  <tr>
+    <td><strong>ISO8859-1</strong></td>
+  </tr>
+  <tr>
+    <td><strong>ISO-8859-1</strong></td>
+  </tr>
+  <tr>
+    <td><strong>ISO_8859-1</strong></td>
+  </tr>
+  <tr>
+    <td>и т.д.</td>
+  </tr>
+</table>
+</center></div><small><em>
+
+<p align="center">Обратите внимание на символ между
+буквами <strong>ISO</strong> и цифрами.</em></small> </p>
+
+<p>&nbsp;&nbsp;&nbsp; Однако существует другая
+организация : <a href="http://www.iana.org">IANA</a>, которая кроме
+всего прочего занимается и регистрацией <strong>Charset</strong>-ов
+. Там, на IANA лежит документ : <a href="http://www.isi.edu/in-notes/iana/assignments/character-sets">http://www.isi.edu/in-notes/iana/assignments/character-sets</a>.</p>
+
+<p>&nbsp;&nbsp;&nbsp; В данном документе определено
+следующее : <em>The character set names may be up to 40 characters taken from the
+printable characters of US-ASCII. However, no distinction is made between use of upper and
+lower case letters.</em> (<em>Имя набора символов может
+достигать 40 символов ASCII. Не существует разницы
+между строчными и прописными буквами</em>) Это
+практически все, что можно сказать о правилах
+образования имен <strong>Charset</strong>-ов.</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp; Однако самое полезное в этом
+документе то, что в нем определено понятие <font color="#FF0080"><strong>Alias</strong></font> у <strong>Сharset</strong>.</p>
+
+<table border="1">
+  <tr>
+    <td><pre>Name: ISO_8859-1:1987
+MIBenum: 4
+Source: ECMA registry
+Alias: iso-ir-100
+Alias: ISO_8859-1
+Alias: ISO-8859-1 (preferred MIME name)
+Alias: latin1
+Alias: l1
+Alias: IBM819
+Alias: CP819
+Alias: csISOLatin1</pre>
+    </td>
+  </tr>
+</table>
+
+<p>&nbsp;&nbsp;&nbsp; Определена также процедура
+регистрации новых <strong>Charset</strong>-ов : <a href="http://www.cis.ohio-state.edu/htbin/rfc/rfc2278.html">RFC-2278</a> : <em>&quot;IANA
+Charset Registration Procedures.&quot;</em> Существует список
+рассылки <a href="mailto:ietf-charsets@iana.org">ietf-charsets@iana.org</a>
+(архив списка <a href="http://lists.w3.org/Archives/Public/ietf-charsets/">доступен
+здесь</a>).</p>
+
+<p>&nbsp;&nbsp;&nbsp; Также неплохо ознакомиться с : 
+
+<ul>
+  <li><a href="http://www.cis.ohio-state.edu/htbin/rfc/rfc2130.html">RFC-2130</a>. <em>&quot;The
+    Report of the IAB Character Set Workshop held 29 February - 1 March, 1996&quot;</em>.</li>
+  <li><a href="http://www.cis.ohio-state.edu/htbin/rfc/rfc2277.html">RFC-2277</a> <em>&quot;IETF
+    Policy on Character Sets and Languages&quot;</em></li>
+  <li><a href="http://www.cis.ohio-state.edu/htbin/rfc/rfc2184.html">RFC-2184</a>.</li>
+</ul>
+
+<p>&nbsp;&nbsp;&nbsp; Довольно обширная подборка
+документов находится здесь : <a href="http://www.nada.kth.se/i18n/iab-charsets/">http://www.nada.kth.se/i18n/iab-charsets/</a>.
+См. также коллекцию <strong>Charmap</strong>-ов от <a href="ftp://dkuug.dk/i18n/WG15-collection/charmaps/">DKUUG</a> и <a href="ftp://ftp.unicode.org/Public/MAPPINGS/">UNICODE</a>.</p>
+
+<p>&nbsp;&nbsp;&nbsp; Но к сожалению, данный документ <a href="http://www.iana.org">IANA</a> <font color="#FF0080"><strong>не является</strong></font>
+международным стандартом, а всего лишь
+&quot;подборка рекомендаций&quot;... И названия<strong>
+Charset</strong>, в отличии от названий <strong>Country</strong> (<a href="http://www.unicode.org/unicode/onlinedat/languages.htm">ISO 639</a>) и <strong>Territory</strong>
+(<a href="http://www.unicode.org/unicode/onlinedat/countries.html">ISO 3166</a>) для
+имен<strong> <a href="../locale_o.html">locale</a></strong>, <strong>HTTP</strong> и <strong>MIME</strong>&nbsp;
+<font color="#FF0080"><strong>не стандартизованы</strong></font> в <strong>ISO</strong>...</p>
+
+<p>&nbsp;&nbsp;&nbsp; Может быть поэтому многие авторы
+программного обеспечения не поддерживает <strong>Charset</strong>-ы
+или механизм <strong>Alias:</strong>-ов... Например <a href="glibc-trbl.html">glibc</a> (автор Ulrich Drepper) и XFree86 . Вместо
+этого например в glibc существует специальный
+механизм, так называемый <font color="#FF0080"><strong>name mangling</strong></font>.
+То есть все символы в имени <strong>Charset</strong>-а
+переводятся в <strong>lowercase</strong> и удаляются все
+символы &quot;_&quot;, &quot;-&quot;, &quot;.&quot;&nbsp; e.t.c. Например
+&quot;<strong>ISO_8859-1</strong>&quot; превращается в &quot;<strong>iso88591</strong>&quot;.
+А &quot;<strong>KOI8-R</strong>&quot; --&gt; &quot;<strong>koi8r</strong>&quot;.</p>
+
+<p>&nbsp;&nbsp;&nbsp; Ситуация осложняется тем, что
+когда-то давно <strong>IBM</strong> и <strong>Microsoft</strong> ввели
+понятие <a href="http://www.microsoft.com/typography/unicode/cscp.htm"><strong>Codepage</strong></a>,
+которое теперь фактически имеет значение <strong>Charset</strong>.
+А с названиями этих самых <strong>Codepages</strong> стоит
+полная путанница :</p>
+<div align="center"><center>
+
+<table border="1">
+  <tr>
+    <td><strong>CP866</strong></td>
+  </tr>
+  <tr>
+    <td><strong>CP-866</strong></td>
+  </tr>
+  <tr>
+    <td><strong>IBM866</strong></td>
+  </tr>
+  <tr>
+    <td><strong>IBM_866</strong></td>
+  </tr>
+  <tr>
+    <td>и т.д.</td>
+  </tr>
+</table>
+</center></div>
+
+<p>&nbsp;&nbsp;&nbsp; Или даже как в случае кодовой
+страницы <strong>CP1251</strong>, когда в <strong>Microsoft Internet
+Explorer</strong> или <strong>IIS</strong> эта кодировка
+фигурирует как &quot;<strong>Windows-1251</strong>&quot;.</p>
+<div align="center"><center>
+
+<table border="1">
+  <tr>
+    <td><strong>Windows-1251</strong></td>
+  </tr>
+  <tr>
+    <td><strong>Win-1251</strong></td>
+  </tr>
+  <tr>
+    <td><strong>CP1251</strong></td>
+  </tr>
+  <tr>
+    <td><strong>CP-1251</strong></td>
+  </tr>
+  <tr>
+    <td>и т.д.</td>
+  </tr>
+</table>
+</center></div>
+
+<p>&nbsp;&nbsp;&nbsp; Дак вот, схема <strong>name mangling</strong> по
+Drepper-у еще как-то работает для <strong>ISO</strong>xxxx, но
+совершенно не работает для имен <strong>Codepages</strong> <strong>CP</strong>-xxx/<strong>IBM</strong>-xxx/<strong>Windows-</strong>xxx.
+То есть, нужна поддержка <strong>Alias:</strong>-ов по <strong>IANA</strong>.</p>
+
+<p>&nbsp;&nbsp;&nbsp; Вобщем, засада с этим <strong>Charset</strong>-ом
+полная.</p>
+
+<p>&nbsp;&nbsp;&nbsp; Более того, в UNIX-системах&nbsp; с
+&quot;чистым&quot; <strong>POSIX</strong> вообще <font color="#FF0080"><strong>невозможно</strong></font>
+узнать имя <strong>Charset</strong> текущей локализации. См. <a href="../locale_p.html#critique">Критику POSIX</a>.</p>
+
+<p>&nbsp;&nbsp;&nbsp; Ситуация даже еще хуже, поскольку для
+полной поддержки <strong>Charset</strong>-ов необходимо
+держать <font color="#FF0080">несколько</font> копий <strong>man</strong>-ов,
+<strong>info</strong> и <strong>message catlog</strong>-ов (см. <a href="../locale_n.html">NLS</a>) в разных кодировках. То есть,
+установив <strong>LANG=ru_RU.ISO_8859-5</strong> пользователь
+вправе рассчитывать, что обработка символов,
+сообщения об ошибках и вывод справочной
+информации <strong>man</strong> будет происходить на
+русском языке в наборе символов <strong>ISO_8859-5</strong>. А
+установив <strong>LANG=ru_RU.KOI8-R</strong> пользователь точно
+так же вправе рассчитывать, что всю информацию он
+будет получать также на русском языке, но в
+кодировке <strong>KOI8-R</strong>.</p>
+
+<p>&nbsp;&nbsp;&nbsp; Точно так же для японского языка.
+Поскольку для японского имеется по крайней мере 4
+кодировки : <strong>ISO-2022-JP</strong>, <strong>JIS</strong>, <strong>Shift-JIS</strong>
+(<strong>CP-932</strong>) и <strong>EUC</strong>, то установив <strong>LANG=ja_JP.EUC</strong>
+пользователь по-видимому желает работать в
+кодировке <strong>EUC</strong>, а установив <strong>LANG=ja_JP.Shift-JIS</strong>
+-- в кодировке <strong>Shift-JIS</strong>.</p>
+
+<hr>
+
+<h3>X Window XLFD</h3>
+
+<p>&nbsp;&nbsp;&nbsp; Стандарт <a href="xlfd.html">XLFD</a>
+единственный вводит более менее об'яснимую схему
+формирования имен Charset-ов.</p>
+
+<hr>
+
+<p>P.S Одна из редких программ, которая
+поддерживает <strong>Charset</strong>-ы &quot;по настоящему&quot;
+и даже имеет настройки charset.alias -- это <strong>mutt</strong> : <a href="http://www.mutt.org">http://www.mutt.org</a>.</p>
+
+<p>P.P.S. Решением проблемы был бы <strong>UNICODE</strong> как
+&quot;самый универсальный сharset&quot;. Тогда любой
+другой <strong>Charset</strong> можно получить из <strong>UNICODE</strong>
+как &quot;логическое сечение&quot;. Кстати в последних
+Solaris-ах есть такая возможность и можно определять
+<a href="http://www.linux.org.ru/books/man/man_e/lang.html"><strong>LANG=</strong></a> <strong>en_US.UNICODE</strong>,
+<strong>ja_JP.UNICODE</strong>, <strong>ru_RU.UNICODE</strong> e.t.c.</p>
+
+<p>P.P.P.S. К сожалению, X-ы &quot;внутри&quot; не <strong>UNICODE</strong>-овые
+и не имеют такого понятия как <strong>UNICODE</strong> font (в
+отличие от тех же <a href="http://www.linux.org.ru/books/unicode/win95.html">Windows'95</a>). А
+как было бы все тогда просто...</p>
+
+<hr>
+
+<p>Содержание &quot;<a href="http://www.sensi.org/~alec/locale/index.html#toc">Locale
+AS IT IS</a>&quot;</p>
+
+<hr>
+
+<h6><em>Last change : <!--webbot bot="Timestamp" S-Type="EDITED" S-Format="%d-%m-%Y" startspan -->21-04-2003<!--webbot bot="Timestamp" endspan i-checksum="12478" --></em></h6>
+</body>
+</html>

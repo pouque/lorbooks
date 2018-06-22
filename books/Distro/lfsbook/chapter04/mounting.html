@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>Mounting the new partition</title>
+  
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+
+  <meta name="GENERATOR" content="Modular DocBook HTML Stylesheet Version 1.73">
+  <link rel="HOME" title="Linux From Scratch" href="http://www.linux.org.ru/books/Distro/lfsbook/chapter04/index.html">
+  <link rel="UP" title="Preparing a new partition" href="chapter04.html">
+  <link rel="PREVIOUS" title="Creating a file system on the new partition" href="creatingfs.html">
+  <link rel="NEXT" title="Preparing the LFS system" href="http://www.linux.org.ru/books/Distro/lfsbook/chapter04/chapter05.html"></head><body class="sect1" bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#840084" alink="#006000">
+<div class="NAVHEADER"><table summary="Header navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><th colspan="3" align="Center">Linux From Scratch: Версия 4.0</th></tr><tr><td width="10%" align="Left" valign="Bottom"><a href="creatingfs.html" accesskey="P">Назад</a></td><td width="80%" align="Center" valign="Bottom">Глава 4. Готовим новый раздел</td><td width="10%" align="Right" valign="Bottom"><a href="../chapter05/chapter05.html" accesskey="N">Вперед</a></td></tr></tbody></table><hr align="Left" width="100%"></div>
+<div class="sect1"><h1 class="sect1"><a name="ch04-mounting">Монтируем раздел</a></h1><p>Итак,
+файловая система создана и готова к эксплуатации. Для того чтобы получить
+доступ к разделу (возможность чтения и записи информации на нем), необходимо
+его монтировать.Если точка монтирования /mnt/lfs, перейти к этому разделу
+можно с помощью команды cd /mnt/lfs. Мы будем подразумевать, что точка монтирования
+раздела -  /mnt/lfs. Выбор директории для точки монтирования не принципиален,
+просто запомните, что вы выбрали.</p><p>Создайте директорию /mnt/lfs:</p><p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>mkdir -p /mnt/lfs</b></tt></pre></td></tr></tbody></table></p><p>Монтируем LFS раздел:</p><p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>mount /dev/xxx<br>/mnt/lfs</b></tt></pre></td></tr></tbody></table></p><p>Замените <span class="QUOTE">"xxx"</span> наименованием раздела (например hda11).</p><p>Эта
+директория (/mnt/lfs) и есть значение переменной LFS variable из Главы 2.
+Если вы планируете использовать переменную среды LFS, самое время выполнить
+<tt class="userinput"><b>export LFS=/mnt/lfs</b></tt>.</p><p>Если вы решили выделить LFS несколько разделов (к примеру $LFS и
+$LFS/usr), монтируйте их следующим образом:</p><p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>mkdir -p /mnt/lfs &amp;&amp;<br>mount /dev/xxx /mnt/lfs &amp;&amp;<br>mkdir /mnt/lfs/usr &amp;&amp;<br>mount /dev/yyy<br>/mnt/lfs/usr</b></tt></pre></td></tr></tbody></table></p><p>Естественно, замените /dev/xxx и /dev/yyy на соответствующие наименования
+разделов.</p></div>
+<div class="NAVFOOTER"><hr align="Left" width="100%"><table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="33%" align="Left" valign="Top"><a href="creatingfs.html" accesskey="P">Назад</a></td><td width="34%" align="Center" valign="Top"><a href="../index.html" accesskey="H">Домой</a></td><td width="33%" align="Right" valign="Top"><a href="../chapter05/chapter05.html" accesskey="N">Вперед</a></td></tr><tr><td width="33%" align="Left" valign="Top">Создание файловой системы на новом разделе<br>
+</td><td width="34%" align="Center" valign="Top"><a href="chapter04.html" accesskey="U">Наверх</a></td><td width="33%" align="Right" valign="Top">Подготовка системы LFS<br>
+</td></tr></tbody></table></div>
+<br>
+
+</body></html>

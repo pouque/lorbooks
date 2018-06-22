@@ -1,0 +1,273 @@
+<html>
+<head>
+<meta http-equiv="Content-Language" content="ru">
+<meta http-equiv="Content-Type" content="text/html; charset=koi8-r">
+
+<title>Мини-HOWTO: IMAP сервер Cyrus</title>
+</head>
+<body>
+<hr>
+<h1>Мини-HOWTO: установка IMAP сервера Cyrus </h1>
+<h2>Автор: Kevin Mitchell (<a href="mailto:kevin@iserv.net">kevin@iserv.net</a>) 
+</h2>
+<h2>Перевод: <a href="mailto:sam@asp-linux.com"> Станислав Рогин</a>,
+<a href="http://www.asp-linux.com">SWSoft Pte Ltd.</a> 
+</h2>
+<h2>версия 0.9, 21 января 1998 года </h2>
+<hr>
+<p> <i>В этом документе приведено несколько полезных советов по установке IMAP-сервера 
+ Cyrus на системе, использующей Linux.</i> </p>
+<hr>
+<h2> 1. Введение </h2>
+<p> Я хотел бы поблагодарить Bob Anderson (<a href="mailto:boba@iserv.net">boba@iserv.net</a>) 
+ и Jorge Paramo (<a href="mailto:jorge@iserv.net">jorge@iserv.net</a>) за посильную 
+ помощь в моих путешествиях по миру Linux. </p>
+<h3>Что такое IMAP, и зачем он мне нужен? </h3>
+<p> IMAP (Internet Message Access Protocol) - это способ доступа к электронной 
+ почте или сообщениям в досках объявлений, содержащихся на почтовом сервере. IMAP 
+ воспринимается многими как альтернатива протоколу POP (Post Office Protocol). 
+ IMAP позволяет читать электронную почту с разных компьютеров напрямую с сервера, 
+ не загружая ее на локальную машину. Такой способ доступа к почте значительно 
+ более безопасен, а также предоставляет некоторые дополнительные возможности конечному 
+ пользователю. </p>
+<p>Более подробное описание можно найти по адресу: <a href="http://www.imap.org/whatisIMAP.html">http://www.imap.org/whatisIMAP.html</a> 
+</p>
+<p>Сравнительная характеристика протоколов IMAP и POP доступна по адресу: <a href="http://www.imap.org/imap.vs.pop.brief.html">http://www.imap.org/imap.vs.pop.brief.html</a> 
+</p>
+<h3>Почему Cyrus? </h3>
+<p>Сервер Cyrus создан для серверов, на котором обычным пользователям не разрешено 
+ входить в систему. А также, по-моему мнению, Cyrus - это один из двух наиболее 
+ популярных IMAP-серверов для Unix. Второй сервер - The University of Washington 
+ IMAP Server, доступный по адресу <a href="ftp://ftp.cac.washington.edu/imap/imap.tar.Z">ftp://ftp.cac.washington.edu/imap/imap.tar.Z</a> 
+</p>
+<h2>2. Описание моей системы </h2>
+<p>Я удачно установил и настроил Cyrus на 486DX66- и Pentium-машинах, использующих 
+ Linux с ядром версии 2.1.79 и 2.0.33 соответственно. Изначально Linux на этих 
+ машинах был установлен с дистрибутива Slackware версии 3.4. </p>
+<h2>3. Установка Tcl </h2>
+<p>До установки Cyrus убедитесь в том, что на вашей машине установлен Tcl - иначе 
+ вы не сможете использовать Утилиту Администрирования Cyrus &quot;Cyrus Admin 
+ Tool&quot; (cyradm). Самую новую версию исходных текстов tcl можно найти по адресу 
+ <a href="ftp://ftp.sunlabs.com/pub/tcl/">ftp://ftp.sunlabs.com/pub/tcl/</a> </p>
+<p>После установки Tcl проверьте, что файл <code> libtcl.a</code> находится в 
+ каталоге <code> /usr/local/lib/</code>. Tcl версии 8.0 создает файл <code> libtcl8.0.a</code>, 
+ и для гарантии нормальной работы надо создать соответствующую символьную ссылку, 
+ при помощи команды: </p>
+<p><code> # ln -s libtcl8.0.a libtcl.a</code> </p>
+<h2>4. Установка makedepend </h2>
+<p>Проверьте, есть ли в вашей системе команда <code> makedepend</code>. Если нет, 
+ то ничего страшного - она поставляется также с исходными текстами Cyrus. (В моей 
+ системе ее тоже не было, так как ее нет в Slackware 3.4)</p>
+<p>Для установки <code>makedepend</code>, разверните пакет Cyrus, перейдите в 
+ каталог <code> makedepend</code> и запустите следующие команды: </p>
+<p><code>./configure<br>
+ make<br>
+ cp ./makedepend /usr/local/bin/makedepend<br>
+ </code> </p>
+<h2>5. Установка Cyrus </h2>
+<p>Внимательно прочтите инструкции по установке, входящие в пакет Cyrus. Эти инструкции 
+ можно также найти по адресу: <a href="http://andrew2.andrew.cmu.edu/cyrus/imapd/install.html">http://andrew2.andrew.cmu.edu/cyrus/imapd/install.html</a> 
+</p>
+<p>Несколько советов по некоторым фазам установки: </p>
+<p>Если у вас дистрибутив Slackware 3.4 (с теневыми паролями (Shadow Passwords)), 
+ запустите <code> configure</code> командой: </p>
+<p><code> ./configure --with-login=unix_pwcheck</code> </p>
+<p><code>make</code> достаточно прост: </p>
+<p><code>make depend<br>
+ make all CFLAGS=-O</code> </p>
+<p>Шаг 1: После добавления пользователя cyrus, я отключил это имя входа для минимизации 
+ проблем с безопасностью.<br>
+ Шаг 3: Я сам отредактировал файл /etc/syslog.conf, вместо простого копирования 
+ их примера. <br>
+ Шаг 9: В Linux убедитесь в нормальном запуске <code> pwcheck</code> (приведенном 
+ ниже), иначе сервер не будет работать: </p>
+<p> <code> umask 0;/usr/cyrus/bin/pwcheck &amp;<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;umask 022</code> </p>
+<p>И затем добавьте запуск Cyrus в загрузочный скрипт примерно такими строками:: 
+</p>
+<p><code>if [ -f /usr/cyrus/bin/pwcheck ]; then<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo -n &quot;Запуск pwcheck для imap&quot;<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;umask 0;/usr/cyrus/bin/pwcheck &amp;<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;umask 022<br>
+ fi</code> </p>
+<p>Я добавил эти строки в файл <code>/etc/rc.d/rc.local</code>,
+и все прекрасно 
+ заработало. </p>
+<p>Шаг 12: В процессе редактирования файла /etc/inetd.conf, проверьте нормальный 
+ запуск TCP Wrappers, если вы их используете, например: </p>
+<p><code> imap&nbsp;&nbsp;streamtcp&nbsp;&nbsp;&nbsp;&nbsp; nowait&nbsp;&nbsp;&nbsp; 
+ cyrus&nbsp;&nbsp;&nbsp;&nbsp; /usr/sbin/tcpd&nbsp;&nbsp;&nbsp; /usr/cyrus/bin/imapd&nbsp;&nbsp;&nbsp;&nbsp; 
+ imap </code> </p>
+<p>И не забудьте про команду <code> kill -HUP inetd</code> после этих изменений: 
+</p>
+<p> <code> # ps ax | grep inetd<br>
+ &nbsp;61?S&nbsp;&nbsp;0:00 /usr/sbin/inetd<br>
+ # kill -HUP 61</code> </p>
+<h2>6. Настройка Sendmail </h2>
+<p>Скачайте исходные тексты sendmail, если у вас их еще нет. До запуска IMAP, 
+ вы можете добавить некоторые полезные вещи, как, например, настройку анти-спам 
+ системы. </p>
+<p>Ниже приведен мой файл <code>.mc</code>. Он доставляет почту посредством IMAP, 
+ если имя пользователя не указано в файле <code> /etc/sendmail.cN</code>. Таким 
+ образом системные пользователи, такие, как root, смогут содержать свою почту обычным 
+ образом в спуле (spool); В то же время все остальные по умолчанию используют 
+ IMAP. Не стоит просто копировать и использовать этот пример, иначе sendmail будет 
+ жаловаться на использование пробелов вместо табуляции: </p>
+<p><code> divert(-1)<br>
+ #<br>
+ #&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(C) Copyright 1995 by Carnegie Mellon University<br>
+ #<br>
+ #&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+ All Rights Reserved<br>
+ #&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+ Все права защищены<br>
+ #<br>
+ # Permission to use, copy, modify, and distribute this software and its<br>
+ # documentation for any purpose and without fee is hereby granted,<br>
+ # provided that the above copyright notice appear in all copies and that<br>
+ # both that copyright notice and this permission notice appear in<br>
+ # supporting documentation, and that the name of CMU not be<br>
+ # used in advertising or publicity pertaining to distribution of the<br>
+ # software without specific, written prior permission.<br>
+ #<br>
+ # Разрешено бесплатное использование, копирование, изменение и<br>
+ # распространение этого программного обеспечения для любых целей,<br>
+ # с условием, что вышеприведенный копирайт будет воспроизведен<br>
+ # на всех копиях, а также копирайт и это разрешение будет<br>
+ # воспроизведено в сопутствующей документации. Имя CMU не может<br>
+ # быть использовано в целях рекламы или публикации, сопутствующих<br>
+ # дистрибутиву, без предварительного специального письменного разрешения<br>
+ #<br>
+ # CMU DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE, INCLUDING<br>
+ # ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS, IN NO EVENT SHALL<br>
+ # CMU BE LIABLE FOR ANY SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR<br>
+ # ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS,<br>
+ # WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION,<br>
+ # ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS<br>
+ # SOFTWARE.<br>
+ #<br>
+ # CMU ОТВЕРГАЕТ ЛЮБУЮ ОТВЕТСТВЕННОСТЬ, СВЯЗАННУЮ С ИСПОЛЬЗОВАНИЕМ ЭТОГО<br>
+ # ПРОГРАММНОГО ОБЕСПЕЧЕНИЯ, ВКЛЮЧАЯ ВСЕ СОПУТСТВУЮЩИЕ ГАРАНТИИ ПРОДАВАЕМОСТИ<br>
+ # И СОВМЕСТИМОСТИ. CMU НИ В КАКОМ СЛУЧАЕ НЕ НЕСЕТ ОТВЕТСТВЕННОСТИ ЗА ПРЯМОЙ ИЛИ<br>
+ # КОСВЕННЫЙ УЩЕРБ ЛЮБОГО РОДА, ВКЛЮЧАЯ ПОТЕРИ ИСПОЛЬЗУЕМОСТИ, ДАННЫХ ИЛИ<br>
+ # ПРИБЫЛИ, ПРОИЗОШЕДШИХ ТАКЖЕ ВСЛЕДСТВИЕ КОНТРАКТОВ, СОГЛАШЕНИЙ ИЛИ<br>
+ # ДРУГИХ ФОРМ ПРАВООТНОШЕНИЙ, ВОЗНИКШИХ ИЗ ИЛИ СВЯЗАННЫХ С ЭТИМ ПРОГРАММНЫМ<br>
+ # ОБЕСПЕЧЕНИЕМ<br>
+ #<br>
+ #&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contributed to Berkeley by John Gardiner Myers 
+ &lt;jgm+@CMU.EDU&gt;.<br>
+ #&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;В институт Berkeley передано John Gardiner Myers 
+ &lt;jgm+@CMU.EDU&gt;.<br>
+ #<br>
+ #&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Это пример для сайта, использующего IMAP-сервер 
+ Cyrus<br>
+ #&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;для передачи локальной почты.<br>
+ #<br>
+ <br>
+ divert(0)dnl<br>
+ VERSIONID(`@(#)cyrusproto.mc&nbsp;&nbsp;8.3 (Carnegie Mellon) @(#)cyrusproto.mc 
+ 8.3')<br>
+ OSTYPE(linux)<br>
+ define(`confBIND_OPTS',`-DNSRCH -DEFNAMES')<br>
+ FEATURE(nouucp)<br>
+ FEATURE(nocanonify)<br>
+ FEATURE(always_add_domain)<br>
+ MAILER(smtp)<br>
+ MAILER(local)<br>
+ MAILER(cyrus)<br>
+ <br>
+ define(`confLOCAL_MAILER',`cyrus')<br>
+ <br>
+ LOCAL_RULE_0<br>
+ &nbsp; R$=N&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+ $: $#local $: $1<br>
+ R$=N &lt; @ $=w . &gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+ $: $#local $: $1<br>
+ Rbb + $+ &lt; @ $=w . &gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+ $#cyrusbb $: $1<br>
+ <br>
+ LOCAL_CONFIG<br>
+ FN /etc/sendmail.cN<br>
+ <br>
+ # end of mc file<br>
+ </code> <br>
+ После создания файла <code> /etc/sendmail.cf</code>, создайте файл <code>/etc/sendmail.cN</code> 
+ со списком пользователей, которые не будут использовать доставку почты посредством 
+ IMAP, например: </p>
+<p><code> root<br>
+ majordom<br>
+ stan<br>
+ mothra<br>
+ </code> </p>
+<p>После установки пакета Sendmail версии 8.8.8 я также установил утилиту <code> 
+ mail.local</code>, как систему доставки локальной почты для вышеприведенных пользователей. 
+ Ниже приведен простой способ создания <code>mail.local</code>. Перейдите в каталог 
+ <code> mail.local</code> исходных текстов sendmail и проделайте следующее: </p>
+<p><code> cp Makefile Makefile.orig<br>
+ cp Makefile.dist Makefile<br>
+ make<br>
+ cp mail.local /bin/mail.local<br>
+ chmod 4555 /bin/mail.local</code> </p>
+<p>После всего этого перезапустите sendmail. </p>
+<p>Не забудьте закончить исполнение инструкций по установке Cyrus. </p>
+<h2>7. Настройка почтовых ящиков </h2>
+<p>Обязательно проведите все тесты работоспособности IMAP-сервера. Если все работает 
+ приемлемо - настройте почтовые ящики. </p>
+<h2>8. Авторские права</h2>
+<p>Авторские права на русский перевод этого
+текста принадлежат &copy; 2000 SWSoft Pte Ltd. Все права
+зарезервированы.</p>
+<p>Этот документ является частью проекта Linux
+HOWTO.</p>
+<p>Авторские права на документы Linux HOWTO
+принадлежат их авторам, если явно не
+указано иное. Документы Linux HOWTO, а также их
+переводы, могут быть воспроизведены и
+распространены полностью или частично на
+любом носителе, физическом или электронном,
+при условии сохранения этой заметки об
+авторских правах на всех копиях.
+Коммерческое распространение разрешается
+и поощряется; но, так или иначе, автор текста
+и автор перевода желали бы знать о таких
+дистрибутивах.</p>
+<p>Все переводы и производные работы,
+выполненные по документам Linux HOWTO, должны
+сопровождаться этой заметкой об авторских
+правах. Это делается в целях предотвращения
+случаев наложения дополнительных
+ограничений на распространение документов
+HOWTO. Исключения могут составить случаи
+получения специального разрешения у
+координатора Linux HOWTO, с которым можно
+связаться по адресу приведенному ниже.</p>
+<p>Мы бы хотели распространить эту
+информацию по всем возможным каналам. Но
+при этом сохранить авторские права и быть
+уведомленными о всех планах
+распространения HOWTO. Если у вас возникли
+вопросы, пожалуйста, обратитесь к
+координатору проекта Linux HOWTO по электронной
+почте: <tt CLASS="EMAIL">&lt;<a HREF="mailto:linux-howto@metalab.unc.edu">linux-howto@metalab.unc.edu</a>&gt;</tt>
+или к координатору русского перевода Linux HOWTO
+компании SWSoft Pte Ltd. по адресу <tt CLASS="EMAIL">&lt;<a HREF="mailto:linux-howto@asplinux.ru">linux-howto@asplinux.ru</a>&gt;</tt></p>
+<h2>9. Ответственность </h2>
+<p>Никаких гарантий, возврата денег и т.п. Используйте исключительно на свой страх 
+ и риск. </p>
+<h2>10. Источники </h2>
+<h3>Необходимые пакеты </h3>
+<p>Домашняя страница Cyrus: <a href="http://andrew2.andrew.cmu.edu/cyrus/imapd/">http://andrew2.andrew.cmu.edu/cyrus/imapd/</a> 
+</p>
+<p>Новая версия доступна по адресу: <a href="ftp://ftp.andrew.cmu.edu/pub/cyrus-mail/">ftp://ftp.andrew.cmu.edu/pub/cyrus-mail/</a> 
+</p>
+<p>Домашняя страница Tcl: <a href="http://sunscript.sun.com/">http://sunscript.sun.com/</a> 
+</p>
+<p>Новая версия доступна по адресу: <a href="ftp://ftp.sunlabs.com/pub/tcl/">ftp://ftp.sunlabs.com/pub/tcl/</a> 
+</p>
+<p>Домашняя страница Sendmail: <a href="http://www.sendmail.org/">http://www.sendmail.org/</a> 
+</p>
+<p>Новая версия доступна по адресу: <a href="ftp://ftp.sendmail.org/ucb/src/sendmail/">ftp://ftp.sendmail.org/ucb/src/sendmail/</a> 
+</p>
+<hr>
+</body>
+</html>

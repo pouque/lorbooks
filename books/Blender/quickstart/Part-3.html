@@ -1,0 +1,157 @@
+<html>
+<head>
+ <title>Blender online-Руководство для пользователя v1.5 - Самое начало - Часть 3</title>
+</head>
+
+<body bgcolor="#ffffff" link="#999966" vlink="#999966" alink="#000000" background="http://www.linux.org.ru/books/Blender/images/bgpage.gif">
+<table cellpadding="0" cellspacing="0" border="0" width="600">
+ <tr>
+ 	<td colspan="4" width="600"><img width="408" height="70"
+			src="http://www.linux.org.ru/books/Blender/images/blentitl.jpg" alt="http://www.blender.nl/"
+			border="0"><img 
+			src="http://www.linux.org.ru/books/Blender/images/topright.gif" alt=""><br>
+		<img 
+			src="http://www.linux.org.ru/books/Blender/images/trans.gif" width="20" height="16" alt="NAVBAR->"><a
+			href="../index.html"><img 
+				src="../images/nav-home.gif" border="0" alt="титульный лист"></a><a 
+			href="../introduction/Data-blocks.html"><img 
+				src="../images/nav-intro.gif" border="0" alt="введение"></a><a 
+			href="../basicediting/Input-commands.html"><img 
+				src="../images/nav-basiced.gif" border="0" alt="основы редактирования"></a><a 
+			href="Part-1.html"><img 
+				src="../images/nav-quick-start.gif" border="0" alt="самое начало"></a><img 
+				src="../images/black.gif" width="46" height="16" alt=""><img 
+				src="../images/nav-end.gif" border="0" alt=""></td>
+ </tr>
+
+<!-- second level navigation -->
+<tr>
+ 	<td width="93" valign="top"><br><br>
+		<img src="http://www.linux.org.ru/books/Blender/images/trans.gif" width="93" height="1" alt=""><br>
+			<a href="Part-1.html"><img 
+			src="../images/Part-1-off.gif" 
+			alt="Часть 1" width="93" 
+			height="20" border="0"></a><br><br>
+			<a href="Part-2.html"><img 
+			src="../images/Part-2-off.gif" 
+			alt="Часть 2" width="93" 
+			height="20" border="0"></a><br><br>
+			<img src="../images/Part-3-on.gif" 
+			alt="Часть 3" width="93" height="20">
+		</td>
+	<td width="7"><img src="http://www.linux.org.ru/books/Blender/images/trans.gif" width="7" height="1" alt=""></td>
+
+<!-- end second level navigation -->
+
+<!-- content -->
+ 	<td width="400"><font face="Arial, sans-serif" size="-1">
+	<img src="http://www.linux.org.ru/books/Blender/images/trans.gif" width="400" height="1" alt="">
+
+			<h2>Самое начало. Часть 3</h2>
+			<h4>Редактирование Каркасных моделей (Mesh) </h4>
+
+			Как мы уже отмечали ранее, 
+			редактировать (выбирать, перемещать)
+			в Blender можно только Объекты.
+			Для того, чтобы добавить грани или переместить
+			отдельные вершины, Объект должен быть в Режиме 
+			редактирования.
+			<br><br>
+			Переключение в Режим редактирования осуществляется
+			по клавише TAB: форма курсора меняется 
+			и вы можете выбирать отдельные вершины 
+			Объекта. 
+			<br><br>
+
+			Попробуйте проделать следующее:
+			1. Очистите окна Blender (CTRL+X)
+			2. По правой кнопке мыши выберите Плоскость и нажмите 
+			TAB.
+			<br><br>
+			
+			Blender теперь работает в режиме редактирования. 
+
+			<ul><li> 
+			С помощью комбинации SHIFT+Правая кнопка мыши 
+			выберите все четыре вершины плоскости.
+			<li> 
+			Нажмите "E". После появления диалога "OK? Extrude"
+			нажмите ENTER.
+			<li> 
+			После вытягивания (extrusion) Blender автоматически
+			переходит в режим Захвата ("Grab" mode), 
+			что позволяет Вам поместить созданные вершины, 
+			там где Вы хотите. Если же Вы работали в 
+			окне "Вид Сверху" нажмите ESC, перейдите в "Вид Спереди"
+			(PAD_1) и нажмите "G" для того, чтобы снова войти в режим 
+			"Захвата".
+			<li> 
+			Для создания такой змейки надо несколько раз
+			провести операцию "Вытягивания". 
+			</ul>
+
+			<a href="../images/snakelike.jpg"><img src="../images/snakelike_t.jpg" border="0" alt="snakelike.jpg"></a><br>
+			<i>Увеличенное изображение - по левой кнопке мыши.</i><br><br>
+
+			Вытягивание это простой и мощный метод создания 3D 
+			объектов. Принцип его работы следующий:
+			<br><br>
+			Если та геометрия, что Вы выбрали содержит грани,
+			программа копирует их (duplicate),
+			и создает новые грани на "краю" выбранных. 
+			Blender автоматически удаляет "внутренние" грани.
+			Так, созданный нами Каркас - пустотелый.  
+			<br><br>
+
+			Blender не имеет Откатки (undo). 
+			Вместо этого в режиме 
+			редактирования Blender всегда сохраняет копию
+			первоначальных данных Объекта, к которой Вы можете   
+			вернуться нажав "U" (если Вы еще не выходили из режима
+			редактирования).
+			<br><br>
+
+			В окне EditButtons (F9) вы видите много инструментов:
+			вытягивание, подразделение (subdivision) или создание граней
+			(filling). Более подробно они описаны в 
+			книге "Руководство для пользователя".
+
+			<h4>Сохранение и загрузка</h4>
+
+			Для того, чтобы сохранить Вашу работу, нажмите 
+			F2. На месте текущего окна появится окно
+			FileSelect (Выбор файла). В двух больших  
+			кнопках (длинных панелях) вверху окна можно вводить 
+			название директории и файла соотвественно. 
+			Выход из этих кнопок по клавише  ENTER.
+			<br><br>
+			Для сохранения файла нажмите ENTER еще раз.
+			Если файл с таки именем уже существует,
+			появится диалоговое окошко с просьбой подтвердить 
+			сохранение файла "поверх старого" ('save over').  
+			<br><br>
+			Быстрее сохранить файл (без выхода в окно FileSelect)
+			можно по комбинации CTRL+W.
+			<br><br>
+
+			Для того чтобы загрузить файл Blender нажмите F1,
+			подведите курсор к файлу и нажмите Среднюю кнопку мыши или
+			Левую кнопку и ENTER.
+			Быстрая комбинация - CTRL+O. 
+			<br><br>
+			Удачного Вам Blending'а! (Happy Blending!)
+			<br><br><br><br>
+			</font>
+	</td>
+<!-- end content -->
+
+ 	<td width="100"><img src="http://www.linux.org.ru/books/Blender/images/trans.gif" width="100" height="1" alt=""></td>
+ </tr>
+ <tr>
+ 	<td colspan="4"><img width="93" height="43" src="../images/gradstrips.gif" alt=""><img width="507" height="43"
+			src="../images/bottom.gif" alt=""></td>
+ </tr>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,373 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=KOI8-R">
+  <title>Util-linux</title>
+  <meta name="GENERATOR"
+ content="Modular DocBook HTML Stylesheet Version 1.73">
+  <link rel="HOME" title="Linux From Scratch" href="../index.html">
+  <link rel="UP" title="Package descriptions and dependencies"
+ href="appendixa.html">
+  <link rel="PREVIOUS" title="Textutils"
+ href="textutils.html">
+  <link rel="NEXT" title="Vim" href="vim.html">
+</head>
+<body class="sect1" bgcolor="#ffffff" text="#000000" link="#0000ff"
+ vlink="#840084" alink="#006000">
+<div class="NAVHEADER">
+<table summary="Header navigation table" width="100%" border="0"
+ cellpadding="0" cellspacing="0">
+  <tbody>
+    <tr>
+      <th colspan="3" align="center">Linux From Scratch: Версия 4.0</th>
+    </tr>
+    <tr>
+      <td width="10%" align="left" valign="bottom"><a
+ href="textutils.html" accesskey="P">Назад</a></td>
+      <td width="80%" align="center" valign="bottom">Приложение A.
+Описания пакетов и зависимостей</td>
+      <td width="10%" align="right" valign="bottom"><a
+ href="vim.html" accesskey="N">Вперед</a></td>
+    </tr>
+  </tbody>
+</table>
+<hr align="left" width="100%"></div>
+<div class="sect1">
+<h1 class="sect1"><a name="aa-utillinux">Util-linux</a></h1>
+<div class="sect2">
+<h2 class="sect2"><a name="AEN8752">Официальная ссылка</a></h2>
+<p></p>
+<p class="literallayout">Util-linux (2.11u):<br>
+<a href="ftp://ftp.win.tue.nl/pub/linux-local/utils/util-linux/"
+ target="_top">ftp://ftp.win.tue.nl/pub/linux-local/utils/util-linux/</a></p>
+<p></p>
+</div>
+<div class="sect2">
+<h2 class="sect2"><a name="AEN8757">Содержание Util-linux</a></h2>
+<p>Последняя проверка: версия 2.11t.</p>
+<div class="sect3">
+<h3 class="sect3"><a name="AEN8760">Программы</a></h3>
+<p>agetty, arch, blockdev, cal, cfdisk, chkdupexe, col, colcrt, colrm,
+column, ctrlaltdel, cytune, ddate, dmesg, elvtune, fdformat, fdisk,
+fsck.cramfs, fsck.minix, getopt, hexdump, hwclock, ipcrm, ipcs, isosize,
+line, logger, look, losetup, mcookie, mkfs, mkfs.bfs, mkfs.cramfs,
+mkfs.minix, mkswap, more, mount, namei, parse.bash, parse.tcsh, pg,
+pivot_root, ramsize (ссылка на rdev), raw, rdev, readprofile, rename,
+renice, rev, rootflags (ссылка на rdev), script, setfdprm, setsid,
+setterm, sfdisk, swapoff (ссылка на swapon), swapon, test.bash,
+test.tcsh, tunelp, ul, umount, vidmode (ссылка на rdev), whereis и write</p>
+</div>
+<div class="sect3">
+<h3 class="sect3"><a name="AEN8763">Описания</a></h3>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8765">agetty</a></h4>
+<p>agetty открывает tty, запрашивает регистрационное имя и запускает
+/bin/login.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8768">arch</a></h4>
+<p>arch выводит информацию об архитектуре машины.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8771">blockdev</a></h4>
+<p>blockdev позволяет вызывать ioctls блочного устройства из командной
+строки.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8774">cal</a></h4>
+<p>cal выводит простой календарь.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8777">cfdisk</a></h4>
+<p>cfdisk - редактор разделов диска, основанный на библиотеке
+libncurses.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8780">chkdupexe</a></h4>
+<p>chkdupexe находит дублирующиеся исполняемые файлы.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8783">col</a></h4>
+<p>col фильтрует перевернутые строки, поступающие с ввода.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8786">colcrt</a></h4>
+<p>colcrt фильтрует вывод nroff для предпросмотра CRT.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8789">colrm</a></h4>
+<p>colrm удаляет колонки из файла.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8792">column</a></h4>
+<p>column объединяет списки в файл из нескольких колонок.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8795">ctrlaltdel</a></h4>
+<p>ctrlaltdel устанавливает действие для комбинации клавиш CTRL+ALT+DEL
+(жесткая или мягкая перезагрузка).</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8798">cytune</a></h4>
+<p>cytune запрашивает и изменяет порог прерывания для драйвера Cyclades.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8801">ddate</a></h4>
+<p>ddate конвертирует дату по Грегорианскому календарю в дату по
+календарю Discordian.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8804">dmesg</a></h4>
+<p>dmesg просматривает и контролирует буфер kernel ring (сообщения
+загрузки ядра).</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8807">elvtune</a></h4>
+<p>elvtune позволяет настраивать the I/O elevator per block device
+queue basis.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8810">fdformat</a></h4>
+<p>fdformat выполняет низкоуровневое форматирование дискет.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8813">fdisk</a></h4>
+<p>fdisk - редактор дисковых разделов.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8816">fsck.cramfs</a></h4>
+<p>На данный момент нет описания.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8819">fsck.minix</a></h4>
+<p>fsck.minix проверяет целостность файловых систем MINIX.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8822">getopt</a></h4>
+<p>getopt анализирует переданные из командной строки параметры таким же
+образом как и одноименная функция C.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8825">hexdump</a></h4>
+<p>hexdump выводит указанные файлы на стандартный вывод в указанном
+формате (ascii, десятичный, шестнадцатеричный, восьмеричный).</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8828">hwclock</a></h4>
+<p>hwclock устанавливает системные часы (часы RTC или BIOS).</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8831">ipcrm</a></h4>
+<p>ipcrm удаляет указанный ресурс.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8834">ipcs</a></h4>
+<p>ipcs выводит информацию об устройствах IPC.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8837">isosize</a></h4>
+<p>isosize выводит объем файловой системы iso9660.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8840">line</a></h4>
+<p>line копирует одну строку (до символа новой строки) из стандартного
+ввода на стандартный вывод.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8843">logger</a></h4>
+<p>logger делает записи в системном журнале.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8846">look</a></h4>
+<p>look выводит строки, начинающиеся с заданной.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8849">losetup</a></h4>
+<p>losetup управляет устройствами loop.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8852">mcookie</a></h4>
+<p>mcookie генерирует "магические" ключи для xauth.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8855">mkfs</a></h4>
+<p>mkfs создает файловую систуму Linux на устройстве, обычно разделе
+диска.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8858">mkfs.bfs</a></h4>
+<p>mkfs.bfs создает файловую систему SCO bfs на устройстве, обычно
+разделе диска.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8861">mkfs.cramfs</a></h4>
+<p>На данный момент нет описания.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8864">mkfs.minix</a></h4>
+<p>mkfs.minix создает файловую систему Linux MINIX на устройстве,
+обычно разделе диска.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8867">mkswap</a></h4>
+<p>mkswap создает пространство подкачки на устройстве или в файле.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8870">more</a></h4>
+<p>more - фильтр для поэкранного просмотра текста.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8873">mount</a></h4>
+<p>mount монтирует файловую систему устройства в каталог (точку
+монтирования).</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8876">namei</a></h4>
+<p>namei переходит по заданному пути до тех пор, пока не будет найдена
+точка терминала.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8879">parse.bash, parse.tcsh, test.bash,
+test.tcsh</a></h4>
+<p>Это примеры скриптов, использующих getopt с BASH или TCSH.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8882">pg</a></h4>
+<p>На данный момент нет описания.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8885">pivot_root</a></h4>
+<p>pivot_root изменяет корневую файловую систему текущего процесса.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8888">ramsize</a></h4>
+<p>ramsize запрашивает и меняет размер RAM диска.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8891">raw</a></h4>
+<p>raw используется для привязки символьных устройств к блочным.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8894">rdev</a></h4>
+<p>rdev запрашивает и устанавливает образ корневого устройства,
+устройства подкачки, объем RAM диска или видорежим.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8897">readprofile</a></h4>
+<p>readprofile выводит информацию из профиля ядра.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8900">rename</a></h4>
+<p>rename переименовывает файлы.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8903">renice</a></h4>
+<p>renice меняет приоритет запущенных процессов.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8906">rev</a></h4>
+<p>rev инвертирует строки файлов.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8909">rootflags</a></h4>
+<p>rootflags запрашивает и сохраняет дополнительную информацию,
+используемую для монтирования корневой файловой системы.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8912">script</a></h4>
+<p>script создает скрипт терминальной сессии.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8915">setfdprm</a></h4>
+<p>setfdprm устанавливает параметры гибких дисков.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8918">setsid</a></h4>
+<p>setsid запускает программы в новой сессии.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8921">setterm</a></h4>
+<p>setterm устанавливает параметры терминала.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8924">sfdisk</a></h4>
+<p>sfdisk - редактор дисковых разделов.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8927">swapoff</a></h4>
+<p>swapoff деактивирует файлы и устройства подкачки.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8930">swapon</a></h4>
+<p>swapon активирует файлы и устройства подкачки.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8933">tunelp</a></h4>
+<p>tunelp устанавливает различные параметры LP устройств.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8936">ul</a></h4>
+<p>ul читает файл и переводит символы подчеркивания в
+последовательность, отображающую подчеркивание на используемом
+терминале.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8939">umount</a></h4>
+<p>umount размонтирует смонтированную файловую систему.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8942">vidmode</a></h4>
+<p>vidmode запрашивает и устанавливает видеорежим.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8945">whereis</a></h4>
+<p>whereis находит исполняемый файл, исходные коды и документацию для
+указанной команды.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8948">write</a></h4>
+<p>write посылает сообщение другому пользователю.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h2 class="sect2"><a name="AEN8951">Зависимости Util-linux</a></h2>
+<p>Последняя проверка: версия 2.11n.</p>
+<p class="literallayout">Bash: sh<br>
+Binutils: as, ld<br>
+Diffutils: cmp<br>
+Fileutils: chgrp, chmod, cp, install, ln, mv, rm<br>
+Gettext: msgfmt, xgettext<br>
+Gcc: cc, cc1, collect2, cpp, cpp0<br>
+Glibc: rpcgen<br>
+Grep: grep<br>
+Make: make<br>
+Sed: sed<br>
+Sh-utils: uname, whoami<br>
+Textutils: cat</p>
+</div>
+</div>
+<div class="NAVFOOTER">
+<hr align="left" width="100%">
+<table summary="Footer navigation table" width="100%" border="0"
+ cellpadding="0" cellspacing="0">
+  <tbody>
+    <tr>
+      <td width="33%" align="left" valign="top"><a
+ href="textutils.html" accesskey="P">Назад</a></td>
+      <td width="34%" align="center" valign="top"><a
+ href="../index.html" accesskey="H">Домой</a></td>
+      <td width="33%" align="right" valign="top"><a
+ href="vim.html" accesskey="N">Вперед</a></td>
+    </tr>
+    <tr>
+      <td width="33%" align="left" valign="top">Textutils</td>
+      <td width="34%" align="center" valign="top"><a
+ href="appendixa.html" accesskey="U">Наверх</a></td>
+      <td width="33%" align="right" valign="top">Vim</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</body>
+</html>

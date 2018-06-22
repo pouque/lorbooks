@@ -1,0 +1,1002 @@
+<HTML
+><HEAD
+><TITLE
+>Dear Winfried,...</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="CD-Writing HOWTO"
+HREF="t1.htm"><LINK
+REL="PREVIOUS"
+TITLE="Создание CD-R"
+HREF="x197.htm"><LINK
+REL="NEXT"
+TITLE="Поиск неисправностей"
+HREF="x506.htm"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>CD-Writing HOWTO</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x197.htm"
+ACCESSKEY="P"
+>&#1055;&#1088;&#1077;&#1076;.</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x506.htm"
+ACCESSKEY="N"
+>&#1057;&#1083;&#1077;&#1076;.</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="AEN295">Dear Winfried,...</H1
+><P
+>Другими словами, эта секция обычно известна как "часто задаваемые вопросы и
+ответы". Если у Вас проблемы с Вашим партнером, детьми или собакой, просто
+отвлекитесь на запись CD-R или другое развлечение.</P
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN298">Насколько чувствителен процесс создания?</H2
+><P
+>Протестируйте это. Используйте опцию -dummy для выполнения холостого запуска
+cdrecord. Делайте все, что хотите делать и посмотрите, выживет ли процесс записи.</P
+><P
+>Если вы подаете вывод из mkisofs прямо на cdrecord, тогда интенсивные дисковые процессы, такие как обновление <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>locate</I
+></SPAN
+> - базы данных понижают максимальную скорость обработки и могут повредить CD. На старых машинах Вам лучше проверить такие процессы в <TT
+CLASS="LITERAL"
+>cron</TT
+>, <TT
+CLASS="LITERAL"
+>at</TT
+> или <TT
+CLASS="LITERAL"
+>anacron</TT
+> на то время, в которое Вы создаете CD-ROM.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN306">Отражается ли фрагментация на производительности?</H2
+><P
+>Фрагментация - обычно настолько низкая, что не отражается. Однако, при желании,
+Вы можете создать патологические случаи фрагментации, которые понижают
+производительность вашего диска до 100кб/с. Не делайте так. :-)
+Да, файлы на диске фрагментировались на диске в течение двух лет. Файловая
+система быстрая и полная. Всегда оставляйте 10 или 20 процентов свободного
+пространства, Вы должны подходить с уважением к записи CD-R.</P
+><P
+>Если вы не уверенны, рассмотрите сообщения при загрузке, процент фрагментации
+сообщается при проверке файловых систем. Вы можете проверить эту величину
+опасной командой.</P
+><PRE
+CLASS="SCREEN"
+>shell&gt; e2fsck -n  /dev/sda5        # '-n' - необходимо!
+[stuff deleted -- ignore any errors]
+/dev/sda5: 73/12288 files (12.3% non-contiguous)</PRE
+><P
+>В этом примере фрагментация, кажется, очень высокой - но на этой файловой
+системе только 73 очень маленьких файла. Так что величина - НЕ сигнал тревоги.</P
+><P
+>Существует экспериментальная утилита называемая e2defrag для дефрагментации
+extended-2 файловой системы. Текущая версия пока еще не работает надежно, даже
+для личного использования. Если Вы действительно хотите дефрагментировать Вашу
+файловую систему, создайте резервную копию (лучше две копии), потренируйтесь
+восстанавливать данные, затем создайте новую файловую систему (с уничтожением
+старой) и восстановите данные с копии. Этот набросок - на данный
+момент наиболее безопасный способ.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN313">Можно ли сохранять образ CD на файловой системе UMSDOS?</H2
+><P
+>Да. Единственная файловая система, которая не надежна и не достаточно быстра
+для записи - <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>сетевая файловая система</I
+></SPAN
+>
+(<SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>NFS</I
+></SPAN
+>).
+
+Я сам использую UMSDOS, чтобы совместно использовать дисковое пространство
+между Linux и DOS/Win на PC (486/66), специально для записи CD.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN318">Можно ли обойти iso9660 ограничения?</H2
+><P
+>Да. Вы можете помещать любую файловую систему на CD. Но другие операционные
+системы не смогут работать с этим CD.
+
+Вот рецепт:</P
+><P
+></P
+><UL
+><LI
+><P
+>Создаете пустой файл размером 650МБ.
+<PRE
+CLASS="SCREEN"
+>dd if=/dev/zero of="empty_file" bs=1024k count=650</PRE
+></P
+></LI
+><LI
+><P
+>В этом файле создаете файловую систему ext2
+<PRE
+CLASS="SCREEN"
+>shell&gt; /sbin/mke2fs  -b 2048  empty_file
+empty_file is not a block special device.
+Proceed anyway? (y,n) y</PRE
+></P
+></LI
+><LI
+><P
+>Монтируете этот пустой файл через петлевое устройство
+(для этого Вам нужна относительно свежая mount; читайте выше).
+
+<PRE
+CLASS="SCREEN"
+>mount -t ext2 -o loop=/dev/loop1 empty_file /mnt</PRE
+></P
+></LI
+><LI
+><P
+>Копируете файлы в /mnt и затем де-монтируете.</P
+></LI
+><LI
+><P
+>Используете <TT
+CLASS="LITERAL"
+>cdrecord</TT
+> для  empty&lowbar;file
+(который больше не пустой) как будто это образ iso9660.</P
+></LI
+></UL
+><P
+>Если Вы хотите сделать запись в <TT
+CLASS="LITERAL"
+>/etc/fstab</TT
+> для такого CD,
+отключите его проверку при запуске системы, например:</P
+><PRE
+CLASS="SCREEN"
+>/dev/cdrom  /cdrom  ext2  defaults,ro  0 0</PRE
+><P
+>Первый 0 подразумевает "не включать в дампы", второй (важный) подразумевает
+"не проверять ошибки при запуске" (fsck не в состоянии проверять CD на ошибки).</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN340">Как читать и записывать звуковые CD?</H2
+><P
+>Для этого есть несколько программных пакетов. Один из новейших, "cdparanoya",
+может быть загружен с:</P
+><A
+NAME="AEN343"><BLOCKQUOTE
+CLASS="BLOCKQUOTE"
+><P
+><A
+HREF="http://www.xiph.org/paranoia/"
+TARGET="_top"
+>http://www.xiph.org/paranoia/</A
+></P
+></BLOCKQUOTE
+><P
+>Или Вы можете попробовать комбинацию "cdda2wav" и "sox", доступные на sunsite, и
+его зеркалах:</P
+><A
+NAME="AEN347"><BLOCKQUOTE
+CLASS="BLOCKQUOTE"
+><P
+CLASS="LITERALLAYOUT"
+><A
+HREF="ftp://sunsite.unc.edu/pub/Linux/apps/sound/cdrom/cdda2wav0.71.src.tar.gz"
+TARGET="_top"
+>ftp://sunsite.unc.edu/pub/Linux/apps/sound/cdrom/cdda2wav0.71.src.tar.gz</A
+><br>
+<A
+HREF="ftp://sunsite.unc.edu/pub/Linux/apps/sound/convert/sox-11gamma-cb3.tar.gz"
+TARGET="_top"
+>ftp://sunsite.unc.edu/pub/Linux/apps/sound/convert/sox-11gamma-cb3.tar.gz</A
+></P
+></BLOCKQUOTE
+><P
+><TT
+CLASS="LITERAL"
+>cdda2wav</TT
+> позволит Вам получать указанный интервал (или целый трек) с вашего
+звукового CD и преобразовать его в .wav-файл. <TT
+CLASS="LITERAL"
+>sox</TT
+>
+преобразовывает wav-файлы обратно в cdda-формат (Audio-CD), т.о. с помощью <TT
+CLASS="LITERAL"
+>cdrecord</TT
+> они могут быть записаны на CD-R.
+Если Вы используете последнюю версию <TT
+CLASS="LITERAL"
+>cdrecord</TT
+>, то
+Вам не обязательно нужен "sox", потому что в cdrecord встроена поддержка
+для .au и .wav файлов.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN356">Как исследовать SCSI устройства после загрузки?</H2
+><P
+>Файл <TT
+CLASS="LITERAL"
+>drivers/scsi/scsi.c</TT
+> содержит информацию</P
+><PRE
+CLASS="SCREEN"
+>/*
+* Использование: echo "scsi add-single-device 0 1 2 3" &#62;/proc/scsi/scsi
+* С " 0 1 2 3 " замененным на ваш "Id Lun главного канала".
+* Рассматривайте это свойство как BETA.
+* ПРЕДОСТЕРЕЖЕНИЕ: Это не для hotplugging периферии. Так как
+* SCSI не был разработан для этого, Вы можете повредить вашу
+* аппаратуру!
+* Однако это допускается включать для
+* уже подсоединенного устройства. Это, возможно, не
+* гарантирует, что устройство не исказит продолжающуюся передачу данных.
+*/</PRE
+><P
+>В оригинале:</P
+><PRE
+CLASS="SCREEN"
+>/*
+ * Usage: echo "scsi add-single-device 0 1 2 3" &#62;/proc/scsi/scsi
+ * with  "0 1 2 3" replaced by your "Host Channel Id Lun".
+ * Consider this feature BETA.
+ *     CAUTION: This is not for hot plugging your peripherals. As
+ *     SCSI was not designed for this you could damage your
+ *     hardware !
+ * However perhaps it is legal to switch on an
+ * already connected device. It is perhaps not
+ * guaranteed this device doesn't corrupt an ongoing data transfer.
+ */</PRE
+><P
+>Заметьте, что это можно использовать, только если вы добавляете
+SCSI-устройства в конец цепи. Вставка новых SCSI устройств в существующую цепь
+нарушает именование устройств (каталог /dev) и может полностью разрушить
+содержимое вашего жесткого диска.</P
+><P
+>Некоторым версии ядра вовсе не нравится пере-сканировать SCSI шину и
+Ваша система может прочно зависнуть при попытке применить вышеприведенное.
+Вас предупредили.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN365">Можно ли делать 1:1 копию данных CD?</H2
+><P
+>Да. Но Вы должны знать, что любые ошибки при чтении оригинала (из-за пыли или
+царапин) приведут к дефектной копии. Заметьте, что оба метода не будут работать
+с аудио CD. Для аудио CD Вы должны использовать cdrdao или cdda2wav.</P
+><P
+>Первый случай: у Вас CD-writer и отдельный привод CD-ROM. Подав команду</P
+><PRE
+CLASS="SCREEN"
+>cdrecord -v dev=0,6,0 speed=2 -isosize /dev/scd0</PRE
+><P
+>Вы читаете поток данных из привода CD-ROM, присоединенного как <TT
+CLASS="LITERAL"
+>/dev/scd0</TT
+> и записываете его непосредственно на CD-writer.</P
+><P
+>Второй случай: у Вас нет отдельного привода CD-ROM. В этом случае Вы должны использовать устройство записи, чтобы считать CD-ROM:</P
+><PRE
+CLASS="SCREEN"
+>dd if=/dev/scd0 of=cdimage</PRE
+><P
+>Эта команда считывает содержимое CD-ROM с устройства /dev/scd0 и записывает в
+файл cdimage. Содержимое файла эквивалентно тому, что выдает <TT
+CLASS="LITERAL"
+>mkisofs</TT
+>,
+так что Вы должны продолжать, как описано в начале этого документа (где дается
+файл cdimage на вход cdrecord).
+Если Вы хотите видеть шкалу прогресса и другие модные вещи, Вы можете
+использовать JЖrg Schillings  <TT
+CLASS="LITERAL"
+>sdd</TT
+>.</P
+><P
+>В случае ошибок, установите последнюю версию cdrecord, которая поставляется с
+утилитой "readcd" (расположена в misc/). Она даст Вам тот же результат, что и
+dd, но в случае ошибок читает сектора на CD-ROM несколько раз.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN378">Может ли Linux читать Joliet CD? (устаревший ответ)</H2
+><P
+>Да. Новые ядра (2.0.36 и следующие 2.2) имеют встроенную поддержку joliet формата.
+Запомните, что Вы должны использовать обе опции в вашем /etc/fstab: ключевое слово
+iso9660 и joliet, подробнее см. <A
+HREF="http://www-plateau.cs.berkeley.edu/people/chaffee/joliet.html"
+TARGET="_top"
+>http://www-plateau.cs.berkeley.edu/people/chaffee/joliet.html</A
+>.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN382">Как я могу читать/монтировать CD-ROM на устройстве записи CD?</H2
+><P
+>Так же, как Вы делаете с обычными приводами CD-ROM. Никаких хитростей.
+Обратите внимание, Вы должны использовать  scd-устройства (SCSI CD-ROM)
+чтобы монтировать CD для чтения, аналогично, если у Вас ATAPI CD-ROM (помните, 
+вы конфигурировали ваши ATAPI-устройства как SCSI). Примерная запись в /etc/fstab:</P
+><PRE
+CLASS="SCREEN"
+>/dev/scd0  /cdrom  iso9660  ro,user,noauto  0  0</PRE
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN386">Как поместить больше данных на CD-R?</H2
+><P
+>Используйте <TT
+CLASS="LITERAL"
+>bzip2</TT
+> вместо любого другого
+компрессора, такого как <TT
+CLASS="LITERAL"
+>gzip</TT
+> или
+<TT
+CLASS="LITERAL"
+>pkzip</TT
+>. Это сохранит Вам до 30&percnt;
+дискового пространства для больших (&gt;100kb) файлов.
+Вы можете загрузить его с:</P
+><A
+NAME="AEN392"><BLOCKQUOTE
+CLASS="BLOCKQUOTE"
+><P
+><A
+HREF="http://www.muraroa.demon.co.uk/"
+TARGET="_top"
+>http://www.muraroa.demon.co.uk/</A
+></P
+></BLOCKQUOTE
+><P
+>Вместо записи истинного аудио CD, Вы можете конвертировать ваши wav-файлы в
+mp3-аудио файлы и поместить их на ISO-9660 файловую систему как обычные файлы.
+Обычно MPEG III дает компрессию 1:10. Конечно, большинство CD проигрывателей
+не способны читать файлы... это недостаток. С другой стороны, почему бы не играть
+музыку на следующей вечеринке с жесткого диска? 18Гбайт хватит на
+3000-4000 наименований. :-)</P
+><P
+>Программный MPEG III кодировщик доступен по
+<A
+NAME="AEN397"><BLOCKQUOTE
+CLASS="BLOCKQUOTE"
+><P
+><A
+HREF="http://www.sulaco.org/mp3/"
+TARGET="_top"
+>http://www.sulaco.org/mp3/</A
+></P
+></BLOCKQUOTE
+></P
+><P
+>MPEG III проигрыватель доступен по
+<A
+NAME="AEN401"><BLOCKQUOTE
+CLASS="BLOCKQUOTE"
+><P
+><A
+HREF="http://www.mpg123.org/"
+TARGET="_top"
+>http://www.mpg123.org/</A
+></P
+></BLOCKQUOTE
+></P
+><P
+>Для записи голоса, вы можете попробовать уменьшить размер, используя
+<TT
+CLASS="LITERAL"
+>shorten</TT
+> или "GSM сжатие речи с потерями":</P
+><A
+NAME="AEN406"><BLOCKQUOTE
+CLASS="BLOCKQUOTE"
+><P
+CLASS="LITERALLAYOUT"
+><A
+HREF="ftp://svr-ftp.eng.cam.ac.uk/pub/comp.speech/"
+TARGET="_top"
+>ftp://svr-ftp.eng.cam.ac.uk/pub/comp.speech/</A
+><br>
+<A
+HREF="http://kbs.cs.tu-berlin.de/~jutta/toast.html"
+TARGET="_top"
+>http://kbs.cs.tu-berlin.de/~jutta/toast.html</A
+></P
+></BLOCKQUOTE
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN410">Как создать загрузочный CD-ROM?</H2
+><P
+>У Вас должна быть 1.44Мб загрузочная дискета. Создайте точный образ дискеты командой:</P
+><PRE
+CLASS="SCREEN"
+>dd if=/dev/fd0 of=boot.img bs=18k</PRE
+><P
+>Поместите этот образ в каталоге, содержащем собрание Ваших файлов (или в его
+подкаталоге, как Вам нравится). Скажите mkisofs об этом фале, используя опции
+'-b' и '-c'. Подробнее читайте файл README.eltorino в дистрибутиве mkisofs.</P
+><P
+>Интересное применение загрузочных CD  - вирусобезопасные DOS или Windows системы.
+Они сэкономят Вам деньги на жестком диске, (если у Вас есть сеть и Вы используете
+samba для помещения пользовательских фалов на файл-сервере).
+В немецком компьютерном журнале, изданном 11/99, об этом есть статья
+на странице 206 (<A
+HREF="http://www.heise.de/"
+TARGET="_top"
+>http://www.heise.de/</A
+>).</P
+><P
+>Некоторые подробности о загрузочном RedHat CD-ROM доступны на <A
+HREF="http://members.bellatlantic.net/~smithrod/rhjol-technical.html"
+TARGET="_top"
+>http://members.bellatlantic.net/~smithrod/rhjol-technical.html</A
+>.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN419">Как создать записываемый CD-ROM подобно жесткому диску?</H2
+><P
+>Существует <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>overlay filesystem</I
+></SPAN
+>
+доступная для Linux, которая монтируется поверх
+CD-ROM и перехватывает все операции записи. Новые или модифицированные файлы
+помещаются в другом месте, но для пользователя CD-ROM выглядит модифицированным.
+Подробнее см. <A
+HREF="http://home.att.net/~artnaseef/ovlfs/ovlfs.html"
+TARGET="_top"
+>http://home.att.net/~artnaseef/ovlfs/ovlfs.html</A
+>.</P
+><P
+>Если этого Вам не достаточно: подождите поддержки под Linux файловой системы UDF
+или помогите ее разработке (см. <A
+HREF="http://trylinux.com/projects/udf/"
+TARGET="_top"
+>http://trylinux.com/projects/udf/</A
+>). На данный момент из-за ограничений в драйверах CD-ROM в ядре Linux поддерживается только чтение CD-носителя.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN426">Можно ли использовать несколько устройств записи одновременно?</H2
+><P
+>Да. Проверена работа, по крайней мере, 3-х устройств записи на
+полной скорости (6x) на PC с 233 Mhz и одной SCSI шиной под ядром 2.2.12.
+Для этого нужна свежая версия ядра Linux (2.2.12 или выше).</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN429">Как насчет Solaris, * BDS,AIX, HP_UX, и т.д.?
+Поддерживается ли мой вариант Unix?</H2
+><P
+>Только глава 2 специфична для Linux. Вы можете применить главу 3 и 4 даже если у
+Вас запущена операционная система не Linux семейства. Пожалуйста, смотрите
+README.NetBSD, README.aix, README.hpux, README.next, README.solaris,
+README.sunos, README.vms or README.xxxBSD из cdrecord-дистрибутива.</P
+><P
+>Вероятно да. Скомпилируйте cdrecord для вашей платформы и
+дайте команду "cdrecord -scanbus". Прочтите файл README.* поставляемый с
+исходным кодом cdrecord для вашего Unix. Однако, не все варианты Unix могут читать
+RockRidge, Joliet или HFS расширения на ваших только что записанных CD-R.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN433">Где поместить постоянные локальные настройки?</H2
+><P
+>У Вас есть два варианта. Либо Вы используете встроенный конфигурационный файл для
+cdrecord, либо используете shell-оболочку, как показано ниже. Этот shell-скрипт
+строка за строкой читает конфигурационный файл, который содержит опции и параметры cdrecord. Имена такие же, как в командной строке, но
+без предшествующей черточки. Комментарии разрешены. Например:</P
+><PRE
+CLASS="SCREEN"
+># быть многословным
+v
+# установить скорость записи
+speed=2
+# координаты устройства в форме BUS,ID,LUN
+dev=0,6,0</PRE
+><P
+>Конфигурационные файлы для оболочки находятся в /etc/cdrecord/ и должны указываться
+в командной строке. Пример: Если Вы хотите использовать конфигурацию
+/etc/cdrecord/mywriter.cfg, то Вы можете дать команду
+"cdrecord.sh mywriter.cfg -audio track1...". Все после mywriter.cfg
+передается cdrecord.</P
+><PRE
+CLASS="SCREEN"
+>#! /bin/bash
+
+CFGDIR="/etc/cdrecord"
+
+CFG="$1"
+shift
+ARGS_LEFT="$@"
+
+if [ ! -f "$CFGDIR/$CFG" ]
+then
+    echo "Конфигурационный файл $CFGDIR/$CFG не найден. Выходим."
+    exit 1
+fi
+
+while read LINE
+do
+    case $LINE in
+        \#*|"") continue;;
+    esac
+    old_IFS="$IFS"
+    IFS="$IFS="
+    set -- $LINE
+    IFS="$old_IFS"
+    O_NAME="$1"
+    O_VALUE=""
+    while shift
+    do
+        case $1 in
+            "") continue;;
+        esac
+        O_VALUE="$1"
+    done
+
+    if [ -z "$O_VALUE" ]
+    then
+        O_CDRECORD="$O_CDRECORD -$O_NAME "
+        continue
+    fi
+    O_CDRECORD="$O_CDRECORD $O_NAME=$O_VALUE "
+
+done &#60; "$CFGDIR/$CFG"
+
+set -x    #DEBUG
+exec cdrecord $O_CDRECORD $ARGS_LEFT
+echo "Выполнение cdrecord потерпело неудачу."</PRE
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN439">Как можно получить информацию о CD?</H2
+><P
+>Где-то за первыми 32к на CD, есть блок с информацией о помещенном CD. Вы можете извлечь
+информацию следующим скриптом:</P
+><PRE
+CLASS="SCREEN"
+>#! /bin/bash
+
+RD=/dev/cdrom
+for i in 32768,7   32776,32 32808,32 32958,128 33086,128 33214,128 \
+	 33342,128 33470,32 33581,16 33598,16  33615,16  33632,16
+do
+    old_IFS="$IFS"
+    IFS=","
+    set -- $i
+    IFS="$old_IFS"
+    OFFSET=$1
+    LENGTH=$2
+    echo "*`dd if=$RD bs=1 skip=$OFFSET count=$LENGTH   2&#62; /dev/null`#"
+done</PRE
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN443">Как насчет перезаписи?</H2
+><P
+>Когда перезаписывается CD-RW носитель, указывается параметр blank=fast для cdrecord.
+Это все. Подробнее об этом параметре см. man-страницу cdrecord.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN446">Как создать multi-session CD?</H2
+><P
+>Прежде всего, образ мульти-сессионного CD должен быть отформатирован, используя
+ISO9660-файловую систему с RockRidge-расширением. И Вы должны использовать cdrecord
+опцию -multi пока хотите добавлять следующие сессии. Т.е. по крайней мере, для
+первой сессии, Вы должны использовать -multi.</P
+><P
+>Некоторые CD-writer-ы не поддерживают CD-ROM XA mode 2 или session-at-once
+(SAO), поэтому Вам необходимо в командной строке cdrecord указать ключ -data.</P
+><P
+>Образы второй и последующих сессий немного сложнее в создании. mkisofs должен
+знать, где начинается свободное пространство на CD-R диске. Эта информация может
+быть получена, используя cdrecord опцию -msinfo (см. пример ниже)</P
+><PRE
+CLASS="SCREEN"
+>shell&gt; NEXT_TRACK=`cdrecord -msinfo dev=0,6,0`
+shell&gt; echo $NEXT_TRACK
+shell&gt; mkisofs -R -o cd_image2 -C $NEXT_TRACK -M /dev/scd5
+         private_collection/ \</PRE
+><P
+>Более подробная информация приведена в файле README.multi, который
+распространяется с cdrecord.&#13;</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN453">Обязан ли я использовать SCSI адаптер, поставляемый с устройством записи?</H2
+><P
+>Сообщено по: В большинстве руководств к CD-writer говорится о необходимости
+использовать отдельную SCSI шину, если есть CD-ROM и CD-writer
+и я увидел это по такому сценарию:</P
+><P
+>Adaptec 2940UW SCSI карта, 24x SCSI CD-ROM и 4x4 SCSI CD-writer.  Когда я
+получил CD-writer, он шел вместе со своей ISA SCSI картой, которая
+могла работать только с одним устройством.
+В общем, я бросил ее и использовал мою более лучшую adaptec карту
+для всех целей. Я заметил, что достаточно часто при записи на 4x скорости
+происходило опустошение буфера, но как только я присоединил ISA SCSI
+карту, проблемы исчезли. Я знаю двух других людей (оба используют adaptec 2940
+карты), у кого происходили подобные симптомы, особенно при записи
+с CD-ROM на CD-recorder. Тем не менее, у меня никогда не было проблем
+при записи с жесткого диска на CD-writer на той же шине.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN457">Как создавать диски по сети?</H2
+><P
+>Обычно передача файлов по FTP, даже по 10Mbit ethernet, достаточно быстра для
+поставки информации CD-recorder-у на четвертой (4x) скорости. Вы можете
+соединить по fifo каналу ftp-client и cdrecord. Сначала создайте fifo
+с названием cdimage:</P
+><PRE
+CLASS="SCREEN"
+>mkfifo cdimage
+ftp other.host.org
+get cdimg cdimage</PRE
+><P
+>Затем обращайтесь с cdimage как с обычным файлом, т.е. дайте следующую команду:</P
+><PRE
+CLASS="SCREEN"
+>cdrecord dev=0,1,0 speed=2 cdimage</PRE
+><P
+>Ваш ftp-client будет уведомлен, когда cdrecord захочет считать из файла,
+и начнет передачу данных с ftp хоста.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN464">Я слышу треск или щелчок в конце каждой дорожки.</H2
+><P
+>Чтобы избавиться от треска Вы должны использовать режим disk-at-once (DAO).</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN467">Как я могу сделать настройки, чтобы пользователь отличный от root
+тоже мог создавать CD?</H2
+><P
+>Вы можете добавить setuid-бит к исполняемому файлу cdrecord. Однако это
+может быть небезопасно. Простая установка прав доступа на файлах устройств
+не поможет, так как cdrecord подает привилегированные
+команды по обобщенному(generic) SCSI интерфейсу.</P
+><PRE
+CLASS="SCREEN"
+>which cdrecord
+chown root.root /usr/bin/cdrecord
+chmod 4111 /usr/bin/cdrecord</PRE
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN471">Где я могу взять стандарты "Yellow Book" и "Orange Book"?</H2
+><P
+>Вы можете получить печатные спецификации от Philips, но они очень дорогостоящие.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN474">Я ищу информацию по созданию Video-CD под Linux.</H2
+><P
+>Здесь вы можете найти утилиты для создания MPEG видеоклипов и Video-CDs:
+<A
+HREF="http://www.mainconcept.de/"
+TARGET="_top"
+>http://www.mainconcept.de/</A
+></P
+><P
+><A
+HREF="http://www.johanni.de/munich-vision/vcd/"
+TARGET="_top"
+>http://www.johanni.de/munich-vision/vcd/</A
+></P
+><P
+>Политически корректные люди ссылаются на Berkeley-утилиты и другие
+YUV-стратегии. Их использование осложнено, требует много времени и
+дискового пространства и не дает Вам аудио дорожек. Я рекомендую использовать
+приложения более высокого концептуального уровня, ссылки на которые даны выше.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN481">Что проще в установке IDE или SCSI?</H2
+><P
+>SCSI CD-writer немного проще установить в отношении записи CD под
+Linux. И они, как сообщают, имеют лучшее восстановление ошибок. Если это все
+перекрывается более высокой ценой, то не может быть однозначного ответа.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN484">Как я могу перерасходовать CD, используя &lcub;cdrecord,cdrdao&rcub;?</H2
+><P
+>Перерасход CD-R - обычное дело. Но вы рискуете тем, что Ваши данные не поместятся
+на CD-ROM, и это все. В программном обеспечении для Linux
+нет ограничения в 650 Мбайт.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN487">Что будет делать cdrecord, если он останавливается при чтении
+входного потока из канала?</H2
+><P
+>Он закончит запись. Так что Вы можете просто соединить в канал Вашу любимую
+утилиту резервирования и cdrecord, подобно "bru -size=640m -f - &verbar; cdrecord
+dev=0,1,0 speed=2 -". Если ваша резервная копия занимает несколько CD-R дисков,
+Вам нужно специально позаботиться об утилите резервирования.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN490">Существует ли эквивалент ignore=hdX для ide-scsi эмуляции?</H2
+><P
+>Я не знаю другого способа, но буду только приветствовать, если кто-либо
+добавит это свойство в код ядра Linux.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN493">Сколько раз можно повторно использовать CD-RW до его неисправности?</H2
+><P
+>Хороший вопрос.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN496">Какой формат выбрать для платформенно-независимого CD-ROM?</H2
+><P
+>CD-ROM читаемый на всех платформах, может использовать только "чистый"
+ISO 9660 формат. Это означает глупые 8+3 имена файлов из старого MS-DOS
+и без каких-либо расширений  HFS (Macintosh), Joliet (Microsoft) или
+RockRidge (новые Unix-ы).
+В нем нет никаких расширений для длинных имен, поэтому он может быть прочитан
+любой операционной системой.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN499">Возможна ли мульти-сессионная запись аудио дорожек?</H2
+><P
+>Аудио CD-проигрыватели способны распознавать дорожки, записанные только
+в первую сессию. Другими словами, Вы не можете добавить аудио дорожки,
+используя последующие сессии. Однако запись дорожек во вторую сессию эффективно скрывает их
+от аудио CD-проигрывателей. Таким образом, Вы препятствуете появлению глухих
+дорожек на вашем mixed mode CD (смешанные аудио и данные).</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN502">Какие мне нужны аппаратные ресурсы? Достаточно ли старого Pentium?</H2
+><P
+>Ответ зависит от того, что Вы хотите. Если Вам нужен повод купить новый
+компьютер, вот ответ от интернациональной ассоциации производителей компьютеров:
+Что бы Вы ни планировали сделать, Вам нужен процессор на 800 Mhz.
+Так как он не установится в вашу материнскую плату, Вам также нужна новая
+материнская плата. Самое простое решение - просто купить обычный полный
+комплект, какой рекламируют по телевидению. И можете игнорировать
+дальнейшую часть этой секции.</P
+><P
+>Теперь случай, кода Вам нужен разумный ответ: я успешно записал
+несколько CD-ROM дисков на "486" 66 Mhz. Хотя MS уже не рассматривает его
+как персональный компьютер, но рекомендует запустить на нем CE версию
+(было увидено на CeBIT), Linux очень даже хорошо работает на Pentium
+процессорах и даже способен записать CD. Вы можете достаточно просто выяснить,
+хватит ли мощности Вашего компьютера для записи CD-ROM простым тестом.
+Просто добавьте в командную строку при запуске cdrecord ключ -dummy
+и лазер останется выключенным. И понаблюдайте за процессом создания.</P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x197.htm"
+ACCESSKEY="P"
+>&#1055;&#1088;&#1077;&#1076;.</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="t1.htm"
+ACCESSKEY="H"
+>&#1053;&#1072;&#1095;&#1072;&#1083;&#1086;</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x506.htm"
+ACCESSKEY="N"
+>&#1057;&#1083;&#1077;&#1076;.</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Создание CD-R</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Поиск неисправностей</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,639 @@
+<HTML
+><HEAD
+><TITLE
+>Installing Groff-1.18</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Microsoft FrontPage 4.0"/><LINK
+REL="HOME"
+TITLE="Linux From Scratch"
+HREF="http://www.linuxfromscratch.org/view/4.0/index.html"/><LINK
+REL="UP"
+TITLE="Installing basic system software"
+HREF="http://www.linuxfromscratch.org/view/4.0/chapter06/chapter06.html"/><LINK
+REL="PREVIOUS"
+TITLE="Installing Less-374"
+HREF="http://www.linuxfromscratch.org/view/4.0/chapter06/less.html"/><LINK
+REL="NEXT"
+TITLE="Installing Textutils-2.1"
+HREF="http://www.linuxfromscratch.org/view/4.0/chapter06/textutils.html"/></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#006000"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Linux From Scratch: Версия 4.0</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="less.html"
+ACCESSKEY="P"
+>Назад</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Глава 6. Установка основных компонентов
+        системы</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="textutils.html"
+ACCESSKEY="N"
+>Вперед</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"/></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="ch06-groff"
+>Установка Groff-1.18</A
+></H1
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="screen"
+>Приблизительное время компиляции:           1.08 SBU
+Необходимое дисковое пространство:  18 MB</PRE
+></TD
+></TR
+></TABLE
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="AEN3114"
+>Инсталляция Groff</A
+></H2
+><P
+>Для инсталляции Groff выполните:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="screen"
+><TT
+CLASS="userinput"
+><B
+>./configure --prefix=/usr &amp;&amp;
+make PROCESSEDEXAMPLEFILES=&quot;&quot; &amp;&amp;
+make PROCESSEDEXAMPLEFILES=&quot;&quot; install &amp;&amp;
+ln -s soelim /usr/bin/zsoelim &amp;&amp;
+ln -s eqn /usr/bin/geqn &amp;&amp;
+ln -s tbl /usr/bin/gtbl</B
+></TT
+></PRE
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="AEN3120"
+>Пояснения команд</A
+></H2
+><P
+><TT
+CLASS="userinput"
+><B
+>make PROCESSEDEXAMPLEFILES="":</B
+></TT
+>  У Groff существует несколько зависимостей,
+    которые мы не будем устанавливать. Эта
+    опция отключает потребность в них.</P
+><P
+><TT
+CLASS="userinput"
+><B
+>ln -s ...</B
+></TT
+>: Эти символические ссылки необходимы для
+    корректной работы некоторых программ
+<TT
+CLASS="userinput"
+><B
+>xman</B
+></TT
+>  и других программ работы с документами groff/man.</P
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="AEN3127"
+>Contents of Groff</A
+></H2
+><P
+>Last checked against version 1.17.2.</P
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="AEN3130"
+>Program Files</A
+></H3
+><P
+>addftinfo, afmtodit, eqn, geqn (link to eqn), grn, grodvi, groff, grog,
+grolbp, grolj4, grops, grotty, gtbl (link to tbl), hpftodit, indxbib, lkbib,
+lookbib, mmroff, neqn, nroff, pfbtops, pic, post-grohtml, pre-grohtml, refer,
+soelim, tbl, tfmtodit, troff and zsoelim (link to soelim)</P
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="AEN3133"
+>Descriptions</A
+></H3
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="AEN3135"
+>addftinfo</A
+></H4
+><P
+>addftinfo reads a troff font file and adds some additional font-metric 
+information that is used by the groff system.</P
+></DIV
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="AEN3138"
+>afmtodit</A
+></H4
+><P
+>afmtodit creates a font file for use with groff and grops.</P
+></DIV
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="AEN3141"
+>eqn</A
+></H4
+><P
+>eqn compiles descriptions of equations embedded within troff input files 
+into commands that are understood by troff.</P
+></DIV
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="AEN3144"
+>geqn</A
+></H4
+><P
+>geqn is the GNU implementation of eqn.</P
+></DIV
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="AEN3147"
+>grn</A
+></H4
+><P
+>grn is a groff preprocessor for gremlin files.</P
+></DIV
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="AEN3150"
+>grodvi</A
+></H4
+><P
+>grodvi is a driver for groff that produces TeX dvi format.</P
+></DIV
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="AEN3153"
+>groff</A
+></H4
+><P
+>groff is a front-end to the groff document formatting system. Normally it 
+runs the troff program and a post-processor appropriate for the selected 
+device.</P
+></DIV
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="AEN3156"
+>grog</A
+></H4
+><P
+>grog reads files and guesses which of the groff options -e, -man, -me, 
+-mm, -ms, -p, -s, and -t are required for printing files, and prints the groff
+command including those options on the standard output.</P
+></DIV
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="AEN3159"
+>grolbp</A
+></H4
+><P
+>grolbp is a groff driver for Canon CAPSL printers (LBP-4 and LBP-8
+series laser printers).</P
+></DIV
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="AEN3162"
+>grolj4</A
+></H4
+><P
+>grolj4 is a driver for groff that produces output in PCL5 format suitable 
+for an HP Laserjet 4 printer.</P
+></DIV
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="AEN3165"
+>grops</A
+></H4
+><P
+>grops translates the output of GNU troff to Postscript.</P
+></DIV
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="AEN3168"
+>grotty</A
+></H4
+><P
+>grotty translates the output of GNU troff into a form suitable for 
+typewriter-like devices.</P
+></DIV
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="AEN3171"
+>gtbl</A
+></H4
+><P
+>gtbl is the GNU implementation of tbl.</P
+></DIV
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="AEN3174"
+>hpftodit</A
+></H4
+><P
+>hpftodit creates a font file for use with groff -Tlj4 from an HP
+tagged font metric file.</P
+></DIV
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="AEN3177"
+>indxbib</A
+></H4
+><P
+>indxbib makes an inverted index for the bibliographic databases a
+specified file for use with refer, lookbib, and lkbib.</P
+></DIV
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="AEN3180"
+>lkbib</A
+></H4
+><P
+>lkbib searches bibliographic databases for references that contain 
+specified keys and prints any references found on the 
+standard output.</P
+></DIV
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="AEN3183"
+>lookbib</A
+></H4
+><P
+>lookbib prints a prompt on the standard error (unless the standard input 
+is not a terminal), reads from the standard input a line containing a set 
+of keywords, searches the bibliographic databases in a specified file for
+references containing those keywords, prints any references found on the
+standard output and repeats this process until the end of input.</P
+></DIV
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="AEN3186"
+>mmroff</A
+></H4
+><P
+>mmroff is a simple preprocessor for groff.</P
+></DIV
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="AEN3189"
+>neqn</A
+></H4
+><P
+>The neqn script formats equations for ascii output.</P
+></DIV
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="AEN3192"
+>nroff</A
+></H4
+><P
+>The nroff script emulates the nroff command using groff.</P
+></DIV
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="AEN3195"
+>pfbtops</A
+></H4
+><P
+>pfbtops translates a Postscript font in .pfb format 
+to ASCII.</P
+></DIV
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="AEN3198"
+>pic</A
+></H4
+><P
+>pic compiles descriptions of pictures embedded within troff or TeX input 
+files into commands that are understood by TeX or troff.</P
+></DIV
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="AEN3201"
+>pre-grohtml and post-grohtml</A
+></H4
+><P
+>pre- and post-grohtml translate the output of GNU troff 
+to html.</P
+></DIV
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="AEN3204"
+>refer</A
+></H4
+><P
+>refer copies the contents of a file to the standard output, except that 
+lines between .[ and .] are interpreted as citations, and lines between .R1 
+and .R2 are interpreted as commands about how citations are to be 
+processed.</P
+></DIV
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="AEN3207"
+>soelim</A
+></H4
+><P
+>soelim reads files and replaces lines of the form 
+<EM
+>.so file</EM
+> by the contents of
+<EM
+>file</EM
+>.</P
+></DIV
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="AEN3212"
+>tbl</A
+></H4
+><P
+>tbl compiles descriptions of tables embedded within troff input files 
+into commands that are understood by troff.</P
+></DIV
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="AEN3215"
+>tfmtodit</A
+></H4
+><P
+>tfmtodit creates a font file for use with <TT
+CLASS="userinput"
+><B
+>groff
+-Tdvi</B
+></TT
+>.</P
+></DIV
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="AEN3219"
+>troff</A
+></H4
+><P
+>troff is highly compatible with Unix troff. Usually it should be invoked 
+using the groff command, which will also run preprocessors and 
+post-processors in the appropriate order and with the appropriate 
+options.</P
+></DIV
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="AEN3222"
+>zsoelim</A
+></H4
+><P
+>zsoelim is the GNU implementation of soelim.</P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="AEN3225"
+>Groff Installation Dependencies</A
+></H2
+><P
+>Last checked against version 1.17.2.</P
+><P
+CLASS="literallayout"
+>Bash:&nbsp;sh<br/>
+Binutils:&nbsp;ar,&nbsp;as,&nbsp;ld,&nbsp;ranlib<br/>
+Bison:&nbsp;bison<br/>
+Diffutils:&nbsp;cmp<br/>
+Fileutils:&nbsp;chmod,&nbsp;cp,&nbsp;install,&nbsp;ln,&nbsp;ls,&nbsp;mkdir,&nbsp;mv,&nbsp;rm,&nbsp;touch<br/>
+Gcc:&nbsp;cc1,&nbsp;cc1plus,&nbsp;collect2,&nbsp;cpp0,&nbsp;g++,&nbsp;gcc<br/>
+Grep:&nbsp;egrep,&nbsp;grep<br/>
+Make:&nbsp;make<br/>
+Gawk:&nbsp;awk<br/>
+Sed:&nbsp;sed<br/>
+Sh-utils:&nbsp;basename,&nbsp;date,&nbsp;echo,&nbsp;expr,&nbsp;hostname,&nbsp;uname<br/>
+Textutils:&nbsp;cat,&nbsp;tr</P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"/><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="less.html"
+ACCESSKEY="P"
+>Назад</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="../index.html"
+ACCESSKEY="H"
+>Домой</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="textutils.html"
+ACCESSKEY="N"
+>Вперед</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Установка Less-374</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="chapter06.html"
+ACCESSKEY="U"
+>Наверх</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Установка Textutils-2.1</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

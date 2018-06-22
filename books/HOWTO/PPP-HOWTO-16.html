@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE>PPP HOWTO: Тестирование вашего сценария соединения</TITLE>
+ <LINK HREF="PPP-HOWTO-17.html" REL=next>
+ <LINK HREF="PPP-HOWTO-15.html" REL=previous>
+ <LINK HREF="PPP-HOWTO.html#toc16" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="PPP-HOWTO-17.html">Next</A>
+<A HREF="PPP-HOWTO-15.html">Previous</A>
+<A HREF="PPP-HOWTO.html#toc16">Contents</A>
+<HR>
+<H2><A NAME="s16">16. Тестирование вашего сценария соединения</A></H2>
+
+<P>Откройте новый root Xterm (если вы находитесь в X) или откройте новую 
+виртуальную консоль и войдите в систему как пользователь root.
+<P>В этом новом сеансе, выдайте команду
+<PRE>
+tail -f /var/log/messages
+</PRE>
+
+(или какой-то другой файл вашего системного лога ).
+<P>В первом окне (или виртуальной консоли) выдайте команду
+<PRE>
+ppp-on &amp;
+</PRE>
+
+(или как вы там назвали вашу отредактированную версию /usr/sbin/ppp-on). 
+Если вы не перевели запущенный скрипт в фоновый режим, поместив в конце команды,
+&amp;, то вы не получите назад приглашение командной строки до тех пор, пока ppp 
+не закончит работу (пока связь не завершится).
+<P>Теперь переключитесь обратно на окно, которое отслеживает ваш системный файл 
+регистрации.
+<P>Вы увидите что-то вроде следующего (при условии что вы указали -v для chat
+и -d для pppd) .... это - сценарий chat и ответы, регистрируемые в системном
+логе, и следующей далее информацией от pppd:
+<PRE>
+  ______________________________________________________________________
+  Oct 21 16:09:58 hwin chat[19868]: abort on (NO CARRIER)
+  Oct 21 16:09:59 hwin chat[19868]: abort on (BUSY)
+  Oct 21 16:09:59 hwin chat[19868]: send (ATZ^M)
+  Oct 21 16:09:59 hwin chat[19868]: expect (OK)
+  Oct 21 16:10:00 hwin chat[19868]: ATZ^M^M
+  Oct 21 16:10:00 hwin chat[19868]: OK -- got it
+  Oct 21 16:10:00 hwin chat[19868]: send (ATDT722298^M)
+  Oct 21 16:10:00 hwin chat[19868]: expect (CONNECT)
+  Oct 21 16:10:00 hwin chat[19868]: ^M
+  Oct 21 16:10:22 hwin chat[19868]: ATDT722298^M^M
+  Oct 21 16:10:22 hwin chat[19868]: CONNECT -- got it
+  Oct 21 16:10:22 hwin chat[19868]: send (^M)
+  Oct 21 16:10:22 hwin chat[19868]: expect (ogin:)
+  Oct 21 16:10:23 hwin chat[19868]: kepler login: -- got it
+  Oct 21 16:10:23 hwin chat[19868]: send (hartr^M)
+  Oct 21 16:10:23 hwin chat[19868]: expect (ssword:)
+  Oct 21 16:10:23 hwin chat[19868]:  hartr^M
+  Oct 21 16:10:23 hwin chat[19868]: Password: -- got it
+  Oct 21 16:10:23 hwin chat[19868]: send (??????^M)
+  Oct 21 16:10:23 hwin chat[19868]: expect (hartr)
+  Oct 21 16:10:24 hwin chat[19868]: [hartr -- got it
+  Oct 21 16:10:24 hwin chat[19868]: send (ppp^M)
+  Oct 21 16:10:27 hwin pppd[19872]: pppd 2.1.2 started by root, uid 0
+  Oct 21 16:10:27 hwin pppd[19873]: Using interface ppp0
+  Oct 21 16:10:27 hwin pppd[19873]: Connect: ppp0 &lt;--> /dev/cua1
+  Oct 21 16:10:27 hwin pppd[19873]: fsm_sdata(LCP): Sent code 1, id 1.
+  Oct 21 16:10:27 hwin pppd[19873]: LCP: sending Configure-Request, id 1
+  Oct 21 16:10:27 hwin pppd[19873]: fsm_rconfreq(LCP): Rcvd id 1.
+  Oct 21 16:10:27 hwin pppd[19873]: lcp_reqci: rcvd MRU
+  Oct 21 16:10:27 hwin pppd[19873]: (1500)
+  Oct 21 16:10:27 hwin pppd[19873]:  (ACK)
+  Oct 21 16:10:27 hwin pppd[19873]: lcp_reqci: rcvd ASYNCMAP
+  Oct 21 16:10:27 hwin pppd[19873]: (0)
+  Oct 21 16:10:27 hwin pppd[19873]:  (ACK)
+  Oct 21 16:10:27 hwin pppd[19873]: lcp_reqci: rcvd MAGICNUMBER
+  Oct 21 16:10:27 hwin pppd[19873]: (a098b898)
+  Oct 21 16:10:27 hwin pppd[19873]:  (ACK)
+  Oct 21 16:10:27 hwin pppd[19873]: lcp_reqci: rcvd PCOMPRESSION
+  Oct 21 16:10:27 hwin pppd[19873]:  (ACK)
+  Oct 21 16:10:27 hwin pppd[19873]: lcp_reqci: rcvd ACCOMPRESSION
+  Oct 21 16:10:27 hwin pppd[19873]:  (ACK)
+  Oct 21 16:10:27 hwin pppd[19873]: lcp_reqci: returning CONFACK.
+  Oct 21 16:10:27 hwin pppd[19873]: fsm_sdata(LCP): Sent code 2, id 1.
+  Oct 21 16:10:27 hwin pppd[19873]: fsm_rconfack(LCP): Rcvd id 1.
+  Oct 21 16:10:27 hwin pppd[19873]: fsm_sdata(IPCP): Sent code 1, id 1.
+  Oct 21 16:10:27 hwin pppd[19873]: IPCP: sending Configure-Request, id 1
+  Oct 21 16:10:27 hwin pppd[19873]: fsm_rconfreq(IPCP): Rcvd id 1.
+  Oct 21 16:10:27 hwin pppd[19873]: ipcp: received ADDR
+  Oct 21 16:10:27 hwin pppd[19873]: (10.144.153.51)
+  Oct 21 16:10:27 hwin pppd[19873]:  (ACK)
+  Oct 21 16:10:27 hwin pppd[19873]: ipcp: received COMPRESSTYPE
+  Oct 21 16:10:27 hwin pppd[19873]: (45)
+  Oct 21 16:10:27 hwin pppd[19873]:  (ACK)
+  Oct 21 16:10:27 hwin pppd[19873]: ipcp: returning Configure-ACK
+  Oct 21 16:10:28 hwin pppd[19873]: fsm_sdata(IPCP): Sent code 2, id 1.
+  Oct 21 16:10:30 hwin pppd[19873]: fsm_sdata(IPCP): Sent code 1, id 1.
+  Oct 21 16:10:30 hwin pppd[19873]: IPCP: sending Configure-Request, id 1
+  Oct 21 16:10:30 hwin pppd[19873]: fsm_rconfreq(IPCP): Rcvd id 255.
+  Oct 21 16:10:31 hwin pppd[19873]: ipcp: received ADDR
+  Oct 21 16:10:31 hwin pppd[19873]: (10.144.153.51)
+  Oct 21 16:10:31 hwin pppd[19873]:  (ACK)
+  Oct 21 16:10:31 hwin pppd[19873]: ipcp: received COMPRESSTYPE
+  Oct 21 16:10:31 hwin pppd[19873]: (45)
+  Oct 21 16:10:31 hwin pppd[19873]:  (ACK)
+  Oct 21 16:10:31 hwin pppd[19873]: ipcp: returning Configure-ACK
+  Oct 21 16:10:31 hwin pppd[19873]: fsm_sdata(IPCP): Sent code 2, id 255.
+  Oct 21 16:10:31 hwin pppd[19873]: fsm_rconfack(IPCP): Rcvd id 1.
+  Oct 21 16:10:31 hwin pppd[19873]: ipcp: up
+  Oct 21 16:10:31 hwin pppd[19873]: local  IP address 10.144.153.104
+  Oct 21 16:10:31 hwin pppd[19873]: remote IP address 10.144.153.51
+  ______________________________________________________________________
+</PRE>
+
+(Примечание - я использую СТАТИЧЕСКИЕ IP адреса - следовательно моя машина, 
+отправила это PPP серверу - вы не увидеть это, если используете ДИНАМИЧЕСКИЕ 
+IP адреса.) Также, этот сервер требует дать команду для запуска ppp. 
+<P>Как будто все впорядке - протестируем соединение как и прежде, пингуя IP 
+адреса и имена машин.
+<P>Запустите ваш веб браузер или еще что-нибудь и скользите по сети - вы 
+подключены!
+<HR>
+<A HREF="PPP-HOWTO-17.html">Next</A>
+<A HREF="PPP-HOWTO-15.html">Previous</A>
+<A HREF="PPP-HOWTO.html#toc16">Contents</A>
+</BODY>
+</HTML>

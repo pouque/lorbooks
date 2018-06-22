@@ -1,0 +1,241 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE> HowTo по настройке видеосистемы в Xfree86.: Графическое изображение характеристик монитора.</TITLE>
+ <LINK HREF="XFree86-Video-Timings-HOWTO-17.html" REL=next>
+ <LINK HREF="XFree86-Video-Timings-HOWTO-15.html" REL=previous>
+ <LINK HREF="XFree86-Video-Timings-HOWTO.html#toc16" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="XFree86-Video-Timings-HOWTO-17.html">Next</A>
+<A HREF="XFree86-Video-Timings-HOWTO-15.html">Previous</A>
+<A HREF="XFree86-Video-Timings-HOWTO.html#toc16">Contents</A>
+<HR>
+<H2><A NAME="s16">16. Графическое изображение характеристик монитора.</A> </H2>
+
+<P>Для того, чтобы построить диаграмму режимов монитора, вам понадобиться 
+gnuplot package (свободный графический язык для Unix систем) и программа
+под названием tool modeplot, шеловый скрипт для gnuplot для  изображения
+диаграммы характеристик монитора, водимых в командной строке.
+<P>Вот копия  modeplot:
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+   #!/bin/sh
+   #
+   # modeplot -- генерация диаграммы возможных режимов  монитора
+   
+   #
+   # Запустите `modeplot -?' чтобы увидеть возможные опции программы.
+   #
+   # ($Id: XFree86-Video-Timings-HOWTO-16.html,v 1.1.1.1 2001/06/15 14:15:17 maxcom Exp $)
+ 
+   # Monitor description. Bandwidth in MHz, horizontal frequencies in kHz
+   # and vertical frequencies in Hz.
+   TITLE="Viewsonic 21PS"
+   BANDWIDTH=185
+   MINHSF=31
+   MAXHSF=85
+   MINVSF=50
+   MAXVSF=160
+   ASPECT="4/3"
+   vesa=72.5       # минимальная рекомендованная частота рефреша для VESA
+     
+   while [ "$1" != "" ]
+   do
+           case $1 in
+           -t) TITLE="$2"; shift;;
+           -b) BANDWIDTH="$2"; shift;;
+           -h) MINHSF="$2" MAXHSF="$3"; shift; shift;;
+           -v) MINVSF="$2" MAXVSF="$3"; shift; shift;;
+           -a) ASPECT="$2"; shift;;
+           -g) GNUOPTS="$2"; shift;;
+           -?) cat &lt;&lt;EOF
+   modeplot control switches:
+ 
+   -t "&lt;description>"      name of monitor            defaults to "Viewsonic 21PS"
+   -b &lt;nn>                 bandwidth in MHz           defaults to 185
+   -h &lt;min> &lt;max>          min &amp; max HSF (kHz)        defaults to 31 85
+   -v &lt;min> &lt;max>          min &amp; max VSF (Hz)         defaults to 50 160
+   -a &lt;aspect ratio>       aspect ratio               defaults to 4/3
+   -g "&lt;options>"          pass options to gnuplot
+ 
+   The -b, -h and -v options are required, -a, -t, -g optional.  You can
+   use -g to pass a device type to gnuplot so that (for example) modeplot's
+   output can be redirected to a printer.  See gnuplot(1) for  details.
+ 
+   The modeplot tool was created by Eric S. Raymond &lt;esr@thyrsus.com> based on
+   analysis and scratch code by Martin Lottermoser &lt;Martin.Lottermoser@mch.sni.de>
+ 
+   This is modeplot $Revision: 1.1.1.1 $
+   EOF
+                   exit;;
+           esac
+           shift
+   done
+ 
+   gnuplot $GNUOPTS &lt;&lt;EOF
+   set title "$TITLE Mode Plot"
+ 
+   # Константы.  Unfortunately, the plot is quite sensitive to changes in
+   # these, and they may fail to represent reality on some monitors.  We need
+   # to fix values to get even an approximation of the mode diagram.  These come
+   # from looking at lots of values in the ModeDB database.
+   F1 = 1.30       # multiplier to convert horizontal resolution to frame width
+   F2 = 1.05       # multiplier to convert vertical resolution to frame height
+ 
+   # Function definitions (multiplication by 1.0 forces real-number arithmetic)
+   ac = (1.0*$ASPECT)*F1/F2
+   refresh(hsync, dcf) = ac * (hsync**2)/(1.0*dcf)
+   dotclock(hsync, rr) = ac * (hsync**2)/(1.0*rr)
+   resolution(hv, dcf) = dcf * (10**6)/(hv * F1 * F2)
+ 
+   # Put labels on the axes
+   set xlabel 'DCF (MHz)'
+   set ylabel 'RR (Hz)' 6  # Put it right over the Y axis
+ 
+   # Generate diagram
+   set grid
+   set label "VB" at $BANDWIDTH+1, ($MAXVSF + $MINVSF) / 2 left
+   set arrow from $BANDWIDTH, $MINVSF to $BANDWIDTH, $MAXVSF nohead
+   set label "max VSF" at 1, $MAXVSF-1.5
+   set arrow from 0, $MAXVSF to $BANDWIDTH, $MAXVSF nohead
+   set label "min VSF" at 1, $MINVSF-1.5
+   set arrow from 0, $MINVSF to $BANDWIDTH, $MINVSF nohead
+   set label "min HSF" at dotclock($MINHSF, $MAXVSF+17), $MAXVSF + 17 right
+   set label "max HSF" at dotclock($MAXHSF, $MAXVSF+17), $MAXVSF + 17 right
+   set label "VESA $vesa" at 1, $vesa-1.5
+   set arrow from 0, $vesa to $BANDWIDTH, $vesa nohead # style -1
+   plot [dcf=0:1.1*$BANDWIDTH] [$MINVSF-10:$MAXVSF+20] \
+     refresh($MINHSF, dcf) notitle with lines 1, \
+     refresh($MAXHSF, dcf) notitle with lines 1, \
+     resolution(640*480,   dcf) title "640x480  " with points 2, \
+     resolution(800*600,   dcf) title "800x600  " with points 3, \
+     resolution(1024*768,  dcf) title "1024x768 " with points 4, \
+     resolution(1280*1024, dcf) title "1280x1024" with points 5, \
+     resolution(1600*1280, dcf) title "1600x1200" with points 6
+ 
+   pause 9999
+   EOF
+</PRE>
+</CODE></BLOCKQUOTE>
+ 
+Убедившись в наличии пакетов modeplot и gnuplot,  вам понадобятся  
+следующие характеристики монитора:
+<UL>
+<LI>  полоса пропускания (VB)</LI>
+<LI>  диапазон частот  горизонтальной  синхронизации (HSF)</LI>
+<LI>  диапазон частот  вертикальной  синхронизации (VSF)</LI>
+</UL>
+ 
+Программа изображения диаграмм делает некоторые допущения для упрощения,
+которые необязательно правильные. Вот почему результирующая диаграмма - это
+только грубое приближение. Вот эти допущения:
+<OL>
+<LI>  Все разрешения  имеют только одно соотношение сторон экрана AR = HR/VR.
+Стандартные разрешения имеют  AR = 4/3 или AR = 5/4. Modeplot принимает
+4/3 по умолчанию , но вы можете и изменить этот параметр.
+    </LI>
+<LI>  Для рассматриваемых режимов, горизонтальная и вертикальная длины кадров
+жесткое произведение  горизонтальных и вертикальных  разрешений,
+соответственно:
+    
+<BLOCKQUOTE><CODE>
+<PRE>
+        HFL = F1 * HR
+        VFL = F2 * VR
+</PRE>
+</CODE></BLOCKQUOTE>
+        </LI>
+</OL>
+
+Для грубой прикидки возьмем F1 = 1.30 и F2 = 1.05  (см. "Расчет
+размера кадра").
+<P>Теперь возьмем частоту занимающую особое положение , HSF. Приведенные 
+допущения лишь показывают, что каждое значение для  DCF  заранее определяет
+частоту обновления RR, т.е. для любого значения  HSF существует функция
+RR(DCF). Она может быть получена следующим образом:
+<P>
+<P>Частота обновления  равна   частоте стробирования деленной на произведение
+длин кадра:
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+ RR = DCF / (HFL * VFL)          (*)    
+</PRE>
+</CODE></BLOCKQUOTE>
+ 
+С другой строны, горизонтальная длина кадра равна  частоте карты поделеной
+на  частоту горизонтальной синхронизации:
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+                HFL = DCF / HSF                 (**)
+</PRE>
+</CODE></BLOCKQUOTE>
+               
+Значение  VFL  может быть уменьшено до  HFL с помощью вышеприведенных
+допущений:
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+                VFL = F2 * VR
+                    = F2 * (HR / AR)
+                    = (F2/F1) * HFL / AR        (***)
+</PRE>
+</CODE></BLOCKQUOTE>
+ 
+Подставляя (**) и (***) в (*) мы получаем:
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+                RR = DCF / ((F2/F1) * HFL**2 / AR)
+                   = (F1/F2) * AR * DCF * (HSF/DCF)**2
+                   = (F1/F2) * AR * HSF**2 / DCF
+</PRE>
+</CODE></BLOCKQUOTE>
+                               
+При неизменных  HSF, F1, F2 и AR, на нашей диаграмме это гипербола.
+Нарисовав две таких кривых  для минимальной и максимальной горизонтальной
+частоты синхронизации, мы получили  две оставшиеся границы  допустимой 
+области.
+<P>Прямые линии  пересекающие допустимую область представляют особые разрешения.
+Это основано на (*) и следующем допущении:
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+                RR = DCF / (HFL * VFL) = DCF / (F1 * HR * F2 * VR)
+</PRE>
+</CODE></BLOCKQUOTE>
+
+Нарисовав  эти линии  для всех разрешении, которые нас интересуют, можно сразу
+же  прочитать на диаграмме  возможные  соотношения  между разрешением,
+частоты карты и частоты обновления  допустимые для монитора. Обратите внимание,
+что  эти линии не зависят от  характеристик монитора, а зависят от второго
+допущения.
+<P>Программа  modeplot предоставляет удобства для этого. Чтобы посмотреть
+возможные  опции  запустите modeplot -?. Типичная командная строка выглядит
+так:
+<BLOCKQUOTE><CODE>
+<PRE>
+                modeplot -t "Swan SW617" -b 85 -v 50 90 -h 31 58
+</PRE>
+</CODE></BLOCKQUOTE>
+               
+Ключ  -b определяет  полосу пропускания; -v и -h устанавливают диапозоны
+для горизонтальной  и вертикальной частот разверток.
+<P>Читая результаты работы modeplot, всегда имейте в виду, что это только 
+приблизительные оценки. Например, она не рассматривает  ограничения HFL,
+зависящей  от минимально необходимой ширины синхроимпульса, она может
+быть точна  лишь настолько, насколько  точны допущения.
+Поэтому заменить точные вычисления (и шаманство) ничто не может 
+что и описано в разделе "Подводя итог". Тем не менее, знание ее возможностей 
+должно дать вам ощущение комфорта.
+<P>
+<HR>
+<A HREF="XFree86-Video-Timings-HOWTO-17.html">Next</A>
+<A HREF="XFree86-Video-Timings-HOWTO-15.html">Previous</A>
+<A HREF="XFree86-Video-Timings-HOWTO.html#toc16">Contents</A>
+</BODY>
+</HTML>

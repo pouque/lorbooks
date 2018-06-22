@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE>Linux 2.4 Packet Filtering HOWTO: Советы по организации правил для фильтра пакетов</TITLE>
+ <LINK HREF="packet-filtering-HOWTO-10.html" REL=previous>
+ <LINK HREF="packet-filtering-HOWTO.html#toc11" REL=contents>
+</HEAD>
+<BODY>
+Next
+<A HREF="packet-filtering-HOWTO-10.html">Previous</A>
+<A HREF="packet-filtering-HOWTO.html#toc11">Contents</A>
+<HR>
+<H2><A NAME="s11">11. Советы по организации правил для фильтра пакетов</A></H2>
+
+<P>Общая мудрость в компьютерной безопасности - блокировать все, затем открывать
+ то что необходимо. Это обычно звучит так: "то что явно не разрешено - запрещено".
+ Я рекомендую именно этот стиль, если безопасность ваша главная цель.
+<P>
+<P>Не запускаете никаких служб в которых вы не нуждаетесь, даже если вы думаете,
+что блокировали доступ к ним.
+<P>
+<P>Если вы создаете выделенный firewall-сервер, сначала блокируйте весь траффик,
+затем запускайте определенные сервисы и разрешайте пакетам проходить к ним.
+<P>
+<P>Я рекомендую обезопасить себя как можно сильнее: комбинируйте
+использование tcp-wrapperов (для соединений идущих на сам firewall), прокси
+ (для соединений идущих транзитом через firewall), проверку маршрутов и использование
+ фильтра пакетов. Проверка маршрутов - когда пакет приходит с интерфейса, с которого 
+ он не должен приходить, такой пакет должен быть разрушен (DROP): пример,
+ если ваша внутренняя сеть имеет адрес 10.1.1.0/24, и пакет с таким исходным адресом 
+ приходит на ваш внешний интерфейс, он будет разрушен (DROP). Это можно сделать
+ для одного интерфейса (ppp0) так:
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+# echo 1 > /proc/sys/net/ipv4/conf/ppp0/rp_filter
+#
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>или для всех уже существующих интерфейсов и созданных в будущем:
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+# for f in /proc/sys/net/ipv4/conf/*/rp_filter; do
+#     echo 1 > $f
+# done
+# 
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>Debian устанавливает такие настройки по умолчанию где это только возможно.
+Если вы используете ассиметричную маршрутизацию (т.е. пакеты могут приходить
+с разных направлений), вам необходимо отключить такое фильтрование на 
+соответствующих интерфейсах.
+<P>
+<P>Ведение лога полезно при настройке firewallа, но на рабочем firewallе,
+всегда используйте эту возможность с "limit", чтобы избежать переполнения 
+ваших лог файлов.
+<P>
+<P>Я крайне рекомендую использование отслеживания соединений на защищенных
+системах: конечно это отнимает часть ресурсов, так как все соединения 
+регистрируются, но это очень полезное свойство для контролирования  доступа к ваши сетям.
+Вам может понадобиться загрузить "ip_conntrack.o" модуль, если ваше ядро не загружает
+модули автоматически, и если он не встроен в ядро. Если вам необходимо отслеживать
+сложные протоколы, вам надо будет загрузить соответствующий модуль (например "ip_conntrack_ftp.o").
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+# iptables -N no-conns-from-ppp0
+# iptables -A no-conns-from-ppp0 -m state --state ESTABLISHED,RELATED -j ACCEPT
+# iptables -A no-conns-from-ppp0 -m state --state NEW -i ! ppp0 -j ACCEPT
+# iptables -A no-conns-from-ppp0 -i ppp0 -m limit -j LOG --log-prefix "Bad packet from ppp0:"
+# iptables -A no-conns-from-ppp0 -i ! ppp0 -m limit -j LOG --log-prefix "Bad packet not from ppp0:"
+# iptables -A no-conns-from-ppp0 -j DROP
+
+# iptables -A INPUT -j no-conns-from-ppp0
+# iptables -A FORWARD -j no-conns-from-ppp0
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>
+<P>Настройка и создание хорошего firewall не входит в данный HOWTO, но мой совет
+"всегда будьте минималистами". Просмотрите Security HOWTO для большей информации.
+<P>
+<HR>
+Next
+<A HREF="packet-filtering-HOWTO-10.html">Previous</A>
+<A HREF="packet-filtering-HOWTO.html#toc11">Contents</A>
+</BODY>
+</HTML>

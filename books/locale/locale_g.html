@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=koi8-r">
+<meta name="GENERATOR" content="Microsoft FrontPage 3.0">
+<title> Locale &quot;AS IT IS&quot; - Categ </title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1>Категории локализации.</h1>
+
+<p>&nbsp;&nbsp; Как уже было замечено, в каждой
+отдельной стране способ представления данных
+отличается. Чтобы упорядочить все эти отличия, их
+объединяют в группы и особым образом описывают.
+Такая группа признаков называется <strong>Категория
+Локализации</strong> : </p>
+
+<table border="1">
+  <tr>
+    <td valign="top"><strong>LC_CTYPE</strong></td>
+    <td>Определяет правила классификации и
+    преобразования <strong>одиночных</strong> символов.
+    Позволяет правильно определять вид символа:
+    цифра, буква, значок, заглавная буква или
+    прописная и т.д. Другими словами, включает
+    правильную работу <a href="http://www.linux.org.ru/books/man/man3/isalpha.html"><em>isalnum()</em></a>,
+    <a href="http://www.linux.org.ru/books/man/man3/isalpha.html"><em>isalpha()</em></a>, <a href="http://www.linux.org.ru/books/man/man3/isalpha.html">i<em>scntrl()</em></a>, <a href="http://www.linux.org.ru/books/man/man3/isalpha.html"><em>isdigit()</em></a>,
+    ... и т.п. для местного алфавита. Вдобавок, включает
+    правильный перевод строчных -- прописных букв: <a href="http://www.linux.org.ru/books/man/man3/toupper.html"><em>toupper()</em></a> и <a href="http://www.linux.org.ru/books/man/man3/toupper.html"><em>tolower()</em></a>. См. &lt;<a href="http://www.linux.org.ru/books/man/man_h/ctype.html">ctype.h</a>&gt;</td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>LC_COLLATE</strong> </td>
+    <td>Определяет правила сравнения и преобразования
+    <strong>строк</strong>. Позволяет определять
+    лексикографический порядок символов (порядок
+    сортировки) в местном алфавите. Включает
+    правильную работу <a href="http://www.linux.org.ru/books/man/man3/strcoll.html"><em>strcoll()</em></a>
+    и <a href="http://www.linux.org.ru/books/man/man3/strxfrm.html"><em>strxfrm()</em></a>. Оказывает
+    непосредственное влияние на работу утилит типа <a href="http://www.linux.org.ru/books/man/man1/sort.html"><em>sort</em></a> и т.д. </td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>LC_TIME</strong></td>
+    <td>Определяет правила национального
+    представления <strong>времени и даты</strong>. Задает
+    именование дней недели, месяцев и т.п. а также
+    задает <strong>способ</strong> написания даты и времени.
+    (12/24) Hепосредственно влияет на<a href="http://www.linux.org.ru/books/man/man3/strftime.html">
+    <em>strftime()</em></a> а через нее на утилиты <a href="http://www.linux.org.ru/books/man/man1/date.html"><em>date</em></a> и т.д. </td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>LC_NUMERIC</strong></td>
+    <td>Определяет правила национального
+    представления <strong>чисел</strong> с плавающей точкой.
+    Влияет на&nbsp;&nbsp; <em>strtod()</em> и форматы %f и %g <em>printf()</em>,
+    <em>scanf()</em>.</td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>LC_MONETARY</strong></td>
+    <td>Определяет правила национального
+    представления денежных величин. (См. Currency Symbols ISO
+    4712) <em><a href="http://www.linux.org.ru/books/man/man3/strfmon.html">strfmon()</a></em>.</td>
+  </tr>
+</table>
+
+<p>&nbsp;&nbsp; Особая категория локализации <strong>LC_ALL</strong>
+служит для обращения <strong>одновременно</strong> ко
+всем категориям, т.е. работает как '<strong>*</strong>'
+(wildcard). </p>
+
+<p>&nbsp;&nbsp; В стандарте <strong>POSIX 1996</strong> кроме
+категорий локализации стандартизированы также <strong>Ключевые
+Cлова</strong> (<strong>keywords</strong>), которые определяют
+внутреннее содержимое категорий локализации.
+Hапример, для категории <strong>LC_CTYPE</strong> определены
+ключевые слова: <strong>alpha</strong>, <strong>digit</strong>, <strong>xdigit</strong>
+и т.д. Для категории <strong>LC_TIME</strong> определены
+ключевые слова : <strong>mon</strong>, <strong>day</strong>, <strong>abmon</strong>,
+<strong>abday</strong>, e.t.c. (названия месяцев, название дней
+недели, в полной и в сокращенной форме), а также <strong>способ
+</strong>записи даты во внешнем представлении и т.д.
+Получить доступ к ключевым словам категорий
+локализации можно с помощью функции<em><a href="http://www.linux.org.ru/books/man/man3/nl_langinfo.html"> nl_langinfo()</a></em> (не входит <strong>POSIX</strong>,
+но входит в <strong>XPG</strong>).</p>
+
+<p>&nbsp;&nbsp;&nbsp; Формальное описание категорий
+локализации содержится в файле locale definition
+&quot;описания локализации&quot;. Этот файл может быть
+'откомпилирован' утилитой <a href="http://www.linux.org.ru/books/man/man1/localedef.html"><em>localedef</em></a>.</p>
+
+<p>&nbsp;&nbsp;&nbsp; Кроме перечисленных выше категорий
+локализации иногда также определены: </p>
+
+<p><strong>LC_RESPONSE</strong> - Hабор &quot;стандартных&quot;
+местных ответов ja, si, да, yes, e.t.c. </p>
+
+<p><strong>LC_MESSAGES</strong> - Hабор стандартных сообщений об
+ошибках: &quot;File not found&quot;, &quot;Файл не найден&quot;. </p>
+
+<p>&nbsp;&nbsp; В <strong>POSIX</strong> категория<strong> LC_RESPONSE</strong>
+входит в <strong>LC_MESSAGES</strong>. Кроме того, значение <strong>LC_MESSAGES</strong>
+оказывает влияние на <a href="locale_n.html">NLS</a>.</p>
+
+<p>&nbsp;&nbsp; Для локализации системы <strong>X Window</strong>
+используются ее собственные настройки locale (<strong>Xlocale</strong>),
+которые здесь не рассматриваются. Смотри <a href="http://www.tsu.ru/~pascal/other/xkb/">здесь</a> или <a href="http://www.iplabs.ru/Linux/Article/">здесь</a>.</p>
+
+<p>&nbsp;</p>
+
+<hr>
+
+<p>Содержание <a href="http://www.sensi.org/~alec/locale/index.html#toc">&quot;Locale
+AS IT IS&quot;</a> </p>
+
+<hr>
+
+<h6><em>Last change : <!--webbot bot="Timestamp" S-Type="EDITED" S-Format="%d-%m-%Y" startspan -->01-10-2000<!--webbot bot="Timestamp" endspan i-checksum="12414" --></em></h6>
+</body>
+</html>

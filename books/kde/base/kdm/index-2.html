@@ -1,0 +1,201 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<TITLE>Дисплейный менеджер (KDM): Установка и настройка kdm</TITLE>
+<META HTTP-EQUIV="content-type" CONTENT="text/html; charset=koi8-r">
+<META NAME="keywords" CONTENT="KDE kdm Russian translation  Александр Изьюров русский перевод Alexander Izyurov">
+<META NAME="description" CONTENT="translation of kdm to Russian by Alexander Izyurov">
+</HEAD>
+<BODY BGCOLOR="#ffffff" LINK="#aa0000" TEXT="#000000" > 
+<?php include("/home/maxcom/linux_html/books/head.php3") ?>
+<FONT FACE="Helvetica">
+<A HREF="http://www.kde.org/"><IMG SRC="http://books.gnu.technology/books/kde/base/kdm/logotp3.gif" BORDER="0" ALT="The K Desktop Environment"></A>
+<HR WIDTH="100%" SIZE=2 ALIGN="CENTER" NOSHADE>
+
+ 
+<P ALIGN="RIGHT">
+
+<A HREF="index-3.html"> Вперед </A>
+<A HREF="index-1.html"> Назад </A>
+<A HREF="index.html#toc2"> Содержание </A>
+</P>
+<H3><A NAME="s2">2. Установка и настройка kdm</A></H3>
+
+<P>
+<H3><A NAME="ss2.1">2.1 Установка kdm</A>
+</H3>
+
+<P>Посмотрите файл README! В нем сказано, как скомпилировать kdm. Но обычно
+вам не нужно компилировать kdm самому, так как он является частью пакета kdebase
+и компилируется вместе со всем остальным. Затем он устанавливается в ваш
+каталог $KDEDIR/bin.
+<P><B>ПРИМЕЧАНИЕ:</B> <CODE>make install</CODE> уничтожит ваш старый <CODE>kdmrc</CODE>.
+<P>Во время инсталляции устанавливается новая версия файла <CODE>Xsetup_0</CODE> . 
+В частности, этот файл содержит строку
+<BLOCKQUOTE><CODE>
+<PRE>
+kdmdesktop
+</PRE>
+</CODE></BLOCKQUOTE>
+
+для генерирования красивого фона (растровых изображений и цвета фона).
+Обычно этот файл находится в каталоге конфигурации xdm 
+<CODE>/etc/X11/xdm/XSetup_0</CODE> для Redhat и
+<CODE>/usr/X11R6/lib/X11/xdm/XSetup_0</CODE> для S.u.S.E.
+Если ваш KDEDIR - не /opt/kde, вам, возможно придется изменить путь к  kdmdesktop.
+<P>Если у вас установлена система PAM (что обычно для Red Hat 5 and 5.1), 
+проверьте, чтобы в /etc/pam.conf были строки
+<BLOCKQUOTE><CODE>
+<PRE>
+# xdm authorization
+xdm    auth       required     pam_unix_auth.so
+xdm    auth       required     pam_unix_acct.so
+</PRE>
+</CODE></BLOCKQUOTE>
+
+и добавьте их, если их нет.
+<P>Теперь пора тестировать kdm. Переведите вашу систему на runlevel (функциональный уровень),
+который не запускает xdm. Загляните в файл <CODE>/etc/inittab</CODE> 
+и найдите строки:
+<BLOCKQUOTE><CODE>
+<PRE>
+# default runlevel
+id:3:initdefault:
+</PRE>
+</CODE></BLOCKQUOTE>
+
+Значение после id: - номер функционального уровня по умолчанию, который сильно 
+зависит от поставщика ,
+и всегда хорошо объяснен в комментариях этого файла. Функциональный уровень c графическим входом (xdm)
+для наиболее распространенных комплектов следующий:
+<UL>
+<LI>5 для Red Hat 3.x, 4.x и 5.x, LST</LI>
+<LI>4 для Slackware</LI>
+<LI>3 для S.u.S.E. 4.x and 5.x</LI>
+</UL>
+<P>Теперь попробуйте запустить kdm из командной строки вашей любимой оболочки:
+<BLOCKQUOTE><CODE>
+<PRE>
+> kdm -nodaemon
+</PRE>
+</CODE></BLOCKQUOTE>
+
+Если вы увидите диалог входа kdm и сможете войти в систему, все замечательно.
+Основная причина возможного отказа  - динамический загрузчик не находит динамических
+библиотек  Qt или KDE. Когда все заработает, можно заменить xdm на kdm. Это опять
+же зависит от системы.
+<UL>
+<LI>в Redhat отредактируйте <CODE>/etc/inittab</CODE>, найдите xdm
+и замените на kdm (укажите полный путь). </LI>
+<LI>в S.u.S.E. отредактируйте файл <CODE>/sbin/init.d/xdm</CODE>, добавив
+первые строки
+<BLOCKQUOTE><CODE>
+<PRE>
+. /etc/rc.config
+DISPLAYMANAGER=kdm
+export DISPLAYMANAGER
+</PRE>
+</CODE></BLOCKQUOTE>
+</LI>
+<LI>для остальных вариантов системы все должно быть как в Redhat, но в этом я
+не очень уверен.</LI>
+</UL>
+
+Для всех вариантов системы, которые я знаю, нужно изменить функциональный уровень (runlevel) в файле
+/etc/inittab (на 5 в Redhat, 3 в S.u.S.E. как указано выше, или в комментариях в
+самом файле inittab).
+Если у вас имеются только бинарные файлы библиотек KDE, убедитесь, что kdm установлен там, где
+это предполагают библиотеки. Это обычно /opt/kde/bin.
+Если вам не хочется изменять inittab, вы можете переименовать xdm в xdm.bak 
+и сделать символическую ссылку xdm на kdm.
+Kdm читает общие установки дисплейного менеджера из конфигурационных файлов xdm
+и специфичные для kdm из файла
+$KDEDIR/share/config/kdmrc. Kdmdesktop тоже читает kdmrc.
+<P>
+<H3><A NAME="ss2.2">2.2 Разные менеджеры окон и kdm (выбор менеджеров окон)</A>
+</H3>
+
+<P>Если вам нужно использовать разные менеджеры окон или вы просто хотите время от времени менять один на другой,
+вы можете воспользоваться программой выбора менеджера, встроенной в 
+kdm. 
+Она позволяет вам выбирать менеджер окон из списка.
+Для этого опять придется изменить некоторые файлы конфигурации.
+Сначала нужно изменить файл <CODE>Xsession</CODE> (он находится в
+<CODE>/etc/X11/xdm/</CODE> в  Redhat и <CODE>/usr/X11R6/lib/X11/xdm/</CODE> в
+S.u.S.E.), чтобы передавать через него параметры. Для этого найдите строку <CODE>'exec
+$startup'</CODE> и замените ее на <CODE>'exec $startup " $@"'</CODE>
+(без') Теперь можно создать или изменить /etc/xinitrc или &nbsp;/.xinitrc
+так, чтобы он запускал нужный менеджер окон. Приведенный ниже скрипт может запускать
+три разных менеджера окон. Вы можете добавить еще, если хотите. Не забудьте скопировать
+ваш файл <CODE>.xinitrc</CODE> в <CODE>/etc/skel</CODE>, чтобы он автоматически создавался
+для каждого нового пользователя при его регистрации.
+<BLOCKQUOTE><CODE>
+<PRE>
+#!/bin/bash
+#
+# .xsession/.xinitrc
+#
+# выбор менеджера окон
+#
+
+defaultwm=kde
+#Установить менеджер окон равным $1, если он был задан
+windowmgr=${1:-$defaultwm}
+
+#запустить нужный менеджер окон
+case ${windowmgr} in
+  kde|kwm|kdestart)
+        WINDOWMANAGER=startkde
+        ;;
+  fvwm|fvwm2)
+        WINDOWMANAGER=fvwm2
+        ;;
+
+  fvwm95)
+        WINDOWMANAGER=fvwm95
+        ;;
+
+  *)    WINDOWMANAGER=windowmgr   # default for unknown wm's
+
+esac
+
+#
+# загрузка ресурсов
+#
+
+if [ -f /usr/X11R6/lib/X11/Xmodmap ]; then
+    xmodmap /usr/X11R6/lib/X11/Xmodmap
+fi
+
+if [ -f ~/.Xmodmap ]; then
+    xmodmap ~/.Xmodmap
+fi
+
+if [ -f ~/.Xdefaults ]; then
+    xrdb -merge ~/.Xdefaults
+fi
+
+if [ -f ~/.Xresources ]; then
+    xrdb -merge ~/.Xresources
+fi
+# 
+# запуск менеджера окон
+#
+exec $WINDOWMANAGER
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>
+<P ALIGN="RIGHT">
+
+<A HREF="index-3.html"> Вперед </A>
+<A HREF="index-1.html"> Назад </A>
+<A HREF="index.html#toc2"> Содержание </A>
+</P>
+<CENTER>
+<HR WIDTH="100%" SIZE=3 ALIGN=CENTER NOSHADE>
+</CENTER>    
+</FONT>
+
+ 
+</BODY>
+</HTML>

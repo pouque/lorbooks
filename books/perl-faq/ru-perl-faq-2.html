@@ -1,0 +1,178 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE>FAQ по perl и программированию для web: Где взять документацию по перлу</TITLE>
+ <LINK HREF="ru-perl-faq-3.html" REL=next>
+ <LINK HREF="ru-perl-faq-1.html" REL=previous>
+ <LINK HREF="http://books.gnu.technology/books/perl-faq/ru-perl-faq.html#toc2" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="ru-perl-faq-3.html">Next</A>
+<A HREF="ru-perl-faq-1.html">Previous</A>
+<A HREF="http://books.gnu.technology/books/perl-faq/ru-perl-faq.html#toc2">Contents</A>
+<HR>
+<H2><A NAME="Где взять документацию по перлу"></A> <A NAME="s2">2. Где взять документацию по перлу</A></H2>
+
+<H2><A NAME="ss2.1">2.1 Какие есть книжки про Перл?</A>
+</H2>
+
+<P>Две классические книги по перлу, первая имеется в русском переводе и
+продается в магазинах:
+<P>Рандал Шварц, Том Кристиансен. 
+Изучаем перл (aka Llama book)
+<P>Лэрри Уолл, Том Кристиансен, Рандал Шварц. 
+Programming Perl (aka Camel book, на русском, кажется, еще нет)
+<P>Llama book - учебник для начинающих,
+Camel book - справочное руководство.
+<P>**New: Есть еще русский перевод Perl Cookbook под названием Т. Кристиансен, Н.
+Торкингтон &quot;Perl: Библиотека программиста&quot; - СПб, Издательство
+&quot;Питер&quot;, 2000. ISBN 5-8046-094-X
+<P>И еще книжка: М. Райт и др. &quot;CGI/Perl&quot;.  Ее я не рекомендую, как и все
+от Райта.
+<P>
+<H2><A NAME="ss2.2">2.2 Где взять стандартную документацию про такое-то свойство перла?</A>
+</H2>
+
+<P>
+<P>Перл приходит с полным набором документации и набором программ
+для перевода в разные форматы. Обычно для подробного ознакомления с
+некоторой особенностью перла пишут &quot;perldoc perlсвойство&quot; 
+или &quot;man perlсвойство&quot;.  Базовый набор "свойств" таков:
+<UL>
+<LI>     Основы          perldata, perlvar, perlsyn, perlop, perlsub</LI>
+<LI>     Запуск          perlrun, perldebug</LI>
+<LI>     Функции         perlfunc</LI>
+<LI>     Objects         perlref, perlmod, perlobj, perltie</LI>
+<LI>     Data Structures perlref, perllol, perldsc</LI>
+<LI>     Modules         perlmod, perlmodlib, perlsub</LI>
+<LI>     Regexps         perlre, perlfunc, perlop, perllocale</LI>
+<LI>     Moving to perl5 perltrap, perl</LI>
+<LI>     Linking w/C     perlxstut, perlxs, perlcall, perlguts, perlembed</LI>
+<LI>     Various         
+<A HREF="http://www.perl.com/CPAN/doc/FMTEYEWTK/index.html">http://www.perl.com/CPAN/doc/FMTEYEWTK/index.html</A>
+(not a man-page but still useful)
+</LI>
+<LI>     perl          О перле вообще</LI>
+<LI>     perldelta     Что нового в последней версии перла</LI>
+<LI>     perlfaq       FAQ</LI>
+<LI>     perltoc       Подробное оглавление ко всей документации</LI>
+<LI>     perldata      Типы данных</LI>
+<LI>     perlsyn       Синтаксис языка</LI>
+<LI>     perlop        Арифметические, логические, строковые 
+операции и их приоритет</LI>
+<LI>     perlre        Регулярные выражения (обработка текста и поиск)</LI>
+<LI>     perlrun       Опции командной строки</LI>
+<LI>     perlfunc      Встроенные функции</LI>
+<LI>     perlvar       Специальные переменные</LI>
+<LI>     perlsub       Как писать свои функции (процедуры)</LI>
+<LI>     perlmod       Устройство и принцип работы модулей</LI>
+<LI>     perlmodlib    Модули: создание собственных библиотек</LI>
+<LI>     perlmodinstall Поиск и установка модулей и библиотек на CPAN</LI>
+<LI>     perlform      "Форматы", или шаблоны для выводимых данных</LI>
+<LI>     perllocale    Поддержка интернационализации</LI>
+<LI>     perlref       Ссылки и указатели на данные</LI>
+<LI>     perldsc       Введение в структурные типы данных</LI>
+<LI>     perllol       Структуры данных: массивы и списки </LI>
+<LI>     perltoot      Введение в объектно-ориентированное
+программирование</LI>
+<LI>     perlobj       Объекты в перле</LI>
+<LI>     perltie       Связь объектов с обыкновенными переменными</LI>
+<LI>     perlbot       Perl OO tricks and examples</LI>
+<LI>     perlipc       Связь между процессами: pipes, sockets, 
+сигналы и др.</LI>
+<LI>     perldebug     Отладка программ</LI>
+<LI>     perldiag      Сообщения об ошибках</LI>
+<LI>     perlsec       Вопросы безопасности
+     </LI>
+<LI>     perltrap      Возможные грабли и ловушки</LI>
+<LI>     perlport      Как писать портабельные программы</LI>
+<LI>     perlstyle     Стиль программирования на перле</LI>
+<LI>     perlpod       Формат стандартной документации и документация, 
+встраиваемая в исходные тексты программ</LI>
+<LI>     perlbook      О книгах про перл
+
+--- (для совсем крутых) ---
+     </LI>
+<LI>     perlembed     Способы внедрения перл-программ в программы на C/C++</LI>
+<LI>     perlapio      Собственный API, используемый в исходниках перла</LI>
+<LI>     perlxs        XS -- программирование перловских библиотек,
+используемых вместе с библиотеками на C</LI>
+<LI>     perlxstut     Учебник по XS</LI>
+<LI>     perlguts      Внутренние функции перла для разработчиков</LI>
+<LI>     perlcall      Соглашения о вызове перловских функций из C</LI>
+<LI>     perlhist      История и полный список всех версий перла</LI>
+</UL>
+<P>
+<H2><A NAME="ss2.3">2.3 Я под виндами, man у меня нет, где брать стандартную документацию?</A>
+</H2>
+
+<P>
+<P>Перл для win32 поставляется с программой perldoc (пользоваться:
+"perldoc perlfunc" и т. д.) а также с документацией в HTML: если
+хочешь perldoc perlfunc, ищи perlfunc.html.
+<P>
+<H2><A NAME="ss2.4">2.4 Где взять описание модуля Lib::Module?</A>
+</H2>
+
+<P>
+<P>Формат стандартной документации по перлу (pod) обладает
+возможностью встраивания прямо в тексты программ, а программа perldoc
+-- возможностью извлечения этой документации. Поэтому, чтобы получить
+документацию по модулю <CODE>Math::Trig</CODE>, просто запустите <CODE>perldoc Math::Trig</CODE>
+-- perldoc найдет этот модуль и покажет документацию из него.  Если
+модуль не является частью какой-то библиотеки, а существует сам по
+себе, например, CGI.pm тогда просто perldoc CGI.pm или даже perldoc
+CGI.  NB: программа perldoc не очень расторопна, поэтому при установке
+перла под UNIX производится создание manpages для всех модулей, так
+что man CGI или man Math::Trig покажет быстрее, чем perldoc.
+<P>
+<H2><A NAME="ss2.5">2.5 Есть ли подробный большой FAQ по перлу?</A>
+</H2>
+
+<P>
+<P>Да, он тоже входит в набор стандартной документации.  Отправная
+точка -- perldoc perlfaq, это оглавление, из которого можно узнать,
+что FAQ состоит из девяти больших частей.
+<P>
+<H2><A NAME="ss2.6">2.6 Я крутой разработчик, где лежит описание того, как сделать perldoc/manpage к своей библиотеке?</A>
+</H2>
+
+<P>
+<P>Про это говорят в perldoc perlpod, в man pod2man.
+<P>
+<P>
+<H2><A NAME="ss2.7">2.7 А есть ли где в интернете хорошие доки по перлу?</A>
+</H2>
+
+<P>
+<P>Да. На мой взгляд, серия статей Рандала Шварца для Unix Review
+Perl Columns -- лучшее введение в перл, и намного интереснее и
+полезнее книг Llama и Camel (<EM>мнения авторов не всегда совпадают с мнением 
+координатора -- Аммосов</EM>).  Почитать их можно на
+<A HREF="http://w3.stonehenge.com:80/merlyn/UnixReview/">http://w3.stonehenge.com:80/merlyn/UnixReview/</A>.
+<P>Почему я считаю это лучшим введением в перл? Потому что это отдельные
+небольшие статьи, каждая из которых иллюстрирует конкретные
+возможности перла на примере написания программы для достаточно
+простой задачи.  Все же статьи охватывают практически весь спектр
+возможностей перла -- от написания скрипта в одну строку, который
+может поменять Иванов на Сидоров во всех файлах в дереве директорий,
+до основ объектно-ориентированного программирования и принципов
+создания собственных модулей и библиотек.
+<P>
+<H2><A NAME="ss2.8">2.8 А где можно найти русскую доку по перлу?</A>
+</H2>
+
+<P>
+<P>Если нет возможности купить в магазине, то есть кое-что и в
+Интернете: книга Маслова "Введение в перл", например.
+<A HREF="http://citforum.ru/koi/internet/perl_tut/">http://citforum.ru/koi/internet/perl_tut/</A> Есть и другие, особо
+хороших не видел.
+<P>
+<P>
+<HR>
+<A HREF="ru-perl-faq-3.html">Next</A>
+<A HREF="ru-perl-faq-1.html">Previous</A>
+<A HREF="http://books.gnu.technology/books/perl-faq/ru-perl-faq.html#toc2">Contents</A>
+</BODY>
+</HTML>

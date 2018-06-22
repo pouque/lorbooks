@@ -1,0 +1,118 @@
+<HTML>
+<HEAD>
+<!-- Created by texi2html 1.56k from automake-ru.texi on 11 July 2000 -->
+
+<TITLE>automake - Условные операторы</TITLE>
+</HEAD>
+<BODY>
+Go to the <A HREF="automake-ru_1.html">first</A>, <A HREF="automake-ru_17.html">previous</A>, <A HREF="automake-ru_19.html">next</A>, <A HREF="automake-ru_25.html">last</A> section, <A HREF="automake-ru_toc.html">table of contents</A>.
+<P><HR><P>
+
+
+<H1><A NAME="SEC60" HREF="automake-ru_toc.html#TOC60">Условные операторы</A></H1>
+
+<P>
+<A NAME="IDX464"></A>
+
+
+<P>
+Automake поддерживает простой тип условных операторов.
+
+
+<P>
+<A NAME="IDX465"></A>
+До использования условного оператора, вы должны определить его в файле
+<CODE>configure.in</CODE> используя макрос <CODE>AM_CONDITIONAL</CODE>
+(see section <A HREF="automake-ru_5.html#SEC17">Макросы Autoconf, поставляемые с Automake</A>).  Макросу <CODE>AM_CONDITIONAL</CODE> передается два
+аргумента.
+
+
+<P>
+Первым аргументом для <CODE>AM_CONDITIONAL</CODE> является имя условного
+оператора. Им должны быть простая строка, начинающаяся с буквы и
+содержащая только буквы, цифры и знаки подчеркивания.
+
+
+<P>
+Вторым аргументом <CODE>AM_CONDITIONAL</CODE> является условие для командного
+процессора, которое можно использовать в операторе <CODE>if</CODE>. Условие
+оценивается при запуске <CODE>configure</CODE>.
+
+
+<P>
+<A NAME="IDX466"></A>
+<A NAME="IDX467"></A>
+<A NAME="IDX468"></A>
+
+
+<P>
+Условные операторы обычно зависят от ключей, которые использует
+пользователь при запуске скрипта <CODE>configure</CODE>. Вот пример того, как
+написать условный оператор, который возвращает истинное выражение, если
+пользователь использовал ключ <SAMP>`--enable-debug'</SAMP>.
+
+
+
+<PRE>
+AC_ARG_ENABLE(debug,
+[  --enable-debug    Turn on debugging],
+[case "${enableval}" in
+  yes) debug=true ;;
+  no)  debug=false ;;
+  *) AC_MSG_ERROR(bad value ${enableval} for --enable-debug) ;;
+esac],[debug=false])
+AM_CONDITIONAL(DEBUG, test x$debug = xtrue)
+</PRE>
+
+<P>
+Вот пример использования этого условного оператора в файле
+<TT>`Makefile.am'</TT>:
+
+
+<P>
+<A NAME="IDX469"></A>
+<A NAME="IDX470"></A>
+<A NAME="IDX471"></A>
+
+
+
+<PRE>
+if DEBUG
+DBG = debug
+else
+DBG =
+endif
+noinst_PROGRAMS = $(DBG)
+</PRE>
+
+<P>
+Этот тривиальный пример также мог быть создан используя макрос
+EXTRA_PROGRAMS (see section <A HREF="automake-ru_7.html#SEC21">Построение программ</A>).
+
+
+<P>
+В операторе <CODE>if</CODE> вы можете тестировать только одну
+переменную. Оператор <CODE>else</CODE> может не использоваться. Условные
+операторы могут быть вложены на любую глубину.
+
+
+<P>
+Заметьте, что условные операторы в Automake не похожи на условные
+операторы в GNU Make. Условные операторы Automake проверяются во время
+конфигурации, при выполнении скрипта <TT>`configure'</TT>, и воздействуют на
+преобразование файла <TT>`Makefile.in'</TT> в файл <TT>`Makefile'</TT>. Они
+основываются на ключах, передаваемых скрипту <TT>`configure'</TT> и на
+результатах, определяемых во время выполнения <TT>`configure'</TT>. Условные
+операторы GNU Make проверяются при выполнении <CODE>make</CODE> и основываются
+на переменных, передаваемых программе make, или определенных в
+<TT>`Makefile'</TT>.
+
+
+<P>
+Условные операторы Automake будут работать с любой программой make.
+
+
+<P><HR><P>
+Go to the <A HREF="automake-ru_1.html">first</A>, <A HREF="automake-ru_17.html">previous</A>, <A HREF="automake-ru_19.html">next</A>, <A HREF="automake-ru_25.html">last</A> section, <A HREF="automake-ru_toc.html">table of contents</A>.
+</BODY>
+</HTML>

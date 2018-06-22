@@ -1,0 +1,222 @@
+<HTML
+><HEAD
+><TITLE
+>About debugging symbols</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Microsoft FrontPage 4.0"/><LINK
+REL="HOME"
+TITLE="Linux From Scratch"
+HREF="http://www.linuxfromscratch.org/view/4.0/index.html"/><LINK
+REL="UP"
+TITLE="Installing basic system software"
+HREF="http://www.linuxfromscratch.org/view/4.0/chapter06/chapter06.html"/><LINK
+REL="PREVIOUS"
+TITLE="Introduction"
+HREF="http://www.linuxfromscratch.org/view/4.0/chapter06/introduction.html"/><LINK
+REL="NEXT"
+TITLE="Entering the chroot environment"
+HREF="http://www.linuxfromscratch.org/view/4.0/chapter06/chroot.html"/></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#006000"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Linux From Scratch: Версия 4.0</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="introduction.html"
+ACCESSKEY="P"
+>Назад</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Глава 6. Установка основных компонентов
+        системы</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="chroot.html"
+ACCESSKEY="N"
+>Вперед</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"/></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="ch06-aboutdebug"
+>Отладочные символы</A
+></H1
+><P
+>Большинство программ и библиотек по
+  умолчанию компилируются с символами
+  отладки. ( с опцией gcc -g).</P
+><P
+>При отладке программы или библиотеки,
+  скомпилированной с отладочной
+  информацией, отладчик предоставляет не
+  только адреса в памяти, но и имена
+  алгоритмов и переменных.</P
+><P
+>Однако включение символов отладки
+  значительно увеличивает размер программы
+  или библиотеки. Для того, чтобы получить
+  представление о размере отладочных
+  символов, взглянем на пример:</P
+><P
+></P
+><UL
+><LI
+><P
+>оболочка bash, скомпилированная с
+      отладочными символами: 1200 KB</P
+></LI
+><LI
+><P
+>оболочка bash, скомпилированная без
+      отладочных символов: 480 KB</P
+></LI
+><LI
+><P
+>файлы glibc и gcc (/lib и /usr/lib) с отладочными
+      символами: 87 MB</P
+></LI
+><LI
+><P
+>файлы glibc и gcc скомпилированная без
+      отладочных символов: 16 MB</P
+></LI
+></UL
+><P
+>Размеры могут различаться в зависимости от
+  использованного компилятора Си и
+  библиотеки. При сопоставлении размера
+  программы, скомпилированной с отладочными
+  символами и без них, разница составляет
+  примерно 2 - 5 раз.</P
+><P
+>Так как большинство пользователей никогда
+  не используют отладчик, удаление этих
+  символов позволит значительно сэкономить
+  дисковое пространство.</P
+><P
+>Для удаления символов отладки из бинарного
+  файла (файл a.out или бинарный файл ELF),
+  выполните <TT
+CLASS="userinput"
+><B
+>strip --strip-debug filename</B
+></TT
+>. Допускается использование символа <b>* </b>для
+  обработки нескольких файлов (например, <TT
+CLASS="userinput"
+><B
+>strip --strip-debug $LFS/static/bin/*</B
+></TT
+>).</P
+><P
+>Для удобства, в главе 9 описана программа,
+  удаляющая отладочные символы со всех
+  программ и библиотек системы. Для
+  получения дополнительных сведений по
+  оптимизации, см. руководство:
+<A
+HREF="http://hints.linuxfromscratch.org/hints/optimization.txt"
+TARGET="_top"
+>http://hints.linuxfromscratch.org/hints/optimization.txt</A
+>.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"/><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="introduction.html"
+ACCESSKEY="P"
+>Назад</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="../index.html"
+ACCESSKEY="H"
+>Домой</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="chroot.html"
+ACCESSKEY="N"
+>Вперед</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Вступление</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="chapter06.html"
+ACCESSKEY="U"
+>Наверх</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Вход в среду chroot</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

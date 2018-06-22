@@ -1,0 +1,370 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE>FAQ по perl и программированию для web: CGI-скрипты</TITLE>
+ <LINK HREF="ru-perl-faq-5.html" REL=next>
+ <LINK HREF="ru-perl-faq-3.html" REL=previous>
+ <LINK HREF="http://books.gnu.technology/books/perl-faq/ru-perl-faq.html#toc4" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="ru-perl-faq-5.html">Next</A>
+<A HREF="ru-perl-faq-3.html">Previous</A>
+<A HREF="http://books.gnu.technology/books/perl-faq/ru-perl-faq.html#toc4">Contents</A>
+<HR>
+<H2><A NAME="CGI-скрипты"></A> <A NAME="s4">4. CGI-скрипты</A></H2>
+
+<P>
+<P>
+<H2><A NAME="ss4.1">4.1 Что такое CGI и как с ним работать</A>
+</H2>
+
+<P>
+<P>CGI -- Common Gateway Interface.  Стандарт интерфейса внешних программ
+с http-сервером. 
+<P>
+<H3>Как работать</H3>
+
+<P>HTTP -- клиент-серверный протокол, следовательно  со стороны CGI-программы, как
+серверного процесса, все взаимодействие выглядит следующим образом
+<OL>
+<LI> Получение данных от клиента</LI>
+<LI> Обработка данных</LI>
+<LI> Выдача ответа клиенту.</LI>
+</OL>
+<P>Пункты 1 и 3 я вкратце опишу здесь, а 2, надеюсь, сделаете сами :-).
+Начнем с п.3, как наиболее простого.  
+<P>
+<H3>3. Выдача данных клиенту</H3>
+
+<P>Обычно клиенту выдают текст в формате HTML (ничто
+не мешает Вам отправить ему и картинку/видео/etc). Для того, чтобы сервер и
+клиент вас поняли, необходимо сказать, что вы выдаете, c помощью заголовка
+Content-Type: mime-type/mime-subtype. Обратите внимание на регистр и
+последовательность -- если вы скажите нечто типа Content_type, то сервер
+вас скорее всего не поймет. (Сообщение типа &quot;500 Internal
+Server Error&quot; будет симптомом).
+<P>Пример:
+<BLOCKQUOTE><CODE>
+<PRE>
+print "Content-Type: text/html\n";
+
+# Мы выдаем текст в формате HTML. Также можно: text/plain -- простой текст, в
+# браузере отобразится аналогично тексту, заключённому между тегами
+# &lt;pre&gt;&lt;/pre&gt;.  image/gif -- Картинка, формат gif video/mpeg --
+# mpeg-видео И целая куча других форматов, см.  файл mime.types из apache
+
+print "\n"; 
+# &lt;-- еще одна пустая строка, обозначает конец вывода наших 
+# заголовков. ВАЖНО!
+
+# Теперь мы можем написать свой текст клиенту
+print qq{
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Моя первая CGI программа&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Моя первая CGI программа&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/head&gt;
+};
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>
+<H3>Прием данных от клиента</H3>
+
+<P>
+<P>Взаимодействие с клиентом обеспечивается так: Он заполняет форму своими
+значениями, нажимает на кнопку "submit", броузер кодирует данные
+соответствующим образом и отправляет их серверу.
+<P>
+<H3>Определение форм</H3>
+
+<P>Производится тегами &lt;form&gt; и &lt;/form&gt;. Тег определения форм имеет
+следующие атрибуты
+<P>
+<DL>
+<DT><B>action</B><DD><P>скрипт на сервере, который будет запущен на сервере для обработки данных
+формы.
+<DT><B>method</B><DD><P>тип взаимодействия с сервером. Может иметь значения GET и
+POST. Плюс, еще некоторые специальные, которые вы можете посмотреть в
+rfc
+<P>
+</DL>
+
+(Аттрибуты перечислены не все, как обычно)
+<P>Формы не могут быть вложенными.
+<P>Элементы ввода
+<P>Определяются тегами &lt;input&gt;, &lt;textarea&gt; и &lt;select&gt;
+тег &lt;input&gt;:
+<P>
+<DL>
+<DT><B>&lt;input type=checkbox&gt;</B><DD><P>Элемент ввода &quot;Опция&quot;
+<DT><B>&lt;input type=hidden&gt;</B><DD><P>Элемент ввода, который не виден
+пользователю
+<DT><B>&lt;input type=file&gt;</B><DD><P>в Netscape Navigator позволяет загрузить
+файл на сервер
+<DT><B>&lt;input type=image&gt;</B><DD><P>Изображение. Если по нему щелкнуть, это
+вызовет submit формы и серверу будут выданы две переменные вида name.x и
+name.y, где name -- то, что вы пропишете в name=... тега &lt;input&gt;
+<DT><B>&lt;input type=password&gt;</B><DD><P>Элемент ввода Пароль. Позволяет ввести
+строку, которая на экране отображается звездочками. Никаких методов защиты при
+передаче на сервер не применяется
+<DT><B>&lt;input type=radio&gt;</B><DD><P>Радиокнопки
+<DT><B>&lt;input type=reset&gt;</B><DD><P>Кнопка сброса значений формы на начальные
+<DT><B>&lt;input type=submit&gt;</B><DD><P>Кнопка отправки формы на сервер
+<DT><B>&lt;input type=text&gt;</B><DD><P>строка ввода
+</DL>
+<P>Все теги &lt;input&gt; имеют атрибут name -- Наименование элемента. Служит для
+идентификации при передаче на сервер, а также другие типа value, width, etc,
+название и назначение которых можно опять-таки посмотреть в учебнике.
+<P>Тег &lt;textarea&gt; -- Поле многострочного ввода.
+<P>Тег &lt;select&gt; -- списочный выбор
+<P>
+<P>Пример:
+<BLOCKQUOTE><CODE>
+<PRE>
+  &lt;form action=/cgi-bin/myscript.pl method=GET&gt;
+  Имя: &lt;input type=string name=name&gt;&lt;p&gt;
+  Пол: &lt;input type=radio name=gender value=male&gt;Мужской
+       &lt;input type=radio name=gender value=female&gt;Женский
+  &lt;input type=submit&gt;&lt;input type=reset&gt;
+  &lt;/form&gt;
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>
+<H3>Как это будет видно в моей программе?</H3>
+
+<P>Это определяется методом формы, GET или POST
+<P>В случае GET сервер установит переменную окружения QUERY_STRING в виде
+name1=vaue1&amp;name2=value2&amp;..&amp;nameN=valueN.
+<P>В случае POST аналогичная строка будет записана на стандартный ввод. Ее
+длину можно получить через переменную окружения CONTENT_LENGTH. 
+<P>В обоих случаях данные будут закодированы по следующему алгоритму:
+<UL>
+<LI>Если ASCII код символа больше 32 и меньше 128, то он будет выдан без
+изменения.</LI>
+<LI>если символ - пробел, то он заменится на "+" (плюсик, без кавычек)
+все остальное преобразуется в вид %xx, где xx -- шестнадцатеричный
+код символа. Если вам повезло и у вас "Русский apache", то он
+преобразует его в нормальную кодировку. </LI>
+</UL>
+         
+<H3>Декодирование на perl</H3>
+
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+  tr/+/ /;
+  s/%([0-9a-fA-F]{2})/pack("c",hex($1))/ge;
+</PRE>
+</CODE></BLOCKQUOTE>
+  
+(списано из CGI.pm)
+<P>
+<P>На самом деле, можно не возится со всем этим, а использовать модуль CGI.pm
+(Имеется в поставке Perl 5.004 и более поздних.  Если у вас perl версии 4
+или 1, нужно срочно взять на CPAN новую версию perl)
+<P>
+<P>
+<H3>Самый большой и последний пример</H3>
+
+<P>Предположим мы делаем поисковую систему, тогда у нас должен быть HTML с
+формой и программа, которая будет выполнять поиск.
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+search.html
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Поиск&lt;/title&gt;
+&lt;/head&gt;
+&lt;&lt;body&gt;
+&lt;h1&gt;Чего искать?&lt;/h1&gt;
+&lt;form action=/cgi-bin/search.pl method=get&gt;
+Строка для поиска: &lt;input type=text name=string width=70&gt;&lt;p&gt;
+Искать в &lt;input type=checkbox name=searchin value=internet&gt;Интернет
+  &lt;input type=checkbox name=searchin value=intranet&gt;Интранет
+  &lt;input type=checkbox name=searchin value=extranet&gt;Экстранет&lt;p&gt;
+&lt;input type=submit value=Давай!&gt;&lt;input type=reset value="Нет, не надо"&gt;
+&lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>
+<P>Программа:
+<BLOCKQUOTE><CODE>
+<PRE>
+#!/usr/bin/perl -- поменяйте, как надо
+use CGI qw(:standard); 
+
+print "Content-Type: text/html\n\n"; # Не забудьте про два "\n"
+
+$string = param("string");
+@searchin = param("searchin"); # searchin это checkbox и его значения
+             # возвращаются списком
+
+# Искать мы сегодня ничего не будем
+print "&lt;html&gt;
+&lt;body&gt;
+&lt;h1&gt;Мы сегодня ничего не ищем&lt;/h1&gt;
+Но, если бы искали, то: &lt;br&gt;
+Искали бы строку &lt;b&gt;$string&lt;/b&gt;&lt;br&gt;\n";
+print "В &lt;b&gt;" . join(" ", @searchin) . "&lt;/b&gt;\n";
+print "
+&lt;/body&gt;
+&lt;/html&gt;
+";
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>Да, кстати, если вы собираетесь писать в файлы с помощью CGI-программ, не
+забывайте про file locking (См. часть C за подробностями). 
+<P>
+<P>
+<P>
+<H2><A NAME="ss4.2">4.2 Как заставить браузеры не кешировать выдаваемый результат?</A>
+</H2>
+
+<P>
+<P>
+<P>Выдавайте заголовки в таком виде:
+<PRE>
+print "Content-Type: type/sub-type\n"; # Подставьте Ваш тип/подтип
+print "Pragma: no-cache\n"; # Для HTTP/1.0 клиентов
+print "Cache-Control: no-cache\n"; # Для HTTP/1.1
+print "Expires: Thu Jan  1 00:00:00 1970\n\n"; # Это уже любой броузер должен
+                                               # понять
+</PRE>
+<P>
+<H2><A NAME="ss4.3">4.3 Как перенаправить клиента на другой URL?</A>
+</H2>
+
+<P>
+<P>
+<P>В заголовке напишите:        
+<PRE>
+        
+print "Status: 302\n";
+# Или 301. Разница состоит в том, что по стандарту 301 значит "перемещён
+# навсегда", а 302 -- "перемещён временно"
+print "Location: ВАШ Новый URL\n";
+# URL должен быть указан абсолютный
+print "URI: ВАШ новый URL\n\n"; # Для http/1.0
+</PRE>
+
+Подробности: см. rfc1945(http/1.0),  rfc2068(http/1.1)
+<P>
+<H2><A NAME="ss4.4">4.4 Как загрузить файл на сервер?</A>
+</H2>
+
+<P>
+<P>В поставку CGI.pm входит пример file_upload.cgi.
+За подробностями смотрите CGI(3).
+<P>Учтите, что если у вас система, которая разделяет бинарные и текстовые файлы --
+вам понадобится использовать binmode.
+<P>Также, помните, что &quot;Русский Apache&quot; не будет производить
+перекодировку multipart форм.
+<P>
+<P>
+<H2><A NAME="ss4.5">4.5 Как получить файл по URL?</A>
+</H2>
+
+<P>
+<P>Возьмите на CPAN библиотеку libwww-perl и смотрите lwpcook(3), там
+написаны основы использования библиотеки и есть примеры.
+<P>
+<P>
+<H2><A NAME="ss4.6">4.6 Как использовать плюшки (cookies)?</A>
+</H2>
+
+<P>
+<P>Плюшки работают следующим образом: программа CGI добавляет в свой
+ответ директиву Set-Cookie, а клиент (если он поддерживает плюшки), при
+следующих запросах возвращает их в заголовке Cookie. Сами плюшки
+представляют из себя пары имя=значение. 
+<P>
+<H3>Синтаксис Set-Cookie</H3>
+
+<P>
+<PRE>
+Set-Cookie: имя=значение; expires=дата; path=путь; domain=домен; secure
+</PRE>
+<P>Сервер может установить не более 20 плюшек, размер всей плюшки не может 
+превышать 4Kb.
+<P>
+<DL>
+<DT><B>Имя=значение</B><DD><P>единственный обязательный параметр. И имя, и значение
+могут быть строками текста, не содержащими символов перевода строки,
+пробелов, ; и табуляции. Если необходимо их использовать, можно эти
+символы закодировать при помощи стандартного uri-кодирования.
+<P>
+<P>
+<DT><B>expires=дата</B><DD><P>устанавливается дата истечения срока действия плюшки.
+После этой дата плюшка клиентом не возвращается. Если дата не
+установлена, то плюшка действует до завершения работы браузера.
+<P>
+<DT><B>path=путь</B><DD><P>обозначает путь на сервере, для которого возвращается 
+эта плюшка, если не указано, то только для того, который ее создал.
+<P>
+<DT><B>domain=домен</B><DD><P>домен, для которого возвращается эта плюшка. Может
+быть доменом уровня 2 и выше, т.е. .example.ru, а не .ru. Если не
+установлен, то плюшка возвращается только серверу, который выдал
+плюшку.
+<P>
+<DT><B>secure</B><DD><P>указывает, что плюшка должна возвращаться только по
+защищенному соединению (SSL).
+</DL>
+<P>
+<H3>Синтаксис ответа клиента</H3>
+
+<P>
+<PRE>
+Cookie: имя1=значение1; имя2=значение2;....;имяn=значениеn
+</PRE>
+
+Программы CGI могут получить пары имя-значение через переменную
+окружения HTTP_COOKIE. В модуле CGI.pm значение можно получить при
+помощи метода cookie().
+<P>В деталях, механизм плюшек описан в rfc2109 (HTTP State Management 
+Mechanism. D. Kristol, L. Montulli.  February 1997.)
+<P>Пример:
+1. Установка плюшки
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+setcookie.pl
+#!/usr/bin/perl 
+
+print "Content-Type: text/html\n";
+print "Set-Cookie: mycookie=some+string\n\n";
+print "&lt;html&gt;&lt;head&gt;&lt;title&gt;Установка плюшки&lt;/title&gt;&lt;/head&gt;\n";
+print "&lt;body&gt;&lt;h1&gt;Установка плюшки&lt;/h1&gt;\n";
+print "&lt;a href=getcookie.pl&gt;Щелкни здесь,&lt;/a&gt; чтобы посмотреть, что
+получилось.
+print "&lt;/body&gt;&lt;/html&gt;";
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>2. Получение плюшки
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+getcookie.pl;
+#!/usr/bin/perl 
+use CGI qw(:standard);
+
+print "Content-Type: text/html\n\n";
+print "&lt;html&gt;&lt;head&gt;&lt;title&gt;Получение плюшки&lt;/title&gt;&lt;/head&gt;\n";
+print "&lt;body&gt;&lt;h1&gt;Плюшка&lt;/h1&gt;\n";
+print "mycookie = ", getcookie('mycookie');
+print "&lt;/body&gt;&lt;/html&gt;";
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>
+<HR>
+<A HREF="ru-perl-faq-5.html">Next</A>
+<A HREF="ru-perl-faq-3.html">Previous</A>
+<A HREF="http://books.gnu.technology/books/perl-faq/ru-perl-faq.html#toc4">Contents</A>
+</BODY>
+</HTML>

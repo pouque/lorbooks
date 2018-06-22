@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE> IFMAIL-HOWTO: gettys &amp; inittab</TITLE>
+ <LINK HREF="Ifmail-HOWTO-7.html" REL=next>
+ <LINK HREF="Ifmail-HOWTO-5.html" REL=previous>
+ <LINK HREF="Ifmail-HOWTO.html#toc6" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="Ifmail-HOWTO-7.html">Next</A>
+<A HREF="Ifmail-HOWTO-5.html">Previous</A>
+<A HREF="Ifmail-HOWTO.html#toc6">Contents</A>
+<HR>
+<H2><A NAME="s6">6. gettys &amp; inittab</A></H2>
+
+<P> 
+getty используется для наблюдения за состоянием последовательной линии, и при
+поступлении звонка он передает звонящего соответствующей программе. Есть два
+getty, коотрые очень хорошо работают с ifmail - getty_ps и mgetty+sendfax-0.98.
+Я использую mgetty+sendfax, так как он работает и с uucp, и с fido звонками.
+<P> 
+Чтобы использовать mgetty вам нужно отредактировать его несколько 
+конфигурационных файлов, но из них только один самый важный - это файл
+login-config.dist . Вот мой файл /etc/mgetty-0.98/login-config.dist :
+<BLOCKQUOTE><CODE>
+<PRE>
+ 
+ # login.config
+ #
+ # This is a sample "login dispatcher" configuration file for mgetty
+ #
+ # Format:
+ #      username userid utmp_entry login_program [arguments]
+ #
+ # Meaning:
+ #       for a "username" entered at mgettys login: prompt, call
+ #      "login_program" with [arguments], with the uid set to "userid",
+ #      and a USER_PROCESS utmp entry with ut_user = "utmp_entry"
+ #
+ # username may be prefixed / suffixed by "*" (wildcard)
+ #
+ # userid is a valid user name from /etc/passwd, или "-" to not set
+ #  a login user id и keep the uid/euid root (needed for /bin/login)
+ #
+ # utmp_entry is what will appear in the "who" listing. Use "-" to not
+ #  set an utmp entry (a must for /bin/login), use "@" to set it to the
+ #  username entered. Maximum length is 8 characters.
+ #
+ # login_program is the program that will be exec()ed, with the arguments
+ #  passed in [arguments]. A "@" in the arguments will be replaced with the
+ #  username entered. Warning: if no "@" is given, the login_program has
+ #  no way to know what user name the user entered.
+ #
+ #
+ # SAMPLES:
+ # Use this one with my Taylor-UUCP patch (taylor104.p1) и Taylor-UUCP
+ #  passwd files. (Big advantage: tuucp can use the same passwd file for
+ #  serial dial-in и tcp dial-in [uucico running as in.uucpd]).
+ #
+ #U*    uucp    @       /usr/lib/uucp/uucico -L @
+ #
+ # If you use Taylor UUCP 1.05, use that:
+ #
+ U*     uucp    @       /usr/lib/uucp/uucico -l -u @
+ #
+ # Use this one for fido calls (login name /FIDO/ is handled specially)
+ #
+ # You need Eugene Crosser's "ifmail" package for this to work.
+ # mgetty has to be compiled with "-DFIDO" in the options list, otherwise a 
+ # fido call won't  be detected.
+ #
+ /FIDO/ fnet    uucp    /usr/lib/ifmail/ifcico @
+ #
+ #
+ # An example where no login name in the argument list is desired:
+ #  automatically telnetting to machine "smarty" for a given login name
+ #
+ #telnet-smarty gast    telnet  /usr/bin/telnet -8 smarty
+ #
+ # This is the "standard" behaviour - *dont* set a userid или utmp
+ #  entry here, otherwise /bin/login will fail!
+ #  This entry isn't really necessary: if it's missing, the built-in
+ #  default will do exactly this.
+ #
+ *      -       -       /bin/login @
+</PRE>
+</CODE></BLOCKQUOTE>
+ 
+<P>Если вы используете getty_ps, не забудьте добавить #define FIDO в tune.h. Вам
+также надо будет определить конфигурационный файл для ttyS устройства, которое
+вы используете. Примеры есть в /etc/default для uugetty и в архиве. Вот мой
+/etc/default/uugetty.ttyS1:
+<BLOCKQUOTE><CODE>
+<PRE>
+ 
+ ALTLOCK=cua1
+ ALTLINE=cua1
+ INITLINE=cua1
+ TIMEOUT=60
+ DEBUG=110
+ INIT="" ATZS0=1\r OK
+ 
+ # Its very important to include these two lines. Otherwise fido callers
+ # will go undetected. Also some older versions of uugetty are case sensitive
+ # so watch for this in the example configs that accompanied your archive.  
+ FIDO=/usr/lib/ifmail/ifcico 
+ EMSI=yes
+ 
+ WAITFOR=RING
+ CONNECT="" ATA\r CONNECT
+ DELAY=1
+ HANGUP=yes
+</PRE>
+</CODE></BLOCKQUOTE>
+ 
+Далее вам нужно добавить строку в ваш /etc/inittab для вашего getty.
+Вот мой /etc/inittab :
+<BLOCKQUOTE><CODE>
+<PRE>
+ 
+ # Serial lines
+ # This is my mgetty line for com port 2 .
+ S1:35:respawn:/usr/sbin/mgetty -D -s 38400 ttyS1 
+ #
+ # You can add this line instead to your inittab if your using uugetty 
+ #S1:35:respawn:/sbin/uugetty -d /etc/default/uugetty.ttyS1 -t 180 ttyS1 38400
+</PRE>
+</CODE></BLOCKQUOTE>
+ 
+Первое поле определяет устройство. Вторая runlevel`ы, для которых действительны
+значения остальных полей. Третье поле 'respawn:' перезапускает программы, если
+она завершит свою работу. Четвертое поле - путь и имя программы для запуска и 
+параметры, нужные для запуска getty. Более подробно описано в 'man inittab'.
+<P>
+<P>
+<P>
+<P>
+<HR>
+<A HREF="Ifmail-HOWTO-7.html">Next</A>
+<A HREF="Ifmail-HOWTO-5.html">Previous</A>
+<A HREF="Ifmail-HOWTO.html#toc6">Contents</A>
+</BODY>
+</HTML>

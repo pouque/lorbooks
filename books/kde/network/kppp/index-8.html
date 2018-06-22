@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<TITLE>Руководство по kppp : Приложение</TITLE>
+<META HTTP-EQUIV="content-type" CONTENT="text/html; charset=koi8-r">
+<META NAME="keywords" CONTENT="kppp russian Russian translation KDE Mozzherin Dmitry перевод русский Мозжерин Дмитрий документация documentation">
+<META NAME="description" CONTENT="Russian translation of KDE kppp documentation, translator Dmitry Mozzherin">
+</HEAD>
+<BODY BGCOLOR="#ffffff" LINK="#aa0000" TEXT="#000000" > 
+<?php include("/home/maxcom/linux_html/books/head.php3") ?>
+<FONT FACE="Helvetica">
+<A HREF="http://www.kde.org/"><IMG SRC="http://books.gnu.technology/books/kde/network/kppp/logotp3.gif" BORDER="0" ALT="The K Desktop Environment"></A>
+<HR WIDTH="100%" SIZE=2 ALIGN="CENTER" NOSHADE>
+
+ 
+<P ALIGN="RIGHT">
+
+<A HREF="index-9.html"> Вперед </A>
+<A HREF="index-7.html"> Назад </A>
+<A HREF="index.html#toc8"> Содержание </A>
+</P>
+<H3><A NAME="s8">8. Приложение</A></H3>
+
+<P>
+<H3><A NAME="ss8.1">8.1 Набор команд для модема Hayes</A>
+</H3>
+
+<P>
+<A HREF="http://www.linux.org.ru/books/kde/network/kppp/hayes.html">Набор команд для модема Hayes</A> может помочь,
+если вам нужна тонкая настройка команд модема.
+<P>
+<P>
+<H3><A NAME="ss8.2">8.2 Файлы, относящиеся к <EM>kppp</EM> </A>
+</H3>
+
+<P>По умолчанию, <EM>kppp</EM> использует следующие файлы и каталоги. Местоположение
+некоторых из них может измениться при компиляции.
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+${KDEDIR}/bin/kppp
+${KDEDIR}/share/doc/HTML/.../kppp/*
+${KDEDIR}/share/apps/kppp
+${KDEDIR}/share/apps/kppp/Rules/*/*.rst
+${KDEDIR}/share/apps/kppp/pics/*
+${HOMEDIR}/.kde/share/apps/kppp
+${HOMEDIR}/.kde/share/apps/kppp/kppp.pid
+${HOMEDIR}/.kde/share/apps/kppp/Log/*
+${HOMEDIR}/.kde/share/config/kppprc
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>
+<H3><A NAME="ss8.3">8.3 Сообщения о проблемах с <EM>kppp</EM></A>
+</H3>
+
+<P>Прежде чем сообщать о проблеме, или потенциальной ошибке  
+<A HREF="index-1.html#maintainers">разработчикам</A> <EM>kppp</EM>, 
+внимательно прочитайте секцию 
+<A HREF="index-7.html#&lt;em/kppp/ FAQ">Часто задаваемые вопросы</A>.
+<P>Если это не помогло вам в решении проблемы, вы должны включить следующую
+информацию в ваше сообщение:
+<UL>
+<LI>Версию <EM>kppp</EM>, которую вы используете. <I>kppp -v</I> покажет вам
+номер версии.</LI>
+<LI>Версию pppd, которую вы используете. <I>/usr/sbin/pppd -h</I> покажет
+вам ее номер.</LI>
+<LI>Какую операционную систему вы используете. <I>uname -a</I> выдаст 
+эту информацию для большинства систем UNIX.</LI>
+<LI>Если <EM>kppp</EM> сообщает "pppd died unexpectedly" ("произошло неожиданное
+уничтожение pppd), добавьте опцию  <I>debug</I> к 
+<A HREF="index-4.html#pppd arguments">аргументам pppd</A>. Произведите дозвон снова для 
+воспроизведения ошибки.
+<P>Теперь конец файла <CODE>/var/log/messages</CODE> будет содержать большое количество
+отладочной информации (вообще-то это зависит от вашей системы и
+настроек, но для стандартно установленной системы Linux -- этот файл. Конечно, вы
+должны иметь допуск суперюзера root, чтобы прочитать этот файл). 
+<B>Не посылайте нам весь файл</B>. Он обычно занимает несколько тысяч строк и
+у нас нет ни времени, ни желания весь его исследовать. Посылайте нам только
+последние линии, которые содержат <I>pppd</I>. Проверьте, чтобы этот файл 
+<B>не</B> содержал секретной информации, такой как пароли или  
+имена пользователей. Замените такую информацию на что-то типа "myusername" или "mypassword"
+</LI>
+</UL>
+<P>
+<P>
+<P>
+<P>
+<P ALIGN="RIGHT">
+
+<A HREF="index-9.html"> Вперед </A>
+<A HREF="index-7.html"> Назад </A>
+<A HREF="index.html#toc8"> Содержание </A>
+</P>
+<CENTER>
+<HR WIDTH="100%" SIZE=3 ALIGN=CENTER NOSHADE>
+</CENTER>    
+</FONT>
+
+ 
+</BODY>
+</HTML>

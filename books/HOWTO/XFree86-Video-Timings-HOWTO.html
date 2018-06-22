@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE> HowTo по настройке видеосистемы в Xfree86.</TITLE>
+ <LINK HREF="XFree86-Video-Timings-HOWTO-1.html" REL=next>
+
+
+</HEAD>
+<BODY>
+<A HREF="XFree86-Video-Timings-HOWTO-1.html">Next</A>
+Previous
+Contents
+<HR>
+<H1> HowTo по настройке видеосистемы в Xfree86.</H1>
+
+<H2>Eric S. Raymond, 
+<A HREF="mailto:esr@thyrsus.com">esr@thyrsus.com</A><BR>
+ Русский перевод Ilgiz Kalmetev, 
+<A HREF="mailto:ilgiz@mail.rb.ru">ilgiz@mail.rb.ru</A></H2> v3.1, 31 October 1997
+<P><HR>
+<EM>  Данный документ описывает определение параметров видеокарты/монитора
+ в конфигурационном файле  Xfree86. Дистрибуция Xfree86 имеет сейчас
+ хорошие средства настройки для большинства стандартных случаев. Этот
+ документ особенно полезен в случае, если вы хотите настроить видеорежим
+ "под себя" для высококачественного монитора или необычного оборудования.
+ Кроме того, здесь вы можете найти помощь в использовании программы
+ xvidtune для "подгонки" стандартного режима под ваш монитор.</EM>
+<HR>
+<P>
+<H2><A NAME="toc1">1.</A> <A HREF="XFree86-Video-Timings-HOWTO-1.html">Заявление</A></H2>
+
+<P>
+<H2><A NAME="toc2">2.</A> <A HREF="XFree86-Video-Timings-HOWTO-2.html">Предисловие</A></H2>
+
+<P>
+<H2><A NAME="toc3">3.</A> <A HREF="XFree86-Video-Timings-HOWTO-3.html">Как работает монитор</A></H2>
+
+<P>
+<H2><A NAME="toc4">4.</A> <A HREF="XFree86-Video-Timings-HOWTO-4.html">Полоса пропускания монитора</A></H2>
+
+<P>
+<H2><A NAME="toc5">5.</A> <A HREF="XFree86-Video-Timings-HOWTO-5.html">На что это влияет:</A></H2>
+
+<P>
+<H2><A NAME="toc6">6.</A> <A HREF="XFree86-Video-Timings-HOWTO-6.html">Интерпретация основных терминов</A></H2>
+
+<UL>
+<LI><A HREF="XFree86-Video-Timings-HOWTO-6.html#ss6.1">6.1 О полосе пропускания </A>
+<LI><A HREF="XFree86-Video-Timings-HOWTO-6.html#ss6.2">6.2 Частоты синхронизации и частота обновления :</A>
+</UL>
+<P>
+<H2><A NAME="toc7">7.</A> <A HREF="XFree86-Video-Timings-HOWTO-7.html">???? при конфигурации вашей системы</A></H2>
+
+<P>
+<H2><A NAME="toc8">8.</A> <A HREF="XFree86-Video-Timings-HOWTO-8.html">Требования к памяти</A></H2>
+
+<P>
+<H2><A NAME="toc9">9.</A> <A HREF="XFree86-Video-Timings-HOWTO-9.html">Расчет размер кадра</A></H2>
+
+<P>
+<H2><A NAME="toc10">10.</A> <A HREF="XFree86-Video-Timings-HOWTO-10.html">Черная магия и синхроимульсы</A></H2>
+
+<UL>
+<LI><A HREF="XFree86-Video-Timings-HOWTO-10.html#ss10.1">10.1 Горизонтальная синхронизация:</A>
+<LI><A HREF="XFree86-Video-Timings-HOWTO-10.html#ss10.2">10.2 Вертикальная синхронизация:</A>
+</UL>
+<P>
+<H2><A NAME="toc11">11.</A> <A HREF="XFree86-Video-Timings-HOWTO-11.html">Подводя итог</A></H2>
+
+<P>
+<H2><A NAME="toc12">12.</A> <A HREF="XFree86-Video-Timings-HOWTO-12.html">Предельные параметры вашего монитора.</A></H2>
+
+<P>
+<H2><A NAME="toc13">13.</A> <A HREF="XFree86-Video-Timings-HOWTO-13.html">Использование черезстрочных режимов</A></H2>
+
+<P>
+<H2><A NAME="toc14">14.</A> <A HREF="XFree86-Video-Timings-HOWTO-14.html">Вопросы о ответы</A></H2>
+
+<P>
+<H2><A NAME="toc15">15.</A> <A HREF="XFree86-Video-Timings-HOWTO-15.html">Разрешение проблем  с изображением.</A></H2>
+
+<UL>
+<LI><A HREF="XFree86-Video-Timings-HOWTO-15.html#ss15.1">15.1 Изображение смещено влево или вправо</A>
+<LI><A HREF="XFree86-Video-Timings-HOWTO-15.html#ss15.2">15.2 Изображение смещено вверх или вниз</A>
+<LI><A HREF="XFree86-Video-Timings-HOWTO-15.html#ss15.3">15.3 Размер изображения слишком велик  и по горизонтали и по вертикали</A>
+<LI><A HREF="XFree86-Video-Timings-HOWTO-15.html#ss15.4">15.4 Изображение  слишком широкое (слишком узкое)</A>
+<LI><A HREF="XFree86-Video-Timings-HOWTO-15.html#ss15.5">15.5 Изображение слишком растянуто (сужено) по вертикали  </A>
+</UL>
+<P>
+<H2><A NAME="toc16">16.</A> <A HREF="XFree86-Video-Timings-HOWTO-16.html">Графическое изображение характеристик монитора.</A></H2>
+
+<P>
+<H2><A NAME="toc17">17.</A> <A HREF="XFree86-Video-Timings-HOWTO-17.html">Благодарности.</A></H2>
+
+<HR>
+<A HREF="XFree86-Video-Timings-HOWTO-1.html">Next</A>
+Previous
+Contents
+</BODY>
+</HTML>

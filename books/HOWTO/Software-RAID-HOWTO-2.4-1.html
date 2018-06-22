@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE>The Software-RAID HOWTO: Введение</TITLE>
+ <LINK HREF="Software-RAID-HOWTO-2.4-2.html" REL=next>
+
+ <LINK HREF="Software-RAID-HOWTO-2.4.html#toc1" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="Software-RAID-HOWTO-2.4-2.html">Next</A>
+Previous
+<A HREF="Software-RAID-HOWTO-2.4.html#toc1">Contents</A>
+<HR>
+<H2><A NAME="s1">1. Введение</A></H2>
+
+<P>Для описания старого уровня RAID, который стандартен для 
+2.0 и 2.2 ядер, смотрите великолепный HOWTO от Linas Vepstas
+(
+<A HREF="mailto:linas@linas.org">linas@linas.org</A>),
+доступный из Linux Documentation Project на 
+<A HREF="http://linuxdoc.org">linuxdoc.org</A>.
+<P>Домашний сайт для этого HOWTO - 
+<A HREF="http://ostenfeld.dk/~jakob/Software-RAID.HOWTO/">http://ostenfeld.dk/~jakob/Software-RAID.HOWTO/</A>, где изначально 
+появляются обновленные версии.  HOWTO написан Jakob &Oslash;stergaard 
+на основе большой переписки с Ingo Molnar 
+<A HREF="mailto:mingo@chiara.csoma.elte.hu">(mingo@chiara.csoma.elte.hu)</A>, одним из разработчиков RAID,
+почтового списка рассылки linux-raid 
+<A HREF="mailto:linux-raid@vger.rutgers.edu">(linux-raid@vger.rutgers.edu)</A> и другими людьми.
+<P>Домашняя страница перевода - 
+<A HREF="http://dmv.webjump.com/HOWTOs/">http://dmv.webjump.com/HOWTOs/</A>. Обновленные версии, в первую очередь, появляются тут.
+<P>Причиной написания этого HOWTO, несмотря на существование Software-RAID-HOWTO, 
+является то, что старый HOWTO описывает программный RAID старого стиля, в 
+стандартных 2.0 и 2.2 ядрах. Этот HOWTO описывает
+использование RAID нового поколения, разработанного недавно. 
+RAID нового поколения содержит много свойств, не представленных в старом RAID.
+<P>Если Вы хотите использовать новый RAID с 2.0 или 2.2 ядрами, Вы 
+должны взять патч к вашему ядру, либо с 
+<A HREF="ftp://ftp.fi.kernel.org/pub/linux/daemons/raid/alpha">ftp://ftp.[your-country-code].kernel.org/pub/linux/daemons/raid/alpha</A>,
+либо, с недавних пор, с 
+<A HREF="http://people.redhat.com/mingo/">http://people.redhat.com/mingo/</A>. Стандартные ядра 2.2 не
+содержат прямой поддержки нового RAID, описываемого в этом 
+HOWTO.  Для этого необходимы эти патчи.  <EM>Старый RAID код
+в 2.0 и 2.2 ядрах содержит ошибки и не реализует некоторых важных 
+функций, реализованных в новом программном RAID.</EM>
+<P>На момент написания,  поддержка нового RAID объединена с
+ядрами серии 2.3, и, таким образом, будет (вполне вероятно) представлена
+в ядре Linux 2.4, как только оно выйдет. Но пока, стабильные ядра должны 
+быть пропатчены вручную.
+<P>Вы можете использовать <CODE>-ac</CODE> выпуски ядра, сделанные Alan
+Cox -ом, для  поддержки RAID в 2.2.  <EM>Часть</EM> из них 
+содержат RAID нового стиля, и это должно избавить Вас от необходимости патчить 
+ядро.
+<P>Если Вы хорошо знакомы с RAID, часть информации в этом HOWTO покажется 
+банальной. Просто пропустите ее.
+<P>
+<P>
+<H2><A NAME="ss1.1">1.1 Отречение</A>
+</H2>
+
+<P>Обязательное отречение:
+<P>Хотя RAID кажется мне стабильным, и стабильным для многих других людей,
+у Вас он может не сработать.  Если Вы потеряете все ваши данные, вашу работу, 
+или это ударит по Вам - это не моя вина, и не вина разработчиков.  Знайте,
+что вы используете программный RAID и эту информацию на свой риск!  
+Никто не гарантирует, что либо программа, либо эта информация, сколько-нибудь 
+корректна, либо пригодна вобще для использования. Сархивируйте все Ваши данные
+перед этими экспериментами. Лучше предостеречься, чем сожалеть.
+<P>Сказав это,  я также должен сказать, что у меня не было проблем со
+стабильность программного RAID, я действительно без каких-либо проблем 
+использую его на нескольких машинах, и я не видел, чтобы у других людей были 
+проблемы с внезапными падениями или нестабильностью вызванной RAID-ом.
+<P>
+<P>
+<H2><A NAME="ss1.2">1.2 Требования</A>
+</H2>
+
+<P>Этот HOWTO предполагает, что Вы используете последние 2.2.x или 2.0.x ядра 
+с соответствующим raid0145 патчем и raidtools версии 0.90, или Вы 
+используете последнее ядро серии 2.3 (версию &gt; 2.3.46) или, со временем,
+2.4. Оба патча и утилиты можно найти на 
+<A HREF="ftp://ftp.fi.kernel.org/pub/linux/daemons/raid/alpha">ftp://ftp.fi.kernel.org/pub/linux/daemons/raid/alpha</A>, и в
+некоторых случаях на 
+<A HREF="http://people.redhat.com/mingo/">http://people.redhat.com/mingo/</A>. Патч RAID, пакет raidtools
+и ядро должны, по мере возможности, соответствовать друг другу. Иногда
+необходимо использовать более старые ядра, если патчи raid не доступны для 
+последнего ядра.
+<P>
+<P>
+<HR>
+<A HREF="Software-RAID-HOWTO-2.4-2.html">Next</A>
+Previous
+<A HREF="Software-RAID-HOWTO-2.4.html#toc1">Contents</A>
+</BODY>
+</HTML>

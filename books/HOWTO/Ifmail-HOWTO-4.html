@@ -1,0 +1,389 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE> IFMAIL-HOWTO: Настройка sendmail V8</TITLE>
+ <LINK HREF="Ifmail-HOWTO-5.html" REL=next>
+ <LINK HREF="Ifmail-HOWTO-3.html" REL=previous>
+ <LINK HREF="Ifmail-HOWTO.html#toc4" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="Ifmail-HOWTO-5.html">Next</A>
+<A HREF="Ifmail-HOWTO-3.html">Previous</A>
+<A HREF="Ifmail-HOWTO.html#toc4">Contents</A>
+<HR>
+<H2><A NAME="s4">4. Настройка sendmail V8</A></H2>
+
+<P> 
+Если sendmail установлен, вы должны установить набор конфигурационных файлов,
+которые в дистрибутиве Slackware спрятаны в архиве smailcnf.tgz. Вы найдете
+их в /usr/src/sendmail/cf. В этом каталоге должен быть README размером примерно
+50KB, коотрый описывает новый метод настройки.
+<P> 
+sendmail управляется через настроечный файл (размером примерно 20KB)
+(/etc/sendmail.cf), который вы не должны переписывать под себя (как думают
+многие, кто боится sendmail). Вам также нужен макропроцессор M4, и маленький 
+конфигурационный файл (mc-File) в /usr/src/sendmail/cf/cf. M4 создаст ваш 
+/etc/sendmail.cf из этого файла и несколько других настроечных файлов, которые 
+вам не нужно изменять.
+<P>Вот объяснение, что означает "F=8mDMFhuSC, S=51/31, R=21" в вашем файле
+sendmail.cf в определении агента отправки в fidonet:
+<P> 
+F секция содержит флаги, которые описывают поведение агентов доставки. 
+Ниже расписаны флаги:
+<BLOCKQUOTE><CODE>
+<PRE>
+        8 = использовать 8 бит
+        m = позволить отправку нескольким адресатам
+        D = форсировать вставку даты в заголовок сообщения
+        M = форсировать вставку идентификационной информации в заголовок 
+            сообщения
+        F = форсировать вставку информации об отправителе в заголовок сообщения
+        h = сохранить раегистр букв имени хоста
+        u = сохранить раегистр букв имени пользователя
+</PRE>
+</CODE></BLOCKQUOTE>
+ 
+Флаг C указывает sendmail добавить домен адресата без one (домен отправителя. 
+Полезно для отправки кому-либо на вашей собственной BBS); и флаг S указывает 
+sendmail выполнить агента доставки (в случае ifmail) с использованием его
+собственных UID и GID, указанных выражением U= . Если U= выражение пропущено 
+или 0, sendmail запускает агента доставки от root (заметьте: в версиях sendmail
+выше v8.7, нет выражения U= , так что флаг S указывает sendmail всегда 
+запускать агента доставки от root). У меня не указано выражение U= , так что 
+ifmail запускается от root, что меня вполне устраивает.
+<P> 
+Секция S указывает набор правил записи отправителя; правило 51 для "конверта" 
+и правило 31, используемое для заголовка. Наконец, секция R указывает набор
+правил записи адресата. В этом случае набор правил 21 используется для записи
+и заголовка, и "конверта". Посмотрите ваш файл sendmail.cf, чтобы найти правила
+и узнать, что они делают.
+<P> 
+Между прочим, эта информация почерпнута из книги "sendmail, 2nd edition" Bryan 
+Costales и Eric Allman (автора sendmail), выпущенной O'Reilly &amp; Associates 
+(ISBN 1-56592-222-0). Я настойчиво рекомендую ее каждому, кто работает с
+sendmail. Она очень понятно и доходчиво написана, с большим количеством 
+примеров.
+<P> 
+Затем надо рассказать о IFMAIL. Поэтому вам следует создать файл
+/usr/src/sendmail/cf/mailer/ftn.m4 со следующим содержимым:
+<BLOCKQUOTE><CODE>
+<PRE>
+ 
+ # /usr/src/sendmail/cf/mailer/ftn.m4
+ #
+ # IFMAIL FTN mailer for sendmail V8
+ #
+ # MAILER(smtp) и MAILER(uucp) must be included!
+ #
+ PUSHDIVERT(-1)
+ ifdef(`FTN_MAILER_PATH',, `define(`FTN_MAILER_PATH', /usr/lib/ifmail/ifmail)')
+ ifdef(`FTN_MAILER_USER',, `define(`FTN_MAILER_USER', `fnet:uucp')')
+ ifdef(`FTN_MAILER_ARGS',, `define(`FTN_MAILER_ARGS', `ifmail -r $h $u')')
+ ifdef(`FTN_MAILER_FLAGS',, `define(`FTN_MAILER_FLAGS', `8mDFMuSC')')
+ ifdef(`FTN_MAX_SIZE',, `define(`FTN_MAX_SIZE', 100000)')
+ 
+ POPDIVERT
+ #####################################
+ ###    FTN Mailer specification   ###
+ #####################################
+ 
+ VERSIONID(`ftn.m4 V1.5')
+ 
+ ifdef(`_MAILER_smtp_',
+ '# ifmail mailer
+ Mftn,   P=FTN_MAILER_PATH, F=FTN_MAILER_FLAGS, S=11, R=21,
+        _OPTIONS(`UUCP_MAILER_CHARSET',`C=', `, ')U=FTN_MAILER_USER,
+         ifdef(`_FTN_MAILER_MAX', `M=FTN_MAILER_MAX, ')A=FTN_MAILER_ARGS')
+</PRE>
+</CODE></BLOCKQUOTE>
+ 
+Как видите настройка ifmail не так сложна, и мы не совершаем чего-то из ряда
+вон выходящего, мы просто используем определение мейлера "ftn" так же, как и 
+предопределенные мейлеры "smtp", "uucp" и т.д.
+<P> 
+<P>Сейчас давайте займемся настройкой mc-файла. Я назвал его /mymachine.mc, но
+имя не так важно, главное, чтобы он располагался в /usr/src/sendmail/cf/cf. 
+mymachine.mc выглядит примерно так:
+<BLOCKQUOTE><CODE>
+<PRE>
+ 
+ # /usr/src/sendmail/cf/cf/mymachine.mc
+ #
+ # sendmail V8 configuration for mymachine.mc
+ # using UUCP и IFMAIL
+ #
+ include(`../m4/cf.m4')
+ VERSIONID(`mymachine.mc V1.15')
+ 
+ OSTYPE(linux)dnl
+ 
+ define(`confUSE_ERRORS_TO', `True')dnl
+ define(`confCOPY_ERRORS_TO', `postmaster')dnl
+ define(`confMIME_FORMAT_ERRORS', `False')dnl
+ 
+ FEATURE(notsticky)dnl
+ FEATURE(mailertable,hash -o /etc/sendmail/mailertable)dnl
+ FEATURE(always_add_domain)dnl
+ FEATURE(nodns)dnl
+ FEATURE(nocanonify)dnl
+ 
+ MAILER(local)dnl
+ MAILER(ftn)dnl
+ MAILER(smtp)dnl
+ MAILER(uucp)dnl
+ 
+ #Cwsome-uucp-host-name 
+ Cwf4.n211.z21.prognet
+ Cwf64.n9996.z69.surfnet
+ Cwf710.n125.z1.fidonet.org
+ 
+ # define(`SMART_HOST', uucp-dom:some-uucp-host-name)
+ define(`SMART_HOST', ftn:f710.n125.z1.fidonet.org)
+ 
+ LOCAL_RULE_3
+ # Route fidonet.org, prognet и surfnet via FTN!
+ R$* &lt; $* z1.fidonet.org > $*                $1 &lt; $2 f33.n125.z1.fidonet.org > $3
+ R$* &lt; $* z2.fidonet.org > $*                $1 &lt; $2 f33.n125.z1.fidonet.org > $3
+ R$* &lt; $* z3.fidonet.org > $*                $1 &lt; $2 f33.n125.z1.fidonet.org > $3
+ R$* &lt; $* z4.fidonet.org > $*                $1 &lt; $2 f33.n125.z1.fidonet.org > $3
+ R$* &lt; $* z5.fidonet.org > $*                $1 &lt; $2 f33.n125.z1.fidonet.org > $3
+ R$* &lt; $* z6.fidonet.org > $*                $1 &lt; $2 f33.n125.z1.fidonet.org > $3
+ R$* &lt; $* prognet > $*               $1 &lt; $2 f1.n211.z21.prognet > $3
+ R$* &lt; $* surfnet > $*               $1 &lt; $2 f60.n9991.z96.surfnet > $3
+</PRE>
+</CODE></BLOCKQUOTE>
+ 
+В начале определяется операционная система (linux), затем мы определяем, что
+вся MAILERDAEMON-почта также должна отправляться postmaster`у, т.о. он сможет
+найти ошибки быстрее и исправить их. Затем даны некоторые опции для моей
+настройки, но вы можете переделать их под ваши нужды. Кроме того определены
+мейлеры "local" (для пользователей на той же машине, которые отправляются 
+deliver, mail.local или procmail), "ftn" (Fido-соместимые сети через ifmail),
+"smtp" (отправка через online-mail-protocol SMTP) и "uucp" (отправка через 
+UUCP). Последние два не нужны для системы, подключенной к Интернет только через
+ifmail, но мейлер "ftn" основан на них (вот почему ftn.m4 такой короткий). В
+строках, начинающихся с Cw определены различные имена моего компьютера:
+<BLOCKQUOTE><CODE>
+<PRE>
+ 
+ define(`SMART_HOST', ftn:f33.n125.z1.fidonet.org)
+</PRE>
+</CODE></BLOCKQUOTE>
+ 
+вся почта которая не ущла другими путями будет отправлена через ifmail моему
+fido-аплинку. если у вас есть UUCP-аплинк, то вы можете заместить эти строки:
+<BLOCKQUOTE><CODE>
+<PRE>
+ 
+ define(`SMART_HOST', uucp-dom:some-uucp-host-name)
+</PRE>
+</CODE></BLOCKQUOTE>
+ 
+которые отправляют такую почту моему UUCP-аплинку с именем some-uucp-host-name.
+<P> 
+В конце mymachine.mc я поместил специальные конструкции:
+<BLOCKQUOTE><CODE>
+<PRE>
+ 
+ LOCAL_RULE_3
+ # Route fidonet.org и prognet via FTN!
+ R$* &lt; $* z1.fidonet.org > $*                $1 &lt; $2 f33.n125.z1.fidonet.org > $3
+ R$* &lt; $* z2.fidonet.org > $*                $1 &lt; $2 f33.n125.z1.fidonet.org > $3
+ R$* &lt; $* z3.fidonet.org > $*                $1 &lt; $2 f33.n125.z1.fidonet.org > $3
+ R$* &lt; $* z4.fidonet.org > $*                $1 &lt; $2 f33.n125.z1.fidonet.org > $3
+ R$* &lt; $* z5.fidonet.org > $*                $1 &lt; $2 f33.n125.z1.fidonet.org > $3
+ R$* &lt; $* z6.fidonet.org > $*                $1 &lt; $2 f33.n125.z1.fidonet.org > $3
+ R$* &lt; $* prognet > $*               $1 &lt; $2 f1.n211.z21.prognet > $3
+ R$* &lt; $* surfnet > $*               $1 &lt; $2 f60.n9991.z96.surfnet > $3
+</PRE>
+</CODE></BLOCKQUOTE>
+ 
+Здесь z1.fidonet.org,..,z6.fidonet.org отображаются в f33.n125.z1.fidonet.org
+и все *.prognet в f1.n221.z21.prognet, т.о. вся Fido-почта, адресованная в
+различные Fidonet-зоны будет отправлена моим аплинкам, которые отправят их через
+FTP (вметсо UUCP). Пожалуйста заметьте: Должен быть как минимум один символ
+табуляции между $* и $1 (не только пробелы).
+<P> 
+Поэтому мы выше определили файл /etc/sendmail/mailertable. В этом файле 
+определены "исключения" из маршрута по умолчанию, например маршрут через фидо.
+<BLOCKQUOTE><CODE>
+<PRE>
+ 
+ .prognet       ftn:f1.n211.z21.prognet
+ .surfnet        ftn:f60.n9991.z96.surfnet
+</PRE>
+</CODE></BLOCKQUOTE>
+ 
+Как видно вся фидопочта идет через фидо. Эта mailertable должна быть 
+скомпилирована в базу данных после любых изменений. Используйте следующие
+команды в каталоге /etc/sendmail:
+<BLOCKQUOTE><CODE>
+<PRE>
+ 
+ makemap hash mailertable.db &lt; mailertable
+</PRE>
+</CODE></BLOCKQUOTE>
+ 
+Если вы получили ошибку "makemap: Type hash not supported in this version", то
+кажется вы установили Slackware 3.0, который не поддерживает hash-типы
+(не спрашивайте меня почему). Тогда вы должны использовать такую команду:
+<BLOCKQUOTE><CODE>
+<PRE>
+ 
+ makemap dbm mailertable &lt; mailertable
+</PRE>
+</CODE></BLOCKQUOTE>
+ 
+в том же каталоге. Но сейчас в должны изменить строку mailertable в файле 
+mymachine.mc с hash на dbm. Измените строку так: 
+<BLOCKQUOTE><CODE>
+<PRE>
+ 
+ FEATURE(mailertable,dbm -o /etc/sendmail/mailertable)dnl
+</PRE>
+</CODE></BLOCKQUOTE>
+ 
+Проблемы исчезнут.
+<P> 
+После редактирования mymachine.mc, мы можем создать из него sendmail.cf . 
+Перейдите в каталог /usr/src/sendmail/cf/cf и выполните здесь 
+pmake mymachine.cf . Этим вы создадите /usr/src/sendmail/cf/cf/obj/mymachine.cf 
+Переименуйте этот файл в /etc/sendmail.cf и настройа готова. Если pmake не
+установлен, то сделайте так:
+<BLOCKQUOTE><CODE>
+<PRE>
+ 
+ m4 mymachine.mc > obj/mymachine.cf
+</PRE>
+</CODE></BLOCKQUOTE>
+ 
+Есть несколько других вещей, нужных вам для ручного редактирования sendmail.cf .
+Во-первых, посморите опцию O MatchGECOS и раскомментируйте ее. Это позволит 
+использовать полные имена типа Greg Frydenlund вместо логинов типа gfryde01. 
+Во-вторых, посмотрите секцию доверенных (trusted) пользователей и добавьте
+"Tfnet uucp". Это позволит sendmail применять SUID для fnet.uucp при выполнении
+ifmail.
+<P> 
+Проделав все это вы готовы создать ваш почтовый alias-файл. Mine looks
+something like this. Применение почтовых алиасов - только одна из мощных 
+возможностей sendmail, которая позволяет перенаправлять почту другим сайтам и
+пользователям. Его не тяжело администрировать. Почта для пользователя слева
+перенаправляется пользователю справа. Мой файл alias:
+<BLOCKQUOTE><CODE>
+<PRE>
+ 
+ #
+ # /etc/aliases
+ #
+ # compile this file by issueing the command: newaliases
+ #
+ nobody: /dev/null
+ root: gfryde01
+ support: gfryde01
+ admin: gfryde01
+ operator: gfryde01
+ postmaster: gfryde01
+ faxadmin: gfryde01 
+ usenet: gfryde01
+ sysop: gfryde01
+ uucp: gfryde01
+ news: gfryde01
+ mail: gfryde01
+ fnet: gfryde01
+ fido: gfryde01
+ greg_frydenlund: gfryde01
+ greg.frydenlund: gfryde01
+ gregfrydenlund: gfryde01
+</PRE>
+</CODE></BLOCKQUOTE>
+ 
+Этот файл должен быть скомпилирован командой newaliases после каждого изменения.
+<P> 
+Сейчас запустим sendmail как демон:
+<BLOCKQUOTE><CODE>
+<PRE>
+ 
+ /usr/sbin/sendmail -bd -q 15m
+</PRE>
+</CODE></BLOCKQUOTE>
+ 
+Добавьте вышеприведенную команду в /etc/rc.d/rc.local. На большинстве систем
+она уже определена в /etc/rc.d/rc.M . Кроме того можно запускать sendmail по
+cron, и заставить inetd слушать порт. Для этого вставляем в crontab 
+пользователя root:
+<BLOCKQUOTE><CODE>
+<PRE>
+ 
+ */20  * * * *   /usr/sbin/sendmail -q
+</PRE>
+</CODE></BLOCKQUOTE>
+ 
+а /etc/inetd.conf вставляем:
+<BLOCKQUOTE><CODE>
+<PRE>
+ 
+ smtp  stream  tcp   nowait  root  /usr/sbin/tcpd  /usr/sbin/sendmail -bs
+</PRE>
+</CODE></BLOCKQUOTE>
+ 
+Не забудьте выполнить kill -HUP inetd после изменения inetd.conf, чтобы 
+информировать inetd об изменениях.
+<P> 
+sendmail будет писать свои журнальные сообщения через syslogd. Я рекомендцю
+следующую запись в /etc/syslog.conf:
+<BLOCKQUOTE><CODE>
+<PRE>
+ 
+ mail.*                      /var/log/mail
+</PRE>
+</CODE></BLOCKQUOTE>
+ 
+Не забывайтеперезапустить syslogd после этих изменений через killall -1 как
+уже описано в главе Настройка ifcico.
+<P> 
+Чтобы проверить записывающие правила sendmail для fidonet-адресов, запустите
+sendmail командой
+<BLOCKQUOTE><CODE>
+<PRE>
+ 
+ sendmail -bt
+</PRE>
+</CODE></BLOCKQUOTE>
+ 
+Введите эту команду в строке приглашения, и вы должны увидеть примерно вот это.
+<BLOCKQUOTE><CODE>
+<PRE>
+ 
+ > 3,0 me@f10.n125.z1.fidonet.org
+</PRE>
+</CODE></BLOCKQUOTE>
+ 
+Последняя строка в этом спискее ниже представляет интерес для нас.
+<BLOCKQUOTE><CODE>
+<PRE>
+ 
+ rewrite: ruleset   3     input: me @ f10 . n125 . z1 . fidonet . org
+ rewrite: ruleset  96     input: &lt; me @ f10 . n125 . z1 . fidonet . org . >
+ rewrite: ruleset  96   returns: &lt; me @ f10 . n125 . z1 . fidonet . org . >
+ rewrite: ruleset   3   returns: &lt; me @ f10 . n125 . z1 . fidonet . org . >
+ rewrite: ruleset   0     input: &lt; me @ f10 . n125 . z1 . fidonet . org . >
+ rewrite: ruleset  98     input: &lt; me @ f10 . n125 . z1 . fidonet . org . >
+ rewrite: ruleset  98   returns: &lt; me @ f10 . n125 . z1 . fidonet . org . >
+ rewrite: ruleset   0   returns: $# ftn $@ f33 . n125 . z1 $: me &lt; @ f33 . n125 . z1 . fidonet . org >
+</PRE>
+</CODE></BLOCKQUOTE>
+   
+Вы можете видеть внизу этого списка, что мейлер ftn - это как раз то, что мы 
+хотим. Я предлагаю вам испытать другой адрес (me@localhost), чтобы 
+удостовериться, что sendmail обрабатвает все правила соответственно для вашей
+собственной системы.
+<P>
+<P>
+<P>
+<HR>
+<A HREF="Ifmail-HOWTO-5.html">Next</A>
+<A HREF="Ifmail-HOWTO-3.html">Previous</A>
+<A HREF="Ifmail-HOWTO.html#toc4">Contents</A>
+</BODY>
+</HTML>

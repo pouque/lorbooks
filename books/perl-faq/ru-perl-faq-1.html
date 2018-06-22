@@ -1,0 +1,162 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE>FAQ по perl и программированию для web: Где взять перл и все с ним связанное</TITLE>
+ <LINK HREF="ru-perl-faq-2.html" REL=next>
+
+ <LINK HREF="http://books.gnu.technology/books/perl-faq/ru-perl-faq.html#toc1" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="ru-perl-faq-2.html">Next</A>
+Previous
+<A HREF="http://books.gnu.technology/books/perl-faq/ru-perl-faq.html#toc1">Contents</A>
+<HR>
+<H2><A NAME="Где взять перл и все с ним связанное"></A> <A NAME="s1">1. Где взять перл и все с ним связанное</A></H2>
+
+<P>
+<P>
+<H2><A NAME="ss1.1">1.1 Где можно взять перл?</A>
+</H2>
+
+<P>
+<P>На CPAN == Comprehensive Perl Archive Network.  Homepage CPAN --
+http://www.cpan.org/ -- там берут все, связанное с перлом.  Собственно
+исходники новейшей версии перла берут из файла
+http://www.perl.com/CPAN/src/latest.tar.gz (на самом деле с www.perl.com 
+стоит редирект на ближайший, по мнению www.perl.com, mirror).
+<P>
+<H2><A NAME="ss1.2">1.2 Где можно скачать перловскую библиотеку для работы с  WWW?</A>
+</H2>
+
+<P>
+<P>Там же, где и все, относящееся к перлу -- на CPAN.  Полный
+список всех модулей и библиотек -- 
+<A HREF="http://www.cpan.org/CPAN.html">http://www.cpan.org/CPAN.html</A><P>
+<P>
+<H2><A NAME="ss1.3">1.3 C www.cpan.org слишком долго качается, нет ли где поближе?</A>
+</H2>
+
+<P>
+<P>Есть. Полный список зеркал находится в
+<A HREF="ftp://ftp.nluug.nl/pub/languages/perl/CPAN/MIRRORED.BY">ftp://ftp.nluug.nl/pub/languages/perl/CPAN/MIRRORED.BY</A>, там можно
+найти funet или что там поближе, или даже российские зеркала, например
+<A HREF="ftp://ftp.sai.msu.su/pub/lang/perl/CPAN/">ftp://ftp.sai.msu.su/pub/lang/perl/CPAN/</A> (иногда в дауне).
+<P>
+<P>
+<H2><A NAME="ss1.4">1.4 Я скачал модуль Lib::Module. Как его установить?</A>
+</H2>
+
+<P>Обычно модуль приходит в формате tar+gzip, типа module-0.01.tar.gz.
+Вам необходимо его развернуть: tar zxf module-0.01.tar.gz
+и перейти в образовавшуюся директорию, например module-0.01: cd module-0.01
+Обычно там находятся несколько файлов. Для вас будут важными следующие:
+<P>
+<DL>
+<DT><B>README</B><DD><P>что это за модуль
+<DT><B>INSTALL</B><DD><P>как его поставить
+<DT><B>Makefile.PL</B><DD><P>перловый скрипт для генерации Makefile
+</DL>
+<P>Обычно инсталляция происходит следующим образом:
+<DL>
+<DT><B><CODE>perl Makefile.PL</CODE></B><DD><P>генерация Makefile
+<DT><B><CODE>make all</CODE></B><DD><P>сборка модуля
+<DT><B><CODE>make test</CODE></B><DD><P>тестирование модуля
+<DT><B><CODE>make install</CODE></B><DD><P>инсталляция модуля
+</DL>
+<P>Необходимо внимательно смотреть, не возникли ли какие ошибки во время
+первых трех команд. Внимание: вы должны иметь административные
+привилегии для инсталлирование модуля в системе (обычно как root).
+<P>Но, если вы их не имеете, то можете инсталлировать модуль у себя.
+Для этого вам необходимо выбрать, где это будет делаться. Для примера,
+в $HOME/lib/perl5. Необходимо создать эти директории, если их нет:
+<PRE>
+ 
+ mkdir ~/lib
+ mkdir ~/lib/perl5
+</PRE>
+
+Затем, при генерации Makefile для модуля, вы должны указать, где вы
+хотите инсталлировать модуль:perl Makefile prefix=$HOME
+Все остальные шаги без изменений. В результате вы получите
+альтернативное место, где у вас будут находиться модули.
+Например, у меня это выглядит так:
+<BLOCKQUOTE><CODE>
+<PRE>
+  artur@disco:~ (681) ls -alFg ~/lib/perl5/
+  total 704
+  drwxr-sr-x   8 artur    staff        512 Oct 06 15:53 ./
+  drwxr-sr-x   9 artur    staff       1024 Oct 08 10:50 ../
+  drwxr-sr-x   4 artur    staff        512 Mar 31 1998  aix/
+  drwxr-sr-x   2 artur    staff        512 Aug 06 13:40 CPAN/
+  -r--r--r--   1 artur    staff     126951 Jul 24 19:37 CPAN.pm
+  drwxr-sr-x   3 artur    staff        512 Mar 31 1998  man/
+  drwxr-sr-x  31 artur    staff       1024 Sep 09 15:41 site_perl/
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>Для того, чтобы их использовать, есть несколько путей:
+<P>
+<OL>
+<LI> указывать при запуске perl в командной строке:
+<PRE>
+perl -I$HOME/lib/perl5 -I$HOME/lib/perl5/site_perl script.pl
+</PRE>
+</LI>
+<LI> завести переменную шелла PERL5LIB:
+для sh (bash,zsh,ksh)
+<PRE>
+PERL5LIB=$HOME/lib/perl5:$HOME/lib/perl5/site_perl
+</PRE>
+
+export PERL5LIB
+для csh (tcsh)
+<PRE>
+setenv PERL5LIB $HOME/lib/perl5:$HOME/lib/perl5/site_perl
+</PRE>
+</LI>
+<LI> указывать в начале скриптов дополнительные библиотеки:
+<PRE>
+use lib "/home/you/lib/perl5";
+use lib "/home/you/lib/perl5/site_perl";
+</PRE>
+
+Данный случай подходит к CGI-скриптам, которые не наследуют ваших
+переменных окружения.</LI>
+</OL>
+<P>
+<H2><A NAME="ss1.5">1.5 Как автоматизировать процесс установки библиотек и модулей?</A>
+</H2>
+
+<P>
+<P>Скачивание и установка вручную -- достаточно сложное занятие,
+требующее постоянного вмешательства с вашей стороны. 
+Можно простым способом: сделать su (желательно), запустить 
+<CODE>perl -MCPAN -e shell</CODE>. Если это первый запуск модуля CPAN, 
+вам зададут серию вопросов на тему URL вашего любимого зеркала CPAN. После 
+этого все просто: если вы знаете название модуля или библиотеки, то
+набираете, скажем, <CODE>install Net::NNTP</CODE>.  Тогда этот модуль (для работы с
+NNTP) сам ищется на CPAN, сам скачивается, компилируется,
+устанавливается.  Все, поставили, можно выходить и использовать вновь
+установленный модуль.  Если название точно не известно, то набираем 
+там же help и используем различные команды поиска типа i NNTP.
+<P>
+<H2><A NAME="ss1.6">1.6 У меня нет root-привилегий. Можно ли использовать модуль CPAN для установки модулей в этом случае?</A>
+</H2>
+
+<P>При использовании CPAN-модуля вам необходимо сконфигурировать его
+таким образом, чтобы он сам инсталлировал модули туда, куда вы
+укажете. Для этого вам необходимо подредактировать файл
+<CODE>~/.cpan/CPAN/MyConfig.pm:</CODE> указать в строке
+<CODE>&amp;makepl_arg&amp; =&amp; q[prefix=/home/you],</CODE>
+и теперь всегда при автоматической инсталляции модули будут ставится к
+вам в $HOME/lib/perl5
+Более подробно обо всем этом можно прочитать в документации к
+<CODE>ExtUtils::MakeMaker.</CODE>
+<P>NB: Современный Модуль СPAN все сам спросит и сделает.
+<P>
+<HR>
+<A HREF="ru-perl-faq-2.html">Next</A>
+Previous
+<A HREF="http://books.gnu.technology/books/perl-faq/ru-perl-faq.html#toc1">Contents</A>
+</BODY>
+</HTML>

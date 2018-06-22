@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Зачем нужна КС?</TITLE>
+<META NAME="description" CONTENT="Зачем нужна КС?">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<!-- Meta http equivalent was here                               -->
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="IntroToLinux.css">
+
+<LINK REL="previous" HREF="node19.html">
+<LINK REL="up" HREF="node18.html">
+<LINK REL="next" HREF="node21.html">
+</HEAD>
+
+<BODY background="backgr.jpg" vlink="#000099" bgcolor="#E6E6FA">
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A NAME="tex2html386"
+  HREF="node21.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html382"
+  HREF="node18.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html378"
+  HREF="node19.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html384"
+  HREF="IntroToLinux.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A>  
+<BR>
+<B> След.:</B> <A NAME="tex2html387"
+  HREF="node21.html">Вопросы эффективности</A>
+<B> Вверх:</B> <A NAME="tex2html383"
+  HREF="node18.html">Основные принципы работы в</A>
+<B> Пред.:</B> <A NAME="tex2html379"
+  HREF="node19.html">Разрешение вопросов</A>
+ &nbsp; <B>  <A NAME="tex2html385"
+  HREF="IntroToLinux.html">Содержание</A></B> 
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION00027200000000000000">
+Зачем нужна КС?</A>
+</H3>
+Следует четко разделять задачи, для которых необходим графический (``дружественный'') интерфейс и те, которым более чем достаточно стандартных потоков STDIN, STDOUT, STDERR и параметров, задаваемых при вызове.
+Первых, как это многим не удивительно, довольно мало и каждая их них охватывает собой некий вполне определенный класс задач.
+Вторые же оформляются обычно в виде команд и представляют по сути язык общения пользователя с его системой.
+Практически любая задача, которую можно выразить одним предложением, можно реализовать (а если задача не уникальна, то, вероятно, давно уже реализовано) в виде команды (с командой-подлежащим, или сказуемым, являющейся обычно глаголом в повелительном наклонении, и её параметрами-другими частями речи).
+Предложения конечно же могут быть сложносочиненными, то есть состоять из нескольких, разделенных, к примеру, точкой с запятой (или символом перенаправления ``|'' для команд), частей.
+И вполне естественно, что задача которую можно выразить в терминах, знакомых нам и понятных системе, разрешается проще и эффективнее именно набором соответствующей фразы/предложения, нежели использованием некоего интуитивно-дружелюбного интерфейса<A NAME="tex2html14"
+  HREF="node20.html#foot264"><SUP><SPAN CLASS="arabic">14</SPAN></SUP></A>.
+
+<P>
+Возникает вопрос&nbsp;-- <SPAN  CLASS="textit">так</SPAN> ли необходимо изучать командную строку, если любому доступен парк ПО на все случаи жизни?
+Отвечу словами Фредерика Брукса: ``не бывает серебряной пули''.
+Редко можно найти программу целиком и полностью отвечающую нашим потребностям в настоящем и будущем.
+Это возможно только тогда, когда потребности сами определяются исходя из наличия и возможностей существующего ПО.
+
+<P>
+Соответственно при возникновении очередной задачи в Unix принято разбивать её на максимально простые подзадачи (каждой из которых соответствует некоторая программа-команда), и запускать конвейерную обработку ими входных данных.
+<BR>Например, задача: ``выделенный текст перекодировать из неизвестной, но русской кодировки в koi8r, результат поместить в буфер обмена''.
+<BR>Решение: <TT>xsel|konwert any/ru-koi8r|xclip</TT>.
+<BR>Как видите, результат является практически дословным переводом фразы-задачи на понятный системе язык, причем заметно более лаконичный...
+
+<P>
+Кроме того привычка к формулированию своих действий вербально (в виде слов/предложений/скриптов), позволяет заметно повысить эффективность работы и на дектопном поле.
+К примеру, многие догадываются, что в WindowsOS иконки существуют не только для запуска приложений, но и для удобного использования принципа Drag&amp;Drop.
+То есть перетащив файл на иконку Word, мы запускаем программу на открытие данного файла.
+Но многие ли используют иконки для чего-либо большего?
+Например, для автоприведения файла к какому-либо частоиспользуемому нами виду<A NAME="tex2html15"
+  HREF="node20.html#foot815"><SUP><SPAN CLASS="arabic">15</SPAN></SUP></A>, что едва ли займет пол десятка строк на word-basic?
+
+<P>
+<BR><HR><H4>Сноски</H4>
+<DL>
+<DT><A NAME="foot264">... интерфейса</A><A
+ HREF="node20.html#tex2html14"><SUP><SPAN CLASS="arabic">14</SPAN></SUP></A></DT>
+<DD>Естественно во множестве ситуаций использование дектопной метафоры оправдано и как следствие&nbsp;-- наиболее эффективно. К сожалению, в последнее время оную используют и в совершенно неадекватных задаче ситуациях, что влечет ничем неоправданные потери эффективности нашей работы.
+
+</DD>
+<DT><A NAME="foot815">... виду</A><A
+ HREF="node20.html#tex2html15"><SUP><SPAN CLASS="arabic">15</SPAN></SUP></A></DT>
+<DD>Да, это, конечно же, можно сделать парой кликов в самом Word, но зачем <SPAN  CLASS="textit">заставлять</SPAN> себя в пустую расходовать время?
+
+</DD>
+</DL>
+<DIV CLASS="navigation"><HR>
+<!--Navigation Panel-->
+<A NAME="tex2html386"
+  HREF="node21.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html382"
+  HREF="node18.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html378"
+  HREF="node19.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html384"
+  HREF="IntroToLinux.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A>  
+<BR>
+<B> След.:</B> <A NAME="tex2html387"
+  HREF="node21.html">Вопросы эффективности</A>
+<B> Вверх:</B> <A NAME="tex2html383"
+  HREF="node18.html">Основные принципы работы в</A>
+<B> Пред.:</B> <A NAME="tex2html379"
+  HREF="node19.html">Разрешение вопросов</A>
+ &nbsp; <B>  <A NAME="tex2html385"
+  HREF="IntroToLinux.html">Содержание</A></B> </DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<TABLE border="0" cellpadding="0" cellspacing="0" width="100%"><TR bgcolor="#336699"><TD bgcolor="#8080c0"><P align="center"><FONT color="#FFFFFF" size="1"><A href="http://www.gnu.org/copyleft/fdl.html"><FONT color="#FFFFFF" size="1">Copyleft</FONT></A> © 2002-2003 г. &nbsp; Nikolay A. Panov, <A href="http://www.uic.nnov.ru/~nik/articles/IntroToLinux/"><FONT color="#FFFFFF">"Intro To Linux" (orig)</FONT></A>, &nbsp;<a href="mailto:&#110;&#105;&#107;&#115;&#105;&#116;&#101;&#64;&#109;&#97;&#105;&#108;&#46;&#114;&#117;"><FONT color="#FFFFFF">&#110;&#105;&#107;&#115;&#105;&#116;&#101;&#64;&#109;&#97;&#105;&#108;&#46;&#114;&#117;</FONT></A>, &nbsp;ICQ: 122-40-8888</FONT></P></TD></TR></TABLE>
+</ADDRESS>
+</BODY>
+</HTML>

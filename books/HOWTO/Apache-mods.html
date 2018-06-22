@@ -1,0 +1,1451 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Apache+DSO+mod_ssl+mod_perl+php+mod_auth_nds+mod_auth_mysql+mod_fastcgi</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.57"></HEAD
+><BODY
+CLASS="ARTICLE"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="ARTICLE"
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="TITLE"
+><A
+NAME="AEN2"
+>Apache+DSO+mod_ssl+mod_perl+php+mod_auth_nds+mod_auth_mysql+mod_fastcgi</A
+></H1
+><DIV
+CLASS="AUTHORGROUP"
+><A
+NAME="AEN4"
+></A
+><H3
+CLASS="AUTHOR"
+><A
+NAME="AEN5"
+>Ray Van Dolson</A
+></H3
+><DIV
+CLASS="AFFILIATION"
+><DIV
+CLASS="ADDRESS"
+><P
+CLASS="ADDRESS"
+>&nbsp;&nbsp;&nbsp;&nbsp;     rayvd@firetail.org
+    <br>
+&nbsp;&nbsp;&nbsp;</P
+></DIV
+></DIV
+><H3
+CLASS="CORPAUTHOR"
+>  Перевод: <A
+HREF="mailto:ave@asp-linux.com"
+TARGET="_top"
+>Александр Ермолаев</A
+>,
+  <A
+HREF="http://www.asplinux.com"
+TARGET="_top"
+>SWSoft Pte Ltd.</A
+>
+ </H3
+></DIV
+><P
+CLASS="PUBDATE"
+>v0.91, 5 Апреля 2000<BR></P
+><DIV
+><DIV
+CLASS="ABSTRACT"
+><A
+NAME="AEN15"
+></A
+><P
+></P
+><P
+>Здесь описывается инсталляция и настройка веб-сервера Apache для работы с
+DSO, а также сборка и установка различных модулей, включая mod_perl, mod_ssl
+и php.</P
+><P
+></P
+></DIV
+></DIV
+><HR></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Содержание</B
+></DT
+><DT
+>1. <A
+HREF="Apache-mods.html#AEN17"
+>Legal Stuff</A
+></DT
+><DT
+>2. <A
+HREF="Apache-mods.html#AEN25"
+>Авторские права</A
+></DT
+><DT
+>3. <A
+HREF="Apache-mods.html#AEN34"
+>Введение</A
+></DT
+><DD
+><DL
+><DT
+>3.1. <A
+HREF="Apache-mods.html#AEN37"
+>Описание компонентов</A
+></DT
+><DT
+>3.2. <A
+HREF="Apache-mods.html#AEN55"
+>История создания документа</A
+></DT
+></DL
+></DD
+><DT
+>4. <A
+HREF="Apache-mods.html#AEN71"
+>Установка компонентов</A
+></DT
+><DD
+><DL
+><DT
+>4.1. <A
+HREF="Apache-mods.html#AEN73"
+>Подготовка</A
+></DT
+><DT
+>4.2. <A
+HREF="Apache-mods.html#AEN195"
+>mod_ssl</A
+></DT
+><DD
+><DL
+><DT
+>4.2.1. <A
+HREF="Apache-mods.html#AEN197"
+>Сборка и установка OpenSSL</A
+></DT
+><DT
+>4.2.2. <A
+HREF="Apache-mods.html#AEN201"
+>Сборка и установка RSAREF 2.0</A
+></DT
+><DT
+>4.2.3. <A
+HREF="Apache-mods.html#AEN206"
+>Сборка и установка MM</A
+></DT
+><DT
+>4.2.4. <A
+HREF="Apache-mods.html#AEN211"
+>Сборка и установка mod_ssl (наконец-то!)</A
+></DT
+></DL
+></DD
+><DT
+>4.3. <A
+HREF="Apache-mods.html#AEN240"
+>Apache</A
+></DT
+><DT
+>4.4. <A
+HREF="Apache-mods.html#AEN264"
+>MySQL</A
+></DT
+><DT
+>4.5. <A
+HREF="Apache-mods.html#AEN269"
+>PHP 3.0.15</A
+></DT
+><DD
+><DL
+><DT
+>4.5.1. <A
+HREF="Apache-mods.html#AEN272"
+>GD</A
+></DT
+><DT
+>4.5.2. <A
+HREF="Apache-mods.html#AEN276"
+>IMAP</A
+></DT
+><DT
+>4.5.3. <A
+HREF="Apache-mods.html#AEN279"
+>OpenLDAP</A
+></DT
+><DT
+>4.5.4. <A
+HREF="Apache-mods.html#AEN284"
+>Сборка и установка PHP 3.0.15</A
+></DT
+></DL
+></DD
+><DT
+>4.6. <A
+HREF="Apache-mods.html#AEN292"
+>mod_perl</A
+></DT
+><DD
+><DL
+><DT
+>4.6.1. <A
+HREF="Apache-mods.html#AEN296"
+>Требуемые модули Perl</A
+></DT
+><DT
+>4.6.2. <A
+HREF="Apache-mods.html#AEN316"
+>Сборка и установка mod_perl 1.2x</A
+></DT
+></DL
+></DD
+><DT
+>4.7. <A
+HREF="Apache-mods.html#AEN323"
+>mod_auth_mysql</A
+></DT
+><DT
+>4.8. <A
+HREF="Apache-mods.html#AEN332"
+>mod_auth_nds</A
+></DT
+><DD
+><DL
+><DT
+>4.8.1. <A
+HREF="Apache-mods.html#AEN335"
+>ncpfs</A
+></DT
+><DT
+>4.8.2. <A
+HREF="Apache-mods.html#AEN340"
+>Сборка и установка mod_auth_nds</A
+></DT
+></DL
+></DD
+><DT
+>4.9. <A
+HREF="Apache-mods.html#AEN347"
+>mod_fastcgi</A
+></DT
+></DL
+></DD
+><DT
+>5. <A
+HREF="Apache-mods.html#AEN354"
+>Заключительные слова</A
+></DT
+><DD
+><DL
+><DT
+>5.1. <A
+HREF="Apache-mods.html#AEN357"
+>Благодарности</A
+></DT
+><DT
+>5.2. <A
+HREF="Apache-mods.html#AEN360"
+>Контактная информация</A
+></DT
+><DT
+>5.3. <A
+HREF="Apache-mods.html#AEN365"
+>Дополнительно</A
+></DT
+></DL
+></DD
+></DL
+></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="AEN17"
+>1. Legal Stuff</A
+></H1
+><P
+>Apache+mods mini-HOWTO for Linux Systems</P
+><P
+>Copyright (C)2000 Ray Van Dolson.</P
+><P
+>This document is free; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.</P
+><P
+>This document is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.</P
+><P
+>You can get a copy of the GNU GPL at at <A
+HREF="http://www.gnu.org/copyleft/gpl.html"
+TARGET="_top"
+>http://www.gnu.org/copyleft/gpl.html</A
+>.</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN25"
+>2. Авторские права</A
+></H1
+><P
+>Авторские права на русский перевод этого текста принадлежат &copy; 2000 SWSoft Pte Ltd.
+Все права зарезервированы.</P
+><P
+>Этот документ является частью проекта Linux HOWTO.</P
+><P
+>Авторские права на документы Linux HOWTO принадлежат их авторам, если явно
+не указано иное. Документы Linux HOWTO, а также их переводы, могут
+быть воспроизведены и распространены полностью или частично на любом
+носителе, физическом или электронном, при условии сохранения этой заметки об
+авторских правах на всех копиях. Коммерческое распространение разрешается и
+поощряется; но, так или иначе, автор текста и автор перевода желали бы знать о
+таких дистрибутивах.</P
+><P
+>Все переводы и производные работы, выполненные по документам Linux HOWTO,
+должны сопровождаться этой заметкой об авторских правах. Это делается в
+целях предотвращения случаев наложения дополнительных ограничений на
+распространение документов HOWTO. Исключения могут составить случаи
+получения специального разрешения у координатора Linux HOWTO, с которым
+можно связаться по адресу приведенному ниже.</P
+><P
+>Мы бы хотели распространить эту информацию по всем возможным каналам. Но
+при этом сохранить авторские права и быть уведомленными о всех планах
+распространения HOWTO. Если у вас возникли вопросы, пожалуйста, обратитесь
+к координатору проекта Linux HOWTO по электронной почте:
+<TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:linux-howto@metalab.unc.edu"
+>linux-howto@metalab.unc.edu</A
+>&#62;</TT
+> или к координатору русского
+перевода Linux HOWTO компании SWSoft Pte Ltd. по адресу
+<TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:linux-howto@asplinux.ru"
+>linux-howto@asplinux.ru</A
+>&#62;</TT
+></P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN34"
+>3. Введение</A
+></H1
+><P
+>В этом документе описывается процесс установки программы веб-сервера Apache и его модулей на веб-сервере Walla Walla College (www.wwc.edu). Этот документ может служить, как полезная рекомендация для выполнения установки. Он рассматривает процесс установки сервера. В частных случаях будут сделаны соответствующие комментарии, но основные шаги будут теми же.</P
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN37"
+>3.1. Описание компонентов</A
+></H2
+><P
+>Платформа, на которой был установлен веб-сервер: ОС Linux Red Hat 6.1 с ядром версии 2.2.14, запущена на машине с двумя PIII 600, RAID5 и т.п.</P
+><P
+>Веб-сервер Apache 1.3.12, со следующими модулями:</P
+><P
+>&#13;<P
+></P
+><UL
+><LI
+><P
+>mod_fastcgi SNAP (также mod_rewrite), для работы с Zope.</P
+></LI
+><LI
+><P
+>Auth-MySQL 2.20</P
+></LI
+><LI
+><P
+>mod_ssl 2.6.2 (Open-SSL 0.9.5)</P
+></LI
+><LI
+><P
+>mod_perl 1.21</P
+></LI
+><LI
+><P
+>PHP 3.0.15</P
+></LI
+><LI
+><P
+>mod_auth_nds 0.3a</P
+></LI
+></UL
+>&#13;</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN55"
+>3.2. История создания документа</A
+></H2
+><P
+>v0.91 (5 апреля 2000)
+
+<P
+></P
+><UL
+><LI
+><P
+>Обновление mod_fastcgi для последней версии.</P
+></LI
+></UL
+>&#13;</P
+><P
+>v0.9 (4 апреля 2000)
+
+<P
+></P
+><UL
+><LI
+><P
+>Первый окончательный проект</P
+></LI
+><LI
+><P
+>Исправление орфографических и граматических ошибок</P
+></LI
+></UL
+>&#13;</P
+><P
+>v0.1 (март 2000)
+
+<P
+></P
+><UL
+><LI
+><P
+>Начальный проект</P
+></LI
+></UL
+>&#13;</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN71"
+>4. Установка компонентов</A
+></H1
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN73"
+>4.1. Подготовка</A
+></H2
+><P
+>Вам будет нужно следующее:
+
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="http://www.apache.org/dist/apache_1.3.12.tar.gz"
+TARGET="_top"
+>Apache 1.3.12</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="http://www.php.net/distributions/php-3.0.15.tar.gz"
+TARGET="_top"
+>PHP 3.0.15</A
+>
+
+<P
+></P
+><UL
+><LI
+><P
+>GD 1.3 (для работы с GIF файлами)
+
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="http://www.boutell.com/gd/http/gd-1.3.tar.gz"
+TARGET="_top"
+>Исходные тексты</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="ftp://rpmfind.net/linux/redhat/redhat-6.0/i386/RedHat/RPMS/gd-1.3-5.i386.rpm"
+TARGET="_top"
+>RPM</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="ftp://rpmfind.net/linux/redhat/redhat-6.0/i386/RedHat/RPMS/gd-devel-1.3-5.i386.rpm"
+TARGET="_top"
+>RPM-devel</A
+></P
+></LI
+></UL
+>&#13;</P
+></LI
+><LI
+><P
+>GD 1.8.1 (для работы с PNG файлами)
+
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="http://www.boutell.com/gd/http/gd-1.8.1.tar.gz"
+TARGET="_top"
+>Исходные тексты</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="ftp://rpmfind.net/linux/contrib/libc6/i386/gd-1.8.1-1.i386.rpm"
+TARGET="_top"
+>RPM</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="ftp://rpmfind.net/linux/contrib/libc6/i386/gd-devel-1.8.1-1.i386.rpm"
+TARGET="_top"
+>RPM-devel</A
+></P
+></LI
+></UL
+>&#13;</P
+></LI
+><LI
+><P
+>IMAP 4.5+
+
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="ftp://ftp.cac.washington.edu/imap/imap-4.7b.tar.Z"
+TARGET="_top"
+>Исходные тексты</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="ftp://rpmfind.net/linux/redhat/redhat-6.1/i386/RedHat/RPMS/imap-4.5-4.i386.rpm"
+TARGET="_top"
+>RPM</A
+></P
+></LI
+></UL
+>&#13;</P
+></LI
+><LI
+><P
+>OpenLDAP 1.2.9+
+
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="ftp://ftp.openldap.org/pub/OpenLDAP/openldap-release/openldap-1.2.9.tgz"
+TARGET="_top"
+>Исходные тексты</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="ftp://rpmfind.net/linux/rawhide/1.0/i386/RedHat/RPMS/openldap-1.2.9-5.i386.rpm"
+TARGET="_top"
+>RPM</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="ftp://rpmfind.net/linux/rawhide/1.0/i386/RedHat/RPMS/openldap-devel-1.2.9-5.i386.rpm"
+TARGET="_top"
+>RPM-devel</A
+></P
+></LI
+></UL
+>&#13;</P
+></LI
+></UL
+>&#13;</P
+></LI
+><LI
+><P
+><A
+HREF="http://perl.apache.org/dist/mod_perl-1.22.tar.gz"
+TARGET="_top"
+>mod_perl 1.22+</A
+>
+
+<P
+></P
+><UL
+><LI
+><P
+><I
+CLASS="EMPHASIS"
+>Требуемые модули для Perl5</I
+></P
+></LI
+><LI
+><P
+><A
+HREF="http://amaunet.informatik.uni-dortmund.de/cgi-bin/CPAN/authors/id/GAAS/MIME-Base64-2.11.tar.gz"
+TARGET="_top"
+>MIME::Base64</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="http://www.perl.com/CPAN-local/modules/by-module/URI/URI-1.05.tar.gz"
+TARGET="_top"
+>URI</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="http://www.perl.com/CPAN-local/modules/by-module/HTML/HTML-Parser-3.07.tar.gz"
+TARGET="_top"
+>HTML-Parser</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="http://www.perl.com/CPAN-local/modules/by-module/Digest/Digest-MD5-2.09.tar.gz"
+TARGET="_top"
+>Digest-MD5</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="http://www.perl.com/CPAN-local/modules/by-module/Net/libnet-1.0703.tar.gz"
+TARGET="_top"
+>libnet</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="http://www.perl.com/CPAN-local/modules/by-module/WWW/libwww-perl-5.47.tar.gz"
+TARGET="_top"
+>libwww</A
+></P
+></LI
+></UL
+>&#13;</P
+></LI
+><LI
+><P
+><A
+HREF="http://www.modssl.org/source/mod_ssl-2.6.2-1.3.12.tar.gz"
+TARGET="_top"
+>mod_ssl 2.6.2+</A
+>
+
+<P
+></P
+><UL
+><LI
+><P
+>OpenSSL 0.9.5
+
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="http://www.openssl.org/source/openssl-0.9.5.tar.gz"
+TARGET="_top"
+>Исходные тексты</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="ftp://rpmfind.net/linux/contrib/libc6/i386/openssl-0.9.5-1.i386.rpm"
+TARGET="_top"
+>RPM</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="ftp://rpmfind.net/linux/contrib/libc6/i386/openssl-devel-0.9.5-1.i386.rpm"
+TARGET="_top"
+>RPM-devel</A
+></P
+></LI
+></UL
+>&#13;</P
+></LI
+><LI
+><P
+><A
+HREF="ftp://ftp.wwc.edu/pub/apache/modules/mod_ssl/depend/rsaref20.1996.tar.Z"
+TARGET="_top"
+>RSAREF 2.0</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="http://www.engelschall.com/sw/mm/mm-1.0.12.tar.gz"
+TARGET="_top"
+>MM 1.0.12</A
+></P
+></LI
+></UL
+>&#13;</P
+></LI
+><LI
+><P
+><A
+HREF="http://www.mysql.com/Downloads/MySQL-3.22/mysql-3.22.32.tar.gz"
+TARGET="_top"
+>MySQL 3.22.32</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="ftp://vrooom.at.drew.edu/pub/mod_auth_nds/mod_auth_nds-0.4.tar.gz"
+TARGET="_top"
+>mod_auth_nds 0.4</A
+>
+
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="ftp://vrooom.at.drew.edu/pub/mod_auth_nds/ncpfs/ncpfs-2.2.0.17.tgz"
+TARGET="_top"
+>ncpfs 2.2.0.17</A
+>
+Примечание: ядро должно быть скомпилировано с поддержкой протокола IPX.</P
+></LI
+></UL
+>&#13;</P
+></LI
+><LI
+><P
+><A
+HREF="http://bourbon.netvision.net.il/mysql/mod_auth_mysql/mod_auth_mysql-2.20.tar.gz"
+TARGET="_top"
+>mod_auth_mysql 2.20</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="http://www.FastCGI.com/dist/mod_fastcgi_SNAP_Oct06.tar.gz"
+TARGET="_top"
+>mod_fastcgi SNAP Oct06</A
+></P
+></LI
+></UL
+>&#13;</P
+><P
+>Это схема каталогов, которая здесь используется и может быть вам рекомендована:</P
+><PRE
+CLASS="SCREEN"
+>+ /usr/src
+|
++-+ apache
+  |
+  +-+ apache-1.3.12
+  |
+  +-+ modules
+  | |
+  | +-+ mod_perl
+  | | |
+  | | +- mod_perl-1.21
+  | | |
+  | | +-+ depend
+  | |   |
+  | |   +- &#60;модули для perl&#62;
+  | |
+  | +-+ mod_ssl
+  | | |
+  | | +- mod_ssl-2.6.2-1.3.12
+  | | |
+  | | +-+ depend
+  | |   |
+  | |   +- openssl-0.9.5
+  | |   |
+  | |   +- rsaref-2.0
+  | |   |
+  | |   +- mm-1.0.12
+  | |
+  | +-+ mod_fastcgi_SNAP
+  | |
+  | +-+ php
+  | | |
+  | | +- php-3.0.15
+  | | |
+  | | +-+ depend
+  | |   |
+  | |   +- gd-1.3
+  | |   |
+  | |   +- imap-4.5
+  | |   |
+  | |   +- openldap-1.2.9
+  | |
+  | +-+ mod_auth_nds
+  | | |
+  | | +- mod_auth_nds-0.4
+  | | |
+  | | +-+ depend
+  | |   |
+  | |   +- ncpfs-2.2.0.17
+  | |
+  | +-+ mod_auth_mysql
+  |
+  +-+ mysql</PRE
+><P
+>Проверьте, все ли модули и программы установлены на вашей системе. Отсутствие некоторых компонетов не повредит, но лучше установить все. Вы можете установить и более ранние версии.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN195"
+>4.2. mod_ssl</A
+></H2
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="AEN197"
+>4.2.1. Сборка и установка OpenSSL</A
+></H3
+><P
+>mod_ssl требует, чтобы был установлен SSL. Естественный выбор для Linux -
+OpenSSL. Вы можете устанавить его из пакета RPM (как это сделал я), или
+скомпилировать из исходных текстов. поступайте, как хотите. Я,
+например, ставил готовый пакет, впрочем, компиляция из исходных текстов
+также достаточно проста. Наиболее вероятно, что вы установите его в каталог
+/usr/local, или оставите его в своем каталоге, но не забудьте указать путь
+приложениям, которым он необходим.</P
+><P
+>RPM установит OpenSSL в системный каталог.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN201"
+>4.2.2. Сборка и установка RSAREF 2.0</A
+></H3
+><P
+>Создайте каталог для модуля rsaref-2.0 в любом месте. У меня он находится в
+/usr/src/apache/modules/mod_ssl-blah/depend/.  Перейдите в этот каталог.</P
+><P
+>cd rsaref-2.0
+cp -rp install/unix local
+cd local
+make
+mv rsaref librsaref.a</P
+><P
+>Эти команды должны собрать библиотеку rsaref! Оставьте все здесь и укажите в конфигурационном скрипте путь к библиотеке.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN206"
+>4.2.3. Сборка и установка MM</A
+></H3
+><P
+>Распакуйте mm-1.0.12 (или более новую) в подкаталог mod_ssl-ля-ля-ля. Выполните следующие шаги:</P
+><P
+>cd mm-1.0.12
+./configure --disable-shared
+make</P
+><P
+>В результате должна собраться библиотека mm. Как и выше, укажите этот путь, если необходимо, или установите в системный каталог.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN211"
+>4.2.4. Сборка и установка mod_ssl (наконец-то!)</A
+></H3
+><P
+>В процессе стандартной процедуры при работе с apxs сначала должен быть скомпилирован Apache, а затем используйте apxs для компиляции модулей, которые вы хотите использовать, и присоедините их к серверу. Однако, mod_ssl должен быть собран с сервером до того, как вы используете apxs. Если mod_ssl собран вместе с сервером, обновите его через apxs без полной перекомпиляции Apache.</P
+><P
+>Войдите в каталог, где Вы компилируете mod_ssl, и выполните следующую команду конфигурации для начала компиляции:</P
+><P
+>#!/bin/sh
+
+./configure \
+        --with-apache=/usr/src/apache/apache_1.3.12 \
+        --with-ssl \
+        --with-rsa=../depend/rsaref-2.0/local \
+        --with-mm=../depend/mm-1.0.12 \
+        --enable-shared=ssl</P
+><P
+>Вам не нужно запускать ни 'make', ни что-то еще. Когда мы будем собирать Apache, команда сделает все за нас.</P
+><P
+>Эта команда дает два примера того, как ваша система может быть установлена. В моем случае, OpenSSL был уже установлен где-то в системе (кажется в /usr/lib или /usr/include). Поэтому я не должен был бы передавать параметры его расположения. Однако, rsa и mm не были в системе, и я собрал их сам и оставил в каталоге исходников (не запуска make вообще). В этом случае вам нужно указать команде configure на соответствующий каталог так, чтобы он нашел заголовочные файлы и библиотеки.</P
+><P
+>Идем далее, если вы не обновляете Apache (в некоторых случаях вам необходимо проделать предыдущий шаг для новой версии Apache), используйте apxs для обновления или перекомпиляции модуля mod_ssl. Вот какие параметры я дал скрипту:</P
+><P
+>./configure \
+        --with-apxs=/apps/apache-1.3.12/bin/apxs \
+        --with-ssl=../depend/openssl-0.9.4 \
+        --with-rsa=../depend/rsaref-2.0/local \
+        --with-mm=../depend/mm-1.0.12</P
+><P
+>Или команда, описанная выше. Запускаем:</P
+><P
+>make
+make install
+make distclean</P
+><P
+>и завершаем инсталляцию.</P
+><P
+>Примечания: <I
+CLASS="EMPHASIS"
+>MM не требует компиляции mod_ssl. Если у вас появились проблемы во время установки, начните с шага ./configure.</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>Когда я собирал mod_ssl, у меня появились ошибки, связанные с DBM. Чтобы исправить их, я добавил -lndbm в Makefile:</I
+></P
+><P
+>&#13;<P
+></P
+><UL
+><LI
+><P
+>Запустите вышеупомянутый конфигурационный скрипт.</P
+></LI
+><LI
+><P
+>cd в pkg.sslmod</P
+></LI
+><LI
+><P
+>Отредактируйте makefile и добавте -lndbm к LIBS_SHLIB. Следующим образом:</P
+></LI
+><LI
+><P
+><TT
+CLASS="LITERAL"
+>LIBS_SHLIB=-lm -lcrypt -lndbdm</TT
+></P
+></LI
+></UL
+>&#13;</P
+><P
+><I
+CLASS="EMPHASIS"
+>Надеюсь, это сэкономит вам немного сил.</I
+></P
+></DIV
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN240"
+>4.3. Apache</A
+></H2
+><P
+>Распакуйте архив apache-1.3.12.tar.gz в /usr/src/apache или в другое место. Затем собираем Apache со следующими модулями:</P
+><P
+>&#13;<P
+></P
+><UL
+><LI
+><P
+>mod_ssl (Чтобы собрать mod_ssl как DSO, сначала компилируем с сервером. Затем обновляем модуль через apxs.)</P
+></LI
+><LI
+><P
+>mod_proxy</P
+></LI
+><LI
+><P
+>mod_so</P
+></LI
+><LI
+><P
+>mod_rewrite (Для использования с Zope)</P
+></LI
+></UL
+>&#13;</P
+><P
+>Конфигурационный файл, который я использовал для сборки Apache:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>#!/bin/sh
+
+SSL_BASE=../depend/openssl-0.9.4 \
+RSA_BASE=../depend/rsaref-2.0/local \
+EAPI_MM=../depend/mm-1.0.12 \
+./configure \
+        --enable-module=ssl \
+        --enable-module=proxy\
+        --enable-shared=proxy\
+        --enable-module=rewrite \
+        --enable-shared=rewrite \
+        --prefix=/apps/apache-1.3.12 \
+        --enable-shared=ssl \
+        --enable-rule=SHARED_CORE \
+        --enable-rule=SHARED_CHAIN \
+        --enable-module=so</PRE
+><P
+>Затем запустим</P
+><P
+>make
+make certificate
+make install</P
+><P
+>Apache должен теперь быть собран и установлен в какой-нибудь каталог. Проверьте, что он запускается с помощью.</P
+><P
+><TT
+CLASS="LITERAL"
+>/path/to/apache/bin/apachectl start</TT
+></P
+><P
+>или</P
+><P
+><TT
+CLASS="LITERAL"
+>/path/to/apache/bin/apachectl startssl</TT
+></P
+><P
+>Надеюсь, все пройдет гладко. Если нет, вернитесь назад и проверьте, что вы ничего не забыли.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN264"
+>4.4. MySQL</A
+></H2
+><P
+>php также как mod_auth_mysql и возможно mod_perl потребуют, чтобы MySQL был установлен и запущен на вашей системе. Подробности установки MySQL находятся вне контекста этого документа. Скачайте архив и следуйте рекомендациям по установке из файла(ов) INSTALL. Впрочем, это довольно простая процедура. Что-то вроде этого:</P
+><P
+>./configure
+make
+make install</P
+><P
+>Все должно установиться так, что вы сможете собирать другие модули Apache.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN269"
+>4.5. PHP 3.0.15</A
+></H2
+><P
+>Мы будем компилировать php-3.0.15, как DSO (отдельный модуль, который может быть загружен и выгружен сервером). В результате, процесс обновления php становится более простым (без перекомпиляции всего (что может быть ужасно, если вы используете много модулей с Apache)).</P
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN272"
+>4.5.1. GD</A
+></H3
+><P
+>Наш php использует библиотеку gd для создания изображений. Я использовал старую версию gd (установленную из RPM). Таким образом, мы можем использовать вывод GIF файлов. Это не очень хорошо -, могут быть проблемы с авторскими правами, и таким образом Вы можете использовать версию более новую, чем 1.3, которая поддерживает только PNG файлы.</P
+><P
+>Чтобы установить компонент в системе, можно взять его из пакета RPM (rpm -i gd*.rpm) или собрать из исходников.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN276"
+>4.5.2. IMAP</A
+></H3
+><P
+>Эта процедура похожа на установку gd. Я использовал RPM, т.к. у меня система Red Hat, но установка из исходников тоже очень проста - ./configure;make;make install.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN279"
+>4.5.3. OpenLDAP</A
+></H3
+><P
+>Опять мы можем установить OpenLDAP из RPM или из исходников. Я выбрал компиляцию исходных текстов, т.к. последней версии нет в RPM.</P
+><P
+>./configure
+make
+make install</P
+><P
+>или rpm -i openldap*.rpm</P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN284"
+>4.5.4. Сборка и установка PHP 3.0.15</A
+></H3
+><P
+>Как только вышеупомянутые компоненты установлены и работают, мы можем идти дальше и собрать PHP, как DSO. Процесс очень простой.</P
+><PRE
+CLASS="PROGRAMLISTING"
+>cd /usr/src/apache/modules/php/php-3.0.15
+
+./configure \
+        --with-apxs=/apps/apache/bin/apxs \
+        --with-config-file-path=/apps/etc \
+        --with-gd \
+        --with-imap \
+        --with-mysql=/apps/mysql \
+        --with-ldap=/apps \
+        --with-zlib \
+        --enable-track-vars</PRE
+><P
+><I
+CLASS="EMPHASIS"
+>Если некоторые из ваших библиотек не установлены в
+/usr/local или в /usr, то не забудьте добавить параметр =/путь/ для 
+того, чтобы скрипт configure обнаружил все необходимые библиотеки.</I
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>make
+make install</PRE
+><P
+>Если все проходит должным образом, то 'make install' будет использовать apxs для установки libphp3.so в /apache/libexec/libphp3.so и добавит надлежащие строки в httpd.conf, чтобы активизировать php3.</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN292"
+>4.6. mod_perl</A
+></H2
+><P
+>Этот раздел описывает установку модуля mod_perl, как DSO для Apache. Ряд модулей perl (в дополнение, конечно, к perl5, который, я думаю, вы уже установили) должны быть добавлены до компиляции
+mod_perl. Если вы не установите эти модули, mod_perl сообщит вам об их отсутствии.</P
+><P
+>Есть некоторый порядок, в котором модули должны быть установлены. Одни зависят от других, и таким образом я перечислю порядок установки, который использовал без всяких проблем.</P
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN296"
+>4.6.1. Требуемые модули Perl</A
+></H3
+><P
+>Perl модули могут быть получены из мест, упоминаемых далее в этом документе. Загрузите их и поместите туда, куда хотите, или туда, куда положил я (см. схему каталогов). Установка модуля проста. После распаковки модуля в каталог (обычно при помощи tar xvfz), просто перейдите в каталог с исходными текстами и выполните следующие команды:</P
+><P
+>perl Makefile.PL
+make
+make install</P
+><P
+>Если все идет нормально, происходит настройка, сборка и установка модуля perl. Конечно, вы можете прочитать README для каждого модуля, если что-то работает не так, как ожидалось.</P
+><P
+>Вот порядок, в котором я устанавливал модули, необходимые для mod_perl:</P
+><P
+>&#13;<P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>MIME::Base64</P
+></LI
+><LI
+><P
+>URI</P
+></LI
+><LI
+><P
+>HTML::Parser</P
+></LI
+><LI
+><P
+>Digest-MD5</P
+></LI
+><LI
+><P
+>libnet</P
+></LI
+><LI
+><P
+>libwww</P
+></LI
+></OL
+>&#13;</P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN316"
+>4.6.2. Сборка и установка mod_perl 1.2x</A
+></H3
+><P
+>После установки модулей perl, мы готовы к сборке и установке
+mod_perl в Apache. Перейдите в каталог, куда вы распаковали mod_perl, 
+и запустите следующую команду:</P
+><P
+>perl Makefile.PL \
+        USE_APXS=1 \
+        WITH_APXS=/path/to/apache/bin/apxs \
+        EVERYTHING=1</P
+><P
+>Она настроит ваш Makefile и сообщит mod_perl, чтобы он собрал себя, как DSO,
+используя apxs (расположение которого вы должны определить). После этого
+просто запустите</P
+><PRE
+CLASS="PROGRAMLISTING"
+>make
+make install</PRE
+><P
+>mod_perl будет перемещен в соответствующий каталог, и необходимая строка будет добавлена 
+в файл httpd.conf.</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN323"
+>4.7. mod_auth_mysql</A
+></H2
+><P
+>mod_auth_mysql позволяет веб-серверу Apache использовать аутентификацию пользователя MySQL. Установка модуля, как DSO, не точно описана в README, но это можно поправить.</P
+><P
+>Во-первых, перейдите в каталог с исходными текстами mod_auth_mysql. Я предполагаю, что у вас уже установлен MySQL (вместе с заголовками, и т.д). Убедитесь, что Вы знаете расположение библиотек и заголовочных файлов MySQL. Если сомневаетесь, проверьте /usr/lib/mysql и /usr/include/mysql.</P
+><P
+>Чтобы собрать mod_auth_mysql, переименуйте файл 'config.h'
+на 'auth_mysql_config.h'. Я не знаю, почему этот файл не был правильно назван. Просто запустите следующую команду:</P
+><P
+>cp config.h auth_mysql_config.h</P
+><P
+>И последний шаг:</P
+><P
+>/path/to/apache/bin/apxs -i -a -I/usr/include/mysql -L/usr/lib/mysql \
+        -lmysqlclient -c mod_auth_mysql.c</P
+><P
+>Вам нужно зайти в систему, как root, для чтения/записи в каталог Apache.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN332"
+>4.8. mod_auth_nds</A
+></H2
+><P
+>В моей школе сеть под Windows была Netware. Она существует уже долгое время, и пока это все еще основная сеть в университетском городке для доступа к общим файлам и почте. Каждый студент имеет вход на сервер Netware, на котором хранятся его личные файлы (включая веб-странички). Мы подключаем эти каталоги на сервер Linux, но некоторые из них защищены именем и паролем Netware. С этим модулем Apache может подтверждать права непосредственно на сервере Netware.</P
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN335"
+>4.8.1. ncpfs</A
+></H3
+><P
+>Чтобы компилировать mod_auth_nds, мы должны иметь установленный ncpfs (наряду с его заголовками). Перед сборкой ncpfs, вы должны гарантировать, что ваше ядро имеет поддержку IPX. Если дело обстоит так, просто выполните</P
+><P
+>./configure
+make
+make install (необязательно)</P
+><P
+>В результате соберутся (и установятся) библиотеки.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN340"
+>4.8.2. Сборка и установка mod_auth_nds</A
+></H3
+><P
+>С установленным ncpfs выполнение следующей команды должно собрать mod_auth_nds
+как DSO:</P
+><P
+>/path/to/apache/bin/apxs -c -lncp -L/usr/lib -I/usr/include mod_auth_nds.c
+/path/to/apache/bin/apxs -i mod_auth_nds.so</P
+><P
+>После добавьте следующие строки в файл httpd.conf:</P
+><P
+>LoadModule nds_auth_module libexec/mod_auth_nds.so
+AddModule mod_auth_nds.c</P
+><P
+>И перезапустите Apache!</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN347"
+>4.9. mod_fastcgi</A
+></H2
+><P
+>Установка mod_fastcgi необходима, если Вы хотите обеспечить доступ к
+серверу Zope через Apache. Это полезно просто потому, что Apache является
+более безопасным и гибким, чем сервер Zope.</P
+><P
+>Текущая версия mod_fastcgi - 2.2.2, однако эта версия не работает с Zope,
+как надо. Вы должны получить SNAP от 6 октября. Ссылка дана выше.</P
+><P
+>Перейдите в каталог mod_fastcgi и запустите следующие команды:</P
+><P
+>/path/to/apache/bin/apxs -o mod_fastcgi.so -c *.c
+/path/to/apache/bin/apxs -i -a -n fastcgi mod_fastcgi.so</P
+><P
+>Смотрите документацию mod_fastcgi для описания его использования.</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN354"
+>5. Заключительные слова</A
+></H1
+><P
+>Многое из данной информации может быть взято из файлов README и INSTALL,
+идущих с различными модулями. Однако, этот документ полезен в случаях,
+когда что-то работает не так, как ожидалось. Кроме того, последовательный
+документ более прост для просмотра и понимания, чем множество README
+файлов.</P
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN357"
+>5.1. Благодарности</A
+></H2
+><P
+>Phillip R. Wilson &#60;pwilson@drew.edu&#62;, автору mod_auth_nds, помог мне собрать и установить
+ mod_auth_nds при помощи apxs.
+
+John Ash &#60;jash@wwc.edu&#62;, моему начальнику, за все виды помощии, конечно же, за работу.
+
+Marcus Faure &#60;marcus@faure.de&#62;, автору Apache SSL PHP/FI frontpage mini-HOWTO.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN360"
+>5.2. Контактная информация</A
+></H2
+><P
+>Если вы найдете в этом документе любые ошибки - правописание, граматика, содержание и прочее, пожалуйста, сообщите мне о них по электронной почте. Вы можете использовать и другие средства связи.</P
+><P
+>Ray Van Dolson
+Email: <TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:rayvd@firetail.org"
+>rayvd@firetail.org</A
+>&#62;</TT
+>
+IRC: DALnet, #Bludgeon (nick Variant)</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN365"
+>5.3. Дополнительно</A
+></H2
+><P
+>Все упомянутое в этом документе будет в конечном счете доступно с ftp
+ftp.wwc.edu/pub/apache. Я буду размещать там этот текст и кое-какие
+инсталляционные скрипты, позволяющие установить все разом.</P
+></DIV
+></DIV
+></DIV
+></BODY
+></HTML
+>

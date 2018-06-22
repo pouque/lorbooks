@@ -1,0 +1,442 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE>Из  DOS/Windows в Linux HOWTO : Оставшийся 1% дел</TITLE>
+ <LINK HREF="DOS-Win-to-Linux-HOWTO-13.html" REL=next>
+ <LINK HREF="DOS-Win-to-Linux-HOWTO-11.html" REL=previous>
+ <LINK HREF="DOS-Win-to-Linux-HOWTO.html#toc12" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="DOS-Win-to-Linux-HOWTO-13.html">Следующий</A>
+<A HREF="DOS-Win-to-Linux-HOWTO-11.html">Предыдущий</A>
+<A HREF="DOS-Win-to-Linux-HOWTO.html#toc12">Содержание</A>
+<HR>
+<H2><A NAME="s12">12. Оставшийся 1% дел</A></H2>
+
+<P>В самом деле больше чем 1%...
+<P>
+<H2><A NAME="ss12.1">12.1 Использование tar и gzip</A>
+</H2>
+
+<P>В UNIX существуют некоторые широко используемые приложения для архивации
+и сжатия файлов. <CODE>tar</CODE> используется для создания архивов---он похож
+на <CODE>PKZIP</CODE> или <CODE>Winzip</CODE>, но не производит сжатие, он только
+архивирует.  Для создания нового архива используется команда:
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+$ tar -cvf &lt;archive_name.tar> &lt;file> [file...]
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>Для извлечения файлов из архива:
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+$ tar -xpvf &lt;archive_name.tar> [file...]
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>Для перечисления содержимого архива:
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+$ tar -tf &lt;archive_name.tar> | less
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>Вы можете сжать данные, используя программу <CODE>compress</CODE>, которая
+устарела и не должна больше использоваться, или с помощью <CODE>gzip</CODE>:
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+$ compress &lt;file>
+$ gzip &lt;file>
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>что создает сжатые файлы с расширением <CODE>.Z</CODE> (<CODE>compress</CODE>) или
+<CODE>.gz</CODE> (<CODE>gzip</CODE>). Эти программы могут сжимать только один файл
+за раз.  Для расжатия используются команды:
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+$ compress -d &lt;file.Z>
+$ gzip -d &lt;file.gz>
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>RMP.
+<P>Также существуют утилиты <CODE>unarj</CODE>, <CODE>zip</CODE> и <CODE>unzip</CODE>
+(совместимые с PK??ZIP). Файлы с расширениями <CODE>.tar.gz</CODE> или
+<CODE>.tgz</CODE> (архивированные с помощью <CODE>tar</CODE>, а затем сжатые
+<CODE>gzip</CODE>) являются такой же вещью в UNIX как файлы .ZIP в DOS. Вот как
+выдать список файлов в архиве <CODE> .tar.gz</CODE>:
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+$ tar -ztf &lt;file.tar.gz> | less
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>
+<H2><A NAME="Install"></A> <A NAME="ss12.2">12.2 Установка приложений </A>
+</H2>
+
+<P>Во первых: установка приложений&nbsp;-- это работа
+администратора. Большинство приложений для Linux распространяются в виде
+архивов <CODE>.tar.gz</CODE>, которые обычно содержат каталог, названный как и
+архив, который содержит файлы и/или подкаталоги.Хорошим правилом является
+установка этих программ из каталога <CODE>/usr/local</CODE> с помощью команды
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+# tar -zxf &lt;archive.tar.gz>
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>прочитайте файл README или INSTALL. В большинстве случаев приложение
+распространяется в виде исходных текстов, которые вам надо скомпилировать;
+часто достаточно набрать команду <CODE>make</CODE>, а затем <CODE>make
+install</CODE>. Если в архиве есть файл <CODE>configure</CODE>, то сначала
+запустите его. Вам также необходимо иметь компилятор <CODE>gcc</CODE> или
+<CODE>g++</CODE>.
+<P>Другие архивы должны быть распакованы, находясь в каталоге /;
+это в случае с архивами, используемыми в Slackware. Другие архивы содержат
+только файлы, без подкаталогов---будьте осторожны, не запутайтесь! Всегда
+просмотрите список файлов в архиве до его установки.
+<P>Debian и Red Hat имеют свой собственный формат архивов&nbsp;--
+соответственно <CODE>.deb</CODE> и <CODE>.rpm</CODE>. Последний приобретает
+широкое распространение; для установки пакета <CODE>rpm</CODE> наберите
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+# rpm -i package.rpm
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>
+<P>
+<H2><A NAME="ss12.3">12.3 Советы, без которых вы не сможете жить</A>
+</H2>
+
+<P><B>Прокрутка назад</B>: нажимая &lt;SHIFT + PAG UP&gt; (серая клавиша)
+вы можете прокрутить назад несколько последних страниц экрана, в
+зависимости от того, сколько у вас видеопамяти.
+<P><B>Сброс экрана</B>: если вы выполнили команду <CODE>more</CODE> или
+<CODE>cat</CODE> для двоичного файла, то ваш экран может быть заполнен мусором.
+Для того, чтобы исправить это вслепую, наберите <CODE>reset</CODE> или такую
+последовательность символов: <CODE>echo CTRL-V ESC c RETURN</CODE>.
+<P><B>Вставка текста</B>: Как сделать это в консоли, описано ниже; в X
+нажмите левую кнопку мыши и держа ее выделите необходимый текст, затем
+щелкните средней кнопкой мыши (или обоими кнопками, если у вас 2-х
+кнопочная мышь) для вставки текста в позиции курсора. Также есть приложение
+<CODE>xclipboard</CODE> (только для текста); не пугайтесь ее медленной работы.
+<P><B>Используя мышь</B>: если у вас установлена программа
+<CODE>gpm</CODE>---драйвер мыши для консоли, то вы можете нажать на левую
+кнопку мыши и выделить текст, а затем нажать на правую кнопку мыши для
+вставки выделенного текста. Программа может работать между разными
+виртуальными консолями.
+<P><B>Сообщения от ядра</B>: войдя под правами администратора посмотрите
+файл <CODE>/var/adm/messages</CODE> или <CODE>/var/log/messages</CODE> для того
+чтобы увидеть, что ядро сообщает вам, включая сообщения на этапе загрузки.
+Также удобна команда <CODE>dmesg</CODE>.
+<P>
+<H2><A NAME="Programs"></A> <A NAME="ss12.4">12.4 Где найти приложения </A>
+</H2>
+
+<P>Если вы удивляетесь, должны ли вы заменить ваши старые и привычные
+приложения под DOS/Win приложениями под Linux, я предполагаю, что вы
+просмотрели основные архивы программного обеспечения для Linux: 
+<A HREF="ftp://metalab.unc.edu/pub/Linux">ftp://metalab.unc.edu/pub/Linux</A>, 
+<A HREF="ftp://tsx-11.mit.edu/pub/linux">ftp://tsx-11.mit.edu/pub/linux</A>, и 
+<A HREF="ftp://ftp.funet.fi/pub/Linux">ftp://ftp.funet.fi/pub/Linux</A>.  Другим хорошим местом для поиска
+является ``Linux Applications and Utilities Page (Страница приложений и
+утилит для Linux)'' 
+<A HREF="http://www.xnet.com/~blatura/linapps.shtml">http://www.xnet.com/~blatura/linapps.shtml</A>,
+и ``официальную'' страницу Linux 
+<A HREF="http://www.linux.org">http://www.linux.org</A>.
+<P>
+<P>
+<H2><A NAME="ss12.5">12.5 Некоторые вещи, которые вы не могли делать</A>
+</H2>
+
+<P>Linux может выполнять ужасно много вещей, которые были громоздкими,
+трудными или невозможными в DOS/Windows. Вот короткий список вещей, которые
+могут возбудит ваш аппетит:
+<P>
+<UL>
+<LI><CODE>at</CODE> позволяет вам запускать программы в указанное время;
+</LI>
+<LI><CODE>awk</CODE>&nbsp;-- это простой, но мощный язык для манипулирования
+файлами данных (и не только). Например, допустим, что
+<CODE>data.dat</CODE>&nbsp;-- это ваш файл с множеством полей данных,
+
+<BLOCKQUOTE><CODE>
+<PRE>
+$ awk '$2 ~ "abc" \{print $1, "\\t", $4\}' data.dat
+</PRE>
+</CODE></BLOCKQUOTE>
+
+
+напечатает поля 1 и 4 из каждой строки файла <CODE>data.dat</CODE>, второе поле
+которой содержит ``abc''.
+</LI>
+<LI><CODE>cron</CODE> полезен для выполнения периодических задач, в
+указанное время и дату. Наберите <CODE>man 5 crontab</CODE>.
+</LI>
+<LI><CODE>file &lt;filename&gt;</CODE> скажет вам, чем является
+<CODE>filename</CODE> (ASCII текст, исполнимый файл, архив и т.п.);
+</LI>
+<LI><CODE>find</CODE> (смотрите также раздел 
+<A HREF="DOS-Win-to-Linux-HOWTO-6.html#Directories: Trans">Каталоги: Перевод команд</A>)---это одна из наиболее мощных и полезных
+команд. Она используется для поиска файлов, которые отвечают нескольким
+заданным критериям и для выполнения действий над этими файлами. В общем
+виде командная строка <CODE>find</CODE> выглядит так:
+
+<BLOCKQUOTE><CODE>
+<PRE>
+$ find &lt;каталог> &lt;выражение>
+</PRE>
+</CODE></BLOCKQUOTE>
+
+
+где &lt;выражение&gt; включает в себя критерии поиска и действия над
+найденными файлами. Примеры:
+
+<BLOCKQUOTE><CODE>
+<PRE>
+$ find . -type l -exec ls -l \{\} \\;
+</PRE>
+</CODE></BLOCKQUOTE>
+
+
+находит все файлы, которые является символьными ссылками, и показывает, на
+какие файлы они указывают.
+
+<BLOCKQUOTE><CODE>
+<PRE>
+$ find / -name "*.old" -ok rm \{\} \\;
+</PRE>
+</CODE></BLOCKQUOTE>
+
+
+находит все файлы, соответствующие заданному образцу, и удаляет их, сначала
+спрашивая у вас разрешение.
+
+<BLOCKQUOTE><CODE>
+<PRE>
+$ find . -perm +111
+</PRE>
+</CODE></BLOCKQUOTE>
+
+
+находит все файлы, чьи права доступа соответствуют 111 (исполнимые).
+
+<BLOCKQUOTE><CODE>
+<PRE>
+$ find . -user root
+</PRE>
+</CODE></BLOCKQUOTE>
+
+
+находит все файлы, принадлежащие пользователю root. Здесь есть много
+возможностей---RMP.
+</LI>
+<LI><CODE>grep</CODE> находит заданный текст в файлах. Например,
+
+<BLOCKQUOTE><CODE>
+<PRE>
+$ grep -l "geology" *.tex
+</PRE>
+</CODE></BLOCKQUOTE>
+
+
+перечислит все файлы *.tex, в которых содержится слово ``geology''. Вариант
+этой программы под названием <CODE>zgrep</CODE> работает со сжатыми файлами.
+RMP;
+</LI>
+<LI><B>регулярные выражения</B>---являются сложным, но мощным способом
+выполнения операций поиска в тексте. Например, <CODE>^a[^a-m]X\{4,\}txt$</CODE>
+соответствует строке, которая начинается на `a', за которым следует любой
+символ, за исключением входящих в интервал a-m, за которым следует 4 или
+больше символов `X', и заканчивается на `txt'. Вы можете использовать
+регулярные выражения в мощных редакторах, программе <CODE>less</CODE>, и многих
+других приложениях. Для введения в регулярные выражения прочитайте
+справочную страницу для <CODE>grep</CODE>.
+</LI>
+<LI>команда <CODE>script &lt;script_file&gt;</CODE> выдаст вам на экран
+содержимое <CODE>script_file</CODE>, до тех пор пока вы не выполните команду
+<CODE>exit</CODE>. Полезно для отладки;
+</LI>
+<LI><CODE>sudo</CODE> позволяет пользователям выполнять некоторые обязанности
+администратора (например форматирование и монтирование дисков; RMP);
+</LI>
+<LI><CODE>uname -a</CODE> выдаст вам информацию о вашей системе;
+</LI>
+<LI><CODE>zcat</CODE> и <CODE>zless</CODE> полезны для просмотра и печати сжатых
+файл без их расжатия. Например:
+
+<BLOCKQUOTE><CODE>
+<PRE>
+$ zless textfile.gz
+$ zcat textfile.gz | lpr
+</PRE>
+</CODE></BLOCKQUOTE>
+
+</LI>
+<LI>Следующие команды часто бывают полезны: <CODE>bc, cal, chsh, cmp, cut,
+fmt, head, hexdump, nl, passwd, printf, sort, split, strings, tac, tail,
+tee, touch, uniq, w, wall, wc, whereis, write, xargs, znew.</CODE> RMP.
+</LI>
+</UL>
+<P>
+<H2><A NAME="ss12.6">12.6 Использование утилит для UNIX в DOS/Windows</A>
+</H2>
+
+<P>Верьте этому или нет, но существуют утилиты, которые обеспечивают
+UNIX-подобную среду в DOS/Windows! Одной из них является набор Djgpp (
+<A HREF="http://www.delorie.com/djgpp">http://www.delorie.com/djgpp</A>) для DOS, в то время как Cygnus (
+<A HREF="http://www.cygnus.com">http://www.cygnus.com</A>) является более сложным портом для Win32. Они
+оба включают в себя те же средства разработки GNU и утилиты, как и Linux;
+хотя вы не получите той же стабильности и производительности.
+<P>Если вы хотите почувствовать вкус Linux, попробуйте пакет Djgpp. Скачайте и
+установите следующий файлы (во время написания последней версией была
+версия 2.02): <CODE>djdev202.zip, bnu281b.zip, bsh1147b.zip, fil316b.zip,
+find41b.zip, grep22b.zip, gwk303b.zip, lss332b.zip, shl112b.zip.</CODE>.
+Инструкции по установке включены в дистрибутив и вы можете получить помощь
+в 
+<A HREF="news:comp.os.msdos.djgpp">news:comp.os.msdos.djgpp</A>.
+<P>В частности, использование <CODE>bash</CODE> в DOSWin является глотком свежего
+воздуха. Для его правильной настройки отредактируйте поставляемый файл
+<CODE>BOOT.BAT</CODE> для того, чтобы он соответствовал вашим настройкам, а
+затем поместите эти файлы в ваш домашний каталог (на разделе Windows)
+вместо тех, которые поставляются в дистрибутиве:
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+# это _bashrc
+
+LS_OPTIONS="-F -s --color=yes"
+alias cp='cp -i'
+alias d='ls -l'
+alias l=less
+alias ls="ls $LS_OPTIONS"
+alias mv='mv -i'
+alias rm='rm -i'
+alias u='cd ..'
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+# это _bprof
+if [ -f ~/_bashrc ]; then
+  . ~/_bashrc
+fi
+PS1='\\w\\$ '
+PS2='> '
+CDPATH="$CDPATH:~"
+# stuff for less(1)
+LESS="-M-Q"                     # long prompt, silent
+LESSEDIT="%E ?lt+%lt. %f"       # edit top line
+VISUAL="jed"                    # editor
+LESSCHARSET=latin1              # visualise accented letters
+export PS1 PS2 CDPATH LS_OPTIONS LESS LESSEDIT LESSOPEN VISUAL LESSCHARSET
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>
+<P>
+<H2><A NAME="ss12.7">12.7 Общие расширения файлов и соответствующие программы</A>
+</H2>
+
+<P>Вы можете обнаружить множество расширений файлов. За исключением
+экзотических расширений (например, шрифты и т.п.), вот список того, для
+чего какие расширения файлов используются:
+<P>
+<UL>
+<LI> <CODE>1 ... 8</CODE>: справочные страницы. Читайте их с помощью команды
+<CODE>groff -Tascii -man &lt;file.1&gt;</CODE>.
+</LI>
+<LI> <CODE>arj</CODE>: архивы, созданные программой <CODE>arj</CODE>.
+</LI>
+<LI> <CODE>dvi</CODE>: выходной файл, созданный программой TeX (смотрите
+ниже).  <CODE>xdvi</CODE> используется для его показа; а <CODE>dvips</CODE>&nbsp;--
+для преобразования его в файл PostScript <CODE>.ps</CODE>.
+</LI>
+<LI> <CODE>gz</CODE>: архивы, созданные <CODE>gzip</CODE>.
+</LI>
+<LI> <CODE>info</CODE>: файл для программы info file (альтернатива справочным
+страницам). Возьмите пакет <CODE>texinfo</CODE>.
+</LI>
+<LI> <CODE>lsm</CODE>: Файл Linux Software Map (Карты программного
+обеспечения Linux). Это обычный ASCII-файл, содержащий описание пакета
+программ.
+</LI>
+<LI> <CODE>ps</CODE>: Файл PostScript. Для его просмотра или печати возьмите
+программу <CODE>gs</CODE> и, при необходимости, программу <CODE>ghostview</CODE>
+или <CODE>gv</CODE>.
+</LI>
+<LI><CODE>rpm</CODE>: Пакет Red Hat. Вы можете установить его на любой
+системе, используя менеджер пакетов <CODE>rpm</CODE>.
+</LI>
+<LI> <CODE>taz, tar.Z</CODE>: архив, созданный <CODE>tar</CODE> и сжатый
+программой <CODE>compress</CODE>.
+</LI>
+<LI> <CODE>tgz, tar.gz</CODE>: архив, созданный <CODE>tar</CODE> и сжатый
+<CODE>gzip</CODE>.
+</LI>
+<LI><CODE>tex</CODE>: текстовый файл с информацией для TeX, мощной системы
+форматирования теста. Возьмите пакет <CODE>tex</CODE>, доступный в многих
+дистрибутивах.
+</LI>
+<LI> <CODE>texi</CODE>: файл texinfo, вы можете сделать из него и файлы TeX и
+файлы info (<CODE>info</CODE>). возьмите пакет <CODE>texinfo</CODE>.
+</LI>
+<LI> <CODE>xbm, xpm, xwd</CODE>: графические файлы.
+</LI>
+<LI> <CODE>Z</CODE>: архив, созданный программой <CODE>compress</CODE>.
+</LI>
+</UL>
+<P>
+<H2><A NAME="ss12.8">12.8 Преобразование файлов</A>
+</H2>
+
+<P>Если вам необходимо обмениваться текстовыми файлами между DOS/Win и
+Linux, то будьте осторожны с проблемой ``конца строки''. В DOS каждая
+строка оканчивается символами CR/LF (ASCII 13 + ASCII 10), а в
+Linux&nbsp;-- символом LF.  Если вы редактируете текстовый файл из DOS в
+Linux, то каждая строка будет оканчиваться странно-выглядящим символом `M';
+а текстовый файл из Linux в DOS появится как огромная одиночная строка без
+разбиения на параграфы.  Существуют утилиты <CODE>dos2unix</CODE> и
+<CODE>unix2dos</CODE> для преобразования файлов.
+<P>Если ваш текстовый файл содержит символы с диактрическими знаками, то
+убедитесь, что они набраны в Windows (в Notepad), а не в чистом DOS; в ином
+случае символы будут потеряны.
+<P>Преобразование файлов Word или WordPerfect в текстовые файлы сложнее, но
+возможно. Вам необходима одна из утилит, которую можно найти на серверах
+CTAN; один из них 
+<A HREF="ftp://ftp.tex.ac.uk">ftp://ftp.tex.ac.uk</A>. Возьмите программу
+<CODE>word2x</CODE> из каталога /pub/tex/tools/, или попробуйте
+программы, находящиеся в каталоге /pub/tex/support/. В
+частности <CODE>word2x</CODE> преобразует файлы Word 6, тогда как для файлов
+Word 97 вам необходима программа <CODE>mswordview</CODE> (
+<A HREF="http://www.csn.ul.ie/~caolan/docs/MSWordView.html">http://www.csn.ul.ie/~caolan/docs/MSWordView.html</A>), которая
+преобразует эти файлы в HTML.
+<P>
+<H2><A NAME="ss12.9">12.9 Свободные офисные пакеты</A>
+</H2>
+
+<P>Если преобразования файлов вам недостаточно, то вы можете вцепиться
+зубами в (свободный!) Microsoft Office--подобный пакет.
+<P>В настоящее время StarOffice (
+<A HREF="http://www.sun.com/staroffice">http://www.sun.com/staroffice</A>)
+является единственным выбором, хотя Koffice развивается (
+<A HREF="http://www.koffice.org">http://www.koffice.org</A>). Он большой, иногда медленен, но в любом
+случае хорош: Он предоставляет функциональные возможности, которых нет в
+Microsoft Office. Он также может читать и записывать файлы Word и Excel,
+хотя преобразования не всегда нормальны.
+<P>Другим хорошим пакетом является Corel WordPerfect, свободная версия которой
+доступна для загрузки. Должен я еще что-нибудь сказать? Скачать его можно с
+<A HREF="http://www.corel.com">http://www.corel.com</A>.
+<P>
+<P>
+<HR>
+<A HREF="DOS-Win-to-Linux-HOWTO-13.html">Следующий</A>
+<A HREF="DOS-Win-to-Linux-HOWTO-11.html">Предыдущий</A>
+<A HREF="DOS-Win-to-Linux-HOWTO.html#toc12">Содержание</A>
+</BODY>
+</HTML>

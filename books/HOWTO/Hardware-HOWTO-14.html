@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE>Linux Hardware Compatibility HOWTO: Жесткие диски </TITLE>
+ <LINK HREF="Hardware-HOWTO-15.html" REL=next>
+ <LINK HREF="Hardware-HOWTO-13.html" REL=previous>
+ <LINK HREF="Hardware-HOWTO.html#toc14" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="Hardware-HOWTO-15.html">Next</A>
+<A HREF="Hardware-HOWTO-13.html">Previous</A>
+<A HREF="Hardware-HOWTO.html#toc14">Contents</A>
+<HR>
+<H2><A NAME="s14">14. Жесткие диски </A></H2>
+
+<P>Любой жесткий диск будет работать если его контроллер поддерживается
+ядром.
+Любые SCSI устройства с прямым доступом и размером блока 256,512 или 1024
+байта,также будут работать.При других размерах блока устройства функционировать не будут (часто размер блока и/или сектора можно изменить
+используя команду MODE SELECT SCSI).
+<P>Большие IDE (EIDE) диски хорошо работают но только с последними версиями
+ядер.Загрузочный раздел должен находиться в пределах первых 1024 секторов
+,из за ограничения в большинстве версий BIOS.
+<P>Некоторые диски  Conner CFP1060S вызывают проблемы при работе с Линукс
+и ext2fs. Симптомы таких проблем - inode ошибки при проверке дисков с
+помощью e2fsck и повреждение файловых систем.
+<P>Многие Maxtor и Western Digital IDE диски не умеют сосуществовать с дисками
+других производителей на одном с ними IDE кабеле.
+Типичный симптом - ошибка одного из дисков во время какой либо операции.
+Проблема решается путем установки их на различные IDE кабели.
+<P>Некоторые диски Micropolis имеют проблемы с Adaptec и BusLogic картами.
+<P>
+<UL>
+<LI>Драйвер для нескольких устройств (RAID-0, RAID-1)<BR>
+<A HREF="ftp://sweet-smoke.ufr-info-p7.ibp.fr/public/Linux/">ftp://sweet-smoke.ufr-info-p7.ibp.fr/public/Linux/</A></LI>
+</UL>
+<P>
+<H2><A NAME="ss14.1">14.1 Неподдерживаються</A>
+</H2>
+
+<P>Следующие жесткие диски не работают с Линукс.
+<P>
+<UL>
+<LI>NEC D3817, D3825, D3827, D3847<BR>
+Эти диски частично не совместимы с SCSI2. Несовместимость заключается
+в величинах возвращаемых при Mode Sense Page 3. Эти NEC диски при некоторых
+условиях возвращают длину своего сектора = 0. 
+Программного решения проблемы не существует , если у вас именно такие диски
+то вам следует  приобрести другую модель.
+</LI>
+</UL>
+<P>
+<HR>
+<A HREF="Hardware-HOWTO-15.html">Next</A>
+<A HREF="Hardware-HOWTO-13.html">Previous</A>
+<A HREF="Hardware-HOWTO.html#toc14">Contents</A>
+</BODY>
+</HTML>

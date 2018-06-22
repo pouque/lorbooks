@@ -1,0 +1,944 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Мини-HOWTO: StarOffice 3.1</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.57"></HEAD
+><BODY
+CLASS="ARTICLE"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="ARTICLE"
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="TITLE"
+><A
+NAME="AEN2"
+>Мини-HOWTO: StarOffice 3.1</A
+></H1
+><DIV
+CLASS="AUTHORGROUP"
+><A
+NAME="AEN4"
+></A
+><H3
+CLASS="AUTHOR"
+><A
+NAME="AEN5"
+>Matthew Borowski</A
+></H3
+><DIV
+CLASS="AFFILIATION"
+><DIV
+CLASS="ADDRESS"
+><P
+CLASS="ADDRESS"
+>&nbsp;&nbsp;&nbsp;&nbsp;     mkb@poboxes.com
+    <br>
+&nbsp;&nbsp;&nbsp;</P
+></DIV
+></DIV
+><H3
+CLASS="CORPAUTHOR"
+> Перевод: <A
+HREF="mailto:kmic@asp-linux.com"
+TARGET="_top"
+>Михаил Корепанов</A
+>,
+ <A
+HREF="http://www.asplinux.com"
+TARGET="_top"
+>SWSoft Pte Ltd.</A
+>
+ </H3
+></DIV
+><P
+CLASS="PUBDATE"
+>версия 1.1, 28 ноября 1999 года <BR></P
+><DIV
+><DIV
+CLASS="ABSTRACT"
+><A
+NAME="AEN15"
+></A
+><P
+></P
+><P
+>&#13;Руководство по установке <TT
+CLASS="LITERAL"
+>StarOffice 3.1</TT
+> производства StarDivision. </P
+><P
+></P
+></DIV
+></DIV
+><HR></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Содержание</B
+></DT
+><DT
+>1. <A
+HREF="StarOffice.html#AEN18"
+>Вступление</A
+></DT
+><DD
+><DL
+><DT
+>1.1. <A
+HREF="StarOffice.html#AEN39"
+>Информация по использованию Motif</A
+></DT
+><DT
+>1.2. <A
+HREF="StarOffice.html#AEN44"
+>История этого документа</A
+></DT
+></DL
+></DD
+><DT
+>2. <A
+HREF="StarOffice.html#AEN62"
+>Как получить StarOffice Office Suite</A
+></DT
+><DT
+>3. <A
+HREF="StarOffice.html#AEN89"
+>Установка <TT
+CLASS="LITERAL"
+>StarOffice</TT
+></A
+></DT
+><DD
+><DL
+><DT
+>3.1. <A
+HREF="StarOffice.html#AEN106"
+>Версии Libc и их обновление</A
+></DT
+><DT
+>3.2. <A
+HREF="StarOffice.html#AEN142"
+>Установка tar-файлов</A
+></DT
+><DT
+>3.3. <A
+HREF="StarOffice.html#AEN154"
+>Установка и настройка</A
+></DT
+><DT
+>3.4. <A
+HREF="StarOffice.html#AEN169"
+>Ошибка в скрипите setup COL (Caldera OpenLinux)</A
+></DT
+><DT
+>3.5. <A
+HREF="StarOffice.html#AEN175"
+>Исправление ошибки с переменной LANG</A
+></DT
+></DL
+></DD
+><DT
+>4. <A
+HREF="StarOffice.html#AEN190"
+>Запуск StarOffice</A
+></DT
+><DT
+>5. <A
+HREF="StarOffice.html#AEN204"
+>Советы по StarOffice</A
+></DT
+><DT
+>6. <A
+HREF="StarOffice.html#AEN216"
+>Более подробная информация</A
+></DT
+><DT
+>7. <A
+HREF="StarOffice.html#AEN224"
+>Дополнения</A
+></DT
+><DT
+>8. <A
+HREF="StarOffice.html#AEN234"
+>Disclaimer and Copyright</A
+></DT
+><DT
+>9. <A
+HREF="StarOffice.html#AEN242"
+>Авторские права</A
+></DT
+></DL
+></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="AEN18"
+>1. Вступление</A
+></H1
+><P
+>Этот документ описывает StarOffice 3.1. Последняя версия  StarOffice  -  5.1. Версия  5.1 проще в установке и в ней меньше ошибок, по сравнению с версией 3.1. По-моему, в инструкции к версии 5.1 нет надобности, так как StarDivision написали полное руководство по установке. "Мини-HOWTO: StarOffice" использовалось в основном тогда, когда была версия 3.1, и сейчас она заархивирована для тех, кто хочет установить именно StarOffice 3.1. Для получения информации по StarOffice 5.1, обратитесь на сайт StarDivision  
+ <TT
+CLASS="LITERAL"
+><A
+HREF="http://www.stardivision.com"
+TARGET="_top"
+>http://www.stardivision.com</A
+></TT
+>.</P
+><P
+>StarOffice Office Suite является набором инструментов для Linux, написанных на языке C, с использованием библиотеки Motif.
+&#13;</P
+><P
+>StarOffice включает в себя
+
+<P
+></P
+><UL
+><LI
+><P
+>StarWriter, текстовый процессор </P
+></LI
+><LI
+><P
+>StarCalc, электронные таблицы </P
+></LI
+><LI
+><P
+>StarImage, графический редактор  </P
+></LI
+><LI
+><P
+>StarDraw, дизайнерский пакет аналогичный Corel DRAW </P
+></LI
+><LI
+><P
+>StarChart, редактор диаграмм </P
+></LI
+><LI
+><P
+>StarMath, математический пакет </P
+></LI
+></UL
+>&#13;</P
+><P
+>StarOffice Office Suite для Linux можно использовать в некоммерческих целях. Коммерческое использование требует лицензии. Цена лицензии на эту программу и на Caldera's OpenLinux различаются. 
+&#13;</P
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN39"
+>1.1. Информация по использованию Motif</A
+></H2
+><P
+>StarOffice написан с использованием коммерческой библиотеки Motif 2.0 GUI. Версия, собранная с динамическими библиотеками, не будет работать с Motif 1.2 или более ранней версией.</P
+><P
+>Версия, собранная со статическими библиотеками (со встроенными ссылками на Motif 2.0), будет работать в зависимости от того, есть ли у вас Motif. 
+&#13;</P
+><P
+>Я работал со StarOffice на Pentium-100 с 48 Мб ОЗУ, используя Redhat 4.1 и Motif 2.0. Собранный с динамическими библиотеками StarOffice загружается примерно минуту. Заметим, что загрузившись, StarOffice с динамическими библиотеками использует намного меньше ресурсов, чем версия со статическими. 
+&#13;</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN44"
+>1.2. История этого документа</A
+></H2
+><P
+>&#13;<P
+></P
+><UL
+><LI
+><P
+>Версия 1.1 991128 - добавлены новые  URL и ссылки на StarOffice 4.0 изменены на 5.1 </P
+></LI
+><LI
+><P
+>Версия 1.0 980602 - добавлена информация по  StarOffice 4.0, внесены незначительные изменения </P
+></LI
+><LI
+><P
+>Версия 0.8 971109 - добавлены советы, описание установки без обновления libc, и т.п.. </P
+></LI
+><LI
+><P
+>Версия 0.7 970707 - Изменена глава 3.1.1, изменена лицензия </P
+></LI
+><LI
+><P
+>Версия 0.6 970609 - добавлено решение проблемы с переменной LANG </P
+></LI
+><LI
+><P
+>Версия 0.5 970608 - дополненная информация по StarOffice 3.1  </P
+></LI
+><LI
+><P
+>Версия 0.1 970505 - первый выпуск. </P
+></LI
+></UL
+>&#13;</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN62"
+>2. Как получить StarOffice Office Suite</A
+></H1
+><P
+>StarOffice 3.1 для Linux можно взять по адресу: 
+
+<PRE
+CLASS="SCREEN"
+><A
+HREF="ftp://ftp.gwdg.de/pub/linux/staroffice"
+TARGET="_top"
+>ftp://ftp.gwdg.de/pub/linux/staroffice</A
+></PRE
+>&#13;</P
+><P
+>Файл <TT
+CLASS="LITERAL"
+>README.StarOffice</TT
+> содержит информацию о том, как можно получить
+StarOffice 3.1 . Вам следует загрузить три файла:</P
+><P
+>&#13;<P
+></P
+><UL
+><LI
+><P
+> <TT
+CLASS="LITERAL"
+>StarOffice31-english.tar.gz</TT
+> (на английском) документация, демонстрационные файлы и шаблоны </P
+></LI
+><LI
+><P
+> <TT
+CLASS="LITERAL"
+>StarOffice31-german.tar.gz</TT
+> (на немецком) документация, демонстрационные файлы и шаблоны </P
+></LI
+><LI
+><P
+> <TT
+CLASS="LITERAL"
+>StarOffice31-dynbin.tar.tgz</TT
+> (динамически собранные) или </P
+></LI
+><LI
+><P
+> <TT
+CLASS="LITERAL"
+>StarOffice31-statbin.tar.gz</TT
+> (статически собранные) модули </P
+></LI
+><LI
+><P
+> <TT
+CLASS="LITERAL"
+>StarOffice31-common.tar.gz</TT
+></P
+></LI
+></UL
+>&#13;</P
+><P
+>Также можно получить StarOffice Caldera. Зайдите на их сайт: 
+<PRE
+CLASS="SCREEN"
+><A
+HREF="http://www.caldera.com"
+TARGET="_top"
+>http://www.caldera.com</A
+></PRE
+>
+и получите более подробную информацию. Caldera также выпускает StarOffice CD-ROM, который можно приобрести за $ 7.99 US. </P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN89"
+>3. Установка <TT
+CLASS="LITERAL"
+>StarOffice</TT
+></A
+></H1
+><P
+>Установка StarOffice состоит из следующих этапов: 
+
+<P
+></P
+><UL
+><LI
+><P
+>Разархивирование файлов с правами root в <TT
+CLASS="LITERAL"
+>/usr/local</TT
+></P
+></LI
+><LI
+><P
+>Запуск <TT
+CLASS="LITERAL"
+>setup</TT
+> с правами обычного пользователя </P
+></LI
+><LI
+><P
+>Настройка <TT
+CLASS="LITERAL"
+>.sd.sh</TT
+> или <TT
+CLASS="LITERAL"
+>.sd.csh</TT
+></P
+></LI
+><LI
+><P
+>Чтение главы 3.5!!! (сделайте это) </P
+></LI
+></UL
+>&#13;</P
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN106"
+>3.1. Версии Libc и их обновление</A
+></H2
+><P
+>StarOffice обращается к   <TT
+CLASS="LITERAL"
+>libc 5.4.4</TT
+>.</P
+><P
+>StarOffice 3.1 *будет* работать и с Libc <TT
+CLASS="LITERAL"
+>Libc 5.3.x</TT
+>. Но установка требует 5.4.4
+или выше. Если у вас <TT
+CLASS="LITERAL"
+>Libc 5.3.x</TT
+>, вы можете обойти это неудобство, загрузив
+<TT
+CLASS="LITERAL"
+>libc 5.4.4+</TT
+> и добавив его в переменную окружения LD_LIBRARY_PATH до того,
+как запустите скрипт <TT
+CLASS="LITERAL"
+>setup</TT
+>. Я не пробовал этого делать сам, поэтому
+посоветовать ничего не могу.</P
+><P
+>Если вы попробовали запустить скрипт <TT
+CLASS="LITERAL"
+>setup</TT
+> с  libc меньше чем 5.4.4, вы увидите следующее сообщение: </P
+><P
+>&#13;<PRE
+CLASS="SCREEN"
+>line 1: Syntax error at token 'I' expected declarator;
+i.e. File ...</PRE
+>&#13;</P
+><P
+>Для того чтобы скачать более новый  libc, зайдите на FTP  <TT
+CLASS="LITERAL"
+><A
+HREF="ftp://sunsite.unc.edu"
+TARGET="_top"
+>sunsite.unc.edu</A
+></TT
+> и
+поищите в каталоге <TT
+CLASS="LITERAL"
+><A
+HREF="ftp://sunsite.unc.edu/pub/Linux/GCC"
+TARGET="_top"
+>/pub/Linux/GCC</A
+></TT
+> файл под названием <TT
+CLASS="LITERAL"
+>libc-5.4.33.bin.tar.gz</TT
+>
+(или более новый). Разархивируйте содержание файла в текущий каталог.
+Создастся новый каталог lib/. Воспользовавшись командой su, скопируйте файл
+<TT
+CLASS="LITERAL"
+>libc.so.5.4.33</TT
+> из этого каталога в свой каталог /lib. Теперь создайте
+символьную ссылку с <TT
+CLASS="LITERAL"
+>libc.so.5</TT
+> на <TT
+CLASS="LITERAL"
+>libc.5.4.33</TT
+> командой:</P
+><P
+>&#13;<PRE
+CLASS="SCREEN"
+>ln -sf /lib/libc.so.5.4.33 /lib/libc.so.5</PRE
+>
+, и затем выполните команду <TT
+CLASS="LITERAL"
+>ldconfig</TT
+>.</P
+><P
+>Доктор наук Romano Giannetti <TT
+CLASS="LITERAL"
+>(<A
+HREF="mailto:romano@iet.unipi.it"
+TARGET="_top"
+>romano@iet.unipi.it</A
+> )</TT
+> говорит: </P
+><P
+>...Я хотел бы добавить, что я смог установить (как вы посоветовали) StarWriter на redhat 4.2, которая использует libc5.3, не делая никакого обновления. </P
+><P
+>Какие шаги надо предпринять для установки: </P
+><P
+>1. Взять libc.so.5.4.x. Если у вас есть пакет rpm (вы можете его найти в
+каталоге contrib), то можете разархивировать библиотеку, зайдя в каталог и
+выполнив команду : <TT
+CLASS="LITERAL"
+>rpm2cpio libc.so.5.4.x-y.rpm | cpio --extract --make-directories</TT
+> Библиотека появится в подкаталоге ./lib&#13;</P
+><P
+>2. Переместить libc.so.5.4.x в свой домашний каталог. Затем (в синтаксисе
+shell): <TT
+CLASS="LITERAL"
+>ln -s libc.so.5.4.x libc.so.5</TT
+>; <TT
+CLASS="LITERAL"
+>export LD_LIBRARY_PATH=$HOME:/lib:/usr/lib</TT
+></P
+><P
+>3. Теперь вы можете запустить setup. </P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN142"
+>3.2. Установка tar-файлов</A
+></H2
+><P
+>После того, как вы скачали StarOffice, зайдите в систему в качестве root-а
+и поместите его архивы в <TT
+CLASS="LITERAL"
+>/usr/local/</TT
+>. Смените текущий каталог на
+<TT
+CLASS="LITERAL"
+>/usr/local/</TT
+> и разархивируйте файлы. Например, команда для разархивирования
+tar-файла, запакованного gzip:</P
+><P
+>&#13;<PRE
+CLASS="SCREEN"
+>tar -xzvf filename.tar</PRE
+>&#13;</P
+><P
+>Более старые версии требуют, чтобы вы сначала разархивировали файл командой
+<TT
+CLASS="LITERAL"
+>gzip -d</TT
+> , а затем командой <TT
+CLASS="LITERAL"
+>tar -xvf</TT
+> .</P
+><P
+>Файла будут разархивированы в свои подкаталоги в пределах вновь созданного дерева 
+<TT
+CLASS="LITERAL"
+>usr/local/StarOffice-3.1</TT
+>.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN154"
+>3.3. Установка и настройка</A
+></H2
+><P
+>После того, как вы разархивировали файлы StarOffice в качестве root-а, зайдите
+в систему как обычный пользователь. Смените каталог на
+<TT
+CLASS="LITERAL"
+>/usr/local/StarOffice-3.1</TT
+> и запустите программу <TT
+CLASS="LITERAL"
+>setup</TT
+> . Эта программа
+установит файлы, не предназначенные для совместного доступа (non-shared), и
+символьные ссылки, необходимые для каждого пользователя. Рекомендуется
+использовать стандартную конфигурацию, иначе могут возникнуть проблемы.</P
+><P
+>StarOffice использует переменные окружения. Файлы <TT
+CLASS="LITERAL"
+>.sd.sh</TT
+>  (отформатированные
+для Bourne Shell) и <TT
+CLASS="LITERAL"
+>.sd.csh</TT
+> (отформатированные для C Shell) обеспечивают
+установку переменных окружения для StarOffice. Эти файлы размещены в вашем
+домашнем каталоге.</P
+><P
+>Если вы используете <TT
+CLASS="LITERAL"
+>bash</TT
+>, отредактируйте <TT
+CLASS="LITERAL"
+>.bashrc</TT
+> и добавьте в него строку: 
+<PRE
+CLASS="SCREEN"
+>source &nbsp;/.sd.sh</PRE
+>&#13;</P
+><P
+>После этого перезапустите <TT
+CLASS="LITERAL"
+>bash</TT
+> для того, чтобы переменные окружения начали работать.</P
+><P
+>Если вы используете другой shell, обратитесь к его страничке за инструкциями. </P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN169"
+>3.4. Ошибка в скрипите setup COL (Caldera OpenLinux)</A
+></H2
+><P
+>Phil Reardon (<TT
+CLASS="LITERAL"
+><A
+HREF="mailto:pcr@busprod.com"
+TARGET="_top"
+>pcr@busprod.com</A
+></TT
+> ) утверждает: 
+" Я нашел ошибку в скрипте setup у StarOffice стандартного выпуска Caldera COL. Он задает путь с //, где должен быть один /. Чтобы удалить первый слэш из строки: 
+
+<PRE
+CLASS="SCREEN"
+>exec ${pfad:='.'}/linux-x86/bin/$name;;</PRE
+>
+
+Уберите  / стоящий до linux-x86."</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN175"
+>3.5. Исправление ошибки с переменной LANG</A
+></H2
+><P
+>Файлы <TT
+CLASS="LITERAL"
+>.sd.sh</TT
+> и <TT
+CLASS="LITERAL"
+>.sd.csh</TT
+> устанавливают переменную LANG . Это вызывает
+проблемы с perl и man. Man выдаст сообщение об ошибке:</P
+><P
+><SPAN
+CLASS="QUOTE"
+>""Failed to open the message catalog man on the path NLSPATH=" "</SPAN
+>Perl выдаст сообщение ошибки 
+<SPAN
+CLASS="QUOTE"
+>""warning: setlocale(LC_CTYPE, "")...""</SPAN
+></P
+><P
+>Файл <TT
+CLASS="LITERAL"
+>.sd.sh</TT
+> содержит строку, которая устанавливает LANG=us, и другую,
+которая экспортирует группу переменных включая  LANG. Удалите строку
+LANG=us и удалите LANG из списка переменных - это устранит проблемы.</P
+><P
+>В файле <TT
+CLASS="LITERAL"
+>.sd.csh</TT
+> (который отформатирован под c shell), вы должны удалить
+строку содержащую  "setenv LANG us".</P
+><P
+>&#13;Огромная благодарность  Adam L. Klein (<TT
+CLASS="LITERAL"
+><A
+HREF="mailto:alklein@adelphia.net"
+TARGET="_top"
+>alklein@adelphia.net</A
+></TT
+>) за то, что он рассказал, как исправить это неудобство. &#13;</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN190"
+>4. Запуск StarOffice</A
+></H1
+><P
+>Запускаемые приложения программы StarOffice находятся в каталоге: 
+<TT
+CLASS="LITERAL"
+>/usr/local/StarOffice-3.1/linux-x86/bin/</TT
+></P
+><P
+>Эти приложения:  <TT
+CLASS="LITERAL"
+>sdraw3</TT
+>, <TT
+CLASS="LITERAL"
+>swriter3</TT
+>, <TT
+CLASS="LITERAL"
+>scalc3</TT
+>, 
+<TT
+CLASS="LITERAL"
+>smath3</TT
+>, <TT
+CLASS="LITERAL"
+>schart3</TT
+>, <TT
+CLASS="LITERAL"
+>simage3</TT
+></P
+><P
+>Программа <TT
+CLASS="LITERAL"
+>svdaemon</TT
+> запускается, если необходима контекстная
+помощь. Программа <TT
+CLASS="LITERAL"
+>svportmap</TT
+> должна быть запущена для того, чтобы работала
+связь между StarWriter, StarCalc и StarDraw.</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN204"
+>5. Советы по StarOffice</A
+></H1
+><P
+>Эти советы дал Patrick D'Cruze <TT
+CLASS="LITERAL"
+>(<A
+HREF="mailto:pdcruze@netpal.com.au"
+TARGET="_top"
+>pdcruze@netpal.com.au</A
+>)</TT
+></P
+><P
+>1. Вместо копирования файла .sd.sh (или .sd.csh) в мой скрипт .bash_profile, я скопировал .sd.sh, затем переименовал его в swriter и поместил его в  /usr/local/bin. Затем я добавил туда: 
+
+
+
+<PRE
+CLASS="SCREEN"
+>#! /bin/bash </PRE
+>&#13;</P
+><P
+>в начало скрипта и: 
+
+<PRE
+CLASS="SCREEN"
+>exec swriter3 $*</PRE
+>&#13;</P
+><P
+>в конец скрипта. Теперь все, что нужно сделать, это запустить swriter, и он автоматически создает переменные окружения и запускает StarWriter. Но, сохраненные файлы, имеющие эти переменные окружения, записываются в каталоги других приложений. 
+&#13;</P
+><P
+>2. Я заметил, что у многих людей StarOffice загружается долго (до минуты).
+Дело в том, что динамически собранная версия должна для каждого нового
+символа найти нужную библиотеку. StarOffice использует много библиотек, и
+поэтому много времени уходит на их поиск.&#13;</P
+><P
+>Есть решение этой проблемы. Я запускаю StarOffice в специальном дереве каталогов, сделанном chroot. В этом дереве я поместил только те программы и библиотеки, которые использует StarOffice (все библиотеки, кроме /usr/X11R6/lib, libc/libm и libg++/libstdc++). StarWriter теперь загружается всего 15 секунд на моем P133/32 Мб. Это происходит из-за того, что программа работы с динамическими связями ищет необходимые символы только в оставшихся библиотеках, не тратя время на библиотеки, в которых этих символов все равно нет. </P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN216"
+>6. Более подробная информация</A
+></H1
+><P
+>Более подробную информацию по StarOffice для Linux можно узнать у StarDivision на сайте <TT
+CLASS="LITERAL"
+><A
+HREF="http://www.stardivision.com/"
+TARGET="_top"
+>http://www.stardivision.com</A
+></TT
+></P
+><P
+>StarDivision поддерживает сайт с новостями и помощью для пользователей StarOffice для linux. Это самые последние новости, касающиеся StarOffice. Также вы можете попросить там о помощи. Используя программу просмотра телеконференций, зайдите на
+<TT
+CLASS="LITERAL"
+><A
+HREF="news://starnews.stardivision.com"
+TARGET="_top"
+>news://starnews.stardivision.com</A
+></TT
+> или посмотрите ссылку на отдел поддержки пользователей компании StarDivision . &#13;</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN224"
+>7. Дополнения</A
+></H1
+><P
+>Большое спасибо Werner Klaus(<TT
+CLASS="LITERAL"
+>(<A
+HREF="mailto:wklaus@metronet.de"
+TARGET="_top"
+>wklaus@metronet.de</A
+> )</TT
+> за перевод этого документа в sgml.</P
+><P
+>Если вы можете что-то добавить к этому  mini-HOWTO, пожалуйста, пишите мне. Мой адрес указан в начале этого документа. Если вы хотите посетить мою страничку, то зайдите на 
+<TT
+CLASS="LITERAL"
+><A
+HREF="http://tarp.worldserve.net/"
+TARGET="_top"
+>http://tarp.worldserve.net/</A
+></TT
+> или <TT
+CLASS="LITERAL"
+><A
+HREF="http://tarp.linuxos.org/"
+TARGET="_top"
+>http://tarp.linuxos.org/</A
+></TT
+></P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN234"
+>8. Disclaimer and Copyright</A
+></H1
+><P
+>This document is (C) 1999 by Matthew Borowski.</P
+><P
+>Redistribution of this document in electronic form is permitted under the
+condition that the document remains unchanged. If you wish to include this
+document in a CD-ROM or book, please obtain permission from me beforehand
+(I prefer requests to be sent via e-mail).</P
+><P
+>  
+Автор снимает с себя всякую ответственность за любые прямые или косвенные
+последствия прочтения этого документа. Автор не является сотрудником
+StarDivision GmbH или Caldera Inc.</P
+><P
+>Комментарии или вопросы могут быть отправлены автору по адресу: <TT
+CLASS="LITERAL"
+><A
+HREF="mailto:mkb@poboxes.com"
+TARGET="_top"
+>mkb@poboxes.com</A
+></TT
+>.</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN242"
+>9. Авторские права</A
+></H1
+><P
+>Авторские права на русский перевод этого текста принадлежат &copy; 2000 SWSoft Pte Ltd.
+Все права зарезервированы.</P
+><P
+>Этот документ является частью проекта Linux HOWTO.</P
+><P
+>Авторские права на документы Linux HOWTO принадлежат их авторам, если явно
+не указано иное. Документы Linux HOWTO, а также их переводы, могут
+быть воспроизведены и распространены полностью или частично на любом
+носителе, физическом или электронном, при условии сохранения этой заметки об
+авторских правах на всех копиях. Коммерческое распространение разрешается и
+поощряется; но, так или иначе, автор текста и автор перевода желали бы знать о
+таких дистрибутивах.</P
+><P
+>Все переводы и производные работы, выполненные по документам Linux HOWTO,
+должны сопровождаться этой заметкой об авторских правах. Это делается в
+целях предотвращения случаев наложения дополнительных ограничений на
+распространение документов HOWTO. Исключения могут составить случаи
+получения специального разрешения у координатора Linux HOWTO, с которым
+можно связаться по адресу приведенному ниже.</P
+><P
+>Мы бы хотели распространить эту информацию по всем возможным каналам. Но
+при этом сохранить авторские права и быть уведомленными о всех планах
+распространения HOWTO. Если у вас возникли вопросы, пожалуйста, обратитесь
+к координатору проекта Linux HOWTO по электронной почте:
+<TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:linux-howto@metalab.unc.edu"
+>linux-howto@metalab.unc.edu</A
+>&#62;</TT
+> или к координатору русского
+перевода Linux HOWTO компании SWSoft Pte Ltd. по адресу
+<TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:linux-howto@asplinux.ru"
+>linux-howto@asplinux.ru</A
+>&#62;</TT
+></P
+></DIV
+></DIV
+></BODY
+></HTML
+>

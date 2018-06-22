@@ -1,0 +1,238 @@
+<HTML
+><HEAD
+><TITLE
+>Как это делают профессионалы</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="The Linux Bootdisk HOWTO"
+HREF="t1.htm"><LINK
+REL="PREVIOUS"
+TITLE="Разнообразные темы."
+HREF="x946.htm"><LINK
+REL="NEXT"
+TITLE="Создание загрузочных CD-ROM"
+HREF="x1085.htm"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>The Linux Bootdisk HOWTO</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x946.htm"
+ACCESSKEY="P"
+>&#1055;&#1088;&#1077;&#1076;.</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x1085.htm"
+ACCESSKEY="N"
+>&#1057;&#1083;&#1077;&#1076;.</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="PROS">Как это делают профессионалы</H1
+><P
+>Обратите внимание, что загрузочные диски, используемые дистрибутивами типа 
+Slackware, RedHat или Debian, кажутся более сложными, чем описанные в 
+этом документе. Загрузочные диски профессиональных дистрибутивов основаны на 
+принципах, выделенных здесь, но используют различные приемы, потому что их 
+загрузочные диски налагают дополнительные требования. Во-первых, они должны 
+быть способны работать с широким разнообразием аппаратных средств, т.о. они 
+должны быть способны  взаимодействовать с пользователем и загружать различные 
+драйвера устройств. Во-вторых, они должны быть подготовлены для работы со 
+многими различными вариантами установки, с различной степенью автоматизации. 
+В заключение, загрузочные диски дистрибутивов обычно объединяют возможности 
+установки и восстановления после сбоя.</P
+><P
+>Некоторые загрузочные диски используют свойство, называемое 
+<SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>initrd</I
+></SPAN
+> (<SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>initial ramdisk</I
+></SPAN
+>).
+Это свойство появилось в 2.0.x и позволяет ядру загружаться в два этапа. Когда 
+ядро загружается, оно загружает образ initial ramdisk с загрузочного диска. 
+Этот initial ramdisk - корневая файловая система, содержащая программу, 
+которая выполняется прежде, чем загрузится реальная корневая файловая система. 
+Эта программа обычно изучает окружение и/или просит пользователя выбрать 
+различные параметры загрузки, такие как устройство, с которого загружать 
+реальный корневой диск. Она обычно загружает дополнительные модули не 
+встроенные в ядро. Когда начальная программа завершается, ядро загружает 
+реальный образ корневой файловой системы, и загрузка продолжается 
+обычным образом. Для дальнейшей информации относительно 
+<B
+CLASS="COMMAND"
+>initrd</B
+>, смотрите файл на диске <A
+HREF="file:/usr/src/linux/Documentation/initrd.txt"
+TARGET="_top"
+><TT
+CLASS="FILENAME"
+>/usr/src/linux/Documentation/initrd.txt</TT
+></A
+>
+и <A
+HREF="ftp://elserv.ffm.fgan.de/pub/linux/loadlin-1.6/initrd-example.tgz"
+TARGET="_top"
+><TT
+CLASS="FILENAME"
+>ftp://elserv.ffm.fgan.de/pub/linux/loadlin-1.6/initrd-example.tgz</TT
+></A
+></P
+><P
+>Далее следует обобщение работы каждого из дистрибутивных дисков, 
+на основе проверки их файловых систем и/или исходного кода. Мы не 
+гарантируем, что эта информация является полностью точной, и не 
+изменились, начиная с отмеченных версий.</P
+><P
+> Slackware (v. 3.1) использует прямую LILO загрузку, подобную той, котораяописана в секции <A
+HREF="x703.htm#TRANSFERRINGWITHLILO"
+>&#1056;&#1072;&#1079;&#1076;. <I
+>Перенос ядра с LILO</I
+></A
+>. Загрузочный диск Slackware, используя параметр LILO <TT
+CLASS="LITERAL"
+>message</TT
+>, выводит сообщение (&ldquo;<TT
+CLASS="LITERAL"
+>Welcome to the Slackware Linux bootkernel disk!</TT
+>&rdquo;). Пользователь может, при
+необходимости, ввести строку параметров начальной загрузки. После загрузки, 
+корневая файловая система загружается со второго диска. Пользователь вызывает 
+<B
+CLASS="COMMAND"
+>setup</B
+> сценарий, который начинает установку. Вместо 
+использования модульного ядра, Slackware обеспечивает много различных ядер и 
+рассчитывает на выбор пользователя, согласующийся с его аппаратными 
+требованиям.</P
+><P
+> RedHat (v. 4.0) также использует загрузку LILO. Загружается 
+сжатый ramdisk на первом диске, который выполняет заказную программу 
+<B
+CLASS="COMMAND"
+>init</B
+>. Эта программа запрашивает драйвера, и, по 
+необходимости, загружает дополнительные файлы из дополнительного диска.&#13;</P
+><P
+>Debian (v. 1.3) вероятно самый сложный из наборов установочных дисков. 
+Он использует загрузчик SYSLINUX, для компоновки различных опций загрузки, 
+затем, используя образ <TT
+CLASS="LITERAL"
+>initrd</TT
+>, ведет пользователя по 
+установке. Кажется, он использует заказной <B
+CLASS="COMMAND"
+>init</B
+> и 
+заказную оболочку.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x946.htm"
+ACCESSKEY="P"
+>&#1055;&#1088;&#1077;&#1076;.</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="t1.htm"
+ACCESSKEY="H"
+>&#1053;&#1072;&#1095;&#1072;&#1083;&#1086;</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x1085.htm"
+ACCESSKEY="N"
+>&#1057;&#1083;&#1077;&#1076;.</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Разнообразные темы.</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Создание загрузочных CD-ROM</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

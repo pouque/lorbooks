@@ -1,0 +1,286 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE>Linux Networking Overview HOWTO: Internet/Intranet</TITLE>
+ <LINK HREF="Networking-Overview-HOWTO-7.html" REL=next>
+ <LINK HREF="Networking-Overview-HOWTO-5.html" REL=previous>
+ <LINK HREF="Networking-Overview-HOWTO.html#toc6" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="Networking-Overview-HOWTO-7.html">Next</A>
+<A HREF="Networking-Overview-HOWTO-5.html">Previous</A>
+<A HREF="Networking-Overview-HOWTO.html#toc6">Contents</A>
+<HR>
+<H2><A NAME="s6">6. Internet/Intranet</A></H2>
+
+<P>Linux - прекрасная платформа для Intranet/Internet сервера. Термин Intranet
+относится к применению Internet технологий внутри организации с целью
+распространения и предоставления доступа к информации внутри компании.
+Internet и Intranet услуги, предлагаемые Linux, включают электронную почту,
+новости, WWW сервера и еще множество услуг, о которых будет рассказано
+в следующих разделах.
+<P>
+<P>
+<H2><A NAME="ss6.1">6.1 Почта</A>
+</H2>
+
+<H3>Почтовые сервера</H3>
+
+<P>Sendmail - фактически стандартная программа сервера почты для платформ UNIX.
+Будучи продуманной, масштабируемой и правильно настроенной и при наличии
+необходимых аппаратных средств, она может рабатать пол нагрузкой в тысячи
+пользователей без сбоев. Другие сервера почты (MTA - Почтовые Транспортные
+Агенты) - это smail и qmail, которые разработаны как альтернатива sendmail.
+<P>
+<UL>
+<LI>   Веб-страница Sendmail 
+<A HREF="http://www.sendmail.org/">http://www.sendmail.org/</A>
+</LI>
+<LI>   Smail faq 
+<A HREF="http://www.sbay.org/smail-faq.html">http://www.sbay.org/smail-faq.html</A>
+</LI>
+<LI>   Qmail место ткани 
+<A HREF="http://www.qmail.org">http://www.qmail.org</A></LI>
+</UL>
+
+Почтовые how-tos:
+<UL>
+<LI>   
+<A HREF="http://sunsite.unc.edu/mdw/HOWTO/Mail-HOWTO.html">http://sunsite.unc.edu/mdw/HOWTO/Mail-HOWTO.html</A>
+</LI>
+<LI>   
+<A HREF="http://sunsite.unc.edu/mdw/HOWTO/mini/Qmail+MH.html">http://sunsite.unc.edu/mdw/HOWTO/mini/Qmail+MH.html</A>
+</LI>
+<LI>   
+<A HREF="http://sunsite.unc.edu/mdw/HOWTO/mini/Sendmail+UUCP.html">http://sunsite.unc.edu/mdw/HOWTO/mini/Sendmail+UUCP.html</A>
+</LI>
+<LI>   
+<A HREF="http://sunsite.unc.edu/mdw/HOWTO/mini/Mail-queue.html">http://sunsite.unc.edu/mdw/HOWTO/mini/Mail-queue.html</A></LI>
+</UL>
+<P>
+<H3>Удаленный доступ к почте.</H3>
+
+<P>В организации или ISP, пользователи вероятно обращаются за своей почтой
+дистанционно со своих рабочих мест. В Linux существуют несколько вариантов
+поддержки такого доступа, включающие сервера POP (Post Office Protoсol) и
+IMAP (Internet Mail Access Protoсol). Протокол POP обычно используется,
+чтобы передать сообщения от сервера пользователю. IMAP допускает работу с
+сообщениями на сервере, удаленное создание и стирание папок на сервере,
+параллельный доступ к общедоступным почтовым ящикам, и т.д.
+<UL>
+<LI>   Краткое сравнение IMAP и POP
+<A HREF="http://www.imap.org/imap.vs.pop.brief.html">http://www.imap.org/imap.vs.pop.brief.html</A></LI>
+</UL>
+
+Почтовые how-tos:
+<UL>
+<LI>   
+<A HREF="http://sunsite.unc.edu/mdw/HOWTO/Mail-HOWTO.html">http://sunsite.unc.edu/mdw/HOWTO/Mail-HOWTO.html</A>
+</LI>
+<LI>   
+<A HREF="http://sunsite.unc.edu/mdw/HOWTO/mini/Cyrus-IMAP.html">http://sunsite.unc.edu/mdw/HOWTO/mini/Cyrus-IMAP.html</A></LI>
+</UL>
+<P>
+<H3>Почтовые пользовательские агенты</H3>
+
+<P>В Linux имеется ряд MUA (Почтовые пользовательские агенты), работающих как
+в графическом, так и в текстовом режиме. Наиболее широко используемые:
+pine, elm, mutt и Netscape.
+<P>
+<UL>
+<LI>   Список почтовго программного обеспечения
+<A HREF="http://www.linuxlinks.com/Software/Internet/Mail/">http://www.linuxlinks.com/Software/Internet/Mail/</A>
+</LI>
+<LI>   
+<A HREF="http://sunsite.unc.edu/mdw/HOWTO/mini/TkRat.html">http://sunsite.unc.edu/mdw/HOWTO/mini/TkRat.html</A></LI>
+</UL>
+<P>
+<H3>Программного обеспечения списков почтовой рассылки</H3>
+
+<P>Имеется много MLM (Mail List Management) программ, доступных для UNIX вообще
+и для Linux в частности.
+<P>
+<UL>
+<LI>   Хорошее сравнение существующих MLM может находяться на
+<A HREF="ftp://ftp.uu.net/usenet/news.answers/ma">ftp://ftp.uu.net/usenet/news.answers/ma</A>il/list-admin/
+</LI>
+<LI>   Listserv 
+<A HREF="http://www.lsoft.com/">http://www.lsoft.com/</A>
+</LI>
+<LI>   Домашняя страница Majordomo 
+<A HREF="http://www.greatcircle.com/majordomo/">http://www.greatcircle.com/majordomo/</A></LI>
+</UL>
+<P>
+<H3>Fetchmail</H3>
+
+<P>fetchmail - очень полезная почтовая утилита. Fetchmail - свободная, наглядная,
+продуманная, хорошо документированная утилита для удаленного скачивания и
+пересылки почты, которая используется для каналов TCP/IP "по требованию",
+(SLIP или PPP соединений). Он поддерживает все протокол удаленной работы с
+почтой, которые используются в настоящее время в Internet. Он может
+поддерживать даже IPv6 и IPSEC.
+<P>Fetchmail вытаскивает почту с удаленных почтовых серверов и пересылает ее
+через SMTP так, что она могла затем читаться нормальными почтовыми агентами
+пользователя типа mutt, pine или BSD mail. Это позволяет всем средствам
+фильтрации системы MTA, пересылки и совмещения имен (aliasing) работать так,
+будто они работают с обычной почтой.
+<P>Fetchmail может использоваться как шлюз POP/IMAP-to-SMTP для целого домена
+DNS, забирая почту из одного почтового ящика у ISP и пересылая почту по
+smtp руководствуясь адресами, указанными в заголовках.
+<P>Маленькая компания может централизовать свою почту в одном почтовом ящике
+а программа fetchmail будет собирать всю исходящую почту, посылать ее в
+Internet и забирать из Internet всю входящую почту.
+<UL>
+<LI>   Домашняя страница Fetchmail 
+<A HREF="http://sagan.earthspace.net/~esr/fetchmail/">http://sagan.earthspace.net/~esr/fetchmail/</A></LI>
+</UL>
+<P>
+<H2><A NAME="ss6.2">6.2 Веб сервера</A>
+</H2>
+
+<P>Большинство дистрибутивов Linux включает Apache ( 
+<A HREF="http://www.apache.or">http://www.apache.or</A>g).
+Apache - сервер номер один в Интернет ( 
+<A HREF="http://www.netcraft.co.uk/survey/">http://www.netcraft.co.uk/survey/</A>),
+где более половины всех интернетовских сайтов работают под Apache или
+производных от него. Преимущества Apache заключаются в модульной
+организации, стабильности и быстродействии. При наличии соответствующих
+аппаратных средств и настройке он может выдерживать самые высокие загрузки:
+Yahoo, Altavista, GeoCities, Hotmail основаны на различных версиях этого
+сервера.
+<P>Опциональная поддержка для SSL (который нужен для защиты транзакций)
+доступна в:
+<UL>
+<LI>   
+<A HREF="http://www.apache-ssl.org/">http://www.apache-ssl.org/</A>
+</LI>
+<LI>   
+<A HREF="http://raven.covalent.net/">http://raven.covalent.net/</A>
+</LI>
+<LI>   
+<A HREF="http://www.c2.net/">http://www.c2.net/</A></LI>
+</UL>
+
+How-tos:
+<UL>
+<LI>   
+<A HREF="http://sunsite.unc.edu/mdw/HOWTO/WWW-HOWTO.html">http://sunsite.unc.edu/mdw/HOWTO/WWW-HOWTO.html</A>
+</LI>
+<LI>   
+<A HREF="http://sunsite.unc.edu/mdw/HOWTO/Virtual-Services-HOWTO.html">http://sunsite.unc.edu/mdw/HOWTO/Virtual-Services-HOWTO.html</A>
+</LI>
+<LI>   
+<A HREF="http://sunsite.unc.edu/mdw/HOWTO/Intranet-Server-HOWTO.html">http://sunsite.unc.edu/mdw/HOWTO/Intranet-Server-HOWTO.html</A>
+</LI>
+<LI>   веб сервера для Linux
+<A HREF="http://www.linuxlinks.com/Software/Internet/WebServers/">http://www.linuxlinks.com/Software/Internet/WebServers/</A></LI>
+</UL>
+<P>
+<H2><A NAME="ss6.3">6.3 Веб браузеры</A>
+</H2>
+
+<P>Для Linux существует целый ряд веб-браузеров. Один из них - Netscape
+Navigator, и новый Mozilla ( 
+<A HREF="http://www.mozilla.org">http://www.mozilla.org</A>) будет иметь версию под
+Linux. Другой популярный текстовый браузер - lynx. Он быстр и удобен, когда
+не установлена графическая среда.
+<UL>
+<LI>   Веб-браузеры для Linux
+<A HREF="http://www.linuxlinks.com/Software/Internet/WebBrowsers/">http://www.linuxlinks.com/Software/Internet/WebBrowsers/</A>
+</LI>
+<LI>   
+<A HREF="http://sunsite.unc.edu/mdw/HOWTO/mini/Public-Web-Browser.html">http://sunsite.unc.edu/mdw/HOWTO/mini/Public-Web-Browser.html</A></LI>
+</UL>
+<P>
+<H2><A NAME="ss6.4">6.4 FTP сервера и клиенты</A>
+</H2>
+
+<P>FTP означает Протокол Передачи файлов. FTP сервер позволяет клиентам
+подключаться к себе и скачивать файлы. Для Linux написано множество ftp
+серверов и клиентов, и они обычно включены в большинство дистрибутивов.
+Имеются как текстовые клиенты, так и GUI-клиенты. Относящееся к FTP
+программное обеспечение (сервера и клиенты) для Linux можгут быть найдены на:
+<A HREF="http://sunsite.unc.edu/pub/Linux/system/network/file-transfer/">http://sunsite.unc.edu/pub/Linux/system/network/file-transfer/</A><P>
+<P>
+<H2><A NAME="ss6.5">6.5 Информационная служба</A>
+</H2>
+
+<P>Usenet (также известный как новости) - огромная BBS, которая покрывает все
+тематики, и организованная иерархически. Компьютерная сеть обменивается
+через Internet (Usenet) статьями по протоколу NNTP. Для Linux существуют
+несколько реализаций. Либо для тяжело загруженных сайтов, либо для маленьких
+сайтов, получающих только несколько групп новостей.
+<UL>
+<LI>   Домашняя страница INN   
+<A HREF="http://www.isc.org/">http://www.isc.org/</A>
+</LI>
+<LI>   Программное обеспечение Linux, относящееся к новостям
+<A HREF="http://www.linuxlinks.com/Software/Internet/News/">http://www.linuxlinks.com/Software/Internet/News/</A></LI>
+</UL>
+<P>
+<H2><A NAME="ss6.6">6.6 DNS</A>
+</H2>
+
+<P>DNS сервер проделывает работу по трансляции имен (читаемых людьми) в адрес
+IP. DNS сервер не знает все в мире адреса IP; он может запросить другие
+сервера о неизвестных адресах. DNS сервер либо возвратит требуемый IP адрес
+пользователю, либо сообщают, что это имя не может быть найдено.
+<P>Обслуживание имен в Unix (и в большинстве Internet) выполняется программой
+называемой named. Она является частью пакета bind, продвигаемого The
+Internet Software Consortium.
+<UL>
+<LI>   BIND 
+<A HREF="http://www.isc.org/">http://www.isc.org/</A>
+</LI>
+<LI>   DNS How-to 
+<A HREF="http://sunsite.unc.edu/mdw/HOWTO/DNS-HOWTO.html">http://sunsite.unc.edu/mdw/HOWTO/DNS-HOWTO.html</A></LI>
+</UL>
+<P>
+<H2><A NAME="ss6.7">6.7 DHCP, bootp</A>
+</H2>
+
+<P>DHCP и bootp - протокол, который позволяет машине пользователя получать
+сетевую информацию (типа своего IP адреса) с сервера. Многие организации
+начинают использовать этот протокол, потому что он облегчает управление
+сетью, особенно в больших сетях или сетях, в которых имеется множество
+мобильных пользователей.
+<P>Относящиеся к данной теме документы:
+<UL>
+<LI>   DHCP How-to 
+<A HREF="http://sunsite.unc.edu/mdw/HOWTO/mini/DHCP.html">http://sunsite.unc.edu/mdw/HOWTO/mini/DHCP.html</A></LI>
+</UL>
+<P>
+<H2><A NAME="ss6.8">6.8 NIS</A>
+</H2>
+
+<P>Сетевая Информационная служба (NIS) обеспечивает простой сетевой сервис,
+состоящий из баз данных и процессов. Его цель состоит в предоставлении
+информацию, которая должна быть известна через сеть, для всех машин в сети.
+К примеру, он позволяет одному человеку зарегистрироваться на любой машине
+в сети с NIS без необходимости добавления администратором пароля для него во
+все машины, а только в основную базу данных.
+<P>How-To:
+<UL>
+<LI>   NIS How-to 
+<A HREF="http://sunsite.unc.edu/mdw/HOWTO/NIS-HOWTO.html">http://sunsite.unc.edu/mdw/HOWTO/NIS-HOWTO.html</A></LI>
+</UL>
+<P>
+<H2><A NAME="ss6.9">6.9 Аутентификация</A>
+</H2>
+
+<P>Имеются различные методы аутентификации пользователей. В смешанных сетях
+Linux/Window NT: 
+<A HREF="http://www.mindware.com.au/ftp/smb-NT-verify.1.1.tar.gz">http://www.mindware.com.au/ftp/smb-NT-verify.1.1.tar.gz</A>.
+PAM (встраиваемый опознавательный модуль), который является гибким методом
+аутентификации в UNIX: PAM библиотека
+<A HREF="http://www.kernel.org/pub/linux/libs/pam/index.html">http://www.kernel.org/pub/linux/libs/pam/index.html</A>. В заключение,
+LDAP для Linux 
+<A HREF="http://www.umich.edu/~dirsvcs/ldap/index.html">http://www.umich.edu/~dirsvcs/ldap/index.html</A><P>
+<P>
+<HR>
+<A HREF="Networking-Overview-HOWTO-7.html">Next</A>
+<A HREF="Networking-Overview-HOWTO-5.html">Previous</A>
+<A HREF="Networking-Overview-HOWTO.html#toc6">Contents</A>
+</BODY>
+</HTML>

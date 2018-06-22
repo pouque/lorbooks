@@ -1,0 +1,227 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE>Software-RAID HOWTO: Введение </TITLE>
+ <LINK HREF="Software-RAID-HOWTO-2.2-2.html" REL=next>
+
+ <LINK HREF="Software-RAID-HOWTO-2.2.html#toc1" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="Software-RAID-HOWTO-2.2-2.html">Next</A>
+Previous
+<A HREF="Software-RAID-HOWTO-2.2.html#toc1">Contents</A>
+<HR>
+<H2><A NAME="s1">1. Введение </A></H2>
+
+<P>
+<OL>
+<LI><B>В</B>: 
+Что такое RAID?
+<BLOCKQUOTE>
+<B>О</B>:
+RAID означает "Redundant Array of Inexpensive Disks",
+- путь создания быстрых и надежных дисковых подсистем из
+отдельных дисков.  В мире PC, "I" понимают как 
+"Независимые"("Independent"), где маркетинговыми усилиями продолжают 
+различать 
+IDE и SCSI.  В оригинальном понимании, "I" означает
+"Недорогие (Inexpensive) по сравнению  
+мейнфреймом 3380 DASD, размером с холодильник".
+Хорошие дома выглядят дешевыми по сравнению с его монстрообразными
+устройствами, а бриллиантовые кольца - безделушками.
+</BLOCKQUOTE>
+
+</LI>
+<LI><B>В</B>:
+Что это за документ?
+<BLOCKQUOTE>
+<B>О</B>:
+Этот документ - tutorial/HOWTO/FAQ для пользователей MD расширения ядра Linux,
+соответствующих утилит, и их применения.
+Расширение MD программно реализует RAID-0 (striping), RAID-1 (mirroring),
+RAID-4 и RAID-5.  Это означает, что для MD не требуется специального оборудования
+или дисковых контроллеров для достижения многих преимуществ RAID.
+
+<P>Этот документ <B>НЕ</B> введение в RAID;
+вы должны искать его в другом месте.
+</BLOCKQUOTE>
+
+    </LI>
+<LI><B>В</B>:
+Какие уровни RAID реализует ядро Linux?
+<BLOCKQUOTE>
+<B>О</B>:
+Striping (RAID-0)  и линейное соединение являются частью 
+2.x серии ядер. Его код - продукт производственного качества; 
+он хорошо понятен 
+и хорошо поддерживается. Он используется в некоторых очень больших 
+USENET серверах новостей.
+        
+<P>RAID-1, RAID-4 и RAID-5  - часть  ядра 2.1.63 и выше.  Для ранних 2.0.x и 2.1.x 
+ядер, существуют патчи, которые реализуют эту функцию.  Не считайте обязательным 
+обновиться до ядра 2.1.63; обновление ядра - процесс трудный;  *намного*
+проще пропатчить ранние ядра.  Большинство пользователей RAID  
+работают с 2.0.x ядрами, и там сфокусирована большая часть исторической разработки
+RAID.   Текущие снимки - производственного качества;  
+т.е. нет известных ошибок, но есть некоторые грубые места и 
+не проверенные системные установки.  Большое количество людей
+используют программный RAID в производственном окружении.
+<P>
+<P>Горячее восстановление на RAID-1 было представлено недавно
+(Август 1997) и должно рассматриваться как альфа качества. 
+Горячее восстановление RAID-5 должно быть альфа качества сейчас.
+<P>
+<P>Предостережение о 2.1.x нестабильных ядрах:
+они менее стабильны во многих отношениях. Некоторые из 
+новейших дисковых контроллеров (таких как Promise Ultra)
+поддерживаются
+только в 2.1.x ядрах.  Однако, 2.1.x ядра
+часто меняются в части драйверов блочных устройств,
+в коде DMA и прерываний, в PCI, IDE и SCSI коде,
+и в драйверах дисковых контроллеров.  Комбинация этих факторов
+в совокупности с дешевыми жесткими дисками и/или низкого качества 
+кабелями могут привести к значительным
+неприятностям.   Утилита <CODE>ckraid</CODE> как и 
+<CODE>fsck</CODE> и <CODE>mount</CODE> создают значительную нагрузку на
+RAID подсистему.  Это может привести к блокировке дисков при 
+загрузке,
+где даже магическая alt-SysReq клавишная комбинация
+не сохранит день.  Будьте осторожны с 2.1.x ядрами,
+и ожидайте проблем.  Или вернитесь к 2.0.34 ядру.
+</BLOCKQUOTE>
+
+    </LI>
+<LI><B>В</B>:
+Я использую старое ядро. Где я могу получить патчи?
+<BLOCKQUOTE>
+<B>О</B>:
+Программный RAID-0 и линейный режим - присутствуют во всех версиях текущих
+ядер Linux.  Патчи для программных RAID-1,4,5 имеются на
+<A HREF="http://luthien.nuclecu.unam.mx/~miguel/raid">http://luthien.nuclecu.unam.mx/~miguel/raid</A>.
+См. также квази-зеркало
+<A HREF="ftp://linux.kernel.org/pub/linux/daemons/raid/">ftp://linux.kernel.org/pub/linux/daemons/raid/</A>
+для патчей, инструментов и других интересных вещей.
+</BLOCKQUOTE>
+
+</LI>
+<LI><B>В</B>:
+Есть ли другие Linux RAID ссылки?
+<BLOCKQUOTE>
+<B>О</B>:
+<UL>
+<LI>Общий обзор RAID:
+<A HREF="http://www.dpt.com/uraiddoc.html">http://www.dpt.com/uraiddoc.html</A>.</LI>
+<LI>Общие опции Linux RAID:
+<A HREF="http://linas.org/linux/raid.html">http://linas.org/linux/raid.html</A>.</LI>
+<LI>Последняя версия этого документа:
+<A HREF="http://linas.org/linux/Software-RAID/Software-RAID.html">http://linas.org/linux/Software-RAID/Software-RAID.html</A>.</LI>
+<LI>Linux-RAID архив почтовой переписки:
+<A HREF="http://www.linuxhq.com/lnxlists/">http://www.linuxhq.com/lnxlists/</A>.</LI>
+<LI>Домашняя страница Linux Software RAID:
+<A HREF="http://luthien.nuclecu.unam.mx/~miguel/raid">http://luthien.nuclecu.unam.mx/~miguel/raid</A>.</LI>
+<LI>Инструменты Linux Software RAID:
+<A HREF="ftp://linux.kernel.org/pub/linux/daemons/raid/">ftp://linux.kernel.org/pub/linux/daemons/raid/</A>.</LI>
+<LI>Как установить linear/stripped Software RAID:
+<A HREF="http://www.ssc.com/lg/issue17/raid.html">http://www.ssc.com/lg/issue17/raid.html</A>.</LI>
+<LI>Bootable RAID mini-HOWTO:
+<A HREF="ftp://ftp.bizsystems.com/pub/raid/bootable-raid">ftp://ftp.bizsystems.com/pub/raid/bootable-raid</A>.</LI>
+<LI>Root RAID HOWTO:
+<A HREF="ftp://ftp.bizsystems.com/pub/raid/Root-RAID-HOWTO">ftp://ftp.bizsystems.com/pub/raid/Root-RAID-HOWTO</A>.</LI>
+<LI>Linux RAID-Geschichten:
+<A HREF="http://www.infodrom.north.de/~joey/Linux/raid/">http://www.infodrom.north.de/~joey/Linux/raid/</A>.</LI>
+</UL>
+</BLOCKQUOTE>
+
+</LI>
+<LI><B>В</B>:
+Кто ответственен за этот документ?
+<BLOCKQUOTE>
+<B>О</B>:
+Linas Vepstas собрал это все вместе.
+Однако, большая часть информации,
+и некоторые фразы были предоставлены
+<UL>
+<LI>Bradley Ward Allen
+&lt;
+<A HREF="mailto:ulmo@Q.Net">ulmo@Q.Net</A>&gt;</LI>
+<LI>Luca Berra
+&lt;
+<A HREF="mailto:bluca@comedia.it">bluca@comedia.it</A>&gt;</LI>
+<LI>Brian Candler
+&lt;
+<A HREF="mailto:B.Candler@pobox.com">B.Candler@pobox.com</A>&gt;</LI>
+<LI>Bohumil Chalupa
+&lt;
+<A HREF="mailto:bochal@apollo.karlov.mff.cuni.cz">bochal@apollo.karlov.mff.cuni.cz</A>&gt;</LI>
+<LI>Rob Hagopian
+&lt;
+<A HREF="mailto:hagopiar@vu.union.edu">hagopiar@vu.union.edu</A>&gt;</LI>
+<LI>Anton Hristozov
+&lt;
+<A HREF="mailto:anton@intransco.com">anton@intransco.com</A>&gt;</LI>
+<LI>Miguel de Icaza
+&lt;
+<A HREF="mailto:miguel@luthien.nuclecu.unam.mx">miguel@luthien.nuclecu.unam.mx</A>&gt; </LI>
+<LI>Marco Meloni
+&lt;
+<A HREF="mailto:tonno@stud.unipg.it">tonno@stud.unipg.it</A>&gt;</LI>
+<LI>Ingo Molnar
+&lt;
+<A HREF="mailto:mingo@pc7537.hil.siemens.at">mingo@pc7537.hil.siemens.at</A>&gt;</LI>
+<LI>Alvin Oga
+&lt;
+<A HREF="mailto:alvin@planet.fef.com">alvin@planet.fef.com</A>&gt;</LI>
+<LI>Gadi Oxman
+&lt;
+<A HREF="mailto:gadio@netvision.net.il">gadio@netvision.net.il</A>&gt;</LI>
+<LI>Vaughan Pratt 
+&lt;
+<A HREF="mailto:pratt@cs.Stanford.EDU">pratt@cs.Stanford.EDU</A>&gt;</LI>
+<LI>Steven A. Reisman 
+&lt;
+<A HREF="mailto:sar@pressenter.com">sar@pressenter.com</A>&gt;</LI>
+<LI>Michael Robinton
+&lt;
+<A HREF="mailto:michael@bzs.org">michael@bzs.org</A>&gt;</LI>
+<LI>Martin Schulze
+&lt;
+<A HREF="mailto:joey@finlandia.infodrom.north.de">joey@finlandia.infodrom.north.de</A>&gt;</LI>
+<LI>Geoff Thompson
+&lt;
+<A HREF="mailto:geofft@cs.waikato.ac.nz">geofft@cs.waikato.ac.nz</A>&gt;</LI>
+<LI>Edward Welbon
+&lt;
+<A HREF="mailto:welbon@bga.com">welbon@bga.com</A>&gt;</LI>
+<LI>Rod Wilkens
+&lt;
+<A HREF="mailto:rwilkens@border.net">rwilkens@border.net</A>&gt;</LI>
+<LI>Johan Wiltink
+&lt;
+<A HREF="mailto:j.m.wiltink@pi.net">j.m.wiltink@pi.net</A>&gt;</LI>
+<LI>Leonard N. Zubkoff
+&lt;
+<A HREF="mailto:lnz@dandelion.com">lnz@dandelion.com</A>&gt;</LI>
+<LI>Marc ZYNGIER
+&lt;
+<A HREF="mailto:zyngier@ufr-info-p7.ibp.fr">zyngier@ufr-info-p7.ibp.fr</A>&gt;</LI>
+</UL>
+
+<P><B>Copyrights</B>
+<UL>
+<LI>Copyright (C) 1994-96 Marc ZYNGIER</LI>
+<LI>Copyright (C) 1997 Gadi Oxman, Ingo Molnar, Miguel de Icaza</LI>
+<LI>Copyright (C) 1997, 1998 Linas Vepstas</LI>
+<LI>По закону об авторском праве, дополнительные авторские права принадлежат 
+помощникам, указанным выше.</LI>
+</UL>
+<P>Спасибо всем за приведенное здесь!
+</BLOCKQUOTE>
+</LI>
+</OL>
+<HR>
+<A HREF="Software-RAID-HOWTO-2.2-2.html">Next</A>
+Previous
+<A HREF="Software-RAID-HOWTO-2.2.html#toc1">Contents</A>
+</BODY>
+</HTML>

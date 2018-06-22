@@ -1,0 +1,687 @@
+<HTML>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- Created on June, 9  2003 by texi2html 1.64 -->
+<!-- 
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Olaf Bachmann <obachman@mathematik.uni-kl.de>
+Send bugs and suggestions to <texi2html@mathematik.uni-kl.de>
+ 
+-->
+<HEAD>
+<TITLE>GNU MIX Development Kit (mdk): mixguile</TITLE>
+
+<META NAME="description" CONTENT="GNU MIX Development Kit (mdk): mixguile">
+<META NAME="keywords" CONTENT="GNU MIX Development Kit (mdk): mixguile">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="texi2html 1.64">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+
+<A NAME="SEC68"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_9.html#SEC67"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_10.html#SEC69"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_9.html#SEC61"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_11.html#SEC74"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H1> 8. <CODE>mixguile</CODE>, виртуальная машина на основе Scheme </H1>
+<!--docid::SEC68::-->
+<P>
+
+Эта глава содержит описание использования <CODE>mixguile</CODE> и библиотеки
+функций Scheme, дающих доступ к виртуальной машине MIX в эмуляторах
+MDK (<CODE>mixguile</CODE>, <CODE>mixvm</CODE> и <CODE>gmixvm</CODE>). См. в
+<A HREF="mdk_5.html#SEC40">3.4 Использование <CODE>mixguile</CODE></A> учебное пошаговое введение в <CODE>mixguile</CODE>
+и использование Scheme как языка расширения виртуальных машин MIX MDK.
+</P><P>
+
+<BLOCKQUOTE><TABLE BORDER=0 CELLSPACING=0> 
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="mdk_10.html#SEC69">8.1 Вызов <CODE>mixguile</CODE></A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP">Параметры командной строки.</TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="mdk_10.html#SEC70">8.2 Описание функций Scheme</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+</TABLE></BLOCKQUOTE>
+<P>
+
+<A NAME="Вызов mixguile"></A>
+<HR SIZE="6">
+<A NAME="SEC69"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_10.html#SEC68"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_10.html#SEC70"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_10.html#SEC68"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_10.html#SEC68"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_11.html#SEC74"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 8.1 Вызов <CODE>mixguile</CODE> </H2>
+<!--docid::SEC69::-->
+<P>
+
+При вызове <CODE>mixguile</CODE> без аргументов она после загрузки файла
+инициализации <TT>`~/.mdk/mixguile.scm'</TT> (если он существует), войдёт
+в Guile REPL (read-eval-print loop, цикл ввода, обработки и вывода).
+</P><P>
+
+<CODE>mixguile</CODE> принимает те же параметры командной строки, что и
+Guile:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>mixguile [-s SCRIPT] [-c EXPR] [-l FILE] [-e FUNCTION] [-qhv]
+         [--help] [--version]
+</pre></td></tr></table></P><P>
+
+Значение этих параметров таково:
+</P><P>
+
+<A NAME="IDX304"></A>
+<DL>
+<DT><U>User Option:</U> <B>-h</B>
+<DD><A NAME="IDX305"></A>
+<DT><U>User Option:</U> <B>--help</B>
+<DD>Вывести краткое описание использования программы и завершить работу.
+</DL>
+</P><P>
+
+<A NAME="IDX306"></A>
+<DL>
+<DT><U>User Option:</U> <B>-v</B>
+<DD><A NAME="IDX307"></A>
+<DT><U>User Option:</U> <B>--version</B>
+<DD>Вывести версию и информацию об авторских левах и завершить работу.
+</DL>
+</P><P>
+
+<A NAME="IDX308"></A>
+<DL>
+<DT><U>User Option:</U> <B>-s</B> <I>SCRIPT</I>
+<DD>Загрузить код Scheme из файла <VAR>script</VAR>, обработать его и завершить
+работу. Этот параметр может быть использован для написания исполняемых
+скриптов Scheme, как описано в <A HREF="mdk_5.html#SEC47">3.4.5 Скрипты Scheme</A>.
+</DL>
+</P><P>
+
+<A NAME="IDX309"></A>
+<DL>
+<DT><U>User Option:</U> <B>-c</B> <I>EXPR</I>
+<DD>Вычислить заданное выражение Scheme и завершить работу.
+</DL>
+</P><P>
+
+<A NAME="IDX310"></A>
+<DL>
+<DT><U>User Option:</U> <B>-l</B> <I>FILE</I>
+<DD>Загрузить заданный файл Scheme и войти в REPL (цикл ввода, обработки и
+вывода).
+</DL>
+</P><P>
+
+<A NAME="IDX311"></A>
+<DL>
+<DT><U>User Option:</U> <B>-e</B> <I>FUNCTION</I>
+<DD>После чтения скрипта, вызвать заданную функцию с аргументами, указанными
+в командной строке. Например, вы можете написать следующий скрипт Scheme:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>#! /usr/bin/mixguile \
+-e main -s
+!#
+
+;;; выполнить заданную программу и вывести содержимое регистров.
+
+(define main
+  (lambda (args)
+    ;; загрузить файл, указанный в аргументе командной строки
+    (mix-load (cadr args))
+    ;; выполнить его
+    (mix-run)
+    ;; вывести содержимое регистров
+    (mix-pall)))
+
+</pre></td></tr></table>сохранить её в файле, скажем, <TT>`foo'</TT>, сделать его исполняемым и
+выполнить:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>$ ./foo hello
+</pre></td></tr></table>Такой вызов запустить вычисление функции <CODE>main</CODE> со списком
+параметров командной строки в качестве аргумента (в вышеприведённом
+примере <CODE>("./foo" "hello)</CODE>). Заметьте, что параметры командной
+строки для mixguile должны находиться в отдельной строке после
+символа <CODE>\</CODE>.
+</DL>
+</P><P>
+
+<A NAME="IDX312"></A>
+<DL>
+<DT><U>User Option:</U> <B>-q</B>
+<DD>Не загружать пользовательский файл инициализации. При запуске
+<CODE>mixguile</CODE> она проверяет наличие файла <TT>`mixguile.scm'</TT> в
+каталоге конфигурации <TT>`~/.mdk'</TT> и, если он существует, загружает
+его. Этот параметр велит <CODE>mixguile</CODE> не загружать файл
+инициализации.
+</DL>
+</P><P>
+
+<A NAME="Описание функций Scheme"></A>
+<HR SIZE="6">
+<A NAME="SEC70"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_10.html#SEC69"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_10.html#SEC71"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_10.html#SEC68"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_10.html#SEC68"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_11.html#SEC74"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 8.2 Описание функций Scheme </H2>
+<!--docid::SEC70::-->
+<P>
+
+Как мы указали выше, <CODE>mixguile</CODE> содержит встроенную виртуальную
+машину MIX, доступ к которой возможен через набор функций Scheme,
+т.е. через библиотеку Scheme.  С другой стороны, <CODE>mixvm</CODE> и
+<CODE>gmixvm</CODE> содержат интерпретатор Guile и могут использовать
+ту же библиотеку Scheme, равно как и все остальные примитивы Guile/Scheme
+и любые определённые пользователем функции. Поэтому в вашем распоряжении
+находится мощный язык программирования -- Scheme -- позволяющий расширять
+возможности эмуляторов виртуальной машины в составе MDK (см. примеры
+в <A HREF="mdk_5.html#SEC48">3.5 Использование Scheme в <CODE>mixvm</CODE> и <CODE>gmixvm</CODE></A>).
+</P><P>
+
+Следующие подразделы описывают доступные функции библиотеки MIX/Scheme.
+</P><P>
+
+<BLOCKQUOTE><TABLE BORDER=0 CELLSPACING=0> 
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="mdk_10.html#SEC71">8.2.1 Оболочка команд <CODE>mixvm</CODE></A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP">Функции, вызывающие команды mixvm.</TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="mdk_10.html#SEC72">8.2.2 Функции-ловушки</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP">Добавление ловушек к командам mixvm.</TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="mdk_10.html#SEC73">8.2.3 Дополнительные функции ВМ</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP">Функции доступа к виртуальной машине MIX.</TD></TR>
+</TABLE></BLOCKQUOTE>
+<P>
+
+<A NAME="Оболочка mixvm"></A>
+<HR SIZE="6">
+<A NAME="SEC71"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_10.html#SEC70"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_10.html#SEC72"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_10.html#SEC69"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_10.html#SEC70"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_11.html#SEC74"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 8.2.1 Оболочка команд <CODE>mixvm</CODE> </H3>
+<!--docid::SEC71::-->
+<P>
+
+Каждой из команд <CODE>mixvm</CODE>, перечисленных в <A HREF="mdk_8.html#SEC54">6.2 Интерактивные команды</A>, соответствует
+функция Scheme, название которой образовано добавлением к имени команды
+префикса <CODE>mix-</CODE> (например, <CODE>mix-load</CODE>, <CODE>mix-run</CODE> и т.д.).
+Эти оболочки команд реализованы единой функцией передачи команды:
+</P><P>
+
+<A NAME="IDX313"></A>
+<DL>
+<DT><U>Function:</U> <B>mixvm-cmd</B> <I>command argument</I>
+<DD>Передаёт указанную команду <VAR>command</VAR> и аргументы виртуальной машине
+MIX. И <VAR>command</VAR>, и <CODE>argument</CODE> должны быть строками. Результат
+будет тот же, что и выполнение "<VAR>command</VAR> <VAR>argument</VAR>" из
+командной строки <CODE>mixvm</CODE> или <CODE>gmixvm</CODE>.
+</DL>
+</P><P>
+
+Например, вы может вызвать команду <CODE>run</CODE> из приглашения <CODE>mixvm</CODE>
+тремя разными способами:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>MIX &#62; run hello
+MIX &#62; (mix-run "hello")
+MIX &#62; (mixvm-cmd "run" "hello")
+</pre></td></tr></table>(в приглашении <CODE>mixguile</CODE> или в скрипте Scheme могут быть
+использованы только две последние формы).
+</P><P>
+
+Функции <CODE>mix-</CODE> не вычисляют значений. Если вы хотите проверять
+результаты вызова команд <CODE>mixvm</CODE>, используйте функцию
+<CODE>mix-last-result</CODE>:
+</P><P>
+
+<A NAME="IDX314"></A>
+<DL>
+<DT><U>Function:</U> <B>mix-last-result</B>
+<DD>Возвращает <VAR>#t</VAR>, если последнее выполнение команды <CODE>mixvm</CODE>
+было успешным, <VAR>#f</VAR> в противном случае.
+</DL>
+Используя эту функцию, мы можем усовершенствовать скрипт для запуска
+программы, приведённый в прошлом разделе, добавлением проверки ошибок:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>#! /usr/bin/mixguile \
+-e main -s
+!#
+
+;;; выполнить заданную программу и вывести содержимое регистров.
+
+(define main
+  (lambda (args)
+    ;; загрузить файл, указанный в аргументе командной строки
+    (mix-load (cadr args))
+    ;; выполнить его, если команда mix-load сработала
+    (if (mix-last-result) (mix-run))
+    ;; вывести содержимое регистров, если вышеприведённые
+    ;; команды успешно завершили работу
+    (if (mix-last-result) (mix-pall))))
+</pre></td></tr></table></P><P>
+
+Список доступных команд см. в <A HREF="mdk_8.html#SEC54">6.2 Интерактивные команды</A>. Там дано описание команд
+<CODE>mixvm</CODE>, соответствующие команды Scheme используются точно так же,
+и поэтому мы не приводим здесь полного описания этих функций. Вместо
+этого мы лишь укажем те оболочки, поведение которых чем-то отличается от
+соответсвующих команд.
+</P><P>
+
+<A NAME="IDX315"></A>
+<DL>
+<DT><U>Function:</U> <B>mix-preg</B> <I>[register]</I>
+<DD><A NAME="IDX316"></A>
+<DT><U>Function:</U> <B>mix-sreg</B> <I>register value</I>
+<DD>Аргумент <VAR>register</VAR> этих функций может быть либо строкой, либо
+символом, представляющим регистр. Например, следующие вызовы
+эквивалентны:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(mix-preg 'I1)
+(mix-preg "I1")
+</pre></td></tr></table></DL>
+</P><P>
+
+<A NAME="IDX317"></A>
+<DL>
+<DT><U>Function:</U> <B>mix-pmem</B> <I>from [to]</I>
+<DD>Команда <CODE>pmem</CODE> принимает один аргумент -- либо номер ячейки, либо
+диапазон в виде <CODE>FROM-TO</CODE>. Функция же принимает один аргумент,
+если запрашивается содержимое одной ячейки памяти, и два, если
+запрашивается диапазон. Например, следующие команды эквивалентны:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>MIX &#62; pmem 10-12
+0010: + 00 00 00 00 00 (0000000000)
+0011: + 00 00 00 00 00 (0000000000)
+0012: + 00 00 00 00 00 (0000000000)
+MIX &#62; (mix-pmem 10 12)
+0010: + 00 00 00 00 00 (0000000000)
+0011: + 00 00 00 00 00 (0000000000)
+0012: + 00 00 00 00 00 (0000000000)
+MIX &#62;
+</pre></td></tr></table></DL>
+</P><P>
+
+<A NAME="IDX318"></A>
+<DL>
+<DT><U>Function:</U> <B>mix-sover</B> <I>#t|#f</I>
+<DD>Команда <CODE>sover</CODE> принимает в качестве аргумента либо строку <CODE>T</CODE>,
+либо строку <CODE>F</CODE>, чтобы установить, соответственно, триггер переполнения
+истинным или ложным. Соответствующая функция Scheme, <CODE>mix-sover</CODE>,
+принимает в качестве аргумента логическое значение Scheme: <CODE>#t</CODE>
+(истина) или <CODE>#f</CODE>.
+</DL>
+</P><P>
+
+С остальными функциями достаточно принимать в расчёт, что когда
+аргументами команды служат числа, соответствующая функция Scheme принимает
+в качестве аргументов числовые литералы Scheme. В то же время, если
+аргументом команды служит строка, аргументом связанной с ней функции Scheme
+будет строка Scheme. Например, следующие вызовы попарно эквивалентны:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>MIX &#62; load ../samples/hello
+MIX &#62; (mix-load "../samples/hello)
+
+MIX &#62; next 5
+MIX &#62; (mix-next 5)
+</pre></td></tr></table></P><P>
+
+<A NAME="Ловушки"></A>
+<HR SIZE="6">
+<A NAME="SEC72"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_10.html#SEC71"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_10.html#SEC73"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_10.html#SEC69"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_10.html#SEC70"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_11.html#SEC74"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 8.2.2 Функции-ловушки </H3>
+<!--docid::SEC72::-->
+<P>
+
+Ловушки -- это функции, вычисляемые перед выполнением команды <CODE>mixvm</CODE>
+(или соответствующей функции-оболочки Scheme) или после него, либо
+после обнаружения во время выполнения программы MIX обязательной или
+условной точки останова.  Следующие функции позволяют устанавливать
+ловушки:
+</P><P>
+
+<A NAME="IDX319"></A>
+<DL>
+<DT><U>Function:</U> <B>mix-add-pre-hook</B> <I>command hook</I>
+<DD>Добавляет функцию в список ловушек перед командой, связанных с данной
+командой. <VAR>command</VAR> -- строка, называющая соответствующую
+команду <CODE>mixvm</CODE>, а <VAR>hook</VAR> -- функция, принимающая в качестве
+единственного аргумента строку-список аргументов команды. Следующий код
+Scheme определяет простую ловушку и связывает её с командой <CODE>run</CODE>:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(define run-hook
+  (lambda (args)
+    (display "argument list: ")
+    (display args)
+    (newline)))
+(mix-add-pre-hook "run" run-hook)
+</pre></td></tr></table></P><P>
+
+Ловушки перед командой выполняются в порядке, в котором они были добавлены,
+перед вызовом соответствующей команды (или связанной с ней функции-оболочки
+Scheme).
+</DL>
+</P><P>
+
+<A NAME="IDX320"></A>
+<DL>
+<DT><U>Function:</U> <B>mix-add-post-hook</B> <I>command hook</I>
+<DD>Добавляет функцию в список ловушек после команды, связанных с
+данной командой. Аргументы имеют то же значение, что и в случае
+<CODE>mix-add-pre-hook</CODE>.
+</DL>
+</P><P>
+
+<A NAME="IDX321"></A>
+<DL>
+<DT><U>Function:</U> <B>mix-add-global-pre-hook</B> <I>hook</I>
+<DD><A NAME="IDX322"></A>
+<DT><U>Function:</U> <B>mix-add-global-post-hook</B> <I>hook</I>
+<DD>Глобальные ловушки перед/после команд выполняются перед/после вызова
+любой команды <CODE>mixvm</CODE> или функции-оболочки. В этом случае <VAR>hook</VAR>
+принимает два аргумента: строку с именем вызванной команды и
+строку-список её аргументов.
+</DL>
+</P><P>
+
+<A NAME="IDX323"></A>
+<DL>
+<DT><U>Function:</U> <B>mix-add-break-hook</B> <I>hook</I>
+<DD><A NAME="IDX324"></A>
+<DT><U>Function:</U> <B>mix-add-cond-break</B> <I>hook</I>
+<DD>Добавляет функцию-ловушку, выполняемую при обнаружении в ходе выполнения
+программы обязательной (соответственно, условной) точки останова.
+<VAR>hook</VAR> -- функция, принимающая два аргумента: номер строки исходного
+текста, откуда вызывается ловушка, и текущее значение счётчика программы.
+Следующий код показывает пример определения и установки ловушки останова:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(define break-hook
+  (lambda (line address)
+    (display "Breakpoint at line ") (display line)
+    (display " and address ") (display address)
+    (newline)))
+(mix-add-break-hook break-hook)
+</pre></td></tr></table></P><P>
+
+Функции-ловушки остановов реализованы в Scheme через обычные ловушки
+после команды для команд <CODE>next</CODE> и <CODE>run</CODE>. Если вас это
+удивляет, вы можете посмотреть исходный код Scheme в файле
+<TT>`<EM>префикс</EM>/share/mdk/mixguile-vm-stat.scm'</TT> (где <EM>префикс</EM>
+соответствует корневому каталогу установки, обычно <CODE>/usr</CODE> или
+<CODE>/usr/local</CODE>).
+</DL>
+</P><P>
+
+См. другие примеры использования функций-ловушек в <A HREF="mdk_5.html#SEC44">3.4.4 Функции-ловушки</A>.
+</P><P>
+
+<A NAME="Дополнительные функции ВМ"></A>
+<HR SIZE="6">
+<A NAME="SEC73"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_10.html#SEC72"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_11.html#SEC74"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_10.html#SEC69"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_10.html#SEC70"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_11.html#SEC74"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 8.2.3 Дополнительные функции ВМ </H3>
+<!--docid::SEC73::-->
+<P>
+
+При написании нетривиальных расширений Scheme с использованием библиотеки
+MIX/Scheme, вам, вероятно, будет нужно определять содержимое компонентов
+виртуальной машины (регистры, ячейки памяти и т.д.). Например, вам может
+понадобиться сохранить содержимое регистра <CODE>A</CODE> в переменной.
+Функции Scheme, описанные до сих пор, не помогут -- вы можете вывести
+содержимое <CODE>A</CODE> функцией <CODE>(mix-preg 'A)</CODE>, но не можете присвоить
+значение <CODE>A</CODE> переменной. Для решения этой проблемы библиотека
+MIX/Scheme предоставляет следующие дополнительные функции:
+</P><P>
+
+<A NAME="IDX325"></A>
+<DL>
+<DT><U>Function:</U> <B>mixvm-status</B>
+<DD><A NAME="IDX326"></A>
+<DT><U>Function:</U> <B>mix-vm-status</B>
+<DD>Возвращает текущий статус виртуальной машины в виде числа
+(<CODE>mixvm-status</CODE>) или символа (<CODE>mix-vm-status</CODE>). Возможные
+возвращаемые значения:
+<TABLE>
+<TR><TD><CODE>(mixvm-status)</CODE> </TD><TD> <CODE>(mix-vm-status)</CODE> </TD><TD></TD>
+</TR>
+<TR><TD>0 </TD><TD> MIX_ERROR </TD><TD> Ошибка загрузки или выполнения</TD>
+</TR>
+<TR><TD>1 </TD><TD> MIX_BREAK </TD><TD> Обнаружена точка останова</TD>
+</TR>
+<TR><TD>2 </TD><TD> MIX_COND_BREAK </TD><TD> Условная точка останова</TD>
+</TR>
+<TR><TD>3 </TD><TD> MIX_HALTED </TD><TD> Выполнение прервано</TD>
+</TR>
+<TR><TD>4 </TD><TD> MIX_RUNNING </TD><TD> Выполнение по <CODE>next</CODE> остановлено</TD>
+</TR>
+<TR><TD>5 </TD><TD> MIX_LOADED </TD><TD> Программа успешно загружена</TD>
+</TR>
+<TR><TD>6 </TD><TD> MIX_EMPTY </TD><TD> Программа не загружена</TD>
+</TR></TABLE>
+</DL>
+<P>
+
+<A NAME="IDX327"></A>
+<DL>
+<DT><U>Function:</U> <B>mix-vm-error?</B>
+<DD><A NAME="IDX328"></A>
+<DT><U>Function:</U> <B>mix-vm-break?</B>
+<DD><A NAME="IDX329"></A>
+<DT><U>Function:</U> <B>mix-vm-cond-break?</B>
+<DD><A NAME="IDX330"></A>
+<DT><U>Function:</U> <B>mix-vm-halted?</B>
+<DD><A NAME="IDX331"></A>
+<DT><U>Function:</U> <B>mix-vm-running?</B>
+<DD><A NAME="IDX332"></A>
+<DT><U>Function:</U> <B>mix-vm-loaded?</B>
+<DD><A NAME="IDX333"></A>
+<DT><U>Function:</U> <B>mix-vm-empty?</B>
+<DD>Предикаты, проверяющие равенство текущего статуса виртуальной
+машины <CODE>MIX_ERROR</CODE>, <CODE>MIX_BREAK</CODE> и т.д.
+</DL>
+</P><P>
+
+<A NAME="IDX334"></A>
+<DL>
+<DT><U>Function:</U> <B>mix-reg</B> <I>register</I>
+<DD><A NAME="IDX335"></A>
+<DT><U>Function:</U> <B>mix-set-reg!</B> <I>register value</I>
+<DD><CODE>mix-reg</CODE> возвращает содержимое указанного регистра в виде
+числа. <CODE>mix-set-reg</CODE> приравнивает значение указанного регистра
+заданному. Регистр может быть задан либо в виде строки (<CODE>"A"</CODE>,
+<CODE>"X"</CODE> и т.д.), либо в виде символа (<CODE>'A</CODE>, <CODE>'X</CODE> и т.д.).
+Например:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>guile&#62; (mix-reg 'A)
+2341
+guile&#62; (mix-set-reg! "A" 2000)
+ok
+guile&#62; (define reg-a (mix-reg 'A))
+guile&#62; (display reg-a)
+2000
+guile&#62; 
+</pre></td></tr></table></DL>
+</P><P>
+
+<A NAME="IDX336"></A>
+<DL>
+<DT><U>Function:</U> <B>mix-cell</B> <I>cell_no</I>
+<DD><A NAME="IDX337"></A>
+<DT><U>Function:</U> <B>mix-set-cell!</B> <I>cell_no value</I>
+<DD>Возвращает и устанавливает содержимое ячейки памяти номер
+<VAR>cell_no</VAR> соответственно. И <VAR>cell_no</VAR>, и <VAR>value</VAR> --
+числа Scheme.
+</DL>
+</P><P>
+
+<A NAME="IDX338"></A>
+<DL>
+<DT><U>Function:</U> <B>mix-loc</B>
+<DD>Возвращает значение счётчика положения (т.е. адрес следующей выполняемой
+инструкции).
+</DL>
+</P><P>
+
+<A NAME="IDX339"></A>
+<DL>
+<DT><U>Function:</U> <B>mix-over</B>
+<DD><A NAME="IDX340"></A>
+<DT><U>Function:</U> <B>mix-set-over!</B> <I>#t|#f</I>
+<DD><CODE>mix-over</CODE> возвращает <CODE>#t</CODE>, если триггер переполнения
+установлен, и <CODE>#f</CODE> в противном случае. Значение триггера
+переполнения может быть изменено функцией <CODE>mix-set-over!</CODE>.
+</DL>
+</P><P>
+
+<A NAME="IDX341"></A>
+<DL>
+<DT><U>Function:</U> <B>mix-cmp</B>
+<DD><A NAME="IDX342"></A>
+<DT><U>Function:</U> <B>mix-set-cmp!</B> <I>'L|'E|'G</I>
+<DD>Возвращает и устанавливает флаг сравнения соответственно. Возможные
+значения -- символы Scheme <CODE>L</CODE> (меньше), <CODE>E</CODE> (равно) и
+<CODE>G</CODE> (больше).
+</DL>
+</P><P>
+
+<A NAME="IDX343"></A>
+<DL>
+<DT><U>Function:</U> <B>mix-up-time</B>
+<DD>Возвращает текущее время работы виртуальной машины.
+</DL>
+</P><P>
+
+<A NAME="IDX344"></A>
+<DL>
+<DT><U>Function:</U> <B>mix-lap-time</B>
+<DD>Возвращает текущее прошедшее время виртуальной машины, т.е. время,
+прошедшее после последней команды <CODE>run</CODE> или <CODE>next</CODE>.
+</DL>
+</P><P>
+
+<A NAME="IDX345"></A>
+<DL>
+<DT><U>Function:</U> <B>mix-prog-time</B>
+<DD>Возвращает общее время выполнения загруженной в данный момент программы.
+</DL>
+</P><P>
+
+<A NAME="IDX346"></A>
+<DL>
+<DT><U>Function:</U> <B>mix-prog-name</B>
+<DD>Возвращает строку, содержащую базовое имя (без пути) загруженной в
+данный момент программы MIX.
+</DL>
+</P><P>
+
+<A NAME="IDX347"></A>
+<DL>
+<DT><U>Function:</U> <B>mix-prog-path</B>
+<DD>Возвращает строку, содержащую полный путь к загруженной в данный момент
+программе MIX.
+</DL>
+</P><P>
+
+<A NAME="IDX348"></A>
+<DL>
+<DT><U>Function:</U> <B>mix-src-path</B>
+<DD>Возвращает строку, содержащую полный путь к исходному файлу загруженной
+в данный момент программы MIX.
+</DL>
+</P><P>
+
+<A NAME="IDX349"></A>
+<DL>
+<DT><U>Function:</U> <B>mix-src-line</B> <I>[lineno]</I>
+<DD><A NAME="IDX350"></A>
+<DT><U>Function:</U> <B>mix-src-line-no</B>
+<DD><CODE>mix-src-line-no</CODE> во время выполнения программы возвращает номер
+текущей строки исходного кода. <CODE>mix-src-line</CODE> возвращает строку,
+содержащую строку исходного файла номер <VAR>lineno</VAR>, а при вызове
+без аргументов возвращает <CODE>(mix-src-line (mix-src-line-no))</CODE>.
+</DL>
+</P><P>
+
+<A NAME="IDX351"></A>
+<DL>
+<DT><U>Function:</U> <B>mix-ddir</B>
+<DD>Возвращает строку, содержащую полный путь к текущему каталогу
+устройств.
+</DL>
+</P><P>
+
+<A NAME="Проблемы"></A>
+<HR SIZE="6">
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_10.html#SEC69"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_11.html#SEC74"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<BR>  
+<FONT SIZE="-1">
+This document was generated
+on <I>June, 9  2003</I>
+using <A HREF="http://www.mathematik.uni-kl.de/~obachman/Texi2html
+"><I>texi2html</I></A>
+
+</BODY>
+</HTML>

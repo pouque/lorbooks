@@ -1,0 +1,318 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Мини-HOWTO: RPM+Slackware</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.57"></HEAD
+><BODY
+CLASS="ARTICLE"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="ARTICLE"
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="TITLE"
+><A
+NAME="AEN2"
+>Мини-HOWTO: RPM+Slackware</A
+></H1
+><DIV
+CLASS="AUTHORGROUP"
+><A
+NAME="AEN4"
+></A
+><H3
+CLASS="AUTHOR"
+><A
+NAME="AEN5"
+>Dave Whitinger</A
+></H3
+><DIV
+CLASS="AFFILIATION"
+><DIV
+CLASS="ADDRESS"
+><P
+CLASS="ADDRESS"
+>dave@whitinger.net</P
+></DIV
+></DIV
+><H3
+CLASS="CORPAUTHOR"
+> Перевод: <A
+HREF="mailto:sam@asp-linux.com"
+TARGET="_top"
+>Станислав Рогин</A
+>,
+ <A
+HREF="http://www.asplinux.com"
+TARGET="_top"
+>SWSoft Pte Ltd.</A
+>
+ </H3
+></DIV
+><P
+CLASS="PUBDATE"
+>версия 1.3, 13 апреля 1998<BR></P
+><DIV
+><DIV
+CLASS="ABSTRACT"
+><A
+NAME="AEN15"
+></A
+><P
+></P
+><P
+>В этом документе описывается, как установить и заставить нормально работать RPM-пакеты под Slackware. Однако, нижеприведенная информация, возможно, применима и в любых других дистрибутивах Linux.</P
+><P
+></P
+></DIV
+></DIV
+><HR></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Содержание</B
+></DT
+><DT
+>1. <A
+HREF="RPM+Slackware.html#AEN17"
+>Введение</A
+></DT
+><DT
+>2. <A
+HREF="RPM+Slackware.html#AEN24"
+>Необходимые программы</A
+></DT
+><DT
+>3. <A
+HREF="RPM+Slackware.html#AEN33"
+>Установка программ</A
+></DT
+><DT
+>4. <A
+HREF="RPM+Slackware.html#AEN47"
+>Ошибки (Важно!)</A
+></DT
+><DT
+>5. <A
+HREF="RPM+Slackware.html#AEN54"
+>Благодарности</A
+></DT
+><DT
+>6. <A
+HREF="RPM+Slackware.html#AEN58"
+>Copyright</A
+></DT
+><DT
+>7. <A
+HREF="RPM+Slackware.html#AEN61"
+>Авторские права</A
+></DT
+></DL
+></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="AEN17"
+>1. Введение</A
+></H1
+><P
+>RPM - это менеджер пакетов Redhat ("Redhat Package Manager"), являющийся центром и основой дистрибутива Red Hat. Основная его задача - установка и деинсталляция пакетов.</P
+><P
+>В этом документе описывается, как установить RPM на системе slackware, использующий процессор Intel, но эти советы, возможно, применимы к любому дистрибутиву.</P
+><P
+>Последнюю версия этого HOWTO можно найти по адресу <A
+HREF="http://www.threepoint.com/HOWTO/RPM+Slackware.html"
+TARGET="_top"
+>http://www.threepoint.com/HOWTO/RPM+Slackware.html</A
+></P
+><P
+>В дополнение к этому вы можете прочитать RPM-HOWTO (он есть в вашей системе, или на ближайшем зеркале LDP). И вы также можете приобрести великолепную книгу "Maximum RPM", автора Ed Bailey из Red Hat Software, Inc.</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN24"
+>2. Необходимые программы</A
+></H1
+><P
+>Последнюю версию RPM всегда можно найти по адресу:</P
+><P
+>&#13;<PRE
+CLASS="SCREEN"
+>ftp.rpm.org/pub/rpm/dist/latest</PRE
+>&#13;</P
+><P
+>На момент написания этого документа последней версией была</P
+><P
+>&#13;<PRE
+CLASS="SCREEN"
+>rpm-2.4.12-1.i386.tar.gz</PRE
+>&#13;</P
+><P
+>Обратите внимание на строку .i386. Она означает, что это готовый пакет для архитектуры Intel, готовый к распаковке и запуску. Убедитесь в том, что когда будете закачивать пакет, в его имени будет i386, иначе эти советы не будут работать.</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN33"
+>3. Установка программ</A
+></H1
+><P
+>Наиболее простой способ установить RPM - использовать менеджер пакетов из самого Slackware. </P
+><P
+>Вы должны иметь права пользователя root для установки RPM.</P
+><P
+>&#13;<PRE
+CLASS="SCREEN"
+>	installpkg /home/dave/rpm-2.4.12-1.i386.tar.gz</PRE
+>
+	</P
+><P
+>Замените, конечно, /home/dave правильным путем к файлу.</P
+><P
+>(ВНИМАНИЕ!) Если этот вариант не сработает, просто распакуйте следующими командами:</P
+><P
+>&#13;<PRE
+CLASS="SCREEN"
+>	cd / ; tar zxvpf /home/dave/rpm-2.4.12-1.i386.tar.gz</PRE
+>
+	</P
+><P
+>Затем, создайте подкаталог "rpm" в каталоге /var/lib.</P
+><P
+>mkdir /var/lib/rpm</P
+><P
+>Затем, запустите 'rpm --initdb' для инициализации базы данных rpm.</P
+><P
+>Если все вышеописанное сработает нормально, то у вас система, совместимая с rpm! Проверьте ее, возьмите любой rpm-файл и установите его командой 'rpm -Uvh filename.rpm'</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN47"
+>4. Ошибки (Важно!)</A
+></H1
+><P
+>Заметьте, что в некоторых версиях пакета RPM tar-файл был создан с неправильными разрешениями. После установки RPM, проверьте разрешения на некоторые каталоги (/bin, /usr, и т.п.). Если разрешения установлены в 700 (drwx------), то это результат этой ошибки.</P
+><P
+>Чтобы исправить эти проблемы, запустите нижеприведенный скрипт:</P
+><P
+>&#13;<PRE
+CLASS="PROGRAMLISTING"
+>#!/bin/sh
+ 
+chmod 755 /bin
+chmod 755 /usr
+chmod 755 /usr/bin
+chmod 755 /usr/doc
+chmod 755 /usr/lib
+chmod 755 /usr/man
+chmod 755 /usr/man/man8
+chmod 755 /usr/share
+chmod 755 /usr/share/locale
+chmod 755 /usr/share/locale/de
+chmod 755 /usr/share/locale/de/LC_MESSAGES
+chmod 755 /usr/share/locale/pt-br
+chmod 755 /usr/share/locale/pt-br/LC_MESSAGES
+chmod 755 /usr/share/locale/sv
+chmod 755 /usr/share/locale/sv/LC_MESSAGES
+chmod 755 /usr/src</PRE
+>&#13;</P
+><P
+>Пишите мне, если у вас есть вопросы по этому поводу.</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN54"
+>5. Благодарности</A
+></H1
+><P
+>Я благодарю Red Hat Software, Inc. и Patrick Volkerding за их великолепные дистрибутивы Linux.</P
+><P
+>Большое спасибо Milan Kopacka (mkop5230@ss1000.ms.mff.cuni.cz) за подсказку о более простой установке пакета RPM (installpkg).</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN58"
+>6. Copyright</A
+></H1
+><P
+>This HOWTO is copyright 1998 by Dave Whitinger, and is a free document.  You can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or any later version.</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN61"
+>7. Авторские права</A
+></H1
+><P
+>Авторские права на русский перевод этого текста принадлежат &copy; 2000 SWSoft Pte Ltd.
+Все права зарезервированы.</P
+><P
+>Этот документ является частью проекта Linux HOWTO.</P
+><P
+>Авторские права на документы Linux HOWTO принадлежат их авторам, если явно
+не указано иное. Документы Linux HOWTO, а также их переводы, могут
+быть воспроизведены и распространены полностью или частично на любом
+носителе, физическом или электронном, при условии сохранения этой заметки об
+авторских правах на всех копиях. Коммерческое распространение разрешается и
+поощряется; но, так или иначе, автор текста и автор перевода желали бы знать о
+таких дистрибутивах.</P
+><P
+>Все переводы и производные работы, выполненные по документам Linux HOWTO,
+должны сопровождаться этой заметкой об авторских правах. Это делается в
+целях предотвращения случаев наложения дополнительных ограничений на
+распространение документов HOWTO. Исключения могут составить случаи
+получения специального разрешения у координатора Linux HOWTO, с которым
+можно связаться по адресу приведенному ниже.</P
+><P
+>Мы бы хотели распространить эту информацию по всем возможным каналам. Но
+при этом сохранить авторские права и быть уведомленными о всех планах
+распространения HOWTO. Если у вас возникли вопросы, пожалуйста, обратитесь
+к координатору проекта Linux HOWTO по электронной почте:
+<TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:linux-howto@metalab.unc.edu"
+>linux-howto@metalab.unc.edu</A
+>&#62;</TT
+> или к координатору русского
+перевода Linux HOWTO компании SWSoft Pte Ltd. по адресу
+<TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:linux-howto@asplinux.ru"
+>linux-howto@asplinux.ru</A
+>&#62;</TT
+></P
+></DIV
+></DIV
+></BODY
+></HTML
+>

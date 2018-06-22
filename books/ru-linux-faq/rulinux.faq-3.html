@@ -1,0 +1,917 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="LinuxDoc-Tools 0.9.20">
+ <TITLE> RU.LINUX Frequently Asked Questions: Русификация</TITLE>
+ <LINK HREF="rulinux.faq-4.html" REL=next>
+ <LINK HREF="rulinux.faq-2.html" REL=previous>
+ <LINK HREF="rulinux.faq.html#toc3" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="rulinux.faq-4.html">Next</A>
+<A HREF="rulinux.faq-2.html">Previous</A>
+<A HREF="rulinux.faq.html#toc3">Contents</A>
+<HR>
+<H2><A NAME="s3">3.</A> <A HREF="rulinux.faq.html#toc3">Русификация</A></H2>
+
+<P>Значительная часть этого раздела написана 
+<A HREF="mailto:alec@sensi.org">Alexander Voropay</A>.</P>
+<H2><A NAME="ss3.1">3.1</A> <A HREF="rulinux.faq.html#toc3.1">У меня проблемы с русским в...</A>
+</H2>
+
+<P>Проблему русификации можно разделить на несколько частей :
+<UL>
+<LI>русификацию консоли</LI>
+<LI>установку системной (libc) locale</LI>
+<LI>русификацию системы X Window - шрифты и клавиатура</LI>
+<LI>включение поддержки русского в конкретных программах</LI>
+<LI>печать</LI>
+</UL>
+
+Все эти части настраиваются по-отдельности.</P>
+<P>Существует Cyrillc-HOWTO 
+<A HREF="http://www.ibiblio.org/pub/Linux/docs/HOWTO/unmaintained/Cyrillic-HOWTO">http://www.ibiblio.org/pub/Linux/docs/HOWTO/unmaintained/Cyrillic-HOWTO</A>, 
+однако он довольно долго не обновлялся и больше не поддерживается, 
+поэтому отнеситесь к нему критически (Last version : v4.0, 23 January 1998),
+перевод: 
+<A HREF="http://www.inp.nsk.su/~baldin/Cyrillic-HOWTO-russian-old/Cyrillic-HOWTO.html">http://www.inp.nsk.su/~baldin/Cyrillic-HOWTO-russian-old/Cyrillic-HOWTO.html</A>. </P>
+<P>Евгений Балдин создал новую версию Cyrillic-HOWTO на русском (версия не
+имеет английского перевода и не включена в официальную базу HOWTO). Доступна
+здесь : 
+<A HREF="http://www.inp.nsk.su/~baldin">http://www.inp.nsk.su/~baldin</A></P>
+<P>Лучше всего сперва искать решение проблемы здесь и лишь потом - в
+Cyrillic-HOWTO (англоязычном).</P>
+<H2><A NAME="ss3.2">3.2</A> <A HREF="rulinux.faq.html#toc3.2">Русификация консоли.</A>
+</H2>
+
+<P>В системе Linux  существуют два конкурирующих пакета
+управления шрифтами и клавиатурой : kbd и consoletools.</P>
+<P>
+<A HREF="ftp://ftp.win.tue.nl/pub/linux/utils/kbd/">ftp://ftp.win.tue.nl/pub/linux/utils/kbd/</A> или 
+<A HREF="ftp://ftp.kernel.org/pub/linux/utils/kbd/">ftp://ftp.kernel.org/pub/linux/utils/kbd/</A></P>
+<P>
+<A HREF="http://lct.sourceforge.net">http://lct.sourceforge.net</A></P>
+<P>В разных дистрибутивах применяются или один, или другой.
+Например, в Red Hat 4.х и 5.x для русификации консоли применялся
+пакет kbd. Однако в Red Hat 6.x и выше применяется уже другой пакет -
+consoletools.</P>
+<P>Существует Keyboard-and-Console-HOWTO, автор этого HOWTO
+является также автором пакета kbd, поэтому естественно, всех
+склоняет к использованию kbd. ;-)
+<A HREF="http://linuxdoc.org/HOWTO/Keyboard-and-Console-HOWTO.html">http://linuxdoc.org/HOWTO/Keyboard-and-Console-HOWTO.html</A></P>
+<P>На "низком уровне" для русификации консоли достаточно выполнить
+следующие команды (пакет kbd):
+<PRE>
+$ setfont Cyr_a8x16
+$ mapscrn koi2alt
+$ echo -ne "\033(K"
+$ loadkeys ru1
+</PRE>
+
+Если используется пакет console-tools:
+<PRE>
+$ consolechars -f UniCyr_8x16 -m koi8-r
+$ echo -ne "\033(K"
+$ loadkeys ru1
+</PRE>
+
+См. man на соответствующие команды и 'man console_codes'.
+Описание, что есть что, у console-tools в /usr/doc/console-tools*,
+довольно внятное.</P>
+<P>NB! К сожалению, в пакете console-tools некоторые русские фонты не содержат
+UNICODE screen-font map (SFM) и в таком виде попадают во многие дистрибутивы.
+Исправленные фонты живут в пакете console-tools-cyrillic:
+<A HREF="ftp://ftp.ice.ru/pub/fonts/linux/">ftp://ftp.ice.ru/pub/fonts/linux/</A></P>
+<P>Как правило, настройка шрифтов и клавиатуры скрыта среди стартовых
+скриптов, а ключевые управляющие параметры вынесены в отдельные
+файлики. Иногда существуют даже специальные программы настройки.
+"Идеологически правильно" не нарушать системную архитектуру
+дистрибутива, а всего лишь поменять настройки в этих файликах.</P>
+<P>К сожалению, в Linux только один загружаемый фонт на все
+виртуальные консоли.</P>
+<P>Если вы хотите видеть русские буквы и рамки (например в mc) на
+консоли одновременно, используйте только TERM=linux .</P>
+<P>У вас будут проблемы при работе консоли в CP-866 из-за того,
+что некоторые русские буквы в этой кодировке совпадают со
+"старшими" управляющими кодами C1, например буква
+"Ы" 0x9B совпадает со старшим ESC (CSI). Работайте в KOI8-R.</P>
+<H2><A NAME="ss3.3">3.3</A> <A HREF="rulinux.faq.html#toc3.3">Мне говорят "Настрой локаль!" Что это значит ?</A>
+</H2>
+
+<P>Речь идет о настройке системной locale.
+Проверить установки можно, просто сказав locale:
+<PRE>
+$ locale
+LANG=ru_RU.KOI8-R
+LC_CTYPE="ru_RU.KOI8-R"
+LC_NUMERIC="ru_RU.KOI8-R"
+LC_TIME="ru_RU.KOI8-R"
+LC_COLLATE="ru_RU.KOI8-R"
+LC_MONETARY="ru_RU.KOI8-R"
+LC_MESSAGES="ru_RU.KOI8-R"
+LC_ALL=
+$
+</PRE>
+
+Если результат именно такой, значит настроена русская
+locale (ru_RU) в кодировке KOI8-R. Проверить можно
+командами 'cal' или 'date' - даты должны быть на русском.</P>
+<P>На самом деле, для настройки locale достаточно всего лишь
+установить переменную окружения LANG= из стартовых
+скриптов (например /etc/profile) или руками.
+<PRE>
+  
+$ export LANG=ru_RU.KOI8-R
+</PRE>
+  
+В Red Hat-based дистрибутивах это делается путем редактирования файла 
+/etc/sysconfig/i18n где, кроме прочего, должна быть строчка
+<PRE>
+LANG=ru_RU.KOI8-R
+</PRE>
+</P>
+<H2><A NAME="ss3.4">3.4</A> <A HREF="rulinux.faq.html#toc3.4">* Как настроить locale ? Я установил LANG, но русских дат нет.</A>
+</H2>
+
+<P>Прежде всего - подробная дока о locale имеется на 
+<A HREF="http://www.sensi.org/~alec/locale">http://www.sensi.org/~alec/locale</A>. 
+Обращайтесь туда, если вам нужны нестандартные варианты (например, 
+отключение русскоязычного интерфейса с сохранением правильной сортировки и т.д.)</P>
+<P>Система X-Window и библиотеки Xlib и Xt имеют собственные механизмы
+локализации (XLC_LOCALE) которые являются "надстройкой" над системной  
+locale. Подробности:
+{X11Root}/doc/i18n   (в RedHat: /usr/share/Xfree86-doc/i18n). Документация
+в .PS 
+<A HREF="http://www.tsu.ru/~pascal/x_locale/">http://www.tsu.ru/~pascal/x_locale/</A>.</P>
+<P>Хотя в принципе допустимо задавать короткое именование, вроде
+LANG=ru_RU или даже LANG=ru, лучше использовать _полное_
+имя : LANG=ru_RU.KOI8-R . Совершенно недопустимо задавать
+LANG=ru_SU, такой страны больше нет :-)</P>
+<P>К сожалению, не все дистрибутивы "от рождения" позволяют
+использовать ru_RU.KOI8-R . Воспользуйтесь 'locale -a' для
+получения списка допустимых значений. Если в списке нет
+значения ru_RU.KOI8-R, его нужно добавить, а то LANG=
+будет указывать "в пустоту" :
+<PRE>
+$ localedef -c -i ru_RU -f KOI8-R ru_RU.KOI8-R
+Computing table size for character classes might take a while... done
+Computing table size for collation information might take a while... done
+$
+$ cd /usr/lib/locale
+$ mv ru_RU.koi8r ru_RU.KOI8-R
+</PRE>
+
+(в старых версиях - /usr/share/locale)</P>
+<P>NB! Утилита localedef фомирует "сжатое" (mangled) имя кодировки,
+так что имя превращается в "ru_RU.koi8r". Это приводит в замешательство
+некоторые программы. Но к счастью, все же можно установить
+полное имя LANG="ru_RU.KOI8-R" и благодаря mangling-у все будет
+работать и программы будут счастливы. Еще один вариант -- переименовать
+каталог.</P>
+<P>Некоторые дистрибутивы неправильно включают
+<PRE>
+LANG=ru
+LC_ALL=ru_RU.KOI8-R
+</PRE>
+
+Это НЕПРАВИЛЬНО. 
+Лучше не устанавливать переменную
+окружения LC_ALL вообще (достаточно полного LANG=, а все
+переменные LC_xxxx "унаследуются" от него). Подробнее смотрите на
+<A HREF="http://www.sensi.org/~alec/locale/">http://www.sensi.org/~alec/locale/</A> в главе "Как включить..."</P>
+<H2><A NAME="ss3.5">3.5</A> <A HREF="rulinux.faq.html#toc3.5">Как отключить вывод сообщений на русском, сохранив при этом остальные свойства русской локали ?</A>
+</H2>
+
+<P>Нужно определить переменные окружения :
+<PRE>
+LANGUAGE=en_US
+LC_MESSAGES=en_US
+</PRE>
+
+В RedHat эти строки можно вписать прямо в /etc/sysconfig/i18n .</P>
+<H2><A NAME="ss3.6">3.6</A> <A HREF="rulinux.faq.html#toc3.6">Я настроил locale и русский в консоли, но bash все равно не вводит русские буквы, пищит.</A>
+</H2>
+
+<P>Хотя для большинства программ вполне достаточно установки
+LANG=ru_RU.KOI8-R чтобы начать распознавать русские буквы, многие
+программы, основанные на библиотеке readline (например bash), все равно считают
+символы с кодами больше 128 особыми META-символами (пищит при вводе).</P>
+<P>Чтобы отучить библиотеку readline от этого, необходимо определить
+переменную 
+<PRE>
+INPUTRC=/etc/inputrc
+</PRE>
+    
+Кроме того, создать файл /etc/inputrc
+<PRE>
+set meta-flag on
+set convert-meta off
+set output-meta on
+</PRE>
+
+После этого библиотека readline (и bash) начнет воспринимать русские буквы.</P>
+<P>Еще один вариант : Не задавать INPUTRC=, а прописать те же значения в файл
+~/.inputrc (в home-каталоге). Но тогда придется заводить такой файл в
+домашнем каталоге каждого пользователя.</P>
+<P>См. man readline.</P>
+<H2><A NAME="ss3.7">3.7</A> <A HREF="rulinux.faq.html#toc3.7">Red Hat и русификация</A>
+</H2>
+
+<P>Cоздаем файлик /etc/sysconfig/i18n. Внутри должно быть что-то вроде:
+<PRE>
+SYSFONT=UniCyr_8x16
+SYSFONTACM=koi8-r
+LANG=ru_RU.KOI8-R
+</PRE>
+
+Раскладка клавиатуры выбирается утилитой kbdconfig и прописывается в файл 
+/etc/sysconfig/keyboard, в виде:
+<PRE>
+KEYTABLE=ru1
+</PRE>
+
+Эти файлы используются в скриптах /etc/rc.d/rc.sysinit, /sbin/setsysfont. 
+Ознакомьтесь с ними, а также с /usr/doc/initscripts-x.xx/, 
+если возникли вопросы или проблемы.</P>
+<H2><A NAME="ss3.8">3.8</A> <A HREF="rulinux.faq.html#toc3.8">Debian и русификация</A>
+</H2>
+
+<P>Debian 2.2: Насторойка фонтов запускается из /etc/init.d/console-screen.sh</P>
+<P>/etc/console-tools/config:
+<PRE>
+#
+SCREEN_FONT=Cyr_a8x16
+APP_CHARSET_MAP=koi8-r
+#
+APP_CHARSET_MAP_vc2=koi8-r
+APP_CHARSET_MAP_vc3=koi8-r
+APP_CHARSET_MAP_vc4=koi8-r
+APP_CHARSET_MAP_vc5=koi8-r
+APP_CHARSET_MAP_vc6=koi8-r
+</PRE>
+
+Фонты нужно заменить, взяв правильные из console-tools-cyrillic.</P>
+<P>Клавиатура настраивается из /etc/init.d/keymaps-lct.sh
+и загружает раскладку /etc/console-tools/default.kmap.gz
+Именно под этим именем нужно разместить требуемую раскладку
+или создать symlink. Для интерактивного выбора клавиатуры есть
+полезная утилита: kbdconfig.</P>
+<P>/etc/environment:
+<PRE>
+LANG=ru_RU.KOI8-R
+</PRE>
+</P>
+<H2><A NAME="ss3.9">3.9</A> <A HREF="rulinux.faq.html#toc3.9">Как установить русские фонты KOI8-R на XFree86 ?</A>
+</H2>
+
+<P>В современных дистрибутивах они скорее всего уже стоят.
+Первым делом (на работающем X сервере) запустите :
+<PRE>
+$ xlsfonts -fn "*-koi8-r"
+</PRE>
+
+Если список не пустой - примите наши поздравления :-)</P>
+<P>Начиная с версии XFree86 3.3.2 русские фонты cronyx-*
+входят прямо в дистрибутив XFree. Если фонтов нет -- их нужно
+установить. Для Red Hat просто поставьте пакет
+XFree86-cyrillic-fonts-XXXX.rpm . Фонты установятся в
+/usr/X11R6/lib/X11/fonts/cyrillic .</P>
+<P>Далее нужно подключить шрифты к X Window.
+Убедитесь, что в файле /etc/X11/XF86Config прописан
+путь :
+<PRE>
+Section "Files"
+   ...
+   FontPath   "/usr/X11R6/lib/X11/fonts/cyrillic"
+   FontPath   "/usr/X11R6/lib/X11/fonts/75dpi"
+   ...
+EndSection
+</PRE>
+
+Путь с cyrillic лучше всего поставить первым. Перезапустите
+X сервер и проверьте командой : xlsfonts -fn "*-koi8-r" .</P>
+<P>Еще см. вопрос "Где найти хорошие русские шрифты для иксов?" 
+Про подключение шрифтов TrueType также имеется отдельный ответ, в 
+разделе про X Window.</P>
+<P>Хорошим решением также будет использование фонт-сервера.
+Во-первых, он может быть один на всю организацию, а во-вторых
+в современные фонт-серверах можно использовать шрифты
+TrueType. Для Red Hat фонт-сервер xfsft входит в пакет
+XFree86-xfs.</P>
+<P>
+<A HREF="http://www.dcs.ed.ac.uk/home/jec/programs/xfsft/">http://www.dcs.ed.ac.uk/home/jec/programs/xfsft/</A></P>
+<H2><A NAME="ss3.10">3.10</A> <A HREF="rulinux.faq.html#toc3.10">Как сделать так, чтобы в X Window русские буквы вводились везде ?</A>
+</H2>
+
+<P>Существует два основных способа русификации клавиатуры X :
+<UL>
+<LI> XKB, применяющийся в современном X11R6</LI>
+<LI> xmodmap, применявшийся в X11R5</LI>
+</UL>
+
+При русификации X 3.3.x через XKB в /etc/X11/XF86Config должно быть
+прописано:
+<PRE>
+Section "Keyboard"
+        ...
+        XkbRules "xfree86"
+        XkbModel "pc101"
+        XkbLayout "ru"
+        XkbOptions "grp:shift_toggle"
+EndSection
+</PRE>
+
+Для X 4.0.x
+<PRE>
+Section "InputDevice"
+        ...
+        Driver "keyboard"
+        Option "XkbRules" "xfree86"
+        Option "XkbModel" "pc101"
+        Option "XkbLayout" "ru"
+        Option "XkbOptions" "grp:shift_toggle"
+EndSection
+</PRE>
+
+В зависимости от клавиатуры опция Model может быть "pc101",
+"pc104" или "pc105", а комбинации переключения:
+<PRE>
+grp:toggle             правый Alt (с "фиксацией")
+grp:caps_toggle        Caps_Lock
+grp:shift_toggle       два Shift
+grp:ctrl_shift_toggle  Control+Shift
+grp:ctrl_alt_toggle    Control+Alt
+</PRE>
+
+Для 4.0.x добавились новые :
+<PRE>
+grp:alt_shift_toggle   Alt+Shift
+grp:menu_toggle        Menu (модель должна быть pc104, pc105)
+</PRE>
+
+Если есть проблемы с XKB, прочтите 
+<A HREF="http://www.tsu.ru/~pascal/other/xkb/">http://www.tsu.ru/~pascal/other/xkb/</A>
+Там же есть ссылки на "переключатели клавиатуры", например xxkb, описание, как использовать несколько раскладок одновременно, назначать клавиши переключения раскладок и много других интересных вещей.</P>
+<P>Наиболее развитая программа для переключения клавиатуры через
+способ xmodmap : xruskb от 
+<A HREF="mailto:lav@yars.free.net">Alexander V. Lukaynov</A></P>
+<P>
+<A HREF="ftp://ftp.yars.free.net/pub/software/unix/X11/">ftp://ftp.yars.free.net/pub/software/unix/X11/</A> (primary site)</P>
+<P>
+<A HREF="ftp://ftp.relcom.ru/pub/x11/cyrillic/">ftp://ftp.relcom.ru/pub/x11/cyrillic/</A></P>
+<P>Она может понадобиться для русификации X11R5 терминалов,
+например железных, или эмуляторов под MS Windows. Для ее применения
+с XFree86 лучше отключить модуль XKB в /etc/X11/XF86Config
+директивой XkbDisable. Правильная раскладка для xruskb:
+jcukeng-cyr.xmm</P>
+<P>Проверить русификацию X можно программой xev: клавиатура должна
+генерировать правильные XkeySym для кириллицы (0x6xx), а xev
+должна показывать Cyrillic_IE и пр. при нажатии русских букв, а не
+OCyrcumflex e.t.c.</P>
+<H2><A NAME="ss3.11">3.11</A> <A HREF="rulinux.faq.html#toc3.11">Как cмонтировать диск, чтобы русские имена файлов были видны ?</A>
+</H2>
+
+<P>Для vfat примерно так (cтрочка из /etc/fstab/):
+<PRE>
+/dev/hda5 /mnt/d vfat noexec,rw,umask=002,codepage=866,iocharset=koi8-r,gid=100 0 0
+</PRE>
+</P>
+<P>Потом mount /mnt/d.
+Еще в ядро (&gt;=2.0.36) должны быть включены соответствующие кодовые страницы
+(возможно, в виде модулей /lib/modules/`uname -r`/fs/nls_*) - CP866 и KOI8-R,
+так что возможно (хотя скорее всего нет) ядро придется перекомпилировать.</P>
+<P>Для CD, содержащего файлы с русскими именами:
+<PRE>
+$ mount -t iso9660 -o iocharset=koi8-r  /dev/cdrom  /mnt/cdrom
+</PRE>
+
+Параметр codepage для isofs не нужен, в файловой системе JOLIET
+имена файлов хранятся в UNICODE.</P>
+<P>Смысл этих опций можно узнать в 'man mount' или в документации исходников
+ядра   /usr/src/linux/Documentation/filesystems/ или 
+/usr/doc/kernel/filesystems/</P>
+<H2><A NAME="ss3.12">3.12</A> <A HREF="rulinux.faq.html#toc3.12">* Как увидеть русские буквы в именах файлов на диске Samba?</A>
+</H2>
+
+<P> 
+Для сервера добавить в /etc/smb.conf 
+<PRE>
+ 
+[global] 
+character set = koi8-r 
+client code page = 866
+preserve case = yes 
+short preserve case = yes
+default case = lower
+mangle case = no
+</PRE>
+
+Чтобы правильно монтировались smb разделы надо при компиляции ядра указать
+(ядро должно быть >=2.2.20 )
+<PRE>
+CONFIG_NLS_DEFAULT="koi8-r"
+CONFIG_SMB_NLS_DEFAULT=y
+CONFIG_SMB_NLS_REMOTE="cp866"
+CONFIG_SMB_NLS=y
+CONFIG_NLS=y
+</PRE>
+</P>
+<H2><A NAME="ss3.13">3.13</A> <A HREF="rulinux.faq.html#toc3.13">Как перекодировать из DOS/Win кодировки в KOI8-R ?</A>
+</H2>
+
+<P>Перекодировщиков CP1251 и CP866 --&gt; KOI8-R просто огромное
+количество. Не надо писать новых ;-)
+Наиболее широко распространены iconv (входит в поставку glibc) и GNU recode
+(
+<A HREF="ftp://prep.ai.mit.edu/pub/gnu/recode/">ftp://prep.ai.mit.edu/pub/gnu/recode/</A>)
+<PRE>
+$ iconv -f866 -tKOI8-R -o&lt;outfile> infile
+$ recode CP1251..KOI8-R  winfile.txt
+</PRE>
+
+Еще один URL для recode - 
+<A HREF="http://www.iro.umontreal.ca/~pinard/recode/">http://www.iro.umontreal.ca/~pinard/recode/</A>.</P>
+<P>Перекодировщик русского текста с автоматическим определением исходной кодировки:
+<A HREF="ftp://oskin.macomnet.ru/pub/linux/misc/xcode.c">ftp://oskin.macomnet.ru/pub/linux/misc/xcode.c</A></P>
+<P>В конце концов сгодится обычный lynx :
+<PRE>
+$ lynx -assume_local_charset cp866  file.txt
+</PRE>
+</P>
+<H2><A NAME="ss3.14">3.14</A> <A HREF="rulinux.faq.html#toc3.14">* Как с помощью Vim редактировать файлы в различных кодировках?</A>
+</H2>
+
+<P>
+<PRE>
+:e ++enc=cp1251 winfile.txt
+</PRE>
+
+Загрузить файл, считая, что он в  указанной кодировке, и перекодировать
+его в кодировку, в которой работает редактор.</P>
+<H2><A NAME="ss3.15">3.15</A> <A HREF="rulinux.faq.html#toc3.15">* Как создавать и редактировать файлы в UTF-8 в редакторе VIM ?</A>
+</H2>
+
+<P>VIM должен быть версии 6.x и собран с поддержкой Multibyte:
+<PRE>
+configure --with-features=huge  --enable-multibyte
+</PRE>
+
+Предположим, консоль русифицирована в KOI8-R, тогда в VIM
+надо дать команды :
+<PRE>
+:set encoding=utf-8
+:set fileencoding=utf-8
+:set termencoding=koi8-r
+</PRE>
+
+В RedHat VIM разнесен на несколько пакетов.
+<PRE>
+vim-common-6.1-2
+vim-minimal-6.1-2
+vim-enhanced-6.1-2
+</PRE>
+
+Редактор vi, входящий в vim-minimal собран без Multibyte, vim из
+vim-enhanced -- с поддержкой. Надо пользоваться редактором vim.</P>
+<H2><A NAME="ss3.16">3.16</A> <A HREF="rulinux.faq.html#toc3.16">Можно ли научить Vim понимать хоткеи, когда  включена русская раскладка клавиатуры?</A>
+</H2>
+
+<P>В &nbsp;/.vimrc:</P>
+<P>set langmap=йq,цw,уe,кr,еt,нy,гu,шi,щo и т.д.</P>
+<H2><A NAME="ss3.17">3.17</A> <A HREF="rulinux.faq.html#toc3.17">Как прикрутить к Golded/LNX почтовую базу в 866 кодировке ?</A>
+</H2>
+
+<P>Во-первых, нужно взять GoldEd+ c 
+<A HREF="http://golded-plus.sourceforge.net">http://golded-plus.sourceforge.net</A>.</P>
+<P>Кроме того, нужно взять таблицы перекодировки (например из пакета русификации,
+проходившего по файлэхе <B>aftnged</B> и лежащего на 
+<A HREF="http://collage.etel.ru/fileechos/ftn/">http://collage.etel.ru/fileechos/ftn/</A> и прописать их в golded.cfg,
+примерно так:
+<PRE>
+AREAPATH /mnt/c/fido/fecho/
+AREAFILE FastEcho
+
+XLATPATH /home/ak/.golded/chars
+XLATLOCALSET KOI8
+XLATIMPORT IBMPC
+XLATEXPORT IBMPC
+XLATCHARSET KOI8 IBMPC koi_866.chs
+XLATCHARSET IBMPC KOI8 866_koi.chs
+IGNORECHARSET
+</PRE>
+</P>
+<H2><A NAME="ss3.18">3.18</A> <A HREF="rulinux.faq.html#toc3.18">Можно ли в mc увидеть pусские буквы?</A>
+</H2>
+
+<P>Можно. F9 - options - display bits - Full 8 bit</P>
+<P>В последних версиях 'mc' появилась поддержка различных Charset-ов .
+Эта опция должна быть включена при компиляции 'mc' .
+<PRE>
+$ ./configure  --enable-charset  ....
+</PRE>
+</P>
+<H2><A NAME="ss3.19">3.19</A> <A HREF="rulinux.faq.html#toc3.19">less</A>
+</H2>
+
+<P>Yuriy.Kaminskiy@p21.f517.n5020.z2.fidonet.org пишет:</P>
+<P>при настроенной локали указывать
+LESSCHARSET _HЕ HАДО_. Более того, в ~/.lesskey надо добавить
+<PRE>
+#env
+LESSCHARSET=
+</PRE>
+
+чтобы он игнорировал установку LESSCHARSET= глупыми программами (к
+примеру, man :) [после этого надо запустить lesskey для получения
+бинарного файла ~/.less]
+В противном случае он не будет вызывать setlocale(LC_CTYPE,"") и, как
+следствие, не будет icase search для русских букв.</P>
+<H2><A NAME="ss3.20">3.20</A> <A HREF="rulinux.faq.html#toc3.20">telnet</A>
+</H2>
+
+<P>Если возникают проблемы с вводом русских символов, надо написать файлик 
+~/.telnetrc 
+со следующей строкой:
+<PRE>
+DEFAULT set outbinary
+</PRE>
+
+Вы можете встретить проблемы при работе в кодировке Win-1251 -- не
+передается маленькая русская буква "я" 0xff. У протокола TELNET
+0xff -- это первый символ управляющей последовательности.
+Дабы передать собственно "я", нужно его удваивать : 0xff, 0xff.
+В KOI8-R такой проблемы нет.</P>
+<H2><A NAME="ss3.21">3.21</A> <A HREF="rulinux.faq.html#toc3.21">Что делать, если "слетела" консоль ?</A>
+</H2>
+
+<P>Скорее всего на консоль был скопирован какой-то двоичный файл,
+где случайно встретилась переключающая ESC-последовательность.
+Тогда :</P>
+<P>Сброс терминала :
+<PRE>
+$ echo -ne "\033c"
+</PRE>
+
+набрать вслепую, или с работающей консоли :
+<PRE>
+# echo -ne "\033c" &gt;/dev/ttyX
+</PRE>
+
+Переключение на downloaded font
+<PRE>
+ 
+$ echo -ne "\033(K"
+</PRE>
+ 
+(возможно, еще придется перегрузить фонты, но это смотря как консоль
+сорвало...)</P>
+<P>Если вывалилась какая-то программа, которая использует curses, то проще
+<PRE>
+$ stty sane
+</PRE>
+
+В Red Hat все это делают reset; setsysfont &lt;ctrl-j&gt; </P>
+<P>reset - из ncurses</P>
+<P>См. 'man console_codes' и 'man stty'</P>
+<H2><A NAME="ss3.22">3.22</A> <A HREF="rulinux.faq.html#toc3.22">Как русифицировать TeX под koi8-r?</A>
+</H2>
+
+<P>Все вопросы по TeX рекомендуется задавать в ru.tex. FAQ из этой конференции и 
+прочая информация по TeX в России находятся по адресу 
+<A HREF="http://myke.webjump.com/tex/">http://myke.webjump.com/tex/</A>.</P>
+<P>TeX и LaTeX во всех современных дистрибутивах говорят по-русски с раздачи.
+В этом случае имеется документ cyrguide.*, который и содержит развернутый 
+ответ на вопрос о русификации TeX.</P>
+<P>Переносы не всегда работают "из коробки", иногда надо поправить 
+language.dat, и пересобрать форматы. Вот что пишет Alex Nikiforov:</P>
+<P>Если уж о последних версиях, то в RH-6.0 с tetex 0.9 у меня получилось
+так:
+<PRE>
+$ texconfig
+</PRE>
+
+выбрать
+<PRE>
+hyphenation -&gt; latex
+</PRE>
+
+раскомментировать russian</P>
+<P>Добавить в LaTeX файлах
+<PRE>
+\usepackage[T2A]{fontenc}
+\usepackage[koi8-r]{inputenc}
+\usepackage[english,russian]{babel}
+</PRE>
+
+и в файле можно переключаться между русским и английским командами
+\Russian и \Engish</P>
+<P>Что бы добавить форматы из cyrplain набора в texconfig выбрать
+FORMATS и добавить
+<PRE>
+cyrtxinf      tex             language.dat    cyrtxinf.ini
+</PRE>
+
+для русского texinfo.
+Аналогично для cyrblue и cyramstx.</P>
+<P>Что бы добавить формат cyrtex ( русский TeX ) проще в
+каталоге web2c выполнить:
+<PRE>
+initex '\input cyrtex.ini \dump'
+</PRE>
+
+и бросить символическую ссылку с именем cyrtex на tex ( например
+в /usr/bin )</P>
+<P>Что бы переключится на русский в этих plain форматах использовать
+команду
+<PRE>
+\language N
+</PRE>
+
+где N - номер, под которым числится русский язык в получившейся раскладке.</P>
+<P>В принципе можно заменить в конфигурации ruhypen на ruenhyp и
+оставить только совместные русско-английские правила переноса,
+но детально это не проверял и подробно описать не могу.</P>
+<H2><A NAME="ss3.23">3.23</A> <A HREF="rulinux.faq.html#toc3.23">* Где взять русские Type1 ps фонты в KOI8-R? </A>
+</H2>
+
+<P> 
+Современные Type1 фонты в общем не обязаны иметь информацию
+о "кодировке", а должны просто содержать русские символы с именами
+глифов типа "afii10049" (Association for Font Information Interchange).
+О "векторе кодировки" должно заботиться приложение, порождающее ps.
+См. документы Adobe:
+<UL>
+<LI>
+<A HREF="http://partners.adobe.com/asn/developer/technotes.html">http://partners.adobe.com/asn/developer/technotes.html</A>   (Fonts section)</LI>
+<LI>
+<A HREF="http://partners.adobe.com/asn/developer/PDFS/TN/5013.Cyrillic_Font_Spec.pdf">http://partners.adobe.com/asn/developer/PDFS/TN/5013.Cyrillic_Font_Spec.pdf</A></LI>
+</UL>
+
+Free фонты Type1 c русскими символами:
+<UL>
+<LI>Шарашкинские: 
+<A HREF="ftp://ftp.ice.ru/pub/fonts/type1/">ftp://ftp.ice.ru/pub/fonts/type1/</A></LI>
+<LI>PsCyr, автор коллекции Konstantin Chumachenko, мантейнер - 
+Александр Лебедев:
+<A HREF="ftp://con155.phys.msu.su/pub/russian/psfonts/">ftp://con155.phys.msu.su/pub/russian/psfonts/</A>, зеркало
+<A HREF="ftp://ftp.vsu.ru/pub/tex/font-packs/pscyr/">ftp://ftp.vsu.ru/pub/tex/font-packs/pscyr/</A></LI>
+<LI>"TopTeams": 
+<A HREF="http://www.topteam.bg/linux/fonts.html">http://www.topteam.bg/linux/fonts.html</A>, копия
+<A HREF="ftp://ftp.ice.ru/pub/fonrs/type1/">ftp://ftp.ice.ru/pub/fonrs/type1/</A></LI>
+</UL>
+
+Также см. Cyrillic-HOWTO п."Кириллические шрифты"
+<A HREF="http://www.inp.nsk.su/~baldin/Cyrillic-HOWTO-russian/Cyrillic-HOWTO-russian.html">http://www.inp.nsk.su/~baldin/Cyrillic-HOWTO-russian/Cyrillic-HOWTO-russian.html</A></P>
+<P>К сожалению, некоторые приложения видят только первые 256 символов Type1 шрифта
+(Latin1 или ISO_8859-1). Именно для таких приложений нужны "отхаканные" шрифты,
+где вместо "circumflex" и "cedilla" расположены символы KOI8-R. Взять можно
+например с:
+<A HREF="ftp://ftp.kapella.gpi.ru/pub/cyrillic/psfonts/">ftp://ftp.kapella.gpi.ru/pub/cyrillic/psfonts/</A>
+Прочитайте README.</P>
+<H2><A NAME="ss3.24">3.24</A> <A HREF="rulinux.faq.html#toc3.24">Где найти хорошие русские шрифты для X Window System?</A>
+</H2>
+
+<P>Кроме распространенных шрифтов Cronyx существуют
+гораздо более эргономичные шрифты из проекта Cyr-RFX
+Дмитрия Болховитянова:
+<A HREF="http://www.inp.nsk.su/~bolkhov/files/fonts/cyr-rfx/">http://www.inp.nsk.su/~bolkhov/files/fonts/cyr-rfx/</A></P>
+<P>Фонт -cronyx-fixed-* с полным соответствием koi8-r ,
+в том числе с рамками: 
+<A HREF="ftp://ftp.ice.ru/pub/fonts/X11">ftp://ftp.ice.ru/pub/fonts/X11</A></P>
+<P>Русские фонты из KSI-Linux: 
+<A HREF="ftp://ftp.ksi-linux.com/pub/patches/">ftp://ftp.ksi-linux.com/pub/patches/</A></P>
+<P>Русские фонты из Black Cat Linux:
+<A HREF="ftp://ftp.blackcatlinux.com/pub/blackcat-linux/6.2/SRPMS/SRPMS/urw-fonts-2.0-4bc.src.rpm">ftp://ftp.blackcatlinux.com/pub/blackcat-linux/6.2/SRPMS/SRPMS/urw-fonts-2.0-4bc.src.rpm</A></P>
+<H2><A NAME="ss3.25">3.25</A> <A HREF="rulinux.faq.html#toc3.25">Emacs/XEmacs</A>
+</H2>
+
+<P>Берем iso8859-5 шрифты с 
+<A HREF="http://www.inp.nsk.su/~bolkhov/files/fonts/cyr_rfx/">http://www.inp.nsk.su/~bolkhov/files/fonts/cyr_rfx/</A>.
+Подключаем их к иксам, и выбираем в меню Mule нужную кодировку.</P>
+<P>Очень благородные изовые шрифты можно
+взять на любом зеркале GNU в каталоге intlfonts.  конкретно, например,
+<A HREF="ftp://ftp.chg.ru/pub/gnu/intlfonts/intlfonts-1.2-split/European.tar.gz">ftp://ftp.chg.ru/pub/gnu/intlfonts/intlfonts-1.2-split/European.tar.gz</A> (131Кб).
+В Debian они уже есть.</P>
+<P>Подробная инструкция по русификации XEmacs имеется по адресу 
+<A HREF="http://www.linux.zp.ua/xemacs/">http://www.linux.zp.ua/xemacs/</A>.</P>
+<H2><A NAME="ss3.26">3.26</A> <A HREF="rulinux.faq.html#toc3.26">Как pусифициpовать dosemu ?</A>
+</H2>
+
+<P>Клавиатуpа - любым досовым pусификатоpом. Кроме того, есть патчик в 
+<A HREF="http://www.ice.ru/~vitus/misc/">http://www.ice.ru/~vitus/misc/</A>,
+который позволяет обойтись без русификатора клавиатуры.
+В X-ах - рекомендуется, так как позволяет избежать двух клавиш
+переключения - одной в DOS другой - на остальном десктопе.
+При работе с удаленным dosemu (по telnet/ssh/rsh) - необходим.</P>
+<P>Фонты - в консольном dosemu тем же
+pусификатоpом, в X-овом - поставить фонт с 866-ой кодиpовкой. Взять можно 
+по адpесам 
+<A HREF="http://www.ice.ru/~vitus/works/x11.html">http://www.ice.ru/~vitus/works/x11.html</A>,
+<A HREF="ftp://ftp.dosemu.org/dosemu/Development/">ftp://ftp.dosemu.org/dosemu/Development/</A>vga_cyr8x16.pcf.gz или
+<A HREF="http://www.inp.nsk.su/~bolkhov/files/fonts/vga4dosemu/">http://www.inp.nsk.su/~bolkhov/files/fonts/vga4dosemu/</A>.</P>
+<H2><A NAME="ss3.27">3.27</A> <A HREF="rulinux.faq.html#toc3.27">А как русифицировать StarOffice (там же - а почему он у меня не ставится и т.п.</A>
+</H2>
+
+<P>Почитайте замечательную страничку Леона Кантера по адресу -
+<A HREF="http://www.blackcatlinux.com/StarOffice/">http://www.blackcatlinux.com/StarOffice/</A></P>
+<P>Составаитель FAQ был бы рад узнать, в какой мере сведения на этой странице 
+применимы к Open Office и Star Office 6.</P>
+<H2><A NAME="ss3.28">3.28</A> <A HREF="rulinux.faq.html#toc3.28">Как русифицировать AbiWord?</A>
+</H2>
+
+<P>Обратитесь по адресу 
+<A HREF="http://www.hippo.ru/~hvv/abiword/">http://www.hippo.ru/~hvv/abiword/</A></P>
+<H2><A NAME="ss3.29">3.29</A> <A HREF="rulinux.faq.html#toc3.29">Как сделать русскоязычный интерфейс в Mozilla?</A>
+</H2>
+
+<P>
+<A HREF="http://www.mozilla.ru/download/">http://www.mozilla.ru/download/</A></P>
+<P>Вот более общая и более удобная в плане установки из самой мозиллы ссылка: 
+<A HREF="http://www.mozilla.org/projects/l10n/mlp_status.html">http://www.mozilla.org/projects/l10n/mlp_status.html</A></P>
+<H2><A NAME="ss3.30">3.30</A> <A HREF="rulinux.faq.html#toc3.30">Как русифицировать Netscape {4|3}/научить его понимать win-кодировку ?</A>
+</H2>
+
+<P>
+<UL>
+<LI>Возьмите Netscape 4.06 и выше, собранный под glibc2, его русифицировать 
+не надо. Брать его желательно у производителя вашего дистрибутива.
+(при настроенной локали, xkb и шрифтах, установленных согласно ответу 
+на вопрос 0.13)
+
+Еще, netscape имеет мерзкую привычку запоминать шрифты в
+~/.netscape/preferences.js (и, кажется, еще где-то). И если он вовремя не
+увидел какой-то шрифт, то он может его вообще никогда не увидеть. Иногда
+помогает только полное изничтожение директории ~/.netscape</LI>
+<LI> для тех, кто не испытывает любви к падучему тормозному монстру:
+netscape 3.xx особой русификации тоже не требуют - достаточно просто
+шрифтов в кодировке koi8-r, но с win-кодировкой будут, естественно,
+проблемы. Единственная пакость - управляющие элементы форм
+(кнопки/селекторы и т.д.) выводятся в latin1. Лечится 
+<PRE>
+echo 'Netscape*documentFonts.charset*koi8-r:  iso-8859-1' | xrdb -merge
+</PRE>
+
+после чего koi8-шрифты появляются в списке шрифтов для "Western". 
+(отныне ваша кодировка по умолчанию именно она, а про koi забудьте.)
+
+Netscape 3.x берется с 
+<A HREF="ftp://archive.netscape.com">ftp://archive.netscape.com</A>
+<PRE>
+Login:archive
+Password:oldies
+</PRE>
+
+dir там не работает, качайте /archive/index.html</LI>
+<LI> Принципиально не русифицируемые вещи: 
+
+у обоих нетскейпов (3 и 4) будут трудности со страницами в кодировке,
+не соответствующей 'meta content-type' в заголовке (традиционная проблема
+серверов с выбором кодировок и авторов, пользующихся тулзами от MS). Hе
+лечится ничем, кроме хака бинарников.
+
+Что еще хуже - если в документе явно указан шрифт, и такой шрифт, не дай
+бог, у вас имеется (естественно, не русифицированный), то им все и будет
+нарисовано. Решений два: или не иметь в системе не-русифицированных
+шрифтов вовсе, или отключить в нетскейпе автоматическую загрузку
+изображений. (при этом "заодно", как ни странно, отключится и показ
+шрифтов, указанных в документе. Hажав Alt-I, вы получите возможность
+посмотреть картинки. Hадеюсь, текст к этому моменту вы уже запомнили ;)</LI>
+</UL>
+</P>
+<H2><A NAME="ss3.31">3.31</A> <A HREF="rulinux.faq.html#toc3.31">Как мне заставить приложение для иксов использовать шрифты с koi8-r, а не iso8859-1 ?</A>
+</H2>
+
+<P>a) Постарайтесь выяснить, откуда приложение берет имя фонта. 
+Чаще всего приложение хранит имена используемых фонтов в "базе ресурсов": в
+персональной &nbsp;/.Xdefaults или системной /usr/X11R6/lib/X11/app-defaults/ базе.
+Имена используемых фонтов хранится в форме XLFD, т.е. там можно применять "*".
+Например:
+<PRE>
+Netscape*fontList: -*-helvetica-bold-r-*-*-*-120-*-*-*-*-koi8-r
+</PRE>
+
+Посмотреть "ресурсы" приложения можно утилитой appres :
+<PRE>
+$ appres  XTerm
+</PRE>
+
+В man практически на любую X программу имеется секция RESOURCES.</P>
+<P>Если программа написана с применением какого-либо "Toolkit"-а : GTK, Qt,
+Motif, e.t.c., чаще всего достаточно русифицировать Toolkit. Русификация
+GNOME/Gtk и Qt таким способом описана чуть ниже.</P>
+<P>b) С помощью ключа  -fn font или -font font. Этот ключ обрабатывается в XLIB и
+он скорее всего будет работать в любой X программе.</P>
+<P>c) Метод грубого хака.
+Нужно взять русские шрифты с 
+<A HREF="ftp://ftp.relcom.ru/pub/x11/cyrillic/fonts/">ftp://ftp.relcom.ru/pub/x11/cyrillic/fonts/</A>,
+там есть шрифты adobe-*-koi8-1 (c fonts.alias, делающим из них -iso8859-1), но
+реально содержащие кириллицу в koi8-r в старшей половине. </P>
+<P>При этом шрифты с теми же именами и "настоящими" символами iso8859-1 становятся
+недоступны. Стандартных шрифтов из XFree86-cyrillic-fonts недостаточно.  
+Кроме того, пути к русским шрифтам в конфиге иксов или фонт-сервера должны быть
+впереди всех прочих.</P>
+<P>Однако лучше не использовать этот метод, а написать автору программы
+(или прислать ему patch ;) для вынесения имени фонта в "ресурс".</P>
+<H2><A NAME="ss3.32">3.32</A> <A HREF="rulinux.faq.html#toc3.32">Почему в Gnome или программах, использующих GTK+, кое-где русский текст выводится латиницей? Где прописываются используемые ими шрифты?</A>
+</H2>
+
+<P>Если gtk не находит нужных шрифтов (в частности, нужного размера), 
+он режет 8-й бит. Шрифты задаются в
+/etc/gtk/gtkrc.$LANG.  Поэтому нужно создать файл gtkrc.ru или поправить
+существующий.
+Внутри должно быть примерно следующее (названия шрифтов, размеры и прочие 
+атрибуты можно исправить по вкусу, но эти шрифты должны содержать кириллицу 
+в koi8-r):
+<PRE>
+style "gtk-default-ru" {
+       fontset = "-cronyx-helvetica-medium-r-normal--*-*-*-*-*-*-koi8-r,\
+                  -cronyx-courier-medium-r-normal--*-*-*-*-*-*-koi8-r,\
+                  -cronyx-fixed-medium-r-normal--*-*-*-*-*-*-koi8-r,\
+                  -cronyx-times-medium-r-normal--*-*-*-*-*-*-koi8-r"
+}
+class "GtkWidget" style "gtk-default-ru"
+</PRE>
+
+И скопировать этот файл в 'gtkrc.ru_RU.KOI8-R' или сделать
+symlink: 
+<PRE>
+ 
+$ cd /etc/gtk/ 
+$ ln -s  gtkrc.ru  gtkrc.ru_RU.KOI8-R 
+</PRE>
+
+Подробности см. 
+<A HREF="http://www.gtk.org/tutorial/gtk_tut-21.html">http://www.gtk.org/tutorial/gtk_tut-21.html</A>,
+а также 
+<A HREF="http://www.linux.org.ru/gnome/">http://www.linux.org.ru/gnome/</A></P>
+<H2><A NAME="ss3.33">3.33</A> <A HREF="rulinux.faq.html#toc3.33">Qt и русскоязычные программы</A>
+</H2>
+
+<P>
+<A HREF="http://kde.ru/docs.php?action=index">http://kde.ru/docs.php?action=index</A></P>
+<H2><A NAME="ss3.34">3.34</A> <A HREF="rulinux.faq.html#toc3.34">Как русифицировать KDE?</A>
+</H2>
+
+<P>
+<A HREF="http://www.kde.org/international/russia/localization.html">http://www.kde.org/international/russia/localization.html</A></P>
+<H2><A NAME="ss3.35">3.35</A> <A HREF="rulinux.faq.html#toc3.35">Что сделать, чтобы было можно работать в юникодной локали (ru_RU.UTF-8) в консоли и в иксах?</A>
+</H2>
+
+<P>К сожалению, "железо" консоли IBM-PC (VGA/SVGA) может отображать только
+256 символов одновременно. Еще 32 символа отъедают рамки. Если пожертвовать
+атрибутами, количество символов можно довести до 512. Для UNICODE явно
+маловато. См. Console programming HOWTO
+<A HREF="http://devel.linvision.com/doc/fbh/current/index.html">http://devel.linvision.com/doc/fbh/current/index.html</A></P>
+<P>Если устраивают эти ограничения, то переход (пакет console-tools) в/из
+однобайтового режима консоли в режим UTF-8 осуществляется командами 
+unicode_start(1) и unicode_stop(1) .
+Узнать текущий режим можно командой  vt-is-UTF8(1) . Документация - в
+console-tools/lct.txt</P>
+<P>Эмулятор терминала XTerm в X Window не имеет аппаратных ограничений. Запуск
+<PRE>
+: xterm -u8
+</PRE>
+
+с фонтами  *-iso10646-1 .</P>
+<P>Наиболее современные программы не используют "терминальный ввод-вывод" 
+вообще, а написаны с использованием ToolKit-ов, поддерживающих UNICODE 
+(Qt, GTK, Java .e.t.c.) или напрямую пользуются возможностями GUI X Window.</P>
+<P>Для правильной работы приложений в UTF-8 необходимо, чтобы системная локаль
+также была UTF-8, например  LANG="ru_RU.UTF-8" .</P>
+<P>Дополнительная информация:</P>
+<P>UTF-8 and UNICODE FAQ: 
+<A HREF="http://www.cl.cam.ac.uk/~mgk25/unicode.html">http://www.cl.cam.ac.uk/~mgk25/unicode.html</A></P>
+<P>The Unicode HOWTO: 
+<A HREF="http://www.tldp.org/HOWTO/Unicode-HOWTO.html">http://www.tldp.org/HOWTO/Unicode-HOWTO.html</A></P>
+<P>How do Unix terminals work?: 
+<A HREF="http://czyborra.com/unicode/terminals.html">http://czyborra.com/unicode/terminals.html</A></P>
+<P>Unicode Howto for KDE developers:
+<A HREF="http://developer.kde.org/documentation/library/kdeqt/kde3arch/KDE-Unicode-Howto.html">http://developer.kde.org/documentation/library/kdeqt/kde3arch/KDE-Unicode-Howto.html</A></P>
+<P>Есть микро-HOWTO вот здесь: 
+<A HREF="http://lists.debian.org/debian-russian/2001/debian-russian-200111/msg00203.html">http://lists.debian.org/debian-russian/2001/debian-russian-200111/msg00203.html</A></P>
+<H2><A NAME="ss3.36">3.36</A> <A HREF="rulinux.faq.html#toc3.36">Кто занимается переводом документации и пользовательских интерфейсов на русский язык?</A>
+</H2>
+
+<P>Russian Linux Documentation Project: 
+<A HREF="http://rldp.linux.ru.net">http://rldp.linux.ru.net</A>. 
+Ведет Alexsandr Mikhailov, 
+<A HREF="mailto:alexmikh@mail.ru">mailto:alexmikh@mail.ru</A>
+Информация: 
+<A HREF="http://www.tldp.org/vlist.html#te">http://www.tldp.org/vlist.html#te</A></P>
+<P>Русская команда перевода GNU: 
+<A HREF="http://www.gnu.org.ru">http://www.gnu.org.ru</A>, 
+<A HREF="http://www-ru.gnu.org.ru/">http://www-ru.gnu.org.ru/</A>, 
+<A HREF="http://www2.iro.umontreal.ca/~pinard/po/registry.cgi?team=ru">http://www2.iro.umontreal.ca/~pinard/po/registry.cgi?team=ru</A></P>
+<P>Проект Алексея Махоткина "Manpages-Ru" посвящен переводу
+пакета manpages на русский язык. 
+<A HREF="http://www.alexm.here.ru/manpages-ru">http://www.alexm.here.ru/manpages-ru</A></P>
+<P>KDE: 
+<A HREF="http://www.kde.org/international/russia/">http://www.kde.org/international/russia/</A></P>
+<P>GNOME: 
+<A HREF="http://www.linux.org.ru/gnome/">http://www.linux.org.ru/gnome/</A></P>
+<HR>
+<A HREF="rulinux.faq-4.html">Next</A>
+<A HREF="rulinux.faq-2.html">Previous</A>
+<A HREF="rulinux.faq.html#toc3">Contents</A>
+</BODY>
+</HTML>

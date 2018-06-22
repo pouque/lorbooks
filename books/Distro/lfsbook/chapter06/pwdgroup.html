@@ -1,0 +1,234 @@
+<HTML
+><HEAD
+><TITLE
+>Creating the passwd and group files</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Microsoft FrontPage 4.0"/><LINK
+REL="HOME"
+TITLE="Linux From Scratch"
+HREF="http://www.linuxfromscratch.org/view/4.0/index.html"/><LINK
+REL="UP"
+TITLE="Installing basic system software"
+HREF="http://www.linuxfromscratch.org/view/4.0/chapter06/chapter06.html"/><LINK
+REL="PREVIOUS"
+TITLE="Creating the bash and sh symlinks"
+HREF="http://www.linuxfromscratch.org/view/4.0/chapter06/createfiles.html"/><LINK
+REL="NEXT"
+TITLE="Creating devices (Makedev-1.7)"
+HREF="http://www.linuxfromscratch.org/view/4.0/chapter06/makedev.html"/></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#006000"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Linux From Scratch: Версия 4.0</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="createfiles.html"
+ACCESSKEY="P"
+>Назад</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Глава 6. Установка основных компонентов
+        системы</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="makedev.html"
+ACCESSKEY="N"
+>Вперед</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"/></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="ch06-pwdgroup"
+>Создание файлов passwd и group</A
+></H1
+><P
+>Для возможности входа в систему под
+  учетной записью root и для распознавания
+  оболочкой имени &quot;root&quot;, необходимо
+  создать соответствующие записи в файлах
+<TT
+CLASS="filename"
+>/etc/passwd</TT
+>  и <TT
+CLASS="filename"
+>/etc/group</TT
+>.</P
+><P
+>Для создания файла <TT
+CLASS="filename"
+>/etc/passwd</TT
+>, выполните:</P
+><P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="screen"
+><TT
+CLASS="userinput"
+><B
+>echo &quot;root:x:0:0:root:/root:/bin/bash&quot; &gt; /etc/passwd</B
+></TT
+></PRE
+></TD
+></TR
+></TABLE
+><P
+>Пароль для root ( &quot;x&quot; всего лишь метка
+  заполнения) будет задан позже.</P
+><P
+>Для создания файла <TT
+CLASS="filename"
+>/etc/group</TT
+>, выполните:</P
+><P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="screen"
+><TT
+CLASS="userinput"
+><B
+>cat &gt; /etc/group &lt;&lt; &quot;EOF&quot;</B
+></TT
+>
+root:x:0:
+bin:x:1:
+sys:x:2:
+kmem:x:3:
+tty:x:4:
+tape:x:5:
+daemon:x:6:
+floppy:x:7:
+disk:x:8:
+lp:x:9:
+dialout:x:10:
+audio:x:11:
+<TT
+CLASS="userinput"
+><B
+>EOF</B
+></TT
+></PRE
+></TD
+></TR
+></TABLE
+><P
+>Созданные группы не относятся ни к какому
+  стандарту - их использует скрипт MAKEDEV, см.
+  след. секцию. Помимо группы &quot;root&quot;,
+  стандарт LSB рекомендует наличие только
+  группы &quot;bin&quot;, с GID &lt;идентификатор
+  группы&gt; равным 1. Все остальные названия
+  групп и их GID пользователю разрешается
+  выбирать произвольно, т.к. грамотно
+  написанные программы не зависят от
+  номеров GID, а используют название группы.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"/><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="createfiles.html"
+ACCESSKEY="P"
+>Назад</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="../index.html"
+ACCESSKEY="H"
+>Домой</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="makedev.html"
+ACCESSKEY="N"
+>Вперед</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Создание символических ссылок bash и sh</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="chapter06.html"
+ACCESSKEY="U"
+>Наверх</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Создание устройств (Makedev-1.7)</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

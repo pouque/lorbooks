@@ -1,0 +1,1617 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Мини-HOWTO: "Wacom Graphire USB"</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.57"></HEAD
+><BODY
+CLASS="ARTICLE"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="ARTICLE"
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="TITLE"
+><A
+NAME="AEN2"
+>Мини-HOWTO: "Wacom Graphire USB"</A
+></H1
+><DIV
+CLASS="AUTHORGROUP"
+><A
+NAME="AEN4"
+></A
+><H3
+CLASS="AUTHOR"
+><A
+NAME="AEN5"
+>Arnaud Claden</A
+></H3
+><H3
+CLASS="CORPAUTHOR"
+>Перевод: <A
+HREF="mailto:denm@asp-linux.com"
+TARGET="_top"
+>Денис Дементьев</A
+>,
+<A
+HREF="http://www.asplinux.com"
+TARGET="_top"
+>SWSoft Pte Ltd.</A
+></H3
+></DIV
+><P
+CLASS="PUBDATE"
+>01 июня 2000<BR></P
+><DIV
+><DIV
+CLASS="ABSTRACT"
+><A
+NAME="AEN12"
+></A
+><P
+></P
+><P
+>В этом документе cодержится информация, позволяющая настроить планшет Wacom Graphire USB для использования в Linux (в консоли и X), начиная с настройки ядра, кончая настройкой программ. Информация, приведенная здесь, должна подойти и для планшета Intuos USB.
+ </P
+><P
+></P
+></DIV
+></DIV
+><HR></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Содержание</B
+></DT
+><DT
+>1. <A
+HREF="Wacom-USB-mini-HOWTO.html#AEN14"
+>Copyright</A
+></DT
+><DT
+>2. <A
+HREF="Wacom-USB-mini-HOWTO.html#AEN28"
+>Авторские права</A
+></DT
+><DT
+>3. <A
+HREF="Wacom-USB-mini-HOWTO.html#AEN37"
+>Введение</A
+></DT
+><DD
+><DL
+><DT
+>3.1. <A
+HREF="Wacom-USB-mini-HOWTO.html#AEN42"
+>Новые версии этого документа</A
+></DT
+><DT
+>3.2. <A
+HREF="Wacom-USB-mini-HOWTO.html#AEN46"
+>Обратная связь и исправления</A
+></DT
+><DT
+>3.3. <A
+HREF="Wacom-USB-mini-HOWTO.html#AEN50"
+>Благодарности</A
+></DT
+><DT
+>3.4. <A
+HREF="Wacom-USB-mini-HOWTO.html#AEN55"
+>Ответственность</A
+></DT
+></DL
+></DD
+><DT
+>4. <A
+HREF="Wacom-USB-mini-HOWTO.html#AEN58"
+>Требования</A
+></DT
+><DD
+><DL
+><DT
+>4.1. <A
+HREF="Wacom-USB-mini-HOWTO.html#AEN60"
+>Аппаратное обеспечение</A
+></DT
+><DT
+>4.2. <A
+HREF="Wacom-USB-mini-HOWTO.html#AEN63"
+>Ядро</A
+></DT
+><DT
+>4.3. <A
+HREF="Wacom-USB-mini-HOWTO.html#AEN66"
+>Программное обеспечение для консоли</A
+></DT
+><DT
+>4.4. <A
+HREF="Wacom-USB-mini-HOWTO.html#AEN69"
+>XWindow</A
+></DT
+><DT
+>4.5. <A
+HREF="Wacom-USB-mini-HOWTO.html#AEN72"
+>Другие</A
+></DT
+></DL
+></DD
+><DT
+>5. <A
+HREF="Wacom-USB-mini-HOWTO.html#AEN87"
+>Ядро и аппаратное обеспечение</A
+></DT
+><DD
+><DL
+><DT
+>5.1. <A
+HREF="Wacom-USB-mini-HOWTO.html#AEN89"
+>Настройка ядра</A
+></DT
+><DT
+>5.2. <A
+HREF="Wacom-USB-mini-HOWTO.html#AEN203"
+>Сборка ядра</A
+></DT
+><DT
+>5.3. <A
+HREF="Wacom-USB-mini-HOWTO.html#AEN214"
+>Перед загрузкой</A
+></DT
+><DD
+><DL
+><DT
+>5.3.1. <A
+HREF="Wacom-USB-mini-HOWTO.html#AEN216"
+>FStab</A
+></DT
+><DT
+>5.3.2. <A
+HREF="Wacom-USB-mini-HOWTO.html#AEN226"
+>Устройства, относящиеся к USB</A
+></DT
+><DT
+>5.3.3. <A
+HREF="Wacom-USB-mini-HOWTO.html#AEN243"
+>Настройка модулей</A
+></DT
+><DT
+>5.3.4. <A
+HREF="Wacom-USB-mini-HOWTO.html#AEN248"
+>Мои дальнейшие действия</A
+></DT
+><DT
+>5.3.5. <A
+HREF="Wacom-USB-mini-HOWTO.html#AEN258"
+>Последнее, но не второстепенное</A
+></DT
+></DL
+></DD
+></DL
+></DD
+><DT
+>6. <A
+HREF="Wacom-USB-mini-HOWTO.html#AEN397"
+>Консоль  Linux</A
+></DT
+><DT
+>7. <A
+HREF="Wacom-USB-mini-HOWTO.html#AEN405"
+>XWindow</A
+></DT
+><DD
+><DL
+><DT
+>7.1. <A
+HREF="Wacom-USB-mini-HOWTO.html#AEN407"
+>Установка 2 мышей в одной системе</A
+></DT
+><DT
+>7.2. <A
+HREF="Wacom-USB-mini-HOWTO.html#AEN441"
+>Перо</A
+></DT
+><DT
+>7.3. <A
+HREF="Wacom-USB-mini-HOWTO.html#AEN494"
+>Новый модуль</A
+></DT
+></DL
+></DD
+><DT
+>8. <A
+HREF="Wacom-USB-mini-HOWTO.html#AEN502"
+>Ссылки</A
+></DT
+></DL
+></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="AEN14"
+>1. Copyright</A
+></H1
+><P
+>Copyright (c) 2000 by Arnaud Claden &lt;tiamat@club-internet.fr&gt;</P
+><P
+>This document describes the installation of Wacom tablets under linux.
+You may use, disseminate, and reproduce this document freely, provided you:</P
+><P
+>&#13;<P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>Do not omit or alter this copyright notice.</P
+></LI
+><LI
+><P
+>Do not omit or alter the version number and date.</P
+></LI
+><LI
+><P
+>Do not omit or alter the document's pointer to the current WWW version.</P
+></LI
+><LI
+><P
+>Clearly mark any condensed, altered or modified versions as such.</P
+></LI
+></OL
+>&#13;</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN28"
+>2. Авторские права</A
+></H1
+><P
+>Авторские права на русский перевод этого текста принадлежат &copy; 2000 SWSoft Pte Ltd.
+Все права зарезервированы.</P
+><P
+>Этот документ является частью проекта Linux HOWTO.</P
+><P
+>Авторские права на документы Linux HOWTO принадлежат их авторам, если явно
+не указано иное. Документы Linux HOWTO, а также их переводы, могут
+быть воспроизведены и распространены полностью или частично на любом
+носителе, физическом или электронном, при условии сохранения этой заметки об
+авторских правах на всех копиях. Коммерческое распространение разрешается и
+поощряется; но, так или иначе, автор текста и автор перевода желали бы знать о
+таких дистрибутивах.</P
+><P
+>Все переводы и производные работы, выполненные по документам Linux HOWTO,
+должны сопровождаться этой заметкой об авторских правах. Это делается в
+целях предотвращения случаев наложения дополнительных ограничений на
+распространение документов HOWTO. Исключения могут составить случаи
+получения специального разрешения у координатора Linux HOWTO, с которым
+можно связаться по адресу приведенному ниже.</P
+><P
+>Мы бы хотели распространить эту информацию по всем возможным каналам. Но
+при этом сохранить авторские права и быть уведомленными о всех планах
+распространения HOWTO. Если у вас возникли вопросы, пожалуйста, обратитесь
+к координатору проекта Linux HOWTO по электронной почте:
+<TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:linux-howto@metalab.unc.edu"
+>linux-howto@metalab.unc.edu</A
+>&#62;</TT
+> или к координатору русского
+перевода Linux HOWTO компании SWSoft Pte Ltd. по адресу
+<TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:linux-howto@asplinux.ru"
+>linux-howto@asplinux.ru</A
+>&#62;</TT
+></P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN37"
+>3. Введение</A
+></H1
+><P
+>Данный документ содержит информацию о том, как заставить планшет Wacom Graphire USB работать под Linux. Предупреждаем, что это довольно сложная задача, однако данное руководство поможет Вам, шаг за шагом описывая необходимые действия.</P
+><P
+>Данный документ основывается на "HOWTO: Планшет Wacom", написанном Stephan Runkel, однако содержит некоторые уточнения обо всех настройках USB, не упомянутых в исходном документе. Если Вам нужна более общая информация о планшетах Wacom, обратитесь к HOWTO Stephan Runkel.</P
+><P
+>Я составил этот документ потому, что столкнулся со многими трудностями при установке нового планшета Graphire под Linux, однако сейчас он прекрасно работает на моем ноутбуке Toshiba 4030CDT.</P
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN42"
+>3.1. Новые версии этого документа</A
+></H2
+><P
+>Новые версии этого документа можно найти по адресу:</P
+><P
+>http://perso.club-internet.fr/tiamat/computer/howto/Wacom_USB-Mini_HOWTO.html</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN46"
+>3.2. Обратная связь и исправления</A
+></H2
+><P
+>Я буду весьма признателен за все комментарии, исправления, добавления, направленные мне по адресу:</P
+><P
+>&lt;tiamat@club-internet.fr&gt;</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN50"
+>3.3. Благодарности</A
+></H2
+><P
+>Я благодарю всех, кто работает над усовершенствованием драйвера USB ядра. Особое спасибо Vojtech Pavlik за его работу над модулем wacom.</P
+><P
+>Конечно же, я благодарю Stephan Runkel за его прекрасный документ "HOWTO: Планшеты Wacom", который очень помог мне в процессе настройки.</P
+><P
+>Особая благодарность также Frederic Lepied за его работу над модулем xf86Wacom.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN55"
+>3.4. Ответственность</A
+></H2
+><P
+>Информация в этом документе достоверна, насколько я могу об этом судить, однако возможны некоторые ошибки, поэтому не стоит следовать ему слепо, особенно если что-то кажется Вам неверным. Выполнение моих рекомендаций не должно причинить вреда Вашему компьютеру. Однако я не несу ответственности в случае возможного ущерба от использования информации данного документа. Это не howto по ядру. Я исхожу из предположения о том, что Вы знаете, как загружать\устанавливать новое ядро и как  его настраивать.</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN58"
+>4. Требования</A
+></H1
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN60"
+>4.1. Аппаратное обеспечение</A
+></H2
+><P
+>Главный элемент- это, конечно, компьютер, по крайней мере, с одним USB-портом и планшет Wacom Graphire USB.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN63"
+>4.2. Ядро</A
+></H2
+><P
+>Я использовал последнюю версию разрабатываемого ядра: linux-2.3.99-pre6.Оно
+довольно стабильно и в нем есть все необходимое. Вы также можете найти
+несколько версий драйверов, переделанных для старого ядра 2.2.х. Всю
+информацию о них Вы найдете по адресу
+http://www.suse.cz/development/usb-backport</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN66"
+>4.3. Программное обеспечение для консоли</A
+></H2
+><P
+>Для консоли Linux Вам потребуется только программа  gpm, которая находится
+по адресу ftp://ftp.prosa.it/pub/gpm</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN69"
+>4.4. XWindow</A
+></H2
+><P
+>Для того, чтобы использовать все возможности планшета, используйте XInput.
+Более конкретно, Вам понадобится модуль xf86Wacom.so, который поставляется
+с большинством последних версий XFree86, начиная с версии 3.3.5. Кроме того,
+Вам может понадобиться xf86WacomUSB.so - находящееся в процессе доработки
+версия xf86Wacom для USB . Ниже об этом будет сказано подробнее.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN72"
+>4.5. Другие</A
+></H2
+><P
+>Приложения, поддерживающие XInput:</P
+><P
+>&#13;<P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>Gimp - это мощная программа работы с картинками в стиле Photoshop.
+Последняя нестабильная версия 1.1.х включает в себя поддержку XInput. Вы
+можете получить Gimp по адресу http://www.gimp.org</P
+></LI
+><LI
+><P
+>gsumi- это простая  B/W программа рисования, которая поддерживает рисование
+и удаление изображения с передачей давления на перо и дрожания руки. Она находится по
+адресу http://www.gtk.org/~otaylor/gsumi/</P
+></LI
+><LI
+><P
+>xink (By Ralph Levien) - еще одна элементарная программа рисования для X.
+Ее можно найти по адресу ftp://kiwi.cs.berkeley.edu/pub/raph/xink.tar.gz</P
+></LI
+><LI
+><P
+>RasMol - программа молекулярной визуализации, поддерживающая аппаратное
+устройство цифрового набора. Ее адрес:
+http://www.umass.edu/microbio/rasmol/distrib/rasman.htm</P
+></LI
+><LI
+><P
+>xinput (by Frederic Lepied) - очень полезная для настройки и тестирования
+XInput-устройств утилита. Она расположена по адресу
+ftp://ftp.x.org/contrib/utilities/xinput-1.2.tar.gz</P
+></LI
+></OL
+>&#13;</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN87"
+>5. Ядро и аппаратное обеспечение</A
+></H1
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN89"
+>5.1. Настройка ядра</A
+></H2
+><P
+>Как я уже говорил, нижеследующие опции относятся к ядру 2.3.99pre6. Если у вас все не так, то вам самим придется разрешать эти трудности.</P
+><P
+><I
+CLASS="EMPHASIS"
+>** Внимание: [] означает Да\Нет опции, а &lt;&gt; означает Да\Нет\Модуль **</I
+></P
+><P
+>Прежде всего Вы должны разрешить экспериментальные версии кода/драйверов:</P
+><P
+><I
+CLASS="EMPHASIS"
+>Code Maturity level options ---&gt;</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>[*] Prompt for development and/or incomplete code/drivers</I
+>
+<I
+CLASS="EMPHASIS"
+>[*] Спрашивать о разрабатываемых и/или незаконченных кодах и драйверах</I
+></P
+><P
+>Если Вы этого не сделаете, то не получите доступ к некоторым драйверам.</P
+><P
+>Затем перейдем к разделу USB.</P
+><P
+><I
+CLASS="EMPHASIS"
+>USB support ---&gt;</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>&lt;*&gt; Support for USB</I
+>
+<I
+CLASS="EMPHASIS"
+>&lt;*&gt; Поддержка USB</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>[*] USB verbose debug messages</I
+>
+<I
+CLASS="EMPHASIS"
+>[*] USB подробные отладочные сообщения</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>--- Miscellaneous USB options</I
+>
+<I
+CLASS="EMPHASIS"
+>--- Разные опции USB</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>[*] Preliminary USB device filesystem</I
+>
+<I
+CLASS="EMPHASIS"
+>[*] Предварительная файловая система устройств USB</I
+></P
+><P
+>Этой опцией Вы активизируете новые возможности /dev/usb/* (которые Вам нужно создать. См. ниже)</P
+><P
+><I
+CLASS="EMPHASIS"
+>--- USB контроллеры</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>&lt;*&gt; UHCI (Intel PIIX4, VIA, ...) support</I
+>
+<I
+CLASS="EMPHASIS"
+>&lt;*&gt; поддержка UHCI (Intel PIIX4, VIA, ...)</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>&lt; &gt; OHCI (Compaq, iMacs, OPTi, SiS, ALi, ...) support</I
+>
+<I
+CLASS="EMPHASIS"
+>&lt; &gt; поддержка OHCI (Compaq, iMacs, OPTi, SiS, ALi, ...)</I
+></P
+><P
+>Вы должны выбрать один и только один из них. Если один не работает, выберите другой. Скорее всего, понадобится UHCI-драйвер, если Вы используете систему x86.</P
+><P
+><I
+CLASS="EMPHASIS"
+>--- USB Devices</I
+>
+<I
+CLASS="EMPHASIS"
+>--- USB устройства</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>&lt; &gt; USB Printer support</I
+>
+<I
+CLASS="EMPHASIS"
+>&lt; &gt; поддержка USB-принтера</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>&lt; &gt; USB Scanner support</I
+>
+<I
+CLASS="EMPHASIS"
+>&lt; &gt; поддержка USB-сканера</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>&lt; &gt; USB Audio support</I
+>
+<I
+CLASS="EMPHASIS"
+>&lt; &gt; поддержка USB-аудио</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>&lt; &gt; USB Modem (CDC ACM) support</I
+>
+<I
+CLASS="EMPHASIS"
+>&lt; &gt; поддержка USB-модема (CDC ACM)</I
+></P
+><P
+>If you have one of these, feel free to activate the options
+Включите все необходимые вам опции</P
+><P
+><I
+CLASS="EMPHASIS"
+>&lt;M&gt; USB Serial Converter support</I
+></P
+><P
+>Эта опция должна быть включена для нормальной работы с планшетом Wacom.</P
+><P
+><I
+CLASS="EMPHASIS"
+>[*] USB Generic Serial Driver</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>[ ] USB Handspring Visor Driver</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>[ ] USB ConnectTech WhiteHEAT Serial Driver (EXPERIMENTAL)</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>[ ] USB FTDI Single Port Serial Driver (EXPERIMENTAL)</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>[ ] USB Keyspan PDA Single Port Serial Driver (EXPERIMENTAL)</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>[ ] USB ZyXEL omni.net LCD Plus Driver (EXPERIMENTAL)</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>[*] USB Serial Converter verbose debug</I
+></P
+><P
+>Активируйте, если хотите получать все сообщения. Дезактивируйте, когда закончите работать с ними.</P
+><P
+><I
+CLASS="EMPHASIS"
+>&lt; &gt; USB Kodak DC-2xx Camera support</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>&lt; &gt; USB Mustek MDC800 Digital Camera support (EXPERIMENTAL)</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>&lt; &gt; USB Mass Storage support (EXPERIMENTAL)</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>&lt; &gt; USS720 parport driver</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>&lt; &gt; DABUSB driver</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>&lt; &gt; PLUSB Prolific USB-Network driver (EXPERIMENTAL)</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>&lt; &gt; USB ADMtek Pegasus-based device support (EXPERIMENTAL)</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>&lt; &gt; USB Diamond Rio500 support (EXPERIMENTAL)</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>--- USB HID</I
+></P
+><P
+>HID - это разновидность интерфейса между Вами и устройством, так что Вы ДОЛЖНЫ его активировать.</P
+><P
+><I
+CLASS="EMPHASIS"
+>&lt;M&gt; USB Human Interface Device (HID) support</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>&lt; &gt; USB HIDBP Keyboard support</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>&lt; &gt; USB HIDBP Mouse support</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>&lt;M&gt; Wacom Intuos/Graphire tablet support</I
+></P
+><P
+>Теперь надо включить поддержку планшетов Wacom.</P
+><P
+><I
+CLASS="EMPHASIS"
+>&lt; &gt; Logitech WingMan Force joystick support</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>&lt; &gt; Keyboard support</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>&lt;M&gt; Mouse support</I
+></P
+><P
+>Эту опцию надо включить, если вы хотите использовать мышь Wacom Intuos/Graphire.</P
+><P
+><I
+CLASS="EMPHASIS"
+>(1024) Horizontal screen resolution</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>(768) Vertical screen resolution</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>&lt;M &gt; Joystick support</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>&lt;M&gt; Event interface support</I
+></P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN203"
+>5.2. Сборка ядра</A
+></H2
+><P
+>Это просто:</P
+><P
+>После выхода из настройки запустите следующее:</P
+><P
+><I
+CLASS="EMPHASIS"
+>make dep bzImage modules modules_install</I
+></P
+><P
+>Type it just like this and the computer will run all the steps one after
+the other.</P
+><P
+>Теперь скопируйте файл bzImage в каталог /boot, скопируйте System.map в каталог /boot, создайте или отредактируйте lilo.conf, указав в нем на новое ядро, и наберите <I
+CLASS="EMPHASIS"
+>/sbin/lilo</I
+> в командной строке.</P
+><P
+><I
+CLASS="EMPHASIS"
+>** Конечно, все настройки ядра, компиляции ядра и lilo должны быть запущены от root **</I
+></P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN214"
+>5.3. Перед загрузкой</A
+></H2
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="AEN216"
+>5.3.1. FStab</A
+></H3
+><P
+>Если Вы хотите избежать сообщений об ошибках, то надо сделать следующее:</P
+><P
+>Отредактируйте файл /etc/fstab и добавьте в него следующую строку:</P
+><P
+><I
+CLASS="EMPHASIS"
+>none /proc/bus/usb usbdevfs defaults 0 0</I
+></P
+><P
+>Это активизирует файловую систему usb-устройств</P
+><P
+><I
+CLASS="EMPHASIS"
+>none /var/shm shm defaults 0 0</I
+></P
+><P
+>Это необходимо для произведения изменений в разделяемой памяти в ядре.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN226"
+>5.3.2. Устройства, относящиеся к USB</A
+></H3
+><P
+>Для использования USB надо сделать следующее:</P
+><P
+><I
+CLASS="EMPHASIS"
+>mkdir /dev/input</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>mknod /dev/input/mouse0 c 13 32</I
+></P
+><P
+>Это позволит вам использовать мышь</P
+><P
+><I
+CLASS="EMPHASIS"
+>mknod /dev/input/event0 c 13 64</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>mknod /dev/input/event1 c 13 65</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>mknod /dev/input/event2 c 13 66</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>mknod /dev/input/event3 c 13 67</I
+></P
+><P
+>Это включит перо: движения, давление, кнопки и ластик.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN243"
+>5.3.3. Настройка модулей</A
+></H3
+><P
+>Отредактируйте файл /etc/modules.conf, добавив в него следующую строку:</P
+><P
+><I
+CLASS="EMPHASIS"
+>alias char-major-13 usbcore</I
+></P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN248"
+>5.3.4. Мои дальнейшие действия</A
+></H3
+><P
+>Затем я добавил в файл /etc/rc.d/boot.local следующее (помните, что я использовал дистрибутив SuSE, однако нечто подобное вы можете найти в RedHat в файле /etc/rc.d/init.d/boot.local или /etc/rc.d/init.d/rc.local):</P
+><P
+><I
+CLASS="EMPHASIS"
+>/sbin/modprobe wacom</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>/sbin/modprobe mousedev</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>/sbin/modprobe evdev</I
+></P
+><P
+>Просто убедитесь в том, что модули загрузятся во время загрузки системы.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN258"
+>5.3.5. Последнее, но не второстепенное</A
+></H3
+><P
+>Перезагрузитесь ;)</P
+><P
+>Проверьте сообщения о загрузке (<I
+CLASS="EMPHASIS"
+>dmesg | less</I
+>) и посмотрите, нет ли ошибок, относящихся к USB. Они могут возникнуть, если Вы выбрали UHCI  на OHCI-системе.</P
+><P
+>На моей машине появляются следующие сообщения:</P
+><P
+><I
+CLASS="EMPHASIS"
+>..... </I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>..... </I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>usb.c: registered new driver usbdevfs </I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>usb.c: registered new driver hub </I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>usb-uhci.c: $Revision: 1.1 $ time 17:54:28 May 8 2000 </I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>usb-uhci.c: High bandwidth mode enabled </I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>usb-uhci.c: Intel USB controller: setting latency timer to 0 </I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>usb-uhci.c: USB UHCI at I/O 0xffe0, IRQ 11 </I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>usb-uhci.c: Detected 2 ports </I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>usb.c: new USB bus registered, assigned bus number 1 </I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>usb.c: USB new device connect, assigned device number 1 </I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>usb.c: kmalloc IF c3fcd2e0, numif 1 </I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>usb.c: new device strings: Mfr=0, Product=2, SerialNumber=1 </I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>usb.c: USB device number 1 default language ID 0x0 </I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>Product: USB UHCI Root Hub </I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>SerialNumber: ffe0 </I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>hub.c: USB hub found </I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>hub.c: 2 ports detected </I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>hub.c: ganged power switching </I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>hub.c: standalone hub </I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>hub.c: global over-current protection </I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>hub.c: power on to power good time: 2ms </I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>hub.c: hub controller current requirement: 0mA </I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>hub.c: port 1 is removable </I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>hub.c: port 2 is removable </I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>hub.c: local power source is good </I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>hub.c: no over-current condition exists </I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>hub.c: enabling power on all ports </I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>usb.c: hub driver claimed interface c3fcd2e0 </I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>..... </I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>..... </I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>hub.c: port 1 connection change </I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>usb.c: USB new device connect, assigned device number 2 </I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>usb.c: kmalloc IF c3fcd620, numif 1 </I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>usb.c: skipped 1 class/vendor specific interface descriptors </I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>usb.c: new device strings: Mfr=1, Product=2, SerialNumber=0 </I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>usb.c: USB device number 2 default language ID 0x409 </I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>Manufacturer: WACOM </I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>Product: ET-0405-UV1.1-1 </I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>usb.c: unhandled interfaces on device </I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>usb.c: This device is not recognized by any installed USB driver. </I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>Length                             = 18 </I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>DescriptorType          = 01 </I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>USB version                 = 1.00 </I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>Vendor:Product          = 056a:0010 </I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>MaxPacketSize0       = 0 </I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>NumConfigurations  =1 </I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>Device Version           = 1.11 </I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>Device Class:SubClass:Protocol = 00:00:00 </I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>Per-interface classes </I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>Configuration: </I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>..... </I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>.....</I
+></P
+><P
+>Если ядро выдает сообщение "<I
+CLASS="EMPHASIS"
+>Это устройство не опознано ни одним из установленных USB-драйверов</I
+>", то это происходит потому, что во время загрузки системы модуль wacom еще не загружен. Однако вся шина  USB и интерфейс узнаны. Так что если ваша система не работает и не выдает подобных сообщений, проверьте, не забыли ли Вы об опции USB (то, что я советовал включить в ядро, а Вы включили в качестве модуля. В таком случае в <I
+CLASS="EMPHASIS"
+>/etc/rc.d/init.d/boot.local</I
+>
+включите  необходимую команду modprobe <I
+CLASS="EMPHASIS"
+>перед</I
+> 3 строками, о которых я говорил (например <I
+CLASS="EMPHASIS"
+>/sbin/modprobe usb-uhci</I
+>).</P
+><P
+>После запуска модуля wacom появляются следующие сообщения:</P
+><P
+><I
+CLASS="EMPHASIS"
+>..... </I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>..... </I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>usb.c: registered new driver wacom </I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>input0: Wacom Graphire on usb2 </I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>usb.c: wacom driver claimed interface c3fcd620 </I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>mouse0: PS/2 mouse device for input0 </I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>mice: PS/2 mouse device common for all mice </I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>event0: Event device for input0 </I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>..... </I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>.....</I
+></P
+><P
+>Начните заново и проверьте все, пока не получите все указанные сообщения (или другие, им соответствующие).</P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN397"
+>6. Консоль  Linux</A
+></H1
+><P
+>Теперь, когда USB активирован, можно приступить к его проверке с помощью gpm:</P
+><P
+>Если gpm включился в момент загрузки, Вам необходимо его выгрузить: <I
+CLASS="EMPHASIS"
+>gpm -k</I
+></P
+><P
+>Теперь испробуйте Ваш планшет: <I
+CLASS="EMPHASIS"
+>gpm -tIMPS/2 -m /dev/input/mouse0</I
+></P
+><P
+>Подвигайте пером или мышью и УРА ... курсор движется по экрану.</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN405"
+>7. XWindow</A
+></H1
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN407"
+>7.1. Установка 2 мышей в одной системе</A
+></H2
+><P
+>Хотели ли Вы когда-нибудь иметь 2 мыши на Вашей системе ? Если да, то сделайте следующее.</P
+><P
+>Отредактируйте файл <I
+CLASS="EMPHASIS"
+>/etc/XF86Config</I
+></P
+><P
+>Раздел modules должен выглядеть следующим образом</P
+><P
+><I
+CLASS="EMPHASIS"
+>Section "Module"</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>Load "xf86Wacom.so"</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>EndSection</I
+></P
+><P
+>Теперь проверьте раздел XInput:</P
+><P
+><I
+CLASS="EMPHASIS"
+>Section "XInput"</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>SubSection "Mouse"</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>DeviceName "WacomTablet"</I
+> --&gt; или то, что Вам нравится</P
+><P
+><I
+CLASS="EMPHASIS"
+>Protocol "IMPS/2"</I
+> --&gt; мне не удалось заставить работать колесо мыши, однако, если у Вас получилось, дайте мне знать</P
+><P
+><I
+CLASS="EMPHASIS"
+>Port "/dev/input/mouse0"</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>Buttons 5</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>ZAxisMapping 4 5</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>AlwaysCore</I
+> --&gt; это значит, что мышь Wacom считается  базовым указателем , т.е. если Вы пользуетесь обычной мышью или мышью Wacom (или пером), результат будет один и тот же</P
+><P
+><I
+CLASS="EMPHASIS"
+>EndSubSection</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>EndSection</I
+></P
+><P
+>Наконец, мышь Wacom (или перо) признана  второй мышью, и обычная мышь работает нормально.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN441"
+>7.2. Перо</A
+></H2
+><P
+>Back to the XInput section, after the parameters for the mouse, here is the real Wacom stuff :
+Возвращаемся к разделу XInput. После параметров мыши следуют настройки пера:</P
+><P
+><I
+CLASS="EMPHASIS"
+>SubSection "WacomStylus"</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>Port "/dev/input/event0"</I
+> --&gt; устройство USB-even</P
+><P
+><I
+CLASS="EMPHASIS"
+>DeviceName "WacomStylus"</I
+> --&gt; или как Вы хотите это назвать</P
+><P
+><I
+CLASS="EMPHASIS"
+>Mode Absolute</I
+> --&gt; т.е. поверхность планшета эквивалентна поверхности экрана</P
+><P
+><I
+CLASS="EMPHASIS"
+>#Suppress 6</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>DebugLevel 10</I
+> --&gt; если все работает, установите эту опцию в 0</P
+><P
+><I
+CLASS="EMPHASIS"
+>#TiltMode</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>#HistorySize 200</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>#AlwaysCore</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>#KeepShape</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>#TopX 20412</I
+> --&gt; 4 строки используются для более тщательной настройки координат под экран</P
+><P
+><I
+CLASS="EMPHASIS"
+>#TopY 14730</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>#BottomX 0</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>#BottomY 0</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>EndSubSection</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>SubSection "WacomEraser"</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>DeviceName "/dev/input/event0"</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>DeviceName "WacomEraser"</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>Mode Absolute</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>EndSubSection</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>SubSection "WacomCursor"</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>Port "/dev/input/event0"</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>DeviceName "GraphireMouse"</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>Mode Absolute</I
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>EndSubSection</I
+></P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN494"
+>7.3. Новый модуль</A
+></H2
+><P
+>xf86Wacom.so создавался не для USB-планшета, поэтому работает с ним не совсем корректно. Matsumura Namihiko &lt;po-jp@geocities.co.jp&gt; создал новый драйвер, названный  xf86WacomUSB (исходный текст находится там же, где и этот документ Mini-HOWTO). Однако для того, чтобы его собрать, Вам нужен код исходного текста ядра и исходный текст XFree86 (я успешно компилировал его в XFree86 3.3.5, однако его следует компилировать с 3.3.6).</P
+><P
+>Этот драйвер работает не со всеми возможностями планшета и вообще не работает, если Вы задаете параметр <I
+CLASS="EMPHASIS"
+>AlwaysCore</I
+>.</P
+><P
+>Чтобы это исправить, я связался с Frederic Lepied, попросив его исправить стандартный модуль, включив в него поддержку всех функций планшета.</P
+><P
+><I
+CLASS="EMPHASIS"
+>**НОВОСТИ** На сайте Frederic Lepied Вы можете найти ссылку на новый USB-драйвер, который прекрасно работает только в том случае, если Вы используете планшет в качестве мыши : т.е. либо Вы применяете  планшет в Gimp для рисования, либо работаете с ним, как с XFree-мышью, но не то и другое одновременно. Я еще буду исследовать этот вопрос и внесу полученные результаты в документ.</I
+></P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN502"
+>8. Ссылки</A
+></H1
+><P
+>Для получения более подробной информации о планшетах Wacom в целом, обратитесь к документу "HOWTO: Планшеты Wacom" Stephan Runkel &lt;runkel@runkeledv.de&gt; по адресу http://www.linuxdoc.org/HOWTO/Wacom-Tablet-HOWTO.html</P
+><P
+>Информацию об  xf86Wacom.so ищите по адресу &lt;lepied@xfree86.org&gt;
+Frederic Lepied: http://www.lepied.com/xfree86</P
+><P
+>xf86WacomUSB.so находится по адресу ftp://ftp.aros.org/pub</P
+></DIV
+></DIV
+></BODY
+></HTML
+>

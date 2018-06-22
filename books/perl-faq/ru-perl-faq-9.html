@@ -1,0 +1,256 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE>FAQ по perl и программированию для web: Реляционные, пост-реляционные и объектно-реляционные СУБД</TITLE>
+ <LINK HREF="ru-perl-faq-10.html" REL=next>
+ <LINK HREF="ru-perl-faq-8.html" REL=previous>
+ <LINK HREF="http://books.gnu.technology/books/perl-faq/ru-perl-faq.html#toc9" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="ru-perl-faq-10.html">Next</A>
+<A HREF="ru-perl-faq-8.html">Previous</A>
+<A HREF="http://books.gnu.technology/books/perl-faq/ru-perl-faq.html#toc9">Contents</A>
+<HR>
+<H2><A NAME="Реляционные, пост-реляционные и объектно-реляционные СУБД"></A> <A NAME="s9">9. Реляционные, пост-реляционные и объектно-реляционные СУБД</A></H2>
+
+<P>
+<P>
+<H2><A NAME="ss9.1">9.1 Как использовать DBI?</A>
+</H2>
+
+<P>
+<P>
+<H3>Введение</H3>
+
+<P>DBI -- это интерфейс прикладных программ к СУБД, использующим SQL в качестве
+языка запросов.  Сам DBI определяет только набор функций, переменных и
+соглашений. Вся непосредственная работа выполняется Database Drivers (DBD) --
+модулями, обеспечивающими связь с СУБД. DBI только обеспечивает стандартный
+интерфейс для этих драйверов.
+<P>Полная схема архитектуры при работе DBI выглядит примерно так:
+<BLOCKQUOTE><CODE>
+<PRE>
++----------------------+
+| Прикладная программа |
++----------------------+
+| DBI                  |
++----------------------+
+| DBD                  |
++----------------------+
+| СУБД                 |
++----------------------+
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>
+<H3>Подсоединение к СУБД</H3>
+
+<P>
+<P>обеспечивается при помощи метода connect класса DBI:
+<P>
+<PRE>
+$dbh = DBI->connect($dsn, $user, $auth, {options});
+</PRE>
+<P>
+<DL>
+<DT><B>$dbh</B><DD><P>Это объект, при помощи его методов осуществляются взаимодействия с
+СУБД.
+<DT><B>$dsn</B><DD><P>Строка, определяющая к какой базе данных подсоединятся и другие
+параметры. Зависит от DBD. На сегодняшний момент стандарта нет, но
+рекомендовано использовать стиль ODBC:
+<P>
+<PRE>
+&amp;dbi:&lt;имя DBD&gt;:databasename=&lt;название БД&gt;;host=&lt;Имя хоста&gt;;port=&lt;порт&gt;&amp;;
+</PRE>
+<DT><B>$user</B><DD><P>Имя пользователя.
+<P>
+<DT><B>$auth</B><DD><P>Нечто, авторизующее пользователя. Обычно пароль.
+<P>
+<DT><B>options</B><DD><P>Параметры DBI, передаются через анонимный хеш. В настоящее время
+понимаются три параметра: 
+<DL>
+<DT><B>RaiseError</B><DD><P>если установлен, то при любой ошибке DBI убивает 
+программу 
+<DT><B>PrintError</B><DD><P>если установлен, то при ошибке DBI вызывает warn
+<DT><B>AutoCommit</B><DD><P>определяет порядок работы с транзакциями.
+</DL>
+        
+</DL>
+<P>Например:
+<PRE>
+$dbh = DBI->connect('dbi:Pg:dbname=apavel', 'apavel', 'SomeSecret',
+{RaiseError=>1, AutoCommit=>0});
+</PRE>
+
+Означает: Подсоедение к СУБД PostgreSQL, к базе данных apavel, с именем
+пользователя apavel и паролем. Все ошибки будут вызывать die, что удобно при
+отладке, а все изменения будут внесены только при подтверждении (commit)
+транзакций.
+<P>
+<P>Отсоединение обеспечивается при помощи метода disconnect: $dbh->disconnect();
+<P>
+<H3>Механизм курсоров и подготовки запросов</H3>
+
+<P>
+<P>При работе с базами данных при помощи DBI используются курсоры -- специальные
+объекты, обеспечивающие последовательный доступ к результатам запросов. (В
+простейших случаях можно обойтись и без них, я расскажу об этом дальше.)
+<P>Пример таблицы, используемый в дальнейшем:
+<BLOCKQUOTE><CODE>
+<PRE>
+foo.sql
+create table foo (
+        bar varchar(50),
+        baz int
+)       
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>
+<H3>Получение данных</H3>
+
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+$cursor = $dbh->prepare('select bar, baz from foo');
+# теперь $cursor -- курсор, и его необходимо исполнить
+$cursor->execute;
+# После исполнения запроса, результат можно получить из курсора при помощи
+# метода fetchrow_array
+while (($bar, $baz) = $cursor->fetchrow_array) {
+        print "bar is: $bar, baz: $baz\n";
+}       
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>
+<H3>Placeholders</H3>
+
+<P>
+<P>Очень часто бывает надо подготовить какой-либо запрос, а потом использовать
+его с разными значениями данных. DBI предлагает для механизм placeholders: 
+В запросе на месте таких данных указываются вопросительные знаки, а сами
+значения передаются в метод execute() курсора. Например:
+<PRE>
+$cursor = $dbh->prepare('select bar from foo where baz=?');
+$cursor->execute($baz);
+</PRE>
+
+Особенно удобно это в случае вставки данных:
+<PRE>
+$cursor = $dbh->prepare('insert into foo(bar, baz) values(?, ?)');
+while ( ... ) {
+        $cursor->execute($bar, $baz);
+}
+</PRE>
+<P>Таким образом, СУБД разбирает запрос только один раз, а затем просто
+исполняет его, что экономит время. (Естественно, это верно только для DBMS с
+раздельными parse и execute, сейчас ни MySQL, ни PostgreSQL такое не
+поддерживают, поэтому их реализации DBD просто сохраняют запрос переданный
+$dbh->prepare() и затем подставляют в него данные при каждом $sth->execute().)
+<P>
+<H3>Работа без курсоров</H3>
+
+<P>DBI предоставляет несколько методов для такого рода работы:
+Методы для запросов:
+<DL>
+<DT><B>selectrow_array</B><DD><P>Возвращает одну строку запроса в виде
+массива
+<DT><B>selectall_arrayref</B><DD><P>Возвращает весь ответ сервера в виде
+массива ссылок на массивы.
+</DL>
+
+Методы для выражений, не возвращающих значений
+<DL>
+<DT><B>do</B><DD><P>исполняет запрос
+</DL>
+        
+<P>Пример:
+<BLOCKQUOTE><CODE>
+<PRE>
+#получить значение bar при baz=3
+($bar) = $dbh->selectrow_array('select bar from foo where baz=3');
+
+# установить baz в некоторое значение при bar='somestring'
+$dbh->do("update set baz=1 where bar='somestring'");
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>
+<P>
+<H2><A NAME="ss9.2">9.2 Как работать с записями кусочками: первые N записей, следующие N...?</A>
+</H2>
+
+<P>     
+Можно несколькими способами:
+1. Просто прокручивая курсор:
+<BLOCKQUOTE><CODE>
+<PRE>
+        $c = $dbh->prepare('select baz, bar from foo');
+        $c->execute;
+        # если нужна последовательность с 26 по 50
+
+        for ($k = 0; $k &lt; 26; $k++) {
+                $c->fetchrow_array; 
+        }
+        # теперь можно вывести данные
+        print "&lt;table border=1&gt;&lt;tr&gt;&lt;th&gt;bar&lt;/th&gt;&lt;th&gt;baz&lt;/th&gt;&lt;/tr&gt;\n";
+        while (($bar, $baz) = $c->fetchtrow_array) {
+                print "&lt;tr&gt;&lt;td&gt;$bar&lt;/td&gt;&lt;td&gt;$baz&lt;/td&gt;&lt;/tr&gt;\n";
+        }
+        $c->finish; # Закрыть курсор
+        print "&lt;/table&gt;";
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>2. Используя курсоры СУБД
+<BLOCKQUOTE><CODE>
+<PRE>
+        # Показан синтаксис PostgeSQL
+        $dbh->do('declare mycursor cursor for select bar, baz from foo');
+        $dbh->do('move 25');
+
+        # И теперь будем получать данные
+        $c = $dbh->prepare('fetch forward 25 in mycursor');
+        while (($bar, $baz) = $c->fetchrow_array) {
+                print ....;
+        }
+        $c->finish;
+        $dbh->do('close mycursor');
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>3. Для MySQL можно использовать директиву LIMIT
+<BLOCKQUOTE><CODE>
+<PRE>
+        $c = $dbh->prepare('select bar, baz from foo limit 26,25');
+        while (($bar, $baz) = $c->fetchrow_array) {
+                print ....;
+        }
+        $c->finish;
+</PRE>
+</CODE></BLOCKQUOTE>
+        
+<P>
+<H2><A NAME="ss9.3">9.3 Где взять документацию/учебник по SQL?</A>
+</H2>
+
+<P>
+<P>
+<UL>
+<LI>В книжных магазинах сейчас обширный набор книг по SQL. (От рекомендаций
+воздержусь -- ни одну из них я не читал)</LI>
+<LI> На MCP personal bookshelf (
+<A HREF="http://pbs.mcp.com">http://pbs.mcp.com</A>) есть книга
+&quot;Teach yourself SQL in 21 days&quot; -- весьма рекомендую, очень хорошая книга.</LI>
+<LI> На citforum (
+<A HREF="http://www.citforum.ru">http://www.citforum.ru</A>) были какие-то руководства</LI>
+</UL>
+<P>
+<H2><A NAME="ss9.4">9.4 Как можно подсоединится к MS SQL Server?</A>
+</H2>
+
+<P>
+<P>Вроде как можно при помощи DBD::FreeTDS
+<P>
+<HR>
+<A HREF="ru-perl-faq-10.html">Next</A>
+<A HREF="ru-perl-faq-8.html">Previous</A>
+<A HREF="http://books.gnu.technology/books/perl-faq/ru-perl-faq.html#toc9">Contents</A>
+</BODY>
+</HTML>

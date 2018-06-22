@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0"><title>Linux From Scratch</title>
+
+<link rel="NEXT" title="Preface" href="preface/preface.html" /=""></head><body bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#840084" alink="#006000" class="book">
+
+<p><a name="AEN1"></a></p>
+
+<h1 class="title"><a name="AEN2">Linux From Scratch</a></h1>
+
+<h2 class="subtitle">Версия 4.0</h2>
+
+<h3 class="author"><a name="AEN6">Gerard Beekmans</a></h3>
+
+<p class="author">Перевод: Денис Каледин, Ник Фролов, Алекс Казанков.</p>
+
+<p class="copyright"><a href="legalnotice.html">Copyright</a> ©
+1999-2002 by Gerard Beekmans<a name="AEN24"></a></p>
+
+<p><font face="Times New Roman, Times, serif">Эта книга
+описывает процесс создания Linux
+системы с нуля, используя лишь
+исходные коды необходимого
+программного обеспечения.</font></p>
+<hr /="">
+<h1><font face="Times New Roman, Times, serif">Посвящение</font></h1>
+
+<p><font face="Times New Roman, Times, serif">Эта книга
+посвящается моей любящей и
+заботливой жене <i>Беверли Бикманс.</i></font></p>
+
+<dl><dt><b>Оглавление</b></dt><dt><a href="preface/preface.html">Пролог</a></dt><dd><dl><dt><a href="preface/foreword.html">Предисловие</a></dt><dt><a href="preface/whoread.html">Кому эта
+                книга будет интересна</a></dt><dt><a href="preface/whonotread.html">Кому эта
+                книга будет неинтересна</a></dt><dt><a href="preface/organization.html">Организация</a></dt><dd><dl><dt><a href="preface/organization.html#pre-organ1">Часть
+                        1 - Вступление</a></dt><dt><a href="preface/organization.html#pre-organ2">Часть
+                        2 - Установка базовой
+                        системы LFS</a></dt><dt><a href="preface/organization.html#pre-organ3">Часть
+                        3 - Приложения</a></dt></dl>
+            </dd></dl>
+    </dd><dt>I. <a href="part1.html">Часть 1 -
+        Вступление</a></dt><dd><dl><dt>1. <a href="chapter01/chapter01.html">Вступление</a></dt><dd><dl><dt><a href="chapter01/acknowledgements.html">Благодарности</a></dt><dt><a href="chapter01/how.html">Как мы
+                        будем работать</a></dt><dt><a href="chapter01/conventions.html">Условные обозначения,используемые в книге</a></dt><dt><a href="chapter01/version.html">Версия книги</a></dt><dt><a href="chapter01/mirrors.html">Зеркала</a></dt><dt><a href="chapter01/changelog.html">Changelog</a></dt><dt><a href="chapter01/maillists.html">Списки рассылки и архивы</a></dt><dt><a href="chapter01/newsserver.html">Сервер новостей</a></dt><dt><a href="chapter01/faq.html">FAQ</a></dt><dt><a href="chapter01/contactinfo.html">Как с нами связаться</a></dt></dl>
+            </dd><dt>2. <a href="chapter02/chapter02.html">Важная информация</a></dt><dd><dl><dt><a href="chapter02/aboutlfs.html">Про $LFS</a></dt><dt><a href="chapter02/aboutsbus.html">Про
+                        SBUs</a></dt><dt><a href="chapter02/download.html">Где хранить загруженные программы</a></dt><dt><a href="chapter02/install.html">Как инсталлировать программы</a></dt><dt><a href="chapter02/platform.html">Поддерживаемые платформы</a></dt><dt><a href="chapter02/askforhelp.html">Как попросить по помощи</a></dt></dl>
+            </dd></dl>
+    </dd><dt>II. <a href="part2.html">Часть II - Установка системы LFS</a></dt><dd><dl><dt>3. <a href="chapter03/chapter03.html">Необходимые пакеты</a></dt><dd><dl><dt><a href="chapter03/introduction.html">Вступление</a></dt><dt><a href="chapter03/packages.html">Необходимые пакеты</a></dt></dl>
+            </dd><dt>4. <a href="chapter04/chapter04.html">Готовим новый раздел</a></dt><dd><dl><dt><a href="chapter04/introduction.html">Вступление</a></dt><dt><a href="chapter04/creatingpart.html">Создаем новый раздел</a></dt><dt><a href="chapter04/creatingfs.html">Создаем файловую систему на новом разделе</a></dt><dt><a href="chapter04/mounting.html">Монтируем новый раздел</a></dt></dl>
+            </dd><dt>5. <a href="chapter05/chapter05.html">Подготовка системы LFS</a></dt><dd><dl><dt><a href="chapter05/introduction.html">Вступление</a></dt><dt><a href="chapter05/whystatic.html">Почему мы используем статические ссылки?</a></dt><dt><a href="chapter05/creatingstaticdir.html">Создаем директорию $LFS/static</a></dt><dt><a href="chapter05/installasuser.html">Установка всех компонентов в режиме непривилегированного пользователя</a></dt><dt><a href="chapter05/bash.html">Установка
+                        Bash-2.05a</a></dt><dt><a href="chapter05/binutils.html">Установка Binutils-2.13</a></dt><dt><a href="chapter05/bzip2.html">Установка Bzip2-1.0.2</a></dt><dt><a href="chapter05/diffutils.html">Установка Diffutils-2.8.1</a></dt><dt><a href="chapter05/fileutils.html">Установка Fileutils-4.1</a></dt><dt><a href="chapter05/findutils.html">Установка Findutils-4.1</a></dt><dt><a href="chapter05/gawk.html">Установка Gawk-3.1.1</a></dt><dt><a href="chapter05/gcc.html">Установка GCC-3.2</a></dt><dt><a href="chapter05/grep.html">Установка Grep-2.5</a></dt><dt><a href="chapter05/gzip.html">Установка Gzip-1.2.4a</a></dt><dt><a href="chapter05/make.html">Установка Make-3.79.1</a></dt><dt><a href="chapter05/patch.html">Установка Patch-2.5.4</a></dt><dt><a href="chapter05/sed.html">Установка Sed-3.02</a></dt><dt><a href="chapter05/sh-utils.html">Установка Sh-utils-2.0</a></dt><dt><a href="chapter05/tar.html">Установка Tar-1.13</a></dt><dt><a href="chapter05/texinfo.html">Установка Texinfo-4.2</a></dt><dt><a href="chapter05/textutils.html">Установка Textutils-2.1</a></dt><dt><a href="chapter05/util-linux.html">Установка Util-linux-2.11u</a></dt></dl>
+            </dd><dt>6. <a href="chapter06/chapter06.html">Установка основных компонентов системы</a></dt><dd><dl><dt><a href="chapter06/introduction.html">Introduction</a></dt><dt><a href="chapter06/aboutdebug.html">About
+                        debugging symbols</a></dt><dt><a href="chapter06/chroot.html">Entering
+                        the chroot environment</a></dt><dt><a href="chapter06/changingowner.html">Changing
+                        ownership</a></dt><dt><a href="chapter06/creatingdirs.html">Creating
+                        directories</a></dt><dt><a href="chapter06/proc.html">Mounting
+                        the proc file system</a></dt><dt><a href="chapter06/mtablink.html">Creating
+                        the mtab symlink</a></dt><dt><a href="chapter06/createfiles.html">Creating
+                        the bash and sh symlinks</a></dt><dt><a href="chapter06/pwdgroup.html">Creating
+                        the passwd and group files</a></dt><dt><a href="chapter06/makedev.html">Creating
+                        devices (Makedev-1.7)</a></dt><dt><a href="chapter06/kernel.html">Установка Linux-2.4.19</a></dt><dt><a href="chapter06/man-pages.html">Установка Man-pages-1.52</a></dt><dt><a href="chapter06/glibc.html">Установка Glibc-2.2.5</a></dt><dt><a href="chapter06/gcc.html">Установка GCC-3.2</a></dt><dt><a href="chapter06/zlib.html">Установка Zlib-1.1.4</a></dt><dt><a href="chapter06/findutils.html">Установка Findutils-4.1</a></dt><dt><a href="chapter06/gawk.html">Установка Gawk-3.1.1</a></dt><dt><a href="chapter06/ncurses.html">Установка Ncurses-5.2</a></dt><dt><a href="chapter06/vim.html">Установка Vim-6.1</a></dt><dt><a href="chapter06/bison.html">Установка Bison-1.35</a></dt><dt><a href="chapter06/less.html">Установка Less-374</a></dt><dt><a href="chapter06/groff.html">Установка Groff-1.18</a></dt><dt><a href="chapter06/textutils.html">Установка Textutils-2.1</a></dt><dt><a href="chapter06/sed.html">Установка Sed-3.02</a></dt><dt><a href="chapter06/flex.html">Установка Flex-2.5.4a</a></dt><dt><a href="chapter06/binutils.html">Установка Binutils-2.13</a></dt><dt><a href="chapter06/fileutils.html">Установка Fileutils-4.1</a></dt><dt><a href="chapter06/sh-utils.html">Установка Sh-utils-2.0</a></dt><dt><a href="chapter06/gettext.html">Установка Gettext-0.11.5</a></dt><dt><a href="chapter06/net-tools.html">Установка Net-tools-1.60</a></dt><dt><a href="chapter06/perl.html">Установка Perl-5.8.0</a></dt><dt><a href="chapter06/linuxthreadsmanpages.html">Установка Linux threads-2.2.5 man pages</a></dt><dt><a href="chapter06/m4.html">Установка M4-1.4</a></dt><dt><a href="chapter06/texinfo.html">Установка Texinfo-4.2</a></dt><dt><a href="chapter06/autoconf.html">Установка Autoconf-2.53</a></dt><dt><a href="chapter06/automake.html">Установка Automake-1.6.3</a></dt><dt><a href="chapter06/bash.html">Установка Bash-2.05a</a></dt><dt><a href="chapter06/file.html">Установка File-3.39</a></dt><dt><a href="chapter06/libtool.html">Установка Libtool-1.4.2</a></dt><dt><a href="chapter06/bin86.html">Установка Bin86-0.16.3</a></dt><dt><a href="chapter06/bzip2.html">Установка Bzip2-1.0.2</a></dt><dt><a href="chapter06/ed.html">Установка Ed-0.2</a></dt><dt><a href="chapter06/kbd.html">Установка Kbd-1.06</a></dt><dt><a href="chapter06/diffutils.html">Установка Diffutils-2.8.1</a></dt><dt><a href="chapter06/e2fsprogs.html">Установка E2fsprogs-1.27</a></dt><dt><a href="chapter06/grep.html">Установка Grep-2.5</a></dt><dt><a href="chapter06/gzip.html">Установка Gzip-1.2.4a</a></dt><dt><a href="chapter06/man.html">Установка Man-1.5k</a></dt><dt><a href="chapter06/lilo.html">Установка Lilo-22.2</a></dt><dt><a href="chapter06/make.html">Установка Make-3.79.1</a></dt><dt><a href="chapter06/modutils.html">Установка Modutils-2.4.19</a></dt><dt><a href="chapter06/netkit-base.html">Установка Netkit-base-0.17</a></dt><dt><a href="chapter06/patch.html">Установка Patch-2.5.4</a></dt><dt><a href="chapter06/procinfo.html">Установка Procinfo-18</a></dt><dt><a href="chapter06/procps.html">Установка Procps-2.0.7</a></dt><dt><a href="chapter06/psmisc.html">Установка Psmisc-21</a></dt><dt><a href="chapter06/shadow.html">Установка Shadow-4.0.3</a></dt><dt><a href="chapter06/sysklogd.html">Установка Sysklogd-1.4.1</a></dt><dt><a href="chapter06/sysvinit.html">Установка Sysvinit-2.84</a></dt><dt><a href="chapter06/tar.html">Установка Tar-1.13</a></dt><dt><a href="chapter06/util-linux.html">Установка Util-linux-2.11u</a></dt><dt><a href="chapter06/bootscripts.html">Установка LFS-Bootscripts-1.10</a></dt><dt><a href="chapter06/configure.html">Конфигурация основных  программ</a></dt></dl>
+            </dd><dt>7. <a href="chapter07/chapter07.html">Конфигурация загрузочных скриптов</a></dt><dd><dl><dt><a href="chapter07/introduction.html">Введение</a></dt><dt><a href="chapter07/usage.html">Как проходит процесс загрузки с этими скриптами?</a></dt><dt><a href="chapter07/setclock.html">Конфигурация  скрипта  setclock</a></dt><dt><a href="chapter07/loadkeys.html">Нужен ли скрипт loadkeys?</a></dt><dt><a href="chapter07/sysklogd.html">Насторйка sysklogd</a></dt><dt><a href="chapter07/hostname.html">Настройка сети localnet</a></dt><dt><a href="chapter07/hosts.html">Создание файла /etc/hosts</a></dt><dt><a href="chapter07/network.html">Настройка дополнительных  сетевых скриптов</a></dt></dl>
+            </dd><dt>8. <a href="chapter08/chapter08.html">Делаем систему
+                LFS загрузочной</a></dt><dd><dl><dt><a href="chapter08/introduction.html">Введение</a></dt><dt><a href="chapter08/fstab.html">Cоздание файла /etc/fstab</a></dt><dt><a href="chapter08/kernel.html">Установка Linux-2.4.19</a></dt><dt><a href="chapter08/lilo.html">Делаем систему LFS звгрузочной</a></dt></dl>
+            </dd><dt>9. <a href="chapter09/chapter09.html">Конец</a></dt><dd><dl><dt><a href="chapter09/theend.html">Заключение</a></dt><dt><a href="chapter09/getcounted.html">Впиши себя в пользователи LFS</a></dt><dt><a href="chapter09/reboot.html">Перезагрузка системы</a></dt></dl>
+            </dd></dl>
+    </dd><dt>III. <a href="part3.html">Часть III - Приложения</a></dt><dd><dl><dt>A. <a href="appendixa/appendixa.html">Описания пакетов и зависимостей</a></dt><dd><dl><dt><a href="appendixa/introduction.html">Введение</a></dt><dt><a href="appendixa/autoconf.html">Autoconf</a></dt><dt><a href="appendixa/automake.html">Automake</a></dt><dt><a href="appendixa/bash.html">Bash</a></dt><dt><a href="appendixa/bin86.html">Bin86</a></dt><dt><a href="appendixa/binutils.html">Binutils</a></dt><dt><a href="appendixa/bison.html">Bison</a></dt><dt><a href="appendixa/bzip2.html">Bzip2</a></dt><dt><a href="appendixa/diffutils.html">Diffutils</a></dt><dt><a href="appendixa/e2fsprogs.html">E2fsprogs</a></dt><dt><a href="appendixa/ed.html">Ed</a></dt><dt><a href="appendixa/file.html">File</a></dt><dt><a href="appendixa/fileutils.html">Fileutils</a></dt><dt><a href="appendixa/findutils.html">Findutils</a></dt><dt><a href="appendixa/flex.html">Flex</a></dt><dt><a href="appendixa/gawk.html">Gawk</a></dt><dt><a href="appendixa/gcc.html">GCC</a></dt><dt><a href="appendixa/gettext.html">Gettext</a></dt><dt><a href="appendixa/glibc.html">Glibc</a></dt><dt><a href="appendixa/grep.html">Grep</a></dt><dt><a href="appendixa/groff.html">Groff</a></dt><dt><a href="appendixa/gzip.html">Gzip</a></dt><dt><a href="appendixa/kbd.html">Kbd</a></dt><dt><a href="appendixa/less.html">Less</a></dt><dt><a href="appendixa/bootscripts.html">LFS-Bootscripts</a></dt><dt><a href="appendixa/libtool.html">Libtool</a></dt><dt><a href="appendixa/lilo.html">Lilo</a></dt><dt><a href="appendixa/kernel.html">Linux
+                        (ядро)</a></dt><dt><a href="appendixa/m4.html">M4</a></dt><dt><a href="appendixa/make.html">Make</a></dt><dt><a href="appendixa/makedev.html">MAKEDEV</a></dt><dt><a href="appendixa/man.html">Man</a></dt><dt><a href="appendixa/man-pages.html">Man-pages</a></dt><dt><a href="appendixa/modutils.html">Modutils</a></dt><dt><a href="appendixa/ncurses.html">Ncurses</a></dt><dt><a href="appendixa/netkit-base.html">Netkit-base</a></dt><dt><a href="appendixa/net-tools.html">Net-tools</a></dt><dt><a href="appendixa/patch.html">Patch</a></dt><dt><a href="appendixa/perl.html">Perl</a></dt><dt><a href="appendixa/procinfo.html">Procinfo</a></dt><dt><a href="appendixa/procps.html">Procps</a></dt><dt><a href="appendixa/psmisc.html">Psmisc</a></dt><dt><a href="appendixa/sed.html">Sed</a></dt><dt><a href="appendixa/shadow.html">Shadow</a></dt><dt><a href="appendixa/sh-utils.html">Sh-utils</a></dt><dt><a href="appendixa/sysklogd.html">Sysklogd</a></dt><dt><a href="appendixa/sysvinit.html">Sysvinit</a></dt><dt><a href="appendixa/tar.html">Tar</a></dt><dt><a href="appendixa/texinfo.html">Texinfo</a></dt><dt><a href="appendixa/textutils.html">Textutils</a></dt><dt><a href="appendixa/util-linux.html">Util-linux</a></dt><dt><a href="appendixa/vim.html">Vim</a></dt><dt><a href="appendixa/zlib.html">Zlib</a></dt></dl>
+            </dd><dt>B. <a href="appendixb/appendixb.html">Ресурсы</a></dt><dd><dl><dt><a href="appendixb/introduction.html">Вступление</a></dt><dt><a href="appendixb/books.html">Книги</a></dt><dt><a href="appendixb/howtoguides.html">HOWTO и руководства</a></dt><dt><a href="appendixb/other.html">Прочее</a></dt></dl>
+            </dd></dl>
+    </dd></dl>
+
+<hr align="Left" /="">
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%" summary="Footer navigation table">
+    <tbody><tr>
+        <td valign="Top" width="33%"> </td>
+        <td align="Center" valign="Top" width="34%"> </td>
+        <td align="Right" valign="Top" width="33%"><a href="preface/preface.html" accesskey="N">Вперед</a></td>
+    </tr>
+    <tr>
+        <td valign="Top" width="33%"> </td>
+        <td align="Center" valign="Top" width="34%"> </td>
+        <td align="Right" valign="Top" width="33%">Пролог</td>
+    </tr>
+</tbody></table>
+</body></html>

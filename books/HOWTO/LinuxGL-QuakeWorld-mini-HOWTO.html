@@ -1,0 +1,1086 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>LinuxGL (GLX) QuakeWorld Client compile mini-HOWTO</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.57"></HEAD
+><BODY
+CLASS="ARTICLE"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="ARTICLE"
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="TITLE"
+><A
+NAME="AEN2"
+>LinuxGL (GLX) QuakeWorld Client compile mini-HOWTO</A
+></H1
+><DIV
+CLASS="AUTHORGROUP"
+><A
+NAME="AEN5"
+></A
+><H3
+CLASS="AUTHOR"
+><A
+NAME="AEN6"
+>Robert B Easter</A
+></H3
+><DIV
+CLASS="AFFILIATION"
+><DIV
+CLASS="ADDRESS"
+><P
+CLASS="ADDRESS"
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;reaster@comptechnews.com<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</P
+></DIV
+></DIV
+><H3
+CLASS="CORPAUTHOR"
+>    Перевод: <A
+HREF="mailto:ave@asp-linux.com"
+TARGET="_top"
+>Александр Ермолаев</A
+>,
+    <A
+HREF="http://www.asplinux.com"
+TARGET="_top"
+>SWSoft Pte Ltd.</A
+>
+   </H3
+></DIV
+><DIV
+CLASS="REVHISTORY"
+><TABLE
+WIDTH="100%"
+BORDER="0"
+><TR
+><TH
+ALIGN="LEFT"
+VALIGN="TOP"
+COLSPAN="3"
+><B
+>Revision History</B
+></TH
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+>Revision v1.1</TD
+><TD
+ALIGN="LEFT"
+>Aug 28, 2000</TD
+><TD
+ALIGN="LEFT"
+>Revised by: rbe</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+COLSPAN="3"
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+><DIV
+CLASS="ABSTRACT"
+><A
+NAME="AEN21"
+></A
+><P
+></P
+><P
+>      Этот miniHOWTO описывает способ, как собрать клиент
+      OpenGL/GLX Linux QuakeWorld, работающий на системе,
+      которая поддерживает аппаратное ускорение.
+      </P
+><P
+></P
+></DIV
+></DIV
+><HR></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Table of Contents</B
+></DT
+><DT
+>1. <A
+HREF="LinuxGL-QuakeWorld-mini-HOWTO.html#INTRO"
+>Введение</A
+></DT
+><DD
+><DL
+><DT
+>1.1. <A
+HREF="LinuxGL-QuakeWorld-mini-HOWTO.html#AEN27"
+>Новые версии этого документа</A
+></DT
+><DT
+>1.2. <A
+HREF="LinuxGL-QuakeWorld-mini-HOWTO.html#COPYRIGHT"
+>Copyright Information</A
+></DT
+><DT
+>1.3. <A
+HREF="LinuxGL-QuakeWorld-mini-HOWTO.html#AEN43"
+>Авторские права</A
+></DT
+><DT
+>1.4. <A
+HREF="LinuxGL-QuakeWorld-mini-HOWTO.html#DISCLAIMER"
+>Ответственность</A
+></DT
+></DL
+></DD
+><DT
+>2. <A
+HREF="LinuxGL-QuakeWorld-mini-HOWTO.html#PROCEDURE"
+>Процедура</A
+></DT
+></DL
+></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="INTRO"
+>1. Введение</A
+></H1
+><P
+>      Этот miniHOWTO описывает, как собрать клиент
+      OpenGL/GLX Linux QuakeWorld, работающий на системе,
+      которая поддерживает аппаратное ускорение.</P
+><P
+>      Эта способ был разработан, пока осуществлялись попытки получить glqwcl.glx,
+      работающего на системе с Linux Slackware 7.0 (2.2.16), XFree86
+      4.0.1 с видеокартой GeForce 256 DDR и библиотекой 0.9-4 MesaGL от
+      NVIDIA (libGL.so.1.0.4).</P
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN27"
+>1.1. Новые версии этого документа</A
+></H2
+><P
+>    Последнюю версию этого документа можно найти на странице:
+   </P
+><P
+>    <A
+HREF="http://www.comptechnews.com/~reaster/linux-glxqw.txt"
+TARGET="_top"
+>http://www.comptechnews.com/~reaster/linux-glxqw.txt</A
+>
+   </P
+><P
+>    Если вы хотите компилировать QuakeWorld, как описано в процедуре (ниже),
+    тогда вам пидется скачать исходные текстыпо адресу:
+   </P
+><P
+>    <A
+HREF="http://www.comptechnews.com/~reaster/index.html#games"
+TARGET="_top"
+>http://www.comptechnews.com/~reaster/index.html#games</A
+>
+   </P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="COPYRIGHT"
+>1.2. Copyright Information</A
+></H2
+><P
+>    This document is copyrighted (c) 2000 Robert B. Easter and is
+    distributed under the terms of the Linux Documentation Project
+    (LDP) license, stated below.
+   </P
+><P
+>    Unless otherwise stated, Linux HOWTO documents are
+    copyrighted by their respective authors. Linux HOWTO documents may
+    be reproduced and distributed in whole or in part, in any medium
+    physical or electronic, as long as this copyright notice is
+    retained on all copies. Commercial redistribution is allowed and
+    encouraged; however, the author would like to be notified of any
+    such distributions.
+   </P
+><P
+>    All translations, derivative works, or aggregate works
+    incorporating any Linux HOWTO documents must be covered under this
+    copyright notice. That is, you may not produce a derivative work
+    from a HOWTO and impose additional restrictions on its
+    distribution. Exceptions to these rules may be granted under
+    certain conditions; please contact the Linux HOWTO coordinator at
+    the address given below.
+   </P
+><P
+>    In short, we wish to promote dissemination of this
+    information through as many channels as possible. However, we do
+    wish to retain copyright on the HOWTO documents, and would like to
+    be notified of any plans to redistribute the HOWTOs.
+   </P
+><P
+>    If you have any questions, please contact
+    <TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:linux-howto@metalab.unc.edu"
+>linux-howto@metalab.unc.edu</A
+>&#62;</TT
+>
+   </P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN43"
+>1.3. Авторские права</A
+></H2
+><P
+>  Авторские права на русский перевод этого текста принадлежат &copy; 2000 SWSoft Pte Ltd.
+  Все права зарезервированы.
+  </P
+><P
+>  Этот документ является частью проекта Linux HOWTO.
+  </P
+><P
+>  Авторские права на документы Linux HOWTO принадлежат их авторам, если явно
+  не указано иное. Документы Linux HOWTO, а также их переводы, могут
+  быть воспроизведены и распространены полностью или частично на любом
+  носителе физическом или электронном, при условии сохранения этой заметки об
+  авторских правах на всех копиях. Коммерческое распространение разрешается и
+  поощряется; но так или иначе автор текста и автор перевода желали бы знать о
+  таких дистрибутивах.
+  </P
+><P
+>  Все переводы и производные работы, выполненные по документам Linux HOWTO
+  должны сопровождаться этой заметкой об авторских правах. Это делается в
+  целях предотвращения случаев наложения дополнительных ограничений на
+  распространение документов HOWTO. Исключения могут составить случаи
+  получения специального разрешения у координатора Linux HOWTO с которым
+  можно связаться по адресу приведенному ниже.
+  </P
+><P
+>  Мы бы хотели распространить эту информацию по всем возможным каналам. Но
+  при этом сохранить авторские права и быть уведомленными о всех планах
+  распространения HOWTO. Если у вас возникли вопросы, пожалуйста, обратитесь
+  к координатору проекта Linux HOWTO по электронной почте:
+  <TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:linux-howto@metalab.unc.edu"
+>linux-howto@metalab.unc.edu</A
+>&#62;</TT
+>, или к координатору русского
+  перевода Linux HOWTO компании SWSoft Pte Ltd. по адресу
+  <TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:linux-howto@asplinux.ru"
+>linux-howto@asplinux.ru</A
+>&#62;</TT
+>
+  </P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="DISCLAIMER"
+>1.4. Ответственность</A
+></H2
+><P
+>    Я не несу никакой ответственности за содержание этого документа.
+    Используйте идей, примеры и другое содержимое документа на свой страх
+    и риск.
+   </P
+><P
+>    Все авторские права принадлежат их владельцам, если нет специального
+    уточнения.
+   </P
+><P
+>    Упоминание специфических продуктов или торговых марок, которое имеет
+    место в этом документе, не должно расцениваться как их подтверждение их
+    качества.
+   </P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="PROCEDURE"
+>2. Процедура</A
+></H1
+><P
+>Бинарный файл glqwcl.glx доступен по адресу:
+<A
+HREF="http://www.quakeworld.net/"
+TARGET="_top"
+>www.quakeworld.net</A
+>
+в пакете <TT
+CLASS="FILENAME"
+>qwcl-2.30-glibc-i386-unknown-linux2.0.tar.gz</TT
+>.
+Он не откомпилирован должным образом и при запуске ищет библиотеку
+<TT
+CLASS="FILENAME"
+>libglide2x.so</TT
+>.</P
+><P
+>Клиенты QuakeWorld доступны в нескольких разновидностях:</P
+><P
+>    <P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>OpenGL:</DT
+><DD
+><P
+>                glqwcl (только для 3dfx?)
+            </P
+><P
+>                glqwcl.glx (MesaGL/XFree4)
+            </P
+></DD
+><DT
+>Только с использованием программного ускорения:</DT
+><DD
+><P
+>                qwcl (svgalib)
+            </P
+><P
+>                qwcl.xl1 (x11/svgalib)
+            </P
+></DD
+></DL
+></DIV
+>
+    </P
+><P
+>   Повторю, что этот miniHOWTO описывает процесс получения
+   файла glqwcl.glx, для работы с XFree86 4.x DRI.</P
+><P
+><P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>        Загрузите исходные тексты Quake, q1source.zip, с FTP
+        <A
+HREF="ftp://ftp.idsoftware.com/idstuff/source/q1source.zip"
+TARGET="_top"
+>ftp://ftp.idsoftware.com/idstuff/source/q1source.zip</A
+>.
+        Этот архив содержит все версии Quake1/QuakeWorld.
+     </P
+><P
+>        После компиляции, вы должны получить версию:
+        <PRE
+CLASS="SCREEN"
+>&#13;        LinuxGL (0.98) QuakeWorld 2.40 (Aug 19, 2000)
+        </PRE
+>
+     </P
+><P
+>        Вам также необходимо загрузить исходные тексты библиотеки Mesa 3D с
+        узла
+        <A
+HREF="http://mesa3d.sourceforge.net/"
+TARGET="_top"
+>http://mesa3d.sourceforge.net/</A
+>.
+        Подойдет файл MesaLib-3.3.tar.gz.
+        <PRE
+CLASS="SCREEN"
+>&#13;        cd /usr/src
+        tar -xvzf MesaLib-3.3.tar.gz
+
+        <I
+CLASS="EMPHASIS"
+>Этим самым вы распакуете исходные тексты в каталог /usr/src/Mesa-3.3</I
+>
+        </PRE
+>
+     </P
+><P
+>        Сборка библиотеки mesa:
+        <PRE
+CLASS="SCREEN"
+>&#13;        cd /usr/src/Mesa-3.3
+        ./configure --prefix=/usr
+        make
+        </PRE
+>
+     </P
+><P
+>        В зависимости от вашей установки, Mesa может быть не установлена.
+        Если вы собираетесь установить Mesa, знайте, что Mesa будет установлена
+        поверх файлов libGL.*, которые уже есть в каталоге /usr/lib.
+        Те файлы libGL.* вероятно, были версиями, поддерживающие аппаратное
+        ускорение.
+        Установка Mesa перепишет подключаемые файлы glx в каталоге
+        /usr/X11R6/include/GL.
+        Однако, до того, как вы установите Mesa, сделайте резервную копию
+        файлов /usr/lib/libGL.* и /usr/X11R6/include/GL/glx*.h.
+        </P
+><P
+>        Чтобы установить библиотеку:
+        <PRE
+CLASS="SCREEN"
+>&#13;        make install
+        </PRE
+>
+     </P
+><P
+>        После того, как вы установите полный пакет Mesa, вам может
+        понадобиться переустановить файлы libGL для аппаратного ускорения
+        или восстановить их из резервной копии (как было предложено выше).
+        Вам также может понадобится восстановить подключаемые файлы glx.
+        Либо восстановите подключаемые файлы glx, либо восстановите их
+        из резервной копии (как было предложено выше), либо, если у вас
+        есть исходные тексты X, скопируйте эти файлы
+        из каталога исходных текстов: cp xc/include/GL/*.h /usr/X11R6/include/GL.
+     </P
+><P
+>        Устанавливая библиотеки Mesa, вы получите файлы libGLU*
+        и подключаемые файлы установленные на вашей системе.
+
+        XFree86 4.0.1 appeared to be lacking libGLU* and its include files.
+
+        GLU - это стандартная часть нормальной установки OpenGL, которая
+        отсутствует в XFree86 4 и может не работать со
+        специализированными драйверами OpenGL.
+     </P
+><P
+>        XFree86 4.0.1 включает только ядро Mesa 3.3, которое во время
+        разработки было/есть MesaGL.
+        Direct Rendering Infrastructure (DRI) XFree86 основано на коде Mesa.
+     </P
+><P
+>        Если вам посчастливилось иметь видеокарту Nvidia, то и вы можете
+        заинтерисоваться установкой драйверов Nvidia и выбором
+        библиотек OpenGL (GLU, glut, Qt, страницы руководства OpenGL),
+        поэтому посмотрите NVIDIA-OpenGL-Configuration miniHOWTO здесь:
+        </P
+><P
+>          <A
+HREF="http://www.comptechnews.com/~reaster/nvgl.txt"
+TARGET="_top"
+>http://www.comptechnews.com/~reaster/nvgl.txt</A
+>
+        </P
+><P
+>        Проверьте также на сайте LDP.
+     </P
+></LI
+><LI
+><P
+>        Сделайте каталог для хранения исходных текстов quake:
+        <PRE
+CLASS="SCREEN"
+>&#13;        mkdir q1src
+        cd q1src
+        unzip ../q1source.zip
+        cd QW
+        cp Makefile.Linux Makefile
+        </PRE
+>
+     </P
+></LI
+><LI
+><P
+>        Отредактируйте Makefile:
+    </P
+><P
+>    <P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>Строка 30:</DT
+><DD
+><P
+>                MAINDIR=/home/&lt;you&gt;/q1src (куда вы распакуете исходные тексты)
+        </P
+></DD
+><DT
+>Строка 37:</DT
+><DD
+><P
+>                MESA_DIR=/usr/src/Mesa-3.3
+                или то, куда вы положите исходный код Mesa
+        </P
+></DD
+><DT
+>Строки 43 и 46:</DT
+><DD
+><P
+>           Вам может понадобится удалить все оптимизирующие
+           флаги компилятора, чтобы получить стабильный бинарный код.
+           Вы можете поэкспериментировать с ними.
+           Например, творились странные вещи, когда открывались
+           PAK-файлы с включенной оптимизацией: программа
+           говорила, что имеются миллионы файлов в id1/pak0.pak!
+         </P
+><P
+>                Я удалил все флаги RELEASE_CFLAGS:
+                <PRE
+CLASS="SCREEN"
+>&#13;                -O6
+                -ffast-math
+                -funroll-loops
+                -fomit-frame-pointer
+                -fexpensive-optimizations
+                -malign-loops=2
+                -malign-jumps=2
+                -malign-functions=2
+                </PRE
+>
+          </P
+><P
+>                Однако, далее эксперименты показали, что по крайней мере
+                при двух включенных флагах, все было в порядке:
+                <PRE
+CLASS="SCREEN"
+>&#13;                -ffast-math
+                -fexpensive-optimizations
+                </PRE
+>
+          </P
+><P
+>                Действительно неприятный флаг кажется - -O6.
+                Я пробовал установить -O1, но результат был тот же.
+                Флаги -malign* также не были нужны.
+          </P
+></DD
+><DT
+>Строка 50:</DT
+><DD
+><P
+>                Добавьте: -DGL_EXT_SHARED
+                </P
+><P
+>                        Это #define найдено внутри файла
+                        gl_vidlinuxglx.c, где оно условно компилирует
+                        некоторый 3DFx/glide-специфичный код
+                        #ifndef!  Без этого, компилятор будет
+                        выдавать ошибку: неразрешенные внешние функции,
+                        связанная с glide/3dfx.
+                </P
+><P
+>                Удалите: -I/usr/include/glide
+                </P
+><P
+>                Измените:
+                -L/usr/local/src/Mesa-3.0/lib на то, куда вы положили
+                исходный код Mesa: -L/usr/src/Mesa-3.3/lib
+                </P
+><P
+>                Удалите любые ссылки на glide и исправьте путь к исходным кодам
+                Mesa, везде, где они еще упомянуты.
+                </P
+></DD
+><DT
+>Строка 73:</DT
+><DD
+><P
+>                Уберите файлы, которые вы не хотите собирать.
+                Некоторые из них не будут собраны?
+                Оставте только glqwcl.glx.
+        </P
+></DD
+></DL
+></DIV
+>
+   </P
+><P
+>        Убедитесь, что у вас есть символьная ссылка /usr/X11 на
+        /usr/X11R6. При установке X, вы можете забыть сделать
+        это, некоторые программы и исходные тексты
+        ищут X именно там:
+        <PRE
+CLASS="SCREEN"
+>&#13;        cd /usr
+        ln -s X11R6 X11
+        </PRE
+>
+   </P
+><P
+>        Сохраните Makefile.
+   </P
+></LI
+><LI
+><P
+>        Исправление проблемы скрывания мыши.
+    </P
+><P
+>        Код quake, как он есть, не скрывает мышь, когда вы ее используете.
+        Указатель остается видимым в центре экрана, что очень раздражает.
+        Я нашел следующее простое исправление:
+        <A
+HREF="http://lists.openprojects.net/pipermail/glx-dev/1999-October/000994.html"
+TARGET="_top"
+>http://lists.openprojects.net/pipermail/glx-dev/1999-October/000994.html</A
+>
+
+        <PRE
+CLASS="SCREEN"
+>&#13;        cd q1src/QW/client
+        отредактируйте файл: gl_vidlinuxglx.c
+        </PRE
+>
+     </P
+><P
+>        В начале функции, называемой install_grabs(void) (Строка 234),
+        добавьте следующий код:
+        <PRE
+CLASS="SCREEN"
+>&#13;        static void install_grabs(void)
+        {
+                /* переменные для создания пустого курсора */
+                Pixmap blank;
+                XColor dummy;
+                char data[1] = {0};
+                Cursor cursor;
+
+                /* делаем пустой курсор */
+                blank = XCreateBitmapFromData (dpy, win, data, 1, 1);
+                if(blank == None) fprintf(stderr, "error: out of memory.\n");
+                cursor = XCreatePixmapCursor(dpy, blank, blank, &amp;dummy, &amp;dummy, 0, 0);
+                XFreePixmap (dpy, blank);
+                Con_Printf("Cursor blanked.\n");
+        </PRE
+>
+     </P
+><P
+>        8-й параметр в функции XGrabPointer должен быть изменен
+        с "None" на "cursor", чтобы использовать пустой курсор:
+        <PRE
+CLASS="SCREEN"
+>&#13;        XGrabPointer(dpy, win,
+                         True,
+                         0,
+                         GrabModeAsync, GrabModeAsync,
+                         win,
+                         cursor,
+                         CurrentTime);
+        </PRE
+>
+        (см: man XGrabPointer)
+     </P
+><P
+>        Это исправление может работать и для других клиентов, если вы сделаете
+        подобные исправления в соответствующем файле *vid*.c.
+        Оно вызывает утечку памяти, поскольку здесь
+        каждый раз происходит выделение памяти для другого объекта (Cursor)
+        и не вызывается функция XFreeCursor(), но это, вероятно не проблема,
+        т.к. я не думаю, что курсор размером 1x1 использует много памяти.
+        Если вы хотите, вы можете использовать следующий патч
+        <TT
+CLASS="FILENAME"
+>q1src/QW/client/gl_vidlinuxglx.c</TT
+>
+        (<B
+CLASS="COMMAND"
+>patch gl_vidlinuxglx.c patchfile</B
+>).
+        Только "вырежьте" содержимое кода между
+        началом/концом приведенного ниже patchfile и
+        "вставьте" его в файл patchfile (можете использовать другое имя).
+        Сохраните patchfile в каталоге <TT
+CLASS="FILENAME"
+>q1src/QW/client</TT
+>,
+        где есть gl_vidlinuxglx.c. Затем запустите команду:
+
+        <PRE
+CLASS="SCREEN"
+>&#13;        <B
+CLASS="COMMAND"
+>patch gl_vidlinuxglx.c patchfile</B
+>
+        </PRE
+>
+     </P
+><P
+>        Этот патч сделает gl_vidlinuxglx.c таким, чтобы не было никаких
+        утечек памяти. Вы можете загрузить этот патч:
+        <A
+HREF="http://www.comptechnews.com/~reaster/gl_vidlinuxglx.c.patch"
+TARGET="_top"
+>http://www.comptechnews.com/~reaster/gl_vidlinuxglx.c.patch</A
+>.
+
+        <PRE
+CLASS="SCREEN"
+>&#13;*************************** начало patchfile ************************************
+*** q1src-p/QW/client/gl_vidlinuxglx.c  Tue Dec 21 18:45:54 1999
+--- gl_vidlinuxglx.c    Sat Aug 19 20:47:42 2000
+***************
+*** 1,22 ****
+! /*
+! Copyright (C) 1996-1997 Id Software, Inc.
+!
+! This program is free software; you can redistribute it and/or
+! modify it under the terms of the GNU General Public License
+! as published by the Free Software Foundation; either version 2
+! of the License, or (at your option) any later version.
+!
+! This program is distributed in the hope that it will be useful,
+! but WITHOUT ANY WARRANTY; without even the implied warranty of
+! MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+!
+! See the GNU General Public License for more details.
+!
+! You should have received a copy of the GNU General Public License
+! along with this program; if not, write to the Free Software
+! Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+!
+! */
+  #include &lt;termios.h&gt;
+  #include &lt;sys/ioctl.h&gt;
+  #include &lt;sys/stat.h&gt;
+--- 1,22 ----
+! /*
+! Copyright (C) 1996-1997 Id Software, Inc.
+!
+! This program is free software; you can redistribute it and/or
+! modify it under the terms of the GNU General Public License
+! as published by the Free Software Foundation; either version 2
+! of the License, or (at your option) any later version.
+!
+! This program is distributed in the hope that it will be useful,
+! but WITHOUT ANY WARRANTY; without even the implied warranty of
+! MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+!
+! See the GNU General Public License for more details.
+!
+! You should have received a copy of the GNU General Public License
+! along with this program; if not, write to the Free Software
+! Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+!
+! */
+  #include &lt;termios.h&gt;
+  #include &lt;sys/ioctl.h&gt;
+  #include &lt;sys/stat.h&gt;
+***************
+*** 66,71 ****
+--- 66,74 ----
+
+  static int scr_width, scr_height;
+
++ /* blank cursor - gets initialized in VID_Init, freed in VID_Shutdown */
++ Cursor cursor;
++
+  /*-----------------------------------------------------------------------*/
+
+  //int         texture_mode = GL_NEAREST;
+***************
+*** 236,243 ****
+                                 0,
+                                 GrabModeAsync, GrabModeAsync,
+                                 win,
+!                                None,
+                                 CurrentTime);
+
+  #ifdef USE_DGA
+        XF86DGADirectVideo(dpy, DefaultScreen(dpy), XF86DGADirectMouse);
+--- 239,247 ----
+                                 0,
+                                 GrabModeAsync, GrabModeAsync,
+                                 win,
+!                                cursor,
+                                 CurrentTime);
++       Con_Printf("Cursor blanked.\n");
+
+  #ifdef USE_DGA
+        XF86DGADirectVideo(dpy, DefaultScreen(dpy), XF86DGADirectMouse);
+***************
+*** 350,355 ****
+--- 354,360 ----
+        if (!ctx)
+                return;
+
++       XFreeCursor(dpy, cursor);
+        glXDestroyContext(dpy, ctx);
+  }
+
+***************
+*** 602,608 ****
+        unsigned long mask;
+        Window root;
+        XVisualInfo *visinfo;
+!
+        S_Init();
+
+        Cvar_RegisterVariable (&amp;vid_mode);
+--- 607,617 ----
+        unsigned long mask;
+        Window root;
+        XVisualInfo *visinfo;
+!       /* vars to make blank cursor */
+!       Pixmap blank;
+!       XColor dummy;
+!       char data[1] = {0};
+!
+        S_Init();
+
+        Cvar_RegisterVariable (&amp;vid_mode);
+***************
+*** 701,706 ****
+--- 710,720 ----
+        Con_SafePrintf ("Video mode %dx%d initialized.\n", width, height);
+
+        vid.recalc_refdef = 1;                          // force a surface cache flush
++
++       blank = XCreateBitmapFromData(dpy, win, data, 1, 1);
++       if(blank == None) fprintf(stderr, "error: out of memory.\n");
++       cursor = XCreatePixmapCursor(dpy, blank, blank, &amp;dummy, &amp;dummy, 0, 0);
++       XFreePixmap(dpy, blank);
+  }
+
+  void Sys_SendKeyEvents(void)
+
+*************************** конец patchfile ************************************
+        </PRE
+>
+     </P
+><P
+>        Возможно удобно связать некоторые клавиши на консоли quake,
+        чтобы переключать режим захвата мыши:
+        <PRE
+CLASS="SCREEN"
+>&#13;        bind q "_windowed_mouse 0"
+        bind w "_windowed_mouse 1"
+        </PRE
+>
+     </P
+></LI
+><LI
+><P
+>        Сборка (наконец-то!)
+    </P
+><P
+>        Запустите "make build_release", без параметров, оттуда,
+        где расположен Makefile:
+        <PRE
+CLASS="SCREEN"
+>&#13;        cd q1src/QW
+        make build_release
+        </PRE
+>
+    </P
+><P
+>        Если все прошло хорошо, вы получите бинарный файл,
+        <TT
+CLASS="FILENAME"
+>glqwcl.glx</TT
+>, в каталоге
+        <TT
+CLASS="FILENAME"
+>releasei386-glibc</TT
+>.
+        Скопируйте файл glqwcl.glx в другой каталог (например "qw"),
+        и из каталога установки quake скопируйте
+        каталог id1 и все остальные каталоги игры (ctf, Fortress и т.п.)
+        в новый каталог quakeworld.
+     </P
+></LI
+><LI
+><P
+>        Запуск игры.
+        </P
+><P
+>        Вы можете попробовать запустить игру через XQF:
+        <B
+CLASS="COMMAND"
+>glqwcl.glx -width 1280 -height 1024</B
+>
+        (или любое другое разрешение, поддерживаемое вашей системой)
+     </P
+><P
+>        XQF - хорошая программа для поиска серверов QuakeWorld, и
+        вы найдете ее по адресу: <A
+HREF="http://www.linuxgames.com/xqf"
+TARGET="_top"
+>http://www.linuxgames.com/xqf</A
+>
+     </P
+><P
+>        Чтобы играть в полноэкранном режиме, требуется запустить
+        игру в таком же разрешении, какое установлено для вашего
+        рабочего стола.
+        Если у вас запущен рабочий стол, вы не можете скрыть все.
+        Надежный способ получить полноэкранный режим - запустить
+        XFree86 без рабочего стола или без window manager:
+    </P
+><P
+>    <P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+><B
+CLASS="COMMAND"
+>XFree86 &amp;</B
+></DT
+><DD
+><P
+>                Эта команда запускает X XFree86 без рабочего стола
+                или без window manager.
+                <TT
+CLASS="FILENAME"
+>/etc/X11/xinit/xinitrc</TT
+>,
+                обычным образом запускает ваш рабочий стол.
+       </P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>CTRL-ALT-'-'</B
+> и <B
+CLASS="COMMAND"
+>CTRL-ALT-'+'</B
+></DT
+><DD
+><P
+>                Переключают разрешение экрана.
+                Отредактируйте ваш <TT
+CLASS="FILENAME"
+>/etc/X11/XF86Config</TT
+>, если
+                вы не хотите иметь другие доступные разрешения.
+       </P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>CTRL-ALT-F1</B
+></DT
+><DD
+><P
+>                Переключают в текстовую консоль.
+       </P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>xterm -display localhost:0.0 &amp;</B
+></DT
+><DD
+><P
+>                Все X приложения понимают команду -display, чтобы
+                сообщить X, какой X отображать на экране.
+                Каждая X программа - клиент X сервера.
+                0.0 представляет экран по клавише
+                F7, 1.0 по F8, и т.д.
+                localhost - ваш компьютер. Это дает возможность
+                выполнять программу на одном компьютере, а отображать
+                данные на другом.
+                localhost может быть IP адрес или имя
+                того компьютера, с запущенным X, который принимает подключения,
+                от компьютера, где вы выполняете клиентскую программу.
+       </P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>ALT-F7</B
+></DT
+><DD
+><P
+>                Переключаемся обратно в X 0.0.
+                Используя xterm, запустите XQF
+                или другую программу, которую вы используете
+                для запуска Quake.
+       </P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>glqwcl.glx -width w -height h</B
+></DT
+><DD
+><P
+>                Для запуска quake сообщите вашей программе
+                параметры w и h (ширину и высоту) для
+                установки разрешения экрана.
+                Хорошее разрешение - 1024 на 768.
+       </P
+></DD
+></DL
+></DIV
+>
+   </P
+><P
+>        Световые эффекты.
+        </P
+><P
+>                В консоли вы можете попробовать включить или выключить
+                функцию flashblend и посмотреть, какие световые эффекты
+                вам предпочтительнее:
+        <PRE
+CLASS="SCREEN"
+>&#13;                gl_flashblend 0
+                gl_flashblend 1
+        </PRE
+>
+
+        </P
+><P
+>                Когда включено (1), вы заметите цветные световые эффекты
+                вокруг флагов и специальных элементов. В этом режиме, вы можете
+                не увидеть вспышки от оружия или свет на стене от ракет.
+                Точные эффекты могут зависеть от вашей установки OpenGL.
+        </P
+><P
+>                Когда выключено (0), не будет никакого ЦВЕТНОГО света, но все
+                световые эффекты работают. Вокруг флаго и специальных элементов,
+                виден свет вокруг поверхностей, а также вспышки
+                от оружия во время стрельбы и огонь от ракеты в полете.
+        </P
+></LI
+><LI
+><P
+>    <I
+CLASS="EMPHASIS"
+>НАСЛАЖДАЙТЕСЬ!</I
+>
+    </P
+></LI
+></OL
+></P
+></DIV
+></DIV
+></BODY
+></HTML
+>

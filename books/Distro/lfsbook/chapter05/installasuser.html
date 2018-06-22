@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>Install all software as an unprivileged user</title>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">  
+
+
+  <meta name="GENERATOR" content="Modular DocBook HTML Stylesheet Version 1.73">
+  <link rel="HOME" title="Linux From Scratch" href="http://www.linux.org.ru/books/Distro/lfsbook/chapter05/index.html">
+  <link rel="UP" title="Preparing the LFS system" href="chapter05.html">
+  <link rel="PREVIOUS" title="Creating the $LFS/static directory" href="creatingstaticdir.html">
+  <link rel="NEXT" title="Installing Bash-2.05a" href="bash.html"></head><body class="sect1" bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#840084" alink="#006000">
+<div class="NAVHEADER"><table summary="Header navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><th colspan="3" align="Center">Linux From Scratch: Версия 4.0</th></tr><tr><td width="10%" align="Left" valign="Bottom"><a href="creatingstaticdir.html" accesskey="P">Назад</a></td><td width="80%" align="Center" valign="Bottom">Глава 5. Подготовка системы LFS</td><td width="10%" align="Right" valign="Bottom"><a href="bash.html" accesskey="N">Вперед</a></td></tr></tbody></table><hr align="Left" width="100%"></div>
+<div class="sect1"><h1 class="sect1"><a name="ch05-installasuser">Установка всех компонентов в режиме непривилегированного
+пользователя</a></h1><p>Если
+при выполнении шагов, описанных в Главе 5, вы будете зарегистрированы в системе
+как root, есть вероятность, что некоторые файлы системы будут заменены файлами,
+которые будут скомпилированы в Главе 5. На это есть ряд причин, неопределенная
+переменная $LFS - одна из них. Замена файлов на вашей системе скорее всего
+приведет к возникновению всякого рода проблем, поэтому рекомендуется выполнять
+шаги Главы 5 от имени непривилегированного пользователя. Для чистоты эксперимента
+создадим новую учетную запись "lfs", которую будем использовать на стадии
+компиляции со статическими ссылками. Для добавления новой учетной записи,
+выполните следующие команды в режиме пользователя root:</p><p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>useradd -s /bin/bash -m lfs &amp;&amp;<br>passwd lfs</b></tt></pre></td></tr></tbody></table></p><p>Теперь скорректируем права на
+директорию <tt class="filename">$LFS/static, чтобы пользователь</tt> "lfs" имел к ней доступ на запись:</p><p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>chown -R lfs $LFS/static</b></tt></pre></td></tr></tbody></table></p><p>Теперь
+войдите в систему под учетной записью "lfs". Это можно сделать двумя способами:
+через новую виртуальную консоль или оконный менеджер, или командой <tt class="userinput"><b>su - lfs</b></tt>. После этого выполните
+следующие команды от имени пользователя "lfs" для создания благоприятной среды:</p><p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>cat &gt; ~/.bash_profile &lt;&lt; "EOF"<br>umask<br>022<br><br>LFS=/mnt/lfs<br>LC_ALL=POSIX<br>CC='gcc -s'<br>export LFS LC_ALL CC<br>EOF<br>source ~/.bash_profile</b></tt></pre></td></tr></tbody></table></p><p>Этот
+профиль устанавливает umask равным 022, чтобы созданные файлы и директории
+автоматически получали правильные права. Настоятельно рекомендуется использование
+этой установки на протяжении всей инсталляции LFS. Также были заданы переменные
+$LFS, $LC_ALL, и $CC. Про переменную $LFS мы уже не раз говорили. Переменная
+$LC_ALL используется для интернационализации.</p><p>Если
+на вашем базовом дистрибутиве установлена библиотека glibc версии 2.2.4 и
+ранее, и на протяжении Главы 5 переменная $LC_ALL определена не как "C" или
+"POSIX", могут возникнуть проблемы при выходеи повторном входе в среду chroot
+в Главе 6. Для того чтобы быть уверенным в том, что в среде chroot все будет
+работать корректно, присвойте этой переменной значение "POSIX" ("C" is an
+alias for "POSIX").</p><p>Использование переменной $CC вызвано необходимостью
+предотвратить компиляцию отладочных символов в статические пакеты. Таким
+образом экономится дисковое пространство и существенно сокращается время
+компиляции.</p></div>
+<div class="NAVFOOTER"><hr align="Left" width="100%"><table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="33%" align="Left" valign="Top"><a href="creatingstaticdir.html" accesskey="P">Назад</a></td><td width="34%" align="Center" valign="Top"><a href="../index.html" accesskey="H">Домой</a></td><td width="33%" align="Right" valign="Top"><a href="bash.html" accesskey="N">Вперед</a></td></tr><tr><td width="33%" align="Left" valign="Top">Создаем директорию $LFS/static</td><td width="34%" align="Center" valign="Top"><a href="chapter05.html" accesskey="U">Наверх</a></td><td width="33%" align="Right" valign="Top">Установка
+Bash-2.05a</td></tr></tbody></table></div>
+<br>
+
+<br>
+</body></html>

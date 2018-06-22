@@ -1,0 +1,634 @@
+<HTML>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- Created on June, 9  2003 by texi2html 1.64 -->
+<!-- 
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Olaf Bachmann <obachman@mathematik.uni-kl.de>
+Send bugs and suggestions to <texi2html@mathematik.uni-kl.de>
+ 
+-->
+<HEAD>
+<TITLE>GNU MIX Development Kit (mdk): gmixvm</TITLE>
+
+<META NAME="description" CONTENT="GNU MIX Development Kit (mdk): gmixvm">
+<META NAME="keywords" CONTENT="GNU MIX Development Kit (mdk): gmixvm">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="texi2html 1.64">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+
+<A NAME="SEC61"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_8.html#SEC60"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_9.html#SEC62"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_8.html#SEC52"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_10.html#SEC68"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H1> 7. <CODE>gmixvm</CODE>, виртуальная машина на основе GTK </H1>
+<!--docid::SEC61::-->
+<P>
+
+Эта глава описывает графический эмулятор виртуальной машины MIX,
+включённый в MDK. Кроме того, что он имеет все
+командно-ориентированные возможности других виртуальных машин
+(<CODE>mixvm</CODE> и <CODE>mixguile</CODE>), <CODE>gmixvm</CODE> предлагает графический
+интерфейс, показывающий состояние виртуальной машины, исходный код
+загруженных програм и содержимое устройств MIX.
+</P><P>
+
+<BLOCKQUOTE><TABLE BORDER=0 CELLSPACING=0> 
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="mdk_9.html#SEC62">7.1 Вызов <CODE>gmixvm</CODE></A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP">Вызов интерфейса GTK+.</TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="mdk_9.html#SEC63">7.2 Консоль MIXVM</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP">Выполнение команд <CODE>mixvm</CODE>.</TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="mdk_9.html#SEC64">7.3 Виртуальная машина MIX</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="mdk_9.html#SEC65">7.4 Окно исходного текста на MIXAL</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="mdk_9.html#SEC66">7.5 Окно устройств MIX</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP">Вывод на устройства.</TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="mdk_9.html#SEC67">7.6 Меню и строка статуса</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+</TABLE></BLOCKQUOTE>
+<P>
+
+<A NAME="Вызов <CODE>gmixvm</CODE>"></A>
+<HR SIZE="6">
+<A NAME="SEC62"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_9.html#SEC61"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_9.html#SEC63"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_9.html#SEC61"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_9.html#SEC61"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_10.html#SEC68"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 7.1 Вызов <CODE>gmixvm</CODE> </H2>
+<!--docid::SEC62::-->
+<P>
+
+Если вы собрали MDK с поддержкой GTK+ (see section <A HREF="mdk_3.html#SEC3">1. Установка MDK</A>),
+в вашей системе будет доступен графический интерфейс виртуальной машины
+MIX. Вы можете вызвать его вводом:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>gmixvm [-vhuq] [--version] [--help] [--usage] [--noinit]
+</pre></td></tr></table>в вашей командной строке. Параметры вызова имеют следующее значение:
+</P><P>
+
+<A NAME="IDX274"></A>
+<DL>
+<DT><U>User Option:</U> <B>-v</B>
+<DD><A NAME="IDX275"></A>
+<DT><U>User Option:</U> <B>--version</B>
+<DD>Вывести версию и информацию об авторских левах и завершить работу.
+</DL>
+</P><P>
+
+<A NAME="IDX276"></A>
+<DL>
+<DT><U>User Option:</U> <B>-h</B>
+<DD><A NAME="IDX277"></A>
+<DT><U>User Option:</U> <B>--help</B>
+<DD><A NAME="IDX278"></A>
+<DT><U>User Option:</U> <B>-u</B>
+<DD><A NAME="IDX279"></A>
+<DT><U>User Option:</U> <B>--usage</B>
+<DD>Вывести краткий перечень доступных параметров и завершить работу.
+</DL>
+</P><P>
+
+<A NAME="IDX280"></A>
+<DL>
+<DT><U>User Option:</U> <B>-q</B>
+<DD><A NAME="IDX281"></A>
+<DT><U>User Option:</U> <B>--noinit</B>
+<DD>Не загружать при запуске файл инициализации Guile <CODE>~/.mdk/mixguile.scm</CODE>.
+Этот файл содержит весь локальный код Scheme, выполняемый встроенным
+интерпретатором Guile при запуске (see section <A HREF="mdk_5.html#SEC48">3.5 Использование Scheme в <CODE>mixvm</CODE> и <CODE>gmixvm</CODE></A>).
+</DL>
+</P><P>
+
+При вводе в командной строке <CODE>gmixvm</CODE> или <CODE>gmixvm -q</CODE>
+появится главное окно, предоставляющее графический интерфейс для
+запуска и отладки программ MIX.
+</P><P>
+
+<CENTER><IMG SRC="mdk_9.html" ALT="img/ss_mix"></CENTER>
+</P><P>
+
+Мы выделяем две части главного окна (не считая меню и строки статуса).
+В верхней половине главного окна <CODE>gmixvm</CODE> находится "блокнот"
+с тремя страницами, а именно:
+</P><P>
+
+<UL>
+<LI>
+окно виртуальной машины MIX, содержащее регистры, флаги, содержимое
+памяти и статистику времени виртуальной машины,
+<LI>
+окно исходного кода на MIXAL, содержащее файл на MIXAL и позволяющее
+устанавливать точки останова,
+<LI>
+окно устройств, показывающее вывод на символьные блочные устройства
+MIX.
+</UL>
+<P>
+
+Приложение может работать в двух режимах: без разделения (вышеописанные
+окна находятся в блокноте в главном окне) или с разделением (окна
+находятся вне главного и могут быть показаны или скрыты индивидуально).
+Режим просмотра может быть выбран соответствующей командой меню
+<CODE>View</CODE>.
+</P><P>
+
+Приведём слепок экрана, показывающий, как выглядит <CODE>gmixvm</CODE> при
+запуске в режиме с разделением:
+</P><P>
+
+<CENTER><IMG SRC="mdk_9.html" ALT="img/ss_split"></CENTER>
+</P><P>
+
+В то же время нижняя половина главного окна содержит командное
+приглашение <CODE>mixvm</CODE> и область ведения лога, где находятся
+результаты выполнения команд (в режиме с разделением они
+занимают всё пространство главного окна между меню и строкой статуса).
+Они реализуют консоль <CODE>mixvm</CODE>, предоставляющую почти те же
+возможности, что и соответствующая консоль <FONT SIZE="-1">CLI</FONT>.
+</P><P>
+
+При запуске <CODE>gmixvm</CODE> она создаёт каталог <TT>`.mdk'</TT> в домашнем
+каталоге (если он ещё не существует). Каталог <TT>`.mdk'</TT> содержит
+настройки программы, файлы устройств, используемые программами MIX
+(see section <A HREF="mdk_8.html#SEC60">6.3 Блочные устройства MIX</A>) и файл истории команд.
+</P><P>
+
+Следующие разделы описывают вышеупомянутые компоненты <CODE>gmixvm</CODE>.
+</P><P>
+
+<A NAME="Консоль MIXVM"></A>
+<HR SIZE="6">
+<A NAME="SEC63"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_9.html#SEC62"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_9.html#SEC64"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_9.html#SEC61"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_9.html#SEC61"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_10.html#SEC68"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 7.2 Консоль MIXVM </H2>
+<!--docid::SEC63::-->
+<P>
+
+В нижней половине главного окна <CODE>gmixvm</CODE> находится командное
+приглашение, а над ним область вывода. Они предоставляют те же
+возможности, что и соответствующий интерфейс <FONT SIZE="-1">CLI</FONT> -- <CODE>mixvm</CODE>
+(see section <A HREF="mdk_8.html#SEC52">6. <CODE>mixvm</CODE>, эмулятор компьютера MIX</A>). В командном приглашении <CODE>gmixvm</CODE> для управления
+виртуальной машиной MIX вы можете использовать почти все команды
+<CODE>mixvm</CODE>. См. в <A HREF="mdk_8.html#SEC52">6. <CODE>mixvm</CODE>, эмулятор компьютера MIX</A> описание этих команд, и в <A HREF="mdk_5.html#SEC33">3. Начало работы</A> учебник по использованию виртуальной машины MIX. Командное
+приглашение поддерживает также дополнение командной строки клавишей
+<KBD>TAB</KBD> -- при вводе:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>lo <KBD>TAB</KBD>
+</pre></td></tr></table>команда будет автоматически дополнена до <CODE>load</CODE>. Если возможно
+несколько вариантов дополнения, они будут показаны в области вывода.
+Так, при вводе:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>p <KBD>TAB</KBD>
+</pre></td></tr></table>даст следующий вывод:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>Completions:
+pc     psym     preg     pflags     pall     
+pmem  
+</pre></td></tr></table>т.е. список всех доступных команд, начинающихся с <CODE>p</CODE>. Кроме того,
+командное приглашение хранит историю введённых команд, к которой можно
+возвращаться с помощью клавиш "вверх" и "вниз". Как сказано выше,
+файл, содержащий команды предыдущих сеансов, сохраняется в каталоге
+конфигурации <TT>`~/.mdk'</TT>, и загружается при каждом запуске
+<CODE>gmixvm</CODE>.
+ 
+Вы можете изменить шрифт, используемый для команд и сообщений в области
+вывода командами меню Settings-&#62;Change font-&#62;Command prompt и
+Settings-&#62;Change font-&#62;Command log.
+</P><P>
+
+<A NAME="Виртуальная машина MIX"></A>
+<HR SIZE="6">
+<A NAME="SEC64"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_9.html#SEC63"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_9.html#SEC65"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_9.html#SEC61"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_9.html#SEC61"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_10.html#SEC68"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 7.3 Виртуальная машина MIX </H2>
+<!--docid::SEC64::-->
+<P>
+
+Первая страница блокнота показывает текущее состояние виртуальной машины.
+Там вы обнаружите содержимое регистров, значение флагов сравнения и
+переполнения, указатель положения, список всех ячеек памяти MIX и их
+содержимое, а также статистику времени выполнения (включая общее время
+работы, время, прошедшее после последней команды запуска, и общее время
+выполнения загруженной программы MIX).
+</P><P>
+
+При щелчке по любому регистру будет выдано приглашение ввести новое
+значение регистра.
+</P><P>
+
+Следующий рисунок показывает диалог ввода слова.
+</P><P>
+
+<CENTER><IMG SRC="mdk_9.html" ALT="img/ss_worddlg"></CENTER>
+</P><P>
+
+Аналогично, щелчок по любому адресу в списке ячеек памяти приведёт к
+выдаче приглашения ввести новое содержимое этой ячейки. При щелчке по
+заголовку колонки адресов появится диалог ввода адреса памяти, если
+вы введёте при этом верный адрес, после нажатия кнопки OK отображаться
+в списке будут ячейки, начиная с этого адреса.
+</P><P>
+
+Следующий рисунок показывает диалог ввода адреса.
+</P><P>
+
+<CENTER><IMG SRC="mdk_9.html" ALT="img/ss_goto"></CENTER>
+</P><P>
+
+Содержимое регистров показывается как список байтов MIX со знаком. При
+наведении на любой из этих элементов указателя мыши показывается
+десятичное значение слова MIX.
+</P><P>
+
+Вы можете изменить шрифт, используемый для вывода содержимого виртуальной
+машины MIX командой меню Settings-&#62;Change font-&#62;MIX.
+</P><P>
+
+<A NAME="Окно исходного текста на MIXAL"></A>
+<HR SIZE="6">
+<A NAME="SEC65"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_9.html#SEC64"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_9.html#SEC66"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_9.html#SEC61"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_9.html#SEC61"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_10.html#SEC68"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 7.4 Окно исходного текста на MIXAL </H2>
+<!--docid::SEC65::-->
+<P>
+
+Вторая страница блокнота, называющаяся MIXAL, содержит исходный код на
+MIXAL загруженного в данный момент файла MIX.
+</P><P>
+
+<CENTER><IMG SRC="mdk_9.html" ALT="img/ss_mixal"></CENTER>
+</P><P>
+
+Информация представлена в двух колонках. Первая показывает адреса и
+содержимое памяти, в которой находятся скомпилированные инструкции MIX,
+а вторая показывает соответствующе представление на MIXAL, включая номер
+строки исходного файла. Текущее положение счётчика программы подкрашено
+серым, а все точки останова -- красным. Вы можете устанавливать и снимать
+точки останова, щёлкая в этой окне по строке с соответствующим адресом.
+</P><P>
+
+Используемые для отметки счётчика положения и точек останова цвета
+настраиваются командой меню Settings-&#62;Colors... При щелчке по этому
+пункту меню появится диалог, показывающий установленные в данный момент
+цвета строк.
+Следующий рисунок показывает диалог изменения цветов.
+</P><P>
+
+<CENTER><IMG SRC="mdk_9.html" ALT="img/ss_colors"></CENTER>
+</P><P>
+
+Щелчок по любому цвету выдаст диалог выбора цвета для данного элемента.
+Таким образом вы можете изменить цвета фона и тона, используемые для
+прорисовки текущей строки, строк точек останова и остальных строк кода
+на MIXAL.
+</P><P>
+
+Вы можете изменить шрифт, используемый для исходного кода на MIXAL,
+командой меню Settings-&#62;Change font-&#62;MIXAL.
+</P><P>
+
+<A NAME="Окно устройств MIX"></A>
+<HR SIZE="6">
+<A NAME="SEC66"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_9.html#SEC65"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_9.html#SEC67"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_9.html#SEC61"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_9.html#SEC61"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_10.html#SEC68"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 7.5 Окно устройств MIX </H2>
+<!--docid::SEC66::-->
+<P>
+
+Последняя страница блокнота, называемая Devices, показывает
+ввод/вывод с/на блочные устройства MIX (консоль, строчный принтер,
+перфолента, диски, перфокарты и ленты see section <A HREF="mdk_8.html#SEC60">6.3 Блочные устройства MIX</A>), выполняемый
+работающей программой.
+</P><P>
+
+<CENTER><IMG SRC="mdk_9.html" ALT="img/ss_devices"></CENTER>
+</P><P>
+
+Содержимое устройств ввода читается из файлов, расположенных в каталоге
+<TT>`~/.gmixvm'</TT>, вывод записывается в расположенные там же файлы.
+Имейте в виду, что вкладки устройств появляются, если они используются
+запущенной программой MIX, а загрузка новой программы закроет все ранее
+открытые устройства.
+</P><P>
+
+Ввод и вывод двоичных блочных устройств (ленты и диски) должен быть
+списком слов MIX, которые могут выводиться либо в десятичном формате,
+либо в формате слова (- 67 или - 00 00 00 01 03). Используемый
+<CODE>gmixvm</CODE> формат может быть настроен командой меню
+Settings-&#62;Device output для каждого двоичного устройства отдельно.
+</P><P>
+
+Вы можете изменить шрифт, используемый для содержимого устройств,
+командой меню Settings-&#62;Change font-&#62;Devices.
+</P><P>
+
+<A NAME="Меню и строка статуса"></A>
+<HR SIZE="6">
+<A NAME="SEC67"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_9.html#SEC66"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_10.html#SEC68"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_9.html#SEC61"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_9.html#SEC61"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_10.html#SEC68"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 7.6 Меню и строка статуса </H2>
+<!--docid::SEC67::-->
+<P>
+
+Меню даёт доступ к следующим командам:
+</P><P>
+
+<A NAME="IDX282"></A>
+<DL>
+<DT><U>File:</U> <B>Load...</B>
+<DD>Открывает диалог, позволяющий указать двоичный файл MIX, загружаемый в
+память виртуальной машины.  Эквивалентно команде <CODE>mixvm</CODE> <CODE>load</CODE>
+(see section <A HREF="mdk_8.html#SEC55">6.2.1 Файловые команды</A>).
+</DL>
+</P><P>
+
+<A NAME="IDX283"></A>
+<DL>
+<DT><U>File:</U> <B>Edit...</B>
+<DD>Открывает диалог, позволяющий указать исходный файл на MIXAL для
+редактирования. Эквивалентно команде <CODE>mixvm</CODE> <CODE>edit</CODE>
+(see section <A HREF="mdk_8.html#SEC55">6.2.1 Файловые команды</A>).  Используемая для редактирования команда
+может быть задана в пункте меню <CODE>Settings-&#62;External programs</CODE>
+или командой <CODE>mixvm</CODE> <CODE>sedit</CODE>.
+</DL>
+</P><P>
+
+<A NAME="IDX284"></A>
+<DL>
+<DT><U>File:</U> <B>Compile...</B>
+<DD>Открывает диалог, позволяющать указать исходный файл на MIXAL для
+компиляции.  Эквивалентно команде <CODE>mixvm</CODE> <CODE>compile</CODE>
+(see section <A HREF="mdk_8.html#SEC55">6.2.1 Файловые команды</A>). Используемая для компиляции команда
+может быть задана в пункте меню <CODE>Settings-&#62;External programs</CODE>
+или командой <CODE>mixvm</CODE> <CODE>sasm</CODE>.
+</DL>
+</P><P>
+
+<A NAME="IDX285"></A>
+<DL>
+<DT><U>File:</U> <B>Exit</B>
+<DD>Завершает работу.
+</DL>
+</P><P>
+
+<A NAME="IDX286"></A>
+<DL>
+<DT><U>View:</U> <B>Toolbar(s)</B>
+<DD>Включает/выключает показ панели(ей) инструментов в окне(ах) <CODE>gmixvm</CODE>
+(в режиме с разделением будет несколько окон и, соответственно, несколько
+панелей).
+</DL>
+</P><P>
+
+<A NAME="IDX287"></A>
+<DL>
+<DT><U>View:</U> <B>MIX</B>
+<DD><A NAME="IDX288"></A>
+<DT><U>View:</U> <B>MIXAL</B>
+<DD><A NAME="IDX289"></A>
+<DT><U>View:</U> <B>Devices</B>
+<DD></P><P>
+
+Эти переключатели доступны при работе <CODE>gmixvm</CODE> в режиме с
+разделением и позволяют включать и выключать показ соответствующих окон
+<CODE>gmixvm</CODE>.
+</P><P>
+
+</DL>
+</P><P>
+
+<A NAME="IDX290"></A>
+<DL>
+<DT><U>View:</U> <B>Split windows</B>
+<DD><A NAME="IDX291"></A>
+<DT><U>View:</U> <B>One window</B>
+<DD></P><P>
+
+Изменяет режим: одно окно либо раздельные окна.
+</P><P>
+
+</DL>
+</P><P>
+
+<A NAME="IDX292"></A>
+<DL>
+<DT><U>Debug:</U> <B>Run</B>
+<DD>Выполняет загруженную в данный момент программу MIX до следующей точки
+останова. Эквивалентно команде <CODE>mixvm</CODE> <CODE>run</CODE> (see section <A HREF="mdk_8.html#SEC56">6.2.2 Команды отладки</A>).
+</DL>
+</P><P>
+
+<A NAME="IDX293"></A>
+<DL>
+<DT><U>Debug:</U> <B>Next</B>
+<DD>Выполняет следующую инструкцию MIX.  Эквивалентно команде <CODE>mixvm</CODE>
+<CODE>next</CODE> (see section <A HREF="mdk_8.html#SEC56">6.2.2 Команды отладки</A>).
+</DL>
+</P><P>
+
+<A NAME="IDX294"></A>
+<DL>
+<DT><U>Debug:</U> <B>Clear breakpoints</B>
+<DD>Снимает все установленные в данный момент точки останова. Эквивалентно
+команде <CODE>mixvm</CODE> <CODE>cabp</CODE>.
+</DL>
+</P><P>
+
+<A NAME="IDX295"></A>
+<DL>
+<DT><U>Debug:</U> <B>Symbols...</B>
+<DD>Открывает диалог со списком определённых в загруженной программе MIX
+символов.
+</P><P>
+
+<CENTER><IMG SRC="mdk_9.html" ALT="img/ss_symbols"></CENTER>
+</P><P>
+
+</DL>
+</P><P>
+
+<A NAME="IDX296"></A>
+<DL>
+<DT><U>Settings:</U> <B>Colors...</B>
+<DD>Позволяет изменить цвета, отмечающие текущую строку кода и строки точек
+останова на вкладке MIXAL, равно как и цвет остальных строк исходного кода.
+</DL>
+</P><P>
+
+<A NAME="IDX297"></A>
+<DL>
+<DT><U>Settings:</U> <B>Change font</B>
+<DD>Позволяет изменить шрифты, используемые в различных виджетах
+(командной приглашение, лог команд, MIX, MIXAL и устройства).
+</DL>
+</P><P>
+
+<A NAME="IDX298"></A>
+<DL>
+<DT><U>Settings:</U> <B>Device output...</B>
+<DD>Открывает диалог, позволяющий задать формат, используемый для вывода
+содержимого двоичных блоковых устройств MIX.
+</P><P>
+
+<CENTER><IMG SRC="mdk_9.html" ALT="img/ss_devform"></CENTER>
+</P><P>
+
+Возможные форматы: десятичный (-1234) и слово MIX
+(- 00 00 00 19 18).
+</DL>
+</P><P>
+
+<A NAME="IDX299"></A>
+<DL>
+<DT><U>Settings:</U> <B>Devices dir...</B>
+<DD>Открывает диалог, позволяющий выбрать расположение файлов устройств MIX
+(по умолчанию <TT>`~/.mdk'</TT>).
+</P><P>
+
+<CENTER><IMG SRC="mdk_9.html" ALT="img/ss_devdir"></CENTER>
+</P><P>
+
+Вы можете также задать каталог устройств командой <CODE>mixvm</CODE>
+<CODE>sddir</CODE> (see section <A HREF="mdk_8.html#SEC58">6.2.4 Команды конфигурирования</A>).
+</P><P>
+
+</DL>
+</P><P>
+
+<A NAME="IDX300"></A>
+<DL>
+<DT><U>Settings:</U> <B>External programs...</B>
+<DD>Эта команда меню открывает диалог, позволяющий задать команды, используемые
+для редактирования и компиляции исходных файлов на MIXAL.
+</P><P>
+
+<CENTER><IMG SRC="mdk_9.html" ALT="img/ss_extprog"></CENTER>
+</P><P>
+
+Команды задаются в виде строк-шаблонов, где вместо управляющей подстроки
+<CODE>%s</CODE> будет подставлено реальное имя файла. Так, если вы хотите
+редактировать программы редактором <CODE>vi</CODE>, запущенным в <CODE>xterm</CODE>,
+вы должны ввести в соответствующем поле диалога шаблон команды
+<CODE>xterm -e vi %s</CODE>. Эти настройки могут также быть изменены
+командами <CODE>mixvm</CODE> <CODE>sedit</CODE> и <CODE>sasm</CODE> (see section <A HREF="mdk_8.html#SEC58">6.2.4 Команды конфигурирования</A>).
+</DL>
+</P><P>
+
+<A NAME="IDX301"></A>
+<DL>
+<DT><U>Settings:</U> <B>Save</B>
+<DD>Сохраняет текущие настройки.
+</DL>
+</P><P>
+
+<A NAME="IDX302"></A>
+<DL>
+<DT><U>Settings:</U> <B>Save on exit</B>
+<DD>Отметьте этот переключатель, если вы хотите, чтобы <CODE>gmixvm</CODE>
+сохраняла свои настройки при каждом завершении работы.
+</DL>
+</P><P>
+
+<A NAME="IDX303"></A>
+<DL>
+<DT><U>Help:</U> <B>About...</B>
+<DD>Выводит информацию о версии и авторских правах <CODE>gmixvm</CODE>.
+</DL>
+</P><P>
+
+В то же время, строка статуса показывает имя последнего загруженного
+файла MIX. Кроме того, если указатель мыши находится над строкой
+исходного файла на MIXAL, содержащей символы, в строке статуса
+появляется список этих символов и их значений.
+</P><P>
+
+<A NAME="mixguile"></A>
+<HR SIZE="6">
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_9.html#SEC61"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_10.html#SEC68"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<BR>  
+<FONT SIZE="-1">
+This document was generated
+on <I>June, 9  2003</I>
+using <A HREF="http://www.mathematik.uni-kl.de/~obachman/Texi2html
+"><I>texi2html</I></A>
+
+</BODY>
+</HTML>

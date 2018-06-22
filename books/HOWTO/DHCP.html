@@ -1,0 +1,1958 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>DHCP mini-HOWTO</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.57"></HEAD
+><BODY
+CLASS="ARTICLE"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="ARTICLE"
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="TITLE"
+><A
+NAME="AEN2"
+>DHCP mini-HOWTO</A
+></H1
+><DIV
+CLASS="AUTHORGROUP"
+><A
+NAME="AEN4"
+></A
+><H3
+CLASS="AUTHOR"
+><A
+NAME="AEN5"
+>Vladimir Vuksan</A
+></H3
+><DIV
+CLASS="AFFILIATION"
+><DIV
+CLASS="ADDRESS"
+><P
+CLASS="ADDRESS"
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vuksan@veus.hr<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</P
+></DIV
+></DIV
+><H3
+CLASS="CORPAUTHOR"
+>    Перевод: <A
+HREF="mailto:ave@asp-linux.com"
+TARGET="_top"
+>Александр Ермолаев</A
+>,
+    <A
+HREF="http://www.asplinux.com"
+TARGET="_top"
+>SWSoft Pte Ltd.</A
+>
+ </H3
+></DIV
+><DIV
+CLASS="REVHISTORY"
+><TABLE
+WIDTH="100%"
+BORDER="0"
+><TR
+><TH
+ALIGN="LEFT"
+VALIGN="TOP"
+COLSPAN="3"
+><B
+>История изменений</B
+></TH
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+>Издание v4.10</TD
+><TD
+ALIGN="LEFT"
+>July 3, 2000</TD
+><TD
+ALIGN="LEFT"
+>Под редакцией: vv</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+COLSPAN="3"
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+><DIV
+CLASS="ABSTRACT"
+><A
+NAME="AEN19"
+></A
+><P
+></P
+><P
+>       В этом документе даются ответы на вопросы возникающие при установке
+       DHCP-сервера и DHCP-клиента на Linux.
+      </P
+><P
+></P
+></DIV
+></DIV
+><HR></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Содержание</B
+></DT
+><DT
+>1. <A
+HREF="DHCP.html#AEN21"
+>Введение</A
+></DT
+><DD
+><DL
+><DT
+>1.1. <A
+HREF="DHCP.html#AEN23"
+>Ответственность</A
+></DT
+><DT
+>1.2. <A
+HREF="DHCP.html#AEN28"
+>Новые версии этого документа</A
+></DT
+><DT
+>1.3. <A
+HREF="DHCP.html#AEN45"
+>Обратная связь</A
+></DT
+><DT
+>1.4. <A
+HREF="DHCP.html#AEN49"
+>Участники</A
+></DT
+><DT
+>1.5. <A
+HREF="DHCP.html#AEN68"
+>Copyright Information</A
+></DT
+><DT
+>1.6. <A
+HREF="DHCP.html#AEN73"
+>Авторские права</A
+></DT
+></DL
+></DD
+><DT
+>2. <A
+HREF="DHCP.html#AEN82"
+>Протокол DHCP</A
+></DT
+><DT
+>3. <A
+HREF="DHCP.html#AEN87"
+>Установка клиента</A
+></DT
+><DD
+><DL
+><DT
+>3.1. <A
+HREF="DHCP.html#AEN90"
+>Где найти клиент (dhcpcd)</A
+></DT
+><DT
+>3.2. <A
+HREF="DHCP.html#SLACKWARE"
+>Slackware</A
+></DT
+><DT
+>3.3. <A
+HREF="DHCP.html#REDHAT6"
+>RedHat 6.x и Mandrake 6.x</A
+></DT
+><DT
+>3.4. <A
+HREF="DHCP.html#AEN175"
+>RedHat 5.x</A
+></DT
+><DT
+>3.5. <A
+HREF="DHCP.html#AEN192"
+>RedHat 4.x и Caldera OpenLinux 1.1/1.2</A
+></DT
+><DT
+>3.6. <A
+HREF="DHCP.html#DEBIAN"
+>Debian</A
+></DT
+><DT
+>3.7. <A
+HREF="DHCP.html#AEN237"
+>LinuxPPC и MkLinux</A
+></DT
+><DT
+>3.8. <A
+HREF="DHCP.html#NAMESERVER"
+>Заключительный шаг</A
+></DT
+><DT
+>3.9. <A
+HREF="DHCP.html#AEN300"
+>Замечания</A
+></DT
+><DT
+>3.10. <A
+HREF="DHCP.html#TROUBLESHOOTING"
+>Основные проблемы и их решения</A
+></DT
+><DD
+><DL
+><DT
+>3.10.1. <A
+HREF="DHCP.html#AEN313"
+>У вас не настроена сетевая карта</A
+></DT
+><DT
+>3.10.2. <A
+HREF="DHCP.html#AEN318"
+>DHCP-сервер поддерживает RFC 1541 / DHCP-сервер под Windows NT</A
+></DT
+><DT
+>3.10.3. <A
+HREF="DHCP.html#AEN330"
+>Во время загрузки появляется сообщение "Using DHCP for eth0 ... failed" (Использование DHCP для eth0 :
+не работает), однако система работает нормально</A
+></DT
+><DT
+>3.10.4. <A
+HREF="DHCP.html#AEN334"
+>Сеть работает несколько минут, а затем перестает отвечать</A
+></DT
+><DT
+>3.10.5. <A
+HREF="DHCP.html#AEN340"
+>Сетевая карта определяется во время загрузки, но в журнале только сообщения "NO DHCPOFFER" (у меня PCMCIA карта)</A
+></DT
+><DT
+>3.10.6. <A
+HREF="DHCP.html#AEN345"
+>DHCP-клиент делает запросы, но никто не отвечает (Проблему решил Peter Amstutz)</A
+></DT
+><DT
+>3.10.7. <A
+HREF="DHCP.html#AEN350"
+>Я выполнил все инструкции, но машина все еще не в сети</A
+></DT
+><DT
+>3.10.8. <A
+HREF="DHCP.html#AEN354"
+>У меня установлен сервис MediaOne Express, и я по-прежнему не могу подключиться к сети</A
+></DT
+></DL
+></DD
+><DT
+>3.11. <A
+HREF="DHCP.html#AEN360"
+>Альтернативный DHCP-клиент (ISC dhclient)</A
+></DT
+></DL
+></DD
+><DT
+>4. <A
+HREF="DHCP.html#AEN374"
+>Установка DHCP-сервера</A
+></DT
+><DD
+><DL
+><DT
+>4.1. <A
+HREF="DHCP.html#DHCPSERVER"
+>DHCP-сервер под UNIX</A
+></DT
+><DT
+>4.2. <A
+HREF="DHCP.html#AEN387"
+>Настройка DHCP-сервера</A
+></DT
+><DT
+>4.3. <A
+HREF="DHCP.html#AEN408"
+>Опции DHCPd</A
+></DT
+><DT
+>4.4. <A
+HREF="DHCP.html#AEN426"
+>Запуск сервера</A
+></DT
+><DT
+>4.5. <A
+HREF="DHCP.html#AEN442"
+>Другие интересные документы</A
+></DT
+></DL
+></DD
+></DL
+></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="AEN21"
+>1. Введение</A
+></H1
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN23"
+>1.1. Ответственность</A
+></H2
+><P
+>Автор не несет никакой ответственности за содержание этого документа.
+Используйте понятия, примеры и др. на ваш страх и риск. Это новое
+издание документа - оно может содержать ошибки и погрешности, которые,
+конечно же, могут повредить вашу систему. И, хотя это маловероятно, все-таки
+действуйте с осторожностью. Я не несу никакой ответственности за это.</P
+><P
+>Учтите также, что это <I
+CLASS="EMPHASIS"
+>НЕ</I
+>
+официальная информация. Документ содержит много предположений,
+основанных на опыте работы людей.
+Используйте данную информацию на свой страх и риск.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN28"
+>1.2. Новые версии этого документа</A
+></H2
+><P
+>Новые версии доступны по адресу</P
+><P
+><A
+HREF="http://www.oswg.org/oswg-nightly/DHCP.html"
+TARGET="_top"
+>http://www.oswg.org/oswg-nightly/DHCP.html</A
+></P
+><P
+>Имеются следующие переводы DHCP mini-HOWTO:</P
+><P
+></P
+><UL
+><LI
+><P
+>Китайский - <A
+HREF="http://www.linux.org.tw/CLDP/mini/DHCP.html"
+TARGET="_top"
+>http://www.linux.org.tw/CLDP/mini/DHCP.html</A
+></P
+></LI
+><LI
+><P
+>Японский - <A
+HREF="http://www.linux.or.jp/JF/JFdocs/DHCP.html"
+TARGET="_top"
+>http://www.linux.or.jp/JF/JFdocs/DHCP.html</A
+></P
+></LI
+><LI
+><P
+>Испанский - <A
+HREF="ftp://cuates.pue.upaep.mx/pub/linux/LuCAS/DHCP-mini-Como/"
+TARGET="_top"
+>ftp://cuates.pue.upaep.mx/pub/linux/LuCAS/DHCP-mini-Como/</A
+></P
+></LI
+></UL
+><P
+>Автор дает разрешение перевести этот документ на другой язык.
+Я должен только попросить вас указать ссылку на оригинал и
+послать мне URL, чтобы я мог указать его в этом документе.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN45"
+>1.3. Обратная связь</A
+></H2
+><P
+>Ваши замечания только приветствуются. Без вашего участия этого документа и
+не существовало бы. Так что шлите ваши дополнения, комментарии и критику
+по адресу <TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:vuksan-feedback@veus.hr"
+>vuksan-feedback@veus.hr</A
+>&#62;</TT
+>.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN49"
+>1.4. Участники</A
+></H2
+><P
+>Этот документ модифицирован из исходной версии Павла Макеева.</P
+><P
+>Следующие люди содействовали написанию этого mini-HOWTO.</P
+><P
+></P
+><UL
+><LI
+><P
+>Heiko Schlittermann</P
+></LI
+><LI
+><P
+>Jonathan Smith</P
+></LI
+><LI
+><P
+>Dan Khabaza</P
+></LI
+><LI
+><P
+>Hal Sadofsky</P
+></LI
+><LI
+><P
+>Henrik Stoerner</P
+></LI
+><LI
+><P
+>Paul Rossington</P
+></LI
+><LI
+><P
+>и многие другие</P
+></LI
+></UL
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN68"
+>1.5. Copyright Information</A
+></H2
+><P
+>This document is copyrighted (c) 1998 Vladimir Vuksan and
+distributed under the terms of the OpenContent License (OPL). Full
+text of the license can be found at</P
+><P
+><A
+HREF="http://www.opencontent.org/opl.shtml"
+TARGET="_top"
+>http://www.opencontent.org/opl.shtml</A
+></P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN73"
+>1.6. Авторские права</A
+></H2
+><P
+>Авторские права на русский перевод этого текста принадлежат (c) 2000 SWSoft Pte Ltd.
+Все права зарезервированы.</P
+><P
+>Этот документ является частью проекта Linux HOWTO.</P
+><P
+>Авторские права на документы Linux HOWTO принадлежат их авторам, если явно
+не указано иное. Документы Linux HOWTO, а также их переводы, могут
+быть воспроизведены и распространены полностью или частично на любом
+носителе физическом или электронном, при условии сохранения этой заметки об
+авторских правах на всех копиях. Коммерческое распространение разрешается и
+поощряется; но так или иначе автор текста и автор перевода желали бы знать о
+таких дистрибутивах.</P
+><P
+>Все переводы и производные работы, выполненные по документам Linux HOWTO
+должны сопровождаться этой заметкой об авторских правах. Это делается в
+целях предотвращения случаев наложения дополнительных ограничений на
+распространение документов HOWTO. Исключения могут составить случаи
+получения специального разрешения у координатора Linux HOWTO с которым
+можно связаться по адресу приведенному ниже.</P
+><P
+>Мы бы хотели распространить эту информацию по всем возможным каналам. Но
+при этом сохранить авторские права и быть уведомленными о всех планах
+распространения HOWTO. Если у вас возникли вопросы, пожалуйста, обратитесь
+к координатору проекта Linux HOWTO по электронной почте: <TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:linux-howto@metalab.unc.edu"
+>linux-howto@metalab.unc.edu</A
+>&#62;</TT
+>, или к координатору русского перевода
+Linux HOWTO компании SWSoft Pte Ltd. по адресу
+<TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:linux-howto@asplinux.ru"
+>linux-howto@asplinux.ru</A
+>&#62;</TT
+></P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN82"
+>2. Протокол DHCP</A
+></H1
+><P
+>DHCP - это Dynamic Host Configuration Protocol (протокол динамической
+конфигурации машин). Он используется для настройки часто изменяемых
+сетевых параметров машин (клиентов) с помощью сервера. DHCP полностью
+совместим с BOOTP. Для дополнительной информации см.
+RFC 2131 (RFC 1541) и др. (см. раздел "Ресурсы Internet" в конце этого
+документа). Можете также почитать
+<A
+HREF="http://web.syr.edu/~jmwobus/comfaqs/dhcp.faq.html"
+TARGET="_top"
+>http://web.syr.edu/~jmwobus/comfaqs/dhcp.faq.html</A
+>.</P
+><P
+>Этот мини-HOWTO описывает использование как DHCP-СЕРВЕРА, так и
+DHCP-КЛИЕНТА. Большинству людей нужен DHCP-клиент, который необходим на
+рабочих станциях для получения информации c сервера. DHCP-сервер необходим
+администраторам сети для передачи информации DHCP-клиентам. Так что,
+если вы обычный пользователь, то вам нужен DHCP-клиент.</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN87"
+>3. Установка клиента</A
+></H1
+><P
+>В настоящий момент существует три различных DHCP-клиента под
+Linux: dhcpcd, pump и dhclient. Этот мини-HOWTO описывает работу с dhcpcd.</P
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN90"
+>3.1. Где найти клиент (dhcpcd)</A
+></H2
+><P
+>Вы можете скачать DHCP-клиент, предназначенный для вашего дистрибутива.
+Если вы хотите собрать его из исходных текстов, то вам нужен пакет
+dhcpcd 1.3.18. Его разработал Sergei Viznyuk
+<TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:sergei@phystech.com"
+>sergei@phystech.com</A
+>&#62;</TT
+>, и в данный момент он идет
+в готовом виде в большинстве из дистрибутивов.</P
+><P
+>Исходные тексты dhcpcd могут быть скачаны с</P
+><P
+></P
+><UL
+><LI
+><P
+><A
+HREF="ftp://ftp.phystech.com/pub/"
+TARGET="_top"
+>ftp://ftp.phystech.com/pub/</A
+> (Основной сайт)</P
+></LI
+><LI
+><P
+><A
+HREF="http://www.cps.msu.edu/~dunham/out/"
+TARGET="_top"
+>http://www.cps.msu.edu/~dunham/out/</A
+></P
+></LI
+></UL
+><P
+>Затем следуйте нижеуказанным инструкциям.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="SLACKWARE"
+>3.2. Slackware</A
+></H2
+><P
+>Вы можете скачать последнюю версию DHCPcd с любого сервера Metalab:</P
+><P
+></P
+><UL
+><LI
+><P
+><A
+HREF="ftp://metalab.unc.edu/pub/Linux/system/network/daemons"
+TARGET="_top"
+>ftp://metalab.unc.edu/pub/Linux/system/network/daemons</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="ftp://ftp.phystech.com/pub/"
+TARGET="_top"
+>ftp://ftp.phystech.com/pub/</A
+> (Основной сайт)</P
+></LI
+></UL
+><P
+>Скачайте последнюю версию <TT
+CLASS="FILENAME"
+>dhcpcd.tar.gz</TT
+>.</P
+><P
+></P
+><UL
+><LI
+><P
+>Разархивируйте ее</P
+><P
+><B
+CLASS="COMMAND"
+>tar -zxvf dhcpcd-1.3.18pl1.tar.gz</B
+></P
+></LI
+><LI
+><P
+>войдите в каталог и соберите dhcpcd</P
+><P
+><B
+CLASS="COMMAND"
+>cd dhcpcd-1.3.18pl1</B
+></P
+><P
+><B
+CLASS="COMMAND"
+>make</B
+></P
+></LI
+><LI
+><P
+>Инсталлируйте (вы должны выполнить следующую команду, будучи root-ом)</P
+><P
+><B
+CLASS="COMMAND"
+>make install</B
+></P
+></LI
+></UL
+><P
+>Она создаст каталог /etc/dhcpc, в котором DHCPcd хранит информацию,
+а файл dhcpcd будет скопирован в /usr/sbin.</P
+><P
+>Если вы хотите инициализировать систему, используя DHCP во время загрузки, наберите:</P
+><P
+><B
+CLASS="COMMAND"
+>cd /etc/rc.d</B
+></P
+><P
+><B
+CLASS="COMMAND"
+>mv rc.inet1 rc.inet1.OLD</B
+></P
+><P
+>Это переименует старый файл инициализации сети в
+<TT
+CLASS="FILENAME"
+>rc.inet1.OLD</TT
+>.
+Вам нужно создать новый скрипт <TT
+CLASS="FILENAME"
+>rc.inet1</TT
+>.
+Следующий код - то, что вам нужно:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>#!/bin/sh
+#
+# rc.inet1      Скрипт, запускающий сетевую поддержку.
+
+HOSTNAME=`cat /etc/HOSTNAME` # Возможно это и не нужно,
+                             # но я все равно оставил
+
+# Инициализируем интерфейс обратной петли.
+/sbin/ifconfig lo 127.0.0.1
+/sbin/route add -net 127.0.0.0 netmask 255.0.0.0 lo
+
+# ЕСЛИ У ВАС ЕСТЬ СЕТЬ, следующая строка настраивает интерфейс eth0.
+# Если у вас только обратная петля или SLIP-интерфейс, то закомментируйте
+# следующую строку.
+
+/usr/sbin/dhcpcd</PRE
+><P
+>Запишите файл и перезагрузите систему.</P
+><P
+>Когда закончите, переходите к <A
+HREF="DHCP.html#NAMESERVER"
+>заключительному шагу</A
+>.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="REDHAT6"
+>3.3. RedHat 6.x и Mandrake 6.x</A
+></H2
+><P
+>Под RedHat 6.0+ настроить DHCPcd очень просто.
+Все что вам нужно, это запустить Панель Управления, набрав <B
+CLASS="COMMAND"
+>control-panel</B
+>.</P
+><P
+></P
+><UL
+><LI
+><P
+>Выберите "Network Configuration" (Конфигурация Сети)</P
+></LI
+><LI
+><P
+>Нажмите на "Interfaces" (Интерфейсы)</P
+></LI
+><LI
+><P
+>Нажмите "Add" (Добавить)</P
+></LI
+><LI
+><P
+>Выберите Ethernet</P
+></LI
+><LI
+><P
+>В "Edit Ethernet/Bus Interface" выберите "Activate interface
+at boot time" (Активировать интерфейс во время загрузки) и
+выберите "DHCP" в качестве "Interface configuration protocol" (Протокол
+конфигурации интерфейса).</P
+></LI
+></UL
+><P
+>Заметим, что в RedHat 6.x вместо dhcpcd по умолчанию устанавливается
+DHCP-клиент pump. CD-ROM включает RPM-пакет dhcpcd, так что если
+вам не удалось настроить pump, вы можете попробовать установить dhcpcd
+(напр. через <B
+CLASS="COMMAND"
+>rpm -i dhcpcd-1.3.17pl2-1.i386.rpm</B
+>) и
+внести некоторые <A
+HREF="DHCP.html#LINUXPPC-RH6"
+>изменения</A
+>.</P
+><P
+>Alexander Stevenson <TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:alexander.stevenson@home.com"
+>alexander.stevenson@home.com</A
+>&#62;</TT
+>
+дополнительно отметил:</P
+><P
+>У меня не получилось с DHCPcd. То, что в конце концов заработало,
+был "pump", который поставляется вместе с Linux Mandrake 6.0
+(я думаю, что с RedHat тоже). Я использовал команду:</P
+><P
+><B
+CLASS="COMMAND"
+>pump -i eth0 -h hostname</B
+></P
+><P
+>Где "hostname" не имеет значения, однако без него сервер не отвечает.</P
+><P
+>Затем я соответственно изменил строчку в скрипте <TT
+CLASS="FILENAME"
+>/sbin/ifup</TT
+>, т.к.
+она не содержала опцию -h и тоже не работала.</P
+><P
+>Обычно, если вы используете linuxconf, и настраиваете адаптер на "DHCP",
+это тоже не работает. Попробуйте добавить <B
+CLASS="COMMAND"
+>-h hostname</B
+> к строке
+с pump в скрипте <TT
+CLASS="FILENAME"
+>/sbin/ifup</TT
+>. Теперь мой скрипт содержит:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>...
+if [ -n "$PUMP" ]; then
+    echo -n "Determining IP information for $DEVICE..."
+    if /sbin/pump -i $DEVICE -h hostname; then
+        echo " done."
+    else
+        echo " failed."
+        exit 1
+    fi
+else ...</PRE
+><P
+>Это все. Перезапустите машину и наберите <B
+CLASS="COMMAND"
+>/sbin/ifup eth0</B
+> в командной строке.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN175"
+>3.4. RedHat 5.x</A
+></H2
+><P
+>Под RedHat 5.0+ настроить DHCPcd очень просто. Все что вам нужно,
+это запустить Панель Управления, набрав <B
+CLASS="COMMAND"
+>control-panel</B
+>.</P
+><P
+></P
+><UL
+><LI
+><P
+>Выберите "Network Configuration" (Конфигурация Сети)</P
+></LI
+><LI
+><P
+>Нажмите на "Interfaces" (Интерфейсы)</P
+></LI
+><LI
+><P
+>Нажмите "Add" (Добавить)</P
+></LI
+><LI
+><P
+>Выберите Ethernet</P
+></LI
+><LI
+><P
+>В "Edit Ethernet/Bus Interface" выберите "Activate interface
+at boot time" (Активировать интерфейс во время загрузки) и
+выберите "DHCP" в качестве "Interface configuration protocol" (Протокол
+конфигурации интерфейса).</P
+></LI
+></UL
+><P
+>When you are finished go the <A
+HREF="DHCP.html#NAMESERVER"
+>last step</A
+>.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN192"
+>3.5. RedHat 4.x и Caldera OpenLinux 1.1/1.2</A
+></H2
+><P
+>DHCPcd включается в стандартный дистрибутив RedHat как RPM-пакет,
+так что вы можете найти в вашем дистрибутиве в каталоге RPMS или по адресу:</P
+><P
+><A
+HREF="ftp://ftp.redhat.com/pub/redhat/redhat-4.2/i386/RedHat/RPMS/dhcpcd-0.6-2.i386.rpm"
+TARGET="_top"
+>ftp://ftp.redhat.com/pub/redhat/redhat-4.2/i386/RedHat/RPMS/dhcpcd-0.6-2.i386.rpm</A
+></P
+><P
+>Установите его командой - <B
+CLASS="COMMAND"
+>rpm -i dhcpcd-0.6-2.i386.rpm</B
+>.</P
+><P
+>Кроме того, вы можете сами скомпилировать его, следуя шагам, описанным в
+<A
+HREF="DHCP.html#SLACKWARE"
+><I
+>Slackware</I
+></A
+>.</P
+><P
+>Следующую информацию мне предоставил
+<TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:nothing@cc.gatech.edu"
+>nothing@cc.gatech.edu</A
+>&#62;</TT
+>.</P
+><A
+NAME="AEN203"
+></A
+><BLOCKQUOTE
+CLASS="BLOCKQUOTE"
+><P
+>Из файла <TT
+CLASS="FILENAME"
+>/etc/resolv.conf</TT
+> я убрал мой статический
+адрес и имя машины.
+Однако, оставил строку с "search" и обе строки с "nameserver"
+(по какой то причине dhcpcd не создает файл <TT
+CLASS="FILENAME"
+>/etc/dhcpc/resolv.conf</TT
+>,
+так что я использую постоянный файл <TT
+CLASS="FILENAME"
+>/etc/resolv.conf</TT
+>).</P
+><P
+>В <TT
+CLASS="FILENAME"
+>/etc/sysconfig/network</TT
+> я удалил настройку
+HOSTNAME и GATEWAY, а другие оставил как есть (NETWORKING,
+DOMAINNAME, GATEWAYDEV).</P
+><P
+>В <TT
+CLASS="FILENAME"
+>/etc/sysconfig/network-scripts/ifcfg-eth0</TT
+> я убрал IPADDR,
+NETMASK, NETWORK, и BROADCAST, а DEVICE и ONBOOT оставил
+как есть. Строку с BOOTPROTO изменил на BOOTPROTO=dhcp.</P
+><P
+>Сохранил файл. И перезапустил компьютер.</P
+></BLOCKQUOTE
+><P
+>Когда закончите, переходите к <A
+HREF="DHCP.html#NAMESERVER"
+>заключительному шагу</A
+>.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="DEBIAN"
+>3.6. Debian</A
+></H2
+><P
+>Готовый deb-пакет DHCPcd находится по адресу:</P
+><P
+><A
+HREF="http://ftp.debian.org/debian/dists/slink/main/binary-i386/net/"
+TARGET="_top"
+>http://ftp.debian.org/debian/dists/slink/main/binary-i386/net/</A
+></P
+><P
+>Или, можете следовать инструкциям из <A
+HREF="DHCP.html#SLACKWARE"
+><I
+>Slackware</I
+></A
+>.</P
+><P
+>Чтобы поставить пакет наберите <B
+CLASS="COMMAND"
+>dpkg -i /where/ever/your/debian/packages/are/dhcpcd*deb</B
+>.</P
+><P
+>Оказывается, что больше ничего настраивать не надо, т.к.:</P
+><A
+NAME="AEN225"
+></A
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CELLSPACING="0"
+CELLPADDING="0"
+CLASS="BLOCKQUOTE"
+><TR
+><TD
+WIDTH="10%"
+VALIGN="TOP"
+>&nbsp;</TD
+><TD
+WIDTH="80%"
+VALIGN="TOP"
+><P
+>Пакет dhcpcd устанавливает скрипт загрузки в
+<TT
+CLASS="FILENAME"
+>/etc/init.d/dhcpcd</TT
+>,
+который ссылается на различные каталоги <TT
+CLASS="FILENAME"
+>/etc/rc?.d/</TT
+>.</P
+></TD
+><TD
+WIDTH="10%"
+VALIGN="TOP"
+>&nbsp;</TD
+></TR
+><TR
+><TD
+COLSPAN="2"
+ALIGN="RIGHT"
+VALIGN="TOP"
+>--<SPAN
+CLASS="ATTRIBUTION"
+>От: Heiko Schlittermann
+<TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:heiko@os.inf.tu-dresden.de"
+>heiko@os.inf.tu-dresden.de</A
+>&#62;</TT
+></SPAN
+></TD
+><TD
+WIDTH="10%"
+>&nbsp;</TD
+></TR
+></TABLE
+><P
+>Содержимое каталогов <TT
+CLASS="FILENAME"
+>/etc/rc?.d/</TT
+> запускается во время загрузки.</P
+><P
+>Если после инсталляции вы не перезапускались,
+то вы можете запустить dhcpd вручную:
+<B
+CLASS="COMMAND"
+>/etc/init.d/dhcpcd start</B
+>.</P
+><P
+>Когда закончите, переходите к
+<A
+HREF="DHCP.html#NAMESERVER"
+>заключительному шагу</A
+>.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN237"
+>3.7. LinuxPPC и MkLinux</A
+></H2
+><P
+>Следующий раздел написан R. Shapiro</P
+><P
+>По данным реализации "1999" (R5), Linuxppc теперь почти
+полностью совместим с Redhat, только с одним замечанием (см. ниже).
+В общих чертах, инструкции выглядят точно также, как и в
+<A
+HREF="DHCP.html#REDHAT6"
+><I
+>RedHat 6.x и Mandrake 6.x</I
+></A
+>.</P
+><P
+>Исключение составляет тот факт, что RedHat 6 использует 'pump'
+в качестве клиента, а 'pump' не очень хорошо работает под Linuxppc.
+<A
+NAME="LINUXPPC-RH6"
+></A
+>
+Чтобы обойти это, вы должны поставить последнюю версию dhcpcd (Sergei Viznyuk)
+и отредактировать <TT
+CLASS="FILENAME"
+>/sbin/ifup</TT
+>
+на использование <B
+CLASS="COMMAND"
+>dhcpd</B
+> вместо <B
+CLASS="COMMAND"
+>pump</B
+>.</P
+><P
+>Измените</P
+><PRE
+CLASS="PROGRAMLISTING"
+>if [ "$BOOTPROTO" = bootp -o "$BOOTPROTO" = dhcp ]; then
+     PUMP=true
+ fi
+
+ if [ -n "$PUMP" ]; then</PRE
+><P
+>на</P
+><PRE
+CLASS="PROGRAMLISTING"
+> if [  "$BOOTPROTO" = bootp ]; then
+       echo " done."
+     else
+       echo " failed."
+       exit 1
+     fi
+ elif [ "$BOOTPROTO" = dhcp ]; then
+     echo -n "Determining IP information for $DEVICE..."
+     if /sbin/dhcpcd -d $DEVICE ; then
+       if [ -f /etc/dhcpc/dhcpcd-${DEVICE}.exe ]; then
+           /etc/dhcpc/dhcpcd-${DEVICE}.exe
+       fi</PRE
+><P
+>и соответственно измените <B
+CLASS="COMMAND"
+>ifdown</B
+>. Измените</P
+><PRE
+CLASS="PROGRAMLISTING"
+>if [ "$BOOTPROTO" = bootp -o "$BOOTPROTO" = dhcp ]; then
+....
+fi</PRE
+><P
+>на</P
+><PRE
+CLASS="PROGRAMLISTING"
+>if [ "$BOOTPROTO" = bootp ]; then
+fi
+
+if [ "$BOOTPROTO" = dhcp ]; then
+      if [ -f /var/run/dhcpcd-${DEVICE}.pid ]; then
+              kill `cat /var/run/dhcpcd-${DEVICE}.pid`
+              rm -f /var/run/dhcpcd-${DEVICE}.pid
+      fi
+fi</PRE
+><P
+>Рабочий ppc rpm для dhcpcd включен в дистрибутив Linuxppc 1999;
+немного более поздние rpm доступны в каталоге contrib на
+<A
+HREF="ftp://ftp.linuxppc.org/"
+TARGET="_top"
+>ftp://ftp.linuxppc.org/</A
+>.
+Исходные тексты, компилируемые под Linuxppc 1999, находятся на
+<A
+HREF="ftp://ftp.phystech.com/pub/dhcpcd-1.3.17-pl9.tar.gz"
+TARGET="_top"
+>ftp://ftp.phystech.com/pub/dhcpcd-1.3.17-pl9.tar.gz</A
+>.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="NAMESERVER"
+>3.8. Заключительный шаг</A
+></H2
+><P
+>После того как вы перезапустили машину, вам нужно настроить сетевой интерфейс. Наберите:
+<B
+CLASS="COMMAND"
+>ifconfig</B
+>.</P
+><P
+>Вы получите приблизительно следующее:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>          lo        Link encap:Local Loopback
+          inet addr:127.0.0.1  Bcast:127.255.255.255  Mask:255.0.0.0
+          UP BROADCAST LOOPBACK RUNNING  MTU:3584  Metric:1
+          RX packets:302 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:302 errors:0 dropped:0 overruns:0 carrier:0 coll:0
+
+eth0      Link encap:Ethernet  HWaddr 00:20:AF:EE:05:45
+          inet addr:24.128.53.102  Bcast:24.128.53.255  Mask:255.255.254.0
+          ^^^^^^^^^^^^^^^^^^^^^^^
+          UP BROADCAST NOTRAILERS RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:24783 errors:1 dropped:1 overruns:0 frame:1
+          TX packets:11598 errors:0 dropped:0 overruns:0 carrier:0 coll:96
+          Interrupt:10 Base address:0x300</PRE
+><P
+>Если у вас установлен нормальный адрес <TT
+CLASS="LITERAL"
+>inet addr</TT
+>,
+все прошло нормально. Если вы видите
+0.0.0.0, не отчаивайтесь - это временное значение,
+задаваемое <B
+CLASS="COMMAND"
+>dhcpcd</B
+>, перед тем, как он получит правильный адрес.
+Если в течении нескольких минут вы по-прежнему видите 0.0.0.0, см. раздел
+<A
+HREF="DHCP.html#TROUBLESHOOTING"
+><I
+>Основные проблемы и их решения</I
+></A
+>.
+DHCPcd остается запущенным, пока включена машина.
+Каждые три часа он соединяется с DHCP-сервером и пытается продлить
+использование выделенного адреса. При этом он записывает все
+сообщения в журнал syslog (на Slackware <TT
+CLASS="FILENAME"
+>/var/adm/syslog</TT
+>,
+RedHat/OpenLinux <TT
+CLASS="FILENAME"
+>/var/log/syslog</TT
+>).</P
+><P
+>И наконец. Вам нужно указать DNS-сервер. Возможны два варианта:
+вы можете узнать адрес DNS-сервера у вашего провайдера и
+поместить его в <TT
+CLASS="FILENAME"
+>/etc/resolv.conf</TT
+>; или же DHCPcd сам получит список
+из DHCP-сервера и положит файл <TT
+CLASS="FILENAME"
+>resolv.conf</TT
+> в каталог
+<TT
+CLASS="FILENAME"
+>/etc/dhcpc</TT
+>.</P
+><P
+>Я решил использовать <TT
+CLASS="FILENAME"
+>resolv.conf</TT
+>, создаваемый DHCPcd, сделав следующее:</P
+><P
+>Сохраняем старый <TT
+CLASS="FILENAME"
+>/etc/resolv.conf</TT
+>: <B
+CLASS="COMMAND"
+>mv /etc/resolv.conf
+/etc/resolv.conf.OLD</B
+></P
+><P
+>Если каталог <TT
+CLASS="FILENAME"
+>/etc/dhcpc</TT
+>
+не существует, создаем его: <B
+CLASS="COMMAND"
+>mkdir /etc/dhcpc</B
+></P
+><P
+>Делам ссылку из
+<TT
+CLASS="FILENAME"
+>/etc/dhcpc/resolv.conf</TT
+> в
+<TT
+CLASS="FILENAME"
+>/etc/resolv.conf</TT
+>: <B
+CLASS="COMMAND"
+>ln -s
+/etc/dhcpc/resolv.conf /etc/resolv.conf</B
+></P
+><P
+>Если это не сработает, попробуйте следующее (исправление предложил
+<TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:nothing@cc.gatech.edu"
+>nothing@cc.gatech.edu</A
+>&#62;</TT
+>
+с маленькой поправкой от Henrik Stoerner):</P
+><A
+NAME="ERROR3"
+></A
+><P
+>Этот шаг я должен сделать только в том случае, если dhcpcd не создает
+файл <TT
+CLASS="FILENAME"
+>/etc/dhcpc/resolv.conf</TT
+>.
+В скрипте <TT
+CLASS="FILENAME"
+>/etc/sysconfig/network-scripts/ifup</TT
+> я
+сделал следующие изменения (очень криво, но работает):</P
+><PRE
+CLASS="PROGRAMLISTING"
+>elif [ "$BOOTPROTO" = dhcp -a "$ISALIAS" = no ]; then
+    echo -n "Using DHCP for ${DEVICE}... "
+    /sbin/dhcpcd -c /etc/sysconfig/network-scripts/ifdhcpc-done ${DEVICE}
+    echo "echo \$$ &#62; /var/run/dhcp-wait-${DEVICE}.pid; exec sleep 30" | sh
+
+    if [ -f /var/run/dhcp-wait-${DEVICE}.pid ]; then
+	^^^^
+        echo "failed."
+        exit 1</PRE
+><P
+>Я изменил на:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>elif [ "$BOOTPROTO" = dhcp -a "$ISALIAS" = no ]; then
+    echo -n "Using DHCP for ${DEVICE}... "
+    /sbin/dhcpcd
+    echo "echo \$$ &#62; /var/run/dhcp-wait-${DEVICE}.pid; exec sleep 30" | sh
+
+    if [ ! -f /var/run/dhcp-wait-${DEVICE}.pid ]; then
+	^^^^^^
+       echo "failed."
+       exit 1</PRE
+><DIV
+CLASS="NOTE"
+><P
+></P
+><TABLE
+CLASS="NOTE"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="http://www.linux.org.ru/books/images/note.gif"
+HSPACE="5"
+ALT="Замечание"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>Обратите внимание на ! (восклицательный знак) в выражении <TT
+CLASS="LITERAL"
+>if [ ! -f
+/var/run/dhcp-wait-${DEVICE}.pid ];</TT
+></P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>Теперь можете откинуться на спинку стула и наслаждаться :-).</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN300"
+>3.9. Замечания</A
+></H2
+><P
+>Следующий шаг(и) можно пропустить, но он может понадобиться только некоторым:</P
+><P
+></P
+><OL
+TYPE="a"
+><LI
+><P
+>Если вы хотите иметь временный доступ к сети, запустите <B
+CLASS="COMMAND"
+>dhcpcd</B
+> из
+командной строки (для этого нужно быть root): <B
+CLASS="COMMAND"
+>/usr/sbin/dhcpcd</B
+>.</P
+><P
+>Для отключения от сети, наберите
+<B
+CLASS="COMMAND"
+>/usr/sbin/dhcpcd -k</B
+>.</P
+></LI
+></OL
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="TROUBLESHOOTING"
+>3.10. Основные проблемы и их решения</A
+></H2
+><P
+>Если вы выполнили вышеуказанные шаги, а доступ к сети так и не заработал,
+то далее приводятся различные объяснения этому:</P
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN313"
+>3.10.1. У вас не настроена сетевая карта</A
+></H3
+><P
+>Во время процесса загрузки Linux пытается определить тип вашей карты и выводит что-то вроде этого:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>eth0: 3c509 at 0x300 tag 1, 10baseT port, address  00 20 af ee 11 11, IRQ 10.
+3c509.c:1.07 6/15/95 becker@cesdis.gsfc.nasa.gov</PRE
+><P
+>Если похожее сообщение отсутствует, Linux не может определить тип вашей карты.
+Если у вас обычная Ethernet карта (клон NE2000), вы должны настроить карту при
+помощи утилит под DOS, находящимися на диске с драйверами. Попробуйте менять IRQ
+(9,10,12) до тех пор, пока Linux не определит карту.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN318"
+>3.10.2. DHCP-сервер поддерживает RFC 1541 / DHCP-сервер под Windows NT</A
+></H3
+><P
+>Попробуйте запустить <B
+CLASS="COMMAND"
+>dhcpcd</B
+>, набрав команду <B
+CLASS="COMMAND"
+>dhcpcd -r</B
+>.</P
+><P
+>Проверьте настройку сетевого интерфейса через <B
+CLASS="COMMAND"
+>ifconfig</B
+> (подождите несколько
+секунд, пока закончится процесс конфигурации, сначала Inet.addr может быть
+равен <TT
+CLASS="LITERAL"
+>0.0.0.0</TT
+>)</P
+><P
+>Если проблема разрешилась, добавьте ключ "-r" в скрипт загрузки.</P
+><P
+>Например на RedHat отредактируйте скрипт <TT
+CLASS="FILENAME"
+>/etc/sysconfig/network-scripts/ifup</TT
+>,
+изменив следующее:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>        IFNAME=$[ {DEVICE} \
+        "/sbin/dhcpcd -r -c /etc/"- и т.д. и т.п.</PRE
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN330"
+>3.10.3. Во время загрузки появляется сообщение "Using DHCP for eth0 ... failed" (Использование DHCP для eth0 :
+не работает), однако система работает нормально</A
+></H3
+><P
+>Скорее всего вы работаете в RedHat, и не очень внимательно следовали инструкциям :-).
+Вы пропустили восклицательный знак в одном из условных операторов.
+Перейдите <A
+HREF="DHCP.html#ERROR3"
+>сюда</A
+> и сделайте соответствующие
+исправления.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN334"
+>3.10.4. Сеть работает несколько минут, а затем перестает отвечать</A
+></H3
+><P
+>По некоторым сообщениям, gated (сервер шлюзов) нарушает
+маршрутизацию на Linux машинах, что приводит к вышеуказанной проблеме.
+Проверьте, запущен ли gated: <B
+CLASS="COMMAND"
+>ps -auxww | grep gate</B
+>.</P
+><P
+>Если это так, снимите его, деинсталлировав RPM или убрав файл из <TT
+CLASS="FILENAME"
+>/etc/rc.d/</TT
+>.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN340"
+>3.10.5. Сетевая карта определяется во время загрузки, но в журнале только сообщения "NO DHCPOFFER" (у меня PCMCIA карта)</A
+></H3
+><P
+>Вам нужно убедиться, что на вашей сетевой карте активирован порт 10BaseT ("телефонный" разьем). Лучше всего
+проверить на какой порт настроена ваша сетевая карта во время загрузки:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>eth0: 3c509 at 0x300 tag 1, 10baseT port, address  00 20 af ee 11 11, IRQ 10.
+		            ^^^^^^^^^^^^
+3c509.c:1.07 6/15/95 becker@cesdis.gsfc.nasa.gov</PRE
+><P
+>Я получаю сообщения от пользователей портативных компьютеров, у которых появляется
+такая проблема из-за утилит PCMCIA, устанавливающих тип разъема на 10Base2
+(тонкий Ethernet). Вы должны убедиться, что используете для
+соединения 10BaseT. Если нет, настройте сетевую карту и перезагрузитесь.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN345"
+>3.10.6. DHCP-клиент делает запросы, но никто не отвечает (Проблему решил Peter Amstutz)</A
+></H3
+><P
+>На некоторых системах в DHCP-запрос нужно включать имя машины.
+В случае с dhcpcd, это делается ключем <B
+CLASS="COMMAND"
+>-h <TT
+CLASS="REPLACEABLE"
+><I
+>foohost</I
+></TT
+></B
+>.
+В качестве параметра, скорее всего ожидается учетное имя пользователя в сети.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN350"
+>3.10.7. Я выполнил все инструкции, но машина все еще не в сети</A
+></H3
+><P
+>Кабельный модем обычно запоминает Ethernet-адрес вашей сетевой карты,
+так что, если вы подключили новый компьютер или заменили сетевую карту,
+вам нужно как-нибудь заставить кабельный модем распознать новый компьютер/карту.
+Обычно для этого достаточно выключить модем и снова включить его при
+включенном компьютере, или позвонить в службу технической поддержки и сказать им,
+что вы сменили карту в вашем компьютере.</P
+><P
+>Если у вас установлен Firewall (правила ipfwadm), проверьте разрешен ли
+трафик к портам 67/68, которые использует DHCP.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN354"
+>3.10.8. У меня установлен сервис MediaOne Express, и я по-прежнему не могу подключиться к сети</A
+></H3
+><P
+>Оказывается, в DHCP MediaOne использует некоторые вещи, которых там не
+должно быть. Вообще то они не должны вызывать проблем, но вы можете их
+проверить. Если вы (не)счастливый обладатель Windows NT, можете запустить
+Event Viewer на предмет примерно таких предупреждений:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>DHCP received an unknown option 067 of length 005. The raw option data is
+given  below.
+
+0000: 62 61 73 69 63            basic</PRE
+><P
+>Если это вызывает проблему, скачайте исходные
+тексты или готовую программу c
+<A
+HREF="ftp://vanbuer.ddns.org/pub/"
+TARGET="_top"
+>ftp://vanbuer.ddns.org/pub/</A
+>.</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN360"
+>3.11. Альтернативный DHCP-клиент (ISC dhclient)</A
+></H2
+><P
+>Если вам не удалось добиться успеха с dhcpcd, вы можете попробовать
+ISC dhclient. Он идет вместе с дистрибутивом ISC DHCP, который
+включает и DHCP-клиент и DHCP-сервер. Инструкции, как собрать
+дистрибутив ISC DHCP, могут быть найдены <A
+HREF="DHCP.html#DHCPSERVER"
+>здесь</A
+>.
+Когда закончите, вернитесь в этот раздел для настройки клиента.</P
+><DIV
+CLASS="NOTE"
+><P
+></P
+><TABLE
+CLASS="NOTE"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="http://www.linux.org.ru/books/images/note.gif"
+HSPACE="5"
+ALT="Замечание"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>Следующую информацию предоставил Ted Lemon &lt;<TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:mellon@isc.org"
+>mellon@isc.org</A
+>&#62;</TT
+>&gt;,
+один из авторов dhclient.</P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>В текущей версии DHCP-клиента вам на самом деле не нужен
+файл <TT
+CLASS="FILENAME"
+>dhclient.conf</TT
+>. Все, что вам нужно сделать, это просто
+запустить dhclient: <B
+CLASS="COMMAND"
+>/sbin/dhclient</B
+>.</P
+><P
+>При этом настроятся все возможные интерфейсы. Если этого не произошло или
+вы хотите настроить только один интерфейс, создайте <TT
+CLASS="FILENAME"
+>/etc/dhclient.conf</TT
+> с
+примерно такой конфигурацией:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>interface "eth0" {
+  send dhcp-client-identifier 1:xx:xx:xx:xx:xx:xx;
+  send dhcp-lease-time 86400;
+}</PRE
+><P
+>Здесь определяется интерфейс eth0 (если вам нужен другой, то соответственно
+измените eth0). Замените xx:xx:xx:xx:xx на Ethernet-адрес карты.
+Это делает dhclient скорее похожим на клиент Win95.</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN374"
+>4. Установка DHCP-сервера</A
+></H1
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="DHCPSERVER"
+>4.1. DHCP-сервер под UNIX</A
+></H2
+><P
+>Существует несколько различных DHCP-серверов под Unix и коммерческих, и
+бесплатных. Наиболее популярным считается Paul Vixie/ISC DHCPd.
+Последнюю версию 2.0 (для большинства пользователей) или
+бета-версию 3.0 вы можете взять по адресу</P
+><P
+><A
+HREF="ftp://ftp.isc.org/isc/dhcp/"
+TARGET="_top"
+>ftp://ftp.isc.org/isc/dhcp/</A
+></P
+><P
+>Некоторые дистрибутивы предоставляют готовый пакет dhcpd, так что вы можете
+пропустить этот раздел, если он у вас есть.</P
+><P
+>Скачайте и разархивируйте его. После этого перейдите в каталог с
+исходными текстами и наберите: <B
+CLASS="COMMAND"
+>./configure</B
+></P
+><P
+>После того, как закончится настройка на вашу систему, наберите:
+<B
+CLASS="COMMAND"
+>make</B
+> и <B
+CLASS="COMMAND"
+>make install</B
+>.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN387"
+>4.2. Настройка DHCP-сервера</A
+></H2
+><P
+>После окончания инсталяции наберите <B
+CLASS="COMMAND"
+>ifconfig -a</B
+>.
+Вы увидите примерно следующее:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>eth0      Link encap:10Mbps Ethernet  HWaddr 00:C0:4F:D3:C4:62
+          inet addr:183.217.19.43  Bcast:183.217.19.255  Mask:255.255.255.0
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:2875542 errors:0 dropped:0 overruns:0
+          TX packets:218647 errors:0 dropped:0 overruns:0
+          Interrupt:11 Base address:0x210</PRE
+><P
+>Если в сообщении не будет слова MULITICAST, вы должны пересобрать ядро
+с поддержкой мультикастинга. На большинстве систем это уже включено.</P
+><P
+>Следующим шагом нужно установить маршрутизацию на 255.255.255.255. Цитата из DHCPd README:</P
+><A
+NAME="AEN394"
+></A
+><BLOCKQUOTE
+CLASS="BLOCKQUOTE"
+><P
+>"Чтобы dhcpd работал с разборчивыми DHCP-клиентами (напр. Windows 95), он должен
+иметь возможность посылать пакеты по IP-адресу 255.255.255.255. К сожалению,
+Linux использует 255.255.255.255 в качестве адреса рассылки по всей локальной
+сети (у нас это 192.5.5.223). Это приводит к ошибкам в протоколе DHCP, на которые
+многие DHCP-клиенты не обращают внимания, хотя некоторые (например все DHCP-клиеты
+Microsoft) все же обращают. Клиенты, имеющие эту проблему, не видят сообщения
+сервера DHCPOFFER."</P
+></BLOCKQUOTE
+><P
+>Наберите: <B
+CLASS="COMMAND"
+>route add -host 255.255.255.255 dev eth0</B
+></P
+><P
+>Если появится сообщение "<TT
+CLASS="LITERAL"
+>255.255.255.255: Unknown host</TT
+>", вам
+нужно добавить следующую запись в файл <TT
+CLASS="FILENAME"
+>/etc/hosts</TT
+> file:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>255.255.255.255 all-ones</PRE
+><P
+>Затем попробовать:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>route add -host all-ones dev eth0</PRE
+><P
+>или</P
+><PRE
+CLASS="PROGRAMLISTING"
+>route add 255.255.255.0 dev eth0</PRE
+><P
+>где <TT
+CLASS="LITERAL"
+>eth0</TT
+> - это, конечно же, имя вашей сетевой платы.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN408"
+>4.3. Опции DHCPd</A
+></H2
+><P
+>Теперь вам надо настроить DHCPd. Чтобы это сделать, вам нужно создать
+или отредактировать файл <TT
+CLASS="FILENAME"
+>/etc/dhcpd.conf</TT
+>. Существует также графический интерфейс
+kcmdhcpd для dhcpd под KDE ( <A
+HREF="http://www.kde.org/"
+TARGET="_top"
+>http://www.kde.org/</A
+> ), который
+аналогичен конфигуратору DHCP под Windows NT. Когда выйдет KDE 2.0,
+оно должно идти вместе с kcmdhcpd, или вы можете качать его непосредственно
+с:</P
+><P
+><A
+HREF="ftp://ftp.us.kde.org/pub/kde/unstable/apps/network/"
+TARGET="_top"
+>ftp://ftp.us.kde.org/pub/kde/unstable/apps/network/</A
+></P
+><P
+>Если вы хотите настроить его вручную, следуйте нижеуказанным инструкциям.</P
+><P
+>В большинстве случаев вам нужно назначать случайные IP адреса. Это может быть сделано при помощи следующих установок:</P
+><PRE
+CLASS="PROGRAMLISTING"
+># Пример /etc/dhcpd.conf
+# (добавьте свои комментарии здесь)
+default-lease-time 600;
+max-lease-time 7200;
+option subnet-mask 255.255.255.0;
+option broadcast-address 192.168.1.255;
+option routers 192.168.1.254;
+option domain-name-servers 192.168.1.1, 192.168.1.2;
+option domain-name "mydomain.org";
+
+subnet 192.168.1.0 netmask 255.255.255.0 {
+   range 192.168.1.10 192.168.1.100;
+   range 192.168.1.150 192.168.1.200;
+}</PRE
+><P
+>В результате этого DHCP-сервер выдает клиентам IP-адреса из диапазона
+192.168.1.10-192.168.1.100 или 192.168.1.150-192.168.1.200. Если клиент
+не запрашивает временных рамок, сервер выдает адрес на 600 секунд.
+В противном случае, максимально возможное время будет установлено в 7200 секунд.
+Сервер будет также "советовать" клиенту использовать 255.255.255.0 в качестве
+маски подсети, 192.168.1.255 для широкого вещания (broadcast), 192.168.1.254
+в качестве маршрутизатора/шлюза и 192.168.1.1 и 192.168.1.2 для DNS-сервера.</P
+><P
+>Если вы хотите указать WINS-сервер для клиентов с Windows, вам нужно добавить опцию:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>option netbios-name-servers 192.168.1.1;</PRE
+><P
+>Вы можете также указать IP-адрес, основываясь на адресе сетевой карты:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>host haagen {
+   hardware ethernet 08:00:2b:4c:59:23;
+   fixed-address 192.168.1.222;
+}</PRE
+><P
+>При этом сетевой карте с адресом 08:00:2b:4c:59:23 будет назначаться
+IP-адрес 192.168.1.222.</P
+><P
+>Вы можете также смешивать и сочетать настройки. Например, вы можете выдать
+определенным клиентам (например серверам) "статический" IP-адрес, а
+другим динамический адрес (например пользователям с портативными компьютерами).
+Кроме того существует множество других настроек, таких как адрес NIS-сервера,
+сервера точного времени и т.д. Если вам нужны такие настройки, прочитайте
+руководство по <TT
+CLASS="FILENAME"
+>dhcpd.conf</TT
+>.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN426"
+>4.4. Запуск сервера</A
+></H2
+><P
+>Перед запуском сервера вам нужно сделать только одну вещь.
+В большинстве случаев при инсталляции не создается файл <TT
+CLASS="FILENAME"
+>dhcpd.leases</TT
+>.
+Он нужен DHCPd для хранения информации о текущих выделенных адресах и
+представляет из себя обычный текстовый файл, который можно посмотреть во
+время работы DHCPd. Чтобы создать его наберите:
+
+<PRE
+CLASS="PROGRAMLISTING"
+>touch /var/state/dhcp/dhcpd.leases</PRE
+></P
+><P
+>Создастся пустой файл (нулевого размера). Некоторые старые (&#60;2.0)
+версии dhcpd хранят этот файл в <TT
+CLASS="FILENAME"
+>/etc/dhcpd.leases</TT
+>. Вам не нужно
+изменять файл dhcpd.leases - это делает сам dhcpd. Если при его
+создании появилась ошибка, что он уже существует, просто игнорируйте ее
+и переходите к следующему шагу.</P
+><P
+>Теперь вы можете запустить DHCP-сервер. Просто наберите (или вставьте в скрипт загрузки)</P
+><PRE
+CLASS="PROGRAMLISTING"
+>/usr/sbin/dhcpd</PRE
+><P
+>При это dhcpd запустится на устройство eth0. Если вы хотите запустить его на другой
+сетевой плате, просто укажите</P
+><PRE
+CLASS="PROGRAMLISTING"
+>/usr/sbin/dhcpd eth1</PRE
+><P
+>Чтобы проверить, что все работает нормально, вы должны включить режим отладки:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>/usr/sbin/dhcpd -d -f</PRE
+><P
+>После загрузки одного из ваших клиентов, на консоль выведутся различные
+отладочные сообщения. Если все работает нормально, то на этом вы можете
+закончить :-). Выйдите из dhcpd и запустите его без аргументов <B
+CLASS="COMMAND"
+>-d -f</B
+>.
+Если вы хотите запускать dhcpd во время загрузки сервера, добавьте dhcpd
+например в скрипт</P
+><PRE
+CLASS="PROGRAMLISTING"
+>/etc/rc.d/rc.local</PRE
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN442"
+>4.5. Другие интересные документы</A
+></H2
+><P
+>В апрельском Linux Magazine есть хорошая статья, которая называется
+<A
+HREF="http://www.linux-mag.com/2000-04/networknirvana_01.html"
+TARGET="_top"
+>Network
+Nirvana: How to make Network Configuration as easy as DHCP</A
+>,
+которая описывает установку DHCP.</P
+></DIV
+></DIV
+></DIV
+></BODY
+></HTML
+>

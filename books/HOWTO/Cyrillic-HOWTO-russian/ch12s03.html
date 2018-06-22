@@ -1,0 +1,16 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=koi8-r"><title>Mozilla</title><meta name="generator" content="DocBook XSL Stylesheets V1.59.1"><link rel="home" href="index.html" title="The Linux Cyrillic HOWTO (russian)"><link rel="up" href="ch12.html" title="Глава 12. WWW и кириллизация"><link rel="previous" href="ch12s02.html" title="links"><link rel="next" href="ch12s04.html" title="Netscape Navigator"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Mozilla</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch12s02.html">Пред.</a> </td><th width="60%" align="center">Глава 12. WWW и кириллизация</th><td width="20%" align="right"> <a accesskey="n" href="ch12s04.html">След.</a></td></tr></table><hr></div><div class="sect1" lang="ru"><div class="titlepage"><div><h2 class="title" style="clear: both"><a name="mozilla"></a>Mozilla</h2></div></div><a class="indexterm" name="id2893183"></a><p>Возьмите уже русифицированную версию Mozilla, например с
+<a href="ftp://ftp.altlinux.ru" target="_top">ftp AltLinux</a></p><div class="sect2" lang="ru"><div class="titlepage"><div><h3 class="title"><a name="mozilla-ms"></a>Борьба с заточенными под M$ страницами</h3></div></div><p>По совершенно непонятной причине часть провайдеров
+      устанавливает на сервер русский апач. Это ещё пол беды. Часть
+      www дизайнеров создают свои, так сказать, шедевры с расчётом
+      исключительно на cp1251 при этом зачем-то не запрещают русскому
+      апачу перекодировать.</p><p> Если это только статический контент, то
+      всё проходит на ура, но если часть страницы генерируется
+      динамически, то мы имеем страничку в заголовке которой стоит
+      <tt>koi8-r</tt>, а текст на
+      <tt>cp1251</tt>. </p><p>Самый правильный способ борьбы с подобным явлением, это
+      доведение этой проблемы до сведения основных виновником с
+      просьбой организовать запрет на перекодировку с помощью
+      соответствующего <tt>.htaccess</tt> (См. <a href="ch12s05.html" title="Как правильно подготовить свою WWW страничку">&#8220;Как правильно подготовить свою WWW страничку&#8221;</a>).</p><p>Простой метод заключается в установке настроек
+      &quot;Навигатор&quot;&#8212;&gt;&quot;Языки&quot;&#8212;&gt;&quot;Кодировка по умолчанию&quot;
+      в значение <tt>&quot;Кириллица (Windows-1251)&quot;</tt>.</p></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch12s02.html">Пред.</a> </td><td width="20%" align="center"><a accesskey="u" href="ch12.html">Уровень выше</a></td><td width="40%" align="right"> <a accesskey="n" href="ch12s04.html">След.</a></td></tr><tr><td width="40%" align="left" valign="top">links </td><td width="20%" align="center"><a accesskey="h" href="index.html">Начало</a></td><td width="40%" align="right" valign="top"> Netscape Navigator</td></tr></table></div></body></html>

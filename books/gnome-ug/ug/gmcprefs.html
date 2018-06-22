@@ -1,0 +1,628 @@
+<HTML
+><HEAD
+><TITLE
+>Настройка диспетчера файлов.</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.33"><LINK
+REL="HOME"
+TITLE="Руководство пользователя GNOME"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Диспетчер файлов GNOME"
+HREF="gmc.html"><LINK
+REL="PREVIOUS"
+TITLE="Свойства и операции с файлом"
+HREF="gmcfileprops.html"><LINK
+REL="NEXT"
+TITLE="Меню диспетчера файлов"
+HREF="gmcmenus.html"></HEAD
+><BODY
+>
+<?php include("/home/maxcom/linux_html/books/head.php3") ?>
+<DIV
+CLASS="NAVHEADER"
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Руководство пользователя GNOME</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="gmcfileprops.html"
+>Пред.</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Глава 6. Диспетчер файлов GNOME</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="gmcmenus.html"
+>След.</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="GMCPREFS"
+>Настройка диспетчера файлов.</A
+></H1
+><P
+>    
+     Вы можете изменить по своему вкусу многие параметры диспетчера
+     файлов GNOME. 
+    </P
+><P
+>     Настройка параметров GNOME осуществляется с помощью диалога
+     <I
+CLASS="GUILABEL"
+>GMC Preferences</I
+>, который вызывается командой
+     <B
+CLASS="GUIMENUITEM"
+>Настройка</B
+> в меню
+     <B
+CLASS="GUIMENU"
+>Правка</B
+>.
+    </P
+><P
+>     Диалог <I
+CLASS="GUILABEL"
+>GMC Preferences</I
+> состоит из следующих 
+     разделов: <I
+CLASS="GUILABEL"
+>Файлы</I
+>,
+     <I
+CLASS="GUILABEL"
+>Подтверждение</I
+>, <I
+CLASS="GUILABEL"
+>ВФС</I
+>,
+     <I
+CLASS="GUILABEL"
+>Caching</I
+> и
+     <I
+CLASS="GUILABEL"
+>Специальный</I
+>.
+    </P
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="GMCPREFS-FILE"
+>Файлы</A
+></H2
+><DIV
+CLASS="FIGURE"
+><P
+><B
+>Рисунок 6-7. Раздел "Файлы"</B
+></P
+><P
+><IMG
+SRC="../figs/gmcprops1.gif"></P
+></DIV
+><P
+></P
+><UL
+><LI
+STYLE="list-style-type: disc"
+><P
+>        
+         В разделе <I
+CLASS="GUILABEL"
+>Файлы</I
+> Вы можете изменить
+         настройку показа файлов в главном окне диспетчера файлов.
+        </P
+><P
+></P
+><UL
+><LI
+STYLE="list-style-type: disc"
+><P
+>           <I
+CLASS="GUILABEL"
+>Показывать резервные файлы</I
+> - в этом
+           режиме диспетчер файлов   будет показывать резервные копии файлов
+           (backup files) на вашей системе.
+          </P
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+>          
+          
+           <I
+CLASS="GUILABEL"
+>Показывать скрытые файлы</I
+> - в этом
+           режиме диспетчер файлов будет показывать все "dot files",
+           то есть файлы и каталоги, имена которых начинаются с
+           точки. Как правило, это конфигурационные файлы.
+          </P
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+>           <I
+CLASS="GUILABEL"
+>Файлы и каталоги вперемешку</I
+> - по
+           умолчанию, диспетчер файлов всегда показывает каталоги
+           перед файлами. В этом режиме файлы и каталоги будут
+           показаны вместе, упорядоченные в согласии с выбранным вами
+           полем (имя, размер,...).
+          </P
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+>           <I
+CLASS="GUILABEL"
+>Образцы командной строки вместо регулярных выражений
+           </I
+> - эта настройка  предназначена только для
+           опытных пользователей. Если вы незнакомы с синтаксисом
+           регулярных выражений  (Regular  Expressions), то вам не
+           следует ее менять. Пользователи с опытом работы с
+           регулярными выражениями могут отменить этот режим и
+           использовать регулярные выражения в качестве критериев для
+           выборки файлов и в фильтрах. 
+          </P
+></LI
+></UL
+></LI
+></UL
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="GMCPREFS-CONFIRM"
+>Подтверждение</A
+></H2
+><DIV
+CLASS="FIGURE"
+><P
+><B
+>Рисунок 6-8. Настройка запросов подтверждений</B
+></P
+><P
+><IMG
+SRC="../figs/gmcprops2.gif"></P
+></DIV
+><P
+></P
+><UL
+><LI
+STYLE="list-style-type: disc"
+><P
+>        
+         В этом разделе вы можете указать, перед выполнением каких
+         операций диспетчеру файлов следует запрашивать подтверждение. 
+       </P
+><P
+></P
+><UL
+><LI
+STYLE="list-style-type: disc"
+><P
+>           <I
+CLASS="GUILABEL"
+>Подтверждение при удалении файла</I
+> - перед
+           тем, как уничтожить файл, диспетчер файлов выдаст окно с
+           предупреждением и потребует подтверждения. 
+          </P
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+>           <I
+CLASS="GUILABEL"
+>Подтверждение перед перезаписью файлов</I
+>
+           - перед тем, как переписать файл, диспетчер файлов выдаст
+           окно с предупреждением и потребует подтверждения.
+          </P
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+>           <I
+CLASS="GUILABEL"
+>Подтверждение перед запуском файлов</I
+> - перед
+           тем, как запустить файл с программой, диспетчер файлов
+           выдаст окно с предупреждением и потребует подтверждения.
+          </P
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+>           <I
+CLASS="GUILABEL"
+>Show progress while operations are being
+           performed</I
+> - при выполнении различных операций
+           (копирование файлов, перемещение, уничтожение и т. п.),
+           диспетчер файлов будет выдавать на экране полосу, которая
+           заполняется по мере выполнения операции.
+          </P
+></LI
+></UL
+></LI
+></UL
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="GMCPREFS-VFS"
+>ВФС</A
+></H2
+><DIV
+CLASS="FIGURE"
+><P
+><B
+>Рисунок 6-9. Настройка ВФС</B
+></P
+><P
+><IMG
+SRC="../figs/gmcprops3.gif"></P
+></DIV
+><P
+></P
+><UL
+><LI
+STYLE="list-style-type: disc"
+><P
+>         В этом разделе вы можете изменить различные параметры
+         ВФС (виртуальная файловая система). 
+        </P
+><P
+> 
+         Виртуальная файловая система предоставляет  вам доступ к
+         файлам, которые в действительности не находятся в вашей
+         файловой системе. В частности, она дает доступ к файлам на
+         FTP сайтах и внутри tar архивов (tar=Tape ARchive -
+         распространенный в UNIX формат архивных файлов). 
+        </P
+><P
+></P
+><UL
+><LI
+STYLE="list-style-type: disc"
+><P
+>   
+           <I
+CLASS="GUILABEL"
+>VFS   Timeout</I
+>   - этот параметр
+           определяет, через какое время бездействия соединение с ВФС
+           прерывается. Время измеряется в секундах. 
+          </P
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+>           <I
+CLASS="GUILABEL"
+>Anonymous  FTP password</I
+> - этот
+            параметр задает пароль для соединения с анонимными FTP
+            сайтами. Большинство таких сайтов просят ввести в качестве
+            пароля ваш e-mail адрес. 
+          </P
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+>           <I
+CLASS="GUILABEL"
+>Always use FTP proxy</I
+>  - этот режим 
+           следует выбрать, если вы соединяетесь с FTP сайтами через
+           прокси. Если вы не знаете, что это такое, то скорее всего,
+           к вам это  не относится.  
+          </P
+></LI
+></UL
+></LI
+></UL
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="GMCPREFS-CACHE"
+>Caching</A
+></H2
+><DIV
+CLASS="FIGURE"
+><P
+><B
+>Рисунок 6-10. Настройка cache</B
+></P
+><P
+><IMG
+SRC="../figs/gmcprops4.gif"></P
+></DIV
+><P
+></P
+><UL
+><LI
+STYLE="list-style-type: disc"
+><P
+> В этом разделе вы можете изменить настройку cache,
+        используемого для ускорения работы диспетчера файлов.
+        </P
+><P
+></P
+><UL
+><LI
+STYLE="list-style-type: disc"
+><P
+> 
+           <I
+CLASS="GUILABEL"
+>Быстрая перезагрузка каталога</I
+> -
+          в этом режиме диспетчер файлов будет использовать cache для
+          хранения информации о каталогах, что ускоряет открывание
+          каталога.
+          </P
+><DIV
+CLASS="IMPORTANT"
+><BLOCKQUOTE
+CLASS="IMPORTANT"
+><P
+><B
+>ВАЖНАЯ ИНФОРМАЦИЯ: </B
+>            Если выбрать  <I
+CLASS="GUILABEL"
+>Быстрая перезагрузка
+            каталога</I
+>, то может случиться, что диспетчер
+            файлов не будет показывать вновь добавленные в каталог
+            файлы.
+           </P
+></BLOCKQUOTE
+></DIV
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+>           <I
+CLASS="GUILABEL"
+>Compute totals  before copying files</I
+> -
+           в этом режиме  перед тем, как начать
+           копирование группы файлов, диспетчер файлов
+           подсчитает их количество.   Это необходимо для того,  чтобы
+           вы могли следить за прогрессом операции. 
+          </P
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+>           <I
+CLASS="GUILABEL"
+>FTP  directory  cache  timeout</I
+> -  этот 
+	   параметр  определяет, какое время (в секундах) диспетчер
+	   файлов хранит в cache оглавление FTP сайтов, которые вы
+	   посетили. 
+          </P
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+>           <I
+CLASS="GUILABEL"
+>Allow    customization   of    icons    in   icon
+           view</I
+> - этот режим позволяет вам  изменить
+           пиктограммы для файлов в главном окне диспетчера файлов (в
+           режиме "Пиктограммы"). Вы всегда можете изменить
+           пиктограмму объекта на вашем рабочем столе - для этого надо
+           щелкнуть   на него правой кнопкой мыши и выбрать в
+           появившемся меню команду
+           <B
+CLASS="GUIMENUITEM"
+>Свойства</B
+>. Если вы выберете 
+           режим <I
+CLASS="GUILABEL"
+>Allow    customization   of    icons    in   icon
+           view</I
+>, то то же самое будет действовать и в главном окне
+           диспетчера файлов.
+          </P
+><DIV
+CLASS="IMPORTANT"
+><BLOCKQUOTE
+CLASS="IMPORTANT"
+><P
+><B
+>ВАЖНАЯ ИНФОРМАЦИЯ: </B
+>            Использование режима <I
+CLASS="GUILABEL"
+>Allow customization  of icons in
+            icon  view</I
+> может замедлить работу вашей
+            системы. 
+           </P
+></BLOCKQUOTE
+></DIV
+></LI
+></UL
+></LI
+></UL
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN777"
+>Специальный режим</A
+></H2
+><P
+>    
+      Этот раздел позволяет вам настроить специальный режим показа
+     в диспетчере файлов GNOME. 
+    </P
+><DIV
+CLASS="FIGURE"
+><P
+><B
+>Рисунок 6-11. Натсройка специального режима</B
+></P
+><P
+><IMG
+SRC="../figs/custom-view.gif"></P
+></DIV
+><P
+>      Этот раздел содержит два списка: <I
+CLASS="GUILABEL"
+>Possible
+      Columns</I
+> и  <I
+CLASS="GUILABEL"
+>Displayed Columns</I
+>.
+    </P
+><P
+>     Список <I
+CLASS="GUILABEL"
+>Possible Columns</I
+> содержит все
+     возможные поля с информацией про файлы, который могут быть
+     показаны диспетчером файлов. Чтобы показывать  одно из них,
+     выделите его и нажмите кнопку  <B
+CLASS="GUIBUTTON"
+>Add</B
+>, и это
+     поле будет добавлено к списку <I
+CLASS="GUILABEL"
+>Displayed
+     Columns</I
+>.
+    </P
+><P
+>     Список <I
+CLASS="GUILABEL"
+>Displayed Columns</I
+> содержит все поля,
+     которые показываются в настоящий момент в специальном режиме. Вы
+     можеет удалить одно из них, выделив его и нажав кнопку 
+     <B
+CLASS="GUIBUTTON"
+>Remove</B
+>.
+    </P
+><P
+>     Вы можете изменить порядок показа полей, перемещая их с помощью
+     мыши в списке 
+     <I
+CLASS="GUILABEL"
+>Displayed Columns</I
+>.
+    </P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="gmcfileprops.html"
+>Пред.</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+>Начало</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="gmcmenus.html"
+>След.</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Свойства и операции с файлом</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="gmc.html"
+>Уровень выше</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Меню диспетчера файлов</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

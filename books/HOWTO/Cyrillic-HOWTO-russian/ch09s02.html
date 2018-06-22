@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=koi8-r"><title>Поддержка кириллицы в perl</title><meta name="generator" content="DocBook XSL Stylesheets V1.59.1"><link rel="home" href="index.html" title="The Linux Cyrillic HOWTO (russian)"><link rel="up" href="ch09.html" title="Глава 9. Кириллизация программ"><link rel="previous" href="ch09.html" title="Глава 9. Кириллизация программ"><link rel="next" href="ch09s03.html" title="Символьная перекодировка"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Поддержка кириллицы в perl</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch09.html">Пред.</a> </td><th width="60%" align="center">Глава 9. Кириллизация программ</th><td width="20%" align="right"> <a accesskey="n" href="ch09s03.html">След.</a></td></tr></table><hr></div><div class="sect1" lang="ru"><div class="titlepage"><div><h2 class="title" style="clear: both"><a name="perl"></a>Поддержка кириллицы в perl</h2></div></div><a class="indexterm" name="id2889558"></a><p>В этом разделе описывается методы позволяющие работать с
+      кириллицей из скриптов, написанных я языке perl</p><div class="sect2" lang="ru"><div class="titlepage"><div><h3 class="title"><a name="perllocale"></a>Поддержка locale в perl</h3></div></div><a class="indexterm" name="id2889589"></a><p>Для того чтобы можно было выполнять регекспы на
+кириллических символах с ключом &quot;i&quot;  (а так же использовать
+стандартные функции преобразование текста &#8212; такие как
+<span class="emphasis"><em>uc</em></span>, <span class="emphasis"><em>lc</em></span>,
+<span class="emphasis"><em>sort</em></span> и т.д.) в системах с корректной локализацией
+(FreeBSD, Linux на glibc 2.1) это делается так:</p><pre class="programlisting">
+    use locale;
+    use POSIX qw (locale_h);
+    setlocale(LC_CTYPE, 'ru_RU.KOI8-R');
+</pre><p>
+</p><p>(можно ещё выставить переменную окружения
+<tt>export LANG=ru_RU.KOI8-R</tt> тогда будет
+достаточно вызова <tt>use locale;</tt> в
+Perl-скрипте)</p></div><div class="sect2" lang="ru"><div class="titlepage"><div><h3 class="title"><a name="perlrecode"></a>Символьная перекодировка средствами perl</h3></div></div><a class="indexterm" name="id2889674"></a><a class="indexterm" name="id2889690"></a><p>Ниже идут примеры</p><div class="itemizedlist"><ul type="disc"><li><p>Пример 1:
+
+</p><pre class="programlisting">
+sub wintokoi {
+    my $pvdcoderwin=shift;
+    $pvdcoderwin=~
+tr/\xC0\xC1\xC2\xC3\xC4\xC5\xC6\xC7\xC8\xC9\xCA\xCB\xCC\xCD\xCE\xCF\xD0\xD1\xD2
+\xD3\xD4\xD5\xD6\xD7\xD8\xD9\xDA\xDB\xDC\xDD\xDE\xDF\xE0\xE1\xE2\xE3\xE4\xE5
+\xE6\xE7\xE8\xE9\xEA\xEB\xEC\xED\xEE\xEF\xF0\xF1\xF2\xF3\xF4\xF5\xF6\xF7\xF8
+\xF9\xFA\xFB\xFC\xFD\xFE\xFF/\xE1\xE2\xF7\xE7\xE4\xE5\xF6\xFA\xE9\xEA\xEB\xEC
+\xED\xEE\xEF\xF0\xF2\xF3\xF4\xF5\xE6\xE8\xE3\xFE\xFB\xFD\xFF\xF9\xF8\xFC\xE0\xF1
+\xC1\xC2\xD7\xC7\xC4\xC5\xD6\xDA\xC9\xCA\xCB\xCC\xCD\xCE\xCF\xD0\xD2\xD3\xD4\xD5
+\xC6\xC8\xC3\xDE\xDB\xDD\xDF\xD9\xD8\xDC\xC0\xD1/;
+return $pvdcoderwin;
+}
+</pre><p>
+
+</p></li><li><p>Пример 2:
+
+</p><pre class="programlisting">
+sub dostoiso {
+    my $pvdcoderwin=shift;
+    $pvdcoderwin=~
+tr/\x80\x81\x82\x83\x84\x85\x86\x87\x88\x89\x8A\x8B\x8C\x8D
+\x8E\x8F\x90\x91\x92\x93\x94\x95\x96\x97\x98\x99\x9A\x9B\x9C\x9D\x9E\x9F\xA0
+\xA1\xA2\xA3\xA4\xA5\xA6\xA7\xA8\xA9\xAA\xAB\xAC\xAD\xAE\xAF\xE0\xE1\xE2\xE3\xE4
+\xE5\xE6\xE7\xE8\xE9\xEA\xEB\xEC\xED\xEE\xEF/\xB0\xB1\xB2\xB3\xB4\xB5\xB6\xB7
+\xB8\xB9\xBA\xBB\xBC\xBD\xBE\xBF\xC0\xC1\xC2\xC3\xC4\xC5\xC6\xC7\xC8\xC9\xCA\xCB
+\xCC\xCD\xCE\xCF\xD0\xD1\xD2\xD3\xD4\xD5\xD6\xD7\xD8\xD9\xDA\xDB\xDC\xDD\xDE\xDF
+\xE0\xE1\xE2\xE3\xE4\xE5\xE6\xE7\xE8\xE9\xEA\xEB\xEC\xED\xEE\xEF/;
+return $pvdcoderwin;
+}
+</pre><p>
+</p></li></ul></div><p>Остальное получается по аналогии.</p><p>Примером,
+перекодировщика на perl с автоматическим определением исходной
+кодировки может служить <a href="http://kedr.inp.nsk.su/~baldin/misc/2k.tgz" target="_top">программка
+2k</a>.</p></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch09.html">Пред.</a> </td><td width="20%" align="center"><a accesskey="u" href="ch09.html">Уровень выше</a></td><td width="40%" align="right"> <a accesskey="n" href="ch09s03.html">След.</a></td></tr><tr><td width="40%" align="left" valign="top">Глава 9. Кириллизация программ </td><td width="20%" align="center"><a accesskey="h" href="index.html">Начало</a></td><td width="40%" align="right" valign="top"> Символьная перекодировка</td></tr></table></div></body></html>

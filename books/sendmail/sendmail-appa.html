@@ -1,0 +1,185 @@
+<HTML>
+<HEAD>
+</HEAD>
+<BODY LINK="#0000ff" VLINK="#800080">
+
+<B><P ALIGN="CENTER">ПРИЛОЖЕНИЕ A</P>
+<P ALIGN="CENTER">ФЛАГИ КОМАНДНОЙ СТРОКИ</P></B>
+<br>
+<P>Аргументы должны быть представлены флагами перед адресами. Вот какие бывают флаги:</P>
+<TABLE CELLSPACING=0 BORDER=0 CELLPADDING=7 WIDTH=100%>
+<TR><TD WIDTH="30%" VALIGN="TOP">
+<P>-b<U>x</U></TD>
+<TD WIDTH="70%" VALIGN="TOP" COLSPAN=2>
+<P>Установить режим работы <U>x</U>. Режимы работы таковы:</TD>
+</TR>
+<TR>
+<TD WIDTH="30%" VALIGN="TOP"></TD>
+<TD WIDTH="7%" VALIGN="TOP">
+<P>m</TD>
+<TD WIDTH="62%" VALIGN="TOP">
+<P>Доставка почты (по умолчанию)</TD>
+</TR>
+<TR>
+<TD WIDTH="30%" VALIGN="TOP"></TD>
+<TD WIDTH="7%" VALIGN="TOP">
+<P>s</TD>
+<TD WIDTH="62%" VALIGN="TOP">
+<P>На входе говорить на SMTP </TD>
+</TR>
+<TR>
+<TD WIDTH="30%" VALIGN="TOP"></TD>
+<TD WIDTH="7%" VALIGN="TOP">
+<P>a</TD>
+<TD WIDTH="62%" VALIGN="TOP">
+<P>Режим "Arpanet" (получать информацию о конвертном отправителе из заголовка). </TD>
+</TR>
+<TR>
+<TD WIDTH="30%" VALIGN="TOP"></TD>
+<TD WIDTH="7%" VALIGN="TOP">
+<P>d</TD>
+<TD WIDTH="62%" VALIGN="TOP">
+<P>Работать в фоне как демон</TD>
+</TR>
+<TR>
+<TD WIDTH="30%" VALIGN="TOP"></TD>
+<TD WIDTH="7%" VALIGN="TOP">
+<P>D</TD>
+<TD WIDTH="62%" VALIGN="TOP">
+<P>Работать как демон, но не в фоне</TD>
+</TR>
+<TR>
+<TD WIDTH="30%" VALIGN="TOP"></TD>
+<TD WIDTH="7%" VALIGN="TOP">
+<P>t</TD>
+<TD WIDTH="62%" VALIGN="TOP">
+<P>Работать в тестовом режиме</TD>
+</TR>
+<TR>
+<TD WIDTH="30%" VALIGN="TOP"></TD>
+<TD WIDTH="7%" VALIGN="TOP">
+<P>v</TD>
+<TD WIDTH="62%" VALIGN="TOP">
+<P>Просто проверять адреса, не собирать и не доставлять</TD>
+</TR>
+<TR>
+<TD WIDTH="30%" VALIGN="TOP"></TD>
+<TD WIDTH="7%" VALIGN="TOP">
+<P>i</TD>
+<TD WIDTH="62%" VALIGN="TOP">
+<P>Инициализировать базу данных псевдонимов</TD>
+</TR>
+<TR>
+<TD WIDTH="30%" VALIGN="TOP"></TD>
+<TD WIDTH="7%" VALIGN="TOP">
+<P>p</TD>
+<TD WIDTH="62%" VALIGN="TOP">
+<P>Распечатать почтовую очередь</TD>
+</TR>
+<TR><TD WIDTH="30%" VALIGN="TOP">
+<P>-B<U>type</U></TD>
+<TD WIDTH="70%" VALIGN="TOP" COLSPAN=2>
+<P>Указывает тип тела.</TD>
+</TR>
+<TR><TD WIDTH="30%" VALIGN="TOP">
+<P>-C<U>file</U></TD>
+<TD WIDTH="70%" VALIGN="TOP" COLSPAN=2>
+<P>Использовать другой файл конфигурации. При указании этого флага, <U>sendmail</U> будет работать от запустившего его пользователя (отличного от root).</TD>
+</TR>
+<TR><TD WIDTH="30%" VALIGN="TOP">
+<P>-d<U>level</U></TD>
+<TD WIDTH="70%" VALIGN="TOP" COLSPAN=2>
+<P>Устанавливает уровень отладки.</TD>
+</TR>
+<TR><TD WIDTH="30%" VALIGN="TOP">
+<P>-f <U>addr</U></TD>
+<TD WIDTH="70%" VALIGN="TOP" COLSPAN=2>
+<P>Адрес машины отправителя есть <U>addr</U>.</TD>
+</TR>
+<TR><TD WIDTH="30%" VALIGN="TOP">
+<P>-F<U>name</U></TD>
+<TD WIDTH="70%" VALIGN="TOP" COLSPAN=2>
+<P>Устанавливает полное имя этого пользователя в <U>name</U>.</TD>
+</TR>
+<TR><TD WIDTH="30%" VALIGN="TOP">
+<P>-h <U>cnt</U></TD>
+<TD WIDTH="70%" VALIGN="TOP" COLSPAN=2>
+<P>Устанавливает "счетчик пересылок" равным <U>cnt</U>. Он говорит о том, сколько раз это сообщение было обработано <U>sendmail</U>'ом (в том смысле, что это поддерживается основными сетями). <U>Cnt</U> увеличивается при каждой обработке, и если он достигает значения MAXHOP (в настоящее время 30) <U>sendmail</U> выкидывает сообщение с ошибкой.</TD>
+</TR>
+<TR><TD WIDTH="30%" VALIGN="TOP">
+<P>-n</TD>
+<TD WIDTH="70%" VALIGN="TOP" COLSPAN=2>
+<P>Не производить псевдонимизации и пересылки.</TD>
+</TR>
+<TR><TD WIDTH="30%" VALIGN="TOP">
+<P>-N <U>уведомления</U></TD>
+<TD WIDTH="70%" VALIGN="TOP" COLSPAN=2>
+<P>Отмечает все отправленные адреса как хотящие указанных <U>уведомлений</U>, состоящих из слова "NEVER" или списка, разделенного запятыми из слов "SUCCESS", "FAILURE", и "DELAY" для успешной доставки, неудачи, и сообщения застрявшего где-то в очереди. По умолчанию "FAILURE,DELAY".</TD>
+</TR>
+<TR><TD WIDTH="30%" VALIGN="TOP">
+<P>-r <U>addr</U></TD>
+<TD WIDTH="70%" VALIGN="TOP" COLSPAN=2>
+<P>Устарелая форма от <B>-f</B>.</TD>
+</TR>
+<TR><TD WIDTH="30%" VALIGN="TOP">
+<P>-o<U>xзначение</U></TD>
+<TD WIDTH="70%" VALIGN="TOP" COLSPAN=2>
+<P>Установить опцию <U>x</U> в указанное <U>значение</U>. Эти опции описаны в <A HREF="sendmail5.html#toc56">Разделе 5.6.</A></TD>
+</TR>
+<TR><TD WIDTH="30%" VALIGN="TOP">
+<P>-O<U>опция</U><B>=</B><U>значение</P>
+</U></TD>
+<TD WIDTH="70%" VALIGN="TOP" COLSPAN=2>
+<P>Установить для <U>опции</U> указанное <U>значение</U> (для длинных имен опций). Эти опции описаны в <A HREF="sendmail5.html#toc56">Разделе 5.6.</A></TD>
+</TR>
+<TR><TD WIDTH="30%" VALIGN="TOP">
+<P>-M<U>xзначение</U></TD>
+<TD WIDTH="70%" VALIGN="TOP" COLSPAN=2>
+<P>Установить макрос <U>x</U> в <U>значение</U>.</TD>
+</TR>
+<TR><TD WIDTH="30%" VALIGN="TOP">
+<P>-p<U>protocol</U></TD>
+<TD WIDTH="70%" VALIGN="TOP" COLSPAN=2>
+<P>Установит протокол отправки. Программы поощряют установку этой опции. Поле протокола может быть в виде <U>protocol</U><B>:</B><U>host</U> для указания и протокола отправки, и отсылающего хоста. Например, "-pUUCP:uunet" выставляет протокол отправки UUCP и отправляющий хост uunet. (Некоторые существующие программы используют -oM для выставки макросов r и s; это эквивалентно использованию флага -p.)</TD>
+</TR>
+<TR><TD WIDTH="30%" VALIGN="TOP">
+<P>-q<U>время</U></TD>
+<TD WIDTH="70%" VALIGN="TOP" COLSPAN=2>
+<P>Попробовать обработать почту в очереди. Если задано время, <U>sendmail</U> будет обрабатывать почту в очереди через указанный интервал времени, иначе он запустится только один раз.</TD>
+</TR>
+<TR><TD WIDTH="30%" VALIGN="TOP">
+<P>-q<U>Xстроку</U></TD>
+<TD WIDTH="70%" VALIGN="TOP" COLSPAN=2>
+<P>Обработать очередь один раз, ограничивая работу теми сообщениями, которые соответствуют <U>Xstring</U>. Ключевая буква <U>X</U> может быть <B>I</B> для ограничений основанных на идентификаторе очереди, <B>R</B> для ограничений основанных на получателе, или <B>S</B> для ограничений основанных на отправителе. Конкретная работа в очереди принимается, если один из соответствующих адресов содержит указанную <U>строку</U>.</TD>
+</TR>
+<TR><TD WIDTH="30%" VALIGN="TOP">
+<P>-R <U>ret</U></TD>
+<TD WIDTH="70%" VALIGN="TOP" COLSPAN=2>
+<P>Информация, возвращаемая при срыве доставки сообщения; <U>ret</U> может быть "HDRS" для заголовков, "FULL" - для заголовков и тела; при этом не требуется, чтобы другой конец принимал этот параметр.</TD>
+</TR>
+<TR><TD WIDTH="30%" VALIGN="TOP">
+<P>-t</TD>
+<TD WIDTH="70%" VALIGN="TOP" COLSPAN=2>
+<P>Выбрать из заголовка строки "To:", "Cc:", и "Bcc:", и послать всем в этих списках. Строка "Bcc:" перед отправкой будет уничтожена. Любые адреса из вектора аргументов будут удалены из списка отправки.</TD>
+</TR>
+<TR><TD WIDTH="30%" VALIGN="TOP">
+<P>-U</TD>
+<TD WIDTH="70%" VALIGN="TOP" COLSPAN=2>
+<P>Указывает, что это первичное представление User Agent. В будущих выпусках, если этот влаг установлен, sendmail может жаловаться на синтаксически неправильные сообщения вместо их подправки.</TD>
+</TR>
+<TR><TD WIDTH="30%" VALIGN="TOP">
+<P>-V <U>envid</U></TD>
+<TD WIDTH="70%" VALIGN="TOP" COLSPAN=2>
+<P>Указанный <U>envid</U> передается с конвертом сообщения и возвращается при "отскоке" сообщения.</TD>
+</TR>
+<TR><TD WIDTH="30%" VALIGN="TOP">
+<P>-X <U>logfile</U></TD>
+<TD WIDTH="70%" VALIGN="TOP" COLSPAN=2>
+<P>Протоколировать весь трафик, входящий в и выходящий из <U>sendmail</U> в указанный <U>logfile</U> при проблемах отладки почтовых программ. При этом быстро выдается большое количество данных, поэтому эта опция должна использоваться умеренно.</TD>
+</TR>
+</TABLE>
+
+<P>Существует некоторое количество опций, которые могут быть определены как простые флаги. Это опции e, i, m, и v.</P>
+<P>Также, опция f может быть определена как флаг <B>-s</B>.</P>
+</BODY>
+</HTML>

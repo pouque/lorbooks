@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
+  <meta http-equiv="Content-Type" content="text/html; charset=windows-1251"><title>Why do we use static linking?</title>
+
+  
+
+  
+  <meta name="GENERATOR" content="Modular DocBook HTML Stylesheet Version 1.73">
+  <link rel="HOME" title="Linux From Scratch" href="http://www.linux.org.ru/books/Distro/lfsbook/chapter05/index.html">
+  <link rel="UP" title="Preparing the LFS system" href="chapter05.html">
+  <link rel="PREVIOUS" title="Introduction" href="introduction.html">
+  <link rel="NEXT" title="Creating the $LFS/static directory" href="creatingstaticdir.html"></head><body class="sect1" bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#840084" alink="#006000">
+<div class="NAVHEADER"><table summary="Header navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><th colspan="3" align="Center">Linux From Scratch: Версия 4.0</th></tr><tr><td width="10%" align="Left" valign="Bottom"><a href="introduction.html" accesskey="P">Назад</a></td><td width="80%" align="Center" valign="Bottom">Глава 5. Подготовка системы LFS</td><td width="10%" align="Right" valign="Bottom"><a href="creatingstaticdir.html" accesskey="N">Вперед</a></td></tr></tbody></table><hr align="Left" width="100%"></div>
+<div class="sect1"><h1 class="sect1"><a name="ch05-whystatic">Почему мы используем статические ссылки?</a></h1><p>(Спасибо Plasmatic'у за разъяснение этого вопроса в одном из списков рассылки LFS.)</p><p>При
+компиляции программы, вместо того, чтобы при создании нового файла каждый
+раз переписывать все функции работы с ядром, аппаратными средствами, файлами,
+все базовые функции хранятся в библиотеках. glibc, которую мы установим позже,
+является одной из главных библиотек такого рода. Она содержит код для всех
+основных функций, таких как открытие файлов, печать информации на экран,
+получение ввода от пользователя. После компиляции программы эти библиотеки
+связываются ссылками с новой программой, чтобы она могла использовать любую
+функцию этих библиотек.</p><p>Однако
+такие библиотеки могут оказаться довольно большими (например, libc.a обычно
+занимает 2.5 MB), и держать отдельную копию каждой библиотеки прикрепленной
+к программе не очень то и логично. Представьте себе простую команду вроде
+ls с лишними 2.5 MB, прикрепленными к ней! Вместо того, чтобы делать библиотеку
+частью программы, или связывать статической ссылкой, библиотеку можно хранить
+в отдельном файле, который будет подгружаться по мере необходимости. Это
+называется динамическими ссылками, т.к. библиотека загружается и выгружается
+динамически, по мере необходимоти программы.</p><p>Итак, у нас есть файл
+размером 1 KB и файл размером 2.5 MB. Пока мы не съэкономили дискового пространства
+(разве что освободили оперативную память до того, как библиотека понадобится).
+<em>Настоящая</em> выгода от использования динамических ссылок состоит в том, что нам необходимо хранить лишь одну копию библиотеки. Если <tt class="filename">ls</tt> и
+<tt class="filename">rm</tt> используют одну и ту же библиотеку, то нам не
+нужно иметь две копии этой библиотеки. Обе команды могут пользоваться кодом
+из одного файла. Также и с оперативной памятью - две программы используют
+один код вместо того, чтобы загружать в память его дубликаты. Таким образом
+экономится не только место на диске, но и драгоценная оперативная память.</p><p>Если
+динамические ссылки позволяют съэкономить столько места, почему же мы везде
+используем статические ссылки? Потому что, когда вы входите в новую (и далекую
+от совершенства) систему LFS с помощью команды chroot, динамические библиотеки
+будут недоступны, т.к. они находятся в дереве старого дистрибутива (например
+в <tt class="filename">/usr/lib</tt>). Эти каталоги будут недоступны из корневой директории системы LFS (<tt class="filename">$LFS</tt>).</p><p>Для
+того чтобы скомпилированные программы работали в среде chroot, при компиляции
+убедитесь, что библиотеки связаны статическими ссылками, отсюда возникают
+опции <tt class="userinput"><b>--enable-static-link</b></tt>, 
+<tt class="userinput"><b>--disable-shared</b></tt>, и
+<tt class="userinput"><b>-static</b></tt> в Главе 5. Первое, что описывает
+Глава 6, это компиляция основных библиотек системы, glibc. После этого, мы
+перекомпилируем все программы, собранные в Главе 5, но в этот раз с динамическими
+ссылками, чтобы воспользоваться всеми преимуществами экономии дискового пространства.</p><p>Именно поэтому мы и используем эти странные опции
+<tt class="userinput"><b>-static</b></tt>. Если скомпилировать пакеты без
+них, вы довольно быстро увидите, что случится, после того как вы войдете
+в парализованную систему LFS при помощи команды chroot.</p><p>Для получения
+более детальной информации по динамически связанным библиотекам, обратитесь
+к книгам и Linux-ориентированным сайтам по программированию.</p></div>
+<div class="NAVFOOTER"><hr align="Left" width="100%"><table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="33%" align="Left" valign="Top"><a href="introduction.html" accesskey="P">Назад</a></td><td width="34%" align="Center" valign="Top"><a href="../index.html" accesskey="H">Домой</a></td><td width="33%" align="Right" valign="Top"><a href="creatingstaticdir.html" accesskey="N">Вперед</a></td></tr><tr><td width="33%" align="Left" valign="Top">Вступление<br>
+</td><td width="34%" align="Center" valign="Top"><a href="chapter05.html" accesskey="U">Наверх</a></td><td width="33%" align="Right" valign="Top">Создаем директорию $LFS/statiс</td></tr></tbody></table></div>
+<br>
+
+<br>
+<br>
+</body></html>

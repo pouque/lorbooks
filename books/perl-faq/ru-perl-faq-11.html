@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE>FAQ по perl и программированию для web: Борьба с глюками m$ windows</TITLE>
+ <LINK HREF="ru-perl-faq-10.html" REL=previous>
+ <LINK HREF="http://books.gnu.technology/books/perl-faq/ru-perl-faq.html#toc11" REL=contents>
+</HEAD>
+<BODY>
+Next
+<A HREF="ru-perl-faq-10.html">Previous</A>
+<A HREF="http://books.gnu.technology/books/perl-faq/ru-perl-faq.html#toc11">Contents</A>
+<HR>
+<H2><A NAME="Борьба с глюками m$ windows"></A> <A NAME="s11">11. Борьба с глюками m$ windows</A></H2>
+
+<P>
+<P>
+<H2><A NAME="ss11.1">11.1 Почему мой perl ругается на flock()?</A>
+</H2>
+
+<P>
+<P>Потому что на windows нет flock(2).
+<P>Используйте File::Lock с CPAN.
+<P>
+<H2><A NAME="ss11.2">11.2 Тоже самое, но с fork()?</A>
+</H2>
+
+<P>
+<P>Windows это не unix.  Они fork не умеют.
+<P>
+<H2><A NAME="ss11.3">11.3 Как бы мне добится нормальной сортировки в алфавитном порядке, преобразования в прописные/строчные буквы?</A>
+</H2>
+
+<P>
+<P>Perl для этого опирается на механизм locale.  К счастью, это работает и на
+windows:
+<P>Если надо работать с CP866,
+пишем 
+<PRE>
+  use locale;
+  use POSIX;
+  &amp;POSIX::setlocale(&amp;POSIX::LC_ALL, "Russian_Russia.866");
+  print uc "Да, здесь будут заглавные буквы";
+</PRE>
+<P>если KOI8 (sic!):
+<PRE>
+  &amp;POSIX::setlocale(&amp;POSIX::LC_ALL, "Russian_Russia.20866");
+</PRE>
+<P>если с CP1251 -- просто
+<P>
+<PRE>
+use locale;
+</PRE>
+<P>Со всеми тремя кодировками работают и uc/lc, и /\w/
+<P>Проверено под NT на perl 5.005_02, собраном через VC++ 5.0
+из исходников, скачанных с CPAN/ports/win32/Standard/
+<P>
+<H2><A NAME="ss11.4">11.4 Почему скрипты, которые я написал дома на windows, при загрузке на unix машину не работают?</A>
+</H2>
+
+<P>
+<P>Этому может быть миллион разных причин, но самая часто встречающаяся -- unix и наследники
+CP/M используют разные последовательности конца строки.
+<P>Если вы их загружаете по ftp, включите режим ASCII. 
+<P>
+<HR>
+Next
+<A HREF="ru-perl-faq-10.html">Previous</A>
+<A HREF="http://books.gnu.technology/books/perl-faq/ru-perl-faq.html#toc11">Contents</A>
+</BODY>
+</HTML>

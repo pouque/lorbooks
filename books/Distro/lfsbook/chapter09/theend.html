@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>Заключение</title><meta name="GENERATOR" content="Modular DocBook HTML Stylesheet Version 1.73" /=""><link rel="HOME" title="Linux From Scratch" href="../index.html" /=""><link rel="UP" title="The End" href="../chapter09/chapter09.html" /=""><link rel="PREVIOUS" title="The End" href="../chapter09/chapter09.html" /=""><link rel="NEXT" title="Get Counted" href="../chapter09/getcounted.html" /=""></head><body class="sect1" bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#840084" alink="#006000"><div class="NAVHEADER"><table summary="Header navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><th colspan="3" align="Center">Linux From Scratch: Версия 4.0</th></tr><tr><td width="10%" align="Left" valign="Bottom"><a href="chapter09.html" accesskey="P">Назад</a></td><td width="80%" align="Center" valign="Bottom">Глава 9. Заключение.</td><td width="10%" align="Right" valign="Bottom"><a href="getcounted.html" accesskey="N">Вперед</a></td></tr></tbody></table><hr align="Left" width="100%" /=""></div><div class="sect1"><h1 class="sect1"><a name="ch09-theend">Заключение</a></h1><p>Все! Вы только что закончили установку вашей LFS системы. Это был долгий процесс,
+но мы надеемся он завершился благополучно. Мы думаем, вы получили много удовольствия
+при создании вашей новой linux системы... ;)
+.</p><p>Теперь пришло время убрать из вышей системы все отладочные данные из бинарников вашей LFS системы.
+Если вы не программист и не планируете использовать отладчик при отладке программ,
+то вы будете обрадованы возможностью убрать несколько десятков мегабайт, при далении отладчиков.
+Перед запуском этого процесса убедитесь, что все необходимое вам ПО <b>полностью</b>
+ настроено, и вы более не захотите его перекомпилировать или отлаживать
+.</p><p><b>ВНИМАНИЕ</b>: 98% людей  не испатывают проблем с методом описанны ниже.
+Но так или иначе, сделайте архив вашей LFS системы перед запуском этой комманды.
+ Это действительно хороший момент, дабы сделать бэкап всей системы и конфигов.
+После компиляции возможны некоторые необычные моменты (в основном повреждение
+ модулей ядра, dynamic &amp; shared libraries). Могут быть и другие проблемы
+ вызванные данной коммандой.
+</p><p>Как уже говорилось, опция --strip-debug используется для удаления отладочной информации
+ которая нам никогда не понадобится. Это не вырезает всю ее из файлов.
+ Так же можно попробовать применить опцию --strip-all на обычных программах,
+не использующих библиотек (не используйте это на libraries - они могут быть уничтожены)
+но это не безопасно, да и место которое вы выиграете не стоит того. 
+Но если вам важен каждый байт на диске, то используйте это на собственный страх и риск.
+ Перечитайте 7 раз страницу man по strip (и его опциям которые вы хотите использовать).
+ Главная идея <b>не запускать</b> strip на libraries (кроме как --strip-debug) и все будет нормально.
+  </p><p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>find $LFS/{,usr/,usr/local/}{bin,sbin,lib} -type f \<br>ааа-exec /usr/bin/strip --strip-debug '{}' ';'</b></tt></pre></td></tr></tbody></table></p><p>Хорошая мысль создать файл $LFS/etc/lfs. Имея этот файл вы можете легко
+определить , каккую версию LFS вы используете. Занесите в него текущий номер
+этого мануала, и вы всегда будете знать, по какой версии документа искать помощь
+ в случае чего...<br>
+ ;-)<br>
+Создайте файл используя следующую комманду
+:</p><p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>echo 4.0 &gt; $LFS/etc/lfs</b></tt></pre></td></tr></tbody></table></p></div><div class="NAVFOOTER"><hr align="Left" width="100%" /=""><table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="33%" align="Left" valign="Top"><a href="chapter09.html" accesskey="P">Назад</a></td><td width="34%" align="Center" valign="Top"><a href="../index.html" accesskey="H">Домой</a></td><td width="33%" align="Right" valign="Top"><a href="getcounted.html" accesskey="N">Вперед</a></td></tr><tr><td width="33%" align="Left" valign="Top">Конец<br>
+</td><td width="34%" align="Center" valign="Top"><a href="chapter09.html" accesskey="U">Наверх</a></td><td width="33%" align="Right" valign="Top">Впиши себя в пользователи LFS<br>
+</td></tr></tbody></table></div></body></html>

@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE>                  Linux Modem sharing mini-HOWTO: Клиентская сторона</TITLE>
+ <LINK HREF="Linux-Modem-Sharing-HOWTO-4.html" REL=next>
+ <LINK HREF="Linux-Modem-Sharing-HOWTO-2.html" REL=previous>
+ <LINK HREF="Linux-Modem-Sharing-HOWTO.html#toc3" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="Linux-Modem-Sharing-HOWTO-4.html">Next</A>
+<A HREF="Linux-Modem-Sharing-HOWTO-2.html">Previous</A>
+<A HREF="Linux-Modem-Sharing-HOWTO.html#toc3">Contents</A>
+<HR>
+<H2><A NAME="s3">3. Клиентская сторона</A></H2>
+
+<P> 
+В настоящее время ниже описываются только Windows-клиенты. На клиентской 
+машине нужно перенаправить COM-порт на TCP/IP. Лучшая программа, какая мне
+попадалась - <CODE>'DialOut/IP'</CODE> от <CODE>'Tactical Software'</CODE> для Windows 3.1 и 
+Windows 95. (Версия для Windows 3.1  может быть использована под 
+Windows NT только для 16-битных приложений. 32-битная версия для
+Windows NT  вышла летом 1997.)
+<P>    
+<CODE>DialOut/IP</CODE> представляет совместно используемый модем на новом виртуальном
+COM-порту. Программы видят этот виртуальный COM-порт как обычный модем.
+Большинство программ успешно работают с виртуальным COM-портом, за 
+исключением тех, кому требуется доступ к UART и факс-приложений. 
+<CODE>DialOut/IP</CODE> можно настроить для работы с telnet потоколом, но это применимо
+к конкретным модемным пуллам, но не к описываемой установке Linux.
+Заметьте, что не смотря на свое имя <CODE>DialOut/IP</CODE> можно использовать для
+приема входящих звонков.
+<P>    
+На 
+<A HREF="http://www.tactical-sw.com">http://www.tactical-sw.com</A> есть страница для скачивания полнофункциональной
+evaluation версии, которая работает 1-2 недели. Установка и настройка 
+осуществляется программой <CODE>setup</CODE>, подробности читайте в файле <CODE>README.TXT</CODE> . 
+При запуске <CODE>DialOut/IP</CODE> вам понадобится ввести IP адрес и номер порта 
+совместно используемого модема.
+<P>    
+<CODE>DialOut/IP</CODE> - коммерческий продукт, цена на который определяется в 
+зависимости от количества модемов. По лицензии вы можете установить ПО
+на любое количество компьютеров, которые используют такие модемы.
+<P>    
+<HR>
+<A HREF="Linux-Modem-Sharing-HOWTO-4.html">Next</A>
+<A HREF="Linux-Modem-Sharing-HOWTO-2.html">Previous</A>
+<A HREF="Linux-Modem-Sharing-HOWTO.html#toc3">Contents</A>
+</BODY>
+</HTML>

@@ -1,0 +1,132 @@
+<!--X-Subject: [SLUG] Massive NT failure! -->
+<!--X-From: Rachel Polanskis &lt;r.polanskis@nepean.uws.edu.au&gt;  -->
+<!--X-Date: Sat, 28 Feb 98 17:53 EST  -->
+<!--X-Head-End-->
+<HTML>
+<HEAD>
+<TITLE>[SLUG] Massive NT failure!</TITLE>
+<LINK REV="made" HREF="mailto:r.polanskis@nepean.uws.edu.au">
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<HR>
+<A HREF="http://tacyon.spectrum.com.au/mail/slug/msg01135.html">[Prev]</A><A HREF="http://tacyon.spectrum.com.au/mail/slug/msg01137.html">[Next]</A><A HREF="http://tacyon.spectrum.com.au/mail/slug/maillist.html#01136">[Index]</A><A HREF="http://tacyon.spectrum.com.au/mail/slug/threads.html#01136">[Thread]</A>
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<H1>[SLUG] Massive NT failure!</H1>
+<HR>
+<UL>
+<LI>
+<em>To</em>: slug &lt;<A HREF="http://tacyon.spectrum.com.au/mail/slug/mailto:slug@slug.org.au">slug@slug.org.au</A>&gt; 
+</LI>
+<LI>
+<em>Subject</em>: [SLUG] Massive NT failure! 
+</LI>
+<LI>
+<em>From</em>: Rachel Polanskis &lt;<A HREF="http://tacyon.spectrum.com.au/mail/slug/mailto:r.polanskis@nepean.uws.edu.au">r.polanskis@nepean.uws.edu.au</A>&gt; 
+</LI>
+<LI>
+<em>Date</em>: Sat, 28 Feb 1998 17:53:34 +1100 (EST) 
+</LI>
+<LI>
+<em>Reply-To</em>: <A HREF="http://tacyon.spectrum.com.au/mail/slug/mailto:r.polanskis@nepean.uws.edu.au">r.polanskis@nepean.uws.edu.au</A> 
+</LI>
+<LI>
+<em>Sender</em>: owner-slug 
+</LI>
+<LI>
+<em>Sender</em>: <A HREF="http://tacyon.spectrum.com.au/mail/slug/mailto:owner-slug@spectrum.com.au">owner-slug@spectrum.com.au</A> 
+</LI>
+</UL>
+<HR>
+<PRE>
+(comp.risks):
+
+Date: Thu, 12 Feb 1998 11:23:36 -0500
+From: mandrews@fd9ns01.okladot.state.ok.us
+Subject: Risk: Massive NT Outage due to Registry corruption
+
+  [This was sent me by someone at a Fortune-100 manufacturer, and is
+  anonymized and sanitized at the original sender's request.  It is genuine.]
+
+&gt; The recent power fluctuations here in [placename] corrupted the NT
+&gt; registries in our [server-community-names].  As a result, our entire NT
+&gt; network (&gt;10K machines) is down, and has been since 5 am this
+&gt; morning. (I'm doing direct IP to [product-name] to do mail. Thank God.)
+&gt; Once the registries got corrupted, the databases of user signons went,
+&gt; too. And, of course, the tape backups won't load because NT requires a
+&gt; timestamp somewhere in the guts that the tape image doesn't match to the
+&gt; clock. So every NT server, and most NT workstations, won't do anything
+&gt; except local work.
+
+&gt; If this were just office workers, it would be annoying enough. But the
+&gt; [product name] servers require such close tie-ins to the machine accounts
+&gt; that they are dead -- guess what helps run our factories? Can you say loss
+&gt; of $1M+ per hour?"
+
+&gt; Why am I telling you? Because our NT guys have suddenly realized that this
+&gt; is a good candidate for a denial of service attack: once the registries
+&gt; get corrupted, the entire resource domain has to be reloaded by hand --
+&gt; and that apparently includes desktops. If you have ideas on how to go
+&gt; check the registries on your NT servers, I'd suggest you go do so.
+
+In another letter, the original sender elaborates:
+
+&gt; If you are recovering from this, every desktop user will have to
+&gt; delete/disable their &lt;user&gt;.pwl file to be able to get back on the
+&gt; network, because that file hardcodes which domain server they are
+&gt; on. HOWEVER, if they do that, they can then not get into any other service
+&gt; on their desktop for which they've stored the password, because they're
+&gt; all in that file. if the user doesn't remember the password, they're SOL,
+&gt; because the latest patch from MS keeps the *.pwl files from being hackable
+&gt; by the "standard" hacker and pwledit tools -- but it is also rendered
+&gt; unreadable to the MS standard pwl editor, too.
+
+The total outage was in excess of 12 hours, and the loss-of-revenue from
+the outage is estimated to be more than $10 million.
+
+Mike Andrews, D.P. Director, Okla. Dept. of Transportation
+mandrews@fd9ns01.okladot.state.ok.us
+
+--
+Rachel Polanskis                 Kingswood, Greater Western Sydney, Australia 
+grove@zeta.org.au                <A HREF="http://tacyon.spectrum.com.au/mail/slug/http://www.zeta.org.au/~grove/grove.html">http://www.zeta.org.au/~grove/grove.html</A>
+r.polanskis@nepean.uws.edu.au    <A HREF="http://tacyon.spectrum.com.au/mail/slug/http://www.nepean.uws.edu.au/ccd/">http://www.nepean.uws.edu.au/ccd/</A>
+ "Yow!  Am I having fun yet?!" - John Howard^H^H^H^H^H^H^H^H Zippy the Pinhead
+
+--
+SLUG - Sydney Linux Users Group Mailing List - <A HREF="http://tacyon.spectrum.com.au/mail/slug/http://www.slug.org.au">http://www.slug.org.au</A>
+To unsubscribe send email to slug-request@slug.org.au with
+unsubscribe in the text
+
+</PRE>
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<STRONG>Follow-Ups</STRONG>:
+<UL>
+<LI><STRONG><A HREF="http://tacyon.spectrum.com.au/mail/slug/msg01151.html">Re: [SLUG] Massive NT failure!</A></STRONG></LI>
+<UL>
+<LI><EM>From</EM>: Charlie Brady &lt;cbrady@ind.tansu.com.au&gt; </LI>
+</UL>
+</UL>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<HR>
+<UL>
+<LI>Prev: <STRONG><A HREF="http://tacyon.spectrum.com.au/mail/slug/msg01135.html">[SLUG] cleanfeed for news</A></STRONG></LI>
+<LI>Next: <STRONG><A HREF="http://tacyon.spectrum.com.au/mail/slug/msg01137.html">Re: [SLUG] Printer Problems.</A></STRONG></LI>
+<LI>Index: <STRONG><A HREF="http://tacyon.spectrum.com.au/mail/slug/maillist.html#01136">Mail Index</A></STRONG></LI>
+<LI>Thread: <STRONG><A HREF="http://tacyon.spectrum.com.au/mail/slug/threads.html#01136">Mail Thread Index</A></STRONG></LI>
+</UL>
+<HR>
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE>Мини-HOWTO: Linux + IBM Netstation : Установка всего, что касается сервера </TITLE>
+ <LINK HREF="Netstation-5.html" REL=next>
+ <LINK HREF="Netstation-3.html" REL=previous>
+ <LINK HREF="Netstation.html#toc4" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="Netstation-5.html">Next</A>
+<A HREF="Netstation-3.html">Previous</A>
+<A HREF="Netstation.html#toc4">Contents</A>
+<HR>
+<H2><A NAME="s4">4. Установка всего, что касается сервера </A></H2>
+
+<P>Теперь у вас есть все необходимое программное обеспечение. Теперь его надо установить. 
+<H2><A NAME="ss4.1">4.1 Лицензия AIX</A>
+</H2>
+
+<P>Прежде чем заархивировать файлы на AIX-машине, запустите
+/usr/netstation/bin/agree, чтобы собрать ядро в используемом формате.
+Возможно, вам придется сделать то же самое с архивом, загруженным с сайта
+IBM. Возможно, проще будет найти уже готовое ядро. Высвободите на диске 25
+Мб (я использую каталог /usr/netstation), и распакуйте архив, который
+взяли на сайте IBM или из AIX-машины. Если у вас нет достаточного
+свободного места на диске, то удалите 60 Мб из каталога
+/usr/netstation/doc.
+<H2><A NAME="ss4.2">4.2 Настоящая операционная система </A>
+</H2>
+
+<P>
+<P>
+<H3>Установка сервера nfs</H3>
+
+<P>Добавьте строку /usr/netstation 10.0.0.50(rw) в файл /etc/exports, где
+10.0.0.50- это IP-адрес СК. Перезапустите свой демон nfs.
+<PRE>
+[root@velvet sdog]# ps auxf |grep rpc
+sdog      4145  0.0  5.8   828   384  p1 S   03:55   0:00          \_ grep rpc
+root      3120  0.0  5.7   944   380  ?  S  Feb 27   0:00 rpc.mountd 
+root      3129  0.0  1.5   880   100  ?  S  Feb 27   0:10 rpc.nfsd 
+[root@velvet sdog]# kill -9 3120 3129 ; /usr/sbin/rpc.mountd ;
+/usr/sbin/rpc.nfsd
+</PRE>
+<P>или, проще, если у вас RedHat-подобная система  
+<PRE>
+[root@velvet init.d]# pwd
+/etc/rc.d/init.d
+[root@velvet init.d]# ./nfs restart
+Restarting NFS services: rpc.nfsd rpc.mountd done.
+[root@velvet init.d]# 
+</PRE>
+<P>СК теперь готова к подключению каталога /usr/netstation с помощью NFS. 
+<P>Вообще, если вам не нужен Х-Windows, оставьте все как есть. Вы легко можете
+связаться с СК через telnet без установки чего-либо еще. Однако
+преимущество СК заключается именно в Х.
+<P>
+<H3>Установка Х сервера </H3>
+
+<P>Теперь нам надо установить Х- Сервер. Вообще, мне не нужно настраивать
+что-нибудь еще, так как все мои машины, на которых запускались Х-Windows,
+были настроены так, что понимали сетевые соединения. Первый запуск СК
+выявил все машины, с запущенным XDM (X -indirect). Итак, любая машина, на
+которой можно запустить xdm, может быть использована в качестве Х-Сервера.
+Просто убедитесь в том, что XDM запущен.
+<P>Мы установили и настроили все, что относится к серверу. Теперь перейдем к СК. 
+<HR>
+<A HREF="Netstation-5.html">Next</A>
+<A HREF="Netstation-3.html">Previous</A>
+<A HREF="Netstation.html#toc4">Contents</A>
+</BODY>
+</HTML>

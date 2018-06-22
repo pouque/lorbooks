@@ -1,0 +1,683 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Mini-HOWTO по преобразованию адресов в sendmail</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.57"></HEAD
+><BODY
+CLASS="ARTICLE"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="ARTICLE"
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="TITLE"
+><A
+NAME="AEN2"
+>Mini-HOWTO по преобразованию адресов в sendmail</A
+></H1
+><DIV
+CLASS="AUTHORGROUP"
+><A
+NAME="AEN4"
+></A
+><H3
+CLASS="AUTHOR"
+><A
+NAME="AEN5"
+>Thomas Roessler</A
+></H3
+><DIV
+CLASS="AFFILIATION"
+><DIV
+CLASS="ADDRESS"
+><P
+CLASS="ADDRESS"
+>&nbsp;&nbsp;&nbsp;&nbsp;    roessler@guug.de
+    <br>
+&nbsp;&nbsp;&nbsp;</P
+></DIV
+></DIV
+><H3
+CLASS="CORPAUTHOR"
+>  Перевод: <A
+HREF="mailto:sam@asp-linux.com"
+TARGET="_top"
+>Станислав Рогин</A
+>,
+  <A
+HREF="http://www.asplinux.com"
+TARGET="_top"
+>SWSoft Pte Ltd.</A
+>
+ </H3
+></DIV
+><P
+CLASS="PUBDATE"
+>версия 0.0, 6 мая 1998г.<BR></P
+><DIV
+><DIV
+CLASS="ABSTRACT"
+><A
+NAME="AEN15"
+></A
+><P
+></P
+><P
+>Этот документ вкратце описывает, как настроить конфигурацию sendmail для
+пользователей, использующих доступ dial-up (по телефонной линии).</P
+><P
+></P
+></DIV
+></DIV
+><HR></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Содержание</B
+></DT
+><DT
+>1. <A
+HREF="Sendmail-Address-Rewrite.html#AEN17"
+>Авторские права</A
+></DT
+><DT
+>2. <A
+HREF="Sendmail-Address-Rewrite.html#AEN26"
+>Введение</A
+></DT
+><DT
+>3. <A
+HREF="Sendmail-Address-Rewrite.html#AEN48"
+>Расположение файлов</A
+></DT
+><DT
+>4. <A
+HREF="Sendmail-Address-Rewrite.html#AEN80"
+>Настройка sendmail</A
+></DT
+><DD
+><DL
+><DT
+>4.1. <A
+HREF="Sendmail-Address-Rewrite.html#AEN82"
+>Основной файл конфигурации</A
+></DT
+><DT
+>4.2. <A
+HREF="Sendmail-Address-Rewrite.html#AEN111"
+>Преобразование адресов</A
+></DT
+><DT
+>4.3. <A
+HREF="Sendmail-Address-Rewrite.html#AEN128"
+>Алиасы (aliases)</A
+></DT
+></DL
+></DD
+><DT
+>5. <A
+HREF="Sendmail-Address-Rewrite.html#AEN154"
+>Дополнительная информация</A
+></DT
+></DL
+></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="AEN17"
+>1. Авторские права</A
+></H1
+><P
+>Авторские права на русский перевод этого текста принадлежат &copy; 2000 SWSoft Pte Ltd.
+Все права зарезервированы.</P
+><P
+>Этот документ является частью проекта Linux HOWTO.</P
+><P
+>Авторские права на документы Linux HOWTO принадлежат их авторам, если явно
+не указано иное. Документы Linux HOWTO, а также их переводы, могут
+быть воспроизведены и распространены полностью или частично на любом
+носителе физическом или электронном, при условии сохранения этой заметки об
+авторских правах на всех копиях. Коммерческое распространение разрешается и
+поощряется; но так или иначе автор текста и автор перевода желали бы знать о
+таких дистрибутивах.</P
+><P
+>Все переводы и производные работы, выполненные по документам Linux HOWTO
+должны сопровождаться этой заметкой об авторских правах. Это делается в
+целях предотвращения случаев наложения дополнительных ограничений на
+распространение документов HOWTO. Исключения могут составить случаи
+получения специального разрешения у координатора Linux HOWTO с которым
+можно связаться по адресу приведенному ниже.</P
+><P
+>Мы бы хотели распространить эту информацию по всем возможным каналам. Но
+при этом сохранить авторские права и быть уведомленными о всех планах
+распространения HOWTO. Если у вас возникли вопросы, пожалуйста, обратитесь
+к координатору проекта Linux HOWTO по электронной почте:
+<TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:linux-howto@metalab.unc.edu"
+>linux-howto@metalab.unc.edu</A
+>&#62;</TT
+>, или к координатору русского
+перевода Linux HOWTO компании SWSoft Pte Ltd. по адресу
+<TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:linux-howto@asplinux.ru"
+>linux-howto@asplinux.ru</A
+>&#62;</TT
+></P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN26"
+>2. Введение</A
+></H1
+><P
+>Мы предполагаем, что у вас один из наиболее распространенных в
+университетах и он-лайн сервисах доступ к интернету: вы дозваниваетесь по
+телефону к вашему провайдеру, используя PPP на последовательном порту через
+модем. Ваша входящая почта складывается на сервере POP или IMAP провайдера,
+а отправляемая почта отсылается через SMTP. У вас нет собственного домена,
+поэтому используется <I
+CLASS="EMPHASIS"
+>один</I
+> общий электронный адрес.</P
+><P
+>Мы также предполагаем, что у вас установлена достаточно новая версия
+программы sendmail, написанной Eric Allman (версия 8.8.8 является текущей,
+на момент написания документа, и должна работать хорошо).</P
+><P
+>Этот документ частично ссылается на специфические свойства системы Debian
+GNU/Linux; пользователи других дистрибутивов должны быть осторожны.</P
+><P
+>Убедитесь, что у вас под рукой находится следующая информация: &#13;</P
+><P
+>&#13;<P
+></P
+><UL
+><LI
+><P
+>Адрес почтового сервера вашего провайдера </P
+></LI
+><LI
+><P
+>Ваш почтовый адрес в Internet</P
+></LI
+></UL
+>&#13;</P
+><P
+>Файл настройки, который мы планируем сделать, ставит перед собой две
+главные цели:</P
+><P
+>&#13;<P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>Должна работать пересылка почты между двумя любыми локальными
+пользователями.</P
+></LI
+><LI
+><P
+>Внешний мир должен видеть почтовые адреса локальных пользователей, заданные
+провайдером, а не локальной системой.</P
+></LI
+></OL
+>&#13;</P
+><P
+>Чтобы этого достичь, воспользуемся функцией  
+<TT
+CLASS="LITERAL"
+>genericstable</TT
+>.</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN48"
+>3. Расположение файлов</A
+></H1
+><P
+>Мы поместим все файлы конфигурации sendmail-а в отдельный подкаталог
+каталога <TT
+CLASS="LITERAL"
+>/etc</TT
+>: <TT
+CLASS="LITERAL"
+>/etc/mail</TT
+>.  Обычно, sendmail использует файлы,
+находящиеся в <TT
+CLASS="LITERAL"
+>/etc</TT
+>. Для того, чтобы
+избежать возможных проблем, создадим файл символьной связи (symbolic
+link)<TT
+CLASS="LITERAL"
+>/etc/sendmail.cf</TT
+>, указывающий на
+<TT
+CLASS="LITERAL"
+>/etc/mail/sendmail.cf</TT
+>.</P
+><P
+>В директории <TT
+CLASS="LITERAL"
+>/etc/mail</TT
+> будут
+находиться следующие файлы:
+
+
+
+<P
+></P
+><UL
+><LI
+><P
+><TT
+CLASS="LITERAL"
+>aliases</TT
+> - содержит дополнительные локальные адреса </P
+></LI
+><LI
+><P
+><TT
+CLASS="LITERAL"
+>genericsdomain</TT
+> - содержит некоторую
+информацию о конфигурации вашего локального хоста (host)</P
+></LI
+><LI
+><P
+><TT
+CLASS="LITERAL"
+>genericstable</TT
+> - содержит собственно правила
+преобразования адреса</P
+></LI
+><LI
+><P
+><TT
+CLASS="LITERAL"
+>sendmail.cf</TT
+> - файл конфигурации sendmail-а </P
+></LI
+><LI
+><P
+><TT
+CLASS="LITERAL"
+>sendmail.mc</TT
+> - исходный текст <TT
+CLASS="LITERAL"
+>sendmail.cf</TT
+>.</P
+></LI
+></UL
+>&#13;</P
+><P
+>Некоторые из этих файлов будут сопровождаться файлами с расширением
+<TT
+CLASS="LITERAL"
+>.db</TT
+>. Они содержат хешированные (hashed) базы
+данных, напрямую используемые sendmail-ом.</P
+><P
+>Мы также исходим из того, что остальная <TT
+CLASS="LITERAL"
+>cf</TT
+>
+часть исходных текстов sendmail-а находится в каталоге <TT
+CLASS="LITERAL"
+>/usr/lib/sendmail.cf</TT
+>.  Но это в случае дистрибутива
+Debian GNU/Linux. Другие поставки могут поместить эту информацию в другие
+каталоги. Подробнее об этом читайте в документации к вашему дистрибутиву.&#13;</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN80"
+>4. Настройка sendmail</A
+></H1
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN82"
+>4.1. Основной файл конфигурации</A
+></H2
+><P
+>Sendmail использует очень сложную систему правил для своей конфигурации.
+Несмотря на то, что с этой системой можно сделать некоторые хитрости,
+писать файл <TT
+CLASS="LITERAL"
+>sendmail.cf</TT
+> с нуля достаточно
+необычно, и требует больших временных затрат. Если вам интересно все-таки
+это проделать, вы должны остановить чтение и прочитать вместо этого
+книгу "Bat Book" автора O'Reilly.</P
+><P
+>Вместо колдования над этими правилами, мы положимся на
+макро-процессор <TT
+CLASS="LITERAL"
+>m4</TT
+>, чтобы собрать наш
+конфигурационный файл из готовых частей, поставляемых вместе с sendmail.</P
+><P
+>Давайте рассмотрим первые строки файла  <TT
+CLASS="LITERAL"
+>sendmail.mc</TT
+>:</P
+><P
+>&#13;<PRE
+CLASS="PROGRAMLISTING"
+>include(/usr/lib/sendmail.cf/m4/cf.m4)
+VERSIONID(`sendmail.mc - roessler@guug.de')
+OSTYPE(debian)
+define(`ALIAS_FILE',`/etc/mail/aliases')</PRE
+>&#13;</P
+><P
+>В начале подключается (include) файл <TT
+CLASS="LITERAL"
+>cf.m4</TT
+>
+Этот m4-макро файл содержит большое количство макро-определений для
+остальной части файла. Удостоверьтесь, что путь, который вы укажете, верный
+- тот который написан у нас, типичен для Debian GNU/Linux. Макрос <TT
+CLASS="LITERAL"
+>OSTYPE</TT
+> используется для задания некоторых важных
+значений для конфигурации. Если у вас не Debian, вы должны заменить слово
+"debian" словом "linux".  <TT
+CLASS="LITERAL"
+>ALIAS&lowbar;FILE</TT
+>
+указываеи sendmail-у, где искать список псевдонимов (alias list).</P
+><P
+>Следующие строки указывают sendmail-у на использование функции
+<TT
+CLASS="LITERAL"
+>genericstable</TT
+> , а также на файлы
+конфигурации, необходимые для этого:
+<PRE
+CLASS="PROGRAMLISTING"
+>FEATURE(masquerade_envelope) FEATURE(genericstable, `hash
+-o /etc/mail/genericstable')
+GENERICS_DOMAIN_FILE(`/etc/mail/genericsdomain') </PRE
+>
+
+Функция <TT
+CLASS="LITERAL"
+>masquerade&lowbar;envelope</TT
+> приводит к
+тому, что sendmail производит преобразование адреса отправителя в
+заголовке, взяв его с  <I
+CLASS="EMPHASIS"
+>конверта (envelope)</I
+>. Это тот
+адрес, куда внешние почтовые системы будут посылать сообщения об ошибках
+при доставке. Файлы <TT
+CLASS="LITERAL"
+>generics*</TT
+> описываются
+ниже.</P
+><P
+>Теперь, мы должны определить так называемый "смарт-хост" (smart host), то
+есть, машину, которая будет обрабатывать почту, исходящую с вашей системы.
+Заметьте, что это не обязательно POP или IMAP сервер вашего провайдера.
+Если возникнут затруднения, свяжитесь с горячей линией. Строка в основном
+файле конфигурации:
+
+<PRE
+CLASS="PROGRAMLISTING"
+>define(`SMART_HOST',`mail-out.your.provider')</PRE
+>
+
+Здесь замените <I
+CLASS="EMPHASIS"
+>mail-out.your.provider</I
+> полным именем
+хоста вашего интернет-провайдера.</P
+><P
+>Последние две строчки включают определения "mailer"-ов, которые нужны
+sendmail-у для определения действий, необходимых для работы с различными
+видами почты:
+
+
+<PRE
+CLASS="PROGRAMLISTING"
+>MAILER(local)
+MAILER(smtp)</PRE
+>&#13;</P
+><P
+>Чтобы создать файл <TT
+CLASS="LITERAL"
+>sendmail.cf</TT
+> из
+<TT
+CLASS="LITERAL"
+>sendmail.mc</TT
+>, запустите следующее (в качестве
+root-а):
+
+<PRE
+CLASS="PROGRAMLISTING"
+># m4 sendmail.mc &#62; _sendmail.cf
+# mv -f _sendmail.cf sendmail.cf</PRE
+>
+
+Заметьте, что здесь применена техника вывода результата во временный файл,
+с последующим переносом этого файла на нужное место. Это помогает
+предотвратить чтение частично готового файла конфигурации sendmail-ом.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN111"
+>4.2. Преобразование адресов</A
+></H2
+><P
+>Сначала, необходимо сообщить sendmail-у, что адреса являются локальными (и
+поэтому должны быть подвергнуты преобразованию). Это очень просто: просто
+поместите полное (fully qualified) имя вашего хоста в файл
+<TT
+CLASS="LITERAL"
+>/etc/mail/genericsdomain</TT
+>.  Чтобы
+узнать это имя, наберите:
+
+<PRE
+CLASS="PROGRAMLISTING"
+> $ hostname -f </PRE
+>&#13;</P
+><P
+>Теперь перейдем к правилам преобразования адресов, т.е. к файлу: 
+<TT
+CLASS="LITERAL"
+>/etc/mail/genericstable</TT
+>.  Этот
+файл состоит из двух колонок, разделенных пробелами. Первая колонка
+содержит локальный адрес, вторая колонка содержит почтовый адрес, который
+должен быть использован вместо локального. Файл выглядит примерно так:&#13;</P
+><P
+>&#13;<PRE
+CLASS="PROGRAMLISTING"
+>harry	harryx@your.isp
+maude	maudey@her.isp
+root	fredx@your.isp
+news	fredx@your.isp</PRE
+>&#13;</P
+><P
+>Заметьте, что должна быт строка для <I
+CLASS="EMPHASIS"
+>каждого</I
+> пользователя
+на локальной машине, чтобы автоматически созданная почта на локальной
+машине, выходя из системы, содержала правильную информацию в заголовке.</P
+><P
+>Из соображений быстродействия, sendmail не использует этот текст напрямую,
+а опирается на "хешированную" (hashed) версию. Чтобы создать ее, наберите:</P
+><P
+>&#13;<PRE
+CLASS="PROGRAMLISTING"
+># makemap -r hash genericstable.db &#60; genericstable</PRE
+>&#13;</P
+><P
+>Заметьте, что правила преобразования из файла 
+<TT
+CLASS="LITERAL"
+>genericstable</TT
+> <I
+CLASS="EMPHASIS"
+>не будут</I
+>
+воздействовать на локальную почту, или на почту, получаемую извне - эти
+правила работают только тогда, когда письмо покидает вашу локальную систему,
+направляясь к смарт-хосту провайдера.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN128"
+>4.3. Алиасы (aliases)</A
+></H2
+><P
+>Файл алиасов содержит локальные имена, которые верны только для внутренней
+почты. Это применимо для администраторов, например <TT
+CLASS="LITERAL"
+>root</TT
+>, который получает автоматически сгенерированные
+сообщения от вашей системы.</P
+><P
+>Наиболее удачным началом файла 
+<TT
+CLASS="LITERAL"
+>/etc/mail/aliases</TT
+> может быть
+примерно следующее:</P
+><P
+>&#13;<PRE
+CLASS="PROGRAMLISTING"
+>root: fred
+news: root
+postmaster: root
+mail: root
+www: root
+
+nobody: /dev/null
+MAILER-DAEMON: nobody</PRE
+>&#13;</P
+><P
+>В соответствии с этим, локальная почта для <TT
+CLASS="LITERAL"
+>пользователей root</TT
+>, <TT
+CLASS="LITERAL"
+>news</TT
+>, <TT
+CLASS="LITERAL"
+>postmaster</TT
+>,
+<TT
+CLASS="LITERAL"
+>mail</TT
+> и <TT
+CLASS="LITERAL"
+>www</TT
+>
+передается пользователю <TT
+CLASS="LITERAL"
+>fred</TT
+>, а сообщения для <TT
+CLASS="LITERAL"
+>nobody</TT
+> и <TT
+CLASS="LITERAL"
+>MAILER-DAEMON</TT
+>
+отправляются в <TT
+CLASS="LITERAL"
+>/dev/null</TT
+>.</P
+><P
+>Как и в случае с <TT
+CLASS="LITERAL"
+>genericstable</TT
+>, файл <TT
+CLASS="LITERAL"
+>aliases</TT
+> может содержать
+<I
+CLASS="EMPHASIS"
+>множество</I
+> строк.  Поэтому будет 
+неэффективно sendmail-у использовать текстовый файл, как описано выше. Для
+файла <TT
+CLASS="LITERAL"
+>aliases</TT
+> используется тот же механизм,
+что и для <TT
+CLASS="LITERAL"
+>genericstable</TT
+> - генерируется
+хешированная база данных. Вместо того, чтобы напрямую запускать <TT
+CLASS="LITERAL"
+>makemap</TT
+>, вы можете набрать команду <TT
+CLASS="LITERAL"
+>newaliases</TT
+>. Она автоматически позаботится обо всем, что
+нужно сделать.
+&#13;</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN154"
+>5. Дополнительная информация</A
+></H1
+><P
+>В поставку исходных текстов sendmail-а входит документация.
+Прочитайте ее, особенно файл
+<TT
+CLASS="LITERAL"
+>cf/README</TT
+>.</P
+><P
+>Если вас заинтересовали опции конфигурации sendmail-а,
+прочтите книгу "Bat Book" автора O'Reilly: Bryan Costales, Eric Allman, и
+Neil Rickert: "sendmail". O'Reilly, 1993.</P
+></DIV
+></DIV
+></BODY
+></HTML
+>

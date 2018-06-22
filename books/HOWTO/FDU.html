@@ -1,0 +1,2197 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Мини-HOWTO: Облагораживание шрифтов XFree86</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.57"></HEAD
+><BODY
+CLASS="ARTICLE"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="ARTICLE"
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="TITLE"
+><A
+NAME="AEN2"
+>Мини-HOWTO: Облагораживание шрифтов XFree86</A
+></H1
+><DIV
+CLASS="AUTHORGROUP"
+><A
+NAME="AEN4"
+></A
+><H3
+CLASS="AUTHOR"
+><A
+NAME="AEN5"
+>Doug Holland</A
+></H3
+><DIV
+CLASS="AFFILIATION"
+><DIV
+CLASS="ADDRESS"
+><P
+CLASS="ADDRESS"
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;meldroc@frii.com<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</P
+></DIV
+></DIV
+><H3
+CLASS="AUTHOR"
+><A
+NAME="AEN11"
+>Обновлено: Hal Burgiss</A
+></H3
+><DIV
+CLASS="AFFILIATION"
+><DIV
+CLASS="ADDRESS"
+><P
+CLASS="ADDRESS"
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hburgiss@bellsouth.net<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</P
+></DIV
+></DIV
+><H3
+CLASS="CORPAUTHOR"
+>    Перевод: <A
+HREF="mailto:sam@asp-linux.com"
+TARGET="_top"
+>Станислав Рогин</A
+>,
+    <A
+HREF="http://www.asplinux.com"
+TARGET="_top"
+>SWSoft Pte Ltd.</A
+>
+ </H3
+></DIV
+><P
+CLASS="PUBDATE"
+>версия 1.5, 25 июля 2000<BR></P
+><DIV
+><DIV
+CLASS="ABSTRACT"
+><A
+NAME="AEN21"
+></A
+><P
+></P
+><P
+>  Каким образом можно исправить безобразные и нечитаемые шрифты X-Windows.
+ </P
+><P
+></P
+></DIV
+></DIV
+><HR></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Содержание</B
+></DT
+><DT
+>1. <A
+HREF="FDU.html#INTRO"
+>Введение</A
+></DT
+><DD
+><DL
+><DT
+>1.1. <A
+HREF="FDU.html#AEN35"
+>Термины, применяемые в этом документе</A
+></DT
+><DT
+>1.2. <A
+HREF="FDU.html#AEN44"
+>История версий этого документа</A
+></DT
+><DT
+>1.3. <A
+HREF="FDU.html#AEN60"
+>Новые версии</A
+></DT
+><DT
+>1.4. <A
+HREF="FDU.html#LEGAL"
+>Copyright</A
+></DT
+><DT
+>1.5. <A
+HREF="FDU.html#AEN72"
+>Авторские права</A
+></DT
+><DT
+>1.6. <A
+HREF="FDU.html#CREDITS"
+>Благодарности</A
+></DT
+></DL
+></DD
+><DT
+>2. <A
+HREF="FDU.html#X-CONFIG"
+>Настройка X-сервера</A
+></DT
+><DD
+><DL
+><DT
+>2.1. <A
+HREF="FDU.html#AEN106"
+>Настраиваем параметр FontPath</A
+></DT
+><DT
+>2.2. <A
+HREF="FDU.html#AEN131"
+>Опции командной строки X-сервера</A
+></DT
+></DL
+></DD
+><DT
+>3. <A
+HREF="FDU.html#TRUETYPE"
+>Шрифты TrueType (Одна из немногих хороших вещей в Windows)</A
+></DT
+><DD
+><DL
+><DT
+>3.1. <A
+HREF="FDU.html#AEN149"
+>Делаем шрифты TrueType доступными</A
+></DT
+><DT
+>3.2. <A
+HREF="FDU.html#AEN173"
+>Серверы шрифтов</A
+></DT
+><DD
+><DL
+><DT
+>3.2.1. <A
+HREF="FDU.html#AEN177"
+>xfstt</A
+></DT
+><DT
+>3.2.2. <A
+HREF="FDU.html#XFS"
+>xfs, входящий в состав дистрибутива Redhat</A
+></DT
+></DL
+></DD
+><DT
+>3.3. <A
+HREF="FDU.html#AEN286"
+>xfsft</A
+></DT
+><DT
+>3.4. <A
+HREF="FDU.html#FALIAS"
+>Файл fonts.alias</A
+></DT
+></DL
+></DD
+><DT
+>4. <A
+HREF="FDU.html#X-4X"
+>XFree86 версий 4.x</A
+></DT
+><DT
+>5. <A
+HREF="FDU.html#APPS"
+>Настройка шрифтов в отдельных программах</A
+></DT
+><DD
+><DL
+><DT
+>5.1. <A
+HREF="FDU.html#KDE"
+>KDE</A
+></DT
+><DD
+><DL
+><DT
+>5.1.1. <A
+HREF="FDU.html#AEN378"
+>Использование шрифтов и цветов KDE в не-KDE приложениях</A
+></DT
+></DL
+></DD
+><DT
+>5.2. <A
+HREF="FDU.html#AEN381"
+>Netscape</A
+></DT
+></DL
+></DD
+><DT
+>6. <A
+HREF="FDU.html#END"
+>Разное</A
+></DT
+><DD
+><DL
+><DT
+>6.1. <A
+HREF="FDU.html#NOTES"
+>Замечания</A
+></DT
+><DT
+>6.2. <A
+HREF="FDU.html#LINKS"
+>Ссылки</A
+></DT
+></DL
+></DD
+></DL
+></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="INTRO"
+>1. Введение</A
+></H1
+><P
+> Огромное количество проблем, которые я вынужден был решать, возникли при
+ работе со стандартными шрифтами и настройками шрифтов в X (Я говорю в
+ частности о <A
+HREF="http://www.xfree.org"
+TARGET="_top"
+>XFree86</A
+>, в других
+ версиях Х все может быть несколько лучше.) Многие программы используют
+ стандартные шрифты с фиксированной шириной, в свою очередь, использование
+ в них шрифтов с переменной шириной было бы более приемлемо. Другие
+ программы используют ужасно мелкие, а соответственно, нечитаемые, шрифты.
+ Шрифты, встроенные в стандартную поставку XFree86, вряд ли соответствуют
+ реальным потребностям, возникающим при работе. В комплект поставки входит
+ еще относительно неплохой шрифт Courier, но в свою очередь Times и
+ Helvetica - это простые "картинки" (bitmap), в которых при большом
+ увеличении слишком заметны точки. Ой-ой!&#13;</P
+><P
+> В этом документе я попытаюсь показать вам, как сконфигурировать различные
+ настройки шрифтов, установить новые шрифты, и сделать другие вещи, которые
+ серьезно улучшат внешний вид и читабельность шрифтов на рабочем столе X
+ Window. Это делается путем настройки параметра <TT
+CLASS="LITERAL"
+>FontPath</TT
+>
+ в файле <TT
+CLASS="FILENAME"
+>XF86Config</TT
+>, а также указанием дополнительных
+ ключей при запуске X-Servera в команде <B
+CLASS="COMMAND"
+>startx</B
+> или
+ <B
+CLASS="COMMAND"
+>xdm</B
+>, добавлением новых шрифтов, установкой
+ TrueType-шрифтового сервера xfstt, и использованием специальной функции
+ программы K Desktop Environment 1.1, которая "автоматически" настраивает
+ шрифты, включая  не-KDE приложения  для настройки их шрифтов и цветов для
+ соответствия настройкам стиля KDE.&#13;</P
+><P
+> Комментарии, исправления, дополнения и критика всегда только
+ приветствуются. Вы можете написать авторам по следующим адресам: <A
+HREF="mailto:meldroc@frii.com"
+TARGET="_top"
+>meldroc@frii.com</A
+>, или <A
+HREF="mailto:hburgiss@bellsouth.net"
+TARGET="_top"
+>hburgiss@bellsouth.net</A
+>&#13;</P
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN35"
+>1.1. Термины, применяемые в этом документе</A
+></H2
+><P
+> В приведенных здесь примерах команд, символ <SPAN
+CLASS="QUOTE"
+>"#"</SPAN
+> используется
+ для выделения тех команд, которые должны быть запущены от пользователя
+ root. Символ <SPAN
+CLASS="QUOTE"
+>"$"</SPAN
+> используется для тех команд, которые
+ запускаются обычным пользователем (не root).</P
+><P
+> В примерах предполагается, что шрифты TrueType находятся в каталоге
+ <TT
+CLASS="FILENAME"
+>/usr/local/share/fonts/ttfonts</TT
+>. Ничего особенного
+ именно в этом каталоге нет, и шрифты спокойно могут находиться в любом
+ другом каталоге.</P
+><P
+> Когда я упоминаю "xfs", то я говорю о пакете xfs дистрибутива Redhat
+ версий 6.x. Он очень серьезно отличается от стандартного независимого xfs,
+ поставляемого с xfs.</P
+><P
+> "Netscape" - это полный набор программ Netscape: Communicator, Navigator,
+ Messenger, и т.п. Во всех случаях все советы подойдут и для Mozilla.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN44"
+>1.2. История версий этого документа</A
+></H2
+><P
+>&#13;<P
+></P
+><UL
+><LI
+><P
+>   0.1: 21 февраля 1999 г.: Первоначальный выпуск.
+  </P
+></LI
+><LI
+><P
+>   0.11: 27 февраля 1999 г.: Добавлена информация о копирайте для защиты
+   моей за....
+  </P
+></LI
+><LI
+><P
+>   0.12: 10 июня 1999 г.: Добавлена мольба о помощи
+  </P
+></LI
+><LI
+><P
+>   0.20: 14 сентября 1999 г.: Добавлен раздел о xfs для владельцев
+   дистрибутива Redhat. Большое спасибо Hal Burgiss за сотрудничество
+  </P
+></LI
+><LI
+><P
+>   1.0: 23 ноября 1999 г.: Документ преобразован в SGML, для передачи его в
+   Проект Документирования Linux (Linux Documentation Project). Убрана
+   мольба о помощи.
+ </P
+></LI
+><LI
+><P
+>  1.5: 25 июля 2000 г.: Новые разделы, различные дополнения и исправления.
+  </P
+></LI
+></UL
+>&#13;</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN60"
+>1.3. Новые версии</A
+></H2
+><P
+> Последняя версия содержит новые разделы, касающиеся xfsft, fonts.alias и XFree86
+ версии 4.x. Она также включает новые разделы "Ссылки" и "Замечание", а также
+ переписана глава, касающаяся xfs. &#13;</P
+><P
+> Последнюю версию этого документа можно найти по адресу
+ <A
+HREF="http://feenix.eyep.net/ldp/fdu/index.html"
+TARGET="_top"
+>http://feenix.eyep.net/ldp/fdu/index.html</A
+>.
+&#13;</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="LEGAL"
+>1.4. Copyright</A
+></H2
+><P
+> Copyright &copy; 1999 by Doug Holland.                                          </P
+><P
+> Unless otherwise stated, Linux HOWTO documents are copyrighted by their
+ respective authors.  Linux HOWTO documents may be reproduced and distributed
+ in whole or in part, in any medium physical or electronic, as long as this
+ copyright notice is retained on all copies.  Commercial redistribution is
+ allowed and encouraged; however, the author would like to be notified of any
+ such distributions.</P
+><P
+> All translations, derivative works, or aggregate works incorporating any
+ Linux HOWTO documents must be covered under this copyright notice. That is,
+ you may not produce a derivative work from a HOWTO and impose additional
+ restrictions on its distribution. Exceptions to these rules may be granted
+ under certain conditions; please contact the Linux HOWTO coordinator for more
+ information.</P
+><P
+> In short, we wish to promote dissemination of this information through as
+ many channels as possible. However, we do wish to retain copyright on the
+ HOWTO documents, and would very much like to be notified of any plans to
+ redistribute the HOWTOs, this one in particular!  Web page authors are free
+ to link to this HOWTO without restriction, though the author would appreciate
+ an email informing him of this, just so he can boost his ego by knowing who
+ else reads and links to this document. </P
+><P
+> Many of the terms mentioned in this document are trade names. Unless
+ otherwise stated, all trademarks are property of their respective owners.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN72"
+>1.5. Авторские права</A
+></H2
+><P
+>Авторские права на русский перевод этого текста принадлежат &copy; 2000 SWSoft Pte Ltd.
+Все права зарезервированы.</P
+><P
+>Этот документ является частью проекта Linux HOWTO.</P
+><P
+>Авторские права на документы Linux HOWTO принадлежат их авторам, если явно
+не указано иное. Документы Linux HOWTO, а также их переводы, могут
+быть воспроизведены и распространены полностью или частично на любом
+носителе физическом или электронном, при условии сохранения этой заметки об
+авторских правах на всех копиях. Коммерческое распространение разрешается и
+поощряется; но так или иначе автор текста и автор перевода желали бы знать о
+таких дистрибутивах.</P
+><P
+>Все переводы и производные работы, выполненные по документам Linux HOWTO
+должны сопровождаться этой заметкой об авторских правах. Это делается в
+целях предотвращения случаев наложения дополнительных ограничений на
+распространение документов HOWTO. Исключения могут составить случаи
+получения специального разрешения у координатора Linux HOWTO с которым
+можно связаться по адресу приведенному ниже.</P
+><P
+>Мы бы хотели распространить эту информацию по всем возможным каналам. Но
+при этом сохранить авторские права и быть уведомленными о всех планах
+распространения HOWTO. Если у вас возникли вопросы, пожалуйста, обратитесь
+к координатору проекта Linux HOWTO по электронной почте:
+<TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:linux-howto@metalab.unc.edu"
+>linux-howto@metalab.unc.edu</A
+>&#62;</TT
+>, или к координатору русского
+перевода Linux HOWTO компании SWSoft Pte Ltd. по адресу
+<TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:linux-howto@asplinux.ru"
+>linux-howto@asplinux.ru</A
+>&#62;</TT
+></P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="CREDITS"
+>1.6. Благодарности</A
+></H2
+><P
+> <P
+CLASS="LITERALLAYOUT"
+>&nbsp;&nbsp;Автор&nbsp;документа&nbsp;-&nbsp;Doug&nbsp;Holland<br>
+&nbsp;&nbsp;Email:&nbsp;<A
+HREF="mailto:meldroc@frii.com"
+TARGET="_top"
+>meldroc@frii.com</A
+><br>
+&nbsp;&nbsp;WWW:&nbsp;<A
+HREF="http://www.frii.com/~meldroc/"
+TARGET="_top"
+>http://www.frii.com/~meldroc/</A
+><br>
+&nbsp;</P
+></P
+><P
+> <P
+CLASS="LITERALLAYOUT"
+>&nbsp;<br>
+&nbsp;Обновлено&nbsp;и&nbsp;дополнено&nbsp;Hal&nbsp;Burgiss.<br>
+&nbsp;&nbsp;Email:&nbsp;<A
+HREF="mailto:hburgiss@bellsouth.net"
+TARGET="_top"
+>hburgiss@bellsouth.net</A
+><br>
+&nbsp;&nbsp;WWW:&nbsp;<A
+HREF="http://feenix.eyep.net/ldp/fdu"
+TARGET="_top"
+>http://feenix.eyep.net/</A
+><br>
+&nbsp;</P
+></P
+><P
+>Большое спасибо:
+
+<P
+></P
+><UL
+><LI
+><P
+>    Разработчикам <A
+HREF="http://www.xfree86.org"
+TARGET="_top"
+>Проекта
+    XFree86</A
+> за ту тяжелую работу, которую они проводят, тратя на
+    это большую часть своего времени. А также Juliusz Chroboczek за его
+    работу над xfsft, и XFree86 4.x за то, что несет TrueType в массы.
+   </P
+></LI
+><LI
+><P
+>    В первую очередь, ребятам из <A
+HREF="news:comp.os.linux.x"
+TARGET="_top"
+>comp.os.linux.x</A
+>, которые протянули
+    мне руку помощи в выяснении всего выше написанного.
+   </P
+></LI
+><LI
+><P
+>    Сообществу Linux вообще - всем, кто сделал все выше написанное
+    возможным.
+   </P
+></LI
+><LI
+><P
+>    Microsoft и Apple: за любезно предоставленные шрифты, которые украсили
+    мой рабочий стол.
+   </P
+></LI
+></UL
+>&#13;</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="X-CONFIG"
+>2. Настройка X-сервера</A
+></H1
+><P
+> Для того, чтобы X работал значительно лучше, надо сделать несколько
+ простых операций.</P
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN106"
+>2.1. Настраиваем параметр FontPath</A
+></H2
+><P
+> Первое, что нужно посмотреть, для излечения проблем со шрифтами - это файл
+ <TT
+CLASS="FILENAME"
+>XF86Config</TT
+>. (обычное его место -
+ <TT
+CLASS="FILENAME"
+>/usr/X11/lib/X11/XF86Config</TT
+> или
+ <TT
+CLASS="FILENAME"
+>/etc/X11/XF86Config</TT
+>.) Если вы еще до сих пор не
+ догадались, то наиболее важная часть этого файла, относящаяся к шрифтам,
+ это секция <TT
+CLASS="LITERAL"
+>FontPath</TT
+>. Пока мы не углубились  в  нее,
+ нужно бросить быстрый взгляд на другие части вашей X-конфигурации. Плохие
+ настройки монитора могут со значительно большей вероятностью вызвать
+ сильную головную боль, чем плохие или нечитаемые шрифты. Поэтому убедитесь
+ в том, что частота вертикальной синхронизации монитора настолько высока,
+ насколько может позволить ваш монитор (85+ Hz это великолепно, 75 Hz -
+ так, ничего, 60 Hz - очень болезненно.)
+ </P
+><P
+> Используйте ваш любимый текстовый редактор, чтобы исправить файл
+ <TT
+CLASS="FILENAME"
+>XF86Config</TT
+>. Почти в самом начале файла вы увидите
+ примерно такие строки:
+ </P
+><P
+> <PRE
+CLASS="PROGRAMLISTING"
+>FontPath        "/usr/X11R6/lib/X11/fonts/misc/"
+FontPath        "/usr/X11R6/lib/X11/fonts/Type1/"
+FontPath        "/usr/X11R6/lib/X11/fonts/Speedo/"
+FontPath        "/usr/X11R6/lib/X11/fonts/75dpi/"
+FontPath        "/usr/X11R6/lib/X11/fonts/100dpi/"
+ </PRE
+></P
+><P
+> Они должны либо в точности совпадать с тем, что я здесь указал, или быть
+ очень похожи (как для XFree86 3.x, так и для 4.x). Параметр
+ <TT
+CLASS="LITERAL"
+>FontPath</TT
+> указывает X, где найти шрифты, которые он
+ использует для вывода текста на ваш дисплей. Порядок строк очень важен:
+ когда Х-приложение просит Х вывести некоторый текст, то у Х-сервера обычно
+ бывает некоторая свобода при выборе шрифта, который надо использовать.
+ Х-сервер идет последовательно по каталогам, указанным в
+ <TT
+CLASS="LITERAL"
+>FontPath</TT
+> и использует первый попавшийся шрифт, который
+ удовлетворяет критериям Х-клиента, и затем выводит текст на экран.
+ Заметьте, что xfs, входящий в состав Redhat версий 6.x, использует другой
+ способ настройки <TT
+CLASS="LITERAL"
+>FontPath</TT
+>. См. раздел <A
+HREF="FDU.html#XFS"
+>Разд. 3.2.2</A
+>, в котором это описано подробнее.&#13;</P
+><P
+> Обычно, в стандартном файле конфигурации, 75dpi-шрифты идут до
+ 100dpi-шрифтов. Если у вас хороший монитор с высоким разрешением, то это
+ будут очень маленькие шрифты. Первая хитрость, которую вы можете
+ испробовать - это поменять местами строки с путями к 75dpi- и
+ 100dpi-шрифтам.</P
+><P
+> <PRE
+CLASS="PROGRAMLISTING"
+>FontPath        "/usr/X11R6/lib/X11/fonts/misc/"
+FontPath        "/usr/X11R6/lib/X11/fonts/Type1/"
+FontPath        "/usr/X11R6/lib/X11/fonts/Speedo/"
+FontPath        "/usr/X11R6/lib/X11/fonts/100dpi/"
+FontPath        "/usr/X11R6/lib/X11/fonts/75dpi/"
+ </PRE
+></P
+><P
+> Затем, укажите X-windows, что вы предпочитаете использование неизмененных
+ (unscaled) bitmap-шрифтов. Если вам доводилось когда-нибудь использовать
+ Netscape или другую программу, которая выводит заголовки с использованием
+ больших шрифтов, то вы, наверное, заметили, что эти большие шрифты
+ некачественны, то есть, в них просматриваются точки. Это выглядит
+ коряво, и должно быть исправлено. Поэтому добавьте
+ <TT
+CLASS="LITERAL"
+>:unscaled</TT
+> к строчкам с misc-, 100dpi- и 75dpi-шрифтам.
+ Вы можете использовать вместе и неизмененные и измененные шрифты, если
+ захотите, просто поместите вначале строки <TT
+CLASS="LITERAL"
+>FontPath</TT
+> с
+ опцией "unscaled", чтобы Х-Windows знал, что вы предпочитаете
+ использование неизмененных шрифтов, насколько это возможно.</P
+><P
+> <PRE
+CLASS="PROGRAMLISTING"
+>FontPath        "/usr/X11R6/lib/X11/fonts/misc:unscaled"
+FontPath        "/usr/X11R6/lib/X11/fonts/100dpi:unscaled"
+FontPath        "/usr/X11R6/lib/X11/fonts/75dpi:unscaled"
+FontPath        "/usr/X11R6/lib/X11/fonts/Type1"
+FontPath        "/usr/X11R6/lib/X11/fonts/Speedo"
+FontPath        "/usr/X11R6/lib/X11/fonts/misc"
+FontPath        "/usr/X11R6/lib/X11/fonts/100dpi"
+FontPath        "/usr/X11R6/lib/X11/fonts/75dpi"
+ </PRE
+></P
+><P
+> После этих изменений перезагрузите Х. Ну что, рабочий стал стал лучше
+ выглядеть?</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN131"
+>2.2. Опции командной строки X-сервера</A
+></H2
+><P
+> Следующая вещь, которую вам необходимо сделать, это настроить опции
+ командной строки Х-сервера. Вам будет необходимо использовать опцию
+ <TT
+CLASS="LITERAL"
+>-dpi</TT
+>, которая определяет разрешение монитора в точках
+ на дюйм. Так как в наше время многие системы используют дисплеи с высоким
+ разрешением, то есть большие шансы, что они будут прекрасно работать с
+ разрешением в 100 точек на дюйм (dpi).&#13;</P
+><P
+> Если вы запускаете Х с командной строки консоли, наберите</P
+><P
+> <PRE
+CLASS="PROGRAMLISTING"
+> $ startx -dpi 100.
+ </PRE
+></P
+><P
+> Если  вы используете xdm для графического входа  в систему, вам, наверное,
+ потребуется изменить ваш файл
+ <TT
+CLASS="FILENAME"
+>/usr/X11/lib/X11/xdm/Xservers</TT
+> (или, возможно, в
+ <TT
+CLASS="FILENAME"
+>/etc/X11/xdm/Xservers</TT
+>), в котором будет командная
+ строка запуска  для Х-сервера. В моем файле находится такая строчка:</P
+><P
+><PRE
+CLASS="PROGRAMLISTING"
+> :0 local /usr/X11R6/bin/X -dpi 100 -gamma 1.6</PRE
+></P
+><P
+> Дополнительную информацию смотрите в руководстве по Х и Х-серверу.</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="TRUETYPE"
+>3. Шрифты TrueType (Одна из немногих хороших вещей в Windows)</A
+></H1
+><P
+> По той интересной причине, что ребята в Redmond-е значительно сильнее
+ заботятся о внешнем  виде своего программного обеспечения (чем о
+ нормальности внутреннего содержания ;) они встроили поддержку  шрифтов
+ TrueType в Windows. Windows 9x и почти все остальные варианты Windows
+ поставляются сейчас со шрифтами Arial, Times New Roman, и Courier New,
+ которые являются почти полными аналогами шрифтов Helvetica, Times и
+ Courier. Шрифты TrueType - векторные, поэтому они выглядят хорошо при
+ больших размерах, и они прекрасно описаны, поэтому они хорошо читаются
+ даже при очень маленьких размерах. Многие Windows-программы поставляются с
+ дюжинами шрифтов TrueType. Не используйте пока ваш Windows CD, как горючее
+ для микроволновой печи, сначала достаньте оттуда
+ шрифты.</P
+><P
+> К великому сожалению, в XFree86 3.x не встроена поддержка шрифтов TrueType,
+ поэтому вам придется самим ее добавить. Однако, эта поддержка встроена
+ в XFree86 версий 4.x (см. раздел <A
+HREF="FDU.html#X-4X"
+>Разд. 4</A
+>). Это означает, что
+ вам надо установить сервер шрифтов, поддерживающий TrueType, и, конечно,
+ сами шрифты. Вы не найдете хороших шрифтов ни в одном дистрибутиве. Наиболее
+ вероятная причина этого - ни один хороший качественный шрифт до сих пор не
+ имеет подходящей для этого открытой лицензии.&#13;</P
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN149"
+>3.1. Делаем шрифты TrueType доступными</A
+></H2
+><P
+> Давайте начнем со шрифтов. Для этого подойдет любой шрифт TrueType, включенный
+ в любую реализацию MS Windows. Не забудьте, что текстовые процессоры и
+ другие программы тоже могут включать в себя свои шрифты. Шрифты MacOS для
+ этого не подойдут. Существуют также несколько наборов "бесплатных" шрифтов,
+ которые вы можете скачать из сети, если вы уже сожгли свой CD с Windows
+ (см. ссылки в разделе3 <A
+HREF="FDU.html#LINKS"
+>Разд. 6.2</A
+>).</P
+><P
+> Для того, чтобы использовать TrueType, шрифты должны быть всегда доступны
+ серверу шрифтов. Это означает, что они должны быть на файловой системе,
+ которая <I
+CLASS="EMPHASIS"
+>всегда</I
+> подключена. Я бы не советовал вам
+ использовать Windows-раздел, если у вас система с двойной загрузкой.
+ Шрифты лучше скопировать в Linux-раздел. Во-первых, станем пользователем
+ root при помощи команды <B
+CLASS="COMMAND"
+>su</B
+>: </P
+><P
+> <PRE
+CLASS="PROGRAMLISTING"
+> # su -
+ # mkdir -p /usr/local/share/fonts/ttfonts
+ </PRE
+></P
+><P
+> Теперь перейдем в наш новый каталог:</P
+><P
+> <PRE
+CLASS="PROGRAMLISTING"
+>  # cd  /usr/local/share/fonts/ttfonts
+ </PRE
+></P
+><P
+> Затем перенесите шрифты в этот каталог, например, скопировав их из вашей
+ Windows-системы:</P
+><P
+> <PRE
+CLASS="PROGRAMLISTING"
+> # cp /mnt/&lt;путь_к_шрифтам&gt;/*ttf  .
+ </PRE
+></P
+><P
+> или загрузив те, которые доступны прямо в <A
+HREF="http://www.microsoft.com/typography/fontpack/default.htm"
+TARGET="_top"
+>Microsoft</A
+>.
+ Эти шрифты поставляются в саморазжимающихся zip-архивах. Вы также можете
+ установить их в linux-е (для этого возьмите те шрифты, которые предназначены
+ для Windows 3.1):</P
+><P
+> <PRE
+CLASS="PROGRAMLISTING"
+> # ls *exe | xargs -n 1 unzip -L
+ </PRE
+></P
+><P
+> Опция '-L' преобразует имена шрифтов в нижний регистр (это необходимо для
+ того, чтобы нормально работали xfsft и xfs из Redhat). Заметьте, что
+ текущая версия утилиты zip в Linux не работает с 32-битными архивами
+ шрифтов для Win9x. (Также, кажется, что Microsoft на этом сайте больше не
+ поддерживает 16-битные шрифты Arial, Courier и Times-Roman.)
+ Вы можете скачать RPM с Веб-Шрифтами, который содержит часть
+ TrueType шрифтов Microsoft, по <A
+HREF="http://rpmfind.net/linux/RPM/contrib/noarch/noarch/webfonts-1-3.noarch.html"
+TARGET="_top"
+>этому
+ адресу</A
+>. В нем есть достаточно шрифтов для удовлетворения
+ потребностей Netscape и других веб-обозревателей.</P
+><P
+> Затем добавьте новый каталог TrueType шрифтов к FontPath вашего X-сервера:</P
+><P
+> <PRE
+CLASS="PROGRAMLISTING"
+>FontPath        "/usr/local/share/fonts/ttfonts"
+FontPath        "/usr/X11R6/lib/X11/fonts/misc:unscaled"
+FontPath        "/usr/X11R6/lib/X11/fonts/100dpi:unscaled"
+FontPath        "/usr/X11R6/lib/X11/fonts/75dpi:unscaled"
+FontPath        "/usr/X11R6/lib/X11/fonts/Type1"
+FontPath        "/usr/X11R6/lib/X11/fonts/Speedo"
+FontPath        "/usr/X11R6/lib/X11/fonts/misc"
+FontPath        "/usr/X11R6/lib/X11/fonts/100dpi"
+FontPath        "/usr/X11R6/lib/X11/fonts/75dpi"
+ </PRE
+></P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN173"
+>3.2. Серверы шрифтов</A
+></H2
+><P
+> Существует несколько различных версий серверов шрифтов, которые нам подойдут:
+ xfstt, xfsft, а также подправленная Redhat версия xfs, основанная на xfsft.
+ Несмотря на похожесть имен, это абсолютно различные программы. Скорее всего,
+ ваш дистрибутив включает в себя один из этих пакетов, и, возможно, часть
+ из них вы уже установили.&#13;</P
+><P
+> Раньше, серверы шрифтов использовать для передачи шрифтов по сети. В этом
+ случае шрифты могли находиться на одной машине, и клиенты могли обращаться
+ к ним по мере необходимости. Однако, в настоящее время разработчики
+ встроили в них возможность вывода шрифтов (Эта возможность уже встроена в
+ XFree86 4.x, поэтому вам не понадобится отдельный сервер шрифтов, если вам
+ нужна лишь поддержка TrueType)&#13;</P
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN177"
+>3.2.1. xfstt</A
+></H3
+><P
+> Один из таких серверов шрифтов -  xfstt. xfstt был создан специально для
+ работы с шрифтами TrueType.</P
+><DIV
+CLASS="SECT4"
+><HR><H4
+CLASS="SECT4"
+><A
+NAME="AEN180"
+>3.2.1.1. Установка</A
+></H4
+><P
+> xfstt очень <I
+CLASS="EMPHASIS"
+>просто</I
+> установить. Сначала, загрузите его
+ из сети, или проверьте CD с вашим дистрибутивом. Самую свежую версию можно
+ найти по адресу <A
+HREF="http://metalab.unc.edu/pub/Linux/X11/fonts/"
+TARGET="_top"
+>http://metalab.unc.edu/pub/Linux/X11/fonts/</A
+>&#13;</P
+><P
+> После того, как вы получите архив, разархивируйте его:</P
+><P
+> <PRE
+CLASS="PROGRAMLISTING"
+> $ tar -zxvf xfstt-*tgz
+ </PRE
+></P
+><P
+> Потом соберите и установите его. Прочтите файл
+ <TT
+CLASS="FILENAME"
+>INSTALL</TT
+>, в нем есть краткие инструкции, но там все
+ достаточно просто.&#13;</P
+><P
+> Все, что вам надо сделать, это запустить команды:</P
+><P
+> <PRE
+CLASS="PROGRAMLISTING"
+> # make
+ # make install
+ </PRE
+></P
+><P
+> Запустите xfstt, набрав</P
+><P
+> <PRE
+CLASS="PROGRAMLISTING"
+> # xfstt --sync        # обновляет базу данных шрифтов xfstt
+ # xfstt &amp;             # запускает xfstt в фоновом режиме.
+ </PRE
+></P
+><P
+> xfstt должен быть запущен до запуска X-сервера. После того, как это все
+ нормально заработает, вы можете добавить эти строки в файл
+ <TT
+CLASS="FILENAME"
+>/etc/rc.d/rc.local</TT
+>, или любой другой подходящий для
+ этого инициализационный скрип. Затем наберите:</P
+><P
+> <PRE
+CLASS="PROGRAMLISTING"
+> $ xset +fp unix/:7101     # сообщить X о xfstt.
+ </PRE
+></P
+><P
+> или добавьте:</P
+><A
+NAME="AEN201"
+></A
+><BLOCKQUOTE
+CLASS="BLOCKQUOTE"
+><P
+>  <PRE
+CLASS="PROGRAMLISTING"
+>FontPath "unix/:7101"
+  </PRE
+>
+ </P
+></BLOCKQUOTE
+><P
+> в ваш файл <TT
+CLASS="FILENAME"
+>XF86Config</TT
+> для того, чтобы сообщить X о
+ новом шрифтовом сервисе. Запускайте команду <B
+CLASS="COMMAND"
+>xfstt
+ --sync</B
+> каждый раз при изменении переменной FontPath или
+ содержимого каталога шрифтов.</P
+></DIV
+><DIV
+CLASS="SECT4"
+><HR><H4
+CLASS="SECT4"
+><A
+NAME="AEN207"
+>3.2.1.2. Изменение размера шрифта, устанавливаемого по умолчанию</A
+></H4
+><P
+> Если ваши шрифты TrueType будут слишком мелки, то вам, наверняка, помогут
+ следующие команды.</P
+><P
+> Добавьте опцию <TT
+CLASS="LITERAL"
+>-dpi</TT
+> к командной строке вашего Х-сервера
+ (см. раздел 3, чтобы узнать как это сделать.)</P
+><P
+> Используйте ключ <TT
+CLASS="LITERAL"
+>--res</TT
+> для того, чтобы указать xfstt
+ увеличить разрешение экрана по умолчанию. Используйте следующую командную
+ строку:</P
+><P
+> <PRE
+CLASS="PROGRAMLISTING"
+> # xfstt --res 120
+ </PRE
+></P
+></DIV
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="XFS"
+>3.2.2. xfs, входящий в состав дистрибутива Redhat</A
+></H3
+><P
+> В комплект дистрибутива RedHat (начиная с версии 6.0), а также производных
+ ему (Mandrake, и т.п.) входит специальная измененная версия пакета xfs -
+ сервера шрифтов XFree86, а также подправленные версии X-серверов. Этот
+ исправленный xfs включает в себя патч xfsft, который, в свою очередь,
+ основан на библиотеке FreeType Font. Этот xfs делает практически то же
+ самое, что и xfstt. xfs обрабатывает шрифты Truetype и Type 1, а также
+ обычные шрифты X Window.</P
+><P
+> Если ваш дистрибутив основан на RedHat, то у вас уже должен быть
+ установлен xfs. Если нет, то он находится в пакете
+ <TT
+CLASS="FILENAME"
+>XFree86-xfs*rpm</TT
+>. Для того, чтобы убедиться в том, что
+ он работает в качестве стандартного сервиса, используйте
+ <B
+CLASS="COMMAND"
+>ntsysv</B
+> или:</P
+><P
+> <PRE
+CLASS="PROGRAMLISTING"
+> # chkconfig --add xfs
+ </PRE
+></P
+><P
+> Теперь xfs будет запускаться при каждой загрузке системы.</P
+><DIV
+CLASS="SECT4"
+><HR><H4
+CLASS="SECT4"
+><A
+NAME="AEN225"
+>3.2.2.1. Установка переменной FontPath для xfs</A
+></H4
+><P
+> Стандартная установка xfs в RedHat работает со шрифтами через Доменные
+ Сокеты Unix (Unix Domain Socket). Мы должны указать X-серверу, где искать
+ xfs, а, соответственно, и шрифты. FontPath в файле
+ <TT
+CLASS="FILENAME"
+>/etc/X11/XF86Config</TT
+> должен содержать строку:</P
+><A
+NAME="AEN229"
+></A
+><BLOCKQUOTE
+CLASS="BLOCKQUOTE"
+><P
+><PRE
+CLASS="PROGRAMLISTING"
+> FontPath   "unix/:-1" </PRE
+></P
+></BLOCKQUOTE
+><P
+> Так, по крайней мере, сделано в стандартной установке. Здесь приводится
+ ссылка на сокет, на котором находится xfs. Вы можете также включить сюда
+ ссылки на другие каталоги, но их будет обрабатывать X-сервер, а не xfs.
+ В стандартной установке RedHat 6.x это делается по умолчанию, но, если
+ вы обновляете старую версию, то вам придется указать эту строку вручную!&#13;</P
+><P
+> Переменная FontPath, которую использует xfs, находится в отдельном файле
+ <TT
+CLASS="FILENAME"
+>/etc/X11/fs/config</TT
+>. В этом файле находится список
+ каталогов со шрифтами. Он не имеет никакого отношения к FontPath в
+ <TT
+CLASS="FILENAME"
+>XF86Config</TT
+>. Вы можете либо добавить каталоги вручную,
+ либо использовать для этого команду <B
+CLASS="COMMAND"
+>chkfontpath</B
+>:&#13;</P
+><P
+> <PRE
+CLASS="PROGRAMLISTING"
+> # chkfontpath --add /usr/local/share/fonts/ttfonts
+ </PRE
+></P
+><P
+> Переменная FontPath должна быть задана до запуска
+ <B
+CLASS="COMMAND"
+>chkfontpath</B
+>. Соответствующая секция файла
+ <TT
+CLASS="FILENAME"
+>/etc/X11/fs/config</TT
+> должна выглядеть примерно так:</P
+><A
+NAME="AEN242"
+></A
+><BLOCKQUOTE
+CLASS="BLOCKQUOTE"
+><P
+> <PRE
+CLASS="PROGRAMLISTING"
+>&#13;catalogue = /usr/X11R6/lib/X11/fonts/misc:unscaled,
+            /usr/X11R6/lib/X11/fonts/100dpi:unscaled,
+            /usr/X11R6/lib/X11/fonts/75dpi:unscaled,
+            /usr/X11R6/lib/X11/fonts/Type1,
+            /usr/X11R6/lib/X11/fonts/Speedo,
+            /usr/X11R6/lib/X11/fonts/misc,
+            /usr/X11R6/lib/X11/fonts/100dpi,
+            /usr/X11R6/lib/X11/fonts/75dpi,
+            /usr/local/share/fonts/ttfonts
+
+ </PRE
+>
+ </P
+></BLOCKQUOTE
+></DIV
+><DIV
+CLASS="SECT4"
+><HR><H4
+CLASS="SECT4"
+><A
+NAME="AEN245"
+>3.2.2.2. Подготовка шрифтов</A
+></H4
+><P
+> Нам надо сделать кое-что еще перед тем, как использовать шрифты TrueType.
+ Для использования xfs должны быть выполнены некоторые правила. Во-первых,
+ имена файлов шрифтов должны быть написаны маленькими буквами. Во-вторых,
+ для работы надо создать пару файлов.</P
+><P
+> Используйте команду <B
+CLASS="COMMAND"
+>su</B
+> для того, чтобы стать пользователем
+ root, и перейдите в каталог со шрифтами TrueType: </P
+><P
+> <PRE
+CLASS="PROGRAMLISTING"
+> # su -
+ # cd /usr/local/share/fonts/ttfonts
+ </PRE
+></P
+><P
+> Если у вас там есть шрифты с большими буквами в именах, то вам
+ надо использовать следующий скрипт для того, чтобы преобразовать
+ все имена в нижний регистр:</P
+><P
+> <PRE
+CLASS="PROGRAMLISTING"
+>&#13; #!/bin/sh
+ #
+ ## -------- преобразование букв имен файлов в строчные ---------
+ 
+ ls * | while read f
+  do
+    if [ -f $f ]; then
+      if [ "$f" != "`echo \"$f\" | tr A-Z a-z`" ]; then
+       # Внимание, файл 'This' будет перезаписан файлом 'this'!
+       mv -iv "$f" "`echo \"$f\" | tr A-Z a-z`"
+      fi
+    fi
+  done
+
+ ## eof
+ 
+ </PRE
+></P
+><P
+> Обратите внимание на символы -- очень важны обратные апострофы! Уберите из
+ имен файлов все пробелы. После этого создайте файлы
+ <TT
+CLASS="FILENAME"
+>fonts.dir</TT
+> и <TT
+CLASS="FILENAME"
+>fonts.scale</TT
+>. Это
+ можно сделать при помощи следующих команд:&#13;</P
+><P
+> <PRE
+CLASS="PROGRAMLISTING"
+> # ttmkfdir -o fonts.scale
+ # mkfontdir
+ </PRE
+></P
+><P
+> Теперь у вас в каталоге с TrueType-шрифтами должны появиться файлы
+ <TT
+CLASS="FILENAME"
+>fonts.dir</TT
+> и <TT
+CLASS="FILENAME"
+>fonts.scale</TT
+>. Команда
+ <B
+CLASS="COMMAND"
+>ttmkfdir</B
+> входит в состав RPM
+ <TT
+CLASS="FILENAME"
+>Freetype</TT
+>, и ее надо запускать до запуска
+ <B
+CLASS="COMMAND"
+>mkfontdir</B
+>. Эти команды не всегда выдают сообщения об
+ ошибках, поэтому надо убедиться в том, что они создали не пустые файлы:&#13;</P
+><P
+> <PRE
+CLASS="PROGRAMLISTING"
+> $ ls -l fonts.*
+  -rw-r--r--  1 root   root    11657 Aug 17 10:31 fonts.dir
+  -rw-r--r--  1 root   root    11657 Aug 17 10:31 fonts.scale
+ </PRE
+></P
+><P
+> Если у вас возникли проблемы, то используйте опцию
+ <B
+CLASS="COMMAND"
+>-m</B
+> команды <B
+CLASS="COMMAND"
+>ttmkfdir</B
+>. В результате из
+ файлов шрифтов будут отброшены все плохие символы. Задайте число 50 или
+ 100 (<B
+CLASS="COMMAND"
+>ttmkfdir -m 50</B
+>).  Полученные файлы являются
+ текстовыми, и вы можете на них взглянуть:&#13;</P
+><P
+> <PRE
+CLASS="PROGRAMLISTING"
+> $ less  fonts.dir
+  114
+  webdings.ttf  -microsoft-Webdings-medium-r-normal--0-0-0-0-p-0-microsoft-symbol
+  verdanaz.ttf  -microsoft-Verdana-bold-i-normal--0-0-0-0-p-0-ascii-0
+  verdanaz.ttf  -microsoft-Verdana-bold-i-normal--0-0-0-0-p-0-fcd8859-15
+  verdanaz.ttf  -microsoft-Verdana-bold-i-normal--0-0-0-0-p-0-iso8859-15
+  verdanaz.ttf  -microsoft-Verdana-bold-i-normal--0-0-0-0-p-0-iso8859-9
+  verdanaz.ttf  -microsoft-Verdana-bold-i-normal--0-0-0-0-p-0-iso8859-1
+ [...]
+ </PRE
+></P
+><P
+> После этого обновитье переменные FontPath вашего xfs (это может быть не
+ обязательно в случае XFree86 4.x) и X-сервера:</P
+><P
+> <PRE
+CLASS="PROGRAMLISTING"
+> # /etc/rc.d/init.d/xfs restart
+ $ xset +fp /usr/local/share/fonts/ttfonts
+ $ xset fp rehash
+ </PRE
+></P
+><P
+> Запускайте первую и последнюю команды каждый раз при добавлении или
+ удалении шрифтов. Команда <B
+CLASS="COMMAND"
+>xset +fp</B
+> необходима только в
+ тех случаях, когда вы добавляете новый каталог шрифтов к существующим.</P
+><P
+> Теперь все должно работать. Проверьте доступность шрифтов командой:</P
+><P
+> <PRE
+CLASS="PROGRAMLISTING"
+> $ xlsfonts | less
+ </PRE
+></P
+><P
+> или проверьте их при помощи <B
+CLASS="COMMAND"
+>xfontsel</B
+>, или
+ <B
+CLASS="COMMAND"
+>gfontsel</B
+>. Если их видит <B
+CLASS="COMMAND"
+>xlsfonts</B
+>, то
+ они должны быть доступны X и наоборот. Если их нет, то попоробуйте
+ перезапустить X клавишами Ctrl-Alt-BS.</P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN286"
+>3.3. xfsft</A
+></H2
+><P
+> <A
+HREF="http://www.dcs.ed.ac.uk/home/jec/programs/xfsft/"
+TARGET="_top"
+>xfsft</A
+> - это
+ решение для работы с TrueType, предложенное Juliusz Chroboczek. xfsft
+ основан на библиотеке работы со шрифтами FreeType, которая разработана
+ Mark Leisher. Также существует патч для xfs XFree86, и связанная с
+ ним библиотека -- xfs + ft. xfs, входящий в состав Redhat является на
+ самом деле xfsft с небольшими изменениями. Более того, XFree86 версий 4.x
+ включает в себя модуль работы со шрифтами <TT
+CLASS="LITERAL"
+>freetype</TT
+>,
+ который также сделан Juliusz Chroboczek.&#13;</P
+><P
+> Сборка xfsft требует наличия части исходных текстов XFree86 (кроме самих
+ исходных текстов xfsft), так что это не очень быстрое занятие. Инструкции
+ по сборке и настройке xfsft находятся в самом файле исходных текстов,
+ поэтому я не буду вдаваться в подробности. Там все достаточно просто. На
+ домашней странице xfsft также есть ссылки на уже собранные программы (см.
+ выше).</P
+><P
+> Заметьте, что xfsft <I
+CLASS="EMPHASIS"
+>требует</I
+> наличия файлов
+ <TT
+CLASS="FILENAME"
+>fonts.scale</TT
+> и <TT
+CLASS="FILENAME"
+>fonts.dir</TT
+>. Файл
+ <TT
+CLASS="FILENAME"
+>fonts.scale</TT
+> можно создать вручную (уф!), или при
+ помощи утилиты <B
+CLASS="COMMAND"
+>ttmkfdir</B
+>. Она не входит в состав xfsft,
+ но вы найдете ее <A
+HREF="http://www.joerg-pommnitz.de/TrueType/ttmkfdir.tar.gz"
+TARGET="_top"
+>здесь</A
+>
+ или, возможно, на других известных Linux-сайтах. Она также входит в состав
+ RPM <TT
+CLASS="FILENAME"
+>Freetype</TT
+> в RedHat.&#13;</P
+><P
+> Вам необходимо настроить файл конфигурации. Ниже приведен пример:&#13;</P
+><A
+NAME="AEN301"
+></A
+><BLOCKQUOTE
+CLASS="BLOCKQUOTE"
+><P
+> <PRE
+CLASS="PROGRAMLISTING"
+>-----------------------------------------------------
+
+clone-self = off
+use-syslog = off
+
+client-limit = 20
+
+catalogue = /usr/local/share/font/ttfonts
+
+error-file = /home/jec/fonts/xfs.errors
+
+# в деципунктах
+default-point-size = 120
+
+# x,y
+default-resolutions = 100,100,75,75
+
+-----------------------------------------------------
+
+ </PRE
+>
+ </P
+></BLOCKQUOTE
+><P
+> После этого вы можете запустить:&#13;</P
+><P
+> <PRE
+CLASS="PROGRAMLISTING"
+> # xfs -port 7100 -config /путь/к/вашему/файлу/конфигурации &#38;
+ </PRE
+></P
+><P
+> Затем вы можете добавить xfsft к переменной <TT
+CLASS="LITERAL"
+>FontPath</TT
+>
+ вашего X-сервера:&#13;</P
+><P
+> <PRE
+CLASS="PROGRAMLISTING"
+> $ xset +fp tcp/localhost:7100
+ </PRE
+></P
+><P
+> Если все пойдет хорошо, то добавьте эту строку к переменной
+ <TT
+CLASS="LITERAL"
+>FontPath</TT
+> вашего файла <TT
+CLASS="FILENAME"
+>XF86Config</TT
+>.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="FALIAS"
+>3.4. Файл fonts.alias</A
+></H2
+><P
+> <TT
+CLASS="FILENAME"
+>fonts.alias</TT
+> - это еще один конфигурационный файл,
+ который можно использовать для изменения способа работы со шрифтами.
+ Подобно файлам <TT
+CLASS="FILENAME"
+>fonts.scale</TT
+> и
+ <TT
+CLASS="FILENAME"
+>fonts.dir</TT
+>, файл <TT
+CLASS="FILENAME"
+>fonts.alias</TT
+>
+ должен быть в том же каталоге, что и шрифты, к которым вы задаете алиасы.
+ Этот файл не обязятелен, но он может решить некоторые проблемы. Ниже
+ приведен пример строки из файла
+ <TT
+CLASS="FILENAME"
+>/usr/X11R6/lib/X11/fonts/misc/fonts.alias</TT
+> в системе
+ Redhat:</P
+><P
+> <PRE
+CLASS="PROGRAMLISTING"
+> fixed    -misc-fixed-medium-r-semicondensed--13-120-75-75-c-60-iso8859-1
+ </PRE
+></P
+><P
+> <TT
+CLASS="LITERAL"
+>fixed</TT
+> - это алиас. При каждом запросе мы на самом
+ деле получаем определение шрифта из второй колонки. Шрифт слишком мал?
+ Мы просто изменяем определение шрифта. (Внимание: этот файл критичен
+ для работы системы, по крайней мере в RedHat.) Этот принцип
+ справедлив для всех шрифтов, включая и TrueType. На самом деле,
+ если у вас нет TrueType шрифтов, вы можете использовать эту
+ хитрость для подстановки подобного ему шрифта Type 1, или
+ другого шрифта, алиас которого ссылается на TrueType.&#13;</P
+><P
+> Файл <TT
+CLASS="FILENAME"
+>fonts.alias</TT
+> очень важен для некоторых программ,
+ которые не совсем правильно работают с данными, которые есть в файле
+ <TT
+CLASS="FILENAME"
+>fonts.scale</TT
+>. Одной из таких программ является
+ Netscape. Если у вас нет файла <TT
+CLASS="FILENAME"
+>fonts.alias</TT
+>, то вы
+ заметите, что Netscape показывает размеры шрифтов от 0 до 12. Это можно
+ исправить при помощи <TT
+CLASS="FILENAME"
+>fonts.alias</TT
+>. Вы также можете
+ заметить, что, если вы зададите другой размер в опции <TT
+CLASS="LITERAL"
+>scalable
+ font</TT
+> в пункте меню <TT
+CLASS="LITERAL"
+>Preferences</TT
+>, Netscape не
+ запомнит эту настройку. Это очень неудобно! Это также исправляется при
+ помощи алиасов. Поэтому нам очень нужен этот файл. Вот пример из файла
+ <TT
+CLASS="FILENAME"
+>fonts.scale</TT
+>:&#13;</P
+><P
+> <PRE
+CLASS="PROGRAMLISTING"
+> arial.ttf   -monotype-Arial-medium-r-normal--0-0-0-0-p-0-ascii-0
+ arial.ttf   -monotype-Arial-medium-r-normal--0-0-0-0-p-0-fcd8859-15
+ arial.ttf   -monotype-Arial-medium-r-normal--0-0-0-0-p-0-iso8859-15
+ arial.ttf   -monotype-Arial-medium-r-normal--0-0-0-0-p-0-iso8859-1
+ </PRE
+></P
+><P
+> Это - векторные шрифты, поэтому мы не задаем стандартные размеры шрифтов.
+ Нам надо создать свой файл <TT
+CLASS="FILENAME"
+>fonts.alias</TT
+>. Ниже
+ приведена его часть (касающаяся Arial):</P
+><P
+> <PRE
+CLASS="PROGRAMLISTING"
+>&#13; -monotype-Arial-medium-r-normal--6-60-0-0-p-0-iso8859-1 \
+             -monotype-Arial-medium-r-normal--9-90-75-75-p-0-iso8859-1
+
+ -monotype-Arial-medium-r-normal--7-70-0-0-p-0-iso8859-1 \
+             -monotype-Arial-medium-r-normal--9-90-75-75-p-0-iso8859-1
+
+ -monotype-Arial-medium-r-normal--8-80-0-0-p-0-iso8859-1 \
+             -monotype-Arial-medium-r-normal--10-100-75-75-p-0-iso8859-1
+
+ -monotype-Arial-medium-r-normal--9-90-0-0-p-0-iso8859-1 \
+             -monotype-Arial-medium-r-normal--11-110-75-75-p-0-iso8859-1
+
+ -monotype-Arial-medium-r-normal--10-100-0-0-p-0-iso8859-1 \
+             -monotype-Arial-medium-r-normal--12-120-75-75-p-0-iso8859-1
+
+ -monotype-Arial-medium-r-normal--11-110-0-0-p-0-iso8859-1 \
+             -monotype-Arial-medium-r-normal--12-120-75-75-p-0-iso8859-1
+
+ -monotype-Arial-medium-r-normal--12-120-0-0-p-0-iso8859-1 \
+             -monotype-Arial-medium-r-normal--12-120-75-75-p-0-iso8859-1
+
+ -monotype-Arial-medium-r-normal--13-130-0-0-p-0-iso8859-1 \
+             -monotype-Arial-medium-r-normal--13-130-75-75-p-0-iso8859-1
+
+ -monotype-Arial-medium-r-normal--14-140-0-0-p-0-iso8859-1 \
+             -monotype-Arial-medium-r-normal--14-140-75-75-p-0-iso8859-1
+
+ -monotype-Arial-medium-r-normal--15-150-0-0-p-0-iso8859-1 \
+             -monotype-Arial-medium-r-normal--15-150-75-75-p-0-iso8859-1
+
+ -monotype-Arial-medium-r-normal--18-180-0-0-p-0-iso8859-1 \
+            -monotype-Arial-medium-r-normal--18-180-75-75-p-0-iso8859-1
+
+ -monotype-Arial-medium-r-normal--24-240-0-0-p-0-iso8859-1 \
+            -monotype-Arial-medium-r-normal--24-240-75-75-p-0-iso8859-1
+
+ </PRE
+></P
+><P
+> <I
+CLASS="EMPHASIS"
+>Заметьте, что я разделил каждую строку на две для
+ читаемости</I
+>. В этом файле должны быть две колонки без символа
+ <SPAN
+CLASS="QUOTE"
+>"\"</SPAN
+>, разделенные, как минимум, одним пробелом. Это достаточно
+ для Netscape. Обратите внимание на различие поля
+ <TT
+CLASS="LITERAL"
+>pointsize</TT
+> записей первой и второй колонок первых двух
+ строк. В первой колонке в этом поле написано "6", а во второй - "9". Таким
+ образом, можно обойти синдром "очень мелких шрифтов" Netscape. Подправьте
+ этот файл по вашему вкусу, разрешению экрана и т.п.&#13;</P
+><P
+> Этот файл можно создать вручную при помощи текстового редактора, или, что
+ проще, при помощи специальных скриптов, использующих sed и awk. Прекрасное
+ обсуждение содержимого этого файла есть <A
+HREF="http://home.c2i.net/dark/linux.html#ttf"
+TARGET="_top"
+>здесь</A
+>. Там же есть
+ ссылка на python-скрипт, который может почти автоматически создать этот
+ файл прямо на том сайте.&#13;</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="X-4X"
+>4. XFree86 версий 4.x</A
+></H1
+><P
+> <A
+HREF="http://www.xfree86.org/4.0/"
+TARGET="_top"
+>XFree86 4.0</A
+> среди
+ большого количества новых возможностей включает в себя встроенную
+ поддержку шрифтов TrueType. Расширенная поддержка шрифтов основана на
+ xfsft Juliusz Chroboczek, который, в свою очередь, основан на библиотеке
+ FreeType, написанной Mark Leisher, поэтому его настройка похожа на
+ настройку xfsft и модифицированной Redhat версии xfs.&#13;</P
+><P
+> Переменная <TT
+CLASS="LITERAL"
+>FontPath</TT
+> находится там же, в файле
+ <TT
+CLASS="FILENAME"
+>XF86Config</TT
+>. Для пользователей Redhat xfs это
+ означает, что им надо перенести <TT
+CLASS="LITERAL"
+>FontPath</TT
+> из файла
+ <TT
+CLASS="FILENAME"
+>/etc/X11/fs/config</TT
+> обратно в
+ <TT
+CLASS="FILENAME"
+>XF86Config</TT
+>. Более того, надо заметить, что для
+ поддержки TrueType шрифтов xfs больше не нужен. Вы можете его отключить,
+ только если вам не нужен сетевой сервер шрифтов.</P
+><A
+NAME="AEN356"
+></A
+><BLOCKQUOTE
+CLASS="BLOCKQUOTE"
+><P
+>  <PRE
+CLASS="PROGRAMLISTING"
+> Section "Files"
+  FontPath "/usr/X11R6/lib/X11/fonts/misc:unscaled"
+  FontPath "/usr/X11R6/lib/X11/fonts/100dpi:unscaled"
+  FontPath "/usr/X11R6/lib/X11/fonts/75dpi:unscaled"
+  FontPath "/usr/X11R6/lib/X11/fonts/misc"
+  FontPath "/usr/X11R6/lib/X11/fonts/Type1"
+  FontPath "/usr/X11R6/lib/X11/fonts/Speedo"
+  FontPath "/usr/share/fonts/default/Type1"
+  FontPath "/usr/local/share/fonts/ttfonts"
+  FontPath "/usr/X11R6/lib/X11/fonts/100dpi"
+  FontPath "/usr/X11R6/lib/X11/fonts/75dpi"
+ EndSection
+  </PRE
+>
+ </P
+></BLOCKQUOTE
+><P
+> Доя использования TrueType, вы также должны указать загрузку
+ <TT
+CLASS="LITERAL"
+>модуля</TT
+> X-сервера в разделе "Module":</P
+><A
+NAME="AEN361"
+></A
+><BLOCKQUOTE
+CLASS="BLOCKQUOTE"
+><P
+>  <PRE
+CLASS="PROGRAMLISTING"
+> Section "Module"
+  Load  "freetype"
+  Load  "speedo"
+  Load  "type1"
+ EndSection
+  </PRE
+>
+ </P
+></BLOCKQUOTE
+><P
+> Для каждого каталога со шрифтами TrueType вы должны создать файлы
+ <TT
+CLASS="FILENAME"
+>fonts.scale</TT
+> и <TT
+CLASS="FILENAME"
+>fonts.dir</TT
+>
+ (аналогично xfsft и xfs Redhat). В создании файла
+ <TT
+CLASS="FILENAME"
+>fonts.scale</TT
+> вам поможет утилита <A
+HREF="http://www.joerg-pommnitz.de/TrueType/ttmkfdir.tar.gz"
+TARGET="_top"
+>ttmkfdir</A
+>.
+ Смотрите выше раздел с описанием xfs <A
+HREF="FDU.html#XFS"
+>Разд. 3.2.2</A
+>, в котором
+ описывается, как это сделать.&#13;</P
+><P
+> <TT
+CLASS="LITERAL"
+>xtt</TT
+> - это другой доступный модуль работы с TrueType,
+ который больше известен поддержкой идеографических (Восточных) шрифтов. Вы
+ можете использовать и его, но не вместе с обычным.</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="APPS"
+>5. Настройка шрифтов в отдельных программах</A
+></H1
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="KDE"
+>5.1. KDE</A
+></H2
+><P
+> KDE - это одна из наилучших вещей, которые случались с Linux и X в течение
+ долгого времени. Она представляет из себя полный пользовательский
+ интерфейс, который очень сильно приближает Linux к цели - быть доступным для
+ среднего непрофессионала. Более подробную информацию о KDE вы можете найти
+ по адресу <A
+HREF="http://www.kde.org/"
+TARGET="_top"
+>http://www.kde.org/</A
+>.
+ Тогда почему я пою этой системе дифирамбы здесь? Потому что в KDE версии
+ 1.1 есть новая функция - совместить шрифты и цвета в ваших программах,
+ включая и не-KDE программы, с тем  стилем, который на этот момент выбран
+ для KDE.</P
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN378"
+>5.1.1. Использование шрифтов и цветов KDE в не-KDE приложениях</A
+></H3
+><P
+> Это очень просто. Просто запустите Центр Управления KDE, перейдите к
+ пункту Desktop, внутри него зайдите в подпункт Style. Там будет флажок с
+ надписью "Использовать шрифты и цвета в не-KDE приложениях" ("Apply fonts
+ and colors to non-KDE apps"). Установите его, нажмите OK, и все! В
+ следующий раз, когда вы будете запускать многие X-приложения, они будут
+ использовать те же цвета и шрифты, которые используют ваши KDE-приложения.
+ Некоторым больше нравится эта опция, некоторым меньше. Если она вам не
+ понравится, вы всегда можете ее выключить.</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN381"
+>5.2. Netscape</A
+></H2
+><P
+> Давайте согласимся с одним фактом, Netscape - это очень важная программа для
+ Linux программа. Мы все ее используем, всем нам она очень нужна, поэтому
+ остановимся на ней поподробнее. Стандартная установка Netscape известна
+ своими проблемами со шрифтами - большие шрифты состоят из крупных точек,
+ шрифты выглядят неправильно, шрифты слишком мелки для чтения. В-общем,
+ неудобно! Может быть, именно поэтому вы читаете этот текст?&#13;</P
+><P
+> Я надеюсь, что вы уже последовали моим предыдущим советам. То, что
+ я посоветую в этом разделе должно вам помочь. Наличие шрифтов TrueType
+ в вашей системе уже стало необходимостью, и для работы с ними вам нужен
+ сервер шрифтов TrueType. Многие веб-страницы используют конкретные семейства
+ шрифтов, таких, как Arial, которые не очень типичны для пользователей Linux.
+ Это неправильный шаг с точки зрения дизайна, но наличие в вашей системе
+ стандартных TrueType шрифтов поможет вам обойти глупость некоторых веб-
+ дизайнеров. НУ НЕ МОЖЕМ МЫ ОБОЙТИСЬ БЕЗ MICROSOFT!&#13;</P
+><P
+> Предположим, что в вашей системе уже работает TrueType. Зайдите в Netscape
+ в меню <TT
+CLASS="LITERAL"
+>Edit -&#62; Preferences -&#62; Fonts</TT
+>.  Откройте список
+ под названием <TT
+CLASS="LITERAL"
+>Variable Width Font</TT
+> в правой части окна.
+ Выберите любой подходящий вам шрифт. Включите флажок <TT
+CLASS="LITERAL"
+>Allow
+ Scaling</TT
+>. Если вам предлагаются только 0 и 12 размер шрифта, то
+ вы можете ввести свой размер в окошке рядом с размерами, а затем нажать на
+ кнопку <TT
+CLASS="LITERAL"
+>OK</TT
+>. Проблема состоит в том, что Netscape не
+ запомнит эти значения, и вам придется вносить их каждый раз при запуске
+ Netscape. <I
+CLASS="EMPHASIS"
+>Это нужно только, если</I
+> вы еще не настроили
+ файл <TT
+CLASS="FILENAME"
+>fonts.alias</TT
+>. Этот файл разрешит ваши проблемы.
+ Читайте раздел <A
+HREF="FDU.html#FALIAS"
+>Разд. 3.4</A
+>, чтобы узнать подробнее о файле
+ <TT
+CLASS="FILENAME"
+>fonts.alias</TT
+>.&#13;</P
+><P
+> Вы можете поэкспериментировать над настройками в файлах
+ <TT
+CLASS="FILENAME"
+>~/.Xdefaults</TT
+> (или
+ <TT
+CLASS="FILENAME"
+>~/.Xresources</TT
+>):</P
+><A
+NAME="AEN397"
+></A
+><BLOCKQUOTE
+CLASS="BLOCKQUOTE"
+><P
+>  <PRE
+CLASS="PROGRAMLISTING"
+> Netscape*DocumentFonts.sizeIncrement: 10
+ Netscape*documentFonts.xResolution*iso-8859-1: 120
+ Netscape*documentFonts.yResolution*iso-8859-1: 120
+  </PRE
+>
+ </P
+></BLOCKQUOTE
+><P
+> Переменная 'sizeIncrement' контролирует размер интервала при различии
+ заданных в странице параметров 'basefont':&#13;</P
+><P
+> <PRE
+CLASS="PROGRAMLISTING"
+> &lt;basefont size=7&gt;
+ </PRE
+></P
+><P
+> Значение по умолчанию - '20', что достаточно много. Изменяя это число
+ можно уберечь Netscape от слишком больших или слишком малых шрифтов.
+ Разрешения по x и по y - очень грубый эквивалент разрешения экрана в
+ точках на дюймах. Экспериментируйте.&#13;</P
+><P
+> Затем запустите команду: </P
+><P
+> <PRE
+CLASS="PROGRAMLISTING"
+> $ xrdb -load ~/.Xdefaults
+ </PRE
+></P
+><P
+> (или <TT
+CLASS="FILENAME"
+>.Xresources</TT
+>) и перезапустите Netscape. Таким
+ образом можно изменять разные параметры Netscape. Вы можете посмотреть
+ содержимое файла <TT
+CLASS="FILENAME"
+>Netscape.ad</TT
+>, который должен входить
+ в поставку вашего пакета Netscape.</P
+><P
+> Если при помощи этих советов вы не сможете добиться желаемого результата,
+ и проблема "мелких шрифтов" останется, то смотрите выше раздел, касающийся
+ файла <TT
+CLASS="FILENAME"
+>fonts.alias</TT
+>. С помощью этого файла вы можете
+ добиться значительно лучших результатов.&#13;</P
+><P
+> Настройка Mozilla должна быть практически идентична Netscape.</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="END"
+>6. Разное</A
+></H1
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="NOTES"
+>6.1. Замечания</A
+></H2
+><P
+></P
+><UL
+><LI
+><P
+>   К сожалению, в Linux нет стандартной системы работы со шрифтами. Вам придется
+   настраивать каждую программу в отдельности. В каждой программе может быть
+   свой собственный способ настройки, поэтому читайте руководства.
+  </P
+></LI
+><LI
+><P
+>   Многие программы с графическим интерфейсом должны поддерживать и
+   шрифты TrueType и шрифты Type 1. Однако, например,
+   Wordperfect для Linux, не может их использовать. (См.ниже ссылки,
+   где можно найти более подробную информацию о Wordperfect.)
+   Текстовым редакторам, терминальным программам и т.п. требуются
+   фиксированные шрифты, и они плохо работают с TrueType или с другими
+   векторными шрифтами.
+
+  </P
+></LI
+><LI
+><P
+>   Несмотря на то, что мы не обсуждали здесь шрифты Type 1, они практически
+   идентичны TrueType по своим свойствам. Скорее всего часть из них у вас
+   уже есть. Однако, к большому сожалению, Type 1 не стал сетевым
+   стандартом в отличие от TrueType. На самом деле они предназначались для
+   печати. Более подробно об этом вы можете прочитать на странице <A
+HREF="http://www.ghostscript.com/"
+TARGET="_top"
+>ghostscript</A
+>.
+  </P
+></LI
+><LI
+><P
+>   Антиалиасинг не поддерживается ни одной версией XFree86.
+  </P
+></LI
+><LI
+><P
+>   Несмотря на то, что существует возможность задать стандартный
+   размер шрифта xfs-сервера, эта функция не используется
+   практически ни одним приложением.
+  </P
+></LI
+></UL
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="LINKS"
+>6.2. Ссылки</A
+></H2
+><P
+></P
+><UL
+><LI
+><P
+>    <A
+HREF="http://linuxdoc.org/HOWTO/XFree86-Video-Timings-HOWTO.html"
+TARGET="_top"
+>HOWTO:
+    Настройка Видео-режимов</A
+> - основы и детали того, как взять
+    максимум от вашего монитора.
+   </P
+></LI
+><LI
+><P
+>    <A
+HREF="http://www.linuxdoc.org/HOWTO/Font-HOWTO.html"
+TARGET="_top"
+>HOWTO:
+    Шрифты</A
+> - Много полезных советов по установке шрифтов и
+    настройке приложений (StarOffice, Applixware, Wordperfect, Ghostscript,
+    TeX/LaTeX).
+   </P
+></LI
+><LI
+><P
+>    <A
+HREF="http://www.moisty.org/~brion/linux/TrueType-HOWTO.html"
+TARGET="_top"
+>HOWTO:
+    TrueType </A
+> - много советов по печати и немного описаний
+    приложений.
+  </P
+></LI
+><LI
+><P
+>    <A
+HREF="http://www.dcs.ed.ac.uk/home/jec/programs/xfsft/"
+TARGET="_top"
+>Домашняя
+    страница xfsft</A
+>, программы поддержки TrueType для X. Эта
+    программа положена в основу модуля "freetype" XFree86 версий 4.x и xfs,
+    входящего в состав дистрибутива Redhat. Неплохой сайт, на котором есть
+    ссылки на другую информацию, касающуюся шрифтов и TrueType.
+   </P
+></LI
+><LI
+><P
+>    <A
+HREF="http://X-TT.dsl.gr.jp/"
+TARGET="_top"
+>Домашняя страница
+    ueType</A
+> - еще один сервер шрифтов TrueType, который подходит
+    Японских, Китайских и Корейских шрифтов.
+   </P
+></LI
+><LI
+><P
+>    Советы по решению проблем с размером шрифтов на сайте 
+    <A
+HREF="http://help.netscape.com/kb/consumer/19960513-54.html"
+TARGET="_top"
+>Netscape</A
+>.
+   </P
+></LI
+><LI
+><P
+>    <A
+HREF="http://www.rodsbooks.com/wpfonts/"
+TARGET="_top"
+>Wordperfect для Linux --
+    Шрифты и Принтеры</A
+> автора Rod Smith, автора книги
+    <I
+CLASS="CITETITLE"
+>Использование Corel Wordperfect 8 для Linux</I
+> от
+    Que. Великолепная информация по Wordperfect, и как использовать в нем
+    TrueType.
+   </P
+></LI
+><LI
+><P
+>    <A
+HREF="http://www.xfree86.org"
+TARGET="_top"
+>Проект XFree86</A
+> - та
+    компания классных ребят, тратящих огромное количество сил и времени на
+    создание этого шикарного графического интерфейса. Некоторая информация
+    о шрифтах на странице <A
+HREF="http://www.xfree86.org/4.0/fonts.html"
+TARGET="_top"
+>XFree86 4.x</A
+>.
+   </P
+></LI
+><LI
+><P
+>    <A
+HREF="http://www.microsoft.com/typography/fontpack/default.htm"
+TARGET="_top"
+>Веб-шрифты
+    Microsoft</A
+> прямо из пасти огнедышащего Дракона -- и бесплатно!
+    Если у вас нет доступа к системе win32, то вам понадобятся шрифты,
+    предназначенные для Win3.1. Их можно распаковать в Linux (см. вышеe).
+   </P
+></LI
+><LI
+><P
+>    <A
+HREF="http://rpmfind.net/linux/RPM/contrib/noarch/noarch/webfonts-1-3.noarch.html"
+TARGET="_top"
+>RPM-пакет
+    Веб-Шрифты</A
+> - содержит часть веб-шрифтов MS.
+   </P
+></LI
+><LI
+><P
+>    <A
+HREF="http://www.fontsmart.com/fonts.htm"
+TARGET="_top"
+>HP FontSmart TrueType
+    Fonts</A
+> от Hewlett Packard -- Garamond, Bodoni, Dark Courier,
+    Euro Sign и Ozzie Black. Могут быть разархивированы в Linux утилитой
+    <B
+CLASS="COMMAND"
+>unzip</B
+>.
+   </P
+></LI
+><LI
+><P
+>    <A
+HREF="http://www.freewareconnection.com/fonts.html"
+TARGET="_top"
+>Freeware
+    Connection -- Сайты Бесплатных Шрифтов</A
+> - большое количество
+    ссылок на сайты со шрифтами.
+   </P
+></LI
+><LI
+><P
+>    TrueType Шрифт <A
+HREF="http://www.will-harris.com/fonts/freefonts.htm"
+TARGET="_top"
+>Bitstream's
+    Geometric Slabserif</A
+>.
+   </P
+></LI
+></UL
+></DIV
+></DIV
+></DIV
+></BODY
+></HTML
+>

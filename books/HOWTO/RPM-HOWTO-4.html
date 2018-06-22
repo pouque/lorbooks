@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE>RPM HOWTO: Использование RPM</TITLE>
+ <LINK HREF="RPM-HOWTO-5.html" REL=next>
+ <LINK HREF="RPM-HOWTO-3.html" REL=previous>
+ <LINK HREF="RPM-HOWTO.html#toc4" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="RPM-HOWTO-5.html">Следующий</A>
+<A HREF="RPM-HOWTO-3.html">Предыдущий</A>
+<A HREF="RPM-HOWTO.html#toc4">Содержание</A>
+<HR>
+<H2><A NAME="s4">4. Использование RPM</A></H2>
+
+<P>В простейшей форме RPM может быть использован для установки
+пакетов: 
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+        rpm -i foobar-1.0-1.i386.rpm
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>Следующая простая команда используется для удаления пакета:
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+        rpm -e foobar
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>
+<P>Одна из более сложных, но <EM>очень</EM> полезных команд позволяет
+вам устанавливать пакеты через FTP. Если вы подключены к сети и хотите
+установить новый пакет, все что вам нужно&nbsp;-- это указать файл с
+правильным URL, примерно так:
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+        rpm -i ftp://ftp.pht.com/pub/linux/redhat/rh-2.0-beta/RPMS/foobar-1.0-1.i386.rpm
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>
+<P>Заметим, что RPM запросит и/или установит через FTP.
+<P>
+<P>Хотя это простые команды, RPM может быть использован множеством
+способов, как это видно из сообщения об использовании (<CODE>Usage</CODE>):
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+RPM version 2.3.9
+Copyright (C) 1997 - Red Hat Software
+This may be freely redistributed under the terms of the GNU Public License
+
+usage: rpm {--help}
+       rpm {--version}
+       rpm {--initdb}   [--dbpath &lt;dir>]
+       rpm {--install -i} [-v] [--hash -h] [--percent] [--force] [--test]
+                        [--replacepkgs] [--replacefiles] [--root &lt;dir>]
+                        [--excludedocs] [--includedocs] [--noscripts]
+                        [--rcfile &lt;file>] [--ignorearch] [--dbpath &lt;dir>]
+                        [--prefix &lt;dir>] [--ignoreos] [--nodeps]
+                        [--ftpproxy &lt;host>] [--ftpport &lt;port>]
+                        file1.rpm ... fileN.rpm
+       rpm {--upgrade -U} [-v] [--hash -h] [--percent] [--force] [--test]
+                        [--oldpackage] [--root &lt;dir>] [--noscripts]
+                        [--excludedocs] [--includedocs] [--rcfile &lt;file>]
+                        [--ignorearch]  [--dbpath &lt;dir>] [--prefix &lt;dir>] 
+                        [--ftpproxy &lt;host>] [--ftpport &lt;port>]
+                        [--ignoreos] [--nodeps] file1.rpm ... fileN.rpm
+       rpm {--query -q} [-afpg] [-i] [-l] [-s] [-d] [-c] [-v] [-R]
+                        [--scripts] [--root &lt;dir>] [--rcfile &lt;file>]
+                        [--whatprovides] [--whatrequires] [--requires]
+                        [--ftpuseport] [--ftpproxy &lt;host>] [--ftpport &lt;port>]
+                        [--provides] [--dump] [--dbpath &lt;dir>] [targets]
+       rpm {--verify -V -y} [-afpg] [--root &lt;dir>] [--rcfile &lt;file>]
+                        [--dbpath &lt;dir>] [--nodeps] [--nofiles] [--noscripts]
+                        [--nomd5] [targets]
+       rpm {--setperms} [-afpg] [target]
+       rpm {--setugids} [-afpg] [target]
+       rpm {--erase -e} [--root &lt;dir>] [--noscripts] [--rcfile &lt;file>]
+                        [--dbpath &lt;dir>] [--nodeps] [--allmatches]
+                        package1 ... packageN
+       rpm {-b|t}[plciba] [-v] [--short-circuit] [--clean] [--rcfile  &lt;file>]
+                        [--sign] [--test] [--timecheck &lt;s>] specfile
+       rpm {--rebuild} [--rcfile &lt;file>] [-v] source1.rpm ... sourceN.rpm
+       rpm {--recompile} [--rcfile &lt;file>] [-v] source1.rpm ... sourceN.rpm
+       rpm {--resign} [--rcfile &lt;file>] package1 package2 ... packageN
+       rpm {--addsign} [--rcfile &lt;file>] package1 package2 ... packageN
+       rpm {--checksig -K} [--nopgp] [--nomd5] [--rcfile &lt;file>]
+                           package1 ... packageN
+       rpm {--rebuilddb} [--rcfile &lt;file>] [--dbpath &lt;dir>]
+       rpm {--querytags}
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>Вы можете найти больше информации о том что какая опция обозначает
+на справочной странице RPM.
+<P>
+<HR>
+<A HREF="RPM-HOWTO-5.html">Следующий</A>
+<A HREF="RPM-HOWTO-3.html">Предыдущий</A>
+<A HREF="RPM-HOWTO.html#toc4">Содержание</A>
+</BODY>
+</HTML>

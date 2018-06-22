@@ -1,0 +1,152 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE>Linux Hardware Compatibility HOWTO: Приложение C . Поддерживаемые устройства на парралельный порт.</TITLE>
+ <LINK HREF="Hardware-HOWTO-28.html" REL=next>
+ <LINK HREF="Hardware-HOWTO-26.html" REL=previous>
+ <LINK HREF="Hardware-HOWTO.html#toc27" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="Hardware-HOWTO-28.html">Next</A>
+<A HREF="Hardware-HOWTO-26.html">Previous</A>
+<A HREF="Hardware-HOWTO.html#toc27">Contents</A>
+<HR>
+<H2><A NAME="s27">27. Приложение C . Поддерживаемые устройства на парралельный порт.</A></H2>
+
+<P>Появляется все большое количество устройств подключаемых к парралельному порту , если раньше это были в основном принтеры то теперь в списке таких
+устройств есть и Ethernet адаптеры и жесткие диски и многие другие устройства. В этом приложении перечислены те устройства на парралельный порт , которые поддерживаются на данный момент ядром Линукс.
+<CODE>Примечание:</CODE> В этом списке не перечислены принтеры т.к. их поддержка не разрабатывается проектами по поддержки парралельных устройств.
+<P>Также посмотрите страницы посвященные поддержки парралельного порта в Линукс : 
+<A HREF="http://www.torque.net/parport">http://www.torque.net/parport</A>. Здесь вы найдете
+<UL>
+<LI>paride суб-систему для IDE устройств на парралельный порт: (
+<A HREF="http://www.torque.net/parport/paride.html">http://www.torque.net/parport/paride.html</A>)</LI>
+<LI>Поддержка для SCSI устройств подключаемых к парралельному порту (
+<A HREF="http://www.torque.net/parport/parscsi.html">http://www.torque.net/parport/parscsi.html</A>)</LI>
+</UL>
+<P>
+<H2><A NAME="ss27.1">27.1 Ethernet</A>
+</H2>
+
+<P>
+<UL>
+<LI>Accton EtherPocket карта</LI>
+<LI>AT-Lan-Tec/RealTek parallel port ethernet карта</LI>
+<LI>D-Link DE600/DE620 parallel port ethernet карта</LI>
+</UL>
+<P>
+<H2><A NAME="ss27.2">27.2 Жесткие диски</A>
+</H2>
+
+<P>
+<P>
+<UL>
+<LI>H45 Quick HD</LI>
+<LI>KingByte IDE/ATAPI диски</LI>
+<LI>KT Technologies PHd переносные жесткие диски</LI>
+<LI>MicroSolutions backpack жесткие диски</LI>
+<LI>SyQuest EZ-135</LI>
+<LI>SyQuest EZ-230</LI>
+<LI>SyQuest SparQ</LI>
+<LI>ValueStor внешние жесткие диски</LI>
+</UL>
+<P>
+<H2><A NAME="ss27.3">27.3 Стриммеры</A>
+</H2>
+
+<P>
+<P>
+<UL>
+<LI>Hewlett-Packard Colorado Tracker 250 стриммер (все модели кроме T1000e)</LI>
+<LI>Hewlett-Packard HP Colorado 5GB стриммер</LI>
+<LI>Iomega Ditto стриммер</LI>
+<LI>MicroSolutions backpack 8000t, 8000td стриммеры</LI>
+</UL>
+<P>
+<H2><A NAME="ss27.4">27.4 CD-ROM дисководы</A>
+</H2>
+
+<P>
+<P>
+<UL>
+<LI>Freecom Power CD</LI>
+<LI>Freecom Traveller CD-ROM</LI>
+<LI>H45 Quick CD</LI>
+<LI>Hewlett-Packard HP 7100e/7200e CD-R</LI>
+<LI>KingByte IDE/ATAPI CD-ROMs</LI>
+<LI>MicroSolutions backpack CD-ROM. Модели серии 163550  и более поздние поддерживаются драйвером paride.
+Для моделей 160550 и 162550 доступны seperate драйвера.</LI>
+<LI>MicroSolutions backpack PD/CD drive</LI>
+<LI>SyQuest SyJet</LI>
+</UL>
+<P>
+<H2><A NAME="ss27.5">27.5 Переносимые диски</A>
+</H2>
+
+<P>
+<P>
+<UL>
+<LI>Avatar Shark 250</LI>
+<LI>Imation Superdisk</LI>
+<LI>Диски Iomega ZIP, ZIP Plus </LI>
+</UL>
+<P>
+<H2><A NAME="ss27.6">27.6 IDE адаптеры</A>
+</H2>
+
+<P>
+<P>
+<UL>
+<LI>Модели Arista ParaDrive </LI>
+<LI>DataStor Commuter диски</LI>
+<LI>Fidelity International Technologies TransDisk </LI>
+<LI>Freecom IQ Cable Parallel</LI>
+<LI>Shuttle Technology EPAT/EPEZ IDE адаптер на парралельный порт</LI>
+<LI>Shuttle Technology EPIA IDE адаптер на парралельный порт</LI>
+</UL>
+<P>
+<H2><A NAME="ss27.7">27.7 SCSI адаптеры</A>
+</H2>
+
+<P>
+<P>
+<UL>
+<LI>Adaptec APA-348 <BR>
+Драйвер доступен по адресу: 
+<A HREF="http://www.torque.net/parpart/parscsi.html">http://www.torque.net/parpart/parscsi.html</A></LI>
+<LI>Adaptec APA-358 <BR>
+Драйвер: 
+<A HREF="http://www.torque.net/parpart/parscsi.html">http://www.torque.net/parpart/parscsi.html</A></LI>
+<LI>Shuttle Technology EPSA-2 SCSI адаптер на парралельный порт.<BR>
+Драйвер :
+<A HREF="http://www.torque.net/parpart/parscsi.html">http://www.torque.net/parpart/parscsi.html</A></LI>
+<LI>Shuttle Technology EPST SCSI адаптер на парралельный порт. <BR>
+Драйвер: 
+<A HREF="http://www.torque.net/parpart/parscsi.html">http://www.torque.net/parpart/parscsi.html</A></LI>
+</UL>
+<P>
+<H2><A NAME="ss27.8">27.8 Цифровые камеры</A>
+</H2>
+
+<P>
+<P>
+<UL>
+<LI>Connectix QuickCam</LI>
+</UL>
+<P>
+<H2><A NAME="ss27.9">27.9 Карты PCMCIA на парралельный порт </A>
+</H2>
+
+<P>Требуют  parport_cs драйвера (ядро 2.2.x или свежее )
+<P>
+<UL>
+<LI>Quatech SPP-100</LI>
+<LI>IOtech DBK35, WBK20A</LI>
+</UL>
+<HR>
+<A HREF="Hardware-HOWTO-28.html">Next</A>
+<A HREF="Hardware-HOWTO-26.html">Previous</A>
+<A HREF="Hardware-HOWTO.html#toc27">Contents</A>
+</BODY>
+</HTML>

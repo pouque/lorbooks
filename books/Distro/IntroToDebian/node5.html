@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Разделы Linux </TITLE>
+<META NAME="description" CONTENT="Разделы Linux ">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<!-- Meta http equivalent was here                               -->
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="IntroToLinux.css">
+
+<LINK REL="previous" HREF="node4.html">
+<LINK REL="up" HREF="node4.html">
+<LINK REL="next" HREF="node6.html">
+</HEAD>
+
+<BODY background="backgr.jpg" vlink="#000099" bgcolor="#E6E6FA">
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A NAME="tex2html207"
+  HREF="node6.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html203"
+  HREF="node4.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html199"
+  HREF="node4.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html205"
+  HREF="IntroToLinux.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A>  
+<BR>
+<B> След.:</B> <A NAME="tex2html208"
+  HREF="node6.html">Загрузка.</A>
+<B> Вверх:</B> <A NAME="tex2html204"
+  HREF="node4.html">Установка.</A>
+<B> Пред.:</B> <A NAME="tex2html200"
+  HREF="node4.html">Установка.</A>
+ &nbsp; <B>  <A NAME="tex2html206"
+  HREF="IntroToLinux.html">Содержание</A></B> 
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION00021100000000000000">
+Разделы Linux </A>
+</H3>
+
+<P>
+Можно, конечно, ставить всю систему (включая и файл подкачки) в один раздел, но мне подобный вариант представляется неэффективным.
+Ведь тогда дисковое пространство системных областей становится зависимым от активности пользователя, нет возможности работать индивидуально с принципиально разными секциями (так, например, у меня раздел <SPAN  CLASS="textbf">/mnt/music</SPAN> монтируется с кодировкой CP1251, <SPAN  CLASS="textbf">/var/spool/news</SPAN> имеет один инод на килобайт (<SPAN  CLASS="textbf">/usr</SPAN>&nbsp;-- 16), а наличие файла подкачки вместо аналогичного раздела способно заметно снизить скорость работы), и многое другое...
+
+<P>
+Посему предлагаю такое минимальное разделение на разделы: подкачка (удвоенный размер от объема оперативной памяти), <SPAN  CLASS="textbf">/</SPAN> (порядка сотни-другой мегабайт), <SPAN  CLASS="textbf">/usr</SPAN> (несколько гигабайт, обычно четырех более чем достаточно), <SPAN  CLASS="textbf">/var</SPAN> (обычно достаточно и гигабайта), <SPAN  CLASS="textbf">/var/lib</SPAN> (имеет смысл отделять в случае активного использования баз данных, размер данного каталога определяется в индивидуальном порядке), <SPAN  CLASS="textbf">/home</SPAN> (все остальное дисковое пространство).
+Также можно отделить <SPAN  CLASS="textbf">/boot</SPAN> и <SPAN  CLASS="textbf">/tmp</SPAN>...
+
+<P>
+
+<DIV CLASS="navigation"><HR>
+<!--Navigation Panel-->
+<A NAME="tex2html207"
+  HREF="node6.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html203"
+  HREF="node4.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html199"
+  HREF="node4.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html205"
+  HREF="IntroToLinux.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A>  
+<BR>
+<B> След.:</B> <A NAME="tex2html208"
+  HREF="node6.html">Загрузка.</A>
+<B> Вверх:</B> <A NAME="tex2html204"
+  HREF="node4.html">Установка.</A>
+<B> Пред.:</B> <A NAME="tex2html200"
+  HREF="node4.html">Установка.</A>
+ &nbsp; <B>  <A NAME="tex2html206"
+  HREF="IntroToLinux.html">Содержание</A></B> </DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<TABLE border="0" cellpadding="0" cellspacing="0" width="100%"><TR bgcolor="#336699"><TD bgcolor="#8080c0"><P align="center"><FONT color="#FFFFFF" size="1"><A href="http://www.gnu.org/copyleft/fdl.html"><FONT color="#FFFFFF" size="1">Copyleft</FONT></A> © 2002-2003 г. &nbsp; Nikolay A. Panov, <A href="http://www.uic.nnov.ru/~nik/articles/IntroToLinux/"><FONT color="#FFFFFF">"Intro To Linux" (orig)</FONT></A>, &nbsp;<a href="mailto:&#110;&#105;&#107;&#115;&#105;&#116;&#101;&#64;&#109;&#97;&#105;&#108;&#46;&#114;&#117;"><FONT color="#FFFFFF">&#110;&#105;&#107;&#115;&#105;&#116;&#101;&#64;&#109;&#97;&#105;&#108;&#46;&#114;&#117;</FONT></A>, &nbsp;ICQ: 122-40-8888</FONT></P></TD></TR></TABLE>
+</ADDRESS>
+</BODY>
+</HTML>

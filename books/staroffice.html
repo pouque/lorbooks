@@ -1,0 +1,329 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta name="GENERATOR" content="Mozilla/4.51 [en] (X11; I; Linux 2.2.5-ac1 i586) [Netscape]">
+   <meta name="AUTHOR" content="leon@donin.com">
+   <meta name="CREATED" content="19980924;12521000">
+   <meta name="CHANGED" content="19980924;13181300">
+   <title>StarOffice on Red Hat Linux Russian FAQ</title>
+</head>
+<body text="#000000" bgcolor="#FFFFFF" link="#0000FF" vlink="#990066" alink="#FF0000">
+<?php include("/home/maxcom/linux_html/books/head.php3") ?>
+<center><a href="http://donlug.dn.ua/blackcat-linux"><img SRC="http://www.linux.org.ru/books/banner1.gif" ALT="Black Cat Linux 5.2 Fulcrum" height=57 width=397></a>
+<p><b>StarOffice on Red Hat Linux Russian FAQ</b></center>
+
+<p><br>
+<br>
+<p><b>Содержание</b>
+<ol>
+<li>
+<a href="staroffice.html#intro">Введение</a></li>
+
+<li>
+<a href="staroffice.html#whatis">Что такое StarOffice?</a></li>
+
+<li>
+<a href="staroffice.html#regso5">Как скачать и правильно зарегистрировать StarOffice 5.01?</a></li>
+
+<li>
+<a href="staroffice.html#keyso5">Почему я не могу получить персональный ключ, который
+требует StarOffice 5.0?</a></li>
+
+<li>
+<a href="staroffice.html#s3v">Почему запуск инсталлятора SO5.0 (setup) глухо вешает консоль?
+Х-сервер s3v 3.3.2.</a></li>
+
+<li>
+<a href="staroffice.html#install">Почему при попытке установить StarOffice 4.0 (3.1) под
+RedHat 5.0 (RedHat 4.2, Slackware etc.) инсталлятор выдает сообщение об
+ошибке?</a></li>
+
+<li>
+<a href="staroffice.html#multiuser">Как установить StarOffice, чтобы он был доступен нескольким
+пользователям?</a></li>
+
+<li>
+<a href="staroffice.html#rusfont">Как русифицировать StarOffice ?</a></li>
+
+<li>
+<a href="staroffice.html#rusfont">Как настроить StarMail ?</a></li>
+
+<li>
+<a href="staroffice.html#correct">Почему StarOffice пытается менять регистр символов при
+вводе текста?</a></li>
+
+<li>
+<a href="staroffice.html#support">Где можно найти дополнительную информацию по StarOffice/Linux?</a></li>
+
+<li>
+<a href="staroffice.html#web">Как нормально генерировать странички в koi8 при помощи StarWriter/Web?</a></li>
+</ol>
+<a NAME="intro"></a><b>Введение</b>
+<blockquote>&nbsp;&nbsp;&nbsp; На этой странице можно найти ответы на основные
+вопросы, которые возникают при попытке установить
+<tt><a href="http://www.stardivision.com/">StarOffice
+4.0</a></tt> на платформе
+<a href="http://www.redhat.com/">RedHat Linux
+5.2 (5.1,5.0)</a>, и при его русификации.
+<br>Текущая версия StarOffice - <a href="staroffice.html#regso5">5.01</a></blockquote>
+
+<dl>
+<dt>
+<a NAME="whatis"></a><b>Q: Что такое StarOffice?</b></dt>
+</dl>
+
+<blockquote>&nbsp;&nbsp;&nbsp; A: StarOffice - полнофункциональный пакет
+офисных приложений, разработанный фирмой <a href="http://www.stardivision.com/">StarDivision
+GMBH</a> (Германия). Включает в себя StarDesktop - менеджер файлов, StarWriter,
+StarWriter/Web - текстовый редактор/броузер, StarCalc - электронная таблица,
+StarBase- база данных, StarMail, StarDiscussion - электронная почта и новости,
+StarChart - средство построения диаграмм, StarImage - графический редактор,
+StarImpress - средство создания презентаций. Начиная с версии 4.0 все эти
+составляющие интегрированы в единое приложение.&nbsp; StarOffice существует
+для нескольких платформ - Sun Solaris, OS/2, Win95/NT, Linux. Все версии&nbsp;
+бесплатны для персонального некоммерческого пользования.</blockquote>
+
+<dl>
+<dt>
+<a NAME="regso5"></a><b>Q: Как скачать и правильно зарегистрировать StarOffice
+5.01?</b></dt>
+
+<br>&nbsp;
+<ul>
+<dt>
+&nbsp;&nbsp;&nbsp; A: В соответствие с изменениями в лицензионной политике
+<a href="http://www.stardivision.com">StarDivision</a>,
+StarOffice 5.01 свободно доступен для бесплатного некоммерческого использования.
+Однако его регистрация может вызвать некоторые затруднения. Ниже следует
+подробная инструкция, как правильно зарегистрировать StarOffice 5.01.</dt>
+
+<ul>
+<li>
+Начинать можно с <a href="http://www.stardivision.com">www.stardivision.com</a>,
+но можно сразу отправиться на их страницу <a href="http://support.us.stardivision.com/Registration/Download.asp">Download</a>.</li>
+
+<li>
+Там вам будет предложено заполнить форму. Выберите вашу OS - Linux и внимательно
+заполните поля "First name", "Second name" и "eMail". Запомните, что было
+вписано в эти три поля - именно относительно них будет сгенерирован ключ
+и customer id.</li>
+
+<li>
+После заполнения формы вас попросят подтвердить правильность ввода, после
+чего вам покажут ключ и список серверов FTP, с которых можно скачать файл
+so501_01.tar (so501_49.tar - немецкоязычная версия). Ключ и customer id
+нужно сохранить, желательно используя cut&amp;paste. Выберите понравившийся
+сервер FTP и тяните.</li>
+</ul>
+
+<ul>&nbsp;
+<br>ftp://sunsite.utk.edu/pub/StarDivision/unxlnxi/so501_01.tar
+<br>ftp://world-domination.mit.edu/pub/StarOffice/unxlnxi/so501_01.tar
+<br>ftp://narnia.mit.edu/pub/StarOffice/unxlnxi/so501_01.tar
+<br>ftp://sunsite.informatik.rwth-aachen.de/pub/mirror/stardivision/unxlnxi/so501_01.tar
+<br>ftp://ftp.tu-clausthal.de/pub/mirror/StarDivision/unxlnxi/so501_01.tar
+<br>ftp://ftp.cs.tu-berlin.de/pub/staroffice/unxlnxi/so501_01.tar.gz
+<br>ftp://ftp.unix-ag.uni-siegen.de/pub/app/staroffice/unxlnxi/so501_01.tar
+<br>ftp://ftp.hr.vc-graz.ac.at/StarOffice/unxlnxi/so501_01.tar
+<br>ftp://ftp.nmr.de/pub/StarOffice/unxlnxi/so501_01.tar.Z
+<br>ftp://stardivision.dpn.de/staroffice/unxlnxi/so501_01.tar
+<br>ftp://141.35.29.122/mirror/staroffice/unxlnxi/so501_01.tar
+<br>ftp://ftp2.stardivision.de/pub/staroffice/unxlnxi/so501_01.tar
+<br>ftp://sunsite.ust.hk/pub/StarDivision/unxlnxi/so501_01.tar
+<br>ftp://mirror.aarnet.edu.au/pub/staroffice/unxlnxi/so501_01.tar
+<br>http://sunsite.unc.edu/StarDivision/unxlnxi/so501_01.tar
+<br>http://sunsite.utk.edu/StarDivision/unxlnxi/so501_01.tar
+<br>http://sunsite.informatik.rwth-aachen.de/StarDivision/unxlnxi/so501_01.tar
+<br>http://sunsite.ust.hk/StarDivision/unxlnxi/so501_01.tar
+<br>&nbsp;</ul>
+
+<ul>
+<li>
+После успешного вытягивания архива можно его разворачивать и запускать
+./setup. Возможна инсталляция <a href="staroffice.html#multiuser">для нескольких пользователей</a>.
+Никакие дополнительные библиотеки для систем Red Hat 5.1, 5.2&nbsp; не
+нужны.</li>
+
+<br>Если у вас установлена KDE, необходимо выбрать пункт "custom install"
+и включить поддержку KDE.
+<li>
+При пользовательской инсталляции вас попросят ввести ключи и заполнить
+форму с личными данными.</li>
+
+<br>Внимание! First name, Second name и eMail нужно ввести точно так, как
+при получении ключа на сайте StarDivision, иначе регистрация будет невозможна.
+Знак "#" является недопустимым!
+<li>
+Если все поля были заполнены правильно, проблем с регистрацией возникнуть
+не должно. Если они все же возникнут, возможно придется сходить на страницу
+download и получить ключ еще раз.</li>
+
+<li>
+При любом изменении персональных данных понадобится повторная регистрация.</li>
+</ul>
+
+<p><br>Что касается <a href="staroffice.html#rusfont">установки русских шрифтов</a>, в
+этом плане версия 5 ничем не отличается от версии 4.
+<br>&nbsp;
+<dt>
+</dt>
+</ul>
+<a NAME="keyso5"></a><b>Q: Почему я не могу получить персональный ключ,
+который требует StarOffice 5.0?</b>
+<br>&nbsp;
+<dl>A: С выходом версии 5.01, регистрация которой значительно упрощена,
+генерация персонального ключа для версии 5.0 прекращена. Поэтому если у
+вас есть версия 5.0 и нет ключа к ней, установить эту версию уже невозможно.
+Тяните 5.01.</dl>
+
+<p><br><a NAME="s3v"></a><b>Q: Почему запуск инсталлятора SO5.0 (setup)
+глухо вешает консоль?</b>
+<br><b>Х-сервер s3v 3.3.2.</b>
+<br>&nbsp;
+<ul>A: Причина в ошибке в Х-сервере XF86-S3V. Попробуйте заменить его на
+XF86-SVGA, он нормально пойдет на S3-Virge. Кстати, установленый SO также
+не будет работать на "родном" Х-сервере(S3V), хотя и вешать его не будет.
+<br>&nbsp;&nbsp;&nbsp; Если нужно вернуть зависшую машину в рабочее состояние,
+можно по телнету убить Х-сервер и setup, и запустить SVGATextMode. Если
+ядро девелоперское (серии 2.1.x), можно оживить клавиатуру (Alt-SysRq-R),
+убить текущую консоль (Alt-SysRq-K), переключиться туда, где должен быть
+shell, и вслепую набрать SVGATextMode. Приложения X11 "воскресить" не удастся.
+<p>StarDivision уже выпустил патч. Патч лежит здесь:
+<br><a href="http://www.stardivision.com/download/support/patch1_01.tar.gz">http://www.stardivision.com/download/support/patch1_01.tar.gz</a>
+<br>Этот пакет содержит библиотеку, которую нужно положить поверх старой
+после инсталляции. После этого можно спокойно пользоваться сервером S3V.
+Саму инсталляцию, етественно, нужно запускать под сервером SVGA. Для 5.01
+этот патч не нужен.
+<br>&nbsp;</ul>
+
+<dt>
+<a NAME="libc"></a><b>Q: Почему при попытке установить StarOffice 4.0 (3.1)
+под RedHat 5.0 (RedHat 4.2, Slackware etc.) инсталлятор выдает сообщение
+об ошибке?</b></dt>
+
+<br>&nbsp;</dl>
+
+<blockquote>&nbsp;&nbsp;&nbsp; A: В&nbsp; README&nbsp; от StarOffice английским
+языком написано, что ему нужна
+<tt>libc</tt>&nbsp; версии не ниже 5.4.22.
+Однако, как показывает опыт, лучше всего для этого подходит <tt><a href="ftp://ftp.caldera.com/pub/OpenLinux/lite/1.2.0/Packages/RPMS/libc-5.4.38-5.i386.rpm">libc-5.4.38</a></tt>
+от <tt><a href="http://www.caldera.com/">Caldera OpenLinux-1.2</a></tt>.
+Из этого пакета нужно взять файлы <tt><a href="http://isd.donin.com/~leon/StarOffice/libc.so.5.4.38.gz">libc.so.5.4.38</a></tt>
+и <tt><a href="http://isd.donin.com/~leon/StarOffice/libm.so.5.0.9.gz">libm.so.5.0.9</a></tt>,
+скопировать в тот же каталог, где лежит скрипт
+<tt>setup (подразумевается,
+что инсталляционный архив уже развернут)
+</tt>и слинковать их следующим
+образом:</blockquote>
+
+<p><br><tt>&nbsp;&nbsp;&nbsp; ln -s libc.so.5.4.38 libc.so</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; ln -s libc.so.5.4.38 libc.so.5</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; ln -s libm.so.5.0.9 libm.so</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; ln -s libm.so.5.0.9 libm.so.5</tt>
+<br>&nbsp;
+<blockquote>После этого нужно приложить к инсталляционному скрипту следующий
+патч:</blockquote>
+
+<blockquote><tt>----------------------------------------------</tt>
+<br><tt>--- setup.old&nbsp;&nbsp; Thu Jan 29 13:15:38 1998</tt>
+<br><tt>+++ setup&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Sun Feb 22 17:21:49
+1998</tt>
+<br><tt>@@ -14,6 +14,10 @@</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/openwin/lib</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; export LD_LIBRARY_PATH</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ;;</tt>
+<br><tt>+&nbsp; Linux)</tt>
+<br><tt>+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LD_LIBRARY_PATH=$sd_archive_path:$LD_LIBRARY_PATH</tt>
+<br><tt>+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; export LD_LIBRARY_PATH</tt>
+<br><tt>+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ;;</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ;;</tt>
+<br><tt>&nbsp;esac</tt>
+<br><tt>@@ -22,4 +26,3 @@</tt></blockquote>
+
+<blockquote><tt>&nbsp;# execute setup binary</tt>
+<br><tt>&nbsp;exec $sd_archive_path/$sd_setup_binary $*</tt>
+<br><tt>-----------------------------------------------</tt></blockquote>
+
+<blockquote>Если править скрипт лень, можно взять готовый на ftp://isd.donin.com/pub/Linux/StarOffice/setup
+или запускать инсталлятор так:</blockquote>
+
+<blockquote><tt>$ export LD_LIBRARY_PATH=.:$LD_LIBRARY_PATH; ./setup</tt></blockquote>
+
+<blockquote>или взять
+<a href="http://isd.donin.com/~leon/StarOffice/setup">готовый
+скрипт</a>.</blockquote>
+
+<blockquote>После окончания инсталляции обе библиотеки и линки к ним нужно
+переложить в каталог
+<tt>Office40/lib</tt>.</blockquote>
+<a NAME="multiuser"></a><b>Q: Как установить StarOffice, чтобы он был доступен
+нескольким пользователям?</b>
+<blockquote>&nbsp;&nbsp;&nbsp; A: Для этого нужно, будучи рутом, запустить
+скрипт <tt>setup</tt> с ключом <tt>/net</tt>, в качестве директории указать,
+например,
+<tt>/usr/local/Office50</tt> или <tt>/opt/Office50</tt>, и убедиться
+что директория
+<tt>Office50</tt> доступна всем пользователям. После этого
+каждый пользователь (включая рута), который захочет работать со
+<tt>StarOffice</tt>,
+должен будет выполнить
+<tt>/opt/Office50/setup</tt> и выбрать пункт <tt>"Installation
+from Net or CD"</tt>.&nbsp; При этом в пользовательский каталог будет скопировано
+всего около 3Mb. Теперь можно запускать
+<tt>~/Office50/bin/soffice</tt>
+и работать. Для удобства можно добавить
+<tt>~/Office50/bin/soffice</tt>
+к переменной PATH.</blockquote>
+<a NAME="rusfont"></a><b>Q: Как русифицировать StarOffice?</b>
+<blockquote>&nbsp;&nbsp;&nbsp; A: Готовый
+<a href="ftp://isd.donin.com/pub/Linux/StarOffice/soffice-rusfonts.tar.gz">пакет</a>
+шрифтов в кодировках Windows-1251 и koi8-r лежит здесь:
+<a href="ftp://isd.donin.com/pub/Linux/StarOffice/soffice-rusfonts.tar.gz">ftp://isd.donin.com/pub/Linux/StarOffice/soffice-rusfonts.tar.gz</a>.
+В нем есть подробная инструкция. Можно также прочитать мой
+<a href="http://isd.anet.donetsk.ua/~leon/StarOffice/addfnt.html">перевод</a>
+статьи сотрудника службы поддержки StarDivision, в которой по шагам рассматривается
+установка конкретного шрифта.</blockquote>
+<a NAME="starmail"></a><b>Q: Как настроить StarMail для работы с koi8-r?</b>
+<blockquote>&nbsp;&nbsp;&nbsp; A: Чтобы заставить StarMail в заголовках
+отправляемых писем подставлять "text/plain; charset=koi8-r" вместо "text/plain;
+charset=iso8859-1", нужно любым редактором двоичных файлов (hexedit, mc)
+в библиотеке
+<tt>Office50/lib/libofaXXX.so</tt> сделать соответствующую
+замену. Так как новая строка получается короче, не забудьте пробелами дополнить
+ее до прежней длины, чтобы общий размер файла не изменился.</blockquote>
+<a NAME="correct"></a><b>Q: Почему StarOffice пытается менять регистр символов
+при вводе текста?</b>
+<blockquote>&nbsp;&nbsp;&nbsp; A: Чтобы отучить редактор это делать, нужно
+в меню Tools\AutoCorrect\Options\&nbsp; снять "птицу" на опции "Start each
+sentence with capital letter".</blockquote>
+<a NAME="support"></a><b>Q: Где можно получить дополнительную информацию
+по StarOffice/Linux?</b>
+<blockquote>&nbsp;&nbsp;&nbsp; A: Можно сходить на <a href="http://www.stardivision.com/setup/">страницы
+поддержки StarDivision</a>&nbsp; или прочитать
+<a href="http://www.on-line.de/~michael.hoennig/soffice4-linux-faq-01.html">FAQ
+for StarOffice/Linux</a>.</blockquote>
+<a NAME="web"></a><b>Q: Как нормально генерировать странички в koi8 при
+помощи StarWriter/Web ?</b>
+<blockquote>&nbsp;&nbsp;&nbsp; A: StarWriter/Web очень удобно использовать
+для создания HTML документов, но к сожалению он сохраняет русские буквы
+в виде &amp;Eacute; и т.д. Для того чтобы преобразовать это все в нормальный
+вид, я использую такой <a href="http://isd.anet.donetsk.ua/~leon/StarOffice/iso2koi">скрипт</a>.
+Если кто-нибудь перепишет его на С и пришлет мне, я буду очень благодарен.</blockquote>
+
+<blockquote><font size=-1>При подготовке этой страницы были использованы
+материалы с http://www.waldherr.org/soffice, а также информация, любезно
+предоставленная
+<a href="mailto:budnik@linserv.jinr.ru">Александром Будником</a>
+и <a href="mailto:cds@innocent.com">Дмитрием Черняковым</a>. Если у вас
+есть дополнения,
+<a href="mailto:leon@donin.com">пишите</a>.</font></blockquote>
+
+<center><a href="http://isd.donin.com/~leon">домашняя страница</a></center>
+
+<br><i></i>&nbsp;
+</body>
+</html>
+<hr size=3 width=400 align="center"><center><i>10406 total hits since Monday September 21.  9 hits today.
+<br>Last access on Friday April 16 at 9:06:33 from ppp0.hppi.troitsk.ru<br>
+Page was last updated on Friday April 2, 1999 at 18:47:42</i></center>

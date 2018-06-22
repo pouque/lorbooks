@@ -1,0 +1,2121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Мини-HOWTO: Cipe+Маскарадинг в Linux</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.57"></HEAD
+><BODY
+CLASS="ARTICLE"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="ARTICLE"
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="TITLE"
+><A
+NAME="AEN2"
+>Мини-HOWTO: Cipe+Маскарадинг в Linux</A
+></H1
+><DIV
+CLASS="AUTHORGROUP"
+><A
+NAME="AEN4"
+></A
+><H3
+CLASS="AUTHOR"
+><A
+NAME="AEN5"
+>Anthony Ciaravalo</A
+></H3
+><DIV
+CLASS="AFFILIATION"
+><DIV
+CLASS="ADDRESS"
+><P
+CLASS="ADDRESS"
+>acj@home.com</P
+></DIV
+></DIV
+><H3
+CLASS="CORPAUTHOR"
+> Перевод: <A
+HREF="mailto:sam@asp-linux.com"
+TARGET="_top"
+>Станислав Рогин</A
+>,
+ <A
+HREF="http://www.asplinux.com"
+TARGET="_top"
+>SWSoft Pte Ltd.</A
+>
+ </H3
+></DIV
+><P
+CLASS="PUBDATE"
+>Версия 1.2, 21 Апреля 1999 <BR></P
+><DIV
+><DIV
+CLASS="ABSTRACT"
+><A
+NAME="AEN15"
+></A
+><P
+></P
+><P
+>В этом документе дается описание настройки виртуальной частной сети (VPN),
+с использованием Linux-версии Cipe, работающей с использованием маскарадинга.</P
+><P
+></P
+></DIV
+></DIV
+><HR></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Содержание</B
+></DT
+><DT
+>1. <A
+HREF="Cipe+Masq.html#AEN17"
+>Введение</A
+></DT
+><DD
+><DL
+><DT
+>1.1. <A
+HREF="Cipe+Masq.html#AEN20"
+>Copyright statement</A
+></DT
+><DT
+>1.2. <A
+HREF="Cipe+Masq.html#AEN29"
+>Авторские права</A
+></DT
+><DT
+>1.3. <A
+HREF="Cipe+Masq.html#AEN38"
+>Ответственность</A
+></DT
+><DT
+>1.4. <A
+HREF="Cipe+Masq.html#AEN41"
+>Отзывы</A
+></DT
+><DT
+>1.5. <A
+HREF="Cipe+Masq.html#AEN45"
+>Версии</A
+></DT
+></DL
+></DD
+><DT
+>2. <A
+HREF="Cipe+Masq.html#AEN48"
+>Настройка firewall</A
+></DT
+><DD
+><DL
+><DT
+>2.1. <A
+HREF="Cipe+Masq.html#AEN51"
+>Структура VPN</A
+></DT
+><DT
+>2.2. <A
+HREF="Cipe+Masq.html#AEN56"
+>Небольшое замечание</A
+></DT
+><DT
+>2.3. <A
+HREF="Cipe+Masq.html#AEN60"
+>Дополнительная информация о скриптах и VPN</A
+></DT
+></DL
+></DD
+><DT
+>3. <A
+HREF="Cipe+Masq.html#AEN64"
+>Конфигурация машины A</A
+></DT
+><DD
+><DL
+><DT
+>3.1. <A
+HREF="Cipe+Masq.html#AEN66"
+>/etc/cipe/options.machineB</A
+></DT
+><DT
+>3.2. <A
+HREF="Cipe+Masq.html#AEN70"
+>/etc/cipe/options.machineC</A
+></DT
+><DT
+>3.3. <A
+HREF="Cipe+Masq.html#AEN74"
+>/etc/rc.d/rc.cipe</A
+></DT
+><DT
+>3.4. <A
+HREF="Cipe+Masq.html#AEN78"
+>Шлюз</A
+></DT
+></DL
+></DD
+><DT
+>4. <A
+HREF="Cipe+Masq.html#AEN81"
+>Конфигурация машины B</A
+></DT
+><DD
+><DL
+><DT
+>4.1. <A
+HREF="Cipe+Masq.html#AEN83"
+>/etc/cipe/options.machineA</A
+></DT
+><DT
+>4.2. <A
+HREF="Cipe+Masq.html#AEN87"
+>/etc/rc.d/rc.cipe</A
+></DT
+><DT
+>4.3. <A
+HREF="Cipe+Masq.html#AEN91"
+>Шлюз</A
+></DT
+></DL
+></DD
+><DT
+>5. <A
+HREF="Cipe+Masq.html#AEN94"
+>Конфигурация машины C</A
+></DT
+><DD
+><DL
+><DT
+>5.1. <A
+HREF="Cipe+Masq.html#AEN96"
+>/etc/cipe/options.machineA</A
+></DT
+><DT
+>5.2. <A
+HREF="Cipe+Masq.html#AEN100"
+>/etc/rc.d/rc.cipe</A
+></DT
+><DT
+>5.3. <A
+HREF="Cipe+Masq.html#AEN104"
+>Шлюз</A
+></DT
+></DL
+></DD
+><DT
+>6. <A
+HREF="Cipe+Masq.html#AEN107"
+>Настройки, общие для всех машин</A
+></DT
+><DD
+><DL
+><DT
+>6.1. <A
+HREF="Cipe+Masq.html#AEN109"
+>/etc/cipe/ip-up</A
+></DT
+><DD
+><DL
+><DT
+>6.1.1. <A
+HREF="Cipe+Masq.html#AEN111"
+>Ядро 2.0, ipfwadm, cipe 1.0.x</A
+></DT
+><DT
+>6.1.2. <A
+HREF="Cipe+Masq.html#AEN115"
+>Ядро 2.1/2.2, ipchains, cipe 1.2.x</A
+></DT
+></DL
+></DD
+><DT
+>6.2. <A
+HREF="Cipe+Masq.html#AEN119"
+>/etc/cipe/ip-down</A
+></DT
+><DD
+><DL
+><DT
+>6.2.1. <A
+HREF="Cipe+Masq.html#AEN121"
+>Ядро 2.0, ipfwadm, cipe 1.0.x</A
+></DT
+><DT
+>6.2.2. <A
+HREF="Cipe+Masq.html#AEN125"
+>Ядро 2.1/2.2, ipchains, cipe 1.2.x</A
+></DT
+></DL
+></DD
+></DL
+></DD
+><DT
+>7. <A
+HREF="Cipe+Masq.html#AEN129"
+>Примеры скриптов настройки маскарадинга</A
+></DT
+><DD
+><DL
+><DT
+>7.1. <A
+HREF="Cipe+Masq.html#AEN131"
+>Ядро 2.0, ipfwadm</A
+></DT
+><DT
+>7.2. <A
+HREF="Cipe+Masq.html#AEN135"
+>Ядро 2.1/2.2, ipchains</A
+></DT
+></DL
+></DD
+><DT
+>8. <A
+HREF="Cipe+Masq.html#AEN139"
+>Собираем все вместе</A
+></DT
+><DT
+>9. <A
+HREF="Cipe+Masq.html#AEN144"
+>Соединяемся с СЕТЬЮ (WAN)</A
+></DT
+><DT
+>10. <A
+HREF="Cipe+Masq.html#AEN165"
+>Ссылки</A
+></DT
+><DD
+><DL
+><DT
+>10.1. <A
+HREF="Cipe+Masq.html#AEN167"
+>Веб-сайты</A
+></DT
+><DT
+>10.2. <A
+HREF="Cipe+Masq.html#AEN177"
+>Документация</A
+></DT
+></DL
+></DD
+></DL
+></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="AEN17"
+>1. Введение</A
+></H1
+><P
+>В этом документе дается описание настройки Виртуальной Частной Сети
+(Virtual Private Network), между вашей и внешней локальной сетью, используя
+Cipe на linux-машинах с маскарадингом. Здесь также приведен пример
+настройки firewall с маскарадингом.</P
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN20"
+>1.1. Copyright statement</A
+></H2
+><P
+>C)opyright 1998, 1999 Anthony Ciaravalo, <A
+HREF="mailto:acj@home.com"
+TARGET="_top"
+>acj@home.com</A
+></P
+><P
+>Unless otherwise stated, Linux HOWTO documents are copyrighted by their
+respective authors. Linux HOWTO documents may be reproduced and distributed
+in whole or in part, in any medium physical or electronic, as long as
+this copyright notice is retained on all copies. Commercial redistribution
+is allowed and encouraged; however, the author would like to be notified of
+any such distributions.</P
+><P
+>All translations, derivative works, or aggregate works
+incorporating any Linux HOWTO documents must be covered under this
+copyright notice.  That is, you may not produce a derivative work
+from a HOWTO and impose additional restrictions on its
+distribution. Exceptions to these rules may be granted under
+certain conditions; please contact the Linux HOWTO coordinator at
+the address given below.</P
+><P
+>If you have questions, please contact Tim Bynum, the Linux HOWTO
+coordinator, at <A
+HREF="mailto:tjbynum@wallybox.cei.net"
+TARGET="_top"
+>tjbynum@wallybox.cei.net</A
+> or <A
+HREF="mailto:linux-howto@metalab.unc.edu"
+TARGET="_top"
+>linux-howto@metalab.unc.edu</A
+></P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN29"
+>1.2. Авторские права</A
+></H2
+><P
+>Авторские права на русский перевод этого текста принадлежат &copy; 2000 SWSoft Pte Ltd.
+Все права зарезервированы.</P
+><P
+>Этот документ является частью проекта Linux HOWTO.</P
+><P
+>Авторские права на документы Linux HOWTO принадлежат их авторам, если явно
+не указано иное. Документы Linux HOWTO, а также их переводы, могут
+быть воспроизведены и распространены полностью или частично на любом
+носителе, физическом или электронном, при условии сохранения этой заметки об
+авторских правах на всех копиях. Коммерческое распространение разрешается и
+поощряется; но, так или иначе, автор текста и автор перевода желали бы знать о
+таких дистрибутивах.</P
+><P
+>Все переводы и производные работы, выполненные по документам Linux HOWTO,
+должны сопровождаться этой заметкой об авторских правах. Это делается в
+целях предотвращения случаев наложения дополнительных ограничений на
+распространение документов HOWTO. Исключения могут составить случаи
+получения специального разрешения у координатора Linux HOWTO, с которым
+можно связаться по адресу приведенному ниже.</P
+><P
+>Мы бы хотели распространить эту информацию по всем возможным каналам. Но
+при этом сохранить авторские права и быть уведомленными о всех планах
+распространения HOWTO. Если у вас возникли вопросы, пожалуйста, обратитесь
+к координатору проекта Linux HOWTO по электронной почте:
+<TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:linux-howto@metalab.unc.edu"
+>linux-howto@metalab.unc.edu</A
+>&#62;</TT
+> или к координатору русского
+перевода Linux HOWTO компании SWSoft Pte Ltd. по адресу
+<TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:linux-howto@asplinux.ru"
+>linux-howto@asplinux.ru</A
+>&#62;</TT
+></P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN38"
+>1.3. Ответственность</A
+></H2
+><P
+>Вы используете информацию и примеры из этого документа на свой страх и риск.
+Существует множество проблем безопасности при соединении сетей с Интернет.
+Даже при том, что информация зашифрована, ненадлежащим образом
+сконфигурированный firewall, может приводить к нарушению защиты. Можно
+принять меры предосторожности, чтобы защитить ваши cipe соединения, но это
+не гарантирует 100% защиту. Автор не гарантирует, что информация этого
+документа обеспечит полностью безопасную организацию сети, даже при том,
+что я старался быть настолько точным, насколько возможно, представляя
+информацию в этом документе. Я не несу ответственности за любые проблемы
+или ущерб, понесенный за предпринятые действия, основанные на
+информации, данной в этом документе.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN41"
+>1.4. Отзывы</A
+></H2
+><P
+>Вопросы, комментарии, предложения или исправления шлите по адресу <A
+HREF="mailto:acj@home.com"
+TARGET="_top"
+>acj@home.com</A
+>.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN45"
+>1.5. Версии</A
+></H2
+><P
+>Этот документ написан для Cipe версий 1.0.1 и 1.2.0. См раздел "Ссылки", в котором указана домашняя страница Cipe.</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN48"
+>2. Настройка firewall</A
+></H1
+><P
+>В этом документе я предполагаю, что ваше ядро уже поддерживает IP-маскарадинг. См. раздел "Ссылки", в котором приведены ссылки на информацию о включении в ядро поддержки IP-маскарадинга.</P
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN51"
+>2.1. Структура VPN</A
+></H2
+><P
+>Машины связаны по технологии "звезда". Мы установим одно cipe-соединение между машинами A и B, и второе между A и C. </P
+><P
+>&#13;<PRE
+CLASS="SCREEN"
+>&#13;                    Машина A 
+                eth0: 192.168.1.1 
+               eth1: реальный ip 1 
+               /               \ 
+              /                 \ 
+        Машина  B                 Машина  C 
+   eth0: 192.168.2.1           eth0:192.168.3.1 
+  eth1: реальный ip 2         eth1: реальный ip 3 &#13;</PRE
+>&#13;</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN56"
+>2.2. Небольшое замечание</A
+></H2
+><P
+>&#13;<PRE
+CLASS="SCREEN"
+>&#13;eth0 - это локальная сеть (фиктивный адрес)
+eth1 - это интернет (настоящий адрес)
+Порт A - это любой возможный порт, который вам нравится
+Порт B - это другой возможный порт, который вам нравится
+
+Ключ A - это любой возможный ключ, который вам нравится (читайте документацию Cipe)
+Ключ B - это другой возможный ключ, который вам нравится&#13;</PRE
+>&#13;</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN60"
+>2.3. Дополнительная информация о скриптах и VPN</A
+></H2
+><P
+>Приведенные здесь скрипты ip-up рассчитаны на сети класса C. Если хотите,
+чтобы машина B могла связаться с машиной C, вам придется исправить
+соответствующие скрипты ip-up и ip-down. В них надо исправить маски
+ptpaddr и myaddr. Ниже приводятся два скрипта ip-up - один для ipchains,
+второй для ipfwadm. Также и для скриптов ip-down. Измените с /24 на /16
+соответствующие правила интерфейса cipe для входящего, исходящего или
+проходящего потоков. Если вы изменяете правило в ip-up (ipfwadm), не
+забудьте изменить его в скрипте ip-down, чтобы оно удалялось при отключении
+интерфейса. Что же касается варианта для ipchains, то изменения в ip-up не
+требуют изменений в ip-down, ip-down просто удаляет все правила
+пользователя.</P
+><P
+>Вам также придется раскомментировать в файлах rc.cipe машин B и C строку с указанием маршрута на сети друг друга.</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN64"
+>3. Конфигурация машины A</A
+></H1
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN66"
+>3.1. /etc/cipe/options.machineB</A
+></H2
+><P
+>&#13;<PRE
+CLASS="PROGRAMLISTING"
+>&#13;#раскомментируйте одну из следующих строк
+#Название для cipe версии 1.0.x
+#device          cip3b0 
+#Название для cipe версии 1.2.x
+device          cipcb0 
+
+#удаленный внутренний (фиктивный) IP-адрес
+ptpaddr         192.168.2.1 
+#мой внутренний (фиктивный) IP-адрес
+ipaddr          192.168.1.1 
+#мой настоящий адрес и порт cipe 
+me              (real ip 1):(port A) 
+#настоящий удаленный адрес и порт cipe
+peer            (real ip 2):(port A) 
+#уникальный 128-битный ключ
+key             (Key A) &#13;</PRE
+>&#13;</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN70"
+>3.2. /etc/cipe/options.machineC</A
+></H2
+><P
+>&#13;<PRE
+CLASS="PROGRAMLISTING"
+>&#13;#раскомментируйте одну из следующих строк
+#Название для cipe версии 1.0.x  
+#device          cip3b1 
+#Название для cipe версии 1.2.x
+device          cipcb1 
+
+#удаленный внутренний (фиктивный) IP-адрес
+ptpaddr         192.168.3.1 
+#мой внутренний (фиктивный) IP-адрес
+ipaddr          192.168.1.1 
+#мой настоящий адрес и порт cipe
+me              (real ip 1):(port B) 
+#удаленный настоящий адрес и порт cipe
+peer            (real ip 3):(port B) 
+#уникальный 128-битный ключ
+key             (Key B)&#13;</PRE
+>&#13;</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN74"
+>3.3. /etc/rc.d/rc.cipe</A
+></H2
+><P
+>&#13;<PRE
+CLASS="PROGRAMLISTING"
+>&#13;!#/bin/bash 
+#rc.cipe  3/29/1999 
+#Вопросы и комментарии посылайте по адресу acj@home.com. 
+
+#Задаем пути по умолчанию
+PATH="/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin" 
+
+#Имена файлов options в каталоге cipe
+options="options.machineB options.machineC" 
+
+#Автоматическое заполнение переменной options
+#options=`/bin/ls /etc/cipe/options.*` 
+
+#раскомментируйте одну из следующих строк с указанием имени модуля cipe
+#cipemod="cip3b"        #для cipe 1.0 
+#cipemod="cipcb"        #для cipe 1.2 
+
+#Проверяем, загружен ли модуль cipe - если нет, то загружаем
+grep $cipemod /proc/modules &#62;/dev/null 
+if [ "$?" = "1" ]; then 
+        echo Загрузка модуля cipe. 
+        modprobe $cipemod 
+        if [ "$?" = "1" ]; then 
+                echo Ошибка загрузки модуля cipe. 
+                exit 
+        fi 
+else 
+        echo Модуль cipe уже загружен. 
+fi 
+
+#Удаляем все существующие интерфейсы cipe
+cipeif=`cat /proc/net/dev | cut -f1 -d: | grep $cipemod` 
+
+if [ "$cipeif" != "" ]; then 
+        echo Удаляем существующие интерфейсы cipe. 
+        for i in $cipeif; do 
+                ifconfig $i down 
+        done 
+fi
+
+#Настройка интерфейсов cipe
+echo -n "Настройка интерфейсов cipe: " 
+for config in $options; do 
+        echo -n $config" " 
+        ciped -o $config 
+done 
+echo 
+echo 
+
+#Добавляем маршруты к удаленным сетям через интерфейс(ы) cipe
+#route add -net x.x.x.x netmask x.x.x.x gw x.x.x.x 
+ </PRE
+>&#13;</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN78"
+>3.4. Шлюз</A
+></H2
+><P
+>У всех машин сети 192.168.1.0 шлюз по умолчанию должен быть установлен в 192.168.1.1. Если этого не сделать - ничего не будет работать.</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN81"
+>4. Конфигурация машины B</A
+></H1
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN83"
+>4.1. /etc/cipe/options.machineA</A
+></H2
+><P
+>&#13;<PRE
+CLASS="PROGRAMLISTING"
+>&#13;#раскомментируйте одну из следующих строк
+#Название для cipe версии 1.0.x
+#device          cip3b0 
+#Название для cipe версии 1.2.x
+device          cipcb0 
+
+# удаленный внутренний (фиктивный) IP-адрес
+ptpaddr         192.168.1.1 
+# мой внутренний (фиктивный) IP-адрес
+ipaddr          192.168.2.1 
+# мой настоящий адрес и порт cipe
+me              (real ip 1):(port A) 
+# настоящий удаленный адрес и порт cipe
+peer            (real ip 2):(port A) 
+# уникальный 128-битный ключ
+key             (Key A) &#13;</PRE
+>&#13;</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN87"
+>4.2. /etc/rc.d/rc.cipe</A
+></H2
+><P
+>&#13;<PRE
+CLASS="PROGRAMLISTING"
+>&#13;
+
+!#/bin/bash 
+#rc.cipe  3/29/1999 
+#Вопросы и комментарии посылайте по адресу acj@home.com. 
+
+#Задаем пути по умолчанию
+PATH="/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin" 
+
+#Имена файлов options в каталоге cipe
+options="options.machineA" 
+
+#Автоматическое заполнение переменной options
+#options=`/bin/ls /etc/cipe/options.*` 
+
+#раскомментируйте одну из следующих строк с указанием имени модуля cipe
+#cipemod="cip3b"        #для cipe 1.0 
+cipemod="cipcb"        #для cipe 1.2 
+
+#Проверяем, загружен ли модуль cipe - если нет, то загружаем
+grep $cipemod /proc/modules &#62;/dev/null 
+if [ "$?" = "1" ]; then 
+        echo Загрузка модуля cipe. 
+        modprobe $cipemod 
+        if [ "$?" = "1" ]; then 
+                echo Ошибка загрузки модуля cipe. 
+                exit 
+        fi 
+else 
+        echo Модуль cipe уже загружен. 
+fi 
+
+#Удаляем все существующие интерфейсы cipe
+cipeif=`cat /proc/net/dev | cut -f1 -d: | grep $cipemod` 
+
+if [ "$cipeif" != "" ]; then 
+        echo Удаляем существующие интерфейсы cipe. 
+        for i in $cipeif; do 
+                ifconfig $i down 
+        done 
+fi 
+
+#Настройка интерфейсов cipe
+echo -n "Настройка интерфейсов cipe: " 
+for config in $options; do 
+        echo -n $config" " 
+        ciped -o $config 
+done 
+echo 
+echo 
+
+#Добавляем маршруты к удаленным сетям через интерфейс(ы) cipe
+#route add -net x.x.x.x netmask x.x.x.x gw x.x.x.x 
+#маршрут к сети машины C
+#route add -net 192.168.3.0 netmask 255.255.255.0 gw 192.168.3.1 &#13;</PRE
+>&#13;</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN91"
+>4.3. Шлюз</A
+></H2
+><P
+>У всех машин сети 192.168.2.0 шлюз по умолчанию должен быть установлен в 192.168.2.1. Если этого не сделать - ничего не будет работать.</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN94"
+>5. Конфигурация машины C</A
+></H1
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN96"
+>5.1. /etc/cipe/options.machineA</A
+></H2
+><P
+>&#13;<PRE
+CLASS="PROGRAMLISTING"
+>&#13;#раскомментируйте одну из следующих строк
+#Название для cipe версии 1.0.x
+#device          cip3b0 
+#Название для cipe версии 1.2.x
+device          cipcb0 
+
+#удаленный внутренний (фиктивный) IP-адрес
+ptpaddr         192.168.1.1 
+#мой внутренний (фиктивный) IP-адрес
+ipaddr          192.168.3.1 
+#мой настоящий адрес и порт cipe
+me              (real ip 3):(port B) 
+#настоящий удаленный адрес и порт cipe
+peer            (real ip 1):(port B) 
+#уникальный 128-битный ключ
+key             (Key B) &#13;</PRE
+>&#13;</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN100"
+>5.2. /etc/rc.d/rc.cipe</A
+></H2
+><P
+>&#13;<PRE
+CLASS="PROGRAMLISTING"
+>&#13;!#/bin/bash 
+#rc.cipe  3/29/1999 
+#Вопросы и комментарии посылайте по адресу acj@home.com. 
+
+#Задаем пути по умолчанию
+PATH="/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin" 
+
+#Имена файлов options в каталоге cipe
+options="options.machineA" 
+
+#Автоматическое заполнение переменной options
+#options=`/bin/ls /etc/cipe/options.*` 
+
+#раскомментируйте одну из следующих строк с указанием имени модуля cipe
+#cipemod="cip3b"        #for cipe 1.0 
+cipemod="cipcb"        #for cipe 1.2 
+
+#Проверяем, загружен ли модуль cipe - если нет, то загружаем
+grep $cipemod /proc/modules &#62;/dev/null 
+if [ "$?" = "1" ]; then 
+        echo Загрузка модуля cipe. 
+        modprobe $cipemod 
+        if [ "$?" = "1" ]; then 
+                echo Ошибка загрузки модуля cipe. 
+                exit 
+        fi 
+else 
+        echo Модуль cipe уже загружен. 
+fi 
+
+#Удаляем все существующие интерфейсы cipe
+cipeif=`cat /proc/net/dev | cut -f1 -d: | grep $cipemod` 
+
+if [ "$cipeif" != "" ]; then 
+        echo Удаляем существующие интерфейсы cipe. 
+        for i in $cipeif; do 
+                ifconfig $i down 
+        done 
+fi 
+
+#Настройка интерфейсов cipe
+echo -n "Настройка интерфейсов cipe: " 
+for config in $options; do 
+        echo -n $config" " 
+        ciped -o $config 
+done 
+echo 
+echo 
+
+#Добавляем маршруты к удаленным сетям через интерфейс(ы) cipe 
+#route add -net x.x.x.x netmask x.x.x.x gw x.x.x.x 
+#маршрут к сети машины B
+#route add -net 192.168.2.0 netmask 255.255.255.0 gw 192.168.2.1 &#13;</PRE
+>&#13;</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN104"
+>5.3. Шлюз</A
+></H2
+><P
+>У всех машин сети 192.168.2.0 шлюз по умолчанию должен быть установлен в 192.168.2.1. Если этого не сделать - ничего не будет работать. </P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN107"
+>6. Настройки, общие для всех машин</A
+></H1
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN109"
+>6.1. /etc/cipe/ip-up</A
+></H2
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="AEN111"
+>6.1.1. Ядро 2.0, ipfwadm, cipe 1.0.x</A
+></H3
+><P
+>&#13;<PRE
+CLASS="PROGRAMLISTING"
+>&#13;#!/bin/bash 
+# ip-up &#60;интерфейс&#62; &#60;мой_адрес&#62; &#60;pid_демона&#62; &#60;локальный_адрес&#62; &#60;удаленный_адрес&#62; &#60;аргументы&#62; 
+#3/29/1999 
+#Это пример скрипта ip-up для старых ядер версий 1.x 2.x, использующих ipfwadm, 
+#настраивающий маршруты и правила firewall для соединения вашей сети класса c
+#с удаленной сетью класса c. 
+
+#Правила настроены с учетом невозможности нелегального перехвата пакетов,
+#а также нелегальной маршрутизации между сетями.  Дополнительные меры безопасности
+#приведены в конце скрипта (закомментированы). 
+#Вопросы и предложения посылайте по адресу acj@home.com. 
+
+#-------------------------------------------------------------------------- 
+#Настраиваем некоторые переменные 
+device=$1               # Интерфейс CIPE 
+me=$2                   # Наш UDP-адрес
+pid=$3                  # ID процесса демона
+ipaddr=$4               # IP-адрес нашего CIPE-устройства
+vptpaddr=$5             # IP-адрес удаленного CIPE-устройства
+option=$6               # аргументы, переданные через опции скрипта 
+
+PATH="/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin" 
+
+#рас(за)-комментируйте следующую строку для включение в системный журнал
+#всех попыток неавторизованного доступа. Эта строка должна соответствовать 
+#строке в скрипте ip-down для правильного отключения правил.
+log="-o" 
+
+#-------------------------------------------------------------------------- 
+umask 022 
+
+# пример записи в журнал
+#echo "UP   $*" &#62;&#62; /var/adm/cipe.log 
+
+# во многих системах требуются такие pid-файлы 
+#echo $3 &#62; /var/run/$device.pid 
+
+#-------------------------------------------------------------------------- 
+
+#добавляем маршрут к удаленной сети
+network=`expr $ptpaddr : '\([0-9]*\.[0-9]*\.[0-9]*\.\)'`0 
+route add -net $network netmask 255.255.255.0 dev $device 
+
+#для ядер версии 2.0 надо добавить и маршрут к машине
+route add -host $ptpaddr dev $device 
+
+#-------------------------------------------------------------------------- 
+#Правила для входящего потока firewall для интерфейса cipe
+#они должны задаваться в обратном порядке
+
+#запрещаем все остальные входящие с интерфейса cipe пакеты
+ipfwadm -I -i deny -W $device -S 0/0 -D 0/0 $log 
+
+#разрешаем все пакеты, входящие с интерфейса cipe из удаленной сети для локальной
+ipfwadm -I -i accept -W $device -S $ptpaddr/24 -D $ipaddr/24 
+
+#разрешаем все пакеты, входящие с интерфейса cipe из локальной сети для удаленной
+ipfwadm -I -i accept -W $device -S $ipaddr/24 -D $ptpaddr/24 
+
+#запрещаем все пакеты, входящие с интерфейса cipe из локальной сети для локальной; записываем это в журнал 
+ipfwadm -I -i deny -W $device -S $ipaddr/24 -D $ipaddr/24 $log 
+
+#-------------------------------------------------------------------------- 
+#Правила для исходящего потока firewall для интерфейса cipe
+#они должны задаваться в обратном порядке
+
+#запрещаем все остальные исходящие из интерфейса cipe пакеты
+ipfwadm -O -i deny -W $device -S 0/0 -D 0/0 $log 
+
+#разрешаем все пакеты, исходящие с интерфейса cipe из удаленной сети для локальной
+ipfwadm -O -i accept -W $device -S $ptpaddr/24 -D $ipaddr/24 
+
+#разрешаем все пакеты, исходящие с интерфейса cipe из локальной сети для удаленной
+ipfwadm -O -i accept -W $device -S $ipaddr/24 -D $ptpaddr/24 
+
+#запрещаем все пакеты, исходящие с интерфейса cipe из локальной сети для локальной; записываем это в журнал
+ipfwadm -O -i deny -W $device -S $ipaddr/24 -D $ipaddr/24 $log 
+
+#-------------------------------------------------------------------------- 
+#Правила для проходящего потока firewall для интерфейса cipe
+#они настроены так, чтобы машины локальной сети не попадали для удаленной
+#под маскарадинг. Так лучше работать с обеими сетями
+#они должны задаваться в обратном порядке
+
+#запрещаем все остальные проходящие через интерфейс cipe пакеты; записываем это в журнал
+ipfwadm -F -i deny -W $device -S 0/0 -D 0/0 $log 
+
+#разрешаем все пакеты, проходящие через интерфейс cipe из удаленной сети в локальную
+ipfwadm -F -i accept -W $device -S $ptpaddr/24 -D $ipaddr/24 
+
+#разрешаем все пакеты, проходящие через интерфейс cipe из локальной сети в удаленную
+ipfwadm -F -i accept -W $device -S $ipaddr/24 -D $ptpaddr/24 
+
+#-------------------------------------------------------------------------- 
+#Для большей уверенности разрешаем ядру переадресацию пакетов 
+/bin/echo 1 &#62; /proc/sys/net/ipv4/ip_forward 
+
+#-------------------------------------------------------------------------- 
+#Дополнение к системе безопасности - в случае, если стандартное правило для
+#проходящего потока установлено в DENY или REJECT. 
+
+#определяем интерфейсы машины 
+#localif="eth0" 
+#staticif="eth1"                ;для пользователей кабельных модемов 
+#staticif="ppp0"                ;для пользователей обычных модемов
+
+#По-настоящему грубо определяем удаленный ip-адрес, взяв его из файла options.
+#В идеале этот адрес надо передавать скрипту через аргументы
+#Надо раскомментировать обе строки
+#peerfile=`grep $device /etc/cipe/options.* | cut -f1 -d:` 
+#peer=`grep peer $peerfile | cut -f1 -d: | awk '{print $2}'` 
+
+#Запоминаем удаленный ip-адрес для скрипта ip-down
+#echo $peer &#62; /var/run/$device.peerip 
+
+#разрешаем пересылку пакетов из локальной сети в удаленную, через сетевую карту
+#ipfwadm -F -i accept -W $localif -S $ipaddr/24 -D $ptpaddr/24 
+#разрешаем пересылку пакетов из удаленной сети в локальную, через сетевую карту
+#ipfwadm -F -i accept -W $localif -S $ptpaddr/24 -D $ipaddr/24 
+#разрешаем пересылку на интерфейсе staticif от этой системы к удаленной
+#myaddr=`echo $me | cut -f1 -d:` 
+#ipfwadm -F -i accept -W $staticif -S $myaddr -D $peer 
+#-------------------------------------------------------------------------- 
+#Второе дополнение к системе безопасности - блокируем все запросы к udp-порту
+#cipe, кроме идущих от удаленной машины
+
+#необходимо определить udp-порты интерфейса cipe
+#получаем наш udp-порт
+#if [ "$option" = "" ]; then 
+#       myport=`echo $me | cut -f2 -d:` 
+#else 
+#       myport=$option 
+#fi 
+
+#получаем удаленный udp-порт
+#переменная peerfile должна быть задана
+#peerport=`grep peer $peerfile | cut -f2 -d:` 
+
+#запоминаем удаленный udp-порт cipe для скрипта ip-down
+#echo $peerport &#62; /var/run/$device.peerport 
+
+#получаем наш ip-адрес
+#myaddr=`echo $me | cut -f1 -d:` 
+
+#запрещаем все запросы к udp-порту cipe; записываем это в журнал
+#ipfwadm -I -i deny -P udp -W $staticif -S 0/0 -D $myaddr $myport $log 
+#разрешаем все запросы к udp-порту cipe, идущие из интерфейса staticif, от удаленной машины
+#ipfwadm -I -i accept -P udp -W $staticif -S $peer $peerport \
+#-D $myaddr $myport 
+
+exit 0 &#13;</PRE
+>&#13;</P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN115"
+>6.1.2. Ядро 2.1/2.2, ipchains, cipe 1.2.x</A
+></H3
+><P
+>&#13;<PRE
+CLASS="PROGRAMLISTING"
+>&#13;#!/bin/bash 
+# ip-up &#60;interface&#62; &#60;myaddr&#62; &#60;daemon-pid&#62; &#60;local&#62; &#60;remote&#62; &#60;arg&#62; 
+#3/29/1999 
+#Это пример скрипта ip-up для новых ядер версий 2.1/2ю2, использующих ipchains,
+#настраивающий маршруты и правила firewall для соединения вашей сети класса c
+#с удаленной сетью класса c. В этом скрипте задаются три пользовательских потока - 
+#по одному на каждый интерфейс cipe (разделенные по имени интерфейса).
+#После этого, в каждый из трех встроенных потоков, добавляются правила,
+#переназначающие эти потоки в пользовательские
+#Правила настроены с учетом невозможности нелегального перехвата пакетов,
+#а также нелегальной маршрутизации между сетями.  Дополнительные меры безопасности
+#приведены в конце скрипта (закомментированы). 
+#Вопросы и предложения посылайте по адресу acj@home.com. 
+
+#-------------------------------------------------------------------------- 
+
+#Настраиваем некоторые переменные 
+device=$1               # Интерфейс CIPE 
+me=$2                   # Наш UDP-адрес 
+pid=$3                  # ID процесса демона 
+ipaddr=$4               # IP-адрес нашего CIPE-устройства 
+ptpaddr=$5              # IP-адрес удаленного CIPE-устройства 
+option=$6               # аргументы, переданные через опции скрипта 
+
+PATH="/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin" 
+
+#рас(за)-комментируйте следующую строку для включение в системный журнал
+#всех попыток неавторизованного доступа. Эта строка должна соответствовать
+#строке в скрипте ip-down для правильного отключения правил.
+log="-l" 
+
+#-------------------------------------------------------------------------- 
+umask 022 
+# пример записи в журнал
+#echo "UP   $*" &#62;&#62; /var/adm/cipe.log 
+
+# во многих системах требуются такие pid-файлы 
+#echo $3 &#62; /var/run/$device.pid 
+
+#-------------------------------------------------------------------------- 
+#добавляем маршрут к удаленной сети
+network=`expr $ptpaddr : '\([0-9]*\.[0-9]*\.[0-9]*\.\)'`0 
+route add -net $network netmask 255.255.255.0 dev $device 
+
+#-------------------------------------------------------------------------- 
+#Создаем пользовательский поток для входящего по интерфейсу cipe
+ipchains -N $device"i" 
+#удаляем все правила для этого потока (на всякий случай)
+ipchains -F $device"i" 
+#запрещаем все пакеты, входящие с интерфейса cipe из локальной сети для локальной; записываем это в журнал
+ipchains -A $device"i" -j DENY -i $device -s $ipaddr/24 -d $ipaddr/24 $log 
+#разрешаем все пакеты, входящие с интерфейса cipe из локальной сети для удаленной
+ipchains -A $device"i" -j ACCEPT -i $device -s $ipaddr/24 -d $ptpaddr/24 
+#разрешаем все пакеты, входящие с интерфейса cipe из удаленной сети для локальной
+ipchains -A $device"i" -j ACCEPT -i $device -s $ptpaddr/24 -d $ipaddr/24 
+#запрещаем все остальные входящие с интерфейса cipe пакеты
+ipchains -A $device"i" -j DENY -s 0/0 -d 0/0 $log 
+
+#-------------------------------------------------------------------------- 
+#Создаем пользовательский поток для исходящего из интерфейса cipe
+ipchains -N $device"o" 
+#удаляем все правила для этого потока (на всякий случай)
+ipchains -F $device"o" 
+#запрещаем все пакеты, исходящие с интерфейса cipe из локальной сети для локальной; записываем это в журнал
+ipchains -A $device"o" -j DENY -i $device -s $ipaddr/24 -d $ipaddr/24 $log 
+#разрешаем все пакеты, исходящие с интерфейса cipe из локальной сети для удаленной
+ipchains -A $device"o" -j ACCEPT -i $device -s $ipaddr/24 -d $ptpaddr/24 
+#разрешаем все пакеты, исходящие с интерфейса cipe из удаленной сети для локальной
+ipchains -A $device"o" -j ACCEPT -i $device -s $ptpaddr/24 -d $ipaddr/24 
+#запрещаем все остальные исходящие из интерфейса cipe пакеты
+ipchains -A $device"o" -j DENY -s 0/0 -d 0/0 $log 
+
+#-------------------------------------------------------------------------- 
+#Правила для проходящего потока firewall для интерфейса cipe
+#они настроены так, чтобы машины локальной сети не попадали для удаленной
+#под маскарадинг. Так лучше работать с обеими сетями
+
+#Создаем пользовательский поток для проходящего через интерфейс cipe
+ipchains -N $device"f" 
+#удаляем все правила для этого потока (на всякий случай)
+ipchains -F $device"f" 
+#разрешаем все пакеты, проходящие через интерфейс cipe из локальной сети в удаленную
+ipchains -A $device"f" -j ACCEPT -i $device -s $ipaddr/24 -d $ptpaddr/24 
+#разрешаем все пакеты, проходящие через интерфейс cipe из удаленной сети в локальную
+ipchains -A $device"f" -j ACCEPT -i $device -s $ptpaddr/24 -d $ipaddr/24 
+#запрещаем все остальные, проходящие через интерфейс cipe, пакеты; записываем это в журнал
+ipchains -A $device"f" -j DENY -s 0/0 -d 0/0 $log 
+
+#-------------------------------------------------------------------------- 
+#Для большей уверенности разрешаем ядру переадресацию пакетов
+/bin/echo 1 &#62; /proc/sys/net/ipv4/ip_forward 
+
+#-------------------------------------------------------------------------- 
+#добавляем в стандартные потоки правила со ссылками на пользовательские потоки
+ipchains -I input -i $device -j $device"i" 
+ipchains -I output -i $device -j $device"o" 
+ipchains -I forward -i $device -j $device"f" 
+
+#-------------------------------------------------------------------------- 
+#Дополнение к системе безопасности - в случае, если стандартное правило для
+#проходящего потока установлено в DENY или REJECT.
+
+#определяем интерфейсы машины
+#localif="eth0" 
+#staticif="eth1"                ;для пользователей кабельных модемов 
+#staticif="ppp0"                ;для пользователей обычных модемов
+
+#По-настоящему грубо определяем удаленный ip-адрес, взяв его из файла options.
+#В идеале этот адрес надо передавать скрипту через аргументы
+#Надо раскомментировать обе строки
+#peerfile=`grep $device /etc/cipe/options.* | cut -f1 -d:` 
+#peer=`grep peer $peerfile | cut -f1 -d: | awk '{print $2}'` 
+
+#Запоминаем удаленный ip-адрес для скрипта ip-down
+#echo $peer &#62; /var/run/$device.peerip 
+
+#разрешаем пересылку пакетов из локальной сети в удаленную, через сетевую карту
+#ipchains -I forward -j ACCEPT -i $localif -s $ipaddr/24 -d $ptpaddr/24 
+#разрешаем пересылку пакетов из удаленной сети в локальную, через сетевую карту
+#ipchains -I forward -j ACCEPT -i $localif -s $ptpaddr/24 -d $ipaddr/24 
+#разрешаем пересылку на интерфейсе staticif от этой системы к удаленной
+#myaddr=`echo $me | cut -f1 -d:` 
+#ipchains -I forward -j ACCEPT -i $staticif -s $myaddr -d $peer 
+#-------------------------------------------------------------------------- 
+#Второе дополнение к системе безопасности - блокируем все запросы к udp-порту
+#cipe, кроме идущих от удаленной машины
+
+#необходимо определить udp-порты интерфейса cipe
+#получаем наш udp-порт
+#if [ "$option" = "" ]; then 
+#       myport=`echo $me | cut -f2 -d:` 
+#else 
+#       myport=$option 
+#fi 
+
+#получаем удаленный udp-порт
+#переменная peerfile должна быть задана
+#peerport=`grep peer $peerfile | cut -f2 -d:` 
+
+#запоминаем удаленный udp-порт cipe для скрипта ip-down
+#echo $peerport &#62; /var/run/$device.peerport 
+
+#получаем наш ip-адрес
+#myaddr=`echo $me | cut -f1 -d:` 
+
+#запрещаем все запросы к udp-порту cipe; записываем это в журнал
+#ipchains -I input -j DENY -p udp -i $staticif -s 0/0 \
+#-d $myaddr $myport $log 
+#разрешаем все запросы к udp-порту cipe, идущие из интерфейса staticif, от удаленной машины
+#ipchains -I input -j ACCEPT -p udp -i $staticif -s $peer $peerport \
+# -d $myaddr $myport 
+
+#-------------------------------------------------------------------------- 
+# Включаем в ядре в качестве дополнительной меры безопасности защиту от "spoofing"-а
+#-------------------------------------------------------------------------- 
+#Зачем включать в ядре защиту от "spoofing"-а, если в этом скрипте эта
+#защита уже реализована, для каждого интерфейса на уровне firewall?
+#Предположим, что я параноик.
+
+if [ -e /proc/sys/net/ipv4/conf/all/rp_filter ]; then 
+        echo -n "Включаем защиту от IP-spoofing..." 
+        iface="/proc/sys/net/ipv4/conf/$device/rp_filter" 
+        echo 1 &#62; $iface 
+        echo "done." 
+else 
+        echo "Невозможно включить в ядре защиту устройства $device от IP-spoofing" \
+		| mail -s"Предупреждение Системы Безопасности: $device" root 
+        exit 1 
+fi 
+
+exit 0 &#13;</PRE
+>&#13;</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN119"
+>6.2. /etc/cipe/ip-down</A
+></H2
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="AEN121"
+>6.2.1. Ядро 2.0, ipfwadm, cipe 1.0.x</A
+></H3
+><P
+>&#13;<PRE
+CLASS="PROGRAMLISTING"
+>&#13;#!/bin/bash 
+# ip-down &#60;interface&#62; &#60;myaddr&#62; &#60;daemon-pid&#62; &#60;local&#62; &#60;remote&#62; &#60;arg&#62; 
+#3/29/1999 
+#Это пример скрипта ip-down для старых ядер версий 1.x 2.x, использующих ipfwadm,
+#удаляющий маршруты и правила firewall, заданные ранее для соединения вашей сети класса c
+#с удаленной сетью класса c. 
+#Вопросы и предложения посылайте по адресу acj@home.com 
+
+#-------------------------------------------------------------------------- 
+#Настраиваем некоторые переменные
+device=$1               # Интерфейс CIPE
+me=$2                   # Наш UDP-адрес
+pid=$3                  # ID процесса демона
+ipaddr=$4               # IP-адрес нашего CIPE-устройства
+ptpaddr=$5              # IP-адрес удаленного CIPE-устройства 
+option=$6               # аргументы, переданные через опции скрипта
+
+PATH="/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin" 
+
+#рас(за)-комментируйте следующую строку для включение в системный журнал 
+#всех попыток неавторизованного доступа. Эта строка должна соответствовать
+#строке в скрипте ip-up для правильного отключения правил. 
+log="-o" 
+
+#-------------------------------------------------------------------------- 
+umask 022 
+
+# пример записи в журнал
+#echo "DOWN   $*" &#62;&#62; /var/adm/cipe.log 
+
+# во многих системах требуются такие pid-файлы
+#rm -f /var/run/$device.pid 
+
+#-------------------------------------------------------------------------- 
+#Правила для входящего потока firewall для интерфейса cipe
+
+#удаляем запрещение всех остальных входящих с интерфейса cipe пакетов
+ipfwadm -I -d deny -W $device -S 0/0 -D 0/0 $log 
+
+#удаляем разрешение всех пакетов, входящих с интерфейса cipe из удаленной сети для локальной
+ipfwadm -I -d accept -W $device -S $ptpaddr/24 -D $ipaddr/24 
+
+#удаляем разрешение всех пакетов, входящих с интерфейса cipe из локальной сети для удаленной
+ipfwadm -I -d accept -W $device -S $ipaddr/24 -D $ptpaddr/24 
+
+#удаляем запрещение всех пакетов, входящих с интерфейса cipe из локальной сети для локальной
+ipfwadm -I -d deny -W $device -S $ipaddr/24 -D $ipaddr/24 $log 
+
+#-------------------------------------------------------------------------- 
+#Правила для исходящего потока firewall для интерфейса cipe
+
+#удаляем запрещение всех остальных, исходящих из интерфейса cipe, пакетов
+ipfwadm -O -d deny -W $device -S 0/0 -D 0/0 $log 
+
+#удаляем разрешение всех пакетов, исходящих из интерфейса cipe, из удаленной сети для локальной
+ipfwadm -O -d accept -W $device -S $ptpaddr/24 -D $ipaddr/24 
+
+#удаляем разрешение всех пакетов, исходящих из интерфейса cipe, из локальной сети для удаленной
+ipfwadm -O -d accept -W $device -S $ipaddr/24 -D $ptpaddr/24 
+
+#удаляем запрещение всех пакетов, исходящих из интерфейса cipe, из локальной сети для локальной
+ipfwadm -O -d deny -W $device -S $ipaddr/24 -D $ipaddr/24 $log 
+
+#-------------------------------------------------------------------------- 
+#Правила для проходящего потока firewall для интерфейса cipe
+
+#удаляем запрещение всех остальных пакетов, проходящих через интерфейс cipe
+ipfwadm -F -d deny -W $device -S 0/0 -D 0/0 $log 
+
+#удаляем разрешение всех пакетов, проходящих через интерфейс cipe, из удаленной сети для локальной
+ipfwadm -F -d accept -W $device -S $ptpaddr/24 -D $ipaddr/24 
+
+#удаляем разрешение всех пакетов, проходящих через интерфейс cipe, из локальной сети для удаленной
+ipfwadm -F -d accept -W $device -S $ipaddr/24 -D $ptpaddr/24 
+
+#-------------------------------------------------------------------------- 
+#Дополнение к системе безопасности - в случае, если стандартное правило для
+#проходящего потока установлено в DENY или REJECT. 
+
+#define machine interfaces 
+#localif="eth0" 
+#staticif="eth1"                ;для пользователей кабельных модемов
+#staticif="ppp0"                ;для пользователей обычных модемов 
+
+#По-настоящему грубо определяем удаленный ip-адрес, взяв его из файла options.
+#В идеале этот адрес надо передавать скрипту через аргументы 
+#Надо раскомментировать обе строки
+#peerfile=`grep $device /etc/cipe/options.* | cut -f1 -d:` 
+#peer=`grep peer $peerfile | cut -f1 -d: | awk '{print $2}'` 
+
+#Запоминаем удаленный ip-адрес для скрипта ip-down (???)
+#echo $peer &#62; /var/run/$device.peerip 
+
+#удаляем разрешение пересылки пакетов из локальной сети в удаленную, через сетевую карту
+#ipfwadm -F -d accept -W $localif -S $ipaddr/24 -D $ptpaddr/24 
+#удаляем разрешение пересылки пакетов из удаленной сети в локальную, через сетевую карту
+#ipfwadm -F -d accept -W $localif -S $ptpaddr/24 -D $ipaddr/24 
+#удаляем разрешение пересылки пакетов через интерфейс staticif от этой системы к удаленной
+#myaddr=`echo $me | cut -f1 -d:` 
+#ipfwadm -F -d accept -W $staticif -S $myaddr -D $peer 
+#-------------------------------------------------------------------------- 
+#Второе дополнение к системе безопасности - блокируем все запросы к udp-порту
+#cipe, кроме идущих от удаленной машины 
+
+#необходимо определить udp-порты интерфейса cipe
+#получаем наш udp-порт 
+#if [ "$option" = "" ]; then 
+#       myport=`echo $me | cut -f2 -d:` 
+#else 
+#       myport=$option 
+#fi 
+
+#получаем удаленный udp-порт
+#переменная peerfile должна быть задана
+#peerport=`grep peer $peerfile | cut -f2 -d:` 
+
+#запоминаем удаленный udp-порт cipe для скрипта ip-down (???)
+#echo $peerport &#62; /var/run/$device.peerport 
+
+#получаем наш ip-адрес
+#myaddr=`echo $me | cut -f1 -d:` 
+
+#удаляем запрещение всех запросов к udp-порту cipe
+#ipfwadm -I -d deny -P udp -W $staticif -S 0/0 -D $myaddr $myport $log 
+#удаляем разрешение всех запросов к udp-порту cipe, идущих из интерфейса staticif, от удаленной машины
+#ipfwadm -I -d accept -P udp -W $staticif -S $peer $peerport \
+#-D $myaddr $myport 
+
+exit 0&#13;</PRE
+>&#13;</P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN125"
+>6.2.2. Ядро 2.1/2.2, ipchains, cipe 1.2.x</A
+></H3
+><P
+>&#13;<PRE
+CLASS="PROGRAMLISTING"
+>&#13;#!/bin/sh 
+# ip-down &#60;interface&#62; &#60;myaddr&#62; &#60;daemon-pid&#62; &#60;local&#62; &#60;remote&#62; &#60;arg&#62; 
+#3/29/1999 
+#Это пример скрипта ip-down для новых ядер версий 2.1/2.2, использующих ipchains,
+#удаляющий маршруты и правила firewall, заданные ранее для соединения вашей сети класса c
+#с удаленной сетью класса c. 
+#Вопросы и предложения посылайте по адресу acj@home.com. 
+
+#-------------------------------------------------------------------------- 
+#Настраиваем некоторые переменные
+device=$1               # Интерфейс CIPE
+me=$2                   # Наш UDP-адрес
+pid=$3                  # ID процесса демона
+ipaddr=$4               # IP-адрес нашего CIPE-устройства 
+ptpaddr=$5              # IP-адрес удаленного CIPE-устройства
+option=$6               # аргументы, переданные через опции скрипта 
+PATH="/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin" 
+
+#рас(за)-комментируйте следующую строку для включение в системный журнал 
+#всех попыток неавторизованного доступа. Эта строка должна соответствовать
+#строке в скрипте ip-up для правильного отключения правил. 
+log="-l" 
+
+#-------------------------------------------------------------------------- 
+umask 022 
+
+# пример записи в журнал
+#echo "DOWN $*" &#62;&#62; /var/adm/cipe.log 
+
+# во многих системах требуются такие pid-файлы
+#rm -f /var/run/$device.pid 
+
+#-------------------------------------------------------------------------- 
+#удаляем с главных потоков ссылки на пользовательские 
+ipchains -D input -i $device -j $device"i" 
+ipchains -D output -i $device -j $device"o" 
+ipchains -D forward -i $device -j $device"f" 
+
+#-------------------------------------------------------------------------- 
+#Удаляем все правила из пользовательского входящего потока
+ipchains -F $device"i" 
+#Удаляем пользовательский входящий поток
+ipchains -X $device"i" 
+
+#-------------------------------------------------------------------------- 
+#Удаляем все правила из пользовательского исходящего потока
+ipchains -F $device"o" 
+#Удаляем пользовательский исходящий поток
+ipchains -X $device"o" 
+
+#-------------------------------------------------------------------------- 
+#Удаляем все правила из пользовательского проходящего потока
+ipchains -F $device"f" 
+#Удаляем пользовательский проходящий поток
+ipchains -X $device"f" 
+
+#-------------------------------------------------------------------------- 
+#Удаляем дополнительные меры безопасности
+
+#получаем ip-адрес удаленной машины
+#peer=`cat /var/run/$device.peerip` 
+
+#определяем интерфейсы машины
+#localif="eth0" 
+#staticif="eth1"                ;для пользователей кабельных модемов
+#staticif="ppp0"                ;для пользователей обычных модемов 
+
+#получаем наш ip-адрес
+#myaddr=`echo $me |cut -f1 -d:`
+
+#удаляем разрешение пересылки пакетов из локальной сети в удаленную, через сетевую карту
+#ipchains -D forward -j ACCEPT -i $localif -s $ipaddr/24 -d $ptpaddr/24 
+
+#удаляем разрешение пересылки пакетов из удаленной сети в локальную, через сетевую карту
+#ipchains -D forward -j ACCEPT -i $localif -s $ptpaddr/24 -d $ipaddr/24 
+
+#удаляем разрешение пересылки пакетов через интерфейс staticif от этой системы к удаленной
+#ipchains -D forward -j ACCEPT -i $staticif -s $myaddr -d $peer 
+
+#удаляем файл с запомненным удаленным ip-адресом
+#rm /var/run/$device.peerip 
+
+#-------------------------------------------------------------------------- 
+#Удаляем дополнительные меры безопасности
+
+#получаем удаленный udp-порт
+#peerport=`cat /var/run/$device.peerport`
+
+#получаем наш udp-порт
+#if [ "$option" = "" ]; then 
+#        myport=`echo $me | cut -f2 -d:` 
+#else 
+#        myport=$option 
+#fi 
+
+#удаляем запрещение всех запросов к udp-порту cipe
+#ipchains -D input -j DENY -p udp -i $staticif -s 0/0 \
+#-d $myaddr $myport $log 
+#удаляем разрешение всех запросов к udp-порту cipe, идущих из интерфейса staticif, от удаленной машины
+#ipchains -D input -j ACCEPT -p udp -i $staticif -s $peer $peerport \
+#-d $myaddr $myport 
+
+#удаляем файл с запомненным удаленным ip-адресом
+#rm /var/run/$device.peerport
+
+#-------------------------------------------------------------------------- 
+
+exit 0 &#13;</PRE
+>&#13;</P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN129"
+>7. Примеры скриптов настройки маскарадинга</A
+></H1
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN131"
+>7.1. Ядро 2.0, ipfwadm</A
+></H2
+><P
+>&#13;<PRE
+CLASS="PROGRAMLISTING"
+>&#13;#!/bin/sh 
+#04/04/1999 
+#Пример скрипта rc.firewall для ядер версий 2.0, использующих ipfwadm 
+#Я не могу полностью поручиться за этот скрипт. Я нашел его
+#несколько лет назад и немножко подправил. 
+#Вопросы и предложения посылайте по адресу acj@home.com. 
+
+#--------------------------------------------------------------------- 
+#Переменные 
+#--------------------------------------------------------------------- 
+
+#локальный ethernet-интерфейс
+localip= 
+localif=eth0 
+
+#статический ethernet-интерфейс 
+staticip= 
+staticif=eth1 
+
+PATH="/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin" 
+
+#--------------------------------------------------------------------- 
+#Политика Firewall для входящего потока
+#--------------------------------------------------------------------- 
+#удаляем все правила для входящего потока
+/sbin/ipfwadm -I -f 
+
+#устанавливаем запрет всех пакетов для входящего потока
+/sbin/ipfwadm -I -p deny 
+
+#--------------------------------------------------------------------- 
+
+#разрешено посылать пакеты, куда угодно, с локального интерфейса с локальных машин
+/sbin/ipfwadm -I -a accept -V $localip -S $localip/24 -D 0.0.0.0/0 
+#запрещаем все пакеты, идущие из статического интерфейса, "от локальных машин" (spoofing)
+#записываем это в журнал
+/sbin/ipfwadm -I -a deny -V $staticip -S $localip/24 -D 0.0.0.0/0 -o 
+#разрешаем все пакеты, идущие, откуда угодно, на статический интерфейс
+/sbin/ipfwadm -I -a accept -V $staticip -S 0.0.0.0/0 -D $staticip/32 
+#разрешаем все пакеты, идущие через интерфейс обратной петли
+/sbin/ipfwadm -I -a accept -V 127.0.0.1 -S 0.0.0.0/0 -D 0.0.0.0/0 
+#запрещаем все остальные входящие пакеты - записываем это в журнал 
+/sbin/ipfwadm -I -a deny -S 0.0.0.0/0 -D 0.0.0.0/0 -o 
+
+#--------------------------------------------------------------------- 
+#Политика Firewall для исходящего потока
+#--------------------------------------------------------------------- 
+
+#удаляем все правила для исходящего потока
+/sbin/ipfwadm -O -f 
+
+#устанавливаем запрет всего для исходящего потока
+/sbin/ipfwadm -O -p deny 
+
+#--------------------------------------------------------------------- 
+
+#разрешены пакеты, откуда угодно, на локальном интерфейса для локальных машин
+/sbin/ipfwadm -O -a accept -V $localip -S 0.0.0.0/0 -D $localip/24 
+#запрещены исходящие через статический интерфейс пакеты для локальной сети (ошибка маршрутизации)
+/sbin/ipfwadm -O -a deny -V $staticip -S 0.0.0.0/0 -D $localip/24 -o 
+#запрещены исходящие через статический интерфейс пакеты из локальной сети (ошибка маскарадинга)
+/sbin/ipfwadm -O -a deny -V $staticip -S $localip/24 -D 0.0.0.0/0 -o 
+#запрещены исходящие через статический интерфейс пакеты для локальной сети (ошибка маскарадинга)
+/sbin/ipfwadm -O -a deny -V $staticip -S 0.0.0.0/0 -D $localip/24 -o 
+#разрешено все остальное от статического интерфейса
+/sbin/ipfwadm -O -a accept -V $staticip -S $staticip/32 -D 0.0.0.0/0 
+#разрешаем все пакеты, идущие через интерфейс обратной петли
+/sbin/ipfwadm -O -a accept -V 127.0.0.1 -S 0.0.0.0/0 -D 0.0.0.0/0 
+#все остальное запрещено
+/sbin/ipfwadm -O -a deny -S 0.0.0.0/0 -D 0.0.0.0/0 -o 
+
+#-------------------------------------------------------------------------- 
+#Политика Firewall для проходящего потока
+#-------------------------------------------------------------------------- 
+
+#удаляем все правила для проходящего потока
+/sbin/ipfwadm -F -f 
+
+#устанавливаем запрет всего для проходящего потока
+/sbin/ipfwadm -F -p deny 
+
+#маскарадинг для всего, идущего из локальной сети через статический интерфейс
+/sbin/ipfwadm -F -a masquerade -W $staticif -S $localip/24 -D 0.0.0.0/0 
+#другая маршрутизация запрещена
+/sbin/ipfwadm -F -a deny -S 0.0.0.0/0 -D 0.0.0.0/0 
+
+exit 0 &#13;</PRE
+>&#13;</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN135"
+>7.2. Ядро 2.1/2.2, ipchains</A
+></H2
+><P
+>&#13;<PRE
+CLASS="PROGRAMLISTING"
+>&#13;#!/bin/sh 
+#04/04/1999 
+#Пример скрипта rc.firewall для новых ядер версий 2.1/2.2, использующих ipchains,
+#определяющий пользовательские потоки для каждого интерфейса.  Здесь есть также
+#правила, защищающие от spoofing-а, которые может быть и не очень нужны - 
+#подобная защита уже встроена в ядро. 
+#Вопросы и предложения посылайте по адресу acj@home.com. 
+
+#--------------------------------------------------------------------- 
+#Переменные
+#--------------------------------------------------------------------- 
+
+#локальный ethernet-интерфейс
+localip= 
+localif=eth0 
+
+#статический ethernet-интерфейс
+staticip= 
+staticif=eth1 
+
+#интерфейс обратной петли
+loopback=lo 
+
+PATH="/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin" 
+
+#--------------------------------------------------------------------- 
+#Удаляем все правила для входящего, исходящего и проходящего потоков
+#По умолчанию отбрасываем все пакеты 
+#--------------------------------------------------------------------- 
+
+#устанавливаем запрет всего для входящего потока
+ipchains -P input DENY 
+
+#удаляем все правила для входящего потока
+ipchains -F input 
+
+#--------------------------------------------------------------------- 
+
+#устанавливаем запрет всего для исходящего потока
+ipchains -P output DENY 
+
+#удаляем все правила для исходящего потока
+ipchains -F output 
+
+#--------------------------------------------------------------------- 
+
+#устанавливаем запрет всего для проходящего потока
+ipchains -P forward DENY 
+
+#удаляем все правила для проходящего потока
+ipchains -F forward 
+
+#--------------------------------------------------------------------- 
+#удаляем все правила вообще (в том числе и пользовательские)
+#ipchains -F 
+
+#удаляем все пользовательские потоки - вам это может понадобиться
+#ipchains -X 
+
+#--------------------------------------------------------------------- 
+#Политика Firewall для входящего потока
+#--------------------------------------------------------------------- 
+
+#создаем пользовательский входящий поток для статического интерфейса
+ipchains -N $staticif"-i" 
+
+#в этом потоке удаляем все правила (на всякий случай)
+ipchains -F $staticif"-i" 
+
+#блокируем все входящие SYN-пакеты на всех портах на статическом интерфейсе
+#это может показаться грубым, но это правильно 
+#ipchains -A $staticif"-i" -j DENY -p tcp -y -i $staticif -s 0/0 \
+#-d $staticip : -l 
+
+#запрещаем все пакеты, идущие из статического интерфейса, "от локальных машин" (spoofing)
+#записываем это в журнал
+ipchains -A $staticif"-i" -j DENY -i $staticif -s $localip/16 -d 0/0 -l 
+
+#разрешаем все пакеты, идущие, откуда угодно, на статический интерфейс
+ipchains -A $staticif"-i" -j ACCEPT -i $staticif -s 0/0 -d $staticip/32 
+
+#запрещаем все остальные входящие пакеты - записываем это в журнал
+ipchains -A $staticif"-i" -j DENY -s 0/0 -d 0/0 -l 
+
+#--------------------------------------------------------------------- 
+
+#создаем пользовательский входящий поток для интерфейса локальной сети
+ipchains -N $localif"-i" 
+
+#в этом потоке удаляем все правила (на всякий случай)
+ipchains -F $localif"-i" 
+
+#разрешено посылать пакеты, куда угодно, с локального интерфейса с локальных машин
+ipchains -A $localif"-i" -j ACCEPT -i $localif -s $localip/24 -d 0/0 
+
+#запрещаем все остальные входящие пакеты - записываем это в журнал
+ipchains -A $localif"-i" -j DENY -s 0/0 -d 0/0 -l 
+
+#--------------------------------------------------------------------- 
+
+#создаем пользовательский входящий поток для интерфейса обратной петли
+ipchains -N $loopback"-i" 
+
+#в этом потоке удаляем все правила (на всякий случай)
+ipchains -F $loopback"-i" 
+
+#разрешено все, идущее на интерфейс обратной петли
+ipchains -A $loopback"-i" -j ACCEPT -i $loopback -s 0/0 -d 0/0 
+
+#запрещаем все остальные входящие пакеты - записываем это в журнал 
+ipchains -A $loopback"-i" -j DENY -s 0/0 -d 0/0 -l  
+
+#-------------------------------------------------------------------------- 
+#Политика Firewall для проходящего потока
+#-------------------------------------------------------------------------- 
+
+#создаем пользовательский проходящий поток для статического интерфейса
+ipchains -N $staticif"-f" 
+
+#в этом потоке удаляем все правила (на всякий случай)
+ipchains -F $staticif"-f" 
+
+#маскарадинг для всего, что идет из локальной сети, куда угодно
+ipchains -A $staticif"-f" -j MASQ -i $staticif -s $localip/24 -d 0/0 
+
+#запрещаем все остальные проходящие пакеты - записываем это в журнал 
+ipchains -A $staticif"-f" -j DENY -s 0/0 -d 0/0 -l  
+
+#--------------------------------------------------------------------- 
+
+#создаем пользовательский проходящий поток для интерфейса локальной сети
+ipchains -N $localif"-f" 
+
+#в этом потоке удаляем все правила (на всякий случай)
+ipchains -F $localif"-f" 
+
+#запрещаем все остальные проходящие пакеты - записываем это в журнал 
+ipchains -A $localif"-f" -j DENY -s 0/0 -d 0/0 -l 
+
+#--------------------------------------------------------------------- 
+
+#создаем пользовательский проходящий поток для интерфейса обратной петли
+ipchains -N $loopback"-f" 
+
+#в этом потоке удаляем все правила (на всякий случай)
+ipchains -F $loopback"-f" 
+
+#запрещаем все остальные проходящие пакеты - записываем это в журнал 
+ipchains -A $loopback"-f" -j DENY -s 0/0 -d 0/0 -l 
+  
+
+#--------------------------------------------------------------------- 
+#Политика Firewall для исходящего потока
+#--------------------------------------------------------------------- 
+
+#создаем пользовательский исходящий поток для статического интерфейса
+ipchains -N $staticif"-o" 
+
+#в этом потоке удаляем все правила (на всякий случай)
+ipchains -F $staticif"-o" 
+
+#запрещены исходящие через статический интерфейс пакеты для локальной сети (ошибка маршрутизации)
+ipchains -A $staticif"-o" -j DENY -i $staticif -s 0/0 -d $localip/24 -l 
+
+#запрещены исходящие через статический интерфейс пакеты из локальной сети (ошибка маскарадинга)
+ipchains -A $staticif"-o" -j DENY -i $staticif -s $localip/24 -d 0/0 -l 
+
+#разрешено все остальное от статического интерфейса
+ipchains -A $staticif"-o" -j ACCEPT -i $staticif -s $staticip/32 -d 0/0 
+
+#запрещаем все остальные исходящие пакеты - записываем это в журнал 
+ipchains -A $staticif"-o" -j DENY -s 0/0 -d 0/0 -l
+
+#--------------------------------------------------------------------- 
+
+#создаем пользовательский исходящий поток для интерфейса локальной сети
+ipchains -N $localif"-o" 
+
+#в этом потоке удаляем все правила (на всякий случай)
+ipchains -F $localif"-o" 
+
+#разрешены пакеты, откуда угодно, на локальном интерфейса для локальных машин
+ipchains -A $localif"-o" -j ACCEPT -i $localif -s 0/0 -d $localip/24 
+
+#запрещаем все остальные исходящие пакеты - записываем это в журнал 
+ipchains -A $localif"-o" -j DENY -s 0/0 -d 0/0 -l
+
+#--------------------------------------------------------------------- 
+
+#создаем пользовательский исходящий поток для интерфейса обратной петли
+ipchains -N $loopback"-o" 
+
+#в этом потоке удаляем все правила (на всякий случай)
+ipchains -F $loopback"-o" 
+
+#разрешено все, идущее из интерфейса обратной петли
+ipchains -A $loopback"-o" -j ACCEPT -i $loopback -s 0/0 -d 0/0 
+
+#запрещаем все остальные исходящие пакеты - записываем это в журнал 
+ipchains -A $loopback"-o" -j DENY -s 0/0 -d 0/0 -l
+
+#-------------------------------------------------------------------------- 
+#Для большей уверенности разрешаем ядру переадресацию пакетов
+#-------------------------------------------------------------------------- 
+
+/bin/echo 1 &#62; /proc/sys/net/ipv4/ip_forward 
+
+#-------------------------------------------------------------------------- 
+#добавляем в стандартные потоки правила со ссылками на пользовательские потоки 
+#-------------------------------------------------------------------------- 
+
+#входящий поток на интерфейсе локальной сети
+ipchains -A input -i $localif -j $localif"-i" 
+
+#входящий поток на статическом интерфейсе
+ipchains -A input -i $staticif -j $staticif"-i" 
+
+#входящий поток на интерфейсе обратной петли
+ipchains -A input -i $loopback -j $loopback"-i"
+
+#------------------------------------------------------------------------- 
+
+#исходящий поток на интерфейсе локальной сети
+ipchains -A output -i $localif -j $localif"-o" 
+
+#исходящий поток на статическом интерфейсе
+ipchains -A output -i $staticif -j $staticif"-o" 
+
+#исходящий поток на интерфейсе обратной петли
+ipchains -A output -i $loopback -j $loopback"-o"
+
+#------------------------------------------------------------------------- 
+
+#проходящий поток на интерфейсе локальной сети
+ipchains -A forward -i $localif -j $localif"-f" 
+
+#проходящий поток на статическом интерфейсе
+ipchains -A forward -i $staticif -j $staticif"-f" 
+
+#проходящий поток на интерфейсе обратной петли
+ipchains -A forward -i $loopback -j $loopback"-f"
+
+#--------------------------------------------------------------------- 
+#Проверка Сверх-Параноика --- несмотря на отказ всем пакетам по умолчанию,
+#блокируем все пакеты на всех интерфейсах 
+#--------------------------------------------------------------------- 
+
+#запрещаем все остальные входящие пакеты - записываем это в журнал 
+ipchains -A input -j DENY -s 0/0 -d 0/0 -l 
+
+#запрещаем все остальные исходящие пакеты - записываем это в журнал 
+ipchains -A output -j DENY -s 0/0 -d 0/0 -l 
+
+#запрещаем все остальные проходящие пакеты - записываем это в журнал 
+ipchains -A forward -j DENY -s 0/0 -d 0/0 -l
+
+exit 0&#13;</PRE
+>&#13;</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN139"
+>8. Собираем все вместе</A
+></H1
+><P
+>Ниже приведен пример скрипта rc.local, запускающего все остальное при загрузке системы. Он включает в ядре защиту от spoofing-а, задает правила маскарадинга на firewall, и включает интерфейс(ы) cipe. </P
+><P
+>&#13;<PRE
+CLASS="PROGRAMLISTING"
+>&#13;#!/bin/bash 
+#4/4/99 
+#Пример скрипта rc.local
+#Вопросы и предложения посылайте по адресу acj@home.com. 
+
+echo 
+
+#Включаем в ядре защиту от spoofing-а 
+
+#Это справедливо только для ядер версий 2.1/2.2
+
+#if [ -e /proc/sys/net/ipv4/conf/all/rp_filter ]; then 
+#   echo -n "Включаем защиту от IP-spoofing..." 
+#   for f in /proc/sys/net/ipv4/conf/*/rp_filter; do 
+#       echo 1 &#62; $f 
+#   done 
+#   echo "done." 
+#else 
+#   echo ВНИМАНИЕ! НЕ УДАЛОСЬ ВКЛЮЧИТЬ ЗАЩИТУ ОТ SPOOFING-а. 
+#   echo "Клавиши CONTROL-D прервут работу этой оболочки, и процесс загрузки системы продолжится." 
+#   echo 
+#   # Запускаем однопользовательскую оболочку на консоли
+#   /sbin/sulogin $CONSOLE 
+#fi 
+
+echo 
+
+#Настраиваем firewall
+if [ -x /etc/rc.d/rc.firewall ]; then 
+        echo Настройка правил фильтрования пакетов firewall. 
+        echo 
+        . /etc/rc.d/rc.firewall 
+fi 
+
+#Включение интерфейса(ов) cipe 
+if [ -x /etc/rc.d/rc.cipe ]; then 
+        echo Запуск интерфейсов VPN. 
+        . /etc/rc.d/rc.cipe 
+fi 
+
+exit 0 &#13;</PRE
+>&#13;</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN144"
+>9. Соединяемся с СЕТЬЮ (WAN)</A
+></H1
+><P
+>К этому моменту ваш интерфейс cipe должен работать. Попробуйте дать команду ping, указав ей адрес машины в другой сети. Если это не удалось, то проверьте на firewall-машине следующее:</P
+><P
+>&#13;<P
+></P
+><UL
+><LI
+><P
+>Включена ли переадресация пакетов в ядре?&#13;</P
+></LI
+><LI
+><P
+>Выдает ли команда ifconfig примерно следующее:
+
+<PRE
+CLASS="SCREEN"
+>cipcb0  Link encap:IPIP Tunnel  HWaddr   
+        inet addr:192.168.1.1  P-t-P:192.168.2.1  Mask:255.255.255.255
+        UP POINTOPOINT NOTRAILERS RUNNING NOARP  MTU:1442  Metric:1
+        RX packets:28163 errors:6 dropped:0 overruns:0 frame:6
+        TX packets:29325 errors:0 dropped:0 overruns:0 carrier:0
+        collisions:0 txqueuelen:100 </PRE
+>
+&#13;</P
+></LI
+><LI
+><P
+>Есть ли в таблице маршрутизации строка, относящаяся к удаленной cipe-машине:
+
+<PRE
+CLASS="SCREEN"
+>192.168.2.1    *      255.255.255.255 UH    0	0        0 cipcb0 </PRE
+>&#13;</P
+></LI
+><LI
+><P
+>Есть ли в таблице маршрутизации строка, относящаяся к удаленной cipe-сети:
+
+<PRE
+CLASS="SCREEN"
+>192.168.2.0    *      255.255.255.0   U     0   0        0  cipcb0</PRE
+>
+&#13;</P
+></LI
+><LI
+><P
+>Проверьте журналы - нет ли в них сообщений об ошибках?&#13;</P
+></LI
+></UL
+>&#13;</P
+><P
+>Если машины за разными firewall не видят друг друга, то проверьте правильность настройки обоих шлюзов.</P
+><P
+>После того, как, между машинами в разных подсетях, у вас начнет работать ping, ftp, telnet, и т.п., то следующим вашим шагом будет настройка межсетевой работы SAMBA. Подсказка: вам потребуются lmhosts или wins-сервер, а также "trusted domains" для NT. У меня все работает, но это находится за пределами обсуждения данного документа (как минимум, на текущий момент).</P
+><P
+>Если вы использовали пример настройки маскарадирующего firewall, то ваши машины должны иметь возможность подключиться к internet. Если нет - проверьте системные журналы. Вы можете также попробовать использовать tcpdump - посмотрите, что происходит с пакетами.</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN165"
+>10. Ссылки</A
+></H1
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN167"
+>10.1. Веб-сайты</A
+></H2
+><P
+><A
+HREF="http://sites.inka.de/~bigred/devel/cipe.html"
+TARGET="_top"
+>Домашняя страница Cipe</A
+> </P
+><P
+><A
+HREF="http://ipmasq.cjb.net"
+TARGET="_top"
+>Домашняя страница Masq</A
+> </P
+><P
+><A
+HREF="http://samba.anu.edu.au"
+TARGET="_top"
+>Домашняя страница Samba</A
+></P
+><P
+><A
+HREF="http://www.linuxhq.com"
+TARGET="_top"
+>Linux HQ</A
+>  ---хороший сайт с информацией по linux</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN177"
+>10.2. Документация</A
+></H2
+><P
+>cipe.info: info-файл, входящий в дистрибутив</P
+><P
+>"HOWTO: Firewall", автор Mark Grennan, markg@netplus.net </P
+><P
+>"Мини-HOWTO: IP-маскарадинг", автор Ambrose Au, ambrose@writeme.com </P
+><P
+>"HOWTO: IPChains", автор Paul Russell, Paul.Russell@rustcorp.com.au</P
+></DIV
+></DIV
+></DIV
+></BODY
+></HTML
+>

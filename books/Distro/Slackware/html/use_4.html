@@ -1,0 +1,501 @@
+ <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html LANG=ru>
+<meta name="GENERATOR" content="TtH 2.89">
+
+<table width="100%"  CELLSPACING="1" CELLPADDING="1" >
+<tr>
+<td align="left"><a href="use_3.html">Предыдущий</a></td>
+<td align="center"><a href="index.html">Содержание</a></td>
+<td align="right"><a href="use_5.html">Следующий</a></td>
+</table>
+<hr />
+<p>
+ <h2><a name="tth_sEc5.4">
+5.4</a>&nbsp;&nbsp;Управление процессами</h2><a name="process">
+</a>
+
+<p>
+Любая выполняемая программа называется процессом. Всё от X Winow системы, до
+системных программ (демонов), которые запускаются при включении компьютера,
+является процессом. Каждый процесс запускается от имени какого-то пользователя.
+Процессы, которые стартовали при загрузке обычно выполняются от имени root
+пользователя, или от имени пользователя nobody. Процессы запущенные вами, обычно
+выполняются от вашего имени. Процессы, начатые другими пользователями, работают
+под их именем.
+
+<p>
+Вы можете управлять теми процессами, которые вы запустили. Вдобавок к этому,
+root может управлять всеми процессами в системе, даже теми, которые выполняются
+другими пользователями. Процессами можно управлять и наблюдать за ними при
+помощи специальных программ, а так же при помощи некоторых команд оболочки.
+
+<p>
+     <h3><a name="tth_sEc5.4.1">
+5.4.1</a>&nbsp;&nbsp;Перевод в фоновый режим</h3>
+
+<p>
+Программы, запущенные из командной строки обычно выполняются на переднем плане
+(foreground). Это позволяет вам видеть весь вывод программы и взаимодействовать
+с ней. Но бывают такие случаи, когда вам не хочется, чтобы программа занимала
+ваш терминал. Это называется выполнением программы в фоновом режиме
+(foreground), и существует несколько способов перевода программ в фоновый режим.
+
+<p>
+Первый способ перевода программы в фоновый режим, это добавление символа &amp; в
+конце строки, запускающей программу. Предположим, вы хотите воспользоваться
+mp3 проигрывателем <b>amp</b> для проигрывания файлов из каталога, заполненного
+mp3 файлами, но вам не хочется занимать для этого терминал, так как вам надо
+делать что-то ещё в то же самое время. Следующая команда запустит <b>amp</b> в
+фоновом режиме:
+
+<p>
+
+<table>
+<tr><td><tt>$ </tt><b>amp *.mp3 &amp;</b>
+</td></tr></table>
+
+
+<p>
+Программа будет выполняться, как и должна, а вы вернётесь в приглашение
+командной строки.
+
+<p>
+Другой способ перевода программы в фоновый режим, позволяет проделать это уже во
+время выполнения программы. Вначале запустите программу. Нажмите control+z. Это
+приостановит процесс. Что-то вроде паузы. Программа моментально прекратит
+выполняться, но может в любой момент быть продолжена. Как только вы
+приостановили процесс, вы возвращаетесь к приглашению командной строки. Для
+перевода процесса в фоновый режим, наберите:
+
+<p>
+
+<table>
+<tr><td><tt>$ </tt><b>bg</b>
+</td></tr></table>
+
+
+<p>
+И таким образом, приостановленный процесс перейдёт в фоновый режим.
+
+<p>
+     <h3><a name="tth_sEc5.4.2">
+5.4.2</a>&nbsp;&nbsp;Вывод из фонового режима</h3>
+
+<p>
+Если вам понадобилось взаимодействовать с фоновым процессом, вы можете вернуть
+его на передний план. Если у вас только один фоновый процесс, вы можете
+вернуть его, напечатав:
+
+<p>
+
+<table>
+<tr><td><tt>$ </tt><b>fg</b>
+</td></tr></table>
+
+
+<p>
+Программа опять займёт ваш терминал и вы лишитесь приглашения командной строки.
+Иногда, случается, что программа, выполняемая в фоновом режиме завершает свою
+работу. В этом случае вы получите сообщение такого вида:
+
+<p>
+
+<table>
+<tr><td>[1]+&nbsp;&nbsp;Done&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/bin/ls $LS_OPTIONS
+</td></tr></table>
+
+
+<p>
+Это говорит вам что фоновый процесс (в данном случае ls&nbsp;- не очень интересно),
+завершился.
+
+<p>
+Возможно так же одновременно выполнять несколько процессов в фоновом режиме.
+Если это так, вам надо знать, какой из процессов вы хотите вернуть на передний
+план. Простое выполнение <b>fg</b> вернёт процесс, который последним был
+переведён в фоновый режим. А что если у вас целый список процессов в фоновом
+режиме? К счастью, bash имеет команду для перечисления всех процессов. Она
+называется <b>jobs</b> и её вывод выглядит примерно так:
+
+<p>
+
+<table>
+<tr><td><tt>$ </tt><b>jpbs</b></td></tr>
+<tr><td>[1]   Stopped                 vim</td></tr>
+<tr><td>[2]-  Stopped                 amp</td></tr>
+<tr><td>[3]+  Stopped                 man ps</td></tr></table>
+
+
+<p>
+Это выдаст вам список всех фоновых процессов. Как видите, все они
+остановлены. А ещё точнее, приостановлены. Номера это что-то вроде ID для всех
+фоновых процессов. Если возле номера отображается знак плюс (man ps), это
+означает, что этот процесс будет выведен из фонового режима по команде <b>fg</b>
+без указания аргументов.
+
+<p>
+Если же вы захотите перевести на передний план <b>vim</b>, вам придётся
+напечатать:
+
+<p>
+
+<table>
+<tr><td><tt>$ </tt><b>fg 1</b>
+</td></tr></table>
+
+
+<p>
+и <b>vim</b> выпрыгнет обратно на ваш экран. Переведение процессов в фоновый
+режим может быть очень полезно, если у вас есть всего один терминал, открытый
+через dialup соединение. Вы можете одновременно выполнять несколько программ
+и переключаться между ними в любой последовательности.
+
+<p>
+     <h3><a name="tth_sEc5.4.3">
+5.4.3</a>&nbsp;&nbsp;<b>ps</b></h3>
+Итак, вы знаете, как переключаться между запущенными вами из командной строки
+фоновыми процессами. Так же вы знаете, что есть ещё много других процессов,
+которые всё время выполняются. Как же посмотреть их список? Вам надо
+воспользоваться <b>ps</b>(1) командой. У неё есть множество различных опций,
+здесь будут описаны лишь самые основные. Для подробной информации смотрите
+man страницу для <b>ps</b>. Man страницы описаны в разделе&nbsp;<a href="introduction.html#man">2.2.1</a>.
+
+<p>
+Простой набор <b>ps</b> выдаст список программ, выполняемых на
+терминале. Довольно часто этот список будет невелик:
+
+<p>
+
+<table>
+<tr><td><tt>$ </tt><b>ps</b>
+</td></tr></table>
+
+
+<table>
+<tr><td>PID </td><td>TTY </td><td>TIME </td><td>CMD</td></tr>
+<tr><td>7923&nbsp;&nbsp;&nbsp;&nbsp; </td><td>ttyp0&nbsp;&nbsp;&nbsp;&nbsp; </td><td>00:00:00&nbsp;&nbsp;&nbsp;&nbsp; </td><td>bash</td></tr>
+<tr><td>8059 </td><td>ttyp0 </td><td>00:00:00 </td><td>ps</td></tr></table>
+
+
+<p>
+Не смотря на то, что процессов немного, информация довольно типичная. Сколько
+бы у вас не было процессов, при простом использовании <b>ps</b> столбцы будут
+теми же. Что же означает вся эта информация?
+
+<p>
+Итак, по порядку: PID это идентификационный номер (ID) процесса. Каждый
+выполняющийся процесс получает уникальный идентификатор. В 2.2.х ядрах ID
+процессов может быть любым числом от 1 и до 32767. Каждому процессу
+присваивается следующий свободный PID. Когда процесс завершается, его номер
+освобождается. Когда достигнут максимальный PID, следующий свободный будет
+взят из наименьшего освобождённого. Скорее всего, это изменится в ядре 2.4, и
+будут представлены новые 32-х битовые PID.
+
+<p>
+TTY столбец показывает, на каком терминале процесс выполняется. Простое
+выполнение <b>ps</b> покажет процессы выполняемые на текущем терминале, так что
+для всех процессов будет выведена идентичная информация в TTY
+столбце. Как видно из примера, оба показанных процесса выполняются на
+терминале ttyp0. Это говорит нам о том, что эти процессы запущены либо удалённо,
+либо из какого-то X терминала.
+
+<p>
+Столбец TIME показывает, сколько процессорного времени выполняется
+процесс. Оно не является фактическим временем, с момента запуска процесса.
+Помните, что Linux это многозадачная операционная система. В любой момент
+времени есть несколько выполняемых процессов, и каждый из этих процессов
+получает небольшую порцию процессорного времени. Так вот, информация указанная в
+столбце TIME, показывает время, которое гораздо меньше фактического времени
+выполнения процесса. Если вы это время больше, чем несколько минут у
+одного из процессов, то скорее всего, что-то не так.
+
+<p>
+Ну и наконец, CMD столбец, показывает что же это за программа. Отображается
+только имя программы; опции командной строки и аналогичная информация не
+выводится. Для того чтобы увидеть эту информацию, вам необходимо
+воспользоваться одной из многих опций программы <b>ps</b>. Давайте обсудим
+некоторые из них вкратце.
+
+<p>
+Вы можете получить полный список выполняемых в вашей системе процессов,
+воспользовавшись правильным набором опций. Скорее вы захотите вывести
+расширенный список процессов. Давайте попробуем:
+
+<p>
+
+<table>
+<tr><td><tt>$ </tt><b>ps -ax</b>
+</td></tr></table>
+
+
+<table>
+<tr><td align="right">PID </td><td>TTY&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>STAT&nbsp;&nbsp;</td><td align="right">TIME </td><td>COMMAND</td></tr>
+<tr><td align="right">1 </td><td>? </td><td>S </td><td align="right">0:03 </td><td>init [3]</td></tr>
+<tr><td align="right">2 </td><td>? </td><td>SW </td><td align="right">0:13 </td><td>[kflushd]</td></tr>
+<tr><td align="right">3 </td><td>? </td><td>SW </td><td align="right">0:14 </td><td>[kupdate]</td></tr>
+<tr><td align="right">4 </td><td>? </td><td>SW </td><td align="right">0:00 </td><td>[kpiod]</td></tr>
+<tr><td align="right">5 </td><td>? </td><td>SW </td><td align="right">0:17 </td><td>[kswapd]</td></tr>
+<tr><td align="right">11 </td><td>? </td><td>S </td><td align="right">0:00 </td><td>/sbin/kerneld</td></tr>
+<tr><td align="right">30 </td><td>? </td><td>SW </td><td align="right">0:01 </td><td>[cardmgr]</td></tr>
+<tr><td align="right">50 </td><td>? </td><td>S </td><td align="right">0:00 </td><td>/sbin/rpc.portmap</td></tr>
+<tr><td align="right">54 </td><td>? </td><td>S </td><td align="right">0:00 </td><td>/usr/sbin/syslogd</td></tr>
+<tr><td align="right">57 </td><td>? </td><td>S </td><td align="right">0:00 </td><td>/usr/sbin/klogd -c 3</td></tr>
+<tr><td align="right">59 </td><td>? </td><td>S </td><td align="right">0:00 </td><td>/usr/sbin/inetd</td></tr>
+<tr><td align="right">61 </td><td>? </td><td>S </td><td align="right">0:04 </td><td>/usr/local/sbin/sshd</td></tr>
+<tr><td align="right">63 </td><td>? </td><td>S </td><td align="right">0:00 </td><td>/usr/sbin/rpc.mountd</td></tr>
+<tr><td align="right">65 </td><td>? </td><td>S </td><td align="right">0:00 </td><td>/usr/sbin/rpc.nfsd</td></tr>
+<tr><td align="right">67 </td><td>? </td><td>S </td><td align="right">0:00 </td><td>/usr/sbin/crond -l10</td></tr>
+<tr><td align="right">69 </td><td>? </td><td>S </td><td align="right">0:00 </td><td>/usr/sbin/atd -b 15 -l 1</td></tr>
+<tr><td align="right">77 </td><td>? </td><td>S </td><td align="right">0:00 </td><td>/usr/sbin/apmd</td></tr>
+<tr><td align="right">79 </td><td>? </td><td>S </td><td align="right">0:01 </td><td>gpm -m /dev/mouse -t ps2</td></tr>
+<tr><td align="right">94 </td><td>? </td><td>S </td><td align="right">0:00 </td><td>/usr/sbin/automount /auto file /etc/auto.misc</td></tr>
+<tr><td align="right">106 </td><td>tty1 </td><td>S </td><td align="right">0:08 </td><td>-bash</td></tr>
+<tr><td align="right">108 </td><td>tty3 </td><td>SW </td><td align="right">0:00 </td><td>[agetty]</td></tr>
+<tr><td align="right">109 </td><td>tty4 </td><td>SW </td><td align="right">0:00 </td><td>[agetty]</td></tr>
+<tr><td align="right">110 </td><td>tty5 </td><td>SW </td><td align="right">0:00 </td><td>[agetty]</td></tr>
+<tr><td align="right">111 </td><td>tty6 </td><td>SW </td><td align="right">0:00 </td><td>[agetty]</td></tr></table>
+
+
+<table>
+<tr><td>(output cut)</td></tr></table>
+
+
+<p>
+Большинство из этих процессов запускаются при старте почти любого компьютера,
+работающего под Linux. В своей системе я сделал несколько изменений, так что вы
+скорее всего увидите что-то другое. Но всё же большинство из перечисленных
+процессов вы увидите в вашей системе. Как вы видите, опции заданные программе
+в этом примере, заставляют её выводить не только имена программ, но и опций с
+которыми они были выполнены. А так же ещё несколько новых столбцов с интересной
+информацией.
+
+<p>
+Наверное вам сразу бросится в глаза, что большинство из процессов выполняются на
+tty ''?''. Это процессы, запущенные с более не активного терминала. И поэтому
+они больше не принадлежат определённому терминалу.
+
+<p>
+Так же вы видите новый столбец: STAT. Он показывает состояние (status) процесса.
+S используется для спящего (sleeping) процесса: процесс ожидает, пока что-то
+произойдёт. Z используется для зомбиованных процессов (zombied). Это такие
+процессы, родительский процесс которых умер, оставив дочерние процессы рабочими.
+Это не есть хорошо.
+
+<p>
+Если вы хотите увидеть ещё больше информации о выполняемых процессах, попробуйте
+такую команду:
+
+<p>
+
+<table>
+<tr><td><tt>$ </tt><b>ps -aux</b>
+USER&nbsp;&nbsp;&nbsp;&nbsp;PID&nbsp;&nbsp;%CPU&nbsp;&nbsp;%MEM&nbsp;&nbsp;&nbsp;&nbsp;VSZ&nbsp;&nbsp;&nbsp;RSS&nbsp;&nbsp;TTY&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;STAT&nbsp;&nbsp;START&nbsp;&nbsp;&nbsp;&nbsp;TIME&nbsp;&nbsp;COMMAND</td></tr>
+<tr><td>root&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;0.0&nbsp;&nbsp;344&nbsp;&nbsp;80&nbsp;&nbsp;?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;S&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mar02&nbsp;&nbsp;0:03&nbsp;&nbsp;init [3]</td></tr>
+<tr><td>root&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SW&nbsp;&nbsp;&nbsp;&nbsp;Mar02&nbsp;&nbsp;0:13&nbsp;&nbsp;[kflushd]</td></tr>
+<tr><td>root&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SW&nbsp;&nbsp;&nbsp;&nbsp;Mar02&nbsp;&nbsp;0:14&nbsp;&nbsp;[kupdate]</td></tr>
+<tr><td>root&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SW&nbsp;&nbsp;&nbsp;&nbsp;Mar02&nbsp;&nbsp;0:00&nbsp;&nbsp;[kpiod]</td></tr>
+<tr><td>root&nbsp;&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SW&nbsp;&nbsp;&nbsp;&nbsp;Mar02&nbsp;&nbsp;0:17&nbsp;&nbsp;[kswapd]</td></tr>
+<tr><td>root&nbsp;&nbsp;&nbsp;&nbsp;11&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;0.0&nbsp;&nbsp;1044&nbsp;&nbsp;44&nbsp;&nbsp;?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;S&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mar02&nbsp;&nbsp;0:00&nbsp;&nbsp;/sbin/kerneld</td></tr>
+<tr><td>root&nbsp;&nbsp;&nbsp;&nbsp;30&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;0.0&nbsp;&nbsp;1160&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SW&nbsp;&nbsp;&nbsp;&nbsp;Mar02&nbsp;&nbsp;0:01&nbsp;&nbsp;[cardmgr]</td></tr>
+<tr><td>bin&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;50&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;0.0&nbsp;&nbsp;1076&nbsp;&nbsp;120&nbsp;&nbsp;?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;S&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mar02&nbsp;&nbsp;0:00&nbsp;&nbsp;/sbin/rpc.port</td></tr>
+<tr><td>root&nbsp;&nbsp;&nbsp;&nbsp;54&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;0.1&nbsp;&nbsp;1360&nbsp;&nbsp;192&nbsp;&nbsp;?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;S&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mar02&nbsp;&nbsp;0:00&nbsp;&nbsp;/usr/sbin/sysl</td></tr>
+<tr><td>root&nbsp;&nbsp;&nbsp;&nbsp;57&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;0.1&nbsp;&nbsp;1276&nbsp;&nbsp;152&nbsp;&nbsp;?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;S&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mar02&nbsp;&nbsp;0:00&nbsp;&nbsp;/usr/sbin/klog</td></tr>
+<tr><td>root&nbsp;&nbsp;&nbsp;&nbsp;59&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;0.0&nbsp;&nbsp;1332&nbsp;&nbsp;&nbsp;60&nbsp;&nbsp;?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;S&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mar02&nbsp;&nbsp;0:00&nbsp;&nbsp;/usr/sbin/inet</td></tr>
+<tr><td>root&nbsp;&nbsp;&nbsp;&nbsp;61&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;0.2&nbsp;&nbsp;1540&nbsp;&nbsp;312&nbsp;&nbsp;?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;S&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mar02&nbsp;&nbsp;0:04&nbsp;&nbsp;/usr/local/sbi</td></tr>
+<tr><td>root&nbsp;&nbsp;&nbsp;&nbsp;63&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;0.0&nbsp;&nbsp;1796&nbsp;&nbsp;&nbsp;72&nbsp;&nbsp;?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;S&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mar02&nbsp;&nbsp;0:00&nbsp;&nbsp;/usr/sbin/rpc.</td></tr>
+<tr><td>root&nbsp;&nbsp;&nbsp;&nbsp;65&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;0.0&nbsp;&nbsp;1812&nbsp;&nbsp;&nbsp;68&nbsp;&nbsp;?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;S&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mar02&nbsp;&nbsp;0:00&nbsp;&nbsp;/usr/sbin/rpc.</td></tr>
+<tr><td>root&nbsp;&nbsp;&nbsp;&nbsp;67&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;0.2&nbsp;&nbsp;1172&nbsp;&nbsp;260&nbsp;&nbsp;?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;S&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mar02&nbsp;&nbsp;0:00&nbsp;&nbsp;/usr/sbin/cron</td></tr>
+<tr><td>root&nbsp;&nbsp;&nbsp;&nbsp;77&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;0.2&nbsp;&nbsp;1048&nbsp;&nbsp;316&nbsp;&nbsp;?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;S&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mar02&nbsp;&nbsp;0:00&nbsp;&nbsp;/usr/sbin/apmd</td></tr>
+<tr><td>root&nbsp;&nbsp;&nbsp;&nbsp;79&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;0.1&nbsp;&nbsp;1100&nbsp;&nbsp;152&nbsp;&nbsp;?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;S&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mar02&nbsp;&nbsp;0:01&nbsp;&nbsp;gpm</td></tr>
+<tr><td>root&nbsp;&nbsp;&nbsp;&nbsp;94&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;0.2&nbsp;&nbsp;1396&nbsp;&nbsp;280&nbsp;&nbsp;?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;S&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mar02&nbsp;&nbsp;0:00&nbsp;&nbsp;/usr/sbin/auto</td></tr>
+<tr><td>chris&nbsp;&nbsp;&nbsp;106&nbsp;&nbsp;0.0&nbsp;&nbsp;0.5&nbsp;&nbsp;1820&nbsp;&nbsp;680&nbsp;&nbsp;tty1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;S&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mar02&nbsp;&nbsp;0:08&nbsp;&nbsp;-bash</td></tr>
+<tr><td>root&nbsp;&nbsp;&nbsp;&nbsp;108&nbsp;&nbsp;0.0&nbsp;&nbsp;0.0&nbsp;&nbsp;1048&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;tty3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SW&nbsp;&nbsp;&nbsp;&nbsp;Mar02&nbsp;&nbsp;0:00&nbsp;&nbsp;[agetty]</td></tr>
+<tr><td>root&nbsp;&nbsp;&nbsp;&nbsp;109&nbsp;&nbsp;0.0&nbsp;&nbsp;0.0&nbsp;&nbsp;1048&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;tty4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SW&nbsp;&nbsp;&nbsp;&nbsp;Mar02&nbsp;&nbsp;0:00&nbsp;&nbsp;[agetty]</td></tr>
+<tr><td>root&nbsp;&nbsp;&nbsp;&nbsp;110&nbsp;&nbsp;0.0&nbsp;&nbsp;0.0&nbsp;&nbsp;1048&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;tty5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SW&nbsp;&nbsp;&nbsp;&nbsp;Mar02&nbsp;&nbsp;0:00&nbsp;&nbsp;[agetty]</td></tr>
+<tr><td>root&nbsp;&nbsp;&nbsp;&nbsp;111&nbsp;&nbsp;0.0&nbsp;&nbsp;0.0&nbsp;&nbsp;1048&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;tty6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SW&nbsp;&nbsp;&nbsp;&nbsp;Mar02&nbsp;&nbsp;0:00&nbsp;&nbsp;[agetty]</td></tr>
+<tr><td>(output cut)</td></tr></table>
+
+
+<p>
+Это достаточно полный набор информации. Здесь вы видите новые столбцы, которые
+описывают: какой пользователь запустил процесс, сколько системных ресурсов
+использует процесс (%CPU, %MEM, VSZ и RSS столбцы), и дату, когда процесс был
+запущен. Очевидно, здесь предоставлено достаточно информации о процессах,
+которая может быть полезна для системного администратора. Так же мы встретились
+с ещё одной проблемой: информация не помещается на экране. Опция ''-w'' исправит
+это.
+
+<p>
+Вывод команды не очень красив, но весьма полезен работает. И всё же мы ещё
+не увидели всей доступной информации по выполняемым процессам. Есть ещё много
+разнообразной информации, которую вы можете получить о каждом из процессов.
+Загляните в man страницу для программы <b>ps</b>. Тем не менее, опции
+описанные в этом разделе являются наиболее часто применяемыми. И наверное вы
+будете пользоваться в основном ими.
+
+<p>
+     <h3><a name="tth_sEc5.4.4">
+5.4.4</a>&nbsp;&nbsp;<b>kill</b></h3>
+
+<p>
+Иногда что-то не так происходит с программами и возникает необходимость
+восстановить порядок в системе. Программа, предоставляющая
+такой вид услуг, называется <b>kill</b>(1). Она может быть использована для
+манипулирования процессами несколькими разными способами. Наиболее часто
+программа применяется, чтобы убивать процессы. У вас появится необходимость в
+этом, если программа вышла из под контроля и забирает много системных ресурсов,
+или если вам просто не нравится, что эта программа осталась в памяти.
+
+<p>
+Для того, чтобы убить процесс, вам надо знать либо его PID, либо имя. Чтобы
+получить PID воспользуйтесь программой <b>ps</b>, как это обсуждалось в
+предыдущем разделе. Например, чтобы убить процесс 4747, вы зададите такую
+команду:
+
+<p>
+
+<table>
+<tr><td><tt>$ </tt><b>kill 4747</b>
+</td></tr></table>
+
+
+<p>
+Для того, чтобы убить процесс, вам надо быть его хозяином. Это сделано в целях
+безопасности. Если бы вы могли убивать процессы других пользователей, открылась
+бы возможность произведения множества злонамеренных вещей в системе. Разумеется,
+root может убить любой процесс в системе.
+
+<p>
+Есть так же другая разновидность программы <b>kill</b>, которая называется <b>
+killall</b>(1). Функция программы соответствует её названию. Она убивает все
+из запущенных программ, с указанным именем. Если вы хотите убить все выполняемые
+<b>vim</b> процессы, вам следует воспользоваться такой командой:
+
+<p>
+
+<table>
+<tr><td><tt>$ </tt><b>killall vim</b>
+</td></tr></table>
+
+
+<p>
+Все <b>vim</b> процессы, выполняемые вами будут убиты. Если вы выполните команду,
+как root, то она убьёт вообще все <b>vim</b> процессы, выполняемые любым из
+пользователей. Это предоставляет интересный способ выбрасывания всех (включая и
+вас) из системы:
+
+<p>
+
+<table>
+<tr><td><tt>#</tt><b>killall bash</b>
+</td></tr></table>
+
+
+<p>
+Иногда обычное выполнение <b>kill</b> не справляется с поставленной задачей.
+Некоторые процессы не могут быть убиты обычной командой <b>kill</b>. Вам
+понадобиться воспользоваться более мощной версией. Если этот нудный процесс с
+PID4747 не умер после выполнения <b>kill</b>, вы можете попробовать следующее:
+
+<p>
+
+<table>
+<tr><td><tt>$ </tt><b>kill -9 4747</b>
+</td></tr></table>
+
+
+<p>
+Практически наверняка, это заставит процесс 4747 умереть. Вы можете
+воспользоваться этим же ключом с <b>killall</b> программой. Этот ключ позволяет
+посылать различные сигналы программам. Обычный <b>kill</b> посылает процессу
+сигнал SIGTERM (terminate&nbsp;-  завершиться). <b>kill -9</b> посылает SIGKILL
+(kill&nbsp;- убить). В вашем распоряжении целый набор различных сигналов. Вы
+можете запросить список, выполнив:
+
+<p>
+
+<table>
+<tr><td><tt>$ </tt><b>kill -l</b></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;1)&nbsp;SIGHUP&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2)&nbsp;SIGINT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3)&nbsp;SIGQUIT&nbsp;&nbsp;&nbsp;&nbsp;4)&nbsp;SIGILL </td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;5)&nbsp;SIGTRAP&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6)&nbsp;SIGABRT&nbsp;&nbsp;&nbsp;&nbsp;7)&nbsp;SIGBUS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8)&nbsp;SIGFPE </td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;9)&nbsp;SIGKILL&nbsp;&nbsp;&nbsp;&nbsp;10)&nbsp;SIGUSR1&nbsp;&nbsp;&nbsp;11)&nbsp;SIGSEGV&nbsp;&nbsp;&nbsp;12)&nbsp;SIGUSR2 </td></tr>
+<tr><td>&nbsp;&nbsp;13)&nbsp;SIGPIPE&nbsp;&nbsp;&nbsp;&nbsp;14)&nbsp;SIGALRM&nbsp;&nbsp;&nbsp;15)&nbsp;SIGTERM&nbsp;&nbsp;&nbsp;17)&nbsp;SIGCHLD </td></tr>
+<tr><td>&nbsp;&nbsp;18)&nbsp;SIGCONT&nbsp;&nbsp;&nbsp;&nbsp;19)&nbsp;SIGSTOP&nbsp;&nbsp;&nbsp;20)&nbsp;SIGTSTP&nbsp;&nbsp;&nbsp;21)&nbsp;SIGTTIN </td></tr>
+<tr><td>&nbsp;&nbsp;22)&nbsp;SIGTTOU&nbsp;&nbsp;&nbsp;&nbsp;23)&nbsp;SIGURG&nbsp;&nbsp;&nbsp;&nbsp;24)&nbsp;SIGXCPU&nbsp;&nbsp;&nbsp;25)&nbsp;SIGXFSZ </td></tr>
+<tr><td>&nbsp;&nbsp;26)&nbsp;SIGVTALRM&nbsp;&nbsp;27)&nbsp;SIGPROF&nbsp;&nbsp;&nbsp;28)&nbsp;SIGWINCH&nbsp;&nbsp;29)&nbsp;SIGIO </td></tr>
+<tr><td>&nbsp;&nbsp;30)&nbsp;SIGPWR</td></tr></table>
+
+
+<p>
+Номера используются для <b>kill</b>, а имя без предшествующего
+''SIG'' используется для <b>killall</b>. Вот ещё пример:
+
+<p>
+
+<table>
+<tr><td><tt>$ </tt><b>killall -KILL vim</b>
+</td></tr></table>
+
+
+<p>
+Ещё один вариант использования <b>kill</b> это перезапуск процесса. Послав
+SIGHUP сигнал мы заставим процесс перечитать свои конфигурационные процессы. Это
+очень полезно, если вы изменили содержание настроечных файлов для какой-то
+программы.
+
+<p>
+     <h3><a name="tth_sEc5.4.5">
+5.4.5</a>&nbsp;&nbsp;<b>top</b></h3>
+
+<p>
+Есть так же и программа, которую вы можете использовать для вывода динамической
+информации о процессах, выполняемых в системе. Программа называется <b>top</b>(1):
+
+<p>
+
+<table>
+<tr><td><tt>$ </tt><b>top</b>
+</td></tr></table>
+
+
+<p>
+Эта команда выдаст полный экран информации о выполняемых процессах, а так же
+некоторую общую информацию о системе. Такую, как средняя загрузка, количество
+выполняемых процессов, состояние процессора, информацию о свободной  памяти и
+для каждого из процессов&nbsp;- PID, пользователь, приоритет, использование CPU и
+памяти, время выполнения и имя программы.
+
+<p>
+<br /><table align="left" border="1"><tr><td width="0" align="center">
+<a href="../gifs/top.gif">Figure</a></td></tr></table><!--hbox-->
+
+<p>
+Называется она <b>top</b> потому, что программы, наиболее
+требовательные к процессору будут отражены в верху списка. <b>top</b> является
+довольно удобным инструментом для определения того, какая из программ
+вышла из под контроля и должна быть убита,
+
+<p>
+     <h3><a name="tth_sEc5.4.6">
+5.4.6</a>&nbsp;&nbsp;Итог</h3>
+
+<p>
+В этом разделе обсуждалось, что такое процессы и как вы можете ими управлять.
+Это включает выполнение в фоновом режиме, вывод из фонового режима, а так же
+использование <b>ps</b>, <b>top</b>, и <b>kill</b> для контроля за процессами. Вы
+должны уметь определить, какие процессы выполняются в вашей системе и знать, как
+вы можете от них избавиться, если они вышли из под контроля.
+
+<hr />
+<table width="100%"  CELLSPACING="1" CELLPADDING="1" >
+<tr>
+<td align="left"><a href="use_3.html">Предыдущий</a></td>
+<td align="center"><a href="index.html">Содержание</a></td>
+<td align="right"><a href="use_5.html">Следующий</a></td>
+</table>
+<hr /><small>File translated from
+T<sub><font size="-1">E</font></sub>X
+by <a href="http://hutchinson.belmont.ma.us/tth/">
+T<sub><font size="-1">T</font></sub>H</a>,
+version 2.89.<br />On 24 Apr 2001, 16:43.</small>
+</html>

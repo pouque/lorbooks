@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=KOI8-R">
+  <title>Ncurses</title>
+  <meta name="GENERATOR"
+ content="Modular DocBook HTML Stylesheet Version 1.73">
+  <link rel="HOME" title="Linux From Scratch" href="../index.html">
+  <link rel="UP" title="Package descriptions and dependencies"
+ href="appendixa.html">
+  <link rel="PREVIOUS" title="Modutils"
+ href="modutils.html">
+  <link rel="NEXT" title="Netkit-base"
+ href="netkit-base.html">
+</head>
+<body class="sect1" bgcolor="#ffffff" text="#000000" link="#0000ff"
+ vlink="#840084" alink="#006000">
+<div class="NAVHEADER">
+<table summary="Header navigation table" width="100%" border="0"
+ cellpadding="0" cellspacing="0">
+  <tbody>
+    <tr>
+      <th colspan="3" align="center">Linux From Scratch: Версия 4.0</th>
+    </tr>
+    <tr>
+      <td width="10%" align="left" valign="bottom"><a
+ href="modutils.html" accesskey="P">Назад</a></td>
+      <td width="80%" align="center" valign="bottom">Приложение A.
+Описания пакетов и зависимостей</td>
+      <td width="10%" align="right" valign="bottom"><a
+ href="netkit-base.html" accesskey="N">Вперед</a></td>
+    </tr>
+  </tbody>
+</table>
+<hr align="left" width="100%"></div>
+<div class="sect1">
+<h1 class="sect1"><a name="aa-ncurses">Ncurses</a></h1>
+<div class="sect2">
+<h2 class="sect2"><a name="AEN7795">Официальная ссылка</a></h2>
+<p></p>
+<p class="literallayout">Ncurses (5.2): <br>
+<a href="ftp://ftp.gnu.org/gnu/ncurses/" target="_top">ftp://ftp.gnu.org/gnu/ncurses/</a><br>
+<br>
+Ncurses Patch (5.2):<br>
+<a href="ftp://ftp.linuxfromscratch.org/lfs-packages/4.0/" target="_top">ftp://ftp.linuxfromscratch.org/lfs-packages/4.0/</a><br>
+<a href="http://ftp.linuxfromscratch.org/lfs-packages/4.0/"
+ target="_top">http://ftp.linuxfromscratch.org/lfs-packages/4.0/</a></p>
+<p></p>
+</div>
+<div class="sect2">
+<h2 class="sect2"><a name="AEN7802">Содержимое Ncurses</a></h2>
+<p>Последняя проверка: версия 5.2.</p>
+<div class="sect3">
+<h3 class="sect3"><a name="AEN7805">Программы</a></h3>
+<p>captoinfo (ссылка на tic), clear, infocmp, infotocap (ссылка на
+tic), reset (ссылка на tset), tack, tic, toe, tput и tset.</p>
+</div>
+<div class="sect3">
+<h3 class="sect3"><a name="AEN7808">Описания</a></h3>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN7810">captoinfo</a></h4>
+<p>captoinfo конвертирует описания termcap в описания terminfo.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN7813">clear</a></h4>
+<p>clear очищает экран, если это возможно. Тип терминала ищется в
+переменных окружения и базе terminfo, процедура очистки экрана зависит
+от найденного типа.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN7816">infocmp</a></h4>
+<p>infocmp используется для сравнения бинарной записи terminfo с
+другими записями, перезаписать описание terminfo, использовать поле
+terminfo use=, или вывести описание terminfo из бинарного файла (term) в
+различных форматах (противоположность тому. что делает tic).</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN7819">infotocap</a></h4>
+<p>infotocap конвертирует описания terminfo в описания termcap.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN7822">reset</a></h4>
+<p>reset устанавливает режимы cooked и echo, отключает режимы cbreak и
+raw, включает трансляцию символов новой строки и сбрасывает все
+неустановленные специальные символы на значения по умолчанию перед
+инициализацией терминала вроде tset.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN7825">tack</a></h4>
+<p>tack - проверяет действия terminfo.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN7828">tic</a></h4>
+<p>tic - компилятор описаний записей terminfo. Программа транслирует
+файл terminfo из исходного в бинарный формат для использоваия
+библиотекой ncurses. Файлы terminfo содержат информацию о возможностях
+терминала.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN7831">toe</a></h4>
+<p>toe перечисляет все доступные типы терминалов по основному имени
+вместе с описаниями.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN7834">tput</a></h4>
+<p>tput использует базу terminfo, чтобы сделать инфорамацию о терминале
+доступной командному интерпретатору, инициализировать или сбросить
+терминал, либо вернуть полное имя запрошенного типа терминала.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN7837">tset</a></h4>
+<p>tset инициализирует терминалы, что уже не используется широко.
+Необходимо для совместимости с 4.4BSD.</p>
+</div>
+</div>
+<div class="sect3">
+<h3 class="sect3"><a name="AEN7840">Библиотеки</a></h3>
+<p>libcurses.[a,so] (ссылка на libncurses.[a,so]), libform.[a,so],
+libform_g.a, libmenu.[a,so], libmenu_g.a, libncurses++.a,
+libncurses.[a,so], libncurses_g.a, libpanel.[a,so] и libpanel_g.a</p>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN7843">libcurses, libncurses++,
+libncurses, libncurses_g</a></h4>
+<p>Это - основные библиотеки пакета, использются для отображения текста
+на экране (зачастую нестандартным способом). Пример использования
+ncurses - процедура <span class="QUOTE">"make menuconfig"</span> сборки
+ядра.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN7847">libform, libform_g</a></h4>
+<p>libform используется для реализации форм в ncurses.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN7850">libmenu, libmenu_g</a></h4>
+<p>libmenu используется для реализации меню в ncurses.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN7853">libpanel, libpanel_g</a></h4>
+<p>libpanel используется для реализации панелей в ncurses.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h2 class="sect2"><a name="AEN7856">Зависимости Ncurses</a></h2>
+<p>Последняя проверка: версия 5.2.</p>
+<p class="literallayout">Bash: sh<br>
+Binutils: ar, as, ld, ranlib<br>
+Diffutils: cmp<br>
+Fileutils: chmod, cp, install, ln, mkdir, mv, rm<br>
+Gcc: c++, cc1, cc1plus, collect2, cpp0, gcc<br>
+Glibc: ldconfig<br>
+Grep: egrep, fgrep, grep<br>
+Make: make<br>
+Gawk: gawk<br>
+Sed: sed<br>
+Sh-utils: basename, date, echo, expr, hostname, uname<br>
+Textutils: cat, sort, tr, wc</p>
+</div>
+</div>
+<div class="NAVFOOTER">
+<hr align="left" width="100%">
+<table summary="Footer navigation table" width="100%" border="0"
+ cellpadding="0" cellspacing="0">
+  <tbody>
+    <tr>
+      <td width="33%" align="left" valign="top"><a
+ href="modutils.html" accesskey="P">Назад</a></td>
+      <td width="34%" align="center" valign="top"><a
+ href="../index.html" accesskey="H">Домой</a></td>
+      <td width="33%" align="right" valign="top"><a
+ href="netkit-base.html" accesskey="N">Вперед</a></td>
+    </tr>
+    <tr>
+      <td width="33%" align="left" valign="top">Modutils</td>
+      <td width="34%" align="center" valign="top"><a
+ href="appendixa.html" accesskey="U">Наверх</a></td>
+      <td width="33%" align="right" valign="top">Netkit-base</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</body>
+</html>

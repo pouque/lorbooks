@@ -1,0 +1,619 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+<meta http-equiv="Content-Language" content="ru">
+<meta http-equiv="Content-Type" content="text/html; charset=koi8-r">
+   <title>Мини-HOWTO: Настройка интернациональных
+   клавиатур в Linux (Unix).</title>
+</head>
+<body link="#0000FF" vlink="#800080">
+<h1 align="center">Экспериментальное Мини-HOWTO:&nbsp;<br>
+Настройка интернациональных клавиатур в Linux (Unix).</h1>
+<h2>Автор: Juraj Sipos (<a href="mailto:xvudpapc@savba.sk">xvudpapc@savba.sk</a>)<br>
+Перевод: <a href="mailto:sam@asp-linux.com"> Станислав Рогин</a>,
+<a href="http://www.asp-linux.com">SWSoft Pte Ltd.</a></h2>
+<p>Версия 1.0 от 22.04.2000</p>
+<hr>
+<p>Настройки xmodmap и kimap будут работать при
+настройке любой интернациональной
+клавиатуры в (Debian, RedHat, Mandrake, Corel Linux) Linux, FreeBSD, OpenBSD, NetBSD
+и практически каждом Unix, использующем Xfree86 и
+KDE. Плюс этого пакета в том, что он не зависит
+от конкретной архитектуры, на которой он
+запускается - он будет работать на SPARK,
+MIPS и всех других системах. Я не хочу сказать,
+что все пакеты не зависят от систем, на
+которых они запускаются - но я очень не
+люблю вписывать различный &quot;необходимый&quot;
+мусор в файлы <code> bash_profile</code>, <code>XF86Config</code>
+или им подобные.&nbsp;
+<hr>
+<h2>Введение
+</h2>
+<p>Представьте себе, что у вас установлен Linux
+или ОС BSD, и вы хотите написать деловое
+письмо человеку, у которого иностранное имя
+- с какой-нибудь черточкой или волнистой
+линией. В датском, например, используется
+знак
+&oslash; , а португальцы любят &ntilde;. Используя
+этот документ, вы можете настроить свою
+собственную интернациональную клавиатуру
+без установки дополнительных пакетов.
+Используя эту информацию у вас появится
+возможность
+использовать Немецкую, Испанскую,
+Итальянскую, Словацкую, Чешскую, Польскую,
+Словенскую, Хорватскую, Датскую, Голландскую,
+Французскую, Финскую, Норвежскую, Эстонскую,
+Латвийскую, Шведскую и прочие клавиатуры,
+без установки дополнительных национальных
+пакетов и вписывания всякой чепухи в файлы <code>bash_profile</code>
+и <code>XF86Config</code>. Вы также можете, если
+захотите, взглянуть на мою домашнюю
+страничку, находящуюся по адресу <a href="http://www.home.sk/www/man/bsd1.htm">http://www.home.sk/www/man/bsd1.htm</a>,
+и вы увидите там изображения различных
+национальных клавиатур. Если же необходим Греческий, Русский или Иврит, то
+вы можете следовать моим советам,
+добавив к этому изменения, необходимые для
+этих языков (такие как установка шрифтов и т.п.).<p>Наибольшая
+проблема, возникающая при использовании kikbd
+или интернациональной клавиатуры в KDE в X Windows
+является то, что все не так просто работает
+в Xfree86 (вам придется устанавливать
+национальные пакеты, вписывать всякую
+всячину в вышеупомянутые файлы).
+Пользователь же, в свою очередь, ожидает
+достаточно простой настройки
+интернациональных возможностей его
+клавиатуры. Простой путь, в моем понимании, -
+это запустить KDE, сменить настройки
+национальной клавиатуры и сразу начинать
+писать на том языке, который мы выбрали (это,
+конечно, сработает для немецкого и других
+западноевропейских языков, но не все так
+просто для Восточно-Европейской группы). В
+документации к KDE сказано, что этот способ
+может использоваться, но, увы, он не работает.
+После долгих хождений по ресурсам сети,
+посвященным KDE, я так и не нашел приемлемого
+решения этой проблемы (кроме тех, которые
+заставляли меня устанавливать
+национальные пакеты). Я знаю, что некоторые
+локальные настройки должны быть вписаны в
+файл <code> bash_profile</code> или скрипты входа в
+систему <code>csh</code>, но после того, как я
+попытался все-таки вписать эти настройки,
+то вообще не смог сменить (и установить)
+клавиатуру в FreeBSD, и все выглядело, как
+пробивание через чащу непроходимого леса,
+по сравнению с тем опытом в области
+локализации KDE и XWindows в XFree86, который у меня
+уже имелся.<p>Ниже приведены несколько
+советов по настройке раскладок
+национальных клавиатур. Их будет
+достаточно для настройки любой европейской
+раскладки. Это решение работает в
+Xfree86 в FreeBSD версии 3.1 (вариант .Xmodmap), Corel Linux, Debian
+Linux, RedHat и FreeBSD версий 3.3 и 4.0 (вариант KDE *.kimap).
+Я лично испытал его в этих системах.
+Заметьте: вариант с использованием .Xmodmap
+работает с другими менеджерами окон.
+Некоторые Unix-ы не используют настройки .Xmodmap
+при запуске
+KDE. Если вариант с .Xmodmap вам не подошел, то вам
+придется вносить изменения в файлы kimap KDE в
+каталоге .../kikbd.<p>Если вариант <code><a href="Intkeyb.html#.xmodmap"> .Xmodmap</a></code>
+вам не подошел, то скопируйте файл <code><a href="Intkeyb.html#skz.kimap">skz.kimap</a></code>
+(приведенный в конце этого документа) в файл
+<code>/usr/local/share/apps/kikbd</code>, который и является
+каталогом настроек клавиатуры KDE. Проблема,
+возникающая в KDE после установки новой
+клавиатуры состоит&nbsp; в том, что она не
+работает - в документации к KDE не очень четко
+описано, что же надо написать в локальных
+настройках в файле <code>bash_profile</code>. Я
+установил Словацкую клавиатуру в KDE, но не
+смог писать ни на Словацком, ни на Чешском;
+именно поэтому я внес некоторые изменения в
+файл <code> skz.kimap</code>, которые я опишу ниже.
+Этих изменений будет достаточно - никаких
+специальных команд в файлах <code> bash_profile</code>
+или <code>XF86Config</code>. НО ЕСЛИ ВЫ ЗАХОТИТЕ ЗАТЕМ
+ЕЩЕ РАЗ ИЗМЕНИТЬ КЛАВИАТУРУ, то В ПУНКТЕ К/НАСТРОЙКИ/КЛАВИШИ/КЛАВИАТУР
+в меню KDE установите флаг АВТОЗАПУСК. После
+этого все должно работать нормально.
+Разница между <code> skz.kimap</code> и <code>sky.kimap</code> (и,
+соответственно, <code>csz.kimap</code> и <code>csy.kimap</code>)
+состоит в том, что клавиши y,Y и z,Z поменяны
+местами, поэтому, при использовании <code>
+skz.kimap</code> или <code>csz.kimap</code> у вас будет z,Z
+вместо y,Y; при использовании же <code>sky.kimap</code>
+или <code>csy.kimap</code>, символы y,Y находятся там же,
+где и на стандартной английской клавиатуре IBM.<h2>Как
+все это сделать:
+</h2>
+<blockquote>
+  <p>а) Скопируйте файл <code>Compose</code> из каталога <code>/usr/X11R6/lib/X11/locale/iso8859-2</code>
+в каталог <code>/usr/X11R6/lib/X11/locale/iso8859-1</code>&nbsp;(да, iso8859-1,
+а не iso8859-2). Сделайте, если хотите, резервную
+копию исходного файла <code>Compose</code> (вы,
+конечно, можете взять любой файл <code> iso885***/Compose</code>
+  в каталог
+iso8859-1).<br>
+<br>б) Поместите приведенный здесь файл <code><a href="Intkeyb.html#.xmodmap"> .Xmodmap</a></code>
+  в ваш домашний каталог (Здесь приведен
+  вариант для словацкого языка -&nbsp; для
+  своего языка сделайте свой файл <code>.Xmodmap</code>)
+  (или ваш файл <code> *.kimap</code> в каталог <code> kikbd</code>,
+  если вариант с
+Xmodmap не работает)<br>
+<br>в) Установите шрифты ISO8859-2 (или любые
+  другие необходимые шрифты).<br>
+<br>г) Закомментируйте все строки со ссылкой
+  на клавишу "Scroll
+lock" в файле <code>XF86Config</code>, потому что наш <code> .Xmodmap</code>
+  будет использовать &quot;Scroll lock&quot; для
+  переключения клавиатур.<br>
+<br>д) Необходимым образом настройте опции
+fontpath в файле <code>XF86Config</code>, указав в них путь
+  на вновь установленные шрифты.
+</blockquote>
+<p>Решение с файлом .Xmodmap может быть
+использовано для всех X-клавиатур. Файл .Xmodmap
+имеет больший приоритет, чем настройки
+клавиатуры из каталога <code>/usr/X11R6/lib/X11/xkb/symbols/</code>,
+где находятся настройки многих
+национальных клавиатур. Решение с
+приведенным здесь <code> .Xmodmap</code> позволит вам
+использовать раскладку &quot;Расширенная
+Словацкая клавиатура&quot;.<p>Во-первых, я
+должен сказать, что в моем файле <code>.Xmodmap</code>
+(и, соответственно, в <code>kimap</code>-файле)
+используются разные определения, по причине
+их расхождения в определениях ISO. Это
+означает, что определения ISO иногда дают то,
+что обозначают (aacute - [&aacute;], eacute - [&eacute;], и т.п.),
+а в других случаях дают совсем другое (например,
+опция "threequarters" в файле <code>.Xmodmap</code> даст вам
+не "3/4", а "z" с наклонной чертой, "mu" дает l с
+наклонной чертой, "oslash" дает r с такой же
+чертой и т.п. (Очевидно, что если вы
+установите специальный национальный пакет,
+то вы сможете использовать, например, "lcaron"
+вместо "mu"). В нашей же ситуации нельзя
+помещать "lcaron" в файл <code>
+.Xmodmap</code>, потому что вы не получите l с
+наклонной чертой - вам придется
+использовать для этого "mu", (или "guillemotright" для
+t с наклонной чертой). Я также пытался
+использовать шестнадцатеричные числа, и
+они прекрасно работают. Однако другие
+определения, такие как adieresis (a с двумя
+точками), uacute (u с наклонной чертой), включая
+и
+dead_diaeresis не требуют подмены и прекрасно
+работают так, как работали ранее (dead_key - это
+клавиша, которую вы нажимаете, держите и
+ничего не происходит, но при нажатии вместе
+с ней другой клавиши вы получаете
+специальный символ). Можно было бы наверное
+использовать исходный файл <code>Compose</code> из
+каталога <code> .../iso8859-1</code> для работы со
+Словацким или Чешским языком (или даже
+Польским, Венгерским, Словенским,
+Хорватским и т.п.), но есть одна проблема - не
+работает опция dead_caron. Именно поэтому мы
+копируем файл <code>Compose</code> из каталога <code> iso8859-2</code>
+в каталог <code> iso8859-1</code>, или вы можете
+поступить наоборот - отредактировать файл <code>Compose</code>
+в каталоге <code>iso8859-1</code>, изменив в нем все
+ссылки на "dead_caron" аналогично файлу <code>
+iso8859-2/Compose</code>.<p>Раздел &quot;Keyboard&quot; файла <code> XF86Config</code>
+можно оставить практически без изменений.
+Добавьте в эту секцию следующее (если там
+еще этого нет):
+<blockquote>
+<pre>Section &quot;Keyboard&quot;
+Protocol &quot;Standard&quot;
+XkbRules &quot;xfree86&quot;
+XkbModel &quot;pc101&quot;
+XkbLayout &quot;us&quot;</pre>
+</blockquote>
+<p>Некоторые версии менеджеров X Windows и/или
+настройки его окружения не используют
+настройки <code>.Xmodmap</code>, поэтому, если вы
+используете KDE и при этом <code>.Xmodmap</code> не работает, то
+используйте вместо него раскладку kikbd. (Пример
+раскладки kikbd для Словацкого языка приведен
+в конце этого документа). Словацкая/Чешская/Английская
+клавиатуры переключаются при
+использовании варианта <code>
+.Xmodmap</code> клавишей &quot;Scroll Lock&quot;. Вы можете
+использовать эти языки только в
+приложениях, имеющих доступ к шрифтам ISO-8859-2
+(и другим) (это может не работать в StarOffice и
+подобным ему приложениям, имеющим свои
+собственные встроенные шрифты). В StarOffice
+имеется свой собственный каталог со
+шрифтами - шрифты afm в каталоге ../xp3/fontmetrics/afm,
+и шрифты ps в каталогу ../xp3/pssoftfonts, поэтому вам
+надо добавить шрифты ISO8859-2 в эти каталоги
+тоже (не забыв указать StarOffice их
+использовать) и отредактировать файл fonts.dir,
+добавив в него символьные ссылки на шрифты.
+У меня в StarOffice прекрасно работают любые
+языки.<p>Важное замечание: Если вы хотите
+обмениваться документами между StarOffice или WordPerfect
+и MS Word, то вам надо добавить в него информацию
+о раскладке windows 1250 (win1250 очень схож с&nbsp; iso8859-2,
+но есть небольшие различия). Есть простой
+вариант - используйте конвертор iso8859-2 в win1250
+(который вы можете найти на моей домашней
+страничке по адресу <a href="http://www.home.sk/www/man/bsd1.htm">http://www.home.sk/www/man/bsd1.htm</a>).<p>Если
+вы хотите сами создавать раскладки
+клавиатуры при помощи <code>.Xmodmap</code>, то я
+объясню формат файла <code> .Xmodmap</code> на
+примере одной строки. Этот пример можно
+использовать для всей клавиатуры.<p>Например
+в строке:
+<blockquote>
+<pre>keycode 0x11 = 8 asterisk aacute 8</pre>
+</blockquote>
+<p>(примечание: код клавиши 0x11 взят при
+помощи утилиты <code> xkeycaps</code>)
+<br>написано, что первая пара, используемая
+по умолчанию (цифра "8" и слово "asterisk")
+приведет к тому, что при нажатии клавиши с
+кодом 0x11 (&quot;8&quot;) будет выводиться цифра
+&quot;8&quot;, а при нажатии ее вместе с &quot;Shift&quot;
+будет выводиться звездочка (англ. asterisk).
+После нажатия &quot;Scroll lock&quot; (имеющей другое
+определение - ISO_NEXT_GROUP) при нажатии клавиши "8"
+будет выводится не "8", а aacute ("&aacute;"), При
+нажатии же клавиши &quot;8&quot;, вместе с &quot;shift&quot;,
+будет выводиться "8". Если вы измените слова "aacute"
+и &quot;8&quot; на что-то другое, то выводиться
+будет то, что вы укажете, например:
+<blockquote>
+<pre>keycode 0x11 = 8 asterisk semicolon colon</pre>
+</blockquote>
+<p>даст вам точку с запятой (англ. semicolon) и
+двоеточие (англ. colon) при нажатии клавиши с
+кодом 0x11, после нажатия клавиши Scroll Lock. Если
+вы уберете вторую пару, то у вас останется
+только одна группа определений, и,
+независимо от Scroll Lock, будут выводиться
+&quot;8&quot; и звездочка. Будьте осторожны при
+редактировании файла <code> .Xmodmap</code>. Вы не
+должны удалять из него определения,
+касающиеся использования клавиши &quot;Scroll
+Lock&quot; до тех пор, пока вы точно не знаете,
+что делаете. Это будут строки вида:
+<blockquote>
+<pre>keycode 0x4e = ISO_Next_Group
+add mod5 = ISO_Next_Group</pre>
+</blockquote>
+<p>и т.п.. Также вы должны помнить, что системы
+Unix различают прописные и строчные буквы.<p>Если
+вы хотите подробнее узнать коды клавиш,
+установите пакет &quot;<code>xkeycaps</code>&quot;.
+<p>________________Резать_здесь__________________________________________________<pre><a name=".xmodmap"></a>! Это файл `xmodmap' для клавиатуры PC 101 key версия 2 (FreeBSD/XFree86; US)
+! созданный пакетом XKeyCaps и отредактированный Juraj Sipos 17 августа 1999.
+! XKeyCaps 2.38 is Copyright (c) 1997 Jamie Zawinski &lt;jwz@netscape.com&gt;
+! http://people.netscape.com/jwz/xkeycaps/ Это решение .Xmodmap
+! для Словацкой клавиатуры. У вас должны быть установлены шрифты ISO-8859-2
+! с указанием на них ссылки в /etc/XF86Config
+! ЗАМЕЧАНИЕ: &quot;!&quot; - это комментарий. Далее следовала кое-какая информация, но я ее удалил
+! так как это были не важные комментарии.
+! Если вы хотите знать, что же было удалено, запустите утилиту xkeycaps и создайте свой
+! собственный файл Xmodmap.
+! Клавиша &quot;0 Ins&quot; генерирует KP_Insert и KP_0
+! Клавиша &quot;. Del&quot; генерирует KP_Delete и KP_Decimal</pre>
+<pre>!#define XK_dead_semivoiced_sound 0xFE5F</pre>
+<pre>!dead_iota, dead_voiced_sound, dead_belowdot, dead_tilde, dead_macron</pre>
+<pre>keycode 0x09 = Escape
+keycode 0x43 = F1 F11 F1 Multi_key
+keycode 0x44 = F2 F12 F2 F12
+keycode 0x45 = F3 F13 F3 F13 idiaeresis
+keycode 0x46 = F4 F14 F4 F14 mu yen
+keycode 0x47 = F5 F15 F5 F15 guillemotright guillemotleft
+keycode 0x48 = F6 F16 F6 F16 ograve
+keycode 0x49 = F7 F17 F7 dead_abovedot oacute
+keycode 0x4A = F8 F18 F8 dead_breve acute
+keycode 0x4B = F9 F19 F9 dead_cedilla ugrave
+keycode 0x4C = F10 F20 F10 dead_ogonek
+keycode 0x5F = F11 F21 dead_acute dead_caron
+keycode 0x60 = F12 F22 dead_abovering dead_diaeresis
+!keycode 0x6F = Print Execute dead_doubleacute dead_circumflex
+keycode 0x6F = Print Execute dead_iota
+keycode 0x4E = ISO_Next_Group
+keycode 0x6E = Pause
+keycode 0x31 = grave asciitilde semicolon dead_diaeresis
+keycode 0x0A = 1 exclam plus 1
+keycode 0x0B = 2 at mu 2
+keycode 0x0C = 3 numbersign onesuperior 3
+keycode 0x0D = 4 dollar egrave 4
+keycode 0x0E = 5 percent 0x0bb 5
+keycode 0x0F = 6 asciicircum threequarters 6
+keycode 0x10 = 7 ampersand yacute 7
+keycode 0x11 = 8 asterisk aacute 8
+keycode 0x12 = 9 parenleft iacute 9
+keycode 0x13 = 0 parenright eacute 0
+keycode 0x14 = minus underscore equal percent
+keycode 0x15 = equal plus dead_acute dead_caron
+keycode 0x33 = backslash bar ograve parenright
+keycode 0x16 = BackSpace
+keycode 0x6A = Insert
+keycode 0x61 = Home
+keycode 0x63 = Prior
+keycode 0x4D = Num_Lock Pointer_EnableKeys
+keycode 0x70 = KP_Divide slash
+keycode 0x3F = KP_Multiply asterisk
+keycode 0x52 = KP_Subtract minus
+keycode 0x17 = Tab ISO_Left_Tab
+keycode 0x18 = q Q
+keycode 0x19 = w W
+keycode 0x1A = e E
+keycode 0x1B = r R
+keycode 0x1C = t T
+keycode 0x1D = y Y z Z
+keycode 0x1E = u U
+keycode 0x1F = i I
+keycode 0x20 = o O
+keycode 0x21 = p P
+keycode 0x22 = bracketleft braceleft acute slash
+keycode 0x23 = bracketright braceright diaeresis parenleft
+keycode 0x24 = Return
+keycode 0x6B = Delete
+keycode 0x67 = End
+keycode 0x69 = Next
+keycode 0x4F = KP_Home 7 KP_Home
+keycode 0x50 = KP_Up 8
+keycode 0x51 = KP_Prior 9
+keycode 0x56 = KP_Add plus
+keycode 0x42 = Caps_Lock
+keycode 0x26 = a A
+keycode 0x27 = s S
+keycode 0x28 = d D
+keycode 0x29 = f F
+keycode 0x2A = g G
+keycode 0x2B = h H
+keycode 0x2C = j J
+keycode 0x2D = k K
+keycode 0x2E = l L
+keycode 0x2F = semicolon colon ocircumflex quotedbl
+keycode 0x30 = apostrophe quotedbl section exclam
+keycode 0x53 = KP_Left 4
+keycode 0x54 = KP_Begin 5
+keycode 0x55 = KP_Right 6
+keycode 0x32 = Shift_L ISO_Next_Group
+keycode 0x34 = z Z y Y
+keycode 0x35 = x X
+keycode 0x36 = c C
+keycode 0x37 = v V
+keycode 0x38 = b B
+keycode 0x39 = n N
+keycode 0x3A = m M
+keycode 0x3B = comma less comma question
+keycode 0x3C = period greater period colon
+keycode 0x3D = slash question minus underscore
+keycode 0x3E = Shift_R
+keycode 0x62 = Up
+keycode 0x57 = KP_End 1
+keycode 0x58 = KP_Down 2
+keycode 0x59 = KP_Next 3
+keycode 0x6C = KP_Enter Return
+keycode 0x25 = Control_L ISO_Next_Group
+!keycode 0x40 = Alt_L Meta_L
+keycode 0x40 = Meta_L Alt_L
+keycode 0x41 = space
+keycode 0x71 = Alt_R Meta_R
+keycode 0x6D = Control_R
+keycode 0x64 = Left
+keycode 0x68 = Down
+keycode 0x66 = Right
+keycode 0x5A = KP_Insert 0
+keycode 0x5B = KP_Delete period</pre>
+<pre>!keysym Alt_L = Meta_L
+!keysym F12 = Multi_key</pre>
+<pre>clear Shift
+!clear Lock
+clear Control
+clear Mod1
+clear Mod2
+clear Mod3
+clear Mod4
+clear Mod5</pre>
+<pre>add Shift = Shift_L Shift_R
+add Control = Control_L Control_R
+!add Mod1 = Alt_L Alt_R
+add Mod1 = Meta_L Alt_R
+add Mod2 = Num_Lock
+add Mod5 = ISO_Next_Group
+!add Mod1 =
+!add Mod2 = Alt_R Alt_L Mode_switch</pre>
+<pre>keycode 0x73 = ISO_Next_Group
+keycode 0x74 = dead_acute dead_diaeresis
+keycode 0x75 = dead_caron dead_abovering</pre>
+<p>_____________Резать_здесь__________________________________________________________<pre><a name="skz.kimap"></a># Конфигурационный файл skz.kimap для KDE, измененный Juraj Sipos
+# назовите этот файл skz.kimap и скопируйте в каталог .../kikbd KDE</pre>
+<pre>[International Keyboard]
+Label=Skz
+Locale=sk</pre>
+<pre># Здесь были комментарии....</pre>
+<pre>[KeyboardMap]
+CapsSymbols=q,w,e,r,t,y,u,i,o,p,a,s,d,f,g,h,j,k,l,z,x,c,v,b,n,m
+keysym0=1,plus,1,exclam,,
+keysym1=2,mu,2,at,,
+keysym2=3,onesuperior,3,numbersign,,
+keysym3=4,egrave,4,dollar,,
+keysym4=5,0x0bb,5,percent,,
+keysym5=6,threequarters,6,asciicircum,,
+keysym6=7,yacute,7,ampersand,,
+keysym7=8,aacute,8,asterisk,,
+keysym8=9,iacute,9,parenleft,,
+keysym9=0,eacute,0,parenright,,
+keysym10=minus,equal,percent,minus,underscore,
+keysym11=grave,dead_diaeresis,dead_circumflex,grave,asciitilde,
+keysym12=equal,dead_acute,dead_caron,equal,plus,
+keysym13=bracketleft,uacute,slash,bracketleft,braceleft,
+keysym14=bracketright,adiaeresis,parenleft,bracketright,braceright,
+keysym15=semicolon,ocircumflex,quotedbl,semicolon,colon,
+keysym21=y,z,Z,,,
+keysym22=z,y,Y,,,
+# I changed some keysyms above (as &quot;mu&quot; instead of &quot;lcaron&quot;) and added the following lines
+keycode43=51,ograve,parenright,backslash,bar,
+keycode40=48,section,exclam,apostrophe,quotedbl,
+keycode51=59,comma,question,less,comma,
+keycode52=60,period,colon,period,greater,
+keycode53=61,minus,underscore,slash,question,
+
+____Резать_здесь___________________________________________________________________________</pre>
+<p>(Значения кодов клавиш получены при
+помощи утилиты <code>xkeycaps</code>)<p>Назначение
+приведенной ниже информации - помочь вам
+построить свой собственный файл раскладки
+клавиатуры .Xmodmap с использованием символов iso8859-2
+или других.&nbsp; Если вы собираетесь
+использовать другие языки (не Центрально-Европейские),
+то найдите соответствующую таблицу
+символов ISO*** в Интернет. Файл <code> gdkkeysyms.h</code>
+находится в каталоге <code>/usr/include/gdk/gdkkeysyms.h</code> (RedHat)
+- в нем находятся все специальные имена
+символов, использовавшиеся здесь (включая
+даже Греческие символы).
+<p>UNIX
+<p>Набор символов ISO-8859-2 (ISO Latin2)<p>восьмеричное_число
+шестнадцатиричное_число (вы можете
+использовать его и для других языков)<p>----------------------------------------------------------------------
+<br>Во-первых попытайтесь выяснить, дадут ли
+определения (после установки в X
+соответствующих шрифтов и раскладки
+клавиатуры) то, что они должны дать. Если вы
+не получите результата, который ожидали (некоторые
+коды клавиш не будут работать правильно), то
+вам придется использовать подмену.
+Определения, которые не соответствуют тому, что они
+означают, могут быть найдены визуально при
+использовании кодировки Western Latin 1. Например,
+зайдите на Словацкий сайт в Интернет и
+используйте, вместо кодовой страницы ISO8859-2,
+страницу Western ISO8859-1. Таким образом вы
+увидите там плохие шрифты с символами типа &frac34;
+и ему подобные. Там вы и поймете, что надо
+подставлять. Но если не знаете как&nbsp; "&frac34;"
+называется по терминологии ISO, то найдите и
+скачайте соответствующую таблицу символов
+для ISO-8859-1. Она должна быть где-то в сети.
+Символы, данные справа (например, mu
+[micro], означающий &micro;, даст вам l с наклонной
+чертой вместо &micro;) дадут вам то, что
+написано слева. ПРИМЕЧАНИЕ: символы гласных *acute
+не требуют подстановки, поэтому я пропустил
+iacute (&iacute;), aacute (&aacute;), и т.п..&nbsp;<pre>0243 0xa3 /Lslash &pound;&nbsp;&nbsp;&nbsp;&nbsp; (Объяснение: написание имени символа &pound; [в нашем случае это будет &quot;pound&quot;]
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; в файле Xmodmap или kimap даст вам Lslash. Но Lslash можно получить при 
+			помощи клавиши dead_caron - вы нажимаете dead_caron и L). Знак справа,
+			помещенный в файлы Xmodmap или kimap приведет к появлению символа,
+			написанного слева.
+0245 0xa5 /Lcaron &yen;&nbsp;&nbsp;&nbsp;&nbsp; Таким образом написав &quot;yen&quot; в файлах kimap или Xmodmap мы получим Lcaron
+0251 0xa9 /Scaron ╘&nbsp;&nbsp;&nbsp;&nbsp; copyright (даст нам Scaron)
+0253 0xab /Tcaron ╚&nbsp;&nbsp;&nbsp;&nbsp; guillemotleft (даст нам Tcaron)
+0256 0xae /Zcaron ╝&nbsp;&nbsp;&nbsp;&nbsp; registered
+0265 0xb5 /lcaron ╣&nbsp;&nbsp;&nbsp;&nbsp; mu
+0271 0xb9 /scaron &sup1;&nbsp;&nbsp;&nbsp;&nbsp; onesuperior
+0273 0xbb /tcaron ╩&nbsp;&nbsp;&nbsp;&nbsp; guillemotright
+0276 0xbe /zcaron &frac34;&nbsp;&nbsp;&nbsp;&nbsp; threequarters
+0306 0xc6 /Cacute &AElig;&nbsp;&nbsp;&nbsp;&nbsp; find out yourself
+0312 0xca /Eogonek &Ecirc;&nbsp;&nbsp;&nbsp; find out yourself
+0313 0xcb /Edieresis &Euml;&nbsp; Edieresis
+0314 0xcc /Ecaron &Igrave;&nbsp;&nbsp;&nbsp;&nbsp; find out yourself
+0317 0xcf /Dcaron &Iuml;&nbsp;&nbsp;&nbsp;&nbsp; find out yourself
+0321 0xd1 /Nacute &Ntilde;&nbsp;&nbsp;&nbsp;&nbsp; Ograve
+0322 0xd2 /Ncaron &Ograve;&nbsp;&nbsp;&nbsp;&nbsp; find out yourself
+0324 0xd4 /Ocircumflex &Ocirc; Ocircumflex
+0325 0xd5 /Ohungarumlaut &Otilde; find out yourself
+0330 0xd8 /Rcaron &Oslash;&nbsp;&nbsp;&nbsp;&nbsp; find out yourself
+0331 0xd9 /Uring &Ugrave;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; find out yourself
+0333 0xdb /Uhungarumlaut &Ucirc;
+0336 0xde /Tcedilla &THORN;
+0343 0xe3 /abreve &atilde;
+0345 0xe5 /lacute &aring;
+0346 0xe6 /cacute &aelig;
+0350 0xe8 /ccaron &egrave;&nbsp;&nbsp;&nbsp; egrave
+0352 0xea /eogonek &ecirc;
+0354 0xec /ecaron &igrave;
+0357 0xef /dcaron &iuml;
+0361 0xf1 /nacute &ntilde;&nbsp;&nbsp;&nbsp; ntilde
+0362 0xf2 /ncaron &ograve;
+0365 0xf5 /ohungarumlaut &otilde;
+0370 0xf8 /rcaron &oslash;
+0371 0xf9 /uring &ugrave;
+0373 0xfb /uhungarumlaut &ucirc;
+0376 0xfe /tcedilla &thorn;
+0377 0xff /dotaccent &yuml;</pre>
+<p>Вы можете поэкспериментировать, поискав
+таким образом соответствие определений и
+символов шрифта - это не должно быть очень
+сложно. Этот текст всего лишь указывает, как
+начать. Я не проводил дальнейших
+исследований в поисках соответствия
+определений и символов, потому что мне достаточно
+возможностей Словацких и
+Чешских клавиатур, а остальные мне не
+интересны. Посетите мою домашнюю страницу и
+создайте настройки для своей собственной
+клавиатуры.
+<br>&nbsp;
+<p>Наслаждайтесь, Juraj Sips
+<p><i>(Примечание переводчика: Методика, приведенная здесь
+автором интересна, но сыра, и ее
+использование достаточно сомнительно в
+случае Русских или подобных ему клавиатур.
+Я, в любом случае, бы советовал использовать
+дистрибутивы, поддерживающие ваш
+национальный язык, и применять при
+локализации только те механизмы, которые
+советует создатель дистрибутива.)</i>
+<hr>
+<h2>Авторские права</h2>
+<p>Авторские права на русский перевод этого
+текста принадлежат © 2000 SWSoft Pte Ltd. Все права
+зарезервированы.</p>
+<p>Этот документ является частью проекта Linux
+HOWTO.</p>
+<p>Авторские права на документы Linux HOWTO
+принадлежат их авторам, если явно не
+указано иное. Документы Linux HOWTO, а также их
+переводы, могут быть воспроизведены и
+распространены полностью или частично на
+любом носителе, физическом или электронном,
+при условии сохранения этой заметки об
+авторских правах на всех копиях.
+Коммерческое распространение разрешается
+и поощряется; но, так или иначе, автор текста
+и автор перевода желали бы знать о таких
+дистрибутивах.</p>
+<p>Все переводы и производные работы,
+выполненные по документам Linux HOWTO, должны
+сопровождаться этой заметкой об авторских
+правах. Это делается в целях предотвращения
+случаев наложения дополнительных
+ограничений на распространение документов
+HOWTO. Исключения могут составить случаи
+получения специального разрешения у
+координатора Linux HOWTO, с которым можно
+связаться по адресу приведенному ниже.</p>
+<p>Мы бы хотели распространить эту
+информацию по всем возможным каналам. Но
+при этом сохранить авторские права и быть
+уведомленными о всех планах
+распространения HOWTO. Если у вас возникли
+вопросы, пожалуйста, обратитесь к
+координатору проекта Linux HOWTO по электронной
+почте: <tt CLASS="EMAIL">&lt;<a HREF="mailto:linux-howto@metalab.unc.edu">linux-howto@metalab.unc.edu</a>&gt;</tt>
+или к координатору русского перевода Linux HOWTO
+компании SWSoft Pte Ltd. по адресу <tt CLASS="EMAIL">&lt;<a HREF="mailto:linux-howto@asplinux.ru">linux-howto@asplinux.ru</a>&gt;</tt></p>
+<p>&nbsp;
+</body>
+</html>

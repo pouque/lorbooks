@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>Installing Net-tools-1.60</title><meta name="GENERATOR" content="Microsoft FrontPage 4.0" /=""><link rel="HOME" title="Linux From Scratch" href="http://www.linuxfromscratch.org/view/4.0/index.html" /=""><link rel="UP" title="Installing basic system software" href="http://www.linuxfromscratch.org/view/4.0/chapter06/chapter06.html" /=""><link rel="PREVIOUS" title="Installing Gettext-0.11.5" href="http://www.linuxfromscratch.org/view/4.0/chapter06/gettext.html" /=""><link rel="NEXT" title="Installing Perl-5.8.0" href="http://www.linuxfromscratch.org/view/4.0/chapter06/perl.html" /=""></head><body class="sect1" bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#840084" alink="#006000"><div class="NAVHEADER"><table summary="Header navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><th colspan="3" align="Center">Linux From Scratch: Версия 4.0</th></tr><tr><td width="10%" align="Left" valign="Bottom"><a href="gettext.html" accesskey="P">Назад</a></td><td width="80%" align="Center" valign="Bottom">Глава 6. Установка основных компонентов
+        системы</td><td width="10%" align="Right" valign="Bottom"><a href="perl.html" accesskey="N">Вперед</a></td></tr></tbody></table><hr align="Left" width="100%" /=""></div><div class="sect1"><h1 class="sect1"><a name="ch06-nettools">Установка Net-tools-1.60</a></h1><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen">Приблизительное время компиляции:           0.16 SBU<br>Необходимое дисковое пространство:  5 MB</pre></td></tr></tbody></table><div class="sect2"><h2 class="sect2"><a name="AEN3811">Инсталляция Net-tools</a></h2><p>Для инсталляции Net-tools выполните:</p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>make &amp;&amp;<br>make update</b></tt></pre></td></tr></tbody></table><p>Если вы согласны со всеми ответами по
+    умолчанию, выполните следующие команды
+    взамен вышеприведеных:</p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>yes "" | make &amp;&amp;<br>make update</b></tt></pre></td></tr></tbody></table><p>Если вы затрудняетесь с ответами на
+    вопросы команды <tt class="userinput"><b>make</b></tt>, смело соглашайтесь с настройками по
+    умолчанию, они подходят для большинства
+    случаев. В основном это вопросы,
+    связанные с сетевыми протоколами,
+    которые поддерживает ядро.</p><p>Настройки по умолчанию активируют
+    наиболее распространенные сетевые
+    протоколы, такие как TCP, PPP и т.д. Однако
+    впоследствии вам необходимо добавить их
+    поддержку в ядре. На данном этапе, вы
+    указываете программам, какие протоколы
+    следует использовать, в то время как
+    задача ядра сделать их доступными для
+    системы.</p></div><div class="sect2"><h2 class="sect2"><a name="AEN3824">Пояснения команд</a></h2><p><tt class="userinput"><b>make update:</b></tt>  Выполняет ту же функцию, что и команда <b>
+<tt class="userinput">make install</tt></b>, за исключением того, что make update не
+    сохраняет резервные копии заменяемых
+    файлов. Например, net-tools заменяет
+    программу пакета sh-utils <tt class="filename">/bin/hostname</tt>  (версия этой программы из пакета net-tools
+    намного лучшее ее аналога из sh-utils).</p><p>Если вы захотите переустановить пакет
+    net-tools, команда <tt class="userinput"><b>make update</b></tt>  не сохранит резервные копии файлов
+    предыдущей инсталляции net-tools.</p></div><div class="sect2">
+<div class="sect2"><h2 class="sect2"><a name="AEN7892">Contents of Net-tools</a></h2><p>Последняя проверка: версия 1.60.</p><div class="sect3"><h3 class="sect3"><a name="AEN7895">Программы</a></h3><p>arp, dnsdomainname (ссылка на hostname), domainname (ссылка на
+hostname), hostname, ifconfig, nameif, netstat, nisdomainname (ссылка на
+hostname), plipconfig, rarp, route, slattach и ypdomainname (ссылка на
+hostname)</p></div><div class="sect3"><h3 class="sect3"><a name="AEN7898">Описания</a></h3><div class="sect4"><h4 class="sect4"><a name="AEN7900">arp</a></h4><p>arp используется для манипулирования ARP кэшом ядра, обычно для
+добавления/удаления записей, или вывода его содержимого.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7903">dnsdomainname</a></h4><p>dnsdomainname выводит DNS доменное имя системы.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7906">domainname</a></h4><p>domainname выводит или изменяет NIS/YP доменное имя системы.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7909">hostname</a></h4><p>hostname выводит или изменяет имя текущего хоста.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7912">ifconfig</a></h4><p>ifconfig - основная утилита, используемая для настройки сетевых
+интерфейсов.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7915">nameif</a></h4><p>nameif указывает сетевые интерфейсы, основанные на адресах MAC.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7918">netstat</a></h4><p>netstat - многоцелевой инструмент, используемый для отображения
+сетевых соединений, таблиц роутинга, статистики интерфейсов,
+маскированных соединений и множественных вызовах.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7921">nisdomainname</a></h4><p>nisdomainname выводит или изменяет NIS/YP доменное имя системы.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7924">plipconfig</a></h4><p>plipconfig - используется для тонкой настройки устройств PLIP
+device, возможно ускоряя ее.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7927">rarp</a></h4><p>Как и arp, rarp манипулирует таблицей RARP.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7930">route</a></h4><p>route - основная утилита для управления таблицами IP роутинга.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7933">slattach</a></h4><p>slattach активирует сетевой интерфейс на последовательной линии,
+т.е. переводит обычную терминальную линию в один из нескольких
+"сетевых" режимов.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7936">ypdomainname</a></h4><p>ypdomainname выводит или изменяет NIS/YP доменное имя системы.</p></div></div></div>
+<div class="sect2"><h2 class="sect2"><a name="AEN7939">Зависимости Net-tools</a></h2><p>Последняя проверка: версия 1.60.</p><p class="literallayout">Bash: bash, sh<br>
+Binutils: ar, as, ld<br>
+Fileutils: install, ln, ls, mv, rm<br>
+Gcc: cc, cc1, collect2, cpp0<br>
+Make: make<br>
+Sh-utils: echo</p></div>
+<hr align="Left" width="100%"><h2 class="sect2"></h2></div></div><div class="NAVFOOTER" style="width: 756px; height: 61px; "><table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="33%" align="Left" valign="Top"><a href="gettext.html" accesskey="P">Назад</a></td><td width="34%" align="Center" valign="Top"><a href="../index.html" accesskey="H">Домой</a></td><td width="33%" align="Right" valign="Top"><a href="perl.html" accesskey="N">Вперед</a></td></tr><tr><td width="33%" align="Left" valign="Top">Установка Gettext-0.11.5</td><td width="34%" align="Center" valign="Top"><a href="chapter06.html" accesskey="U">Наверх</a></td><td width="33%" align="Right" valign="Top">Установка Perl-5.8.0</td></tr></tbody></table></div></body></html>

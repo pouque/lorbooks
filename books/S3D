@@ -1,0 +1,80 @@
+<html>
+<title>
+S3 Trio3D FAQ
+</title>
+<body> 
+<b>From</b>: Tim Yunaev &lt;Tim.Yunaev@p1.f37.n462.z2.fidonet.org&gt;<br>
+<b>Subject</b>: всем страдальцам S3 Trio3D посвящается<br>
+<b>Newsgroups</b>: fido7.RU.LINUX<br>
+<p>
+<pre>
+Hello All.
+
+Данное FAQ составлено на моем печальном опыте и на материалах из сети Интернет.
+
+Итак, вы поимели несчастье приобрести S3 Trio3D. И теперь хотите полноценно
+использовать ее в X Windows. Разумеется, к этому моменту вы почитали XFree85
+FAQ, прочитали там предложение перейти на X 3.3.5, в которых она поддерживается,
+поставили себе данные иксы, запустили конфигурялку раз 20 и убедились что ничего
+не работает - у меня был либо просто темный экран с полным зависанием системы
+либо монитор уходил в sleep.
+
+Оказывается, существуют ДВЕ РАЗHЫХ S3 Trio3D. Первая - это S3 Trio3D, вторая -
+S3 Trio3D/2D. Узнать какая у вас карта можно, глянув в /proc/pci. vendor ID у
+обоих 5333 (S3), а deviceID у Trio3D 8904.
+
+Итак, у нас есть три варианта:
+
+1. Попробовать вернуть эту карточку назад и взять что-то другое, подороже и
+получше. Я видел много таких рекомендаций и готов присоединиться к оным. Hе знаю
+как 3D/2D, но Trio3D - дешевка (и Trio64V+ куда лучше).
+
+2. Если у вас X 3.3.4 и нет желания/возможности перейти на 3.3.5 - попробуйте
+запустить ее через framebuffer, для чего внимательно читается framebuffer-howto
+(ищется в инете) и доки из Documentation/fb. Hе рекомендуется из-за достаточно
+медленной работы данной карты в этом режиме.
+
+3. Если у вас S3 Trio3D, лезем в документ, который называется Information for
+S3 ViRGE, ViRGE/DX, ViRGE/GX, ViRGE/G 2, ViRGE/MX, ViRGE/VX, Trio3D, Trio3D/2X,
+Savage3 and Savage4 Users : XF86_SVGA server, в котором английским по белому
+написано, что:
+
+Trio3D support only works for some modelines. Many of the standard modelines do
+not work (often slightly modifying the dot clock works, though). The following
+two modelines seem to wokr  reliably at 8bpp and 24bpp:
+
+Modeline "1024x768"  75  1024 1048 1184 1328  768  771  777  806 -hsync -vsync
+Modeline "1280x1024" 13  128 1312 141 1664  1024 1027 1030 1064
+
+The following two modelines seem to work reliably at 16bpp:
+
+Modeline "640x480   45.8  6 0 672 768 864 480 488 494 530 -hsync -vsync
+Modeline "800x600"  36      8            102     600  601  603  625
+
+Материмся в адрес разработчиков, прописываем данные моды в XF86Config, выкинув
+все остальные. Запускаем - ура, работает!
+
+4. Если же у вас S3 Trio3D/2D, лезем в XF86 FAQ, где опять же написано:
+Q.F19- S3 Trio3D/2X (86C362, 86C368) doesn't work or is awfully slow
+
+as a quick workaround for XFree86 3.3.3.1 to 3.3.5 you can specify
+
+        ChipID  0x8a10
+        VideoRam 4096
+
+in the Device section, or compile your own server from XFree86 3.3.5 sources
+using the following patch.
+
+Желающие могут пересобрать X server, но обычно хватает добавки данной строки в
+конфиг.
+
+ВHИМАHИЕ. Добавление данного ChipID в конфиг обычной S3 Trio3D вызовет полное
+зависание компьютера. Советую предварительно убедиться что у вас действительно
+S3 Trio3D/2D.
+
+P.S. Все проблемы обещают быть пофиксеными в следующем релизе.
+
+Tim
+</pre>
+</body>
+</html>

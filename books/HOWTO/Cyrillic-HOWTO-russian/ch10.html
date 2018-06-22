@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=koi8-r"><title>Глава 10. Вывод на печать и PostScript</title><meta name="generator" content="DocBook XSL Stylesheets V1.59.1"><link rel="home" href="index.html" title="The Linux Cyrillic HOWTO (russian)"><link rel="up" href="index.html" title="The Linux Cyrillic HOWTO (russian)"><link rel="previous" href="ch09s08.html" title="cygwin"><link rel="next" href="ch10s02.html" title="Преобразование текста в TeX"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Глава 10. Вывод на печать и PostScript</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch09s08.html">Пред.</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch10s02.html">След.</a></td></tr></table><hr></div><div class="chapter" lang="ru"><div class="titlepage"><div><h2 class="title"><a name="print-postscript"></a>Глава 10. Вывод на печать и PostScript</h2></div></div><div class="toc"><p><b>Содержание</b></p><dl><dt><a href="ch10.html#id2912401">Преобразование текста в PostScript</a></dt><dd><dl><dt><a href="ch10.html#id2912483">A2ps конвертер</a></dt><dt><a href="ch10.html#id2891323">GNU enscript</a></dt><dt><a href="ch10.html#id2891504">rtxt2ps</a></dt></dl></dd><dt><a href="ch10s02.html">Преобразование текста в TeX</a></dt><dt><a href="ch10s03.html">Кириллица в PostScript</a></dt><dt><a href="ch10s04.html">Инкапсуляция шрифтов Type1 в Encapsulated PostScript
+(eps)</a></dt><dt><a href="ch10s05.html">Пакет psfrag (eps)</a></dt><dt><a href="ch10s06.html">Ghostscript</a></dt><dd><dl><dt><a href="ch10s06.html#id2892238">Настройка ghostscript</a></dt><dt><a href="ch10s06.html#id2892360">Добавление шрифтов кириллицы к Ghostscript</a></dt></dl></dd><dt><a href="ch10s07.html">Использование старого матричного принтера для печати
+кириллического текста</a></dt></dl></div><a class="indexterm" name="id2912267"></a><a class="indexterm" name="id2912279"></a><p>Напечатать что-либо &#8212; это всегда проблема.  Имеется
+набор различных принтеров от различных производителей с различными
+особенностями.  Даже для вывода на печать обычного ASCII текста нет
+никаких общих решений (это применимо не только к UNIX, но также и к
+другим операционным системам).</p><p>Принтеры имеют различные управляющие языки, и очень часто они
+имеют сильно различные подходы к поддержке иностранных языков.
+Хорошая новость &#8212; это то, что сейчас в качестве управляющего
+языка, как стандарт de facto для описания работы печати, используется
+язык <span class="emphasis"><em>PostScript</em></span>, разработанный <a href="http://www.adobe.com" target="_top">Adobe Corporation</a>.  Много принтеров
+имеют встроенный <span class="emphasis"><em>PostScript интерпретатор</em></span>, то
+есть вам надо просто послать на принтер Postscript данные.  Для тех, у
+кого этого нет, существует <span class="emphasis"><em>программные PostScript
+интерпретаторы</em></span>, которые берут данные PostScript и
+преобразовывают в специфический для данного принтера управляющий
+код. Один из них мы сейчас обсудим (вероятно, лучший из лучших). Это
+GNU GhostScript (gs для краткости).</p><p>Другая проблема &#8212; это широкий спектр требований,
+предъявляемых к печати.  Например, иногда вы хотите просто напечатать
+часть вашей программы на &quot;C&quot;, содержащей в качестве комментария текст
+на русском, так что вы не нуждаетесь в &quot;навороченной&quot;  процедуре
+печати &#8212; вам нужен простой ASCII вывод с одним шрифтом.  Совсем
+другое дело, когда вы создаёте открытку для вашей подруги.  В этом
+случае вы, вероятно, будете нуждаться в печати документа с различными
+шрифтами и т.д.  И это уже определённо требует больших усилий по
+установке поддержки кириллицы.</p><p>Чтобы выполнить вышеупомянутую задачу по выводу С программы,
+вы должны заставить ваш принтер понять только
+<span class="emphasis"><em>один</em></span> шрифт кириллицы и (возможно) установить
+некоторую программу-фильтр, чтобы выводить данные в соответствующем
+формате.  Чтобы совладать со второй задачей, вы должны обучить ваш
+принтер различным шрифтам и иметь специальное программное
+обеспечение.</p><p>Бывают задачи, требующие для выполнения нечто среднее, тогда
+вам нужна программа, которая знает как организовать и шрифты, и
+соответствующий вывод в принтер, так что вы можете, скажем, получить
+на выходе качественно отпечатанный текст без сложных систем подготовки
+текстов.</p><div class="sect1" lang="ru"><div class="titlepage"><div><h2 class="title" style="clear: both"><a name="id2912401"></a>Преобразование текста в PostScript</h2></div></div><a class="indexterm" name="id2912409"></a><a class="indexterm" name="id2912424"></a><p>Иногда у вас есть простой ASCII KOI8 текст, и вы хотите его
+только напечатать. Один из самых простых способов это сделать &#8212;
+это воспользоваться услугами программ, преобразующих текст в
+PostScript.</p><p>Есть ряд программ, делающих такое преобразование.  Я лично
+предпочитаю <a href="http://www-inf.enst.fr/~demaille/a2ps.html" target="_top">a2ps</a>.
+Первоначально разработанная как простой преобразователь
+text-to-PostScript, сейчас эта программа стала &quot;матёрым&quot;, легко
+настраиваемым программным продуктом с большим количеством опций и
+настроек. Она позволяет управлять форматами, размещением страниц,
+выделением и т.д.  Другая утилита, делающая примерно то же самое
+(теперь доступная как часть проекта <span class="emphasis"><em>GNU</em></span>) &#8212;
+<a href="ftp://prep.ai.mit.edu/pub/gnu" target="_top">enscript</a>.</p><div class="sect2" lang="ru"><div class="titlepage"><div><h3 class="title"><a name="id2912483"></a>A2ps конвертер</h3></div></div><a class="indexterm" name="id2912490"></a><a class="indexterm" name="id2912505"></a><a class="indexterm" name="id2912516"></a><p>Преобразователь текста в PostScript был и остаётся одним
+из наиболее универсальных средств печати.  Все, в чем вы теперь
+нуждаетесь &#8212; это PostScript принтер.</p><p>Команда, которую я использую для этого:</p><pre class="screen">
+a2ps -X koi8r --print-anyway  &lt;файл&gt;
+</pre><p>Комплект шрифтов <tt>i18n-fonts</tt> нужных для
+преобразования кириллических текстов в Postscript не входит в
+дистрибутив a2ps начиная с версии 4.12 <span class="emphasis"><em>ПО ПРИЧИНЕ НЕ
+ОТКРЫТОЙ ЛИЦЕНЗИИ</em></span>. Шрифты следует скачать с домашней
+странички <a href="http://www-inf.enst.fr/~demaille/a2ps.html" target="_top">a2ps</a> или
+забрать с ftp a2ps пакет
+<a href="ftp://ftp.enst.fr/pub/unix/a2ps/" target="_top">i18n-fonts-*.*.tar.gz
+</a>.</p><p>Для работы <tt>a2ps</tt> можно использовать
+шрифты <a href="ftp://ftp.ice.ru/pub/fonts/type1/" target="_top">sharatype-*.*.*.tar.gz</a>,
+где в комплекте идёт все необходимое для прикрутки оных шрифтов к
+<span class="emphasis"><em>a2ps</em></span>. Будет работать и в
+<span class="emphasis"><em>Latin-1</em></span> и в <span class="emphasis"><em>KOI8</em></span>. Должно
+также и в <span class="emphasis"><em>Latin-2</em></span>.</p><p>Следует учитывать, что программы имеет весьма развитый
+&quot;интеллект&quot;  и определяет своё поведение в зависимости от
+структуры файлы, поэтому лучше всего привести текст перед печатью в
+&quot;плоский&quot;  вид, то есть убрать все внутренние теги, которые могут
+смутить программу.</p></div><div class="sect2" lang="ru"><div class="titlepage"><div><h3 class="title"><a name="id2891323"></a>GNU enscript</h3></div></div><a class="indexterm" name="id2891330"></a><a class="indexterm" name="id2891346"></a><a class="indexterm" name="id2891357"></a><p>Программа GNU <tt>enscript</tt>, как и a2ps,
+была разработана для преобразования текста в PostScript, и она также
+поддерживает не-ascii кодировки.  Программа не имеет русских
+PostScript шрифтов в своём составе, но их очень просто доустановить.
+Как это сделать, описано ниже:</p><div class="orderedlist"><ol type="1"><li><p>Установите последний
+<tt>enscript</tt>.  Самую последнюю версию 1.5. вы можете
+найти в <a href="ftp://prep.ai.mit.edu/pub/gnu" target="_top">GNU FTP
+архиве</a>.</p></li><li><p>Если вы &#8212; пользователь RedHat Linux,
+загрузите и установите <a href="ftp://ftp.redhat.com/pub/contrib/i386/enscript-fonts-koi8-1.0-1.i386.rpm" target="_top">шрифт
+Cyrillic Textbook</a>.  </p></li><li><p>Если вы не используете RPMки, вытяните файл
+<tt>textbook.tar.gz</tt> из архива на <a href="ftp://sunsite.unc.edu/pub/academic/russian-studies/Software/" target="_top">sunsite.unc.edu</a>
+(здесь лежит программное обеспечение для русификации).  Разархивируйте
+этот файл в каталог, где размещены шрифты для
+<tt>enscript</tt> (обычно
+<tt>/usr/share/enscript</tt>).  Теперь перейдите туда и
+выполните следующую команду:
+
+</p><pre class="screen">
+    mkafmmap *.afm
+</pre><p>
+</p></li><li><p>Установка завершена.  Попробуйте напечатать
+текст в KOI8-R следующей командой:
+
+</p><pre class="screen">
+    enscript --font=Textbook8 --encoding=koi8 some.file
+</pre><p>
+
+</p></li></ol></div></div><div class="sect2" lang="ru"><div class="titlepage"><div><h3 class="title"><a name="id2891504"></a>rtxt2ps</h3></div></div><a class="indexterm" name="id2891511"></a><a class="indexterm" name="id2891526"></a><a class="indexterm" name="id2891537"></a><p>Если же вам требуется действительно быстрый и простой
+способ, а качество вывода для вас не критично, и все, что вам нужно
+&#8212; это только русский текст на бумаге, попробуйте пакет <a href="http://www.siber.com/sib/russify/converters/" target="_top">rtxt2ps</a>. Это
+очень простой, без украшательств, конвертер текста в
+PostScript. Качество вывода не очень хорошее (честно говоря,
+<span class="emphasis"><em>плохое</em></span>), но это работает.</p></div></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch09s08.html">Пред.</a> </td><td width="20%" align="center"><a accesskey="u" href="index.html">Уровень выше</a></td><td width="40%" align="right"> <a accesskey="n" href="ch10s02.html">След.</a></td></tr><tr><td width="40%" align="left" valign="top">cygwin </td><td width="20%" align="center"><a accesskey="h" href="index.html">Начало</a></td><td width="40%" align="right" valign="top"> Преобразование текста в TeX</td></tr></table></div></body></html>

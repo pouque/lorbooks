@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE>HOW TO ENABLE PROCESS ACCOUNTING ON LINUX: Настройка учета процессов на Linux</TITLE>
+ <LINK HREF="Process-Accounting-3.html" REL=next>
+ <LINK HREF="Process-Accounting-1.html" REL=previous>
+ <LINK HREF="Process-Accounting.html#toc2" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="Process-Accounting-3.html">Next</A>
+<A HREF="Process-Accounting-1.html">Previous</A>
+<A HREF="Process-Accounting.html#toc2">Contents</A>
+<HR>
+<H2><A NAME="s2">2. Настройка учета процессов на Linux</A></H2>
+
+<P>   
+<DL>
+<DT><B>  1. Компиляция и установка ПО учета процессов</B><DD><P>Программное обеспечение доступно на:
+<P>
+<A HREF="http://sunsite.unc.edu/pub/Linux/system/admin/quota-acct-modified.tgz">http://sunsite.unc.edu/pub/Linux/system/admin/quota-acct-modified.tgz</A><P>
+<P>
+<P>
+<DT><B>  2. Отредактируйте ваши системные скрипты инициализации и включайте учет процессов во время загрузки</B><DD><P>Вот пример:
+<BLOCKQUOTE><CODE>
+<PRE>
+  
+        # Включаем учет процессов.
+        if [ -x /sbin/accton ]
+        then
+                /sbin/accton /var/log/pacct
+                echo "Process accounting turned on."
+        fi
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>
+<P>
+<DT><B>   3. Создание файла учетных записей "pacct"</B><DD><P>Ваше ПО учета процессов по умолчанию будет печатать все выполненные команды
+в файл /var/log/pacct .
+<P>   
+Чтобы создать файл учетных записей:
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+        touch /var/log/pacct
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>Владельцем этого файла записей должен быть root с правами на чтение-запись
+для root, и правами на чтение для остальных:
+<BLOCKQUOTE><CODE>
+<PRE>
+        chown root /var/log/pacct
+        chmod 0644 /var/log/pacct
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>
+<P>
+<DT><B>   4. Перезагрузка</B><DD><P>Сейчас перегрузите систему, чтобы ваши изменения вошли в силу.
+</DL>
+   
+<P>
+<P>
+<HR>
+<A HREF="Process-Accounting-3.html">Next</A>
+<A HREF="Process-Accounting-1.html">Previous</A>
+<A HREF="Process-Accounting.html#toc2">Contents</A>
+</BODY>
+</HTML>

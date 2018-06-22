@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=KOI8-R">
+  <title>Texinfo</title>
+  <meta name="GENERATOR"
+ content="Modular DocBook HTML Stylesheet Version 1.73">
+  <link rel="HOME" title="Linux From Scratch" href="../index.html">
+  <link rel="UP" title="Package descriptions and dependencies"
+ href="appendixa.html">
+  <link rel="PREVIOUS" title="Tar" href="tar.html">
+  <link rel="NEXT" title="Textutils" href="textutils.html">
+</head>
+<body class="sect1" bgcolor="#ffffff" text="#000000" link="#0000ff"
+ vlink="#840084" alink="#006000">
+<div class="NAVHEADER">
+<table summary="Header navigation table" width="100%" border="0"
+ cellpadding="0" cellspacing="0">
+  <tbody>
+    <tr>
+      <th colspan="3" align="center">Linux From Scratch: Версия 4.0</th>
+    </tr>
+    <tr>
+      <td width="10%" align="left" valign="bottom"><a
+ href="tar.html" accesskey="P">Назад</a></td>
+      <td width="80%" align="center" valign="bottom">Приложение A.
+Описания пакетов и зависимостей</td>
+      <td width="10%" align="right" valign="bottom"><a
+ href="textutils.html" accesskey="N">Вперед</a></td>
+    </tr>
+  </tbody>
+</table>
+<hr align="left" width="100%"></div>
+<div class="sect1">
+<h1 class="sect1"><a name="aa-texinfo">Texinfo</a></h1>
+<div class="sect2">
+<h2 class="sect2"><a name="AEN8618">Официальная ссылка</a></h2>
+<p></p>
+<p class="literallayout">Texinfo (4.2):<br>
+<a href="ftp://ftp.gnu.org/gnu/texinfo/" target="_top">ftp://ftp.gnu.org/gnu/texinfo/</a></p>
+<p></p>
+</div>
+<div class="sect2">
+<h2 class="sect2"><a name="AEN8623">Содержимое Texinfo</a></h2>
+<p>Последняя проверка: версия 4.2.</p>
+<div class="sect3">
+<h3 class="sect3"><a name="AEN8626">PПрограммы</a></h3>
+<p>info, infokey, install-info, makeinfo, texi2dvi и texindex</p>
+</div>
+<div class="sect3">
+<h3 class="sect3"><a name="AEN8629">Описания</a></h3>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8631">info</a></h4>
+<p>info читает документы Info, обычно находящиеся в /usr/share/info.
+Документы Info documents схожи с man pages, но содержат больше, чем
+простое объяснение опций программы.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8634">infokey</a></h4>
+<p>infokey компилирует в бинарный формат исходный файл персонализаций
+Info.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8637">install-info</a></h4>
+<p>install-info обновляет записи info. Когда запускается info,
+выводится список тем (т.е. доступных документов info). install-info
+обновляет этот список. Если файлы info удалены вручную, необходимо
+также удалить тему в оглавлении. Для этого и используется данная
+программа. Она работает аналогично в случае добавления новых документов.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8640">makeinfo</a></h4>
+<p>makeinfo транслирует документы Texinfo в различные форматы.
+Доступны: файлы info, простой текст и HTML.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8643">texi2dvi</a></h4>
+<p>texi2dvi выводит документы Texinfo</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN8646">texindex</a></h4>
+<p>texindex используется для сортировки оглавлений Texinfo.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h2 class="sect2"><a name="AEN8649">Зависимости Texinfo</a></h2>
+<p>Последняя проверка: версия 4.0.</p>
+<p class="literallayout">Bash: sh<br>
+Binutils: ar, as, ld, ranlib<br>
+Diffutils: cmp<br>
+Fileutils: chmod, install, ln, ls, mkdir, mv, rm<br>
+Gcc: cc1, collect2, cpp0, gcc<br>
+Grep: egrep, fgrep, grep<br>
+Make: make<br>
+Sed: sed<br>
+Sh-utils: basename, echo, expr, hostname, sleep<br>
+Texinfo: makeinfo<br>
+Textutils: cat, tr</p>
+</div>
+</div>
+<div class="NAVFOOTER">
+<hr align="left" width="100%">
+<table summary="Footer navigation table" width="100%" border="0"
+ cellpadding="0" cellspacing="0">
+  <tbody>
+    <tr>
+      <td width="33%" align="left" valign="top"><a
+ href="tar.html" accesskey="P">Назад</a></td>
+      <td width="34%" align="center" valign="top"><a
+ href="../index.html" accesskey="H">Домой</a></td>
+      <td width="33%" align="right" valign="top"><a
+ href="textutils.html" accesskey="N">Вперед</a></td>
+    </tr>
+    <tr>
+      <td width="33%" align="left" valign="top">Tar</td>
+      <td width="34%" align="center" valign="top"><a
+ href="appendixa.html" accesskey="U">Наверх</a></td>
+      <td width="33%" align="right" valign="top">Textutils</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</body>
+</html>

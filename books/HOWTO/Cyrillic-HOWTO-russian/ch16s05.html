@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=koi8-r"><title>Slackware</title><meta name="generator" content="DocBook XSL Stylesheets V1.59.1"><link rel="home" href="index.html" title="The Linux Cyrillic HOWTO (russian)"><link rel="up" href="ch16.html" title="Глава 16. Кириллизация дистрибутивов"><link rel="previous" href="ch16s04.html" title="Debian"><link rel="next" href="ch16s06.html" title="Solaris"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Slackware</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch16s04.html">Пред.</a> </td><th width="60%" align="center">Глава 16. Кириллизация дистрибутивов</th><td width="20%" align="right"> <a accesskey="n" href="ch16s06.html">След.</a></td></tr></table><hr></div><div class="sect1" lang="ru"><div class="titlepage"><div><h2 class="title" style="clear: both"><a name="CyrDistSlackware"></a>Slackware</h2></div></div><a class="indexterm" name="id2906526"></a><a class="indexterm" name="id2906535"></a><p>Старейший дистрибутив Linux. Своей похожестью на набор
+      ,,Сделай сам'' привлекает массу почитателей. К сожалению, не
+      имеет кириллизации из коробки.</p><p>Этот раздел является сильно сокращённой версией (только
+кириллизация) <tt>Slackware-7-INSTALL-RUS.HOWTO</tt> (с)
+1999 Вячеслава Калошина (multik@sw.ru, multik@istu.edu)</p><div class="sect2" lang="ru"><div class="titlepage"><div><h3 class="title"><a name="CyrDistSlackware7Text"></a>Русификация текстового режима.</h3></div></div><p>Для кириллизации следует выполнить следующие действия.</p><div class="itemizedlist"><ul type="disc"><li><p>Переименовать файл
+       <tt>/etc/rc.d/rc.font.sample</tt> в rc.font и
+       добавить следующее содержание:
+</p><pre class="programlisting">
+
+setfont Cyr_a8x16
+mapscrn koi2alt
+for n in 1 2 3 4 5 6; do
+ echo -ne &quot;\033(K&quot; &gt; /dev/tty$n
+done
+loadkeys ru.map
+</pre><p>
+таким образом, появятся русские буквы в консоли. Шрифты переключаются
+правым Ctrl. </p><p><span class="emphasis"><em>P.S.</em></span> В некоторых версиях
+дистрибутива этот метод не работает, так как после обработки
+<tt>rc.font</tt> грузится американская раскладка, которая
+,,забивает''  кириллицу. В этом случае перечисленные выше фразы
+следует поместить в <tt>rc.local</tt></p></li><li><p> Положить файл <tt>.inputrc</tt>
+  следующего содержания в каталог <tt>/etc/skel</tt>:</p><pre class="programlisting">
+
+$if Bash
+        set convert-meta off
+        set output-meta on
+        set input-meta on
+$endif
+</pre><p><span class="emphasis"><em>Примечание к Slackware 8.0:</em></span> В
+этой версии больше нет необходимости указывать что-либо в файле
+<tt>.inputrc</tt>, если вы правильно настроили
+локаль. </p></li><li><p>В <tt>/etc/profile</tt> следует добавить:</p><pre class="programlisting">
+
+export LANG=ru_RU.KOI8-R
+export NLSPATH=/usr/share/locale/ru_RU/
+export LESSCHARSET=koi8-r
+</pre></li><li><p>При этом надо положить русскую локаль (её можно
+взять в других дистрибутивах, или скачать и развернуть <a href="http://linux.irk.ru/doc/linuxrus/locale.tar.gz" target="_top">отсюда</a>) в
+<tt>/usr/share/locale/ru_RU/</tt>.</p></li><li><p>  от root'а выполнить следующие команды:
+</p><pre class="programlisting">
+
+cd /usr/share/locale
+
+localedef -c -f /usr/share/i18n/charmaps/KOI8-R -i \\
+/usr/share/i18n/locales/ru_RU \\
+ru_RU.KOI8-R
+
+ln -s ru_RU.koi8r ru_RU.KOI8-R
+</pre><p>
+символами <tt>\\</tt> обозначено продолжение строки&#8212;
+эти строчки надо вводить в одну строку.</p></li><li><p>   в том же каталоге следует поправить файл
+<tt>locale.alias</tt>&#8212; добавить строчку:</p><pre class="programlisting">
+
+ru ru_RU.KOI8-R
+</pre></li></ul></div><p>Все, Slackware на нижнем уровне русифицирована.</p></div><div class="sect2" lang="ru"><div class="titlepage"><div><h3 class="title"><a name="CyerDistSlackwareX"></a>Русификация X Window System</h3></div></div><p> Делайте так же, как описано в разделе <a href="ch05.html" title="Глава 5. X Window">Глава 5. <i>X Window</i></a>&#8212; настройка ничем от стандартной настройки
+не отличается.</p><p>Но можно поступить, как советует Вячеслав Калошин (хотя
+этот способ не очень-то и правильный, но тоже работает):</p><p>Скопируйте файл <a href="http://xtalk.price.ru/linux/.Xmodmap" target="_top">.Xmodmap</a> в свой
+домашний каталог. Этот файл обеспечит ввод русских букв по правой
+кнопке Alt. </p><p>Проверьте в <tt>/etc/XF86Config</tt> секцию &quot;Keyboard&quot;,
+добавьте туда строчку <tt>XkbDisable</tt>,
+иначе вышеприведённый способ русификации не будет работать.</p></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch16s04.html">Пред.</a> </td><td width="20%" align="center"><a accesskey="u" href="ch16.html">Уровень выше</a></td><td width="40%" align="right"> <a accesskey="n" href="ch16s06.html">След.</a></td></tr><tr><td width="40%" align="left" valign="top">Debian </td><td width="20%" align="center"><a accesskey="h" href="index.html">Начало</a></td><td width="40%" align="right" valign="top"> Solaris</td></tr></table></div></body></html>

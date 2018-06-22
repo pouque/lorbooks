@@ -1,0 +1,751 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Мини-HOWTO: Обратный звонок</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.57"></HEAD
+><BODY
+CLASS="ARTICLE"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="ARTICLE"
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="TITLE"
+><A
+NAME="AEN2"
+>Мини-HOWTO: Обратный звонок</A
+></H1
+><DIV
+CLASS="AUTHORGROUP"
+><A
+NAME="AEN4"
+></A
+><H3
+CLASS="AUTHOR"
+><A
+NAME="AEN5"
+>Pawel Skonecki</A
+></H3
+><DIV
+CLASS="AFFILIATION"
+><DIV
+CLASS="ADDRESS"
+><P
+CLASS="ADDRESS"
+>&nbsp;&nbsp;&nbsp;&nbsp;     stona@fizyka.umcs.lublin.pl
+    <br>
+&nbsp;&nbsp;&nbsp;</P
+></DIV
+></DIV
+><H3
+CLASS="CORPAUTHOR"
+>    Перевод: <A
+HREF="mailto:pax@asp-linux.com"
+TARGET="_top"
+>Павел Гашев</A
+>,
+    <A
+HREF="http://www.asplinux.com"
+TARGET="_top"
+>SWSoft Pte Ltd.</A
+>
+ </H3
+></DIV
+><P
+CLASS="PUBDATE"
+>версия 1.1a, Июнь 2000<BR></P
+><DIV
+><DIV
+CLASS="ABSTRACT"
+><A
+NAME="AEN15"
+></A
+><P
+></P
+><P
+>Этот документ описывает установку call-back в Linux. Хочу поблагодарить Анну за
+терпение.</P
+><P
+></P
+></DIV
+></DIV
+><HR></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Содержание</B
+></DT
+><DT
+>1. <A
+HREF="call-back-mini-HOWTO.html#AEN17"
+>Введение</A
+></DT
+><DD
+><DL
+><DT
+>1.1. <A
+HREF="call-back-mini-HOWTO.html#AEN19"
+>МНЕНИЕ</A
+></DT
+><DT
+>1.2. <A
+HREF="call-back-mini-HOWTO.html#AEN22"
+>ИЗДАНИЕ</A
+></DT
+><DT
+>1.3. <A
+HREF="call-back-mini-HOWTO.html#AEN25"
+>Авторские права</A
+></DT
+></DL
+></DD
+><DT
+>2. <A
+HREF="call-back-mini-HOWTO.html#AEN34"
+>Процедура</A
+></DT
+><DD
+><DL
+><DT
+>2.1. <A
+HREF="call-back-mini-HOWTO.html#AEN36"
+>ЧАСТЬ I: Сеть дома?</A
+></DT
+><DT
+>2.2. <A
+HREF="call-back-mini-HOWTO.html#AEN39"
+>ЧАСТЬ II: Первые шаги с вашим модемом.</A
+></DT
+><DT
+>2.3. <A
+HREF="call-back-mini-HOWTO.html#AEN61"
+>ЧАСТЬ III: Звоним на Linux</A
+></DT
+><DT
+>2.4. <A
+HREF="call-back-mini-HOWTO.html#AEN106"
+>ЧАСТЬ IV: Linux звонит к нам</A
+></DT
+><DT
+>2.5. <A
+HREF="call-back-mini-HOWTO.html#AEN155"
+>ЧАСТЬ V: Выводы</A
+></DT
+></DL
+></DD
+></DL
+></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="AEN17"
+>1. Введение</A
+></H1
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN19"
+>1.1. МНЕНИЕ</A
+></H2
+><P
+>Мне необходимо ваше мнение об этом документе. Я попытался собрать полную
+информацию, на сколько это возможно, и буду вам благодарен, если вы найдете
+ошибки и сообщите мне свои соображения. Это сделает документ полнее. Тем не
+менее, я не буду отвечать на ваши вопросы, если вы не прочитали текст
+целиком.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN22"
+>1.2. ИЗДАНИЕ</A
+></H2
+><P
+>Документ издается согласно условиям LDP (Linux Documentation Project).
+Можете связаться с автором, если у вас нет этих условий. Документ
+бесплатный.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN25"
+>1.3. Авторские права</A
+></H2
+><P
+>Авторские права на русский перевод этого текста принадлежат (c) 2000 SWSoft Pte Ltd.
+Все права зарезервированы.</P
+><P
+>Этот документ является частью проекта Linux HOWTO.</P
+><P
+>Авторские права на документы Linux HOWTO принадлежат их авторам, если явно
+не указано иное. Документы Linux HOWTO, а также их переводы, могут
+быть воспроизведены и распространены полностью или частично на любом
+носителе физическом или электронном, при условии сохранения этой заметки об
+авторских правах на всех копиях. Коммерческое распространение разрешается и
+поощряется; но так или иначе автор текста и автор перевода желали бы знать о
+таких дистрибутивах.</P
+><P
+>Все переводы и производные работы, выполненные по документам Linux HOWTO
+должны сопровождаться этой заметкой об авторских правах. Это делается в
+целях предотвращения случаев наложения дополнительных ограничений на
+распространение документов HOWTO. Исключения могут составить случаи
+получения специального разрешения у координатора Linux HOWTO с которым
+можно связаться по адресу приведенному ниже.</P
+><P
+>Мы бы хотели распространить эту информацию по всем возможным каналам. Но
+при этом сохранить авторские права и быть уведомленными о всех планах
+распространения HOWTO. Если у вас возникли вопросы, пожалуйста, обратитесь
+к координатору проекта Linux HOWTO по электронной почте: <TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:linux-howto@metalab.unc.edu"
+>linux-howto@metalab.unc.edu</A
+>&#62;</TT
+>, или к координатору русского перевода
+Linux HOWTO компании SWSoft Pte Ltd. по адресу
+<TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:linux-howto@asplinux.ru"
+>linux-howto@asplinux.ru</A
+>&#62;</TT
+></P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN34"
+>2. Процедура</A
+></H1
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN36"
+>2.1. ЧАСТЬ I: Сеть дома?</A
+></H2
+><P
+>Большинство из нас пользуются Интернетом на работе. Тем не менее, часто
+необходим доступ к сети из дома или другого места вне работы. Возможно,
+работать из дома дешевле, чем из здания компании. Думаю, лучшее решение -
+установить на сервер Linux программное обеспечение, позволяющее производить
+call-back. При помощи технологии call-back, появляется возможность
+перезвонить на определенный телефонный номер за счет компании. Я попытаюсь
+описать, как это работает. Сначала определенный пользователь звонит на
+сервер Linux. Затем пользовательская сторона кладет трубку. В это время
+Linux звонит пользователю. Пользователь снова аутентифицируется. И мы
+получаем соединение с сервером, причем пользователь платит только за первое
+короткое соединение, за остальное платит компания. Двойная проверка и
+некоторые возможности в программе, поддерживающей call-back, не позволяют
+посторонним пользователям воспользоваться деньгами компании. Кроме того, мы
+можем ограничить доступ только пределами внутренней сети или только
+Интернетом (Call-back очень гибок). Ниже я попытаюсь представить настройку
+call-back сервера под Linux и расскажу, как настроить свой компьютер для
+этой операции.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN39"
+>2.2. ЧАСТЬ II: Первые шаги с вашим модемом.</A
+></H2
+><P
+>Разные администраторы предпочитают разные модемы. Однако, во время покупки
+модема, вам нужно придерживаться определенных правил:</P
+><P
+>&#13;<P
+></P
+><UL
+><LI
+><P
+>Не покупайте Win-Modem, т.к. он не работает под Linux&#13;</P
+></LI
+><LI
+><P
+>Внешний модем работает быстрее, чем внутренний.&#13;</P
+></LI
+><LI
+><P
+>Внутренний ISA модем лучше PCI (вы можете использовать PCI слот для
+чего-нибудь другого)&#13;</P
+></LI
+><LI
+><P
+>Не покупайте Plug&amp;Play модем. Если он уже у вас есть, отключите Plug&amp;Play и
+настройте модем на свободный COM порт (Plug&amp;Play-HOWTO).&#13;</P
+></LI
+></UL
+>&#13;</P
+><P
+>Если у нас есть нужный модем, мы должны настроить систему. Для этого мы
+должны проверить на каком он порту, и сделать символьный линк между файлом
+устройства и /dev/modem. Например, если у нас модем на COM2, мы пишем:</P
+><P
+>ln -s /dev/cua1 /dev/modem </P
+><P
+>Проверяем</P
+><P
+>lrwxrwxrwx 1 root uucp 9 Sep 19 19:10 /dev/modem -&#62; /dev/cua1</P
+><P
+>Если модем на другом порту, надо запомнить, что</P
+><P
+>/dev/cua0 is com1 
+
+/dev/cua1 is com2 
+
+/dev/cua2 is com3 
+
+/dev/cua3 is com4  </P
+><P
+>Для новых ядер:</P
+><P
+>/dev/ttyS0 is com1 
+
+/dev/ttyS1 is com2 
+
+/dev/ttyS2 is com3 
+
+/dev/ttyS3 is com4</P
+><P
+>Теперь можно проверить наши настройки при помощи minicom.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN61"
+>2.3. ЧАСТЬ III: Звоним на Linux</A
+></H2
+><P
+>Для начала, нам нужно настроить параметры ядра - проверяем, установлена ли
+поддержка ppp. Если поддержка не включена (ни внутри ядра, ни в виде
+модуля), то нам нужно пересобрать ядро (Kernel-HOWTO). Хорошо. Теперь у нас
+правильное ядро, и нам нужно поставить программное обеспечение. Поддержка
+call-back - это часть программ mgetty-sendfax и ppp. Вы можете найти их в
+вашем дистрибутиве. Т.к. в процессе call-back происходит двойная
+аутентификация, мы должны создать пользователя, от имени которого
+запускается ppp на сервере.</P
+><P
+>pppuser:klkIOM89mn65H:230:PPP Dialin:/home/pppuser:/etc/ppp/ppplogin</P
+><P
+>Затем меняем пароль.  Информацию о пароле надо добавить в файл
+<TT
+CLASS="FILENAME"
+>/etc/ppp/pap-secrets</TT
+> (подробнее см. man pppd):</P
+><P
+>pppuser * password_for_pppuser *</P
+><P
+>Этот пользователь не имеет програмной оболочки - вместо этого запускается
+файл <TT
+CLASS="FILENAME"
+>/etc/ppp/ppplogin</TT
+>. Мы можем сделать его
+самостоятельно. Например, при помощи <B
+CLASS="COMMAND"
+>vi
+/etc/ppp/ppplogin</B
+>:</P
+><P
+>#!/bin/sh 
+
+exec /usr/sbin/pppd -detach 192.168.1.1:192.168.1.2</P
+><P
+>где 192.168.1.1 - адрес сервера, 198.168.1.2 - адрес нашей машины.
+Выставляем атрибуты файла, делая его запускаемым. Мы используем
+демон ppp, поэтому нам надо задать параметры его работы. Редактируем
+файл <TT
+CLASS="FILENAME"
+>/etc/ppp/options</TT
+>:</P
+><P
+>netmask 255.255.255.0 
+
+proxyarp 
+
+lock 
+
+crtscts 
+
+modem </P
+><P
+>Опция proxyarp очень важна, если вы хотите иметь доступ в Интернет.
+Остальные опции используются для управления модемом. Если вы уберете опцию
+proxyarp, то вы сможете работать только с локальной сетью сервера. См.
+PPP-HOWTO и man pppd для более подробной информации. Теперь нам надо
+настроить модем. Чтобы наш сервер был готов к приему звонков, добавим
+строку в файл <TT
+CLASS="FILENAME"
+>/etc/inittab</TT
+> (для COM2):</P
+><P
+>s1:2345:respawn:/sbin/mgetty ttyS1 -D /dev/ttyS1 vt100</P
+><P
+>Для COM1 она выглядит примерно так:</P
+><P
+>s0:2345:respawn:/sbin/mgetty ttyS1 -D /dev/ttyS1 vt100</P
+><P
+>Дайте команду <B
+CLASS="COMMAND"
+>init q</B
+>. Если в журналах не появилось
+сообщений об ошибках, переходим к следующему шагу. Мы должны вернуться в
+каталог <TT
+CLASS="FILENAME"
+>/etc/ppp</TT
+> и создать файл
+<TT
+CLASS="FILENAME"
+>options.ttyS1</TT
+> (для модема на COM1 -
+<TT
+CLASS="FILENAME"
+>options.ttyS0</TT
+>):</P
+><P
+>IP_local: IP_remote</P
+><P
+>для нашей сети это будет:</P
+><P
+>192.168.1.1:192.168.1.2</P
+><P
+>Теперь проверим файл <TT
+CLASS="FILENAME"
+>/etc/mgetty+sendfax/login.config</TT
+>
+на предмет наличия в ней строки:</P
+><P
+>/AutoPPP/ - a_ppp /usr/sbin/pppd auth -chap +pap login detach kdebug 7 debug</P
+><P
+>Остальные строки могут начинаться с <TT
+CLASS="LITERAL"
+>&num;</TT
+>. </P
+><P
+>И наконец, чтобы ppp работало от пользователя pppuser, мы должны установить
+флаг suid для pppd:</P
+><P
+>chmod u+s /usr/sbin/pppd </P
+><P
+>это даст:</P
+><P
+>-rwsr-xr-x 1 root root 106892 Jan 11 1999 /usr/sbin/pppd</P
+><P
+>Я думаю, что очень неплохо добавить эту команду в cron, потому
+что у меня возникли проблемы с правами после перезапуска
+моего сервера. Наш сервер будет работать в качестве
+маршрутизатора. Нам надо разрешить ядру пересылать IP-пакеты.
+Для этого в файл <TT
+CLASS="FILENAME"
+>/etc/rc.d/rc.local</TT
+> добавим
+следующую строку:</P
+><P
+>echo "1" &#62; /proc/sys/net/ipv4/ip_forward</P
+><P
+>Если у вас дистрибутив RedHat или ему подобный, то вы можете изменить в
+файле<TT
+CLASS="FILENAME"
+>/etc/sysconfig/network</TT
+> строку
+<TT
+CLASS="LITERAL"
+>FORWARD&lowbar;IPV4=false</TT
+> на <TT
+CLASS="LITERAL"
+>FORWARD&lowbar;IPV4=true</TT
+>.</P
+><P
+>Для проверки позвоним на Linux, используя для этого скрипт. Если мы делаем
+это из MS Windows, поставим галочку <TT
+CLASS="LITERAL"
+>"вызвать окно
+терминала после соединения"</TT
+>. Входим как pppuser с его паролем.
+Надеюсь, что все будет работать нормально.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN106"
+>2.4. ЧАСТЬ IV: Linux звонит к нам</A
+></H2
+><P
+>Мы уже можем позвонить к Linux, и настало время, чтобы Linux позвонил к нам.
+Это не очень сложно. Нам нужно отредактировать два файла. Создадим файл
+<TT
+CLASS="FILENAME"
+>/etc/mgetty+sendfax/callback.conf</TT
+> и пока оставим его пустым. </P
+><P
+>Теперь настало время узнать номера телефонов наших пользователей, чтобы
+сервер сам звонил к ним. Для этого вносим в файл
+<TT
+CLASS="FILENAME"
+>/etc/mgetty+sendfax/login.conf</TT
+> следующее:</P
+><P
+>call - - /usr/sbin/callback - S 123456 </P
+><P
+>где call - это псевдо-пользователь, нужный для того, чтобы начать
+соединение. Строка в <TT
+CLASS="FILENAME"
+>/etc/mgetty+sendfax/login.conf</TT
+>
+запускает программу, звонящую на указанный телефонный номер (в нашем случае
+это 123456). Похожая процедура может быть выполнена для другого
+пользователя. Я попробую объяснить, как это работает. Когда мы звоним на
+сервер, он предлагает нам пройти аутентификацию, и мы входим как
+псевдо-пользователь `call'. Скрипт на нашем компьютере вешает трубку, и мы
+ждем. На сервере запускается программа
+<TT
+CLASS="FILENAME"
+>/usr/sbin/callback</TT
+>, которая перезванивает нам. Мы
+снова проходим проверку, но теперь в качестве пользователя pppuser, и после
+этого устанавливается ppp-соединение. Все. Настройка рабочей станции очень
+проста. Если у вас MS Windows, вы должны установить удаленный доступ сети и
+в свойствах модема найти "установка связи--&gt;дополнительно--&gt;строка
+инициализации", где прописываем.</P
+><P
+>&amp;c0s0=1 </P
+><P
+>Закрываем окно, звоним и заходим на сервер как описано выше. Если мы хотим
+использовать Linux, мы должны написать скрипт. Довольно сложно написать
+один хороший скрипт на все случаи жизни, т.к. правильная конфигурация ppp
+имеет первичное значение. Скрипты, описанные ниже (автор A. Gozdz), я
+предложил бы поместить в один каталог. Более подробную информацию читайте в
+PPP-HOWTO.</P
+><P
+><I
+CLASS="EMPHASIS"
+>ДЛЯ SLACKWARE:</I
+></P
+><P
+>Конфигурационный файл ppp (модем на COM2) <TT
+CLASS="FILENAME"
+>/etc/options</TT
+></P
+><P
+><PRE
+CLASS="SCREEN"
+>lock
+defaultroute 
+noipdefault 
+modem 
+/dev/cua1 
+33600 
+crtscts 
+debug 
+passive 
+asyncmap 0 </PRE
+></P
+><P
+>и специфичные скрипты</P
+><P
+>&#13;<P
+></P
+><UL
+><LI
+><P
+><TT
+CLASS="FILENAME"
+>/etc/ppp/ppp-call</TT
+>
+<PRE
+CLASS="SCREEN"
+>&#13;#!/bin/bash 
+teksta="Соединение не удалось"
+tekstb="Соединение выполненно"
+# /sbin/setserial /dev/cua1 spd_vhi 
+killall -INT pppd 2&#62;/dev/null 
+rm -f /var/lock/LCK* /var/run/ppp*.pid 
+(/usr/sbin/pppd -detach /dev/ttyS1 115200 \ 
+connect "/usr/sbin/chat -v -f /etc/ppp/pppcallback" &amp;) || \ 
+(echo $teksta; ls marsss &#62;/dev/null; exit 1) 
+echo $tekstb 
+exit 0 &#13;</PRE
+></P
+></LI
+><LI
+><P
+>/etc/ppp/pppcallback
+<PRE
+CLASS="SCREEN"
+> 
+TIMEOUT 60 
+ABORT 'ERROR' 
+ABORT 'BUSY' 
+ABORT 'NO ANSWER' 
+ABORT 'NO DIALTONE' 
+ABORT '\nVOICE\r' 
+ABORT '\nRINGING\r\n\r\nRINGING\r' 
+'' AT&amp;FH0 &#60;p&#62;'OK-+++\c-OK' 'AT&amp;C0S0=1' 
+TIMEOUT 75 
+OK ATDT123456 
+CONNECT '' 
+ogin:-ogin: ppp_pseudouser 
+'\nNO CARRIER\r' '' 
+TIMEOUT 180 
+'\nRING\r' AT&amp;C1A 
+CONNECT '' 
+TIMEOUT 20 
+ogin:-ogin: pppuser 
+sword:-sword password_for_pppuser </PRE
+></P
+></LI
+><LI
+><P
+>Теперь вы можете запустить ppp-call. :)&#13;</P
+></LI
+></UL
+>&#13;</P
+><P
+><I
+CLASS="EMPHASIS"
+>ДЛЯ RED HAT 6.x:</I
+></P
+><P
+>&#13;<P
+></P
+><UL
+><LI
+><P
+>/etc/ppp/options
+<PRE
+CLASS="SCREEN"
+>lock 
+defaultroute 
+noipdefault 
+modem 
+33600 
+crtscts 
+debug 
+passive 
+asyncmap 0 </PRE
+>&#13;</P
+></LI
+><LI
+><P
+>/etc/ppp/pppcallback
+
+<PRE
+CLASS="SCREEN"
+>TIMEOUT 5 
+ABORT 'ERROR' 
+ABORT 'BUSY' 
+ABORT 'NO ANSWER' 
+ABORT 'NO DIALTONE' 
+ABORT '\nVOICE\r' 
+ABORT '\nRINGING\r\n\r\nRINGING\r' 
+'' AT&amp;FH0 'OK-+++\c-OK' 'AT&amp;C0S0=1' 
+TIMEOUT 40 
+OK ATDT5376443 CONNECT '' 
+ogin:-ogin: ppp-pseudo-user 
+'\nNO CARRIER\r' '' 
+TIMEOUT 180 
+'\nRING\r' AT&amp;C1A 
+CONNECT '' 
+TIMEOUT 20 
+ogin:-ogin: pppuser 
+sword:-sword password_for_ppuser </PRE
+>&#13;</P
+></LI
+><LI
+><P
+>/usr/bin/ppp-call
+
+<PRE
+CLASS="SCREEN"
+>#!/bin/bash 
+
+teksta="Соединение не удалось"
+tekstb="Соединение выполненно"
+# /sbin/setserial /dev/cua1 spd_vhi
+killall -INT pppd 2&#62;/dev/null 
+rm -f /var/lock/LCK* /var/run/ppp*.pid 
+(/usr/sbin/pppd -detach call ppp_call &amp;) || \ 
+(echo $teksta; ls marsss &#62;/dev/null; exit 1) 
+echo $tekstb 
+exit 0 </PRE
+>&#13;</P
+></LI
+><LI
+><P
+>Теперь вы можете запустить ppp-call. :)&#13;</P
+></LI
+></UL
+>&#13;</P
+><P
+>Если у вас M$ Windows, то вы можете использовать следующий
+скрипт. Я его не проверял (я использую терминал). Если у вас
+возникнут вопросы, спрашивайте автора скрипта - Adrian Debkowski 
+(<A
+HREF="mailto:adrian@cr-media.pl"
+TARGET="_top"
+>adrian@cr-media.pl</A
+>).</P
+><P
+><PRE
+CLASS="SCREEN"
+>proc main
+delay 1
+waitfor "ogin:"
+transmit "call^M"
+waitfor "RING"
+transmit "ATA^M"
+waitfor "CONNECT"
+waitfor "ogin:"
+transmit "pppuser^M"
+waitfor "word:"
+transmit "ppp^M"
+endproc</PRE
+></P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN155"
+>2.5. ЧАСТЬ V: Выводы</A
+></H2
+><P
+>Настройка call-back ничуть не сложна, и я не знаю лучшего пути
+настроить доступ кроме как через сервер. Настройка, представленная выше -
+это результат большого количества попыток. Все то же самое может быть сделано
+по-другому - после прочтения всех материалов, относящихся к этой теме (man
+pppd, HOWTO-NET4).</P
+></DIV
+></DIV
+></DIV
+></BODY
+></HTML
+>

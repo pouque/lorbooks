@@ -1,0 +1,171 @@
+<html>
+<head>
+ <title>Blender online-Руководство для пользователя v1.5 - Самое начало - Часть 1</title>
+</head>
+
+<body bgcolor="#ffffff" link="#999966" vlink="#999966" alink="#000000" background="http://www.linux.org.ru/books/Blender/images/bgpage.gif">
+<table cellpadding="0" cellspacing="0" border="0" width="600">
+ <tr>
+ 	<td colspan="4" width="600"><img width="408" height="70"
+			src="http://www.linux.org.ru/books/Blender/images/blentitl.jpg" alt="http://www.blender.nl/"
+			border="0"><img 
+			src="http://www.linux.org.ru/books/Blender/images/topright.gif" alt=""><br>
+		<img 
+			src="http://www.linux.org.ru/books/Blender/images/trans.gif" width="20" height="16" alt="NAVBAR->"><a
+			href="../index.html"><img 
+				src="../images/nav-home.gif" border="0" alt="титульный лист"></a><a 
+			href="../introduction/Data-blocks.html"><img 
+				src="../images/nav-intro.gif" border="0" alt="введение"></a><a 
+			href="../basicediting/Input-commands.html"><img 
+				src="../images/nav-basiced.gif" border="0" alt="основы редактирования"></a><a 
+			href="Part-1.html"><img 
+				src="../images/nav-quick-start.gif" border="0" alt="самое начало"></a><img 
+				src="../images/black.gif" width="46" height="16" alt=""><img 
+				src="../images/nav-end.gif" border="0" alt=""></td>
+ </tr>
+
+<!-- second level navigation -->
+<tr>
+ 	<td width="93" valign="top"><br><br>
+		<img src="http://www.linux.org.ru/books/Blender/images/trans.gif" width="93" height="1" alt=""><br>
+			<img src="../images/Part-1-on.gif" 
+			alt="Часть 1" width="93" height="20"><br><br>
+			<a href="Part-2.html"><img 
+			src="../images/Part-2-off.gif" 
+			alt="Часть 2" width="93" 
+			height="20" border="0"></a><br><br>
+			<a href="Part-3.html"><img 
+			src="../images/Part-3-off.gif" 
+			alt="Часть 3" width="93" 
+			height="20" border="0"></a>
+		</td>
+	<td width="7"><img src="http://www.linux.org.ru/books/Blender/images/trans.gif" width="7" height="1" alt=""></td>
+
+<!-- end second level navigation -->
+
+<!-- content -->
+ 	<td width="400"><font face="Arial, sans-serif" size="-1">
+	<img src="http://www.linux.org.ru/books/Blender/images/trans.gif" width="400" height="1" alt="">
+			<h2>Начинаем работать с 3D</h2>
+
+			<h4>Запускаем Blender</h4>
+
+			<a href="../images/standaard.jpg"><img src="../images/standaard_t.jpg" width="180" height="143" border="0" alt="standaard.jpg"></a><br>
+			<i>Увеличенное изображение - по левой кнопке мыши.
+			</i>
+			<br><br>
+
+			Установили программу? 
+			Ну, что же, начнем!
+			<br><br>
+			Запустите Blender в соответствии с инструкциями из раздела
+			инсталляция. Загружается программа не более нескольких секунд
+			<br><br> 
+			Перед Вами появится несколько окон, расположение которых определено в файле $HOME/.B.blend. 
+			Это обычный файл Blender. По умолчанию он загружается при запуске программы.
+			Пользователь может создать собственный файл с предустановками окон, 
+			Материалов, моделей, директорий и т.д., 
+			который программа будет загружать по умолчанию.
+			Файл с настройками пользователя можно сохранить 
+			по клавише CTRL+U.
+			<br><br>
+			
+			<h2>Самое начало. Часть 1</h2>
+			<h4>Манипуляции 3D-видом</h4>
+
+			Самое большое окно - 3DWindow. 
+			В нем вы видите квадратную плоскость (Каркас),
+			Камеру и 3D-курсор.  
+
+			<ul><li> 
+			По щелчку Левой кнопки мыши 3D-курсор перемещается в определенную
+			точку пространства. 
+			Новые Объекты создаются в той точке, где расположен курсор;
+			также он показывает центр вращения и масштабирования
+			Объектов.
+			<li> 
+			Зажав Среднюю кнопку мыши Вы можете вращать 
+			3D окно в произвольном направлении (функция "trackball").
+			Попробуйте в разных местах окна, чтобы привыкнуть
+			к поведению "trackball".
+			<li> 
+			Средняя кнопка мыши с нажатой клавишей SHIFT - панорамирование. 
+			<li> 
+			CTRL+Средняя кнопка мыши - увеличение/уменьшение масштаба окна (zoom).</ul>
+
+			<img src="../images/panzoombut.jpg" width="36" height="18" alt="pan and zoom header buttons"><br>
+			
+			Кнопки перемещения и изменения масштаба есть в заголовке каждого окна 3DWindow; 
+			нажмите эти кнопки Левой кнопкой мыши и, удерживая их нажатыми, двигайте мышь.  <br><br>
+
+			Эти команды управления видами вынесены также на цифровую клавиатуру справа
+			(numerical pad).  
+			<ul><li> Вращение: PAD_2 PAD_4, PAD_6, PAD_8 (по стрелкам).
+			<li> Перемещение: PAD_2 PAD_4, PAD_6, PAD_8 с нажатой клавишей SHIFT.
+			<li> PAD_PLUS и PAD_MINUS "наезд" и уменьшение масштаба соответственно.</ul>
+			Если Вы заблудились в 3D пространстве или Вы хотите 
+			увидеть, все объекты, которые видны сейчас в вашей 
+			сцене, нажмите HOME или кнопку с рисунком маленького домика 
+			на заголовке окна.
+			<br><br>
+
+			<h4>Предустановленные виды </h4>
+
+			Переход в стандартные предустановленные виды 
+			 'Вид сверху', 'Вид спереди' и 'Вид сбоку' 
+			также можно производить с помощью цифровой клавиатуры
+
+			<ul><li> Вид сверху: PAD_7.
+			<li> Вид спереди: PAD_1.
+			<li> Вид сбоку: PAD_3.</ul>
+
+			(Отметьте логичное расположение кнопок 
+			на цифровой клавиатуре).
+			<br><br>
+			Выбранный вид показывается на кнопке, расположенной в заголовке
+			окна.
+			<br><br>
+
+			<h4>Виды</h4>
+
+			3DWindow может показывать Сцену в трех видах:
+			<ul><li> Ортогональный - основной вид, используемый для моделирования.
+			<li> Перспектива.  Клавиша PAD_5 переключает между Ортогональным видом
+			и Перспективой.
+			<li> 
+			Видоискатель камеры (Camera view): 
+			PAD_0. 
+			Переход в другой вид осуществляется нажатием 
+			соответствующей клавиши на 
+			цифровой клавиатуре.
+			</ul>
+
+			<h4>Слои  </h4>
+
+			<img src="../images/layerbut.jpg" width="108" height="18" alt="layer header buttons"><br><br>
+
+			Слои в Blender используются для организации 
+			работы и для того, чтобы определить, будет ли 
+			данный блок виден в Сцене.
+			Для этого можно задавать значение слоя для любого
+			Объекта, а также для Сцен и для окон 3DWindow.
+			<br><br>
+			В настоящее время доступно 20 слоев.
+			Клавиша M перемещает Объект на определенный слой.
+			<br><br>
+			<a href="Part-2.html">-> Часть 2</a>
+			<br><br><br><br>
+			</font>
+	</td>
+<!-- end content -->
+
+ 	<td width="100"><img src="http://www.linux.org.ru/books/Blender/images/trans.gif" width="100" height="1" alt=""></td>
+ </tr>
+ <tr>
+ 	<td colspan="4"><img width="93" height="43" src="../images/gradstrips.gif" alt=""><img width="507" height="43"
+			src="../images/bottom.gif" alt=""></td>
+ </tr>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,329 @@
+<HTML>
+<HEAD>
+<TITLE>DOSEmu: Directly executable DOS applications using dosemu (DEXE)</TITLE>
+</HEAD>
+<BODY>
+<?php include("/home/maxcom/linux_html/books/head.php3") ?>
+<A HREF="README-3.html">Назад</A>
+<A HREF="README-5.html">Вперед</A>
+<A HREF="README.html#toc4">Оглавление</A>
+<HR>
+<H2><A NAME="dexe"></A> <A NAME="s4">4. Непосредственно исполняемые DOS
+приложения dosemu (DEXE)</A></H2>
+
+
+<P>This section of the document by Hans, 
+<A HREF="mailto:lermen@fgan.de">&lt;lermen@fgan.de&gt;</A>. Last
+updated on June 16, 1997.</P>
+
+<H2><A NAME="ss4.1">4.1 Подготовка и использование DEXE</A></H2>
+
+
+<P>
+Наверное, вам было интересно, что означает расширение *.dexe. Теперь из
+названия параграфа вы это знаете ;-)
+</P>
+<P>
+На самом деле это маленький загружаемый образ диска, содержащий всего
+<EM>одно</EM> DOS-приложение. Поскольку оно имеет доступ 
+только к образу диска, то порождает меньше проблем с обеспечением
+безопасности, чем полное DOS-окружение под linux. Что еще лучше, вам не нужно
+возиться с установкой, так как это уже сделал тот, кто готовил dexe.
+</P>
+<P>
+С другой стороны, можно создавать свои собственные *.dexe файлы, используя
+скрипт 'mkdexe'. Для его запуска, однако, вам понадобятся как минимум
+mtools-3.6, покольку эта версия имеет некоторые дополнительные возможности
+по сравнению с предыдущими.
+</P>
+<P>
+Подробнее, для изготвления *.dexe нужно следющее:
+</P>
+<P>
+<UL>
+<LI>иметь <EM>mtools-3.6</EM>.</LI>
+<LI>иметь скомпилированный dosemu и <EM>не делать</EM> 'make pristine'</LI>
+<LI>иметь *.zip архив, содержащий все файлы, относящиеся к
+DOS-приложению (возможно, целые каталоги)</LI>
+<LI>
+подготовить следующую информацию перед запуском 'mkdexe':
+<UL>
+<LI> 
+Размер раздела для образа диска</LI>
+<LI> 
+Версию DOS, которую следует поместить на этот образ. Если ваше приложение
+работает под FreeDos, этого не требуется, в противном случае 'mkdexe' будет
+нужно знать, с какого из существующий загрузочных разделов брать систему.
+</LI>
+<LI> Содержимое config.sys и autoexec.bat.</LI>
+</UL>
+
+</LI>
+<LI> затем (как root) выполните следующее
+
+<BLOCKQUOTE><CODE>
+<PRE>
+       # cd ./dexe
+       # mkdexe myapp.zip -x myapp.exe -o confirm
+</PRE>
+</CODE></BLOCKQUOTE>
+
+</LI>
+<LI> 
+Если все прошло нормально, у вас появилось  /var/lib/dosemu/myapp.dexe,
+которое можно выполнить командой
+<BLOCKQUOTE><CODE>
+<PRE>
+       # dos -L myapp.dex [ dosemu-options ]
+</PRE>
+</CODE></BLOCKQUOTE>
+
+либо
+
+<BLOCKQUOTE><CODE>
+<PRE>
+       # dosexec myapp.dex [ dosemu-options ]
+</PRE>
+</CODE></BLOCKQUOTE>
+</LI>
+</UL>
+</P>
+<P>Вот что ./mkdexe напечатает в качестве подсказки, если его вызвать без
+аргументов:</P>
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+   USAGE:
+     mkdexe [{ application | hdimage}]
+                        [-b dospart] [{-s|-S} size] [-x appname]
+                        [-c confsys] [-a autoexe] [-C comcom ] [-d dosemuconf]
+                        [-i IOname] [-m MSname]
+                        [-o &lt;option&gt; [-o ...]]
+
+     application  полная DOS-программа в виде *.zip файла
+     hdimage      имя образа диска для результата, если задано -o noapp
+                  (см. ниже)
+     dospart      Если не указано, будет использоваться система FreeDos
+                  Если указано, то это должен быть либо загружаемый DOS
+                  раздел (/dev/...), либо уже готовый образ диска.
+     -s size      _Дополнительное_ свободное место (в Kб) на образе диска
+     -S size      Полный размер (в Кб) образа диска (-s,-S взаимоисключающи)
+     appname      Название запускаемой DOS-программы
+     confsys      Заготовка для config.sys
+     autoexe      Заготовка для autoexec.bat
+     comcom       имя командного интерпретатора, обычно command.com
+     dosemuconf   Заготовка для используемого dosemu.conf
+     IOname       Имя DOS файла, обычно называемого IO.SYS,
+                  (по умолчанию для FreeDos: IPL.SYS) который всегда помещается 
+                  первым файлом на образ диска
+     MSname       Имя DOS файла, обычно называемого MSDOS.SYS, 
+                  (по умолчанию для FreeDos: MSDOS.SYS) который всегда 
+                  помещается вторым на образ диска
+     -o &lt;option&gt;  Распознаются следующие вспомогательные флаги:
+                    confirm   предложить редактировать config.sys, autoexec.bat 
+                              и dconfig с помощью  $EDITOR  
+                    nocomcom  Опустить command.com, поскольку он все равно не
+                              используется, когда  shell=c:\appname.exe
+                    noapp     Сделать простой загружаемый образ диска для 
+                              обычной работы с DOSEMU (вместо hdimage.dist)
+</PRE>
+</CODE></BLOCKQUOTE>
+</P>
+<P>
+При необходимости изменить встроенный конфигурационный файл, можно
+использовать ./src/tools/periph/dexeconfig для извлечения/сохранения
+настроек.</P>
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+  # dexeconfig -x configfile dexefile
+</PRE>
+</CODE></BLOCKQUOTE>
+</P>
+<P>Извлечение настроек из 'dexefile' и помещение их в 'configfile'</P>;
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+  # dexeconfig -i configfile dexefile
+</PRE>
+</CODE></BLOCKQUOTE>
+</P>
+<P>делает обратное преобразование.</P>
+<P>Есть одна тонкость: когда вы желаете дать пользователю право выполнять
+DEXE, а сама эта DOS-задача хочет произвести запись в файл внутри DEXE
+(который на самом деле - целая DOS-овская файловая система). Для этого
+понадобилось бы дать пользователю право записи (что нежелательно).
+В DEXE предусмотрен обходной путь: можно установить права read-only на сам
+DEXE файл, но предусмотреть флажок, который позволит DOSEMU все равно
+открывать его на чтение/запись.
+То есть, пользователь не может удалить или подменить DEXE, но встроенное
+DOS-приложение сможет (полностью изолированно) писать в DOS файлы внутри
+DEXE (сложно, да?). Для установки такого разрешения вам снова понадобится 
+'dexeconfig':</P>
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+  # dexeconfig -p W dexefile
+</PRE>
+</CODE></BLOCKQUOTE>
+</P>
+<P>Вот что 'dexeconfig' напечатает в качестве подсказки, если его вызвать
+без параметров:</P>
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+   USAGE:
+      dexeconfig [-M] [-p {w|W}] -i configfile dexefile
+      dexeconfig -x configfile dexefile
+      dexeconfig -v  dexefile
+      dexeconfig -p {w|W}  dexefile
+
+   где
+      -i      записать конфигурационный файл в dexe
+      -x      извлечь конфигурационный файл
+      -p w    сбросить разрешение на запись
+      -p W    установить разрешение на запись
+      -v      посмотреть текущие установки
+</PRE>
+</CODE></BLOCKQUOTE>
+</P>
+<P>
+Было бы здорово собрать архив работающих, свободно распространяемых *.dexe
+программ, и здесь я прошу о таких вкладах. Однако, <EM>ОЧЕНЬ ВАЖНО</EM>, 
+если вы решите предложить *.dexe программы в общественное использование,
+пожалуйста, <EM>НЕ ИСПОЛЬЗУЙТЕ</EM> никаких других DOS, кроме FreeDos, иначе
+вы нарушите авторские права. Это (к сожалению) так и для OpenDOS, который
+можно распространять только с разрешения Caldera :-(</P>
+<P>
+Усли вы <EM>уже</EM> собрали *.dexe и хотите им поделиться, пожалуйста,
+пошлите мне письмо и загружайте хозяйство на
+</P>
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+   tsx-11.mit.edu:/pub/linux/ALPHA/dosemu/Development/Incoming
+</PRE>
+</CODE></BLOCKQUOTE>
+</P>
+<P>Затем я переложу это в</P>
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+   tsx-11.mit.edu:/pub/linux/ALPHA/dosemu/dexe/*
+   ftp.suse.com:/pub/dosemu/dexe/*
+</PRE>
+</CODE></BLOCKQUOTE>
+</P>
+<P>
+Пока там только одна программа : fallout.dexe
+Это симпатичная Тетрис-подобнаая игра, которую я нашел на старом CD-ROM и
+которая работает в 300x200 в консоли и под X-ами (не в slang-терминале).
+Когда вы поместите ее в каталог /var/lib/dosemu/* , ее можно запустить так:
+</P>
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+   dosexec fallout.dexe -X
+</PRE>
+</CODE></BLOCKQUOTE>
+</P>
+<P>
+Надеюсь, в будущем у нас появятся и другие *.dexe ....</P>
+
+<H2><A NAME="ss4.2">4.2 Использование binfmt_misc для прямого запуска DEXE</A></H2>
+
+
+<P>
+Есть хитрый патч к ядру от Richard Guenther 
+&lt;zxmpm11@student.uni-tuebingen.de&gt;. Его можно получить с </P>
+<P>
+<A HREF="http://www.anatom.uni-tuebingen.de/~richi/linux/binfmt_misc.html">&lt;http://www.anatom.uni-tuebingen.de/~richi/linux/binfmt_misc.html&gt;</A></P>
+<P>
+Мы надеемся, что он войдет в ядро, поскольку тогда будет можно запускать
+DEXE просто набрав имя в командной строке. Для регистрации DEXE формата с
+помошью  binfmt_misc сделайте (в своем /etc/rc.-что_у_вас_там) </P> 
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+  cd /proc/sys/fs/binfmt_misc
+  echo :DEXE:M::\\x0eDEXE::/usr/bin/dosexec: &gt;register
+</PRE>
+</CODE></BLOCKQUOTE>
+</P>
+<P>и все.</P>
+
+
+<H2><A NAME="ss4.3">4.3 Создание загружаемого образа диска для общих целей</A></H2>
+
+
+<P>Вы можете применить './mkdexe' для создания _обычного_ образа
+загрузочного диска, в этом есть то достоинство, что вам более не нужно
+возиться с DOS-овским загрузочным диском. У меня получилось сделать
+загрузочный образ с  FreeDos, MSDOS-6.2 и даже WINDOWS'95 (да, его можно
+загрузить с DOSEMU-шного MBR ;-) Я не проверял другие DOS-ы, но думаю, что
+они тоже будут работать, если вы передадите 'mkdexe' (ключи -i, -m) правильные 
+имена системных файлов.</P>
+<P>Пример:
+Пусть загрузочный DOS-раздел на /dev/hda1, тогда ...</P>
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+  # cd ./dexe
+  # ./mkdexe myhdimage -b /dev/hda1 -o noapp
+</PRE>
+</CODE></BLOCKQUOTE>
+</P>
+<P>
+создаст непосредственно загружаемый 'myhdimage' из существующей установки
+DOS. Не нужно делать загрузочную дискету, не нужно больше возиться с 
+fdisk /MBR и sys.com . С помощью -o confirm можно также подправить файлы
+конфигурации перед их переносом на образ диска.
+</P>
+<P>
+Более того, на базе  mkdexe есть скрипт setup-hdimage, который облегчает
+первую установку образа диска для DOSEMU. Он запрашивает все, что нужно, и
+должен работать на большинстве машин.
+</P>
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+  # cd /where/I/have/dosemu
+  # ./setup-hdimage
+</PRE>
+</CODE></BLOCKQUOTE>
+</P>
+
+
+<H2><A NAME="ss4.4">4.4 Доступ к файлам внутри образа диска с помощью mtools</A></H2>
+
+
+<P>В каталоге ./dexe также есть скрипт, который позволяет получить прямой
+доступ к файлам на образе диска, даже не изменяя настроек в
+/etc/mtools.conf. Используется он так: </P>
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+   USAGE:
+     do_mtools device mcommand [ arg1 [...] ]
+
+   где:
+     device    = DOS-раздел, например '/dev/hda1'
+                 или образ диска DOSEMU
+     mcommand  = любая разрешенная команда mtools
+     argX      = любой разрешенный аргумент для mtools.
+                 ВНИМАНИЕ: для диска DOS используйте 'W:'
+
+   пример:
+     do_mtools /var/lib/dosemu/hdimage mcopy W:/autoexec.bat -
+</PRE>
+</CODE></BLOCKQUOTE>
+</P>
+
+<HR>
+<A HREF="README-3.html">Назад</A>
+<A HREF="README-5.html">Вперед</A>
+<A HREF="README.html#toc4">Оглавление</A>
+
+<HR><I>Перевод: Валерий Груздев (grue@vpti.vladimir.ru)</I>
+</BODY>
+</HTML>

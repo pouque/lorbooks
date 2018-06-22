@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE> IFMAIL-HOWTO: Решение проблем</TITLE>
+ <LINK HREF="Ifmail-HOWTO-11.html" REL=next>
+ <LINK HREF="Ifmail-HOWTO-9.html" REL=previous>
+ <LINK HREF="Ifmail-HOWTO.html#toc10" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="Ifmail-HOWTO-11.html">Next</A>
+<A HREF="Ifmail-HOWTO-9.html">Previous</A>
+<A HREF="Ifmail-HOWTO.html#toc10">Contents</A>
+<HR>
+<H2><A NAME="s10">10. Решение проблем</A></H2>
+
+<P> 
+Если что-то работает не так (несмотря на мои объяснения), вы имеете различные
+возможности отыскать ошибки и исправить их. В пакете ifmail есть программа,
+предназначенная для этого - ifstat, которая сообщает какие пакеты на какой 
+адрес лежат на холде.
+<P>Не смущайтесь, если эти пакеты уменьшаются после запуска ifpoll, поскольку
+почта упаковывается в ZIP файлы. Другое хорошее место, в которое рекомендуется
+заглянуть - это файлы /var/log/syslog или /var/log/messages.
+<P>
+<P>
+<P>
+<H2><A NAME="ss10.1">10.1 Почта не обрабатывается</A>
+</H2>
+
+<P> 
+В этом случае было бы очень полезно увеличить уровень отладки ifmail в
+/etc/sendmail.cf. Чтобы сделать это, добавьте параметр -4 в ifmail (если
+вам этого недостаточно, то по мне лучше установить -8). Для получения 
+отладочных сообщений, я отправляю копию почты на несуществующий адрес, так что
+я получаю сообщение со всеми отладочными сообщениями в /var/spool/mqueue. 
+Если такое сообщение не приходит, то это может означать, что некоторые права
+доступа не правильно установлены, что может заставлять систему ожидать (можно
+увидеть, что sendmail и ifmail остаются запущенными). Используйте журнальные
+сообщения sendmail, присылвемые через файл syslog и "странные" сообщения 
+лежацие в /var/spool/mqueue.
+<P>
+<P>
+<P>
+<H2><A NAME="ss10.2">10.2 Эхоконференции не обрабатываются</A>
+</H2>
+
+<P> 
+INN должен обрабатывать статьи немедленно и складывать их в файлы  
+/var/spool/news/out.going/*. после запуска send-ifmail они должны
+исчезнуть оттуда и вы должны найти их в /var/spool/ifmail/outbound. Также
+проверьте права доступа ваших каталогов и удостоверьтесь, что ifnews имеет
+доступ по чтению/записи в них (/tmp, /var/spool/ifmail/fidonet и 
+/var/spool/news/out-going/*).
+<P> 
+Кроме того надо просмотреть все журнальные файлы (логи):
+<BLOCKQUOTE><CODE>
+<PRE>
+ 
+ sendmail
+         /var/log/mail
+ INN
+         /usr/local/lib/news/log
+         /usr/local/lib/news/errlog
+         /var/log/inn/*
+ ifmail
+         /var/log/ifmail/iflog
+         /var/log/ifmail/ifdebug
+</PRE>
+</CODE></BLOCKQUOTE>
+ 
+Чтобы проверить создание пакетов или исправления проблем в уже существующих 
+пакетах вы должны использовать программу Inspect (под DOS), которая прекрасно
+идет под dosemu. Разрешите dosemu доступ к соответствующим каталогам и 
+запустите DOSEmu как пользователь fnet или news, после этого вы можете изменить
+файлы .pkt и архивы.
+<P>
+<P>
+<P>
+<HR>
+<A HREF="Ifmail-HOWTO-11.html">Next</A>
+<A HREF="Ifmail-HOWTO-9.html">Previous</A>
+<A HREF="Ifmail-HOWTO.html#toc10">Contents</A>
+</BODY>
+</HTML>

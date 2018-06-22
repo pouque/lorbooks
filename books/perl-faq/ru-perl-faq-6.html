@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE>FAQ по perl и программированию для web: Ускоряемся</TITLE>
+ <LINK HREF="ru-perl-faq-7.html" REL=next>
+ <LINK HREF="ru-perl-faq-5.html" REL=previous>
+ <LINK HREF="http://books.gnu.technology/books/perl-faq/ru-perl-faq.html#toc6" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="ru-perl-faq-7.html">Next</A>
+<A HREF="ru-perl-faq-5.html">Previous</A>
+<A HREF="http://books.gnu.technology/books/perl-faq/ru-perl-faq.html#toc6">Contents</A>
+<HR>
+<H2><A NAME="Ускоряемся"></A> <A NAME="s6">6. Ускоряемся</A></H2>
+
+<P>
+<H2><A NAME="ss6.1">6.1 Моя CGI программа работает слишком медленно/создает большую нагрузку на сервер/etc.  Что делать?</A>
+</H2>
+
+<P>
+<P>
+<UL>
+<LI> Вкомплировать интерпретатор в сервер (mod_dtcl, mod_perl, pyapache для apache, 
+серверы с поддержкой servlets, AOL server с его поддержкой tcl).</LI>
+<LI> Переделать на FastCGI или аналогичную технологию.</LI>
+<LI> Переписать ее на компилируемый язык, если написано на скриптовом.  Тем самым
+вы избавитесь от оверхедов интерпретатора.</LI>
+<LI> Взять более мощный сервер (IBM RS/6k F50, к примеру :-)</LI>
+</UL>
+<P>
+<P>
+<H2><A NAME="ss6.2">6.2 Что такое mod_perl?</A>
+</H2>
+
+<P>
+<P>Это perl, вкомпилированный в apache, что придает многие преимущества:
+<UL>
+<LI>Скрипты и модули компилируются один раз, что значитльно увеличивает 
+скорость ответа на запрос HTTP (до 2000%);</LI>
+<LI>Можно написать свои обработчики различных стадий запроса;</LI>
+<LI>Кеширование сединений с сервером БД -- еще прибавка к скорости;</LI>
+<LI>Директива SSI #perl позволяет в server-parsed html вызывать функции perl;</LI>
+<LI>секции &lt;perl&gt;&lt;/perl&gt; в конфиге apache, для его конфигурирования;</LI>
+</UL>
+        
+<P>Правда, ничего не дается даром и самый важный недостаток mod_perl --
+<EM>огромный</EM> расход памяти: если обычный apache занимает при работе обычно
+меньше мегабайта, то apache с mod_perl размером в 10-15 Mb -- вполне нормальное
+явление. Но, при правильной настройке, значительная часть этой памяти будет
+shared между копиями процессов.
+<P>Основной сайт про mod_perl - 
+<A HREF="http://perl.apache.org">http://perl.apache.org</A>, в частности
+великолепный mod_perl Guide на 
+<A HREF="http://perl.apache.org/guide/">http://perl.apache.org/guide/</A>.
+<P>
+<P>
+<H2><A NAME="ss6.3">6.3 В чем разница между скриптом для CGI и mod_perl?</A>
+</H2>
+
+<P>
+<P>Программа CGI исполняется один раз, за тем умирает. Под mod_perl же она загружается и
+исполняется до смерти сервера (в случае использования Apache::Registry, см.
+далее), поэтому она требует более аккуратного описания - закрывать файлы, не 
+использовать много памяти, и тд.
+<P>Более подробно о переписывании программ CGI под mod_perl - 
+<A HREF="http://perl.apache.org/guide/porting.html">http://perl.apache.org/guide/porting.html</A>.
+<P>
+<H2><A NAME="ss6.4">6.4 В чем разница между исполнением под Apache::Registry и Apache::PerlRun?</A>
+</H2>
+
+<P>
+<P>
+<P>
+<H2><A NAME="ss6.5">6.5 Как использовать постоянное соединение с БД под mod_perl?</A>
+</H2>
+
+<P>
+<P>
+<H2><A NAME="ss6.6">6.6 Что такое FastCGI?</A>
+</H2>
+
+<P>
+<P>
+<P>
+<HR>
+<A HREF="ru-perl-faq-7.html">Next</A>
+<A HREF="ru-perl-faq-5.html">Previous</A>
+<A HREF="http://books.gnu.technology/books/perl-faq/ru-perl-faq.html#toc6">Contents</A>
+</BODY>
+</HTML>

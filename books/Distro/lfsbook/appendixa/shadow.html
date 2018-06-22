@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
+  <meta http-equiv="content-type" content="text/html; charset=KOI8-R"><title>Shadow</title>
+  
+  <meta name="GENERATOR" content="Modular DocBook HTML Stylesheet Version 1.73">
+  <link rel="HOME" title="Linux From Scratch" href="../index.html">
+  <link rel="UP" title="Package descriptions and dependencies" href="appendixa.html">
+  <link rel="PREVIOUS" title="Sed" href="sed.html">
+  <link rel="NEXT" title="Sh-utils" href="sh-utils.html"></head>
+
+<body class="sect1" bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#840084" alink="#006000">
+<div class="NAVHEADER">
+<table summary="Header navigation table" width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tbody>
+    <tr>
+      <th colspan="3" align="Center">Linux From Scratch: Версия 4.0</th>
+    </tr>
+    <tr>
+      <td width="10%" align="Left" valign="Bottom"><a href="sed.html" accesskey="P">Назад</a></td>
+      <td width="80%" align="Center" valign="Bottom">Приложение A.
+Описания пакетов и зависимостей</td>
+      <td width="10%" align="Right" valign="Bottom"><a href="sh-utils.html" accesskey="N">Вперед</a></td>
+    </tr>
+  </tbody>
+</table>
+<hr align="Left" width="100%"></div>
+<div class="sect1">
+<h1 class="sect1"><a name="aa-shadow">Shadow</a></h1>
+<div class="sect2">
+<h2 class="sect2"><a name="AEN8259">Официальная ссылка</a></h2>
+<p></p>
+<p class="literallayout">Shadow (4.0.3):<br>
+<a href="ftp://ftp.pld.org.pl/software/shadow/" target="_top">ftp://ftp.pld.org.pl/software/shadow/</a></p>
+<p></p>
+</div>
+<div class="sect2">
+
+<div class="sect2"><h2 class="sect2"><a name="AEN8264">Содержимое Shadow</a></h2><p>Последняя проверка: версия 4.0.3.</p><div class="sect3"><h3 class="sect3"><a name="AEN8267">Программы</a></h3><p>chage, chfn, chpasswd, chsh, dpasswd, expiry, faillog, gpasswd,
+groupadd, groupdel, groupmod, groups, grpck, grpconv, grpunconv,
+lastlog, login, logoutd, mkpasswd, newgrp, newusers, passwd, pwck,
+pwconv, pwunconv, sg (ссылка на newgrp), useradd, userdel, usermod, vigr
+(ссылка на vipw) и vipw</p></div><div class="sect3"><h3 class="sect3"><a name="AEN8270">Описания</a></h3><div class="sect4"><h4 class="sect4"><a name="AEN8272">chage</a></h4><p>chage изменяет число дней между сменами паролей и дату последнего
+изменения.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8275">chfn</a></h4><p>chfn изменяет полное имя пользователя и прочую информацию о нем
+(номер рабочего кабинета, рабочий и домашний телефоны).</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8278">chpasswd</a></h4><p>chpasswd читает файл, содержащий пользовательские имена и пароли, и
+использует эту информацию для обновления группы существующих
+пользователей.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8281">chsh</a></h4><p>chsh меняет командный интерпретатор, используемый пользователем.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8284">dpasswd</a></h4><p>dpasswd добавляет, удаляет и обновляет пароли dial-up подключений
+для командных оболочек.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8287">expiry</a></h4><p>expiry просматривает и изменяет правила истечения срока действия
+паролей.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8290">faillog</a></h4><p>faillog форматирует содержимое журнала ошибок /var/log/faillog и
+поддерживает счетчики и лимиты ошибок.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8293">gpasswd</a></h4><p>gpasswd используется для редактирования /etc/group.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8296">groupadd</a></h4><p>groupadd создает новую группу, используя заданные параметры и
+параметры по умолчанию.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8299">groupdel</a></h4><p>groupdel изменяет файлы учетных записей, удаляя все относящееся к
+заданной группе.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8302">groupmod</a></h4><p>groupmod изменяет файлы учетных записей групп, внося заданные
+изменения.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8305">groups</a></h4><p>groups выводит группы, к которым принадлежит пользователь.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8308">grpck</a></h4><p>grpck проверяет целостность системной информации об аутентификации.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8311">grpconv</a></h4><p>grpunconv конвертирует обычные файлы групп в теневые.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8314">grpunconv</a></h4><p>grpunconv конвертирует теневые файлы групп в обычные.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8317">lastlog</a></h4><p>lastlog форматирует и выводит содержимое журнала регистраций
+/var/log/lastlog. Выводится регистрационное имя, порт и время
+регистрации.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8320">login</a></h4><p>login используется для начала новой сессии работы с системой.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8323">logoutd</a></h4><p>logoutd контролирует время регистрации и прочие ограничения,
+указанные в /etc/porttime.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8326">mkpasswd</a></h4><p>mkpasswd читает файл в заданном формате и конвертирует его в базу
+данных соответствующего формата.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8329">newgrp</a></h4><p>newgrp изменяет текущую группу.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8332">newusers</a></h4><p>newusers читает файл с именами пользователей и пустыми полями
+паролей и обновляет группу существующих пользователей или создает новых.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8335">passwd</a></h4><p>passwd меняет пароли пользователей и групп.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8338">pwck</a></h4><p>pwck проверяет целостность файлов паролей.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8341">pwconv</a></h4><p>pwconv конвертирует обычный файл паролей в теневой.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8344">pwunconv</a></h4><p>pwunconv конвертирует теневой файл паролей в обычный.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8347">sg</a></h4><p>sg меняет GID пользователя на соответствующий указанной группе или
+выполняет заданную команду с правами указанной группы.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8350">useradd</a></h4><p>useradd создает нового пользователя или обновляет данные по
+умолчанию о новых пользователях.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8353">userdel</a></h4><p>userdel изменяет файлы, содержащие информацию о пользователях,
+удаляя все записи, относящиеся к указаннному регистрационному имени.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8356">usermod</a></h4><p>usermod изменяет файлы учетных записей пользователей, внося заданные
+изменения..</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8359">vipw и vigr</a></h4><p>vipw и vigr позволяют безопасно редактировать /etc/passwd и
+/etc/group. С флагом -s будут редактироваться теневые версии файлов,
+/etc/shadow и /etc/gshadow.</p></div></div><div class="sect3"><h3 class="sect3"><a name="AEN8362">Библиотеки</a></h3><p>libmisc.[a,so], libshadow.[a,so]</p></div><div class="sect3"><h3 class="sect3"><a name="AEN8365">Descriptions</a></h3><div class="sect4"><h4 class="sect4"><a name="AEN8367">libmisc</a></h4><p>На данный момент нет описания.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8370">libshadow</a></h4><p>libshadow предоставляет большинство функций для программ shadow.</p></div></div></div>
+<div class="sect2"><h2 class="sect2"><a name="AEN8373">Зависимости Shadow</a></h2><p>Последняя проверка: версия 20001016.</p><p class="literallayout">Autoconf: autoconf, autoheader<br>
+Automake: aclocal, automake<br>
+Bash: sh<br>
+Binutils: ar, as, ld, nm, ranlib<br>
+Diffutils: cmp<br>
+Fileutils: chmod, cp, install, ln, ls, mkdir, mv, rm, rmdir<br>
+Gettext: msgfmt, xgettext<br>
+Gcc: cc1, collect2, cpp0, gcc<br>
+Glibc: ldconfig<br>
+Grep: egrep, grep<br>
+M4: m4<br>
+Make: make<br>
+Gawk: gawk<br>
+Net-tools: hostname<br>
+Sed: sed<br>
+Sh-utils: basename, echo, expr, sleep, uname<br>
+Texinfo: makeinfo<br>
+Textutils: cat, sort, tr, uniq</p></div>
+<h2 class="sect2"></h2></div>
+</div>
+<div class="NAVFOOTER">
+<hr align="Left" width="100%">
+<table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tbody>
+    <tr>
+      <td width="33%" align="Left" valign="Top"><a href="sed.html" accesskey="P">Назад</a></td>
+      <td width="34%" align="Center" valign="Top"><a href="../index.html" accesskey="H">Домой</a></td>
+      <td width="33%" align="Right" valign="Top"><a href="sh-utils.html" accesskey="N">Вперед</a></td>
+    </tr>
+    <tr>
+      <td width="33%" align="Left" valign="Top">Sed</td>
+      <td width="34%" align="Center" valign="Top"><a href="appendixa.html" accesskey="U">Наверх</a></td>
+      <td width="33%" align="Right" valign="Top">Sh-utils</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</body></html>

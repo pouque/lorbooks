@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=koi8-r"><title>Глава 7. Редактирование текста</title><meta name="generator" content="DocBook XSL Stylesheets V1.59.1"><link rel="home" href="index.html" title="The Linux Cyrillic HOWTO (russian)"><link rel="up" href="index.html" title="The Linux Cyrillic HOWTO (russian)"><link rel="previous" href="ch06s02.html" title="Интернационализация"><link rel="next" href="ch07s02.html" title="Emacs и XEmacs"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Глава 7. Редактирование текста</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch06s02.html">Пред.</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch07s02.html">След.</a></td></tr></table><hr></div><div class="chapter" lang="ru"><div class="titlepage"><div><h2 class="title"><a name="Editors"></a>Глава 7. Редактирование текста</h2></div></div><div class="toc"><p><b>Содержание</b></p><dl><dt><a href="ch07.html#CyrSpell">Проверка правописания на русском языке</a></dt><dd><dl><dt><a href="ch07.html#CyrSpellSwan">Словарь Александра Лебедева</a></dt></dl></dd><dt><a href="ch07s02.html">Emacs и XEmacs</a></dt><dd><dl><dt><a href="ch07s02.html#emacs-mule">Emacs и MULE</a></dt><dt><a href="ch07s02.html#emacs-resources">X-ресурсы</a></dt></dl></dd><dt><a href="ch07s03.html">vi</a></dt><dt><a href="ch07s04.html">joe</a></dt></dl></div><a class="indexterm" name="id2924047"></a><p>В этом разделе описывается настройка различных программ для
+работы с кириллическими текстами. Этот раздел не охватывает
+<span class="emphasis"><em>текстовые процессоры</em></span>, настройка которых
+описывается позже (смотри раздел <a href="ch08.html" title="Глава 8. Текстовые процессоры">Глава 8. <i>Текстовые процессоры</i></a>)</p><div class="sect1" lang="ru"><div class="titlepage"><div><h2 class="title" style="clear: both"><a name="CyrSpell"></a>Проверка правописания на русском языке</h2></div></div><a class="indexterm" name="id2923606"></a><a class="indexterm" name="id2923618"></a><p>Для проверки правописания обычно используется программа
+<tt>GNU ispell</tt>.  Она имеет очень гибкие настройки и
+возможности для расширения.  Её можно использовать при проверке
+правописания текстов, написанных на языках, отличных от английского,
+путём добавления новых <span class="emphasis"><em>словарей</em></span>.</p><p>В идеальном случае, когда ваш <tt>ispell</tt>
+установлен правильно, вам надо только создать словарь, используя
+команды, обеспечиваемые файлом <tt>Makefile</tt> из
+дистрибутива соответствующего словаря. Однако с некой долей
+вероятности у вас возникнут проблемы с <tt>ispell</tt>,
+который откажется понимать 8-ми битные данные. Это означает, что в
+вашей системе <tt>ispell</tt> скомпилирован без поддержки
+8-ми битных символов. В этом случае вам не удастся избежать
+перекомпиляции пакета <tt>ispell</tt>.</p><p>Если у вас все нормально, то можете инициировать проверку
+правописания для русских текстов путём вызова программы
+<tt>ispell</tt> с опцией <tt>'-d
+russian'</tt></p><p>Последняя версия <tt>ispell</tt> имеет номер
+3.1.20.  При желании пакет можно взять здесь <a href="ftp://ftp.cs.ucla.edu/pub/ispell-3.1/ispell-3.1.20.tar.gz" target="_top">ftp.cs.ucla.edu</a>
+или найти на любом крупном ftp-сервере.  При самостоятельной
+компиляции <tt>ispell</tt> надо скопировать файл
+<tt>local.h.samp</tt> в <tt>local.h,</tt>
+закомментировать в нем <span class="emphasis"><em>NO8BIT</em></span>
+(<tt>#undef NO8BIT</tt>) и установить правильные пути
+для <tt>BINDIR</tt>, <tt>LIBDIR</tt> и других
+рабочих директорий.</p><div class="sect2" lang="ru"><div class="titlepage"><div><h3 class="title"><a name="CyrSpellSwan"></a>Словарь Александра Лебедева</h3></div></div><a class="indexterm" name="id2923810"></a><a class="indexterm" name="id2923826"></a><p>Этот словарь построен на основе словаря русского языка
+для <tt>ispell</tt>, первоначально составленного Нилом
+Далтоном (Neal Dalton) в 1992 г.  После тщательной проверки и
+исправления примерно 4000 ошибок в словаре Нила Далтона (в этой части
+работы использовался орфографический словарь русского языка,
+выпущенный Институтом русского языка АН СССР), в словарь были
+добавлены отсутствовавшие в нём правила образования форм
+существительных, прилагательных, причастий, наречий, изменены правила
+формирования окончаний глаголов, так что affix-файл можно считать
+переписанным заново.  Одновременно в словарь было добавлено большое
+число слов.</p><p>Словарь постоянно совершенствуется, дополняется и
+корректируется.  Последнюю версию словаря можно найти на сервере:
+<a href="ftp://mch5.chem.msu.su/pub/russian/ispell/rus-ispell.tar.gz" target="_top">mch5.chem.msu.su</a></p><p>Как можно понять из названия раздела, автором этого
+словаря является <a href="mailto:swan@mch.chem.msu.su" target="_top">Александр
+Лебедев</a>.</p><p>Отличительной чертой данного словаря является то, что
+начиная с версии 0.99c0 в него включена полноценная поддержка буквы ё
+(другие словари просто заменяют букву ё на букву е).</p><p>На основе этого словаря Serge Winitzki создал словарь
+для проверки правописания в текстах, набранных в дореформенной русской
+орфографии.  Предложенное им расширение кодировки koi8 и сами словари
+можно найти по адресу: <a href="http://sawsoft.newmail.ru/LS/koi8-extended.htm" target="_top">sawsoft.newmail.ru/LS/koi8-extended.html</a>.</p></div></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch06s02.html">Пред.</a> </td><td width="20%" align="center"><a accesskey="u" href="index.html">Уровень выше</a></td><td width="40%" align="right"> <a accesskey="n" href="ch07s02.html">След.</a></td></tr><tr><td width="40%" align="left" valign="top">Интернационализация </td><td width="20%" align="center"><a accesskey="h" href="index.html">Начало</a></td><td width="40%" align="right" valign="top"> Emacs и XEmacs</td></tr></table></div></body></html>

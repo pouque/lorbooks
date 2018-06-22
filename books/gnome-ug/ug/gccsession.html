@@ -1,0 +1,270 @@
+<HTML
+><HEAD
+><TITLE
+>Диспетчер сеансов</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.33"><LINK
+REL="HOME"
+TITLE="Руководство пользователя GNOME"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Центр управления GNOME"
+HREF="gcc.html"><LINK
+REL="PREVIOUS"
+TITLE="Внешние устройства"
+HREF="gccperiph.html"><LINK
+REL="NEXT"
+TITLE="Настройка графического интерфейса"
+HREF="gccui.html"></HEAD
+><BODY
+>
+<?php include("/home/maxcom/linux_html/books/head.php3") ?>
+<DIV
+CLASS="NAVHEADER"
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Руководство пользователя GNOME</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="gccperiph.html"
+>Пред.</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Глава 9. Центр управления GNOME</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="gccui.html"
+>След.</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="GCCSESSION"
+>Диспетчер сеансов</A
+></H1
+><P
+>     
+     Этот капплет позволяет вам настроить диспетчер сеансов GNOME,
+     который отвечает за запуск приложений в начале сеанса работы
+     GNOME, за сохранение настройки и за завершение сеанса работы
+     GNOME. Подробное описание диспетчера сеансов дается в <A
+HREF="session.html"
+>Гл. 10</A
+>. 
+    </P
+><P
+></P
+><UL
+><LI
+STYLE="list-style-type: disc"
+><P
+> <I
+CLASS="GUILABEL"
+>Запрашивать подтверждение</I
+> - в этом
+     режиме GNOME будет запрашивать подтверждение перед завершением
+     работы.
+     </P
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+>      <I
+CLASS="GUILABEL"
+>Автоматически сохранять состояние сеанса</I
+> -
+      если выбрать этот режим, то GNOME будет автоматически запоминать
+      состояние вашего сеанса работы в момент выхода и восстанавливать
+      его в начале следующего сеанса. В частности, будут восстановлены
+      все GNOME-совместимые приложения. К сожалению, несовместимые с
+      GNOME приложения не могут быть восстановлены таким образом.   
+     </P
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+>      <I
+CLASS="GUILABEL"
+>Non-session-managed Startup Programs</I
+> - в
+      этом разделе вы можете задать несовместимые с GNOME приложения,
+      которые следует запускать каждый раз в начале сеанса работы. 
+     </P
+><DIV
+CLASS="NOTE"
+><BLOCKQUOTE
+CLASS="NOTE"
+><P
+><B
+>Замечание: </B
+>       Нет смысла вносить в этот список GNOME-совместимые приложения:
+       проще оставить их работающими в конце сеанса работы и запомнить
+       этот сеанс.
+      </P
+></BLOCKQUOTE
+></DIV
+><P
+> Чтобы добавить программу к Startup списку, напечатайте
+     соответствующую команду в графе под кнопками
+     <B
+CLASS="GUIBUTTON"
+>Добавить</B
+> и <B
+CLASS="GUIBUTTON"
+>Удалить</B
+>
+     и нажмите кнопку <B
+CLASS="GUIBUTTON"
+>Добавить</B
+>. Это запустит
+     простой диалог, в котором вы можете указать команду запуска
+     приложения и его приоритет.  
+     </P
+><P
+>      По умолчанию, все приложения получают приоритет 50. Если вы
+      хотите, чтобы какое-либо приложение (например, диспетчер окон)
+      запускалось раньше, чем остальные, то вы можете уменьшить
+      приоритет.  
+     </P
+><DIV
+CLASS="IMPORTANT"
+><BLOCKQUOTE
+CLASS="IMPORTANT"
+><P
+><B
+>ВАЖНАЯ ИНФОРМАЦИЯ: </B
+>       Эта возможность предназначена только для опытных пользователей. Если
+       вы незнакомы с системой приоритетов в UNIX, используйте
+       приоритет 50 для всех ваших приложений. 
+      </P
+></BLOCKQUOTE
+></DIV
+></LI
+><LI
+STYLE="list-style-type: disc"
+><P
+>      <I
+CLASS="GUILABEL"
+>Browse Currently Running Programs</I
+> - эта
+      кнопка показывает список всех работающих в настоящий момент
+      приложений. Вы можете остановить некоторые из них; тем самым,
+      они не будут они не будут сохранены при окончании этого сеанса
+      работы и не будут восстановлены в следующем сеансе. Следует
+      иметь в виду, что большинство этих приложений - это системные
+      команды, которые не следует останавливать.
+      Эту кнопку имеет смысл использовать, например, если вы не хотите
+      пользоваться одним из компонентов GNOME (скажем, панелью). 
+     </P
+><DIV
+CLASS="IMPORTANT"
+><BLOCKQUOTE
+CLASS="IMPORTANT"
+><P
+><B
+>ВАЖНАЯ ИНФОРМАЦИЯ: </B
+>       Эта возможность предназначена только для опытных пользователей. Ею не
+       следует пользоваться для остановки приложений, которые вы
+       хотите использовать в следующем сеансе работы GNOME. 
+      </P
+></BLOCKQUOTE
+></DIV
+></LI
+></UL
+><DIV
+CLASS="FIGURE"
+><P
+><B
+>Рисунок 9-13. Капплет диспетчера сеансов</B
+></P
+><P
+><IMG
+SRC="../figs/gcc-session.gif"></P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="gccperiph.html"
+>Пред.</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+>Начало</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="gccui.html"
+>След.</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Внешние устройства</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="gcc.html"
+>Уровень выше</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Настройка графического интерфейса</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

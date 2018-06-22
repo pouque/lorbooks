@@ -1,0 +1,439 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Linux ADSM Mini-Howto</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.57"></HEAD
+><BODY
+CLASS="ARTICLE"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="ARTICLE"
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="TITLE"
+><A
+NAME="AEN2"
+>Linux ADSM Mini-Howto</A
+></H1
+><DIV
+CLASS="AUTHORGROUP"
+><A
+NAME="AEN4"
+></A
+><H3
+CLASS="AUTHOR"
+><A
+NAME="AEN5"
+>Thomas Koenig</A
+></H3
+><DIV
+CLASS="AFFILIATION"
+><DIV
+CLASS="ADDRESS"
+><P
+CLASS="ADDRESS"
+>&nbsp;&nbsp;  Thomas.Koenig@ciw.uni-karlsruhe.de
+  <br>
+&nbsp;</P
+></DIV
+></DIV
+><H3
+CLASS="CORPAUTHOR"
+>  Перевод: <A
+HREF="mailto:sam@asp-linux.com"
+TARGET="_top"
+>Станислав Рогин</A
+>,
+  <A
+HREF="http://www.asplinux.com"
+TARGET="_top"
+>SWSoft Pte Ltd.</A
+></H3
+></DIV
+><P
+CLASS="PUBDATE"
+>15 Января 1997 года<BR></P
+><DIV
+><DIV
+CLASS="ABSTRACT"
+><A
+NAME="AEN15"
+></A
+><P
+></P
+><P
+>В этом документе описывается установка и использование в Linux/i386 клиента коммерческой системы резервного копирования ADSM.</P
+><P
+></P
+></DIV
+></DIV
+><HR></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Содержание</B
+></DT
+><DT
+>1. <A
+HREF="ADSM-Backup.html#AEN17"
+>Авторские права</A
+></DT
+><DT
+>2. <A
+HREF="ADSM-Backup.html#AEN26"
+>Введение</A
+></DT
+><DT
+>3. <A
+HREF="ADSM-Backup.html#AEN31"
+>Установка модуля iBCS</A
+></DT
+><DT
+>4. <A
+HREF="ADSM-Backup.html#AEN48"
+>Установка клиента ADSM</A
+></DT
+><DT
+>5. <A
+HREF="ADSM-Backup.html#AEN91"
+>Запуск клиента ADSM</A
+></DT
+><DT
+>6. <A
+HREF="ADSM-Backup.html#AEN97"
+>Известные проблемы</A
+></DT
+></DL
+></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="AEN17"
+>1. Авторские права</A
+></H1
+><P
+>Авторские права на русский перевод этого текста принадлежат (c) 2000 SWSoft Pte Ltd.
+Все права зарезервированы.</P
+><P
+>Этот документ является частью проекта Linux HOWTO.</P
+><P
+>Авторские права на документы Linux HOWTO принадлежат их авторам, если явно
+не указано иное. Документы Linux HOWTO, а также их переводы, могут
+быть воспроизведены и распространены полностью или частично на любом
+носителе физическом или электронном, при условии сохранения этой заметки об
+авторских правах на всех копиях. Коммерческое распространение разрешается и
+поощряется; но так или иначе автор текста и автор перевода желали бы знать о
+таких дистрибутивах.</P
+><P
+>Все переводы и производные работы, выполненные по документам Linux HOWTO
+должны сопровождаться этой заметкой об авторских правах. Это делается в
+целях предотвращения случаев наложения дополнительных ограничений на
+распространение документов HOWTO. Исключения могут составить случаи
+получения специального разрешения у координатора Linux HOWTO с которым
+можно связаться по адресу приведенному ниже.</P
+><P
+>Мы бы хотели распространить эту информацию по всем возможным каналам. Но
+при этом сохранить авторские права и быть уведомленными о всех планах
+распространения HOWTO. Если у вас возникли вопросы, пожалуйста, обратитесь
+к координатору проекта Linux HOWTO по электронной почте: <TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:linux-howto@metalab.unc.edu"
+>linux-howto@metalab.unc.edu</A
+>&#62;</TT
+>, или
+к координатору русского перевода Linux HOWTO компании SWSoft Pte Ltd. по
+адресу <TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:linux-howto@asplinux.ru"
+>linux-howto@asplinux.ru</A
+>&#62;</TT
+></P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN26"
+>2. Введение</A
+></H1
+><P
+>ADSM - это сетевая система резервного копирования, продаваемая фирмой IBM и
+используемая многими организациями. Существует большой набор клиентских
+программ ADSM для различных систем (UNIX-системы, Windows, Novell,
+Mac, Windows NT). К сожалению, в настоящее время специальной Linux-версии
+не существует.</P
+><P
+>Вам придется использовать клиентскую программу для SCO и установить iBCS2-эмулятор для запуска ADSM. В этом документе описывается ADSM v2r1.</P
+><P
+>На текущий момент была испытана только версия, работающая в Linux для i386.</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN31"
+>3. Установка модуля iBCS</A
+></H1
+><P
+>Модуль iBCS2 можно найти  по адресу
+<A
+HREF="ftp://tsx-11.mit.edu/pub/linux/BETA/ibcs2"
+TARGET="_top"
+>ftp://tsx-11.mit.edu/pub/linux/BETA/ibcs2</A
+>.  Если у вас ядро версии 1.2.13, возьмите файл 
+<TT
+CLASS="LITERAL"
+>ibcs-1.2-950721.tar.gz</TT
+>, разархивируйте его и используйте патчи
+<TT
+CLASS="LITERAL"
+>ibcs-1.2-950808.patch1</TT
+> и <TT
+CLASS="LITERAL"
+>ibcs-1.2-950828.patch2</TT
+>.
+Затем наберите "<B
+CLASS="COMMAND"
+>make</B
+>" и установите модуль iBCS командой "<B
+CLASS="COMMAND"
+>insmod</B
+>".</P
+><P
+>Если у Вас ядро версии 2.0, возьмите файл <TT
+CLASS="LITERAL"
+>ibcs-2.0-960610.tar.gz</TT
+>, распакуйте его в любой каталог, перейдите в этот каталог и внесите следующие изменения:
+<PRE
+CLASS="SCREEN"
+>--- iBCSemul/ipc.c.orig Wed Jan 15 21:32:15 1997
++++ iBCSemul/ipc.c      Wed Jan 15 21:32:31 1997
+@@ -212,7 +212,7 @@
+        switch (command) {
+                case U_SEMCTL:
+                        cmd = ibcs_sem_trans(arg3);
+-                       arg4 = (union semun *)get_syscall_parameter (regs, 4);
++                       arg4 = (union semun *)(((unsigned long *) regs-&#62;esp) + (5));
+                        is_p = (struct ibcs_semid_ds *)get_fs_long(arg4-&#62;buf);
+ #ifdef IBCS_TRACE
+                        if ((ibcs_trace &#38; TRACE_API) || ibcs_func_p-&#62;trace)</PRE
+>
+Затем скопируйте <TT
+CLASS="LITERAL"
+>CONFIG.i386</TT
+> в <TT
+CLASS="LITERAL"
+>CONFIG</TT
+> и запустите <TT
+CLASS="LITERAL"
+>make</TT
+>.</P
+><P
+>Создайте необходимые файлы устройств (если у вас еще их нет) при помощи команд
+<PRE
+CLASS="PROGRAMLISTING"
+># cd /dev
+# ln -s null XOR
+# ln -s null X0R
+# mknod socksys c 30 0
+# mknod spx c 30 1</PRE
+></P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN48"
+>4. Установка клиента ADSM</A
+></H1
+><P
+>SCO-вариант клиента поставляется в виде трех tar-файлов или дисков. Перейдите в корневой каталог, установите необходимый umask, в соответствии с вашими требованиями и, будучи root-ом, распакуйте их там. В каталоге /tmp вы найдете инсталляционный скрипт - запустите его.</P
+><P
+>Затем вам придется вручную исправить файлы <TT
+CLASS="LITERAL"
+>/usr/adsm/dsm.sys</TT
+> и
+<TT
+CLASS="LITERAL"
+>/usr/adsm/dsm.opt</TT
+>.
+В файле <TT
+CLASS="LITERAL"
+>dsm.sys</TT
+> не забудьте исправить следующие строки:
+<P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>Servername</DT
+><DD
+><P
+>Имя сервера</P
+></DD
+><DT
+>TCPServeraddress</DT
+><DD
+><P
+>Полное имя машины сервера (Fully qualified host name FQDN)</P
+></DD
+><DT
+>NODename</DT
+><DD
+><P
+>Название вашей машины</P
+></DD
+></DL
+></DIV
+>
+В файле <TT
+CLASS="LITERAL"
+>dsm.opt</TT
+> вам надо указать следующее:
+<P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>Server</DT
+><DD
+><P
+>То же, что и выше</P
+></DD
+><DT
+>Followsymbolic</DT
+><DD
+><P
+>Следовать ли символьным ссылкам (вообще-то, не очень хорошая идея)</P
+></DD
+><DT
+>SUbdir</DT
+><DD
+><P
+>Создавать ли резервные копии подкаталогов (обычно это необходимо)</P
+></DD
+><DT
+>domain</DT
+><DD
+><P
+>Файловые системы, которые необходимо копировать</P
+></DD
+></DL
+></DIV
+></P
+><P
+>Затем необходимо создать совместимый со SCO файл <TT
+CLASS="LITERAL"
+>/etc/mnttab</TT
+>,
+на основе вашего <TT
+CLASS="LITERAL"
+>/etc/fstab</TT
+>.  Вы можете использовать для этого приведенный ниже Perl-скрипт
+<TT
+CLASS="LITERAL"
+>fstab2mnttab</TT
+>:
+
+<PRE
+CLASS="SCREEN"
+>#!/usr/bin/perl
+
+$mnttab_struct = "a32 a32 I L";
+
+open(MTAB, "/etc/mtab") || die "Не могу открыть /etc/mtab: $!\n";
+open(MNTTAB, "&#62;/etc/mnttab") || die "Не могу открыть /etc/mnttab: $!\n";
+
+while(&#60;MTAB&#62;) {
+    next if /pid/;
+    chop;
+    /^(\S*)\s(\S*)\s(\S*)\s.*$/;
+    $device = $1;
+    $mountpt = $2;
+    $fstype = $3;
+    if($fstype ne "nfs" &#38;&#38; $fstype ne "proc") {
+        $mnttab_rec =
+            pack($mnttab_struct, $device, $mountpt, 0x9d2f, time());
+        syswrite(MNTTAB, $mnttab_rec, 72);
+        print "Создано: $device $mountpt $fstype\n";
+    }
+}
+
+close(MNTTAB);
+exit 0;</PRE
+>
+
+Для этого клиента не требуется устанавливать каких-либо библиотек; все собрано статически.</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN91"
+>5. Запуск клиента ADSM</A
+></H1
+><P
+>Существуют два клиента: <TT
+CLASS="LITERAL"
+>dsm</TT
+> (с интерфейсом X11) и
+<TT
+CLASS="LITERAL"
+>dsmc</TT
+> (с обычным текстовым интерфейсом).  Системный администратор вашего сервера объяснит, как его запускать. Скорее всего, Вам будет необходимо внести в загрузочный скрипт строку типа:
+<B
+CLASS="COMMAND"
+>dsmc schedule -quiet 2&#62;&amp;1 &#62;/dev/null &amp;</B
+>;&#13;</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN97"
+>6. Известные проблемы</A
+></H1
+><P
+>К сожалению, SCO работает с именами машин не длиннее восьми букв. Если название вашей машины состоит из более, чем восьми букв, или должно быть полным (FQDN), то вам придется указать это имя в строке <TT
+CLASS="LITERAL"
+>NODename</TT
+> файла
+<TT
+CLASS="LITERAL"
+>/usr/adsm/dsm.sys</TT
+>.</P
+><P
+>Если вы используете переменную DISPLAY, то вам придется указать в ней полное имя машины (т.е. <TT
+CLASS="LITERAL"
+>DISPLAY=host.full.do.main:0</TT
+> вместо
+<TT
+CLASS="LITERAL"
+>DISPLAY=host:0</TT
+>).</P
+></DIV
+></DIV
+></BODY
+></HTML
+>

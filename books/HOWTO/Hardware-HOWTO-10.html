@@ -1,0 +1,31 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE>Linux Hardware Compatibility HOWTO: Контроллеры (I/O)</TITLE>
+ <LINK HREF="Hardware-HOWTO-11.html" REL=next>
+ <LINK HREF="Hardware-HOWTO-9.html" REL=previous>
+ <LINK HREF="Hardware-HOWTO.html#toc10" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="Hardware-HOWTO-11.html">Next</A>
+<A HREF="Hardware-HOWTO-9.html">Previous</A>
+<A HREF="Hardware-HOWTO.html#toc10">Contents</A>
+<HR>
+<H2><A NAME="s10">10. Контроллеры (I/O)</A></H2>
+
+<P>Любая стандартная последовательная, парралельная либо комбинирования карта.
+Линукс поддерживает 8250, 16450,16550, и 16550A UART'ты. Карты с поддержкой нестандартных IRQ также поддерживаются.
+Смотрите ``Application Note AN-493'' от Martin S. Michael. Раздел 5.0 описывает в деталях разницу между NS16550 и NS16550A. В кратком изложении
+это выглядит так : NS16550 имеют ошибки в FIFO схемах, но в NS16550A (и
+более поздние) чипах эта ошибка исправлена. Нужно отметить что модель NS16550 очень редка т.к. была была выпущена очень давно и только малой 
+партией.  Многие из 16550 частей используемых в конкретных материнских платах платах выпущены не National Semiconductors, а производителями совместимых устройств (они могут не использовать национальный префикс A) 
+Также некоторые мульти-портовые платы используют 16552 или 16554 чипы , а также другие мульти-портовые чипы (большинство из них используют не 40 DIP).
+Вообщем вам не стоит беспокоиться если вы не используете очень старый 40 DIP чип от National Semiconductors.
+<P>
+<HR>
+<A HREF="Hardware-HOWTO-11.html">Next</A>
+<A HREF="Hardware-HOWTO-9.html">Previous</A>
+<A HREF="Hardware-HOWTO.html#toc10">Contents</A>
+</BODY>
+</HTML>

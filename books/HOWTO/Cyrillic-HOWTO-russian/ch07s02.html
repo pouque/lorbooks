@@ -1,0 +1,242 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=koi8-r"><title>Emacs и XEmacs</title><meta name="generator" content="DocBook XSL Stylesheets V1.59.1"><link rel="home" href="index.html" title="The Linux Cyrillic HOWTO (russian)"><link rel="up" href="ch07.html" title="Глава 7. Редактирование текста"><link rel="previous" href="ch07.html" title="Глава 7. Редактирование текста"><link rel="next" href="ch07s03.html" title="vi"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Emacs и XEmacs</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch07.html">Пред.</a> </td><th width="60%" align="center">Глава 7. Редактирование текста</th><td width="20%" align="right"> <a accesskey="n" href="ch07s03.html">След.</a></td></tr></table><hr></div><div class="sect1" lang="ru"><div class="titlepage"><div><h2 class="title" style="clear: both"><a name="emacs"></a>Emacs и XEmacs</h2></div></div><a class="indexterm" name="id2923468"></a><a class="indexterm" name="id2923483"></a><a class="indexterm" name="id2923494"></a><p>Есть две версии редактора <span class="emphasis"><em>Emacs</em></span>
+&#8212; <tt>GNU Emacs</tt> и <tt>XEmacs</tt>.  Они
+обеспечивают более или менее сходный набор функций и возможностей, но
+при этом реализация некоторых деталей расходится довольно
+сильно.</p><p>Для настройки старых версий <span class="emphasis"><em>emacs</em></span>
+следует посмотреть изначальный &quot;Cyrillic HOWTO&quot;  от Беликова
+&#8212; дословный перевод можно найти <a href="http://kedr.inp.nsk.su/~baldin" target="_top">на моей домашней страничке</a>
+в разделе <tt>Cyrillic HOWTO (old rus)</tt>.</p><p>Существует масса способов кириллизации
+<span class="emphasis"><em>emacs</em></span> &#8212; в основном эти способы требуют
+некоего низкоуровневого (в духе emacs Лиспа) &quot;хака&quot;. Более
+&quot;идеологически&quot;  правильным способом кириллизации emacs'а
+является настройка с использованием <tt>MULE</tt>
+(MULtilanguage emacs support) &#8212; раздел <a href="ch07s02.html#emacs-mule" title="Emacs и MULE">&#8220;Emacs и MULE&#8221;</a>.</p><p><span class="emphasis"><em>Совет:</em></span> При работе с <span class="emphasis"><em>X
+Window</em></span> для <span class="emphasis"><em>emacs</em></span>, вероятно, лучше
+всего подойдут шрифты <tt>lucidatypewriter</tt> из коллекции
+шрифтов Болховитянова <span class="emphasis"><em>Cyr-RFX</em></span> (См. раздел <a href="ch15s03.html#CyrFontsXCyr-RFX" title="Cyr-RFX">&#8220;Cyr-RFX&#8221;</a>).</p><div class="sect2" lang="ru"><div class="titlepage"><div><h3 class="title"><a name="emacs-mule"></a>Emacs и MULE</h3></div></div><a class="indexterm" name="id2885746"></a><a class="indexterm" name="id2885761"></a><p><span class="emphasis"><em>MULE</em></span> &#8212; &quot;MULtilanguage Emacs
+support&quot;  &#8212; это подсистема <span class="emphasis"><em>emacs</em></span>,
+которая создана для возможности использования в этом редакторе
+различных языков. Основным толчком для развития
+<span class="emphasis"><em>MULE</em></span> послужило желание использовать
+китайские/японские и тому подобные языки &#8212; с этим, говорят,
+проблем нет, а вот по поводу использования кириллицы мало что известно
+&#8212; попробуем разобраться.</p><p>Для правильной работы с <span class="emphasis"><em>Mule</em></span> надо
+всего-то</p><div class="orderedlist"><ol type="1"><li><p> Пакет emacs-leim. Этот пакет присутствует в
+подавляющем большинстве известных дистрибутивов.</p></li><li><p> Русские шрифты в
+<span class="emphasis"><em>koi8-r</em></span> или <span class="emphasis"><em>iso5</em></span>
+кодировке.</p></li></ol></div><p>Далее:</p><div class="orderedlist"><ol type="1"><li><p> Идём в меню <tt>Mule, Set
+Font/Fontset, Fontset</tt> и выбираем
+<tt>standard</tt>. Зачем? <tt>Fontset</tt> &#8212;
+это набор шрифтов, который <span class="emphasis"><em>emacs</em></span> подбирает себе
+при загрузке.  Причём startup подбирается с тем расчётом чтобы для
+каждого шрифта из <tt>Fontset'а</tt> имелись italic и bold
+варианты, а standard подбирается так, чтобы в
+<tt>Fontset'е</tt> имелось как можно больше различных
+кодировок. Чтобы сделать изменение постоянным, запишите следующую
+строчку в <tt>&#732;/.emacs</tt>.
+
+</p><pre class="screen">
+ (set-default-font &quot;fontset-standard&quot;)
+</pre><p>
+
+</p></li><li><p> Идём в <tt>Mule, Set Language
+Environment, Cyrillic</tt> и устанавливаем один из 3-х
+вариантов. Какой &#8212; по большому счету без разницы. Это будет
+влиять только на общение emacs'а с внешним миром &#8212; если захотим
+<tt>Cyrillic-ISO</tt>, то текст будет сохраняться в
+<span class="emphasis"><em>ISO</em></span> и в буфер обмена будет копироваться текст в
+кодировке <span class="emphasis"><em>ISO</em></span>. То же самое с
+<span class="emphasis"><em>KOI8</em></span>. Чтобы сделать изменение постоянным,
+запишите в <tt>&#732;/.emacs</tt>.
+
+</p><pre class="screen">
+(set-language-environment &quot;cyrillic-koi8&quot;)
+</pre><p>
+
+</p></li></ol></div><p>Всё. Теперь самое главное &#8212; отучиться пользоваться
+системным переключателем раскладки клавиатуры &#8212;
+<span class="emphasis"><em>emacs</em></span> все делает сам. По умолчанию переключатель
+раскладки клавиатуры повешен на <tt>C-\</tt> (Как не странно
+&#8212; это довольно удобно).</p><p>Чтобы полностью избавиться от проблем взаимодействия с
+системным переключателем в среде X Window, следует воспользоваться
+программкой переключения <tt>xxkb</tt>. В
+<tt>~/.xxkb</tt> следует добавить строчку
+
+</p><pre class="programlisting">
+  XXkb.app_list.wm_class_class.alt_group1: Emacs                                
+</pre><p>
+
+      После этого <span class="emphasis"><em>Emacs</em></span> игнорирует переключения
+<tt>xkb</tt>.</p><p>Будьте готовы к тому, что могут выбраться совершенно
+неюзабельные шрифты. Чтобы кастомизировать выбор шрифтов, нужно
+создать свой собственный набор шрифтов (на сленге emacs &#8212;
+fontset). Если у вас уже установлены <span class="emphasis"><em>Cyr-RFX</em></span>
+(См. раздел <a href="ch15s03.html#CyrFontsXCyr-RFX" title="Cyr-RFX">&#8220;Cyr-RFX&#8221;</a>):</p><div class="orderedlist"><ol type="1"><li><p> Наберите что-то вроде
+</p><pre class="programlisting">
+  (create-fontset-from-fontset-spec
+     &quot;-b&amp;h-*-medium-r-*-*-14-*-*-*-*-*-fontset-vasja,
+  latin-iso8859-1:-b&amp;h-*-medium-r-*-*-14-*-*-*-*-*-iso8859-1,
+  latin-iso8859-15:-b&amp;h-*-medium-r-*-*-14-*-*-*-*-*-iso8859-15,
+  cyrillic-iso8859-5:-b&amp;h-*-medium-r-*-*-14-*-*-*-*-*-iso8859-5&quot; t)
+</pre><p>
+</p></li><li><p>Поместите курсор за закрывающей скобкой и
+нажмите <tt>C-x C-e</tt> выполнив введённый ранее кусок
+кода.  </p></li><li><p> Затем наберите
+</p><pre class="programlisting">
+  (set-default-font &quot;fontset-vasja&quot;)
+</pre><p>
+
+и опять-таки выполните этот код, нажав комбинацию клавиш <tt>C-x
+C-e</tt> (не забудьте, что курсор должен находиться за последней
+закрывающей скобкой). Результат должен быть виден сразу же.
+</p></li><li><p>Добавьте эти команды в
+<tt>&#732;/.emacs</tt>, чтобы они выполнялись при каждом
+запуске <span class="emphasis"><em>emacs'а</em></span>.  </p></li><li><p>Да, ещё туда же можно добавить
+</p><pre class="programlisting">
+  (set-language-environment &quot;Cyrillic-KOI8&quot;)
+</pre><p>
+</p></li></ol></div><p>Чтобы <span class="emphasis"><em>emacs</em></span> не плевался в консоли что
+не может найти иксовых шрифтов, хорошо бы обрамить вышеприведённый
+кусок кода следующим условием:</p><pre class="programlisting">
+ (defmacro Xlaunch (&amp;rest x)
+   (list 'if (eq window-system 'x)(cons 'progn x)))
+ (Xlaunch
+   ...
+   ...
+   ...
+ )
+</pre><p>
+</p><p>Сторонникам теории множественности кодировок (чем больше
+кодировок &#8212; тем лучше): для того, чтобы включить поддержку 1251,
+вставьте</p><pre class="programlisting">
+ (codepage-setup 1251)
+</pre><p>
+</p><p>в <tt>&#732;/.emacs</tt>. 866-ю кодовую страницу можно добавить туда же следующим
+образом:</p><pre class="programlisting">
+ (defvar cp866-decode-table
+   [
+  255 240 nil nil 242 nil nil 244 nil nil nil nil nil nil 246 nil
+  128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143
+  144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159
+  160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175
+  224 225 226 227 228 229 230 231 232 233 234 235 236 237 238 239
+  252 241 nil nil 243 nil nil 245 nil nil nil nil nil nil 247 nil]
+   &quot;Table for converting ISO-8859-5 characters into codepage 866 glyphs.&quot;)
+ (setplist 'cp866-decode-table
+      '(charset cyrillic-iso8859-5 language &quot;Cyrillic-ISO&quot; offset 160))
+ (codepage-setup 866)
+</pre><p>
+</p><p>Чтобы открыть файл в какой-то кодировке, отличной от
+дефолтной, идём в Mule, SetCodingSystem, NextCommand, выбираем
+кодировку и выполняем свою команду (например, C-x-f, открыть файл) То
+же самое чтобы сохранить - Mule, SetCodingSystem, NextCommand,
+выбираем кодировку и сохраняем в данной кодировке(C-x-s).</p><p>Вот пример готового <tt>&#732;/.emacs</tt>
+для шрифтов <span class="emphasis"><em>Cyr-RFX</em></span> &#8212; раздел <a href="ch15s03.html#CyrFontsXCyr-RFX" title="Cyr-RFX">&#8220;Cyr-RFX&#8221;</a>:</p><pre class="programlisting">
+;; только в X Window
+(defmacro Xlaunch (&amp;rest x)
+ (list 'if (eq window-system 'x)(cons 'progn x)))
+;; проверить на наличие иксов
+(Xlaunch
+;; зарегистрировать набор шрифтов
+(create-fontset-from-fontset-spec
+     &quot;-b&amp;h-*-medium-r-*-*-14-*-*-*-*-*-fontset-vasja,
+  latin-iso8859-1:-b&amp;h-*-medium-r-*-*-14-*-*-*-*-*-iso8859-1,
+  latin-iso8859-15:-b&amp;h-*-medium-r-*-*-14-*-*-*-*-*-iso8859-15,
+  cyrillic-iso8859-5:-b&amp;h-*-medium-r-*-*-14-*-*-*-*-*-iso8859-5&quot; t)
+;; установить набор шрифтов
+(set-default-font &quot;fontset-vasja&quot;)
+)
+
+;; делать всё в кодировке KOI8-R
+(set-language-environment 'Cyrillic-KOI8)
+
+;; вспомни &quot;виндозную&quot; кодировку...
+(codepage-setup 1251)
+
+;; ...и научись &quot;досовской&quot;
+(defvar cp866-decode-table
+  [
+ 255 240 nil nil 242 nil nil 244 nil nil nil nil nil nil 246 nil
+ 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143
+ 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159
+ 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175
+ 224 225 226 227 228 229 230 231 232 233 234 235 236 237 238 239
+ 252 241 nil nil 243 nil nil 245 nil nil nil nil nil nil 247 nil]
+  &quot;Table for converting ISO-8859-5 characters into codepage 866 glyphs.&quot;)
+(setplist 'cp866-decode-table
+     '(charset cyrillic-iso8859-5 language &quot;Cyrillic-ISO&quot; offset 160))
+(codepage-setup 866)
+
+</pre><p>
+</p><p>Если вдруг кому-то придёт в голову работать в emacs из
+консоли, просто запустите его с опцией &#8212;unibyte. В таком случае
+работа с <span class="emphasis"><em>emacs</em></span> не будет отличаться от работы в
+других консольных редакторах.</p><p><span class="emphasis"><em>Добавление:</em></span> Кусок моего
+<tt>&#732;/.emacs</tt>, отвечающего за кириллизацию,
+выглядит следующим образом (у меня установлен пакет
+<span class="emphasis"><em>Cyr-RFX</em></span> &#8212; раздел <a href="ch15s03.html#CyrFontsXCyr-RFX" title="Cyr-RFX">&#8220;Cyr-RFX&#8221;</a>):</p><pre class="programlisting">
+;;
+;; шрифты для X Window
+;;
+
+;; Подстановка шрифтов
+(cond (window-system
+       (create-fontset-from-fontset-spec 
+        &quot;-rfx-courier-medium-r-*-*-18-*-*-*-*-*-fontset-Evgueni&quot; t)
+       ;; по умолчанию
+       (set-default-font &quot;fontset-Evgueni&quot;)
+       ;; по умолчанию для фреймов
+       (add-to-list 'default-frame-alist '(font . &quot;fontset-Evgueni&quot;))
+       )
+      ) 
+
+;;
+;;русификация через mule - переключалка &quot;Ctrl+\&quot; - требуется liem  
+;;
+(set-language-environment &quot;Cyrillic-KOI8&quot;);так
+;;(set-language-environment &quot;Cyrillic-koi8-r&quot;);или сяк 
+
+;; This could help for transferring data from bad old apps
+(set-selection-coding-system 'koi8-r)
+
+;;
+;; Чтобы раскладка соответствовала раскладке русских букв на виндовых (а теперь
+;;   таких большинство) клавиатурах, можно добавить еще следующие строки:
+;;
+;; redefine some orginal keybindings под MS - можно ли попроще?
+;; 
+;; кнопка \| =&gt; \/ при переключения регистра (для моего удобства)
+;;
+
+ (quail-define-package
+  &quot;cyrillic-jcuken&quot; &quot;Cyrillic&quot; &quot;RU&quot; nil
+  &quot;ЙЦУКЕН keyboard layout widely used in Russia (ISO 8859-5 encoding)&quot;
+  nil t t t t nil nil nil nil nil t)
+
+ (quail-define-rules
+  (&quot;1&quot; ?1) (&quot;2&quot; ?2) (&quot;3&quot; ?3) (&quot;4&quot; ?4) (&quot;5&quot; ?5) (&quot;6&quot; ?6) (&quot;7&quot; ?7) (&quot;8&quot; ?8)
+  (&quot;9&quot; ?9) (&quot;0&quot; ?0) (&quot;-&quot; ?-) (&quot;=&quot; ?=) (&quot;`&quot; ?ё) (&quot;q&quot; ?й) (&quot;w&quot; ?ц) (&quot;e&quot; ?у)
+  (&quot;r&quot; ?к) (&quot;t&quot; ?е) (&quot;y&quot; ?н) (&quot;u&quot; ?г) (&quot;i&quot; ?ш) (&quot;o&quot; ?щ) (&quot;p&quot; ?з) (&quot;[&quot; ?х)
+  (&quot;]&quot; ?ъ) (&quot;a&quot; ?ф) (&quot;s&quot; ?ы) (&quot;d&quot; ?в) (&quot;f&quot; ?а) (&quot;g&quot; ?п) (&quot;h&quot; ?р) (&quot;j&quot; ?о)
+  (&quot;k&quot; ?л) (&quot;l&quot; ?д) (&quot;;&quot; ?ж) (&quot;'&quot; ?э) (&quot;\\&quot; ?\\) (&quot;z&quot; ?я) (&quot;x&quot; ?ч) (&quot;c&quot; ?с)
+  (&quot;v&quot; ?м) (&quot;b&quot; ?и) (&quot;n&quot; ?т) (&quot;m&quot; ?ь) (&quot;,&quot; ?б) (&quot;.&quot; ?ю) (&quot;/&quot; ?.) (&quot;!&quot; ?!)
+  (&quot;@&quot; ?\&quot;) (&quot;#&quot; ?#) (&quot;$&quot; ?\;) (&quot;%&quot; ?%) (&quot;^&quot; ?:) (&quot;&amp;&quot; ??) (&quot;*&quot; ?*) (&quot;(&quot; ?() 
+  (&quot;)&quot; ?)) (&quot;_&quot; ?_) (&quot;+&quot; ?+) (&quot;~&quot; ?Ё)
+  (&quot;Q&quot; ?Й) (&quot;W&quot; ?Ц) (&quot;E&quot; ?У) (&quot;R&quot; ?К) (&quot;T&quot; ?Е) (&quot;Y&quot; ?Н) (&quot;U&quot; ?Г) (&quot;I&quot; ?Ш)
+  (&quot;O&quot; ?Щ) (&quot;P&quot; ?З) (&quot;{&quot; ?Х) (&quot;}&quot; ?Ъ) (&quot;A&quot; ?Ф) (&quot;S&quot; ?Ы) (&quot;D&quot; ?В) (&quot;F&quot; ?А)
+  (&quot;G&quot; ?П) (&quot;H&quot; ?Р) (&quot;J&quot; ?О) (&quot;K&quot; ?Л) (&quot;L&quot; ?Д) (&quot;:&quot; ?Ж) (&quot;\&quot;&quot; ?Э) (&quot;|&quot; ?/)
+  (&quot;Z&quot; ?Я) (&quot;X&quot; ?Ч) (&quot;C&quot; ?С) (&quot;V&quot; ?М) (&quot;B&quot; ?И) (&quot;N&quot; ?Т) (&quot;M&quot; ?Ь) (&quot;&lt;&quot; ?Б)
+  (&quot;&gt;&quot; ?Ю) (&quot;?&quot; ?,))
+
+</pre><p>
+</p></div><div class="sect2" lang="ru"><div class="titlepage"><div><h3 class="title"><a name="emacs-resources"></a>X-ресурсы</h3></div></div><a class="indexterm" name="id2886435"></a><a class="indexterm" name="id2886449"></a><p>Для настройки интерфейса emacs полезно воспользоваться
+механизмом X-ресурсов. Для кириллизации меню и для задания геометрии
+окна emacs в файл можно <tt>.Xdefaults</tt> прописать
+следующие строки (или что-то вроде):</p><pre class="programlisting">
+Emacs.pane.menubar.font: 8x16
+Emacs.pane.menubar.*.fontlist: -rfx-courier-medium-r-*-*-18-*-*-*-*-*-koi8-r
+Emacs.geometry: 86x51+0+0
+</pre><p>
+</p><p>Шрифты и геометрию следует подобрать согласно вашим
+	требованиям.</p></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch07.html">Пред.</a> </td><td width="20%" align="center"><a accesskey="u" href="ch07.html">Уровень выше</a></td><td width="40%" align="right"> <a accesskey="n" href="ch07s03.html">След.</a></td></tr><tr><td width="40%" align="left" valign="top">Глава 7. Редактирование текста </td><td width="20%" align="center"><a accesskey="h" href="index.html">Начало</a></td><td width="40%" align="right" valign="top"> vi</td></tr></table></div></body></html>

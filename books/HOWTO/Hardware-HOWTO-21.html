@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE>Linux Hardware Compatibility HOWTO: Принтеры и плоттеры</TITLE>
+ <LINK HREF="Hardware-HOWTO-22.html" REL=next>
+ <LINK HREF="Hardware-HOWTO-20.html" REL=previous>
+ <LINK HREF="Hardware-HOWTO.html#toc21" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="Hardware-HOWTO-22.html">Next</A>
+<A HREF="Hardware-HOWTO-20.html">Previous</A>
+<A HREF="Hardware-HOWTO.html#toc21">Contents</A>
+<HR>
+<H2><A NAME="s21">21. Принтеры и плоттеры</A></H2>
+
+<P>Любые принтеры и плоттеры (если они не Windows'95 only) подключаемые к парралельному порту будут работать в Линукс.(см. Приложение B "Устройства не совместимые с Линукс)
+<UL>
+<LI>Серия HP LaserJet 4 - free-lj4,программы контроля режимов печати<BR>
+<A HREF="ftp://metalab.unc.edu/pub/Linux/system/printing/free-lj4-1.1p1.tar.gz">ftp://metalab.unc.edu/pub/Linux/system/printing/free-lj4-1.1p1.tar.gz</A></LI>
+<LI>Парралельный интерфейс BiTronics<BR>
+<A HREF="ftp://metalab.unc.edu/pub/Linux/kernel/patches/misc/bt-ALPHA-0.0.1.module.patch.gz">ftp://metalab.unc.edu/pub/Linux/kernel/patches/misc/bt-ALPHA-0.0.1.module.patch.gz</A></LI>
+<LI>Epson Stylus Color 850. Используйте Magicfilter вместе с другими фильтрами', 'stylus_color_360dpi-filter' или  'stylus_color_720dpi-filter'.</LI>
+</UL>
+<P>
+<H2><A NAME="ss21.1">21.1 Ghostscript</A>
+</H2>
+
+<P>Многие Линукс программы работают с стандартом PostScript. Для того чтобы 
+распечатывать PS файлы на принтере не поддерживающим PostScript , был разработан Ghostscript - которые эмулирует PostScript Level 2 используя 
+специфический набор комманд конкретного принтера.
+<UL>
+<LI>Ghostscript<BR>
+<A HREF="ftp://ftp.cs.wisc.edu/pub/ghost/aladdin/">ftp://ftp.cs.wisc.edu/pub/ghost/aladdin/</A></LI>
+</UL>
+<P>
+<H3>Принтеры поддерживаемые Ghostscript версии 5.1 </H3>
+
+<P>
+<UL>
+<LI>Apple Imagewriter</LI>
+<LI>Apple Dot Matrix printer</LI>
+<LI>Apple StyleWriter 2x00 (<EM>bjc600</EM>)</LI>
+<LI>Brother HL-660 (<EM>ljet4</EM>)</LI>
+<LI>C. Itoh M8510</LI>
+<LI>Canon BubbleJet BJ10e, BJ20 (<EM>bj10e</EM>)</LI>
+<LI>Canon BubbleJet BJ100, BJ200, BJC-210 (B/W только), BJC-240 (B/W только), BJC-250 (B/W только), BJC-70 (B/W только) (<EM>bj200</EM>)</LI>
+<LI>Canon BubbleJet BJC-600, BJC-610, BJC-4000, BJC-4100 (B/W только), BJC-4200, BJC-4300, BJC-4400, BJC-4550, BJC-210, BJC-450, MultiPASS C2500, BJC-240, BJC-70 (<EM>bjc600</EM>)</LI>
+<LI>Canon BubbleJet BJC-800, BJC-7000 (<EM>bjc800</EM>)</LI>
+<LI>Canon Bubblejet BJC-610 (<EM>uniprint</EM>)</LI>
+<LI>Canon LBP-8II, LIPS III</LI>
+<LI>DEC LA50/70/75/75plus</LI>
+<LI>DEC LN03, LJ250 (<EM>decl250</EM>)</LI>
+<LI>Epson 9 pin, 24 pin, LQ series, AP3250</LI>
+<LI>Epson Stylus Color/Color II/400/500/600/800 (<EM>stcolor</EM>)</LI>
+<LI>Epson Stylus Color/Color II/500/600/800/1520 (<EM>uniprint</EM>)</LI>
+<LI>Fujitsu 3400,2400,1200</LI>
+<LI>HP 2563B</LI>
+<LI>HP DesignJet 650C</LI>
+<LI>HP DeskJet, Deskjet Plus (<EM>deskjet</EM>)</LI>
+<LI>HP Deskjet 500, Deskjet Portable (<EM>djet500</EM>)</LI>
+<LI>HP Deskjet 500C (<EM>cdeskjet</EM>)</LI>
+<LI>HP Deskjet 550C (<EM>uniprint</EM>)</LI>
+<LI>HP DeskJet 400/500C/520C/540C/690C/693C (<EM>cdj500</EM>)</LI>
+<LI>HP DeskJet 550C/560C/600/660C/660Cse/682C/683C/693C/694C/695C/850/870Cse (<EM>cdj550</EM>)</LI>
+<LI>HP DeskJet 850/855/870Cse/870Cxi/890C/672C/680/1100C (<EM>cdj850</EM>)</LI>
+<LI>HP DeskJet 500C/510/520/5540C/693C только Ч/Б (<EM>cdjmono</EM>)</LI>
+<LI>HP DeskJet 600 (<EM>lj4dith</EM>)</LI>
+<LI>HP DeskJet 600/870Cse, LaserJet 5/5L/6L (<EM>ljet4</EM>)</LI>
+<LI>HP Deskjet 600/1200C/1600C (<EM>pjxl300</EM>)</LI>
+<LI>HP Deskjet 500/500C/510/520/540/550C/560C/850C/855C и другие PCL3 принтеры<BR>
+<A HREF="ftp:ftp.pdb.sni.de/pub/utilities/misc/hpdj-2.1.tar.gz">ftp:ftp.pdb.sni.de/pub/utilities/misc/hpdj-2.1.tar.gz</A></LI>
+<LI>HP Deskjet 710, 720, 820 и 1000 серии<BR>
+<A HREF="http://www.httptech.com/ppa/">http://www.httptech.com/ppa/</A></LI>
+<LI>HP Paintjet (<EM>pjtest</EM>)</LI>
+<LI>HP Paintjet XL (<EM>pjxltest</EM>)</LI>
+<LI>HP PaintJet XL300 (<EM>pjxl300</EM>)</LI>
+<LI>HP LaserJet/Plus/II/III/4/5/6</LI>
+<LI>IBM 3853 Jetprinter color</LI>
+<LI>IBM Proprinter</LI>
+<LI>Imagen ImPress</LI>
+<LI>Lexmark Optra E+ (<EM>ljet4</EM>)</LI>
+<LI>Mitsubishi CP50 color</LI>
+<LI>NEC P6/P6+/P60</LI>
+<LI>NEC Pinwriter P2X (<EM>uniprint</EM>)</LI>
+<LI>NEC SuperScript 860 (<EM>ljetplus</EM>)</LI>
+<LI>Oki OL410ex LED (<EM>ljet4</EM>)</LI>
+<LI>Okidata MicroLine 182</LI>
+<LI>Ricoh 4081/6000 (<EM>r4081</EM>)</LI>
+<LI>SPARCprinter</LI>
+<LI>StarJet 48 inkjet printer</LI>
+<LI>Tektronix 4693d color 2/4/8 bit</LI>
+<LI>Tektronix 4695/4696 inkjet plotter</LI>
+<LI>Xerox XES (2700, 3700, 4045, и т.д.)</LI>
+</UL>
+<P>
+<H3>Альфа , Бета драйвера</H3>
+
+<P>
+<UL>
+<LI>Epson Stylus Color 440</LI>
+</UL>
+<P>
+<HR>
+<A HREF="Hardware-HOWTO-22.html">Next</A>
+<A HREF="Hardware-HOWTO-20.html">Previous</A>
+<A HREF="Hardware-HOWTO.html#toc21">Contents</A>
+</BODY>
+</HTML>

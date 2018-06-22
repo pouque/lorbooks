@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=koi8-r"><title>Глава 5. X Window</title><meta name="generator" content="DocBook XSL Stylesheets V1.59.1"><link rel="home" href="index.html" title="The Linux Cyrillic HOWTO (russian)"><link rel="up" href="index.html" title="The Linux Cyrillic HOWTO (russian)"><link rel="previous" href="ch04s05.html" title="Что делать, если &quot;слетела&quot;   консоль?"><link rel="next" href="ch05s02.html" title="Использование шрифтов TrueType"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Глава 5. X Window</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch04s05.html">Пред.</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch05s02.html">След.</a></td></tr></table><hr></div><div class="chapter" lang="ru"><div class="titlepage"><div><h2 class="title"><a name="CyrCommonX"></a>Глава 5. X Window</h2></div></div><div class="toc"><p><b>Содержание</b></p><dl><dt><a href="ch05.html#xfonts">Установка шрифтов для X Window</a></dt><dt><a href="ch05s02.html">Использование шрифтов TrueType</a></dt><dt><a href="ch05s03.html">Ввод с клавиатуры</a></dt><dd><dl><dt><a href="ch05s03.html#CyrCommonXkb">Настройка Xkb</a></dt><dt><a href="ch05s03.html#xmodmap">xmodmap</a></dt></dl></dd><dt><a href="ch05s04.html">Нерусская кириллица для X Window</a></dt><dt><a href="ch05s05.html">Проверка правильности кириллизации X Window</a></dt></dl></div><a class="indexterm" name="id2948211"></a><p>Подобно консольному режиму, X Window также требует некоторой
+настройки.  Настройка включает в себя настройку ввода и установку
+шрифтов для X Window. Данные действия обсуждаются ниже.</p><div class="sect1" lang="ru"><div class="titlepage"><div><h2 class="title" style="clear: both"><a name="xfonts"></a>Установка шрифтов для X Window</h2></div></div><a class="indexterm" name="id2880562"></a><p>Прежде всего, вы должны достать шрифты, содержащие
+изображения кириллических символов в соответствующих местах. Следует
+отметить, что все современные дистрибутивы имеют
+<span class="emphasis"><em>KOI8-R</em></span> шрифты, более-менее пригодные для
+использования, так что если <span class="emphasis"><em>xlsfonts</em></span> не
+показывает их, то они просто не установлены или не включены в
+<tt>X Font Path</tt>.</p><p>X Window включила набор <span class="emphasis"><em>KOI8-R</em></span>
+шрифтов, разработанных <a href="http://www.cronyx.ru" target="_top">Cronyx</a>, ещё в конце 1995 года. Эти
+шрифты являются также частью XFree86.</p><p>Некоторые дистрибутивы (как правило, очень старые) могут
+не включать кириллические шрифты для X Window &#8212; в этом случае их
+придётся устанавливать самим.</p><p>Подробнее о шрифтах для X Window и о том, где их можно
+найти, смотрите в разделе <a href="ch15s03.html" title="Шрифты для X Window">&#8220;Шрифты для X Window&#8221;</a>.</p><p>Более современную коллекцию шрифтов для X Window можно
+взять у <a href="mailto:bolkhov@inp.nsk.su" target="_top">Дмитрия
+Болховитянова</a> по адресу <a href="http://www.inp.nsk.su/~bolkhov/files/fonts/cyr_rfx/" target="_top">пакет
+CYR_RFX</a>.</p><p>Вам следует проверить, установлены ли эти шрифты в вашей
+системе. Спросите системного администратора, или, если
+<span class="emphasis"><em>вы</em></span> сами являетесь администратором, проверьте вашу
+систему сами, а именно:</p><div class="orderedlist"><ol type="1"><li><p>Выполните '<tt>xlsfonts | grep -i
+koi8</tt>'.  Если в результате выполнения команды появится список
+шрифтов, то ваш X сервер уже знает об их существовании.
+</p></li><li><p>Или наберите</p><pre class="screen">
+find / -name crox*.pcf*
+</pre><p>для того, чтобы найти местоположение шрифтов кириллицы
+в системе.  Вы должны будете сделать эти шрифты доступными для X
+сервера, как &#8212; описано ниже.  </p></li></ol></div><p>Если вы не нашли таких шрифтов в вашей системе, то вы
+должны установить их сами:</p><div class="orderedlist"><ol type="1"><li><p> Скачайте соответствующий набор шрифтов.
+Подробнее о шрифтах для X Window и о том где их можно найти можно
+посмотреть в разделе <a href="ch15s03.html" title="Шрифты для X Window">&#8220;Шрифты для X Window&#8221;</a>.  </p></li><li><p>Теперь, когда у вас есть шрифты, создайте для
+них каталог. Помещение новых шрифтов в уже существующий каталог
+шрифтов является, мягко говоря, не очень хорошей идеей.  Поместите их,
+например, в <tt>/usr/lib/X11/fonts/cyrillic</tt> для
+настройки всей системы или просто создайте каталог у себя только для
+персонального пользования.  </p></li><li><p> Если новые шрифты поставляются в формате BDF
+( файлы <tt>*.bdf</tt>), то вы должны скомпилировать их. Для
+каждого шрифта выполните:</p><pre class="screen">
+bdftopcf -o &lt;font&gt;.pcf &lt;font&gt;.bdf
+</pre><p>Можете сжать их с помощью программы
+<tt>gzip</tt> или, если ваш дистрибутив X Window достаточно
+современный, с помощью <tt>bzip2</tt>, что даст небольшой
+выигрыш в степени компрессии:</p><pre class="screen">
+gzip *.pcf 
+</pre><p>Если же вы все-таки хотите поместить новые шрифты в
+уже существующий каталог шрифтов, то вы должны &quot;срастить&quot;  старый
+и новый файлы с именем <tt>fonts.alias</tt> в том случае,
+естественно, если они оба существуют.  </p></li><li><p>В каждом каталоге шрифтов для X должен быть
+список шрифтов, находящихся в нем. Этот список хранится в файле
+<tt>fonts.dir</tt>.  Вы не должны создавать этот список
+вручную. Вместо этого выполните:
+
+</p><pre class="screen">
+cd &quot;директория где лежат шрифты&quot;
+mkfontdir .
+</pre><p>
+
+</p></li><li><p>Теперь надо сделать этот каталог шрифтов известным  для
+X сервера. Здесь у вас есть ряд возможностей:</p><div class="itemizedlist"><ul type="disc"><li><p>Общесистемная настройка для XFree86. Если
+вы используете эту версию X Window, то добавьте новый каталог к списку
+каталогов в файле <tt>XF86Config</tt>.  Чтобы найти его
+расположение, просмотрите, что скажет <tt>startx</tt> при
+запуске (в RedHat этот файл обычно находится в /etc/X11). Более
+подробно смотрите <tt>man XF86Config
+(4/5)</tt>.</p></li><li><p>Общесистемная настройка через
+<tt>xinit</tt>.  Добавьте новый каталог к файлу запуска
+<tt>xinit</tt>. Более подробно смотрите
+<tt>xinit(1x)</tt>.</p></li><li><p>Персональная настройка. У вас есть
+специальный файл для запуска X Window &#8212;
+<tt>&#732;/.xinitrc</tt> (им также может быть
+<tt>&#732;/.Xclients</tt> или
+<tt>&#732;/.xsession</tt>) </p></li></ul></div><pre class="screen">
+xset +fp &lt;новый каталог шрифтов&gt;
+xset fp rehash
+</pre><p>Обратите внимание на ключ '<tt>+fp</tt>'
+&#8212; это означает, что новые шрифты будут добавлены в начале списка
+каталогов со шрифтами. То есть, если прикладная программа запрашивает,
+скажем, шрифт <tt>fixed</tt>, то будет подставлен fixed font
+с кириллическими символами, чего мы и добивались. Если нужно
+установить шрифты в нескольких кодировках, то команда <tt>xset
++fp</tt> с предпочтительной кодировкой должна быть после
+других.</p></li><li><p>Теперь перезапустите X Window. Если вы все
+сделали правильно, то тесты, описанные в начале раздела, будут
+пройдены успешно.  Также поиграйте с <tt>xfontsel</tt> (1x),
+чтобы удостовериться в возможности выбирать шрифты
+кириллицы.</p></li></ol></div><p>Чтобы заставить X клиента использовать шрифты кириллицы,
+вы должны установить соответствующий X ресурс.  Например, я делаю
+кириллический шрифт заданным по умолчанию в моем
+<tt>&#732;/.Xdefaults</tt>:</p><pre class="programlisting">
+*font:         6x13
+</pre><p>Так как мои шрифты кириллицы идут первыми в списке поиска
+шрифтов (смотри вывод программы '<tt>xset q</tt>'), то они и
+подставляются, если программа требует какой-либо шрифт с именем,
+совпадающем с каким-либо из шрифтов, лежащих в кириллической
+директории.</p><p>Вот простые примеры.  Если вы хотите научить
+соответствующий X клиент пользоваться кириллическим шрифтом, то вы
+должны узнать тип ресурса, который вам надо изменить (это можно
+сделать, используя <tt>editres</tt> (1x)) и определить его
+или в базе данных ресурсов, или в командной строке. Например,</p><pre class="screen">
+$ xterm -font '-cronyx-*-bold-*-*-*-19-*-*-*-*-*-*-*'
+</pre><p>запустит xterm с несколько уродливым шрифтом;</p><pre class="screen">
+$ xfontsel -xrm '*quitButton.font: -*-times-*-*-*-*-13-*-*-*-*-*-koi8-*'
+</pre><p>установит Cyrillic Times шрифт для кнопки
+<tt>Quit</tt> программы <tt>xfontsel</tt>.</p></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch04s05.html">Пред.</a> </td><td width="20%" align="center"><a accesskey="u" href="index.html">Уровень выше</a></td><td width="40%" align="right"> <a accesskey="n" href="ch05s02.html">След.</a></td></tr><tr><td width="40%" align="left" valign="top">Что делать, если &quot;слетела&quot;   консоль? </td><td width="20%" align="center"><a accesskey="h" href="index.html">Начало</a></td><td width="40%" align="right" valign="top"> Использование шрифтов TrueType</td></tr></table></div></body></html>

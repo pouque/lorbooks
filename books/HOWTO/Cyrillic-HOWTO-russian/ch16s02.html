@@ -1,0 +1,21 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=koi8-r"><title>RedHat 6.2</title><meta name="generator" content="DocBook XSL Stylesheets V1.59.1"><link rel="home" href="index.html" title="The Linux Cyrillic HOWTO (russian)"><link rel="up" href="ch16.html" title="Глава 16. Кириллизация дистрибутивов"><link rel="previous" href="ch16.html" title="Глава 16. Кириллизация дистрибутивов"><link rel="next" href="ch16s03.html" title="RedHat 5.2"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">RedHat 6.2</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch16.html">Пред.</a> </td><th width="60%" align="center">Глава 16. Кириллизация дистрибутивов</th><td width="20%" align="right"> <a accesskey="n" href="ch16s03.html">След.</a></td></tr></table><hr></div><div class="sect1" lang="ru"><div class="titlepage"><div><h2 class="title" style="clear: both"><a name="CyrDistRedHat62"></a>RedHat 6.2</h2></div></div><a class="indexterm" name="id2947765"></a><a class="indexterm" name="id2947783"></a><p>Довольно удачный дистрибутив лидера коробочных
+      продаж&#8212; американской фирмы RedHat. В настоящее время не
+      поддерживается.</p><div class="sect2" lang="ru"><div class="titlepage"><div><h3 class="title"><a name="CyrDistRedHat62Text"></a>Кириллизация консоли</h3></div></div><p>Для управления шрифтами и клавиатурой в RedHat 6.2
+используется пакет <span class="emphasis"><em>console-tools</em></span> (Для более
+тщательной настройки проконсультируйтесь с разделом <a href="ch04.html#linux-console-consoletools" title="consoletools">&#8220;consoletools&#8221;</a>)</p><p>Полная русификация консоли RedHat 6.2:</p><div class="itemizedlist"><ul type="disc"><li><p>В файл <tt>/etc/sysconfig/i18</tt>
+	    поместите следующие строчки:</p><pre class="programlisting">
+
+LANG=&quot;ru_RU.KOI8-R&quot;
+SYSFONTACM=koi8-r
+SYSFONT=UniCyr_8x16
+</pre></li><li><p>В файл <tt>/etc/sysconfig/keyboard</tt> добавьте:</p><pre class="programlisting">
+
+KEYTABLE=&quot;ru4&quot;
+</pre></li></ul></div><p>Переключение по <tt>Caps Lock</tt>,
+раскладка Microsoft &#8212; для полного счастья в деле настройки
+следует добыть пакет <span class="emphasis"><em>console-tools-cyrillic</em></span>
+(См. раздел <a href="ch04s02.html" title="Cyrillic console tools">&#8220;Cyrillic console tools&#8221;</a>).</p><p><span class="emphasis"><em>ВНИМАНИЕ:</em></span> Очень полезная
+	ссылка&#8212;
+	<tt>/usr/doc/initscripts-4.xx</tt>.</p></div><div class="sect2" lang="ru"><div class="titlepage"><div><h3 class="title"><a name="CyerDistRedHat62"></a>X window</h3></div></div><p> Делайте так же, как описано в разделе <a href="ch05.html" title="Глава 5. X Window">Глава 5. <i>X Window</i></a>&#8212; настройка ничем
+	от стандартной настройки не отличается.</p></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch16.html">Пред.</a> </td><td width="20%" align="center"><a accesskey="u" href="ch16.html">Уровень выше</a></td><td width="40%" align="right"> <a accesskey="n" href="ch16s03.html">След.</a></td></tr><tr><td width="40%" align="left" valign="top">Глава 16. Кириллизация дистрибутивов </td><td width="20%" align="center"><a accesskey="h" href="index.html">Начало</a></td><td width="40%" align="right" valign="top"> RedHat 5.2</td></tr></table></div></body></html>

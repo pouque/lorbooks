@@ -1,0 +1,385 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE>LDAP Linux HOWTO: Создание и Поддержка Базы Данных</TITLE>
+ <LINK HREF="LDAP-HOWTO-6.html" REL=next>
+ <LINK HREF="LDAP-HOWTO-4.html" REL=previous>
+ <LINK HREF="LDAP-HOWTO.html#toc5" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="LDAP-HOWTO-6.html">Next</A>
+<A HREF="LDAP-HOWTO-4.html">Previous</A>
+<A HREF="LDAP-HOWTO.html#toc5">Contents</A>
+<HR>
+<H2><A NAME="s5">5. Создание и Поддержка Базы Данных</A></H2>
+
+<P>Этот раздел рассказывает о том, как содать базу данных slapd с нуля. Есть два способа создания базы дынных. Первый, Вы создаете базу данных интерактивно используя LDAP. В этом методе Вы просто запускаете slapd и добавляете записи исользуя Ваш любимый LDAP клиент. Это подходит для относительно небольших баз данных (несколько сотен или тысяча записей, в зависимости от Ваших потребностей).
+<P>Второй метод подразумевает создание базы независимо от slapd, используя утилиты генерации индекса. Этот метод наилучший, если Вам нужно создать много тысяч записей, что отняло бы неприемлемо много времени используя первый метод, или если Вам нужно, чтобы база была недоступна на время создания.
+<P>
+<H2><A NAME="ss5.1">5.1 Создание Базы в Интерактивном Режиме /online/</A>
+</H2>
+
+<P>Дистрибутив OpenLDAP поставляется с утилитой ldapadd, используемой для добавления статей во время работы LDAP сервера. Если Вы выбрали интерактивный метод создания базы, Вы можете использовать утилиту ldapadd для добавления записей. После добавления первых записей, Вы все еще можете используя ldapadd добавлять следующие записи. Вы должны убедиться, что в файле slapd.conf установлены следующие конфигурационные параметры:
+<BLOCKQUOTE><CODE>
+<PRE>
+suffix &lt;dn&gt; 
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>Как описано в 
+<A HREF="LDAP-HOWTO-3.html#3">разделе 3</A>, этот параметр указывает место в иерархии каталога, куда будут добавляться записи. Вы должны установить этот параметр в DN корня поддерева, которое Вы собираетесь создать.
+<P>Например:
+suffix "o=TUDelft, c=NL" 
+<P>Вы также должны указать директорию, куда будут помещаться вновь созданные индексные файлы:
+<BLOCKQUOTE><CODE>
+<PRE>
+directory &lt;directory&gt; 
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>Например:
+directory /usr/local/tudelft 
+<P>Вам также нужно предоствить возможность присоединиться к slapd под кем-то с правами на добавление записей. Это делается посредством установки следующих параметров в определении базы данных:
+<BLOCKQUOTE><CODE>
+<PRE>
+rootdn &lt;dn&gt; 
+rootpw &lt;passwd&gt;   /* Помните, что здесь нужно использовать зашифрованный пароль !!! */ 
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>Эти параметры задают DN и пароль, которые могут использоваться для аутентификации входа в базу под "администратором" (т.е. позволяющего делать все). Определенные здесь DN и пароль будут работать всегда, независимо от того существует ли в действительности такая точка входа или имеет данный пароль. Это решает проблему "курицы и яйца", т.е. как провести аутентификацию и добавление записей, если никаких записей еще вообще нет.
+<P>И, наконец, Вы должны удостовериться, что определение базы данных содержит желаемые определения индексов:
+<BLOCKQUOTE><CODE>
+<PRE>
+index {&lt;attrlist&gt; | default} [pres,eq,approx,sub,none] 
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>Например, для индексирования атрибутов cn, sn, uid и objectclass, можно использовать следующие записи:
+<BLOCKQUOTE><CODE>
+<PRE>
+index cn,sn,uid 
+index objectclass pres,eq 
+index default none 
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>Как только Вы получили желаемую конфигурацию, стартуете slapd, соединяетесь с ним используя Ваш любимый LDAP клиент, и начинаете добавлять записи. Например, чтобы добавить запись TUDelft, а за ней Postmaster, используя утилиту ldapadd, Вы можете создать файл со следующим содержимым:
+<BLOCKQUOTE><CODE>
+<PRE>
+o=TUDelft, c=NL 
+objectClass=organization 
+description=Technical University of Delft Netherlands 
+
+cn=Postmaster, o=TUDelft, c=NL 
+objectClass=organizationalRole 
+cn=Postmaster 
+description= TUDelft postmaster - postmaster@tudelft.nl 
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>а затем выполнить команду, чтобы создать запись в базе:
+<BLOCKQUOTE><CODE>
+<PRE>
+ldapadd -f /tmp/newentry -D "cn=Manager, o=TUDelft, c=NL" -w secret 
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>В приведенной выше комманде предполагается, что вы установили rootdn в "cn=Manager, o=TUDelft, c=NL" и rootpw в "secret". Если Вы не хотите набирать пароль открытым текстом в коммандной строке, используйте параметр -W для ldapadd вместо -w "password". После ввода Вам выведется приглашение ввести пароль:
+<BLOCKQUOTE><CODE>
+<PRE>
+ldapadd -f /tmp/newentry -D "cn=Manager, o=TUDelft, c=NL" -W 
+Enter LDAP Password : 
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>
+<H2><A NAME="ss5.2">5.2 Создание Базы без Сервера /offline/</A>
+</H2>
+
+<P>Второй метод создание базы данных - сделать это без сервера, используя средства генерации индекса, описанные ниже. Этот метод лучше, если Вам нужно создать много тысяч записей, что заняло бы неоправданно много времени, если использовать описанный выше первый метод. Эти утилиты читают конфигурационный файл slapd и входной файл LDIF, содержащий текстовое представление записей, которые нужно добавить. Они создают непосредственно индексный файл LDBM. Есть несколько важных конфигурационных параметров, которые Вам нужно установить заранее в определении базы данных в конфигурационном файле:
+<BLOCKQUOTE><CODE>
+<PRE>
+suffix &lt;dn&gt; 
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>Как описано в предыдущем разделе, этот параметр устанавливает начальное положение в Каталоге, где будут создаваться записи. Вы должны задать здесь DN корня поддерева, который Вы хотите создать. 
+<P>Например: 
+suffix "o=TUDelft, c=NL" 
+<P>Вам нужно определить директорию в файловой системе, где будут созадны файлы индекса:
+<BLOCKQUOTE><CODE>
+<PRE>
+directory &lt;directory&gt; 
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>Например:
+directory /usr/local/tudelft 
+<P>Далее, Вы возможно захотите увеличить размер внутреннего кеша, используемого каждым открытым индексным файлом. Для лучшего быстродействия во время создания индекса, весь индекс должен размещаться в памяти. Если Ваши данные слишком большие для этого, или у Вас слишком мало памяти, Вы можете все равно задать его достаточно большим, поскольку есть виртуальная память. Этот размер задается следующим параметром:
+<BLOCKQUOTE><CODE>
+<PRE>
+dbcachesize &lt;integer&gt; 
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>Например:
+dbcachesize 50000000 
+<P>Это создаст кеш размером 50 МВ, что достаточно много (в Университете Мичигана база данных содержит около 125 тыс. записей, и наибольший файл индекса имеет около 45 МВ). Поэкспериментируйте немного с этим параметром и уровнем паралельности (объясняется ниже), чтобы подобрать наилучшие величины для Вашей системы. Не забудьте вернуть значение этого параметра назад сразу после создания индекса и до запуска slapd. 
+<P>Наконец, Вам нужно определить, какой индекс Вы хотите создать. Это производится одним или несколькими индесными параметрами.
+<BLOCKQUOTE><CODE>
+<PRE>
+index {&lt;attrlist&gt; | default} [pres,eq,approx,sub,none] 
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>Например:
+<P>index cn,sn,uid pres,eq,approx 
+<P>index default none 
+<P>Это создаст индексы presence/наличия/, equality/эквивалентности/ и approximate/подобия/ для атрибутов cn, sn, и uid, и никаких индексов для всех остальных атрибутов. См. конфигурационный файл в 
+<A HREF="LDAP-HOWTO-3.html#3">разделе 3</A> для более детального описания этого параметра.
+<P>Как только Вы отконфигурировали все по Вашему уподобанию, можете создавать индексы запустив утилиту ldif2ldbm:
+<BLOCKQUOTE><CODE>
+<PRE>
+ldif2ldbm -i &lt;inputfile&gt; -f &lt;slapdconfigfile&gt; 
+[-d &lt;debuglevel&gt;] [-j &lt;integer&gt;] 
+[-n &lt;databasenumber&gt;] [-e &lt;etcdir&gt;] 
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>Аргументы имеют следующее толкование:
+<BLOCKQUOTE><CODE>
+<PRE>
+-i &lt;inputfile&gt; 
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>Определяет входной LDIF файл, содержащий в текстовом формате записи, которые нужно добавить.
+<BLOCKQUOTE><CODE>
+<PRE>
+-f &lt;slapdconfigfile&gt; 
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>Определяет конфигурационный файл slapd, в котором берется информация о том, где создавать индексные файлы, какие индексы создавать и т.п. 
+<BLOCKQUOTE><CODE>
+<PRE>
+-d &lt;debuglevel&gt; 
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>Включает протоколирование уровня, определенного в &lt;debuglevel&gt;. Уровни протоколирования такие же как и для slapd (см. 
+<A HREF="LDAP-HOWTO-4.html#4.1">раздел 4.1</A>).
+<BLOCKQUOTE><CODE>
+<PRE>
+-j &lt;integer&gt; 
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>Необязательный аргумент, указывающий максимальное количество паралельных процессов, которые должны стартовать при построении индесксов. По умолчанию 1. Если установить значение больше чем 1, ldif2ldbm во время построения индексов создаст максимально возможное количество подпроцессов. Для построения каждого индекса атрибута создается отдельный процесс. Паралельное выполнение этих процессов может существенно увеличить скорость создания индексов, но не следует создавать слишком много подпроцессов, поскольку каждый из них отбирает ресурсы диска и памяти, так что может быть и обратный эффект.
+<BLOCKQUOTE><CODE>
+<PRE>
+-n &lt;databasenumber&gt; 
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>Необязательный аргумент, который определяет для какой по счету базы данных из конфигурационного файла производится построение индексов. Первая определенная в конфигурационном файле база данных обозначается "1", вторая - "2", и т.д. По умолчанию, используется первая ldbm база данных из определенных в конфигурационном файле.
+<BLOCKQUOTE><CODE>
+<PRE>
+-e &lt;etcdir&gt; 
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>Необязательный аргумент, который определяет директорию в файловой системе, где ldif2ldbm сможет найти другие необходимые для работы конверторы (ldif2index и подобные). По умолчанию используется инсталяционная директория заданная скрипту configure. Посмотрите на пример использования утилиты ldif2ldbm:
+<BLOCKQUOTE><CODE>
+<PRE>
+/usr/local/sbin/ldif2ldbm -i new_entries -f myslapd.conf 
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>
+<H2><A NAME="ss5.3">5.3 Подробнее Об LDIF Формате</A>
+</H2>
+
+<P>LDAP Data Interchange Format (LDIF) - формат обмена данными LDAP - используется для представления записей LDAP в простом текстовом виде. Общая форма записи следующая:
+<BLOCKQUOTE><CODE>
+<PRE>
+[&lt;id&gt;] 
+dn: &lt;distinguished name&gt; 
+&lt;attrtype&gt;: &lt;attrvalue&gt; 
+&lt;attrtype&gt;: &lt;attrvalue&gt; 
+... 
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>где &lt;id&gt; необязательный идентификатор записи (положительное целое число). Обычно Вы не задаете &lt;id&gt;, позволяя утилитам создания базы сделать это за Вас. Утилита ldbmcat создает формат LDIF, котороый включает &lt;id&gt;, так чтобы вновь созданные индексные файлы были корректными.
+<P>Любая строка может быть продолжена в следующей, если последняя начинается с пробела или символа табуляции. 
+<P>Например:
+<BLOCKQUOTE><CODE>
+<PRE>
+dn: cn=Barbara J Jensen,
+ o=University of Michigan, c=US 
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>Значения многозначных (векторных) атрибутов задаются в отдельных строках. 
+<P>Например:
+<BLOCKQUOTE><CODE>
+<PRE>
+cn: Barbara J Jensen 
+cn: Babs Jensen 
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>Если &lt;attrvalue&gt; содержит непечетные символы, или начинается с пробела или двоеточия `:`, то после &lt;attrtype&gt; ставится двойное двоеточие и значение кодируется используя base64. Например, значение " begins with a space" будет закодировано следующим образом:
+<BLOCKQUOTE><CODE>
+<PRE>
+cn:: IGJlZ2lucyB3aXRoIGEgc3BhY2U= 
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>Записи внутри одного LDIF файла разделяются пустыми строками. Вот пример LDIF файла с тремя записями:
+<BLOCKQUOTE><CODE>
+<PRE>
+dn: cn=Barbara J Jensen, o=University of Michigan, c=US 
+cn: Barbara J Jensen 
+cn: Babs Jensen 
+objectclass: person 
+sn: Jensen 
+
+dn: cn=Bjorn J Jensen, o=University of Michigan, c=US 
+cn: Bjorn J Jensen 
+cn: Bjorn Jensen 
+objectclass: person 
+sn: Jensen 
+
+dn: cn=Jennifer J Jensen, o=University of Michigan, c=US 
+cn: Jennifer J Jensen 
+cn: Jennifer Jensen 
+objectclass: person 
+sn: Jensen 
+jpegPhoto:: /9j/4AAQSkZJRgABAAAAAQABAAD/2wBDABALD 
+A4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQ 
+ERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVG 
+... 
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>Заметьте, что jpegPhoto в записи Jennifer Jensen закодировано используя base64. Для создания файлов LDIF можно использовать утилиту ldif, поставляемую с дистрибутивом OpenLDAP. 
+<P>Имейте в виду, что крайние пробелы в значениях не убираются при интерпретации LDIF файла, также как и не сжимается многократное повторение пробела внутри значения. Так что если Вы не хотите увидить их в Ваших данных, не помещайте их туда.
+<P>
+<H2><A NAME="ss5.4">5.4 Утилиты ldapsearch, ldapdelete и ldapmodify</A>
+</H2>
+
+<P>ldapsearch - ldapsearch является по сути пользовательским интерфейсом к библиотечному вызову ldap_search(3). Вы можете использовать эту утилиту для поиска записей в базе данных Вашего LDAP сервера.
+<P>Вызов ldapsearch имеет следующую семантику (объяснения парамтеров смотрите в страницах man по ldapsearch):
+<BLOCKQUOTE><CODE>
+<PRE>
+ldapsearch  [-n]  [-u]  [-v]  [-k]  [-K]  [-t]  [-A] [-B] [-L] [-R] [-d debuglevel] [-F sep] [-f file] 
+[-D binddn]  [-W]  [-w bindpasswd]  [-h ldaphost]  [-p ldapport]   [-b searchbase]   [-s base|one|sub] 
+[-a never|always|search|find] [-l timelimit] [-z sizelimit] filter [attrs...] 
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>ldapsearch открывает соединение к LDAP серверу, связывается, и производит поиск используя заданный фильтр. Фильтр должен соответствовать строковому предствлению LDAP фильтров, как определено в RFC 1558. Если ldapsearch находит одну или более записей, выбираются атрибуты заданные attrs, и записи со значенями этих атрибутов выдаются на консоль. Если атрибуты не заданы, то возвращаются значения для всех атрибутов.
+<P>Вот несколько примеров использования ldapsearch:
+<BLOCKQUOTE><CODE>
+<PRE>
+ldapsearch -b 'o=TUDelft,c=NL' 'objectclass=*' 
+
+ldapsearch -b 'o=TUDelft,c=NL' 'cn=Rene van Leuken' 
+
+ldasearch -u -b 'o=TUDelft,c=NL' 'cn=Luiz Malere' sn mail 
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>Ключ -b устанавливает searchbase (исходную точку - поддерево Каталога - откуда начнется поиск), а ключ -u включает легковоспринимаемый (форматированный) вывод результатов поиска. 
+<P>ldapdelete - ldapdelete является пользовательским интерфейсом к библиотечному вызову ldap_delete(3). Используйте эту утилиту для удаления записей из базы данных на LDAP сервере.
+<P>Семантика вызова ldapdelete следующая (для более детального объяснения параметров смотрите соответствующую страницу man):
+<BLOCKQUOTE><CODE>
+<PRE>
+ldapdelete   [-n]   [-v]  [-k]  [-K]  [-c]  [-d debuglevel]  [-f file]  [-D binddn]  [-W]  [-w passwd] 
+[-h ldaphost] [-p ldapport] [dn]... 
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>ldapdelete открывает соединение к LDAP серверу, связывается и удаляет одну или более записей. Если задан один или более аргументов DN, записи с такими Выделенными Именами удаляются. Каждый DN должен быть строковым представлением DN, как описано в RFC 1779. Если DNы как аргументы не присутствуют, ldapdelete запускается в режиме считывания их со стандартного входа (или из файла, если задан ключ -f). 
+<P>Вот некоторые примеры использования ldapdelete:
+<BLOCKQUOTE><CODE>
+<PRE>
+ldapdelete 'cn=Luiz Malere,o=TUDelft,c=NL' 
+
+ldapdelete -v 'cn=Rene van Leuken,o=TUDelft,c=NL' -D 'cn=Luiz Malere,o=TUDelft,c=NL' -W 
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>Ключ -v устанавливает режим детализированного ответа, ключ -D устанавливает binddn (dn для аутентификации) и ключ -W включает приглашение для ввода пароля.
+<P>ldapmodify - ldapmodify является пользовательским интерфейсом к библиотечным вызовам ldap_modify(3) и ldap_add(3). Используйте эту утилиту для изменения записей в базе данных Вашего LDAP сервера.
+<P>ldapmodify имеет следующую семантику вызова (для более детального описания смотрите соответствующие страницы man):
+<BLOCKQUOTE><CODE>
+<PRE>
+ldapmodify   [-a]  [-b]  [-c]  [-r]  [-n]  [-v]  [-k]  [-d debuglevel]  [-D binddn]  [-W]  [-w passwd] 
+[-h ldaphost] [-p ldapport] [-f file] 
+
+ldapadd [-b] [-c] [-r] [-n] [-v]  [-k]  [-K]  [-d debuglevel]  [-D binddn]  [-w passwd]  [-h ldaphost] 
+[-p ldapport] [-f file] 
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>ldapadd реализован как жесткая ссылка на ldapmodify. Когда ldapmodify запускается как ldapadd, ключ -a (добавить новую запись) устанавливается автоматически.
+ldapmodify открывает соединение к LDAP серверу, связывается и изменяет или добавляет записи. Сами записи считываются из стандартного ввода или из файла, указанного с помощью ключа -f.
+<P>Вот некоторые примеры использования ldapmodify:
+<P>Предположим, что файл /tmp/entrymods существует и имеет следующее содержание:
+<BLOCKQUOTE><CODE>
+<PRE>
+dn: cn=Modify Me, o=University of Michigan, c=US 
+changetype: modify 
+replace: mail 
+mail: modme@terminator.rs.itd.umich.edu 
+- 
+add: title 
+title: Grand Poobah 
+- 
+add: jpegPhoto 
+jpegPhoto: /tmp/modme.jpeg 
+- 
+delete: description 
+- 
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>Тогда комманда:
+<BLOCKQUOTE><CODE>
+<PRE>
+ldapmodify -b -r -f /tmp/entrymods 
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>заменит содержимое атрибута mail записи "Modify Me" значением "modme@terminator.rs.itd.umich.edu", добавит title со значением "Grand Poobah", и содержимое файла /tmp/modme.jpeg как jpegPhoto, и полностью удалит атрибут description. 
+<P>Описанные выше изменения можно также сделать используя более старый формат ввода ldapmodify:
+<BLOCKQUOTE><CODE>
+<PRE>
+cn=Modify Me, o=University of Michigan, c=US 
+mail=modme@terminator.rs.itd.umich.edu 
++title=Grand Poobah 
++jpegPhoto=/tmp/modme.jpeg 
+-description 
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>и следующую команду:
+<BLOCKQUOTE><CODE>
+<PRE>
+ldapmodify -b -r -f /tmp/entrymods 
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>Предполагая, что файл /tmp/newentry существует и имеет следующее содержимое:
+<BLOCKQUOTE><CODE>
+<PRE>
+dn: cn=Barbara Jensen, o=University of Michigan, c=US 
+objectClass: person 
+cn: Barbara Jensen 
+cn: Babs Jensen 
+sn: Jensen 
+title: the world's most famous manager 
+mail: bjensen@terminator.rs.itd.umich.edu 
+uid: bjensen 
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>комманда:
+<BLOCKQUOTE><CODE>
+<PRE>
+ldapadd -f /tmp/entrymods 
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>добавит запись Barbara Jensen в базу данных.
+<P>Предполагая, что файл /tmp/newentry существует и имеет следующее содержимое:
+<BLOCKQUOTE><CODE>
+<PRE>
+dn: cn=Barbara Jensen, o=University of Michigan, c=US 
+changetype: delete 
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>комманда:
+<BLOCKQUOTE><CODE>
+<PRE>
+ldapmodify -f /tmp/entrymods 
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>удалит запись Babs Jensen's из базы.
+<P>Ключ -f указывает файл (прочитать информацию о вносимых изменениях из файла, а не стандартного ввода), ключ -b устанавливает признак двоичных данных (любые значения начинающиеся с `/` во входном файле интерпретируются как двоичные), ключ -r устанавливает признак замены (заменить существующие значения значениями по умолчанию).
+<P>
+<HR>
+<A HREF="LDAP-HOWTO-6.html">Next</A>
+<A HREF="LDAP-HOWTO-4.html">Previous</A>
+<A HREF="LDAP-HOWTO.html#toc5">Contents</A>
+</BODY>
+</HTML>

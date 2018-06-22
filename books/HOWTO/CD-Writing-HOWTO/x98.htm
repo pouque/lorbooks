@@ -1,0 +1,678 @@
+<HTML
+><HEAD
+><TITLE
+>Готовим Linux систему к записи CD-ROM</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="CD-Writing HOWTO"
+HREF="t1.htm"><LINK
+REL="PREVIOUS"
+TITLE="CD-Writing HOWTO"
+HREF="t1.htm"><LINK
+REL="NEXT"
+TITLE="Создание CD-R"
+HREF="x197.htm"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>CD-Writing HOWTO</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="t1.htm"
+ACCESSKEY="P"
+>&#1055;&#1088;&#1077;&#1076;.</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x197.htm"
+ACCESSKEY="N"
+>&#1057;&#1083;&#1077;&#1076;.</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="AEN98">Готовим Linux систему к записи CD-ROM</H1
+><P
+>Эта секция применима к следующим типам CD-writer-ов: SCSI,
+IDE/ATAPI и устройств на параллельном порту. USB CD-Writer
+устройства не поддерживаются на Май 2000. Не SCSI устройства
+требуют драйверов совместимости, которые создают видимость реальных SCSI
+устройств. С одной стороны, такая унифицикация проста ("все есть SCSI"),
+и на уровне приложений Вы можете разделять знания с другими
+пользователями, не взирая на свойства CD-writer-а. С другой стороны,
+для отражения изменения имени драйвера Вам прийдется изменить настройки таких 
+приложений как проигрыватели музыкальных CD и утилит монтирования.
+Например, Ваш ATAPI CD-writer был доступен через файл устройства /dev/hdc,
+после активизации драйверов SCSI совместимости Вы сможете получить доступ
+через /dev/scd0.</P
+><P
+>Если Вы правильно установили вашу аппаратуру и Linux, команда
+<TT
+CLASS="LITERAL"
+>cdrecord -scanbus</TT
+>
+покажет список устройств на Ваших SCSI шинах. Цель этой главы - полностью
+установить вашу Linux систему, таким образом, в конце Вы должны получить что-то вроде:</P
+><PRE
+CLASS="SCREEN"
+>shell&gt; cdrecord -scanbus
+Cdrecord release 1.7a1 Copyright (C) 1995-1998 JЖrg Schilling
+scsibus0:
+      0,0,0) 'Quantum ' 'XP34300         ' 'F76D' Disk
+      0,1,0) 'SEAGATE ' 'ST11200N        ' '8334' Disk
+      0,2,0) *
+      0,3,0) 'TOSHIBA ' 'MK537FB/        ' '6258' Disk
+      0,4,0) 'WANGTEK ' '5150ES SCSI 36  ' 'ESB6' Removable Tape
+      0,5,0) 'EXABYTE ' 'EXB-8500-85QUE  ' '0428' Removable Tape
+      0,6,0) 'TOSHIBA ' 'XM-3401TASUNSLCD' '3593' Removable CD-ROM
+      0,7,0) *
+scsibus1:
+      1,0,0) 'Quantum ' 'XP31070W        ' 'L912' Disk
+      1,1,0) *
+      1,2,0) *
+      1,3,0) 'TEAC    ' 'CD-R55S         ' '1.0H' Removable CD-ROM
+      1,4,0) 'MATSHITA' 'CD-R   CW-7502  ' '4.02' Removable CD-ROM
+      1,5,0) *
+      1,6,0) 'YAMAHA  ' 'CDR400t         ' '1.0d' Removable CD-ROM
+      1,7,0) *
+<SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Листинг: Обнаружение устройств на вашей SCSI-шине</I
+></SPAN
+></PRE
+><P
+>Пример предоставленный JЖrg Schilling показывает всего четыре CD-writer-а.
+Заметьте, что -scanbus также показывает другие устройства, такие как CD-ROM и
+жесткие диски. Последний столбец дает описание SCSI устройства, по которому Вы
+не сможете точно отличить обычный CD-ROM от устройства с возможностью
+записи. Но идентификатор продукта (средний столбец) часто содержит подсказку
+об этом свойстве в виде R, -R, или -RW.</P
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN106">Быстрый старт</H2
+><P
+>Эта секция - попытка представить быстрое и простое описание настроек.
+Рассмотрены не все возможные установки, но, пожалуйста,  хотя бы
+попробуйте. Сначала проверьте выдаваемую командой "uname -r" версию ядра Linux.
+Это должно быть что-то вроде 2.0.X или 2.2.Y, где
+X больше чем 36 и Y больше чем 11. Если у Вас более старые версии ядер
+или так называемые разрабатываемые ядра - Ваше дело.
+Установка более нового ядра - это также работа по исправлению старого,
+поэтому я убрал все подсказки необходимые для обхождения ошибок в
+старых ядрах.</P
+><P
+>Листинг ниже показывает набор команд, с которых Вы можете начать.
+Команды создают элементы файлов-устройств  в /dev, если они
+еще не существуют.</P
+><PRE
+CLASS="SCREEN"
+>test `whoami` = 'root' || echo "Вы должны быть пользователем root для выполнения команд."
+cd /dev/
+umask -S u=rwx,g=rwx,o-rwx
+[ -f loop0 ] \
+    || ./MAKEDEV loop \
+    || for i in 0 1 2 3 4 5 6 7; do mknod loop$i b 7 $i; done
+[ -f sg0 -o -f sga ] \
+    || ./MAKEDEV sg \
+    || for i in 0 1 2 3 4 5 6 7; do mknod sg$i  c 21 $i; done
+<SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Листинг: создание файлов-устройств</I
+></SPAN
+></PRE
+><P
+>Доступ к аппаратуре в Linux обычно реализуется посредством файлов-устройств.
+Поэтому, прежде всего, убедитесь в наличии этих файлов в /dev каталоге.
+Пока еще никто не привел мне убедительную причину, почему это не было
+автоматизировано посредством техники подобной файловой системы устройств
+(devfs). devfs давно известна, приводит к более безопасному (!) и
+более чистому именованию устройств и делает возможным автоматическое
+появление устройств в /dev. Некоторые выдающиеся люди убеждены, что devfs
+не идеальное решение, но они не могут предложить ничего лучше, и даже
+ничего сопоставимого и, по крайней мере, ничего доступного и тестируемого
+в данное время. Давайте начнем использовать devfs,
+тогда я смогу удалить вышеприведенные команды из документа. (<A
+HREF="http://www.atnf.CSIRO.AU/~rgooch/linux/kernel-patches.html"
+TARGET="_top"
+>http://www.atnf.CSIRO.AU/~rgooch/linux/kernel-patches.html</A
+>)</P
+><P
+>Следующее, в чем необходимо убедится, что ядро Linux снабжено необходимыми
+драйверами. Следующие команды проверяют различные файлы на наличие драйверов
+в запущенном ядре Linux. Обычно команда "cdrecord -scanbus" должна привести
+к автоматической загрузке всех драйверов. В случае отсутствия драйвера даже
+после этого, об этом будет сообщено и потребуется ручная загрузка модуля
+драйвера посредством insmod.</P
+><PRE
+CLASS="SCREEN"
+>test `whoami` = 'root' || echo "Вы должны быть пользователем root для выполнения команд."
+cdrecord -scanbus &#62; /dev/null
+if ! (pidof kerneld || test -f "/proc/sys/kernel/modprobe"); then
+    echo "Ни kerneld, ни kmod не запущены для автоматической загрузки модулей".
+fi
+report_no_autoload() {
+    echo "Проверьте, что модуль $1 автоматически загружен в следующий раз."
+}
+if test ! -f "/proc/scsi/scsi"; then
+    report_no_autoload scsi_mod  &#38;&#38;  insmod scsi_mod
+fi
+if ! grep "^........ sg_" /proc/ksyms &#62; /dev/null; then
+    report_no_autoload sg  &#38;&#38;  insmod sg
+fi
+if ! grep "^........ sr_" /proc/ksyms &#62; /dev/null; then
+    report_no_autoload sr_mod  &#38;&#38;  insmod sr_mod
+fi
+if ! grep "^........ loop_" /proc/ksyms &#62; /dev/null; then
+    report_no_autoload loop  &#38;&#38;  insmod loop
+fi
+if ! grep iso9660 /proc/filesystems &#62; /dev/null; then
+    report_no_autoload iso9660  &#38;&#38;  insmod iso9660
+fi
+echo "Следующее необходимо только для IDE/ATAPI CD-writer-ов."
+if ! grep ide-scsi /proc/ide/drivers &#62; /dev/null; then
+    report_no_autoload ide-scsi  &#38;&#38;  insmod ide-scsi
+fi
+cdrecord -scanbus
+<SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Листинг: Проверка драйверов</I
+></SPAN
+></PRE
+><P
+>Если insmod жалуется, что не может найти файл модуля - пожалуйста, прочтите
+следующую главу. Если Вы в текстовом режиме (консоли), загрузка модулей может
+привести к выводу некоторых сообщений на Ваш экран. Если Вы в графическом
+режиме (X11, KDE, Gnome), вы можете вызвать эти сообщения командой dmesg.</P
+><P
+>Есть несколько путей загрузки модулей при следующем запуске вашей Linux
+системы.</P
+><PRE
+CLASS="SCREEN"
+>(1) Вставить в нужное место команду insmod в загрузочном файле
+    ( shell скрипт называемый rc.local или эквивалентный ему).
+(2a) Запустить kerneld или kmod и
+(2b) настроить их в /etc/modules.conf (точнее, Вы настраиваете утилиту modprobe, которая вызывается демонами)</PRE
+><P
+>Люди с SCSI-устройствами записи могут проскочить остаток секции,
+так как cdrecord вероятно уже обнаружил их аппаратуру. Если нет - то пришлите
+мне по электронной почте некоторую информацию о ваших настройках,
+так я смогу усовершенствовать секцию о SCSI-устройствах.</P
+><P
+>Теперь о тех, у кого IDE/ATAPI CD-writer.  Как было написано в предыдущей
+главе, вам нужно загрузить драйвер совместимости
+ide-scsi. Но этот драйвер может получить доступ только к Вашему CD-Writer-у,
+при условии, что это уже не сделал другой драйвер. Другими словами, Вы должны сказать
+обычному IDE драйверу, оставить Ваш CD-writer неопознанным, чтобы ide-scsi
+драйвер смог его подхватить.</P
+><PRE
+CLASS="SCREEN"
+>hda = IDE шина/соединитель 0 master устройство
+hdb = IDE шина/соединитель 0 slave  устройство
+hdc = IDE шина/соединитель 1 master устройство
+hdd = IDE шина/соединитель 1 slave  устройство
+<SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Таблица: имена файлов IDE/ATAPI устройств</I
+></SPAN
+></PRE
+><P
+>Вышеприведенная таблица  показывает связь имен устройств и размещение
+устройств на IDE шинах. Имя файла устройства представляющее Ваш CD-Writer
+передается драйверу ядра Linux. Например: hdb=ide-scsi.
+Такая запись должна быть добавлена в lilo.conf или chos.conf,
+если драйвер IDE статически вкомпилирован в Ваше ядро, что наиболее
+часто встречается. Если Вам нужно передать ядру более одного параметра -
+разделите их пробелами (как показано в chos примере). Следующие
+два листинга показывают пример настроек содержащих больше строк, чем просто
+добавляемая строка. Заметьте, что записи append- и cmdline-
+специфичны для образа ядра (т.е. не надо их добавлять в самое начало).</P
+><PRE
+CLASS="SCREEN"
+>image=/boot/zImage-2.2.14
+  label=Linux
+  read-only
+  append="hdb=ide-scsi"
+<SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Листинг: Пример конфигурации для lilo (/etc/lilo.conf)</I
+></SPAN
+></PRE
+><P
+></P
+><PRE
+CLASS="SCREEN"
+>linux "Linux 2.1.14" {
+        image=/boot/zImage-2.0.37
+        cmdline= root=/dev/hda5 readonly hdb=ide-scsi
+}
+<SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Листинг: Пример конфигурации для chos (/etc/chos.conf)</I
+></SPAN
+></PRE
+><P
+>Если драйвер IDE/ATAPI CD-ROM загружается как модуль, то вышеприведенное
+не будет для Вас иметь значения, но проверьте, что Вы включили options-строку
+из следующего листинга. Последние три строки этого листинга, в основном, для
+дальнейшей автоматической загрузки требуемых модулей.</P
+><PRE
+CLASS="SCREEN"
+>options ide-cd ignore=hdb            # говорит ide-cd модулю игнорировать hdb
+alias scd0 sr_mod                    # загружает sr_mod при доступе к scd0
+#pre-install ide-scsi modprobe imm   # раскомментировать только для некоторых ZIP устройств
+pre-install sg     modprobe ide-scsi # загружает ide-scsi перед sg
+pre-install sr_mod modprobe ide-scsi # загружает ide-scsi перед sr_mod
+pre-install ide-scsi modprobe ide-cd # загружает ide-cd   перед ide-scsi
+<SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Листинг: Пример настроек для /etc/modules.conf</I
+></SPAN
+></PRE
+><P
+>Если Ваш CD-writer - единственный CD-ROM подключенный к машине, то
+помните, что Вы получаете доступ к CD-ROM в устройстве записи через
+файл устройства /dev/scdв где в=0,..,8. Вы можете изменить символическую ссылку
+по имени cdrom, чтобы она указывала на новое имя файла устройства.
+Листинг ниже показывает команду для достижения этого на примере scd0.</P
+><PRE
+CLASS="SCREEN"
+>cd /dev &#38;&#38; rm cdrom &#38;&#38; ln -s scd0 cdrom
+<SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Листинг: Делаем cdrom символической ссылкой для scd0</I
+></SPAN
+></PRE
+><P
+>Если Ваш CD-writer и CD-ROM два различных устройства - не изменяйте
+символическую ссылку cdrom.</P
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="AEN137">Специальные заметки о SCSI CD-writer-ах</H3
+><P
+>Проверьте, что Ваше устройство записи распознано BIOS-ом
+Вашего SCSI-контроллера. Каждый SCSI контроллер сканирует SCSI шину
+после включения питания и сообщает все найденные присоединенные устройства.
+Сообщение включает SCSI ID устройств и их идентификаторы продукта.
+Нет смысла продолжать, если Ваш CD writer не указан в этом списке.</P
+><P
+>Если Вы планируете подключать Ваше SCSI устройство через параллельный порт
+(не путать с IDE устройствами на параллельном порту), Вам нужен специальный
+активный кабель и специальный драйвер ядра. Прочтите <A
+HREF="http://www.torque.net/parport/parscsi.html"
+TARGET="_top"
+>http://www.torque.net/parport/parscsi.html</A
+> чтобы узнать больше об этой возможности.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="AEN142">Специальные заметки о CD-writer-ах для параллельного порта</H3
+><P
+>Мне очень жаль, но у меня нет мыслей по этому поводу. Пожалуйста, прочтите <A
+HREF="http://www.torque.net/parport/paride.html"
+TARGET="_top"
+>http://www.torque.net/parport/paride.html</A
+> или /usr/src/linux/Documentation/paride.txt на вашем локальном диске.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="AEN146">Компиляция отсутствующих модулей ядра (опционально)</H3
+><P
+>Если Ваша аппаратура уже успешно опознана и настроена в результате ранее
+описанных шагов, то Вам не нужно читать эту секцию.</P
+><P
+>Ядро Linux может быть оснащено драйверами различных свойств. Вы можете
+компилировать драйвера в образ ядра статически, или компилировать как модули
+для загрузки по необходимости. Последний метод предпочтительней для драйверов не
+существенных для оживления вашей Linux системы, так как при этом ваше ядро будет
+меньше и быстрее. Однако некоторые драйвера необходимы для системы, и Вы не должны
+компилировать их как модули. Например: если ваша система находится на жестком диске
+IDE, драйвер жесткого диска IDE должен содержаться в ядре, а не в модуле.</P
+><P
+>Существует три различных типа CD-writer-ов: SCSI, IDE/ATAPI и внешние устройства, работающие через параллельный порт. Таблица показывает, как настроить ядро
+Linux для этих типов аппаратуры. Первый столбец таблицы - секция
+конфигурационного меню ядра, где Вы видите установки. Второй столбец - описание
+свойства (также взято из конфигурационного меню ядра). Третий столбец -
+показывает имя результирующего модуля. Столбцы названые SCSI, IDE и PP содержат
+необходимые опции для соответствующей аппаратуры (PP= параллельный порт)</P
+><PRE
+CLASS="SCREEN"
+>Секция  Описание                   Модкль   SCSI  IDE   PP
+------------------------------------------------------------
+BLOCK  Enhanced IDE/MFM/RLL...                     Y
+BLOCK  IDE/ATAPI CDROM             ide-cd          M
+BLOCK  SCSI emulation support      ide-scsi        M
+BLOCK  Loopback device             loop       M    M     M
+
+PARIDE Parallel port IDE device    paride               Y/M
+PARIDE Parallel port ATAPI CD-ROMs                       M
+PARIDE Parallel port generic ATAPI                       M
+PARIDE (select a low-level driver)                       Y
+
+SCSI   SCSI support                scsi_mod  Y/M  Y/M
+SCSI   SCSI CD-ROM support         sr_mod    Y/M  Y/M
+SCSI     Enable vendor-specific               Y    Y
+SCSI   SCSI generic support        sg        Y/M  Y/M
+SCSI   (select a low-level driver)            Y
+
+FS     ISO 9660 CDROM filesystem   iso9660   Y/M  Y/M   Y/M
+FS     Microsoft Joliet cdrom...   joliet     Y    Y     Y
+<SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Таблица: выбор драйвера для различных тиров устройств записи</I
+></SPAN
+></PRE
+><P
+>Y значит - да и подразумевает, что вы должны включить пункт в ядро. M означает
+модуль, и подразумевает, что Вы должны или можете скомпилировать это свойство
+как модуль. Y/M дает вам возможность выбора (порядок показывает выбор с
+меньшим количеством потенциальных проблем). Пустые места не требуют модификации,
+и их не изменение увеличивает шанс, что ядро, в результате, будет работать, как
+Вы хотите (если работало ранее). Особенно при смешивании ATAPI и SCSI
+устройств, будет лучше сконфигурировать большинство свойств как модули.</P
+><P
+>Компиляция петлевого (loopback) устройства необязательна, но оно поможет Вам тестировать
+образ перед записью на носитель. Если Вы хотите читать CD-ROM, Вам нужна
+поддержка файловой системы ISO9660. Этот драйвер автоматически включает
+поддержку расширения RockRidge. Расширение Microsoft Joliet, должно быть явно
+добавлено в файловую систему ISO9660. В любом случае Вам нужен драйвер низкого
+уровня для Вашего оборудования. Низкий уровень обозначает драйвер, который
+взаимодействует с вашим оборудованием. Для SCSI и параллельного порта
+существует много драйверов низкого уровня.</P
+><P
+>Установка полученных в результате модулей ядра Linux вне контекста этого
+HOWTO. Пожалуйста, сверьтесь с документацией на Ваш дистрибутив Linux.</P
+><P
+>Пользователи RedHat Linux - знайте, что Вам следует скомпилировать свойства
+"Ramdisk support" и "Initial ramdisk". Более того, Вам надо сгенерировать новый
+ramdisk с новыми модулями путем подачи команды такой как
+"mkintrd --preload ide-cd initrd-2.2.14.img  2.2.14".</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN157">Получение пользовательских программ для создания CD-R</H2
+><P
+>Более детальный обзор инструментов связанных с созданием CD-ROM-ов имеется на
+<A
+HREF="http://www.fokus.gmd.de/research/cc/glone/employees/joerg.schilling/private/cdb.html"
+TARGET="_top"
+>http://www.fokus.gmd.de/research/cc/glone/employees/joerg.schilling/private/cdb.html</A
+>.</P
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="AEN161">Утилиты командной строки</H3
+><P
+>Для создания образов CD-R нужен один из следующих пакетов (требуется только для CD-ROM с данными):</P
+><A
+NAME="AEN164"><BLOCKQUOTE
+CLASS="BLOCKQUOTE"
+><P
+CLASS="LITERALLAYOUT"
+><A
+HREF="ftp://tsx-11.mit.edu/pub/linux/packages/mkisofs/"
+TARGET="_top"
+>ftp://tsx-11.mit.edu/pub/linux/packages/mkisofs/</A
+>&nbsp;(mkisofs)<br>
+<A
+HREF="ftp://ftp.ge.ucl.ac.uk/pub/mkhfs"
+TARGET="_top"
+>ftp://ftp.ge.ucl.ac.uk/pub/mkhfs</A
+>&nbsp;(mkhybrid)</P
+></BLOCKQUOTE
+><P
+>Для записи образов на CD-R, Вам нужен один из следующих программных пакетов:</P
+><A
+NAME="AEN169"><BLOCKQUOTE
+CLASS="BLOCKQUOTE"
+><P
+CLASS="LITERALLAYOUT"
+><A
+HREF="ftp://ftp.fokus.gmd.de/pub/unix/cdrecord/"
+TARGET="_top"
+>ftp://ftp.fokus.gmd.de/pub/unix/cdrecord/</A
+>&nbsp;(cdrecord)<br>
+<A
+HREF="http://www.ping.de/sites/daneb/cdrdao.html"
+TARGET="_top"
+>http://www.ping.de/sites/daneb/cdrdao.html</A
+>&nbsp;(cdrdao)<br>
+<A
+HREF="http://www.munich-vision.de/vcd/"
+TARGET="_top"
+>http://www.munich-vision.de/vcd/</A
+>&nbsp;(mkvcdfs)</P
+></BLOCKQUOTE
+><P
+>Не доверяйте странице руководства (старой) <TT
+CLASS="LITERAL"
+>mkisofs</TT
+>,
+которая заявляет, что Вам нужна версия 1.5 <TT
+CLASS="LITERAL"
+>cdwrite</TT
+>.
+Используйте только cdrecord, и все будет в порядке. Пожалуйста, заметьте,
+новые версии cdrecord поставляются с расширенной версией mkisofs и некоторыми
+дополнительными утилитами в каталоге misc/ (readcd,isosize), которых нет в
+другом месте.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="AEN177">Графический интерфейс пользователя (опционально)</H3
+><P
+>Оболочки являются действительно оболочками под Linux. Это означает, Вы
+по-прежнему должны установить утилиты командной строки, но получаете к ним
+доступ в приглядном виде.</P
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>X-CD-Roast</I
+></SPAN
+> - программный пакет, посвященный
+простому созданию CD под Linux. Он объединяет инструменты командной строки,
+такие как <TT
+CLASS="LITERAL"
+>cdrecord</TT
+> и
+<TT
+CLASS="LITERAL"
+>mkisofs</TT
+>, с хорошим графическим интерфейсом.</P
+><A
+NAME="AEN184"><BLOCKQUOTE
+CLASS="BLOCKQUOTE"
+><P
+CLASS="LITERALLAYOUT"
+><A
+HREF="http://www.fh-muenchen.de/home/ze/rz/services/projects/xcdroast/e_overview.html"
+TARGET="_top"
+>http://www.fh-muenchen.de/home/ze/rz/services/projects/xcdroast/e_overview.html</A
+></P
+></BLOCKQUOTE
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>BurnIT</I
+></SPAN
+>  - JAVA оболочка к cdrecord, mkisofs и cdda2wav-0.95, создающая
+полный пакет для создания CD на UNIX платформе. Она доступна по</P
+><A
+NAME="AEN189"><BLOCKQUOTE
+CLASS="BLOCKQUOTE"
+><P
+CLASS="LITERALLAYOUT"
+><A
+HREF="http://sunsite.auc.dk/BurnIT/"
+TARGET="_top"
+>http://sunsite.auc.dk/BurnIT/</A
+></P
+></BLOCKQUOTE
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>CD-Tux</I
+></SPAN
+>  - неграфическая оболочка к
+программам mkisofs и cdrecord.
+"Она создает простое в использовании  окружение для выполнения почти всего
+для создания CD посредством использования знаменитой библиотеки NCURSES.
+И это все делается программой размером в 75K."</P
+><A
+NAME="AEN194"><BLOCKQUOTE
+CLASS="BLOCKQUOTE"
+><P
+CLASS="LITERALLAYOUT"
+><A
+HREF="http://www.datadictator.co.za/cdtux/"
+TARGET="_top"
+>http://www.datadictator.co.za/cdtux/</A
+></P
+></BLOCKQUOTE
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="t1.htm"
+ACCESSKEY="P"
+>&#1055;&#1088;&#1077;&#1076;.</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="t1.htm"
+ACCESSKEY="H"
+>&#1053;&#1072;&#1095;&#1072;&#1083;&#1086;</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x197.htm"
+ACCESSKEY="N"
+>&#1057;&#1083;&#1077;&#1076;.</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>CD-Writing HOWTO</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Создание CD-R</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

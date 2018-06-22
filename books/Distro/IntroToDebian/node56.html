@@ -1,0 +1,217 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Функции.</TITLE>
+<META NAME="description" CONTENT="Функции.">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<!-- Meta http equivalent was here                               -->
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="IntroToLinux.css">
+
+<LINK REL="next" HREF="node57.html">
+<LINK REL="previous" HREF="node55.html">
+<LINK REL="up" HREF="node54.html">
+<LINK REL="next" HREF="node57.html">
+</HEAD>
+
+<BODY background="backgr.jpg" vlink="#000099" bgcolor="#E6E6FA">
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A NAME="tex2html880"
+  HREF="node57.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html876"
+  HREF="node54.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html870"
+  HREF="node55.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html878"
+  HREF="IntroToLinux.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A>  
+<BR>
+<B> След.:</B> <A NAME="tex2html881"
+  HREF="node57.html">События.</A>
+<B> Вверх:</B> <A NAME="tex2html877"
+  HREF="node54.html">Введение в FVWM2</A>
+<B> Пред.:</B> <A NAME="tex2html871"
+  HREF="node55.html">Меню.</A>
+ &nbsp; <B>  <A NAME="tex2html879"
+  HREF="IntroToLinux.html">Содержание</A></B> 
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION00053200000000000000">
+Функции.</A>
+</H3>
+
+<P>
+Все действия в FVWM, будь то разворот окна на весь экран, сворачивание окна, или запуск какой-либо программы (а то и все это одновременно) суть функции.
+И их также нужно объявлять (если, конечно, функция состоит более, чем из одного действия):
+<PRE>
+DestroyFunc deiconify-and-focus
+AddToFunc   deiconify-and-focus
++ "I" Iconify -1     # Разворачиваем окно из иконки
++ "I" Focus          # Переносим на него фокус
+</PRE>
+
+<P>
+Вызываются функции следующим образом:
+<PRE>
+DestroyMenu Window-Ops
+AddToMenu Window-Ops
++ "&amp;Переместить"         Move
++ "&amp;Изменить размер"     Resize
++ "Свернуть/развернуть"  Maximize 100 100
++ ""                     Nop
++ "Переместить на..."    Popup Move-Window
++ ""                     Nop
++ "Сделать нечто"        My-func-name
++ ""                     Nop
++ "Destroy"              Destroy
++ "&amp;Close"               Close
+</PRE>
+Если это меню связано с каким-либо окном (см. следующий подраздел), то функции вызываются применительно к нему, иначе FVWM попросит вас уточнить какое из окон вы имеете в виду.
+
+<P>
+Полный список поддерживаемых функций, конечно же содержится в man-странице FVWM, но все же перечислю наиболее (на мой взгляд) интересные:
+<DL>
+<DT><STRONG>Move, Resize</STRONG></DT>
+<DD>&nbsp;-- Соответственно перемешает, и изменяет в размере окно. Без параметров может использоваться как мышь, так и клавиатура. В качестве параметров можете указать x и y координаты для немедленного перемещения/изменения. Пример:
+<PRE>
+# Интерактивное перемещение
+Move
+# Переместить вверх-лево на 10% и 10%
+Move 10 10
+# Аналогично, но пикселей.
+Move 10p 10p
+# Переместить окно в правый-нижний угол экрана
+Move -0 -0
+# Перемещаем на 5% в право и на середину по вертикали
+Move w+5 50
+# Перемещаем окно к точке положения курсора
+Move m+0 m+0
+# 80 на 24 символа
+Resize 80c 24c
+# Максимизирует
+Resize 100 100
+</PRE>
+Также можете воспользоваться командой AnimatedMove для анимированного перемещения.
+
+<P>
+</DD>
+<DT><STRONG>Maximize</STRONG></DT>
+<DD>&nbsp;-- Изменяет размер окна к указанному параметром. Например:
+<PRE>
+# Максимизация по вертикали
+Maximize 0 100
+# Максимизация до размера половины экрана
+Maximize 50 50
+# Разворачивает окно, оставляя на экране еще 60 пикселей
+Maximize 100 -60p
+</PRE>
+
+<P>
+</DD>
+<DT><STRONG>Iconify</STRONG></DT>
+<DD>&nbsp;-- Сворачивает окно в иконку, либо разворачивает его из иконки. Параметром может быть желаемое состояние (True|False).
+
+<P>
+</DD>
+<DT><STRONG>GotoDesk, GotoPage</STRONG></DT>
+<DD>&nbsp;-- Соответственно переход к соответствующему деку, или странице. Дек может содержать несколько страниц. Геометрия двумерная, число деков определяется параметрами модуля Pager, размер дека параметром DeskTopSize. Пример:
+<PRE>
+# Размер дека 2x2
+# Вообще же число страниц может быть до 4 миллиардов :o)
+DeskTopSize 2x2
+# Переходим на страницу
+GotoPage 1 1
+# Или дек
+GotoDesk 0 0
+# Перемещаем текущее окно (сами не переходим)
+MoveToPage 1 1
+# Или на дек (и текущую по номеру страницу)
+MoveToDesk 0 0
+</PRE>
+
+<P>
+</DD>
+<DT><STRONG>Layer</STRONG></DT>
+<DD>&nbsp;-- Уровень окна. Более высокие по уровню окна заведомо перекрывают более низкие (не зависимо от фокуса). Пример:
+<PRE>
+# Повышаем уровень текущего окна.
+Layer 1  0
+# Устанавливаем его уровень в 1
+Layer 0  1
+</PRE>
+
+<P>
+</DD>
+<DT><STRONG>Delete, Destroy, Close</STRONG></DT>
+<DD>&nbsp;-- Соответственно пытаемся вежливо закрыть текущее окно, принудительно, или сначала первым способом, а в случае неудачи&nbsp;-- вторым.
+
+<P>
+</DD>
+<DT><STRONG>Exec</STRONG></DT>
+<DD>&nbsp;-- Запустить указанное приложение. Например:
+<PRE>
+# Редактируем настроечный файл
+Exec exec gvim /home/nik/.fvwm/.fvwm2rc
+</PRE>
+
+<P>
+</DD>
+<DT><STRONG>Popup</STRONG></DT>
+<DD>&nbsp;-- Выводим меню. Учтите, что окна по умолчанию вызываются по положению курсора, но могут быть и привязаны к любому элементу интерфейса (как к соответствующей точке отсчета). Пример:
+<PRE>
+# Выводим главное меню
+Popup /Debian
+# Выводим меню Window-Ops, в верхнем-левом 
+# углу заголовка
+Popup Window-Ops Title o0 o0
+</PRE>
+</DD>
+</DL>
+
+<P>
+
+<DIV CLASS="navigation"><HR>
+<!--Navigation Panel-->
+<A NAME="tex2html880"
+  HREF="node57.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html876"
+  HREF="node54.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html870"
+  HREF="node55.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html878"
+  HREF="IntroToLinux.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A>  
+<BR>
+<B> След.:</B> <A NAME="tex2html881"
+  HREF="node57.html">События.</A>
+<B> Вверх:</B> <A NAME="tex2html877"
+  HREF="node54.html">Введение в FVWM2</A>
+<B> Пред.:</B> <A NAME="tex2html871"
+  HREF="node55.html">Меню.</A>
+ &nbsp; <B>  <A NAME="tex2html879"
+  HREF="IntroToLinux.html">Содержание</A></B> </DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<TABLE border="0" cellpadding="0" cellspacing="0" width="100%"><TR bgcolor="#336699"><TD bgcolor="#8080c0"><P align="center"><FONT color="#FFFFFF" size="1"><A href="http://www.gnu.org/copyleft/fdl.html"><FONT color="#FFFFFF" size="1">Copyleft</FONT></A> © 2002-2003 г. &nbsp; Nikolay A. Panov, <A href="http://www.uic.nnov.ru/~nik/articles/IntroToLinux/"><FONT color="#FFFFFF">"Intro To Linux" (orig)</FONT></A>, &nbsp;<a href="mailto:&#110;&#105;&#107;&#115;&#105;&#116;&#101;&#64;&#109;&#97;&#105;&#108;&#46;&#114;&#117;"><FONT color="#FFFFFF">&#110;&#105;&#107;&#115;&#105;&#116;&#101;&#64;&#109;&#97;&#105;&#108;&#46;&#114;&#117;</FONT></A>, &nbsp;ICQ: 122-40-8888</FONT></P></TD></TR></TABLE>
+</ADDRESS>
+</BODY>
+</HTML>

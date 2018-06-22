@@ -1,0 +1,293 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE>Vim Color Editor HOW-TO (Vi Улучшенный с цветной подсветкой синтаксиса) : Компаньоны Vi</TITLE>
+ <LINK HREF="Vim-6.html" REL=next>
+ <LINK HREF="Vim-4.html" REL=previous>
+ <LINK HREF="Vim.html#toc5" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="Vim-6.html">Next</A>
+<A HREF="Vim-4.html">Previous</A>
+<A HREF="Vim.html#toc5">Contents</A>
+<HR>
+<H2><A NAME="s5">5. Компаньоны Vi</A></H2>
+
+<P>Обычно Vim используется совместно с другими мощными инструментами такими как
+<B>ctags</B> и <B>gdb</B>. <B>Ctags</B> для быстрой навигации сквозь
+миллионы строк "C/C++" кода и <B>gdb</B> для отладки "C/C++" кода.
+Эта глава посвящена именно этим двум незаменимым инструментам.
+<P><B>Ctags</B> - это самая мощная и нужная команда для написания программ на 
+C, C++, Java, Perl,
+Korn/Bourne shell scripts или Fortran. Разработчики широко используют <B>ctags</B> для
+навигации в тысячах функций программ на C/C++. (Смотрите 'man ctags').
+Очень <B>важно</B>, чтобы вы научились использовать ctags. Это позволит вам эффективно
+писать программы на C/C++,Java и т.д.
+Навигации в море кода - одна из самых важных задач во время разработки программ на C/C++.
+Использование ctags позволит вам решать эту задачу быстро и эффективно. Ctags - позволяет
+очень быстро читать код, просматривать функции, перескакивая от одной функции к другой.
+<P>Без такой навигации, вы скорее всего заблудитесь в коде !
+<B>Ctags</B> - компас для программиста.
+<P>Использование <B>ctags</B> : 
+<HR>
+<PRE>
+        ctags *.cpp
+        gvim -t foo_function
+        gvim -t main
+</PRE>
+<HR>
+
+Эти команда откроет программу на C++, которая содержит функцию foo_function() и разместит
+курсор на первой строке функции foo_function().
+Вторая команда, отправит вас на строку в которой определена функция main().
+<P>Внутри Vim вы можете перейти к функции введя : (двоеточие) tag &lt; имя функции &gt;как показано ниже: 
+<HR>
+<PRE>
+        :tag sample_function
+</PRE>
+<HR>
+
+Эта команда разместит курсор на первой строке функции sample_function()
+<P>Если вы захотите перейти прямо к функции от строки в файле, которая содержит имя этой функции,
+поместите курсор перед именем функции и нажмите <B>CTRL+]</B>, это
+отправит вас прямо на строку где начинается искомая функция.
+<HR>
+<PRE>
+                // example code
+                switch(id_number) {
+                        Case 1:
+                                if ( foo_function( 22, "abcef") == 3 )
+                                    ^
+                                    |
+                                    |
+                                    |
+                  Разместите курсор здесь (перед foo_function) и нажмите CTRL+]
+                  Это отправит вас на начало "foo_function". Чтобы вернуться назад нажмите CTRL+t
+</PRE>
+<HR>
+
+Чтобы отправиться назад, на исходную строку, нажмите 
+<B>CTRL+t</B>. Вы можете нажимать <B>CTRL+t</B> несколько раз 
+чтобы вернуться в точку где вы начали навигацию.
+Таким образом можно "пройти" скозь все функции C/C++ кода.
+<H2><A NAME="ss5.1">5.1 Ctags для ESQL</A>
+</H2>
+
+<P>Т.к. ctags не поддерживают языка Embedded SQL/C (ESQL), то ,для создания тэгов для этого языка,
+необходим приведенный ниже shell script.
+ESQL/C - это команды SQL, для управления базой данных,встроенные в C программу.
+Oracle ESQL/C называется Pro*C и Sybase;для Infomix есть ESQL/C;для PostgreSQL есть "ecpg". 
+<P>Сохраните этот файл как "sqltags.sh" и выполните chmod a+rx tags_gen.sh.
+<HR>
+<PRE>
+#!/bin/sh
+
+# Программа для создания ctags для ESQL, C++ и C файлов
+ESQL_EXTN=pc
+tag_file1=tags_file.1
+tag_file2=tags_file.2
+
+which_tag=ctags
+
+rm -f $tag_file1 $tag_file2 tags
+
+aa=`ls *.$ESQL_EXTN`
+#echo $aa
+for ii in $aa 
+do
+        #echo $ii
+        jj=`echo $ii | cut -d'.' -f1`
+        #echo $jj
+
+        if [ ! -f $jj.cpp ]; then
+                echo " "
+                echo " "
+                echo "***********************************************"
+                echo "ESQL *.cpp не существуют.. "
+                echo "Вы должны сгенерировать *.cpp из файла *.pc "
+                echo "используя Oracle Pro*C пре-компилятор или Sybase"
+                echo "либо Informix esql/c пре-компилятор."
+                echo "А затем перезапустить эту программу"
+                echo "***********************************************"
+                echo " "
+                exit
+        fi
+
+        rm -f tags
+        $which_tag $jj.cpp
+        kk=s/$jj\.cpp/$jj\.pc/g
+
+        #echo $kk > sed.tmp
+        #sed -f sed.tmp tags >> $tag_file1
+
+        #sed -e's/sample\.cpp/sample\.pc/g' tags >> $tag_file1
+        sed -e $kk tags >> $tag_file1
+done
+
+# Теперь обработаем все C++/C файлы, исключая ESQL *.cpp файлы
+rm -f tags $tag_file2
+bb=`ls *.cpp *.c`
+aa=`ls *.$ESQL_EXTN`
+for mm in $bb 
+do
+        ee=`echo $mm | cut -d'.' -f1`
+        file_type="NOT_ESQL"
+        # Exclude the ESQL *.cpp and *.c files
+        for nn in $aa 
+        do
+                dd=`echo $nn | cut -d'.' -f1`
+                if [ "$dd" = "$ee" ]; then
+                        file_type="ESQL"
+                        break
+                fi
+        done
+
+        if [ "$file_type" = "ESQL" ]; then
+                continue
+        fi
+
+        rm -f tags
+        $which_tag $mm
+        cat tags >> $tag_file2
+done
+
+mv -f $tag_file2 tags
+cat  $tag_file1 >> tags
+rm -f $tag_file1
+
+# Чтобы все работало правильно необходимо отсортировать файл с тэгами ....
+sort tags > $tag_file1
+mv $tag_file1 tags
+</PRE>
+<HR>
+<H2><A NAME="ss5.2">5.2 Ctags для Javascript программ, оболочек Korn и Bourne </A>
+</H2>
+
+<P>Этот shell скрипт может быть использован для генерации тэгов для очень большого количества
+программ написанных на JavaScript,PHP/FI скрипты,Korn shell,C shell,Bourne shell и многих других.
+Это очень "стандартный" модуль.
+<P>Сохраните этот файл как tags_gen.sh и выполните chmod a+rx tags_gen.sh.
+<HR>
+<PRE>
+#!/bin/sh
+
+tmp_tag=tags_file
+tmp_tag2=tags_file2
+
+echo " "
+echo " "
+echo " "
+echo " "
+echo " "
+echo "Генерируем тэги для ...."
+while :
+do
+        echo "    Введите расширение файлов, для которых вы хотите сгенерировать тэги."
+        echo -n "    Расширения файлов должны быть заданы как sh, js, ksh, etc... : "
+        read ans
+
+        if [ "$ans" == "" ]; then
+                echo " "
+                echo "Неверный ввод. Попробуйте еще раз!"
+        else
+                break
+        fi
+done
+
+\rm -f $tmp_tag
+
+aa=`ls *.$ans`
+
+for ii in $aa
+do
+        jj=`echo $ii | cut -d'.' -f1`
+        #echo $jj
+        cp $ii $jj.c
+        ctags $jj.c
+        echo "s/$jj.c/$ii/g" > $tmp_tag2
+        sed -f $tmp_tag2 tags >> $tmp_tag
+        \rm -f tags $jj.c
+done
+
+sort $tmp_tag > tags
+
+\rm -f $tmp_tag $tmp_tag2
+</PRE>
+<HR>
+<H2><A NAME="ss5.3">5.3 Дебаггер gdb</A>
+</H2>
+
+<P>Вы почти наверняка захотите использовать gdb (смотрите 'man gdb') вместе с Vim.
+Отладка - один из наиболее сложных и трудоемких процессов в программировании.
+<P>Чтобы использовать gdb, вы должны компилировать программу с опцией -g3.
+Например:
+<BLOCKQUOTE><CODE>
+<PRE>
+        gcc -g3 foo.c foo_another.c sample.c
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>Чтобы легко настроить псевдонимы, сделайте следующее -
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+Настройте псевдоним в вашем:
+~/.bash_profile
+        alias gdb='gdb -directory=/home/src -directory=/usr/myname/src '
+  Выполните -
+        gdb foo.cpp
+        gdb> dir /hom2/another_src
+        Это добавит некоторые файлы к пути поиска
+        gdb> break 'some_class::func&lt;TAB>&lt;TAB>
+  Это позволит дополнять имена функции -
+        gdb> break 'some_class::function_foo_some_where(int aa, float bb)'
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>Двойное нажатие TAB приведет к автоматическому завершению командной строки,
+что сохранит вам массу времени. 
+<P>Чтобы получить помощь во время работы -
+<BLOCKQUOTE><CODE>
+<PRE>
+        gdb> help
+  Выдает  на экран помощь
+        gdb> help breakpoints
+  Выдает более детальную помощь о breakpoints.
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>Для установки breakpoints и входа в отладку 
+<BLOCKQUOTE><CODE>
+<PRE>
+        unixprompt> gdb exe_filename 
+        gdb> b main
+  Это поместит breakpoint на функции main() 
+        gdb> b 123
+  Это поместит breakpoint на 123й строке текущего файла 
+
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>Чтобы проанализовать core используйте -
+<BLOCKQUOTE><CODE>
+<PRE>
+        unixprompt> gdb exe_filename  core
+        gdb> bt
+  Начинает трассировку тех строк программы где произошла ошибка
+        gdb> help backtrace
+  Выдает более детальную помощь о режиме backtrace.
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>Вы также можете использовать GUI версию gdb называемую xxgdb.
+<P>Инструменты для отслеживания "утечек" памяти - 
+<UL>
+<LI> Бесплатный Electric Fence доступный почти в любом дистрибутиве, </LI>
+<LI> Коммерческий Purify 
+<A HREF="http://www.rational.com">http://www.rational.com</A> </LI>
+<LI> Insure++ 
+<A HREF="http://www.insure.com">http://www.insure.com</A></LI>
+</UL>
+<P>
+<HR>
+<A HREF="Vim-6.html">Next</A>
+<A HREF="Vim-4.html">Previous</A>
+<A HREF="Vim.html#toc5">Contents</A>
+</BODY>
+</HTML>

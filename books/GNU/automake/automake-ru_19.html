@@ -1,0 +1,93 @@
+<HTML>
+<HEAD>
+<!-- Created by texi2html 1.56k from automake-ru.texi on 11 July 2000 -->
+
+<TITLE>automake - Эффект использования ключей --gnu и --gnits</TITLE>
+</HEAD>
+<BODY>
+Go to the <A HREF="automake-ru_1.html">first</A>, <A HREF="automake-ru_18.html">previous</A>, <A HREF="automake-ru_20.html">next</A>, <A HREF="automake-ru_25.html">last</A> section, <A HREF="automake-ru_toc.html">table of contents</A>.
+<P><HR><P>
+
+
+<H1><A NAME="SEC61" HREF="automake-ru_toc.html#TOC61">Эффект использования ключей <CODE>--gnu</CODE> и <CODE>--gnits</CODE></A></H1>
+
+<P>
+<A NAME="IDX472"></A>
+<A NAME="IDX473"></A>
+
+
+<P>
+Ключ <SAMP>`--gnu'</SAMP> (или <SAMP>`gnu'</SAMP> в переменной <SAMP>`AUTOMAKE_OPTIONS'</SAMP>)
+заставляет <CODE>automake</CODE> выполнить проверку следующих вещей:
+
+
+
+<UL>
+<LI>
+
+Файлы <TT>`INSTALL'</TT>, <TT>`NEWS'</TT>, <TT>`README'</TT>, <TT>`COPYING'</TT>,
+<TT>`AUTHORS'</TT> и <TT>`ChangeLog'</TT> должны находится в каталоге верхнего
+уровня пакета.
+
+<LI>
+
+Ключи <SAMP>`no-installman'</SAMP> и <SAMP>`no-installinfo'</SAMP> запрещены.
+
+</UL>
+
+<P>
+Заметьте, что в будущем этот ключ будет расширен для проведения
+дополнительных проверок; рекомендуется ознакомиться с точными
+требованиями стандартов GNU. Также ключ <SAMP>`--gnu'</SAMP> может требовать
+наличия нестандартных программ GNU для использования в целях,
+используемых человеком, который сопровождает данный пакет; например, в
+будущем может потребоваться программа <CODE>pathchk</CODE> для работы цели
+<SAMP>`make dist'</SAMP>.
+
+
+<P>
+<A NAME="IDX474"></A>
+
+
+<P>
+Ключ <SAMP>`--gnits'</SAMP> делает то же самое, что и ключ <SAMP>`--gnu'</SAMP>, а также
+проверяет следующие вещи:
+
+
+
+<UL>
+<LI>
+
+<SAMP>`make dist'</SAMP> выполнит проверку того, что файл <TT>`NEWS'</TT> обновлен
+для новой версии.
+
+<LI>
+
+Наличие файла <TT>`COPYING.LIB'</TT> запрещено. По видимому LGPL считается
+несостоявшимся экспериментом.
+
+<LI>
+
+Проверяется <SAMP>`VERSION'</SAMP> на то, что его формат соответствует
+стандартам Gnits.
+
+<LI>
+
+<A NAME="IDX475"></A>
+Если <SAMP>`VERSION'</SAMP> указывает на то, что этот выпуск является
+альфа-версией, и в каталоге верхнего уровня находится файл
+<TT>`README-alpha'</TT>, то этот файл будет включен в дистрибутив. Это
+делается в режиме <SAMP>`--gnits'</SAMP>, и ни в каких других режимах, поскольку
+только в этом режиме есть ограничения формата номера версии, и только в
+этом режиме Automake может автоматически определить, нужно ли включать
+файл <TT>`README-alpha'</TT>.
+
+<LI>
+
+Требуется наличие файла <TT>`THANKS'</TT>.
+</UL>
+
+<P><HR><P>
+Go to the <A HREF="automake-ru_1.html">first</A>, <A HREF="automake-ru_18.html">previous</A>, <A HREF="automake-ru_20.html">next</A>, <A HREF="automake-ru_25.html">last</A> section, <A HREF="automake-ru_toc.html">table of contents</A>.
+</BODY>
+</HTML>

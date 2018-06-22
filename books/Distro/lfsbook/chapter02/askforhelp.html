@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>How to ask for help</title>
+  
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+ 
+  <meta name="GENERATOR" content="Modular DocBook HTML Stylesheet Version 1.73">
+  <link rel="HOME" title="Linux From Scratch" href="http://www.linux.org.ru/books/Distro/lfsbook/chapter02/index.html">
+  <link rel="UP" title="Important information" href="chapter02.html">
+  <link rel="PREVIOUS" title="Which Platform?" href="platform.html">
+  <link rel="NEXT" title="Part II - Installing the LFS system" href="http://www.linux.org.ru/books/Distro/lfsbook/chapter02/part2.html"></head><body class="sect1" bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#840084" alink="#006000">
+<div class="NAVHEADER"><table summary="Header navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><th colspan="3" align="Center">Linux From Scratch: Версия 4.0</th></tr><tr><td width="10%" align="Left" valign="Bottom"><a href="platform.html" accesskey="P">Назад</a></td><td width="80%" align="Center" valign="Bottom">Глава 2. Важная информация<br>
+</td><td width="10%" align="Right" valign="Bottom"><a href="../part2.html" accesskey="N">Вперед</a></td></tr></tbody></table><hr align="Left" width="100%"></div>
+<div class="sect1"><h1 class="sect1"><a name="ch02-askforhelp">Как попросить о помощи</a></h1><p>В
+том случае, если при прочтении этой книги вы столкнетесь с проблемой, недокументированной
+в FAQ, многие участники проекта LFS в списках рассылки и на канале IRC будут
+рады помочь. Получить общее представление о списках рассылки LFS вы можете
+в разделе <a href="../chapter01/maillists.html">Глава 1 - Списки рассылки и архивы</a>. Чтобы нам было легче диагностировать и решать вашу
+проблему, пострайтесь привести как можно больше деталей в запросе.</p><div class="sect2"><h2 class="sect2"><a name="AEN894">Что необходимо
+указать</a></h2><p>Помимо краткого описания проблемы, не забудьте указать нижеприведенные вещи:</p><ul><li><p>версию используемой
+книги,</p></li><li><p>название пакета или секции, с которой у вас проблемы,</p></li><li><p>сообщение об ошибке или симптомы
+проблемы,</p></li><li><p>отклонялись ли вы от шагов,описанных в книге</p></li></ul><p>(Заметьте,
+что если вы отклонялись от книги, это не значит, что мы не попытаемся помочь,
+ведь весь смысл LFS - в возможности выбора. Просто напросто ваше признание
+поможет нам найти решение.)</p></div><div class="sect2"><h2 class="sect2"><a name="AEN907">Проблемы configure</a></h2><p>Если при выполнении
+скрипта configure, что-то прошло не так как надо, обратите внимание на последние строки в файле
+<tt class="filename">config.log</tt>. Обычно этот файл содержит сообщения
+об ошибках, которые не были выведены на экран. Если вы задумали попросить
+нас о помощи, не забудьте включить эти строки в ваше сообщение.</p></div><div class="sect2"><h2 class="sect2"><a name="AEN911">Проблемы при
+компиляции</a></h2><p>Для
+того чтобы помочь нам найти причину проблемы, важен как вывод на экране,
+так и содержание некоторых файлов. Вывод на экране скрипта ./configure и
+команды make содержат много полезной информации. Не стоит слепо включать
+в свое сообщение весь вывод, но и не следует включать слишком мало информации.
+Ниже приведен вывод на экран команды make:</p><p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen">gcc<br>-DALIASPATH=\"/mnt/lfs/usr/share/locale:.\"<br>-DLOCALEDIR=\"/mnt/lfs/usr/share/locale\" -DLIBDIR=\"/mnt/lfs/usr/lib\"<br>-DINCLUDEDIR=\"/mnt/lfs/usr/include\"<br>-DHAVE_CONFIG_H -I. -I.<br>-g -O2 -c getopt1.c<br>gcc -g -O2 -static -o make ar.o arscan.o commands.o dir.o expand.o file.o<br>function.o getopt.o implicit.o job.o<br>main.o misc.o read.o remake.o rule.o<br>signame.o variable.o vpath.o default.o remote-stub.o version.o opt1.o<br>-lutil job.o: In function<br>`load_too_high':<br>/lfs/tmp/make-3.79.1/job.c:1565: undefined reference to `getloadavg'<br>collect2: ld returned 1 exit status<br>make[2]: *** [make] Error<br>1<br>make[2]: Leaving directory `/lfs/tmp/make-3.79.1'<br>make[1]: *** [all-recursive] Error 1<br>make[1]: Leaving directory `/lfs/tmp/make-3.79.1'<br>make: ***<br>[all-recursive-am] Error 2</pre></td></tr></tbody></table></p><p>В таком случае,большинство просто включают в сообщении с просьбой помочь
+строку: <table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen">make [2]: *** [make] Error 1</pre></td></tr></tbody></table>и
+все, что идет после нее. Однако это недостаточно для решения проблемы. Это
+показывает, что что-то не так, но не говорит, что именно не так.<em></em><em></em>
+В сообщение с проосьбой помочь необходимо включить всю секцию вывода, т.к.
+она содержит выполненные команды и их сообщения об ошибках.<br>
+</p>
+<p>В Интернете есть замечательная статья от том, как правильно задавать вопросы,
+написанная Эриком С. Реймондом. Она находится по адресу<a href="http://www.tuxedo.org/%7Eesr/faqs/smart-questions.html" target="_top">
+http://www.tuxedo.org/~esr/faqs/smart-questions.html</a>.
+Следую советам статьи, вы научитесь правильно задавать вопросы и ваши шансы получить квалифицированный ответ возрастут.</p>
+</div></div>
+<div class="NAVFOOTER"><hr align="Left" width="100%"><table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="33%" align="Left" valign="Top"><a href="platform.html" accesskey="P">Назад</a></td><td width="34%" align="Center" valign="Top"><a href="../index.html" accesskey="H">Домой</a></td><td width="33%" align="Right" valign="Top"><a href="../part2.html" accesskey="N">Вперед</a></td></tr><tr><td width="33%" align="Left" valign="Top">Поддерживаемые платформы<br>
+</td><td width="34%" align="Center" valign="Top"><a href="chapter02.html" accesskey="U">Наверх</a></td><td width="33%" align="Right" valign="Top">Часть II - Устанавливаем систему LFS<br>
+</td></tr></tbody></table></div>
+<br>
+
+</body></html>

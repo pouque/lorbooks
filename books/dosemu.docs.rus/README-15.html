@@ -1,0 +1,131 @@
+<HTML>
+<HEAD>
+<TITLE>DOSEmu: Commands & Utilities</TITLE>
+</HEAD>
+<BODY>
+<?php include("/home/maxcom/linux_html/books/head.php3") ?>
+<A HREF="README-14.html">Назад</A>
+<A HREF="README-16.html">Вперед</A>
+<A HREF="README.html#toc15">Оглавление</A>
+<HR>
+<H2><A NAME="s15">15. Команды и утилиты</A></H2>
+
+<P>Вот некоторые программы, которые облегчат вам использование Dosemu.</P>
+
+<H2><A NAME="ss15.1">15.1 Программы</A></H2>
+
+<P>
+<DL>
+<DT><B>bootoff.com</B><DD><P>отключает загрузочный файл для доступа к диску,
+см. examples/config.dist в разделе bootdisk</P>
+
+<DT><B>booton.com</B><DD><P>включает доступ к загрузочному файлу
+см. examples/config.dist в разделе bootdisk</P>
+
+<DT><B>chdir.com</B><DD><P>изменяет рабочий каталог Unix для Dosemu
+(при помощи chdir(2))</P>
+
+<DT><B>dosdbg.com</B><DD><P>изменяет настройки отладчика из Dosemu
+<UL>
+<LI>               dosdbg -- показывает текущее состояние</LI>
+<LI>               dosdbg &lt;string&gt;</LI>
+<LI>               dosdbg help -- показывает инструкцию</LI>
+</UL>
+</P>
+
+<DT><B>dumpconf.exe</B><DD><P>???</P>
+
+<DT><B>eject.com</B><DD><P>извлекает CD-ROM из дисковода</P>
+
+<DT><B>emumouse.com</B><DD><P>тонкая подстройка встроенного в Dosemu
+драйвера мыши.
+<UL>
+<LI>               emumouse h -- показывает инструкцию</LI>
+</UL>
+</P>
+
+<DT><B>exitemu.com</B><DD><P>завершение Dosemu</P>
+
+<DT><B>getcwd.com</B><DD><P>выдает текущий каталог Unix для Dosemu (с
+помощью getcwd(2))</P>
+
+<DT><B>isemu.com</B><DD><P>определяет версию Dosemu и возвращает
+значение больше 0 при работе в Dosemu</P>
+
+<DT><B>lancheck.exe</B><DD><P>???</P>
+
+<DT><B>lredir.com</B><DD><P>подставляет каталог Linux в Dosemu
+<UL>
+<LI>               lredir -- показывает текущие подстановки</LI>
+<LI>               lredir D: LINUX\FS\tmp -- подставляет /tmp в
+качестве диска D:</LI>
+<LI>               lredir help -- показывает инструкцию</LI>
+</UL>
+</P>
+
+<DT><B>mgarrot.com</B><DD><P>отдает циклы cpu, когда Dosemu простаивает</P>
+
+<DT><B>speed.com</B><DD><P>задает использование CPU (HogThreshold) из Dosemu</P>
+
+<DT><B>system.com</B><DD><P>интерфейс к вызову system(2)...</P>
+
+<DT><B>unix.com</B><DD><P>выполняет Unix-команду из Dosemu
+<UL>
+<LI>	unix -- показывает инструкцию</LI>
+<LI>    unix ls -al -- показывает содержимое текущего
+каталога Linux</LI>
+<LI>               осторожно! наберите "unix" и прочтите инструкцию</LI>
+</UL>
+</P>
+
+<DT><B>cmdline.exe</B><DD><P>Читает /proc/self/cmdline и помещает
+строки наподобие "var=xxx", найденные в командной строке, в переменные
+окружения DOS.
+Пример использования в командной строке запуска dos:
+<BLOCKQUOTE><CODE>
+<PRE>
+	dos &quot;autoexec=echo This is a test...&quot;
+</PRE>
+</CODE></BLOCKQUOTE>
+
+последующее выполнение
+<BLOCKQUOTE><CODE>
+<PRE>
+ 
+	C:\cmdline &lt; D:\proc\self\cmdline
+        %autoexec%
+</PRE>
+</CODE></BLOCKQUOTE>
+
+напечатает "This is a test..." в DOS</P>
+
+<DT><B>vgaoff.com</B><DD><P>отключает параметр vga</P>
+
+<DT><B>vgaon.com</B><DD><P>включает параметр vga</P>
+</DL>
+</P>
+
+
+<H2><A NAME="ss15.2">15.2 Драйверы</A></H2>
+
+
+<P>полезные драйверы для Dosemu</P>
+<P>
+<DL>
+<DT><B>cdrom.sys</B><DD><P>позволяет непосредственный доступ к
+дисководам CD-ROM из Dosemu</P>
+
+<DT><B>ems.sys</B><DD><P>включает EMM в Dosemu</P>
+
+<DT><B>emufs.sys</B><DD><P>подставляет каталог Unix в Dosemu</P>
+</DL>
+</P>
+
+<HR>
+<A HREF="README-14.html">Назад</A>
+<A HREF="README-16.html">Вперед</A>
+<A HREF="README.html#toc15">Оглавление</A>
+<HR><I>Перевод: Валерий Груздев (grue@vpti.vladimir.ru)</I>
+
+</BODY>
+</HTML>

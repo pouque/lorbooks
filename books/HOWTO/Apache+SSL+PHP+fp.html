@@ -1,0 +1,1062 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Linux Apache SSL PHP/FI frontpage mini-HOWTO</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.57"></HEAD
+><BODY
+CLASS="ARTICLE"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="ARTICLE"
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="TITLE"
+><A
+NAME="AEN2"
+>Linux Apache SSL PHP/FI frontpage mini-HOWTO</A
+></H1
+><DIV
+CLASS="AUTHORGROUP"
+><A
+NAME="AEN4"
+></A
+><H3
+CLASS="AUTHOR"
+><A
+NAME="AEN5"
+>Marcus Faure</A
+></H3
+><DIV
+CLASS="AFFILIATION"
+><DIV
+CLASS="ADDRESS"
+><P
+CLASS="ADDRESS"
+>&nbsp;&nbsp;&nbsp;&nbsp;     marcus@faure.de
+    <br>
+&nbsp;&nbsp;&nbsp;</P
+></DIV
+></DIV
+><H3
+CLASS="CORPAUTHOR"
+>  Перевод: <A
+HREF="mailto:ave@asp-linux.com"
+TARGET="_top"
+>Александр Ермолаев</A
+>,
+  <A
+HREF="http://www.asplinux.com"
+TARGET="_top"
+>SWSoft Pte Ltd.</A
+>
+ </H3
+></DIV
+><P
+CLASS="PUBDATE"
+>версия 1.1, Июль 1998 г.<BR></P
+><DIV
+><DIV
+CLASS="ABSTRACT"
+><A
+NAME="AEN15"
+></A
+><P
+></P
+><P
+>Это документ содержит информацию: о построении многоцелевого веб-сервера,
+который будет
+поддерживать динамическое веб-содержание, используя скрипт-язык PHP/FI;
+безопасную передачу данных, основанную на Netscape SSL;
+безопасное выполнение CGI скриптов; серверные расширения M$ Frontpage.</P
+><P
+></P
+></DIV
+></DIV
+><HR></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Содержание</B
+></DT
+><DT
+>1. <A
+HREF="Apache+SSL+PHP+fp.html#AEN17"
+>Введение</A
+></DT
+><DD
+><DL
+><DT
+>1.1. <A
+HREF="Apache+SSL+PHP+fp.html#AEN20"
+>Описание компонентов</A
+></DT
+><DT
+>1.2. <A
+HREF="Apache+SSL+PHP+fp.html#AEN31"
+>Рабочие конфигурации</A
+></DT
+><DT
+>1.3. <A
+HREF="Apache+SSL+PHP+fp.html#AEN42"
+>История</A
+></DT
+></DL
+></DD
+><DT
+>2. <A
+HREF="Apache+SSL+PHP+fp.html#AEN49"
+>Установка компонентов</A
+></DT
+><DD
+><DL
+><DT
+>2.1. <A
+HREF="Apache+SSL+PHP+fp.html#AEN51"
+>Приготовления</A
+></DT
+><DT
+>2.2. <A
+HREF="Apache+SSL+PHP+fp.html#AEN76"
+>Добавление PHP</A
+></DT
+><DT
+>2.3. <A
+HREF="Apache+SSL+PHP+fp.html#AEN99"
+>Добавление SSL</A
+></DT
+><DT
+>2.4. <A
+HREF="Apache+SSL+PHP+fp.html#AEN113"
+>Добавление frontpage</A
+></DT
+></DL
+></DD
+><DT
+>3. <A
+HREF="Apache+SSL+PHP+fp.html#AEN126"
+>Соединение всех элементов</A
+></DT
+><DD
+><DL
+><DT
+>3.1. <A
+HREF="Apache+SSL+PHP+fp.html#AEN128"
+>Используемые модули сервера Apache</A
+></DT
+><DT
+>3.2. <A
+HREF="Apache+SSL+PHP+fp.html#AEN131"
+>Предоставление большей защиты для CGI</A
+></DT
+><DT
+>3.3. <A
+HREF="Apache+SSL+PHP+fp.html#AEN140"
+>Компилирование и установка демона сервера</A
+></DT
+><DT
+>3.4. <A
+HREF="Apache+SSL+PHP+fp.html#AEN171"
+>Добавление поддержки frontpage</A
+></DT
+><DT
+>3.5. <A
+HREF="Apache+SSL+PHP+fp.html#AEN188"
+>Запуск демона</A
+></DT
+><DT
+>3.6. <A
+HREF="Apache+SSL+PHP+fp.html#FPVERSWARNING"
+>Некоторые соображения</A
+></DT
+><DT
+>3.7. <A
+HREF="Apache+SSL+PHP+fp.html#AEN201"
+>Известные ошибки</A
+></DT
+><DT
+>3.8. <A
+HREF="Apache+SSL+PHP+fp.html#AEN207"
+>Заключительное слово</A
+></DT
+></DL
+></DD
+><DT
+>4. <A
+HREF="Apache+SSL+PHP+fp.html#AEN211"
+>Авторские права</A
+></DT
+></DL
+></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="AEN17"
+>1. Введение</A
+></H1
+><P
+>Прежде, чем вы начнете чтение, я должен предупредить - Я не лингвист, поэтому в этом документе
+возможны орфографические и грамматические ошибки. Сообщите мне о них.</P
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN20"
+>1.1. Описание компонентов</A
+></H2
+><P
+>Веб-сервер, который вы получите после того, как выполните все рекомендации,
+будет состоять из нескольких частей:
+исходных текстов сервера Apache с несколькими (хорошо, многими) патчами и некоторых
+внешних программ. Я рекомендую использовать программные версии, которые мною опробованы, они,
+вероятно, откомпилируются без больших проблем и вы, в результате, получите довольно устойчивый
+демон. Если вы не боитесь, то можете попробовать откомпилировать все последние версии с
+большим количеством новых возможностей, но не вините меня, если что-то будет сбоить ;-).
+Однако, в случае удачи, вы можете сообщить мне о результатах, чтобы другие рабочие конфигурации
+были включены в будущие версии этого документа. Все шаги были
+протестированы на linux версии 2.0.35, так что это howto
+несколько специфично под linux, но вы должны без проблем использовать
+данную конфигурацию в других реализациях Unix.</P
+><P
+>Вы не обязательно должны компилировать Apache со всеми компонентами. Я попробовал
+структурировать этот howto так, чтобы вы могли пропускать неинтересные вам части.</P
+><P
+>Этот документ - не просто справочник к Apache, SSL, PHP/FI или frontpage. Его главная цель
+состоит в том, чтобы избавить веб-провайдеров от головной боли при установке веб-сервера, а
+также сделать небольшой вклад в linux.</P
+><P
+><I
+CLASS="EMPHASIS"
+>PHP</I
+> - скрипт-язык, поддерживающий создание динамических HTML-страниц. Он несколько
+похож на модуль SSI сервера Apache, но намного более сложен и имеет модули для работы с базами
+данных для многих популярных баз. Для PHP необходимы библиотеки GD.</P
+><P
+><I
+CLASS="EMPHASIS"
+>SSL</I
+> - реализация протоколов защищенной передачи данных, разработанные Netscape (Secure Socket Layer),
+которые обеспечивают безопасные подключения по небезопасным сетям, например,
+передача номера кредитных карточек из форм.</P
+><P
+><I
+CLASS="EMPHASIS"
+>frontpage</I
+> - визуальный веб-инструмент, который использует некоторые серверные расширения,
+называемые webbots. Некоторые люди думают, что frontpage - это круто, потому что вы можете
+создавать формы для обратной связи и доски объявлений без каких-либо знаний html или cgi. Он
+даже оберегает веб-мастера от передачи файлов через ftp, используя встроенный веб-издатель (Web
+Publisher). Если вы желаете поддерживать frontpage, но не хотите устанавливать сервер под
+Windows, тогда расширения сервера Apache - ваш выбор.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN31"
+>1.2. Рабочие конфигурации</A
+></H2
+><P
+>Хотя этот документ был скачан приблизительно 100 раз с того момента, как я издал его, я получил
+не очень много откликов. Мне рассказали о том, что все это работает и в других комбинациях. У
+меня работают:
+
+<P
+></P
+><UL
+><LI
+><P
+>Linux 2.0.31, Apache 1.2.4, PHP 2.0.0, SSL 0.8.0, fp 98 3.0.3 (*)</P
+></LI
+><LI
+><P
+>Linux 2.0.33, Apache 1.2.5, PHP 2.0.1, SSL 0.8.0, fp 98 3.0.3 (*)</P
+></LI
+><LI
+><P
+>Linux 2.0.35, Apache 1.2.6, PHP 3, SSL 0.8.0, fp 98 3.0.4</P
+></LI
+></UL
+>
+
+(*) версия 3.0.3 не рекомендуется<A
+HREF="Apache+SSL+PHP+fp.html#FPVERSWARNING"
+>Разд. 3.6</A
+></P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN42"
+>1.3. История</A
+></H2
+><P
+>версия 0.0/Апрель 98: Предварительная версия</P
+><P
+>версия 1.0/Июнь 98: Apache версии 1.2.6, обновлен раздел fp, незначительные изменения</P
+><P
+>версия 1.1/Июль 98: Формат преобразован в sgml, и внесены небольшие изменения</P
+><P
+>Вы можете найти последнюю версию этого документа по этому
+<A
+HREF="http://www.faure.de"
+TARGET="_top"
+>адресу</A
+></P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN49"
+>2. Установка компонентов</A
+></H1
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN51"
+>2.1. Приготовления</A
+></H2
+><P
+>Вам будет необходимо следующее:
+
+<P
+></P
+><UL
+><LI
+><P
+>Apache 1.2.6 <A
+HREF="http://www.apache.org/dist/apache_1_2_6.tar.gz"
+TARGET="_top"
+>http://www.apache.org/dist/apache_1_2_6.tar.gz</A
+></P
+></LI
+><LI
+><P
+>PHP/FI
+<A
+HREF="http://php.iquest.net/files/download.phtml?/files/php-2.01.tar.gz"
+TARGET="_top"
+>http://php.iquest.net/files/download.phtml?/files/php-2.01.tar.gz</A
+></P
+></LI
+><LI
+><P
+>Библиотека GD<A
+HREF="http://siva.cshl.org/gd/gd.html"
+TARGET="_top"
+>http://siva.cshl.org/gd/gd.html</A
+></P
+></LI
+><LI
+><P
+>SSL 0.8.0
+<A
+HREF="ftp://ftp.ox.ac.uk/pub/crypto/SSL/SSLeay-0.8.0.tar.gz"
+TARGET="_top"
+>ftp://ftp.ox.ac.uk/pub/crypto/SSL/SSLeay-0.8.0.tar.gz</A
+></P
+></LI
+><LI
+><P
+>SSL-патч для Apache 1.2.6
+<A
+HREF="ftp://ftp.ox.ac.uk/pub/crypto/SSL/apache_1.2.6+ssl_1.17.tar.gz"
+TARGET="_top"
+>ftp://ftp.ox.ac.uk/pub/crypto/SSL/apache_1.2.6+ssl_1.17.tar.gz</A
+></P
+></LI
+><LI
+><P
+>расширения сервера frontpage 98 и скрипт инсталляции
+<A
+HREF="http://www.rtr.com/fpsupport/download.htm"
+TARGET="_top"
+>http://www.rtr.com/fpsupport/download.htm</A
+></P
+></LI
+></UL
+>&#13;</P
+><P
+>Получите исходники, которые вам необходимы. Распакуйте apache, php, gd и ssl в
+<TT
+CLASS="LITERAL"
+>/usr/src</TT
+>. Распакуйте патч SSL в <TT
+CLASS="LITERAL"
+>/usr/src/apache_1.2.6</TT
+>.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN76"
+>2.2. Добавление PHP</A
+></H2
+><P
+>&#13;<TT
+CLASS="LITERAL"
+>Зайдите</TT
+> в каталог /usr/src/gd1.2 и введите make. В результате этого соберется библиотека GD
+<TT
+CLASS="LITERAL"
+>libgd.a</TT
+>, которую нужно скопировать в <TT
+CLASS="LITERAL"
+>/usr/lib</TT
+>.
+После этого <TT
+CLASS="LITERAL"
+>перейдите</TT
+> в каталог <TT
+CLASS="LITERAL"
+>php-2.0.1</TT
+> и запустите <TT
+CLASS="LITERAL"
+>./install</TT
+>.</P
+><PRE
+CLASS="SCREEN"
+>Would you like to compile PHP/FI as an Apache module? [yN] y (Вы хотели бы компилировать PHP/FI как модуль Apache?)
+Are you compiling for an Apache 1.1 or later server? [Yn] y (Вы компилируете PHP для Apache 1.1 или для более поздней версии?)
+Are you using Apache-Stronghold? [yN] y (Вы используете Apache-Stronghold?)
+Does your Apache server support ELF dynamic loading? [yN] y (Ваш сервер Apache поддерживает динамическую загрузку ELF?)
+Apache include directory (which has httpd.h)? [/usr/local/include/apache] /usr/src/apache_1.2.6/src (Каталог заголовочных файлов для Apache (в котором находится httpd.h)?)
+Would you like to build an ELF shared library? [yN] y (После компиляции программа будет использовать общедоступные библиотеки)
+Additional directories to search for .h files []: /usr/src/gd1.2 (Дополнительные каталоги для поиска файлов с расширением .h)
+Would you like the bundled regex library? [yN] n (Вы хотели бы собрать связанную regex библиотеку?)</PRE
+><P
+>Подобно расширениям frontpage, phtml имеет проблему с защитой, потому что выполняется под
+веб-сервером. Убедитесь, что включили безопасный режим в src/php.h и ограничьте путь поиска
+файлов. Имеются некоторые другие параметры в php.h - вы можете их отредактировать. Если вы
+очень обеспокоены относительно защиты, компилируйте php как cgi. Однако, вы потеряете
+эффективность, и это не так шикарно, как модуль.</P
+><P
+>Наберите <TT
+CLASS="LITERAL"
+>make</TT
+> чтобы собрать все файлы. Когда компиляция закончится, скопируйте
+<TT
+CLASS="LITERAL"
+>mod_php.*</TT
+> и <TT
+CLASS="LITERAL"
+>libphp.a</TT
+> в
+<TT
+CLASS="LITERAL"
+>/usr/src/apache_1.2.6/src</TT
+>. Добавьте строку
+Module php_module mod_php.o
+в конец <TT
+CLASS="LITERAL"
+>/usr/src/apache_1.2.6/src/Configuration</TT
+>, добавьте
+-lphp -lm -lgdbm -lgd
+к <TT
+CLASS="LITERAL"
+>EXTRA_LIBS</TT
+> в том же самом файле,
+application/x-httpd-php phtml
+в файл Apache <TT
+CLASS="LITERAL"
+>mime.types</TT
+> и
+AddType  application/x-httpd-php .phtml
+в Apache <TT
+CLASS="LITERAL"
+>srm.conf</TT
+>.</P
+><P
+>Вы можете добавить <TT
+CLASS="LITERAL"
+>index.phtml</TT
+> к <TT
+CLASS="LITERAL"
+>DirectoryIndex</TT
+> в этом файле так, чтобы файл index.phtml
+автоматически загружался, когда обращаются к его каталогу.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN99"
+>2.3. Добавление SSL</A
+></H2
+><P
+><TT
+CLASS="LITERAL"
+>cd /usr/src/SSL-0.8.0; ./Configure linux-elf; make; make rehash</TT
+>
+В результате этих команд будут собраны библиотеки, необходимые Apache. Вы можете выполнить <TT
+CLASS="LITERAL"
+>make test</TT
+>,
+чтобы проверить правильность компиляции. После этого вы должны применить патч к
+apache. Важно, чтобы вы применили его прежде, чем патч frontpage, иначе frontpage не будет
+работать. Перейдите в каталог <TT
+CLASS="LITERAL"
+>/usr/src/apache_1.2.6/src</TT
+> и запустите
+<TT
+CLASS="LITERAL"
+>patch &#60; /usr/src/apache_1.2.6/SSLpatch</TT
+>.
+Установите <TT
+CLASS="LITERAL"
+>SSL_BASE=/usr/src/SSLeay-0.8.0</TT
+> в <TT
+CLASS="LITERAL"
+>Configuration</TT
+>.
+Удостоверьтесь, что <TT
+CLASS="LITERAL"
+>Module proxy_module</TT
+> отключен, иначе Apache не будет
+компилироваться. Если вам нужен прокси - идите за Squid
+<A
+HREF="http://squid.nlanr.net/"
+TARGET="_top"
+>http://squid.nlanr.net/</A
+></P
+><P
+>После этого дайте команду <TT
+CLASS="LITERAL"
+>make certificate</TT
+>, чтобы сгенерировать <TT
+CLASS="LITERAL"
+>SSLconf/conf/httpsd.pem</TT
+>.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN113"
+>2.4. Добавление frontpage</A
+></H2
+><P
+>Переименуйте файл <TT
+CLASS="LITERAL"
+>fp30.linux.tar.Z</TT
+> в <TT
+CLASS="LITERAL"
+>fp30.linux.tar.gz</TT
+>,
+иначе установочный скрипт его не найдет. Запустите <TT
+CLASS="LITERAL"
+>./fp_install</TT
+>,
+чтобы скопировать файлы расширения в каталог <TT
+CLASS="LITERAL"
+>/usr/local/frontpage</TT
+>. zcat обычно находится в каталоге /usr/bin.</P
+><P
+>Теперь вы можете применить патч FP. <TT
+CLASS="LITERAL"
+>Перейдите</TT
+> в каталог
+<TT
+CLASS="LITERAL"
+>/usr/src/apache_1.2.6/src</TT
+> и введите
+<TT
+CLASS="LITERAL"
+>patch &#60; /usr/src/frontpage/version3.0/apache-fp/fp-patch-apache_1.2.5</TT
+>
+Это создаст файлы <TT
+CLASS="LITERAL"
+>mod_frontpage.*</TT
+> и внесет небольшие изменения в
+<TT
+CLASS="LITERAL"
+>Configuration</TT
+>.  Патч 1.2.5 будет работать с
+обеими версиями apache 1.2.5 и 1.2.6. Пропустите часть, касающуюся установки веб - вы можете
+сделать это позже.</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN126"
+>3. Соединение всех элементов</A
+></H1
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN128"
+>3.1. Используемые модули сервера Apache</A
+></H2
+><PRE
+CLASS="SCREEN"
+>Модули, которые я использую (кроме SSL, PHP и frontpage):
+Module env_module          mod_env.o
+Module config_log_module   mod_log_config.o
+Module mime_module         mod_mime.o
+Module negotiation_module  mod_negotiation.o
+Module dir_module          mod_dir.o
+Module cgi_module          mod_cgi.o
+Module asis_module         mod_asis.o
+Module imap_module         mod_imap.o
+Module action_module       mod_actions.o
+Module alias_module        mod_alias.o
+Module rewrite_module      mod_rewrite.o
+Module access_module       mod_access.o
+Module auth_module         mod_auth.o
+Module anon_auth_module    mod_auth_anon.o
+Module digest_module       mod_digest.o
+Module expires_module      mod_expires.o
+Module headers_module      mod_headers.o
+Module browser_module      mod_browser.o</PRE
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN131"
+>3.2. Предоставление большей защиты для CGI</A
+></H2
+><P
+>Если вы - интернет-провайдер, вы захотите увеличить степень безопасности системы. suexec - утилита, позволяющая вам это сделать; выполнение cgi под пользователем-владельцем веб-каталога,
+вместо пользователя, запустившего веб-сервер. Перейдите в
+<TT
+CLASS="LITERAL"
+>/usr/src/apache_1.2.6/support</TT
+> и дайте команду <TT
+CLASS="LITERAL"
+>make suexec</TT
+>.
+<TT
+CLASS="LITERAL"
+>chmod 4711 suxec</TT
+>; скопируйте этот файл в каталог, указанный в
+<TT
+CLASS="LITERAL"
+>../src/httpd.h</TT
+> (по умолчанию - <TT
+CLASS="LITERAL"
+>/usr/local/etc/httpd/sbin/suexec</TT
+>
+). Если путь кажется вам странным - как это казалось мне - измените его в
+<TT
+CLASS="LITERAL"
+>httpd.h</TT
+>.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN140"
+>3.3. Компилирование и установка демона сервера</A
+></H2
+><P
+>Перейдите в каталог <TT
+CLASS="LITERAL"
+>/usr/src/apache_1.2.6/src</TT
+> и отредактируйте
+<TT
+CLASS="LITERAL"
+>Configuration</TT
+>, установив все необходимые модули, входящие в состав вашего Apache.
+Когда все будет готово, запустите <TT
+CLASS="LITERAL"
+>./Configure</TT
+> и <TT
+CLASS="LITERAL"
+>make</TT
+>.
+Это - последний (и наиболее сложный) шаг компиляции, так что скрестите
+ваши пальцы. Если все пройдет успешно, скопируйте <TT
+CLASS="LITERAL"
+>httpsd</TT
+> в <TT
+CLASS="LITERAL"
+>/usr/sbin</TT
+>.
+Демон достаточно большой, учтите это при компиляции вашего веб-сервера. Создайте директорию
+<TT
+CLASS="LITERAL"
+>/var/httpd</TT
+> с подкаталогами <TT
+CLASS="LITERAL"
+>cgi-bin</TT
+>, <TT
+CLASS="LITERAL"
+>conf</TT
+>,
+<TT
+CLASS="LITERAL"
+>htdocs</TT
+>, <TT
+CLASS="LITERAL"
+>icons</TT
+>, <TT
+CLASS="LITERAL"
+>virt1</TT
+>, <TT
+CLASS="LITERAL"
+>virt2</TT
+> and
+<TT
+CLASS="LITERAL"
+>logs</TT
+>. В <TT
+CLASS="LITERAL"
+>/usr/src/apache_1.2.6/conf</TT
+> отредактируйте файлы
+<TT
+CLASS="LITERAL"
+>access.conf-dist</TT
+>, <TT
+CLASS="LITERAL"
+>mime.types</TT
+> и <TT
+CLASS="LITERAL"
+>srm.conf-dist</TT
+>,
+как вам надо, и скопируйте их в <TT
+CLASS="LITERAL"
+>var/httpd/conf/access.conf</TT
+>,
+<TT
+CLASS="LITERAL"
+>srm.conf</TT
+> и <TT
+CLASS="LITERAL"
+>mime.types</TT
+>. Скопируйте файл <TT
+CLASS="LITERAL"
+>httpsd.pem</TT
+>,
+созданный с помощью <TT
+CLASS="LITERAL"
+>make certificate</TT
+> в каталог <TT
+CLASS="LITERAL"
+>/var/httpd/conf</TT
+>.
+Используйте следующий <TT
+CLASS="LITERAL"
+>httpd.conf</TT
+>:&#13;</P
+><PRE
+CLASS="PROGRAMLISTING"
+>ServerType standalone
+Port 80
+Listen 80
+Listen 443
+User wwwrun
+Group wwwrun
+ServerAdmin webmaster@yourhost.com
+ServerRoot /var/httpd
+ErrorLog logs/error_log
+TransferLog logs/access_log
+PidFile logs/httpd.pid
+ServerName www.yourhost.com
+MinSpareServers 3
+MaxSpareServers 20
+StartServers 3
+
+SSLCACertificatePath /var/httpd/conf
+SSLCACertificateFile /var/httpd/conf/httpsd.pem
+SSLCertificateFile /var/httpd/conf/httpsd.pem
+SSLLogFile /var/httpd/logs/ssl.log
+
+&lt;VirtualHost www.virt1.com&gt;
+SSLDisable
+ServerAdmin webmaster@virt1.com
+DocumentRoot /var/httpd/virt1
+ScriptAlias /cgi-bin/ /var/httpd/virt1/cgi-bin/
+ServerName www.virt1.com
+ErrorLog logs/virt1-error.log
+TransferLog logs/virt1-access.log
+User virt1admin
+Group users
+&lt;/VirtualHost&gt;
+
+&lt;VirtualHost www.virt1.com:443&gt;
+ServerAdmin webmaster@virt1.com
+DocumentRoot /var/httpd/virt1
+ScriptAlias /cgi-bin/ /var/httpd/virt1/cgi-bin/
+ServerName www.virt1.com
+ErrorLog logs/virt1-ssl-error.log
+TransferLog logs/virt1-ssl-access.log
+User virt1admin
+Group users
+SSLCACertificatePath /var/httpd/conf
+SSLCACertificateFile /var/httpd/conf/httpsd.pem
+SSLCertificateFile /var/httpd/conf/httpsd.pem
+SSLLogFile /var/httpd/logs/virt1-ssl.log
+SSLVerifyClient 0
+SSLFakeBasicAuth
+&lt;/VirtualHost&gt;
+
+&lt;VirtualHost www.virt2.com&gt;
+SSLDisable
+ServerAdmin webmaster@virt2.com
+DocumentRoot /var/httpd/virt2
+ScriptAlias /cgi-bin/ /var/httpd/virt2/cgi-bin/
+ServerName www.virt2.com
+ErrorLog logs/virt2-error.log
+TransferLog logs/virt2-access.log
+&lt;/VirtualHost&gt;</PRE
+><P
+>В зависимости от модулей, не все директивы могут быть доступны. Вы можете получить список
+доступных директив с помощью команды <TT
+CLASS="LITERAL"
+>httpsd -h</TT
+>.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN171"
+>3.4. Добавление поддержки frontpage</A
+></H2
+><P
+>Перейдите в каталог <TT
+CLASS="LITERAL"
+>/usr/local/frontpage/version3.0/bin</TT
+> и загрузите
+<TT
+CLASS="LITERAL"
+>./fpsrvadm</TT
+>. Выберите <TT
+CLASS="LITERAL"
+>install</TT
+> и <TT
+CLASS="LITERAL"
+>apache-fp</TT
+>.
+Вам нужно будет ответить на следующие вопросы:</P
+><PRE
+CLASS="SCREEN"
+>Enter server config filename (Введите имя конфигурационного файла сервера): /var/httpd/conf/httpd.conf
+Enter host name for multi-hosting (Введите имя машины для мультихостинга) []: www.virt2.com
+Starting install, port (Начало установки, порт) : www.virt2.com:80, web (веб каталог): ""
+Enter user's name (Введите имя пользователя) []: virt2admin
+Enter user's password (Введите пароль) :
+Confirm password (Подтвердите пароль) :
+Creating root web (Создание корневого каталога веб)
+Recalculate links for root web
+Install completed.</PRE
+><P
+>Имя пользователя должно соответствовать имени входа в систему веб-пользователя. Пароль не
+обязательно должен совпадать с системным паролем. Вы должны вручную добавить
+<TT
+CLASS="LITERAL"
+>sendmailcommand:/usr/sbin/sendmail %r</TT
+>
+к <TT
+CLASS="LITERAL"
+>/usr/local/frontpage/www.virt2.com:80.conf</TT
+>,
+иначе ваши пользователи не смогут посылать веб-генерированные письма.
+<TT
+CLASS="LITERAL"
+>kill -HUP</TT
+> ваш <TT
+CLASS="LITERAL"
+>httpsd</TT
+>,
+чтобы заставить fp заново прочитать файлы конфигурации. Теперь вы можете обращаться к
+<TT
+CLASS="LITERAL"
+>www.virt2.com</TT
+> с вашего клиента frontpage.</P
+><P
+>При некоторых обстоятельствах <TT
+CLASS="LITERAL"
+>fpsrvadm</TT
+> выдает сообщения, что сначала должен быть задан
+корневой каталог веб. Их можно игнорировать, но вы должны сделать так, чтобы <TT
+CLASS="LITERAL"
+>fpsrvadm</TT
+> их не
+выдавал.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN188"
+>3.5. Запуск демона</A
+></H2
+><P
+>Запустите Apache с помощью команды <TT
+CLASS="LITERAL"
+>httpsd -f /var/httpd/conf/httpd.conf</TT
+>.
+Теперь вы можете обращаться к <TT
+CLASS="LITERAL"
+>www.virt1.com</TT
+> через http и https
+(кстати, достаточно мощный протокол). Конечно вы должны оплатить реальный сертификат, если вы хотите предоставлять SSL, или вас засмеют ;-).</P
+><P
+>Скопируйте один файл из каталога примеров php (examples) в <TT
+CLASS="LITERAL"
+>virt1</TT
+>,
+чтобы проверить работу php.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="FPVERSWARNING"
+>3.6. Некоторые соображения</A
+></H2
+><P
+>Не используйте расширения frontpage 97. Они не работают, по крайней мере, в Linux. При установке
+определенных версий библиотек C++, они вроде работают, но ваши журналы и почтовый ящик
+скоро заполнятся сообщениями вида <TT
+CLASS="LITERAL"
+>premature end of script headers</TT
+>
+Не используйте расширения frontpage 98 версии ниже 3.0.2.1330. Не запутайтесь, номера версий несколько
+непривычны. Когда зайдете telnet'ом на 80-й порт, введите "get / http/1.0" и дважды нажмите ввод -
+вы получите версию номер 3.0.4 для frontpage.</P
+><P
+>Более точно номер версии вы можете узнать при помощи
+команды <TT
+CLASS="LITERAL"
+>/usr/local/frontpage/currentversion/exes/_vti_bin/shtml.exe -version</TT
+>.
+Старые версии имеют неприятную ошибку, которая требует, чтобы httpd.conf можно было перезаписывать
+под gid вебсервера'а. Это достаточно плохо, если вас беспокоит безопасность. Я, в любом случае,
+рекомендую использовать версии новее 3.0.2.1330, лишенные этого недостатка.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN201"
+>3.7. Известные ошибки</A
+></H2
+><P
+>При запуске <TT
+CLASS="LITERAL"
+>Recalculate Links</TT
+> в клиенте frontpage, сервер запускает процесс, который потребляет
+99% процессорного времени и около 10 Мб памяти. Но даже с сайтов среднего размера и быстрых
+машин, Клиент иногда получает сообщение, что время ожидания истекло, хотя вычисление будет
+закончено правильно. Сообщите пользователям, что нужно подождать, а не нажимать
+<TT
+CLASS="LITERAL"
+>Recalculate Links</TT
+> несколько раз.
+Уясните для себе, что нужно оборудовать сервер по крайней мере 64 Мб памяти.</P
+><P
+>Пожалуйста, обратите внимание, что во время записи и SSL, и frontpage могут работать по
+отдельности, но не вместе - это означает, что вы не можете опубликовывать свои страницы,
+используя ssl, и не можете использовать webbots через https. Вы можете опубликовать ваше
+веб-содержимое через 80-ый порт и обращаться к зашифрованному содержимому через порт 443, но
+ваши счетчики и т.п. будут нарушены. Я думаю это ошибка. Эта проблема будет исправлена в SSL
+0.9.0 (я надеюсь).</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN207"
+>3.8. Заключительное слово</A
+></H2
+><P
+>Вопрос для тех, кто думает, что заголовок этого руководства такой-же
+длинный, как и его текст: Вы когда-нибудь слушали Meat Loaf?</P
+><P
+>O.K. Читатели, хватит вам на сегодня. Не стесняйтесь посылать мне письма, вечную благодарность,
+цветы, электронные деньги, автомобили, нефтяные источники и т.д.</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN211"
+>4. Авторские права</A
+></H1
+><P
+>Авторские права на русский перевод этого текста принадлежат &copy; 2000 SWSoft Pte Ltd.
+Все права зарезервированы.</P
+><P
+>Этот документ является частью проекта Linux HOWTO.</P
+><P
+>Авторские права на документы Linux HOWTO принадлежат их авторам, если явно
+не указано иное. Документы Linux HOWTO, а также их переводы, могут
+быть воспроизведены и распространены полностью или частично на любом
+носителе физическом или электронном, при условии сохранения этой заметки об
+авторских правах на всех копиях. Коммерческое распространение разрешается и
+поощряется; но так или иначе автор текста и автор перевода желали бы знать о
+таких дистрибутивах.</P
+><P
+>Все переводы и производные работы, выполненные по документам Linux HOWTO
+должны сопровождаться этой заметкой об авторских правах. Это делается в
+целях предотвращения случаев наложения дополнительных ограничений на
+распространение документов HOWTO. Исключения могут составить случаи
+получения специального разрешения у координатора Linux HOWTO с которым
+можно связаться по адресу приведенному ниже.</P
+><P
+>Мы бы хотели распространить эту информацию по всем возможным каналам. Но
+при этом сохранить авторские права и быть уведомленными о всех планах
+распространения HOWTO. Если у вас возникли вопросы, пожалуйста, обратитесь
+к координатору проекта Linux HOWTO по электронной почте:
+<TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:linux-howto@metalab.unc.edu"
+>linux-howto@metalab.unc.edu</A
+>&#62;</TT
+>, или к координатору русского
+перевода Linux HOWTO компании SWSoft Pte Ltd. по адресу
+<TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:linux-howto@asplinux.ru"
+>linux-howto@asplinux.ru</A
+>&#62;</TT
+></P
+></DIV
+></DIV
+></BODY
+></HTML
+>

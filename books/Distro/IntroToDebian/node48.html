@@ -1,0 +1,143 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Работа с пакетами</TITLE>
+<META NAME="description" CONTENT="Работа с пакетами">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<!-- Meta http equivalent was here                               -->
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="IntroToLinux.css">
+
+<LINK REL="next" HREF="node49.html">
+<LINK REL="previous" HREF="node47.html">
+<LINK REL="up" HREF="node43.html">
+<LINK REL="next" HREF="node49.html">
+</HEAD>
+
+<BODY background="backgr.jpg" vlink="#000099" bgcolor="#E6E6FA">
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A NAME="tex2html782"
+  HREF="node49.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html778"
+  HREF="node43.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html772"
+  HREF="node47.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html780"
+  HREF="IntroToLinux.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A>  
+<BR>
+<B> След.:</B> <A NAME="tex2html783"
+  HREF="node49.html">Механизм альтернатив.</A>
+<B> Вверх:</B> <A NAME="tex2html779"
+  HREF="node43.html">Введение в Debian GNU/Linux</A>
+<B> Пред.:</B> <A NAME="tex2html773"
+  HREF="node47.html">Просмотр файла</A>
+ &nbsp; <B>  <A NAME="tex2html781"
+  HREF="IntroToLinux.html">Содержание</A></B> 
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION00051500000000000000">
+Работа с пакетами</A>
+</H3>
+
+<P>
+Пакеты программ рекомендую устанавливать при помощи консольного их менеджера APT, либо консольной же (но псевдографической) программы <SPAN  CLASS="textit">aptitude</SPAN>.
+Прежде всего вам необходимо настроить файл <SPAN  CLASS="textbf">/etc/apt/sources.list</SPAN>.
+У меня он выглядит, обычно, следующим образом:
+
+<P>
+<PRE>
+deb http://http.us.debian.org/debian testing main contrib non-free
+deb http://non-us.debian.org/debian-non-US testing/non-US main contrib non-free
+deb http://security.debian.org/ testing/updates main contrib non-free
+</PRE>
+
+<P>
+Если вы предпочитаете использовать русское зеркало debian.org, то исправьте <TT>us</TT> на <TT>ru</TT>.
+Если используете не testing ветку дистрибутива, а иную, то также придется чуть поправить...
+Если вам недостаточно содержимого дистрибутива Debian GNU/Linux , то можете посетить сайт <A HREF="http://www.apt-get.org">apt-get.org</A> и добавить в <SPAN  CLASS="textbf">sources.list</SPAN> несколько дополнительных источников.
+Рекомендую прибегать к этому только в крайних случаях, и содержать в <SPAN  CLASS="textbf">source.list</SPAN> не более одного дополнительного репозитория.
+
+<P>
+Если вам критична скорость загрузки данных, то воспользуйтесь пакетом <TT>netselect</TT>, установив который, вы сможете командой <TT>netselect-apt ваша_ветка</TT> сгенерировать файл sources.list с наилучшей для вас конфигурацией (необходима возможность работы команды <TT>bind</TT>).
+
+<P>
+В случае, если Debian GNU/Linux  вы используете на машине с дорогим соединением с интернетом, либо вообще без оного, но при этом имеете доступ к более дешевому каналу и можете переносить оттуда файлы, например, на CD-RW, или ZIP и желаете использовать именно его для обновления вашей системы, то воспользуйтесь пакетом <SPAN  CLASS="textit">apt-zip</SPAN>.
+Последовательность действий в данном случае: загружен каким-либо образом (например <TT>apt-get update</TT>) файл <SPAN  CLASS="textbf">Packages.gz</SPAN> (несколько мегабайт), говорим <TT>apt-zip-list</TT>, после чего на указанном в <SPAN  CLASS="textbf">/etc/apt/apt-zip.conf</SPAN> устройстве появляется shell-скрипт, который запускаем на иной машине (требуются <SPAN  CLASS="textit">shell</SPAN> и <SPAN  CLASS="textit">wget</SPAN>), продукцию чего устанавливаем командой <TT>apt-zip-inst</TT>.
+
+<P>
+Работа с пакетами обычно ведется следующими командами:
+<DL>
+<DT><STRONG><TT>apt-get install</TT></STRONG></DT>
+<DD>- загружает и устанавливает пакет.
+</DD>
+<DT><STRONG><TT>apt-get remove</TT></STRONG></DT>
+<DD>- удаляет пакет.
+</DD>
+<DT><STRONG><TT>apt-cache search</TT></STRONG></DT>
+<DD>- показывает пакеты, имеющие отношение к параметру.
+</DD>
+<DT><STRONG><TT>apt-cache show</TT></STRONG></DT>
+<DD>- показывает информацию о пакете.
+</DD>
+<DT><STRONG><TT>dpkg -l</TT></STRONG></DT>
+<DD>- выдает список с кратким описанием всех пакетов (без параметров), или по отдельному пакету (с параметром).
+</DD>
+<DT><STRONG><TT>dpkg -L</TT></STRONG></DT>
+<DD>- выдает список файлов, установленных переданным в параметре пакетом.
+</DD>
+<DT><STRONG><TT>dpkg -S</TT></STRONG></DT>
+<DD>- определяет к какому пакету принадлежит указанный в параметре файл.
+</DD>
+</DL>
+
+<P>
+Рекомендую установить и ознакомиться с русским howto по APT, что завернуто в пакет по имени <TT>apt-howto-ru</TT>.
+
+<P>
+
+<DIV CLASS="navigation"><HR>
+<!--Navigation Panel-->
+<A NAME="tex2html782"
+  HREF="node49.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html778"
+  HREF="node43.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html772"
+  HREF="node47.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html780"
+  HREF="IntroToLinux.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A>  
+<BR>
+<B> След.:</B> <A NAME="tex2html783"
+  HREF="node49.html">Механизм альтернатив.</A>
+<B> Вверх:</B> <A NAME="tex2html779"
+  HREF="node43.html">Введение в Debian GNU/Linux</A>
+<B> Пред.:</B> <A NAME="tex2html773"
+  HREF="node47.html">Просмотр файла</A>
+ &nbsp; <B>  <A NAME="tex2html781"
+  HREF="IntroToLinux.html">Содержание</A></B> </DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<TABLE border="0" cellpadding="0" cellspacing="0" width="100%"><TR bgcolor="#336699"><TD bgcolor="#8080c0"><P align="center"><FONT color="#FFFFFF" size="1"><A href="http://www.gnu.org/copyleft/fdl.html"><FONT color="#FFFFFF" size="1">Copyleft</FONT></A> © 2002-2003 г. &nbsp; Nikolay A. Panov, <A href="http://www.uic.nnov.ru/~nik/articles/IntroToLinux/"><FONT color="#FFFFFF">"Intro To Linux" (orig)</FONT></A>, &nbsp;<a href="mailto:&#110;&#105;&#107;&#115;&#105;&#116;&#101;&#64;&#109;&#97;&#105;&#108;&#46;&#114;&#117;"><FONT color="#FFFFFF">&#110;&#105;&#107;&#115;&#105;&#116;&#101;&#64;&#109;&#97;&#105;&#108;&#46;&#114;&#117;</FONT></A>, &nbsp;ICQ: 122-40-8888</FONT></P></TD></TR></TABLE>
+</ADDRESS>
+</BODY>
+</HTML>

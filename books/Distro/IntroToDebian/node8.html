@@ -1,0 +1,162 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>SysV-init.</TITLE>
+<META NAME="description" CONTENT="SysV-init.">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<!-- Meta http equivalent was here                               -->
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="IntroToLinux.css">
+
+<LINK REL="previous" HREF="node7.html">
+<LINK REL="up" HREF="node6.html">
+<LINK REL="next" HREF="node9.html">
+</HEAD>
+
+<BODY background="backgr.jpg" vlink="#000099" bgcolor="#E6E6FA">
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A NAME="tex2html243"
+  HREF="node9.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html239"
+  HREF="node6.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html235"
+  HREF="node7.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html241"
+  HREF="IntroToLinux.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A>  
+<BR>
+<B> След.:</B> <A NAME="tex2html244"
+  HREF="node9.html">Русификация.</A>
+<B> Вверх:</B> <A NAME="tex2html240"
+  HREF="node6.html">Загрузка.</A>
+<B> Пред.:</B> <A NAME="tex2html236"
+  HREF="node7.html">Мультизагрузка.</A>
+ &nbsp; <B>  <A NAME="tex2html242"
+  HREF="IntroToLinux.html">Содержание</A></B> 
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION00022200000000000000">
+SysV-init.</A>
+</H3>
+
+<P>
+Загрузившись, демон <SPAN  CLASS="textit">init</SPAN> первым делом смотрит в файл <SPAN  CLASS="textbf">/etc/inittab</SPAN>, выглядящий у меня следующим образом (несколько сокращенно и с моими комментариями)<A NAME="tex2html6"
+  HREF="node8.html#foot810"><SUP><SPAN CLASS="arabic">6</SPAN></SUP></A>:
+<PRE>
+# runlevel по умолчанию.
+id:2:initdefault:
+
+# Скрипты этого каталога будут запущенны сначала, 
+# причем независимо от выбранного вами runlevel`а.
+si::sysinit:/etc/init.d/rcS
+
+# А вот и расшифровка значений runlevel`ов.
+# То есть для загрузки сразу в графическом режиме,
+# вам нужно выше установить id:5:initdefault
+# Runlevel 0 is halt.
+# Runlevel 1 is single-user.
+# Runlevels 2-4 are multi-user.
+# Runlevel 5 X11.
+# Runlevel 6 is reboot.
+
+# В зависимости от установленного runlevel,
+# будут выполнятся скрипты, символические ссылки на
+# которые лежат в каталогах /etc/rc(runlevel).d/
+# И имеют вид [SK]\d+имя_скрипта_из_/etc/init.d/
+# Где \d+ - цифра, отвечающая за порядок запуска скриптов.
+# Причем, начинающиеся с S скрипты выполняются с
+# параметром start, тогда как К соответственно stop.
+
+l0:0:wait:/etc/init.d/rc 0
+l1:1:wait:/etc/init.d/rc 1
+l2:2:wait:/etc/init.d/rc 2
+l3:3:wait:/etc/init.d/rc 3
+l4:4:wait:/etc/init.d/rc 4
+l5:5:wait:/etc/init.d/rc 5
+l6:6:wait:/etc/init.d/rc 6
+
+# Что делать при нажатии &lt;Ctrl&gt;+&lt;Alt&gt;+&lt;Del&gt;,
+# либо сигнала от UPS (в данном случае - выключаться)
+ca:12345:ctrlaltdel:/sbin/shutdown -t1 -a -h now
+
+# Запускаем getty на первых трех консолях.
+# Тут может быть указана любая программа. respawn 
+# обеспечивает автоперезапуск ее после завершения.
+1:2345:respawn:/sbin/getty 38400 tty1
+2:23:respawn:/sbin/getty 38400 tty2
+3:23:respawn:/sbin/getty 38400 tty3
+</PRE>
+
+<P>
+Все, запускаемые тут скрипты физически находятся в каталоге <SPAN  CLASS="textbf">/etc/init.d/</SPAN><A NAME="tex2html7"
+  HREF="node8.html#foot91"><SUP><SPAN CLASS="arabic">7</SPAN></SUP></A>.
+Синтаксис скриптов весьма прозрачен.
+Для ручного запуска/перезапуска/останова/etc демонов, запускайте отвечающий за нужного вам демона скрипт с параметрами соответственно <TT>start/restart/stop/etc</TT>.
+
+<P>
+Как видите, у меня на первых трех консолях (а больше и не надо) запускается программа <SPAN  CLASS="textit">getty</SPAN>, которая выдает приглашение <TT>login:</TT> и вызывает программу <SPAN  CLASS="textit">login</SPAN>.
+В принципе, процедура верификации может быть произвольной&nbsp;-- от привычного ввода имени и пароля (а то и без этого), до сканирования сетчатки глаза...
+Так, или иначе, получив подтверждение, что вы это вы, программа <SPAN  CLASS="textit">login</SPAN> производит запуск вашего <SPAN  CLASS="textit">shell</SPAN> по умолчанию, из которого вы, набрав <TT>startx</TT> (или дописав эту строку в файл <SPAN  CLASS="textbf">.profile</SPAN>) переходите в X-Windows system, попутно запустив наиболее вам удобный WindowManager...
+
+<P>
+Надеюсь, что снабдил вас достаточной информацией, для самостоятельно разрешения не устраивающего вас поведения системы при загрузке/выгрузке, либо при желании добавить к этим процессам что-либо свое.
+
+<P>
+<BR><HR><H4>Сноски</H4>
+<DL>
+<DT><A NAME="foot810">... комментариями)</A><A
+ HREF="node8.html#tex2html6"><SUP><SPAN CLASS="arabic">6</SPAN></SUP></A></DT>
+<DD>Учтите, что у вас этот файл может выглядеть иначе&nbsp;-- читайте <TT>man inittab</TT> для более подробной информации.
+
+</DD>
+<DT><A NAME="foot91">.../etc/init.d/</A><A
+ HREF="node8.html#tex2html7"><SUP><SPAN CLASS="arabic">7</SPAN></SUP></A></DT>
+<DD>В большинстве Linux систем.
+
+</DD>
+</DL>
+<DIV CLASS="navigation"><HR>
+<!--Navigation Panel-->
+<A NAME="tex2html243"
+  HREF="node9.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html239"
+  HREF="node6.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html235"
+  HREF="node7.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html241"
+  HREF="IntroToLinux.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A>  
+<BR>
+<B> След.:</B> <A NAME="tex2html244"
+  HREF="node9.html">Русификация.</A>
+<B> Вверх:</B> <A NAME="tex2html240"
+  HREF="node6.html">Загрузка.</A>
+<B> Пред.:</B> <A NAME="tex2html236"
+  HREF="node7.html">Мультизагрузка.</A>
+ &nbsp; <B>  <A NAME="tex2html242"
+  HREF="IntroToLinux.html">Содержание</A></B> </DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<TABLE border="0" cellpadding="0" cellspacing="0" width="100%"><TR bgcolor="#336699"><TD bgcolor="#8080c0"><P align="center"><FONT color="#FFFFFF" size="1"><A href="http://www.gnu.org/copyleft/fdl.html"><FONT color="#FFFFFF" size="1">Copyleft</FONT></A> © 2002-2003 г. &nbsp; Nikolay A. Panov, <A href="http://www.uic.nnov.ru/~nik/articles/IntroToLinux/"><FONT color="#FFFFFF">"Intro To Linux" (orig)</FONT></A>, &nbsp;<a href="mailto:&#110;&#105;&#107;&#115;&#105;&#116;&#101;&#64;&#109;&#97;&#105;&#108;&#46;&#114;&#117;"><FONT color="#FFFFFF">&#110;&#105;&#107;&#115;&#105;&#116;&#101;&#64;&#109;&#97;&#105;&#108;&#46;&#114;&#117;</FONT></A>, &nbsp;ICQ: 122-40-8888</FONT></P></TD></TR></TABLE>
+</ADDRESS>
+</BODY>
+</HTML>

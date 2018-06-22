@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=koi8-r"><title>Использование шрифтов TrueType</title><meta name="generator" content="DocBook XSL Stylesheets V1.59.1"><link rel="home" href="index.html" title="The Linux Cyrillic HOWTO (russian)"><link rel="up" href="ch05.html" title="Глава 5. X Window"><link rel="previous" href="ch05.html" title="Глава 5. X Window"><link rel="next" href="ch05s03.html" title="Ввод с клавиатуры"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Использование шрифтов TrueType</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch05.html">Пред.</a> </td><th width="60%" align="center">Глава 5. X Window</th><td width="20%" align="right"> <a accesskey="n" href="ch05s03.html">След.</a></td></tr></table><hr></div><div class="sect1" lang="ru"><div class="titlepage"><div><h2 class="title" style="clear: both"><a name="ttfonts"></a>Использование шрифтов TrueType</h2></div></div><a class="indexterm" name="id2881168"></a><p>Поддержка TrueType встроена во все современные
+дистрибутивы XFree86 (версии больше 4.x).  Существует отдельный
+TrueType сервер шрифтов <a href="http://www.dcs.ed.ac.uk/home/jec/programs/xfsft/" target="_top">XFSFT</a>
+для X.</p><p>Для информации о том, где можно найти TrueType шрифты,
+следует обратиться к разделу <a href="ch15s04.html" title="Шрифты TrueType">&#8220;Шрифты TrueType&#8221;</a>.</p><p>Коммерческие X сервера (Accelerated X, Metro X) уже
+довольно давно включили поддержку TrueType в свои дистрибутивы.</p><p>Установочная процедура сервера шрифтов довольно проста:
+делайте то, что сказано в документации. </p><p>Немног ниже даётся пример того, как можно установить
+TrueType шрифты. О том, как подсунуть их X Window &#8212; смотрите
+раздел <a href="ch05.html#xfonts" title="Установка шрифтов для X Window">&#8220;Установка шрифтов для X Window&#8221;</a>.</p><p>Для того, чтобы стандартные шрифты отображались в нужной
+нам кодировке &#8212; в данном случае для примера взята кодировка
+<span class="emphasis"><em>cp1251</em></span>, &#8212; в каталоге, где лежат TrueType
+шрифты, необходимо создать два одинаковых файла,
+<tt>fonts.dir</tt> и <tt>fonts.scale</tt>,
+следующего вида:</p><pre class="screen">
+12 
+timesi.ttf -monotype-Times New Roman-medium-i-normal--0-0-0-0-p-0-microsoft-cp1251 
+timesbi.ttf -monotype-Times New Roman-bold-i-normal--0-0-0-0-p-0-microsoft-cp1251 
+timesbd.ttf -monotype-Times New Roman-bold-r-normal--0-0-0-0-p-0-microsoft-cp1251 
+times.ttf -monotype-Times New Roman-medium-r-normal--0-0-0-0-p-0-microsoft-cp1251 
+couri.ttf -monotype-Courier New-medium-i-normal--0-0-0-0-m-0-microsoft-cp1251 
+courbi.ttf -monotype-Courier New-bold-i-normal--0-0-0-0-m-0-microsoft-cp1251 
+courbd.ttf -monotype-Courier New-bold-r-normal--0-0-0-0-m-0-microsoft-cp1251 
+cour.ttf -monotype-Courier New-medium-r-normal--0-0-0-0-m-0-microsoft-cp1251 
+ariali.ttf -monotype-Arial-medium-i-normal--0-0-0-0-p-0-microsoft-cp1251 
+arialbi.ttf -monotype-Arial-bold-i-normal--0-0-0-0-p-0-microsoft-cp1251 
+arialbd.ttf -monotype-Arial-bold-r-normal--0-0-0-0-p-0-microsoft-cp1251 
+arial.ttf -monotype-Arial-medium-r-normal--0-0-0-0-p-0-microsoft-cp1251 
+</pre><p>Кроме этого, сюда же необходимо положить файл
+<tt>encodings.dir</tt>, имеющий всего две строки:</p><pre class="screen">
+1 
+microsoft-cp1251 /usr/X11R6/lib/X11/fonts/encodings/microsoft-cp1251.enc.gz 
+</pre><p>Если вам нужны эти шрифты в кодировке
+<span class="emphasis"><em>KOI8-R</em></span>, то вместо
+<tt>microsoft-cp1251</tt> следует прописать
+<tt>koi8-r</tt>.</p><p>Следует отметить ещё одну вещь.  Если вы используете
+сервер шрифтов <tt>xfstt</tt> вместо
+<tt>xfsft</tt>, то вам следует использовать опцию
+перекодировки:</p><pre class="screen">
+xfstt ... --encoding koi8-r,windows-1251,iso8859-1
+</pre><p>После этого новые шрифты будут доступны для X Window
+&#8212; этот факт вы можете проверить, запустив
+<tt>xfontsel</tt>, и, удостоверившись в наличии семейства
+шрифтов <span class="emphasis"><em>ttf</em></span>.</p></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch05.html">Пред.</a> </td><td width="20%" align="center"><a accesskey="u" href="ch05.html">Уровень выше</a></td><td width="40%" align="right"> <a accesskey="n" href="ch05s03.html">След.</a></td></tr><tr><td width="40%" align="left" valign="top">Глава 5. X Window </td><td width="20%" align="center"><a accesskey="h" href="index.html">Начало</a></td><td width="40%" align="right" valign="top"> Ввод с клавиатуры</td></tr></table></div></body></html>

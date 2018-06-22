@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
+  <meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<title>Installing Bash-2.05a</title><meta name="GENERATOR" content="Modular DocBook HTML Stylesheet Version 1.73"><link rel="HOME" title="Linux From Scratch" href="http://www.linux.org.ru/books/Distro/lfsbook/chapter05/index.html"><link rel="UP" title="Preparing the LFS system" href="chapter05.html"><link rel="PREVIOUS" title="Install all software as an unprivileged user" href="installasuser.html"><link rel="NEXT" title="Installing Binutils-2.13" href="binutils.html"></head><body class="sect1" bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#840084" alink="#006000"><div class="NAVHEADER"><table summary="Header navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><th colspan="3" align="center">Linux From Scratch: Версия 4.0</th></tr><tr><td width="10%" align="left" valign="bottom"><a href="installasuser.html" accesskey="P">Назад</a></td><td width="80%" align="center" valign="bottom">Глава 5. Подготовка системы LFS</td><td width="10%" align="right" valign="bottom"><a href="binutils.html" accesskey="N">Вперед</a></td></tr></tbody></table><hr align="left" width="100%"></div><div class="sect1"><h1 class="sect1"><a name="ch05-bash">Установка Bash-2.05a</a></h1><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen">Приблизительное время компиляции:           1 SBU <br>Необходимое дисковое пространство:  24 MB</pre></td></tr></tbody></table><div class="sect2"><h2 class="sect2"><a name="AEN1188">Установка Bash</a></h2><p>Перед тем как установить Bash, убедитесь, что в вашем базовом дистрибутиве есть файлы <tt class="filename">/usr/lib/libcurses.a</tt> и <tt class="filename">usr/lib/libncurses.a</tt>. Если ваш дистрибутив - LFS system, оба файла должны быть на месте при условии, что вы в точности следовади инструкциям книги.</p><p>Если этих файлов нет, следует установить пакет разработки Ncurses, его иногда называют 
+<em>ncurses-dev</em>. Если этот пакет уже установлен, или вы только что его установили, проверьте наличие этих двух файлов еще раз. Зачастую файл 
+<tt class="filename">libcurses.a отсутствует.</tt> В таком случае, создайте символическую ссылку <tt class="filename">libcurses.a</tt>, выполнив следующую команду в режиме пользователя root:</p><p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>ln -s libncurses.a /usr/lib/libcurses.a</b></tt></pre></td></tr></tbody></table></p><p>Теперь можно продолжить инсталляцию Bash:</p><p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>./configure --enable-static-link \<br>    --prefix=$LFS/static --with-curses &amp;&amp;<br>make &amp;&amp;<br>make install</b></tt></pre></td></tr></tbody></table></p><p>Если стадия <tt class="userinput"><b>make install</b></tt> выдает следующие сообщения об ошибках:</p><a name="AEN1206"></a><blockquote class="BLOCKQUOTE"><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen">install-info: unknown option `--dir-file=/mnt/lfs/usr/info/dir' <br>usage: install-info [--version] [--help] [--debug] [--maxwidth=nnn] <br>	[--section regexp title] [--infodir=xxx] [--align=nnn] <br>	[--calign=nnn] [--quiet] [--menuentry=xxx]<br>	[--info-dir=xxx] <br>	[--keep-old] [--description=xxx] [--test]<br>	[--remove] [--] filename <br>make[1]: *** [install] Error 1 <br>make[1]: Leaving directory `/mnt/lfs/usr/src/bash-2.05a/doc' <br>make: [install] Error 2 (ignored)</pre></td></tr></tbody></table></blockquote><p>это
+означает, что у вас Debian-2.2 (potato), в котором используется старая версия
+пакета texinfo. Данная ошибка не критична: страницы документации будут заново
+установлены в Главе 6, при перекомпиляции bash  с динамическими ссылками.
+В текущем релизе Debian (3.0; известном под названием Woody) эта проблема
+отсутствует.</p></div><div class="sect2"><h2 class="sect2"><a name="AEN1209">Пояснения команд</a></h2><p><tt class="userinput"><b>--enable-static-link:</b></tt> Эта опция configure указывает на использование статических ссылок.</p><p><tt class="userinput"><b>--prefix=$LFS/static:</b></tt>
+Эта опция configure инсталлирует все файлы Bash в директорию $LFS/static,
+которая будет именоваться /static после того, как мы войдем в систему LFS
+с помощью команды chroot или перезагрузки.</p><p><tt class="userinput"><b>--with-curses:</b></tt> Эта опция связывает bash с библиотекой curses вместо устаревающей библиотеки termcap.</p><p>Совершенно
+необязательно связывать статичеккую версию bash с libncurses (можно связать
+ее с termcap, т.к. в любом случае мы перекомпилируем Bash в Главе 6 с использованием
+libncurses), однако это хороший способ убедиться, что пакет Ncurses установлен
+корректно. В обратном случае, это повлечет за собой сбои при инсталляции
+пакета Texinfo, которому необходима библиотека ncurses, т.к. с termcap он
+ведет себя нестабильно.<br>
+</p>
+<p>Символы <tt class="userinput"><b>&amp;&amp;</b></tt> в конце каждой строки
+указывают на то, что следующая команда должна быть выполнена лишь в том случае,
+если предыдущая команда возвратила значение 0 на выходе, т.е. успешно завершила
+операцию. В том случае если вы копируете и вставляете эти команды в оболочку,
+не забывайте убедиться, что если скрипт ./configure дал сбой, не выполняется
+команда make, а также, если команда make дала сбой, не выполняется команда
+make install, и т.д.</p>
+</div><div class="sect2"><h2 class="sect2"><a name="AEN1220">Содержание Bash</a></h2><p>Последняя проверка: версия 2.05a.</p><div class="sect3"><h3 class="sect3"><a name="AEN1223">Программы</a></h3><p>bash, sh (ссылка на bash) и bashbug</p></div><div class="sect3"><h3 class="sect3"><a name="AEN1226">Описания</a></h3><div class="sect4"><h4 class="sect4"><a name="AEN1228">bash</a></h4><p>bash
+- Bourne-Again SHell, широко используемый в Unix системах командный интерпретатор.
+Bash считывает данные со стандартного ввода, с клавиатуры. Пользователь вводит
+что-либо, интерпретатор распознает введенное и выполняет это, например запускает
+программу.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN1231">bashbug</a></h4><p>bashbug - скрипт, помогающий пользователю составлять и отправлять сообщения об ошибках bash в стандартном формате.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN1234">sh</a></h4><p>sh - символическая ссылка на  bash. Будучи вызванным как sh, bash 
+имитирует запуск старых версий sh для лучшего соответствия стандартам POSIX.</p></div></div></div><div class="sect2"><h2 class="sect2"><a name="AEN1237">Зависимости Bash</a></h2><p>Последняя проверка: версия 2.05a.</p><p class="literallayout">Bash: bash, sh<br>
+Binutils: ar, as, ld, ranlib, size<br>
+Diffutils: cmp<br>
+Fileutils: chmod, cp, install, ln, ls, mkdir, mv, rm<br>
+Gcc: cc, cc1, collect2, cpp0, gcc<br>
+Grep: egrep, grep<br>
+Make: make<br>
+Gawk: awk<br>
+Sed: sed<br>
+Sh-utils: basename, echo, expr, hostname, sleep, uname<br>
+Texinfo: install-info<br>
+Textutils: cat, tr, uniq</p></div></div><div class="NAVFOOTER"><hr align="left" width="100%"><table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="33%" align="left" valign="top"><a href="installasuser.html" accesskey="P">Назад</a></td><td width="34%" align="center" valign="top"><a href="../index.html" accesskey="H">Домой</a></td><td width="33%" align="right" valign="top"><a href="binutils.html" accesskey="N">Вперед</a></td></tr><tr><td width="33%" align="left" valign="top">Установка всех компонентов в режиме непривилегированного пользователя<br>
+</td><td width="34%" align="center" valign="top"><a href="chapter05.html" accesskey="U">Наверх</a></td><td width="33%" align="right" valign="top">Установка Binutils-2.13</td></tr></tbody></table></div><br>
+</body></html>

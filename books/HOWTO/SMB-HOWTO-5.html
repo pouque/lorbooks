@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE>SMB HOWTO: Запуск демонов</TITLE>
+ <LINK HREF="SMB-HOWTO-6.html" REL=next>
+ <LINK HREF="SMB-HOWTO-4.html" REL=previous>
+ <LINK HREF="SMB-HOWTO.html#toc5" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="SMB-HOWTO-6.html">Следующий</A>
+<A HREF="SMB-HOWTO-4.html">Предыдущий</A>
+<A HREF="SMB-HOWTO.html#toc5">Содержание</A>
+<HR>
+<H2><A NAME="sec-daemons"></A> <A NAME="s5">5. Запуск демонов</A></H2>
+
+<P>Есть два демона SMB /usr/sbin/smbd и
+/usr/sbin/nmbd.  В большинстве дистрибутивов Linux, они
+запускаются, останавливаются и перезапускаются через стартовый скрипт,
+расположенный в /etc/rc.d/init.d/smb, на который созданы
+символьные ссылки с соответствующих уровней запуска.
+<P>Если вы не будете использовать стандартные стартовые скрипты, то Вы можете
+запустить демоны Samba из inetd или как автономные процессы. Samba будет
+отвечать чуть быстрее когда она запущена как автономный процесс, чем в
+случае когда она запускается из inetd.
+<P>В некоторых случаях вы должны проверить наличие в файле /etc/services
+примерно таких строк:
+<P>
+<BLOCKQUOTE><CODE>
+<HR>
+<PRE>
+netbios-ns      137/tcp         nbns
+netbios-ns      137/udp         nbns
+netbios-dgm     138/tcp         nbdgm
+netbios-dgm     138/udp         nbdgm
+netbios-ssn     139/tcp         nbssn
+</PRE>
+<HR>
+</CODE></BLOCKQUOTE>
+<P>Убедитесь, что все они не закомментированы. В зависимости от вашего
+дистрибутива, вам может даже нужно будет добавить их в этот файл. Samba не
+сможет привязаться к соответствующим портам пока этих строк не будет в файле
+/etc/services.
+<P>Для запуска демонов из inetd, поместите следующие строки в конфигурационный
+файл inetd, /etc/inetd.conf:
+<P>
+<BLOCKQUOTE><CODE>
+<HR>
+<PRE>
+    # SAMBA NetBIOS services (for PC file and print sharing)
+    netbios-ssn stream tcp nowait root /usr/sbin/smbd smbd
+    netbios-ns dgram udp wait root /usr/sbin/nmbd nmbd
+</PRE>
+<HR>
+</CODE></BLOCKQUOTE>
+<P>Затем перезапустите демон inetd выполнив команду:
+<P>
+<HR>
+<PRE>
+    kill -HUP 1 `cat /var/run/inetd.pid`
+</PRE>
+<HR>
+<P>Для запуска демонов из системных стартовых скриптов, поместите следующий
+скрипт в файл /etc/rc.d/init.d/smb (для большинства
+дистрибутивов) и создайте на него символические ссылки с именами указанными
+в комментариях:
+<P>
+<BLOCKQUOTE><CODE>
+<HR>
+<PRE>
+    #!/bin/sh
+
+    #
+    # /etc/rc.d/init.d/smb - запускает и останавливает сервисы SMB
+    #
+    # Следующие файлы должны быть символическими ссылками на этот файл:
+    # symlinks: 
+    #           /etc/rc.d/rc1.d/K35smb  (Убивает сервисы SMB при выключении
+    #           /etc/rc.d/rc3.d/S91smb  (Запускает сервисы SMB в многопользовательском режиме)
+    #           /etc/rc.d/rc6.d/K35smb  (Убивает сервисы SMB при перезагрузке)
+    #
+
+    # Source function library.
+    . /etc/rc.d/init.d/functions
+
+    # Source networking configuration.
+    . /etc/sysconfig/network
+
+    # Check that networking is up.
+    [ ${NETWORKING} = "no" ] &amp;&amp; exit 0
+
+    # See how we were called.
+    case "$1" in
+      start)
+        echo -n "Starting SMB services: "
+        daemon smbd -D  
+        daemon nmbd -D 
+        echo
+        touch /var/lock/subsys/smb
+        ;;
+      stop)
+        echo -n "Shutting down SMB services: "
+        killproc smbd
+        killproc nmbd
+        rm -f /var/lock/subsys/smb
+        echo ""
+        ;;
+      *)
+        echo "Usage: smb {start|stop}"
+        exit 1
+    esac
+</PRE>
+<HR>
+</CODE></BLOCKQUOTE>
+<P>Если при старте Samba вы получаете сообщение в котором говорится, что
+демон не может подключится к порту 139, то вероятно у вас уже есть
+запущенные процессы Samba, которые не были завершены. Посмотрите список
+процессов (используя команду 'ps auxww | grep mbd') для того, чтобы
+определить есть ли еще запущенные сервисы Samba.
+<P>
+<HR>
+<A HREF="SMB-HOWTO-6.html">Следующий</A>
+<A HREF="SMB-HOWTO-4.html">Предыдущий</A>
+<A HREF="SMB-HOWTO.html#toc5">Содержание</A>
+</BODY>
+</HTML>

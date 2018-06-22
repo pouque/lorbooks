@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>Installing Man-1.5k</title><meta name="GENERATOR" content="Microsoft FrontPage 4.0" /=""><link rel="HOME" title="Linux From Scratch" href="http://www.linuxfromscratch.org/view/4.0/index.html" /=""><link rel="UP" title="Installing basic system software" href="http://www.linuxfromscratch.org/view/4.0/chapter06/chapter06.html" /=""><link rel="PREVIOUS" title="Installing Gzip-1.2.4a" href="http://www.linuxfromscratch.org/view/4.0/chapter06/gzip.html" /=""><link rel="NEXT" title="Installing Lilo-22.2" href="http://www.linuxfromscratch.org/view/4.0/chapter06/lilo.html" /=""></head><body class="sect1" bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#840084" alink="#006000"><div class="NAVHEADER"><table summary="Header navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><th colspan="3" align="Center">Linux From Scratch: Версия 4.0</th></tr><tr><td width="10%" align="Left" valign="Bottom"><a href="gzip.html" accesskey="P">Назад</a></td><td width="80%" align="Center" valign="Bottom">Глава 6. Установка основных компонентов
+        системы</td><td width="10%" align="Right" valign="Bottom"><a href="lilo.html" accesskey="N">Вперед</a></td></tr></tbody></table><hr align="Left" width="100%" /=""></div><div class="sect1"><h1 class="sect1"><a name="ch06-man">Установка Man-1.5k</a></h1><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen">Приблизительное время компиляции:           0.05 SBU<br>Необходимое дисковое пространство:  2 MB</pre></td></tr></tbody></table><div class="sect2"><h2 class="sect2"><a name="AEN4774">Инсталляция Man</a></h2><p>Для установки man выполните:</p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>patch -Np1 -i ../man-1.5k.patch &amp;&amp;<br>PATH=$PATH:/usr/bin:/bin \<br>    ./configure -default -confdir=/etc &amp;&amp;<br>make &amp;&amp;<br>make install</b></tt></pre></td></tr></tbody></table><p>Примечание: Если вы хотите отключить
+    последовательность выхода SGR,
+    отредактируйте файл man.conf и добавьте к
+    команде nroff аргумент <tt class="userinput"><b>-c</b></tt>.</p><p>Для получения информации по
+    форматированию и сжатию страниц
+    руководства (man pages), см.  <a href="http://hints.linuxfromscratch.org/hints/man.txt" target="_top">http://hints.linuxfromscratch.org/hints/man.txt</a>.</p></div><div class="sect2"><h2 class="sect2"><a name="AEN4784">Пояснения команд</a></h2><p><tt class="userinput"><b>PATH=$PATH:/usr/bin:/bin ./configure -default</b></tt>: В файлы man прописываются пути к некоторым
+    програмам. К сожалению, скрипт
+configure выбирает не первое (где находится
+    программа), а последнее местонахождение
+    программы в PATH. С помощью добавления /usr/bin:/bin
+    к PATH для команды ./configure, вероятность
+    использования командой man статических
+    версий программ будет устранена.</p><p><tt class="userinput"><b>patch -Np1 -i ../man-1.5k.patch:</b></tt>
+    Данный патч убирает один из файлов в <tt class="filename">man.conf</tt>  (MANPATH /usr/man), т.к. он создает
+    избыточные  результаты при
+    использовании программ типа <tt class="userinput"><b>whatis</b></tt>. Для корректного отображения страниц
+    руководства, патч также добавляет к
+    переменной <em>PAGER</em>  опцию <i>-R</i>.</p></div><div class="sect2">
+<div class="sect2"><h2 class="sect2"><a name="AEN7689">Содержимое Man</a></h2><p>Последняя проверка: версия 1.5k.</p><div class="sect3"><h3 class="sect3"><a name="AEN7692">Программы</a></h3><p>apropos, makewhatis, man, man2dvi, man2html и whatis</p></div><div class="sect3"><h3 class="sect3"><a name="AEN7695">Описания</a></h3><div class="sect4"><h4 class="sect4"><a name="AEN7697">apropos</a></h4><p>apropos ищет ключевые слова в базах данных, содержащих кратное
+описание системных команд, и отображает результат на стандартный вывод.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7700">makewhatis</a></h4><p>makewhatis читает страницы руководства, находящиеся в заданных
+частях manpath, или преформатированные страницы, находящиеся в
+заданных частях  catpath. Для каждой страницы делается запись в базе
+whatis. Каждая запись состоит из имени страницы и краткого описания,
+разделенных дефисом. Описание извлекается, используя содержимое секции
+NAME страницы руководства.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7703">man</a></h4><p>man форматирует и выводит запрашиваемые страницы руководства.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7706">man2dvi</a></h4><p>man2dvi конвертирует страницу руководства в формат dvi.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7709">man2html</a></h4><p>man2html конвертирует страницу руководства в гипертекст.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7712">whatis</a></h4><p>whatis ищет ключевые слова в базах данных, содержащих кратное
+описание системных команд, и отображает результат на стандартный вывод.
+Выводятся лишь полностью совпадающие сочетания.</p></div></div></div>
+<div class="sect2"><h2 class="sect2"><a name="AEN7715">Зависимости Man</a></h2><p>Последняя проверка: версия 1.5i2.</p><p class="literallayout">Bash: sh<br>
+Binutils: as, ld<br>
+Fileutils: chmod, cp, install, mkdir, rm<br>
+Gcc: c11, collect2, cpp0, gcc<br>
+Grep: grep<br>
+Make: make<br>
+Gawk: awk<br>
+Sed: sed<br>
+Sh-utils: echo<br>
+Textutils: cat</p></div>
+<h2 class="sect2"></h2></div></div><div class="NAVFOOTER"><hr align="Left" width="100%" /=""><table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="33%" align="Left" valign="Top"><a href="gzip.html" accesskey="P">Назад</a></td><td width="34%" align="Center" valign="Top"><a href="../index.html" accesskey="H">Домой</a></td><td width="33%" align="Right" valign="Top"><a href="lilo.html" accesskey="N">Вперед</a></td></tr><tr><td width="33%" align="Left" valign="Top">Установка Gzip-1.2.4a</td><td width="34%" align="Center" valign="Top"><a href="chapter06.html" accesskey="U">Наверх</a></td><td width="33%" align="Right" valign="Top">Установка Lilo-22.2</td></tr></tbody></table></div></body></html>

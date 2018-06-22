@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE>ISP-Hookup-HOWTO: Информация о ISP</TITLE>
+ <LINK HREF="ISP-Hookup-HOWTO-7.html" REL=previous>
+ <LINK HREF="ISP-Hookup-HOWTO.html#toc8" REL=contents>
+</HEAD>
+<BODY>
+Next
+<A HREF="ISP-Hookup-HOWTO-7.html">Previous</A>
+<A HREF="ISP-Hookup-HOWTO.html#toc8">Contents</A>
+<HR>
+<H2><A NAME="s8">8. Информация о ISP</A></H2>
+
+<P>Более детальная информация о определенных ISP доступна из различных
+источников:
+<UL>
+<LI>  Demon Internet (demon.co.uk)
+<P>
+<A HREF="ftp://ftp.demon.co.uk/pub/unix/linux/Demon/slack3.0.help.tgz">ftp://ftp.demon.co.uk/pub/unix/linux/Demon/slack3.0.help.tgz</A><P>
+</LI>
+<LI>  Easynet TBA
+</LI>
+<LI>  Netcom
+<P>
+<A HREF="http://www.netcom.com/bin/webtech/NetCruiser/Operating_Systems/Linux/linux.cfg.html">http://www.netcom.com/bin/webtech/NetCruiser/Operating_Systems/Linux/linux.cfg.html</A><P>
+</LI>
+<LI>  PowerTech, Schibstednett, Telenor Online
+<P>
+<A HREF="http://home.sn.no/~egilk/no-isp.html">http://home.sn.no/~egilk/no-isp.html</A><P>
+</LI>
+<LI>  Primenet TBA
+</LI>
+<LI>  Stanford
+<P>
+<A HREF="http://www-leland.stanford.edu/~wkn/Linux/network/network.html">http://www-leland.stanford.edu/~wkn/Linux/network/network.html</A></LI>
+</UL>
+
+Если вы знаете, где еще можно найти информацию о ISP, пожалуйста, напишите.
+<P>
+<H2><A NAME="ss8.1">8.1 Как мне узнать побольше?</A>
+</H2>
+
+<P>В Linux Documentation Project есть книга, называемая Linux Network
+Administrator's Guide от Olaf Kirch - прекрасное руководство для тех, 
+кто устанавливает и делает что-то, относящееся к TCP/IP и Internet:
+<UL>
+<LI>  
+<A HREF="ftp://sunsite.unc.edu/pub/Linux/docs/linux-doc-project/network-guide/nag-1.0.ascii.tar.gz">ftp://sunsite.unc.edu/pub/Linux/docs/linux-doc-project/network-guide/nag-1.0.ascii.tar.gz</A></LI>
+</UL>
+
+Документaция, которая поставляется с каждым программным пакетом обычно
+содержит всю детальную информацию, которая вам нужна. man-страницы - 
+первое место, в которое надо заглянуть. Для примера попробуйте:
+<BLOCKQUOTE><CODE>
+<PRE>
+       man pppd
+</PRE>
+</CODE></BLOCKQUOTE>
+
+Также вы можете найти некоторую документaцию на определенные программы в
+каталоге /usr/doc, хотя он не всегда хорошо структурирован.
+<P>Весьма рекомендуются следующие HOWTO:
+<UL>
+<LI>    Installation-HOWTO дает основы.
+</LI>
+<LI>    NET-2-HOWTO очень глубокое описание установки и настройки программного 
+обеспечения поддержки сети. Многое из описанного в нем уже должно быть
+сделано, если вы используете стандартный дистрибутив Linux (например,
+Slackware, RedHat, Debian). Тем не менее многие главы по настройке и
+поиску проблем окажутся весьма полезными.
+</LI>
+<LI>    Mail-HOWTO объясняет как настроить различные утилиты. Хотя, многое из
+этого делается при инсталляции Linux.
+</LI>
+<LI>    News-HOWTO для установки (conventional) news spool.
+</LI>
+<LI>    Tiny-News обрисовывает другой путь обмена новостями.
+</LI>
+<LI>    PPP-HOWTO хорошее описание проблем, с которыми вы можете столкнуться
+при настройке PPP соединения.
+</LI>
+<LI>    Serial-HOWTO содержит все, что вам нужно знать об установке
+последовательных портов.
+</LI>
+<LI>    Mail-Queue расскажет вам как настроить отправку через sendmail так, чтобы
+удаленная почта ставилась в очередь, а локальная доставлялась немедленно.</LI>
+</UL>
+<H2><A NAME="ss8.2">8.2 Благодарности</A>
+</H2>
+
+<P>Эта информация собрана из различных источников. Благодарю следующих людей,
+который косвенно либо непосредственно помогли мне:
+<BLOCKQUOTE><CODE>
+<PRE>
+       Adam Holt &lt;holt@graphics.lcs.mit.edu>
+       Arne Coucheron &lt;arneco@oslonett.no>
+       Arne Riiber &lt;riiber@oslonett.no>
+       Arnt Gulbrandsen &lt;agulbra@troll.no>
+       Bjorn Steensrud &lt;bjornst@powertech.no>
+       Gisle Hannemyr &lt;gisle@a.sn.no>
+       Hans Amund Rosbach &lt;haro@sesam.dnv.no>
+       Hans Peter Verne &lt;hpv@ulrik.uio.no>
+       Harald T Alvestrand &lt;Harald.T.Alvestrand@uninett.no>
+       Harald Terkelsen  &lt;Harald.Terkelsen@adm.hioslo.no>
+       Haavard Engum &lt;hobbes@interlink.no>
+       Johan S. Seland &lt;johanss@sn.no>
+       John Phillips &lt;john@linux.demon.co.uk>
+       Jorn Lokoy &lt;jorn@oslonett.no>
+       Kenneth Tjostheim &lt;kenneth.tjostheim@asplanviak.no>
+       Kjell M. Myksvoll &lt;kjell.myksvoll@fou.telenor.no>
+       Kjetil T. Homme &lt;kjetilho@math.uio.no>
+       Michael Meissner &lt;meissner@cygnus.com>
+       N J Bailey &lt;N.J.Bailey@leeds.ac.uk>
+       Nicolai Langfeldt &lt;janl@math.uio.no>
+       Ove Ruben R Olsen &lt;Ove.R.Olsen@ub.uib.no>
+       R. Bardarson &lt;ronb@powernet.net>
+       Steinar Fremme &lt;steinar@fremme.no>
+       Sverre H. Huseby &lt;sverrehu@ifi.uio.no>
+       Trond Eivind Glomsrod &lt;teg@stud.imf.unit.no>
+       Tommy Larsen &lt;tommy@mix.hive.no>
+</PRE>
+</CODE></BLOCKQUOTE>
+<HR>
+Next
+<A HREF="ISP-Hookup-HOWTO-7.html">Previous</A>
+<A HREF="ISP-Hookup-HOWTO.html#toc8">Contents</A>
+</BODY>
+</HTML>

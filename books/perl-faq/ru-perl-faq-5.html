@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE>FAQ по perl и программированию для web: Web серверы</TITLE>
+ <LINK HREF="ru-perl-faq-6.html" REL=next>
+ <LINK HREF="ru-perl-faq-4.html" REL=previous>
+ <LINK HREF="http://books.gnu.technology/books/perl-faq/ru-perl-faq.html#toc5" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="ru-perl-faq-6.html">Next</A>
+<A HREF="ru-perl-faq-4.html">Previous</A>
+<A HREF="http://books.gnu.technology/books/perl-faq/ru-perl-faq.html#toc5">Contents</A>
+<HR>
+<H2><A NAME="Web серверы"></A> <A NAME="s5">5. Web серверы</A></H2>
+
+<P>
+<P>
+<H2><A NAME="ss5.1">5.1 Как заставить WWW сервер исполнять CGI-программы?</A>
+</H2>
+
+<P>
+<H3>Apache для Unix/Win32</H3>
+
+<P>Надо отредактировать конфигурационные файлы (я рассчитываю, что у вас default
+конфиги apache)
+<EM>(NB: Apache/1.3.6 и выше по умолчанию конфигурируется только файлом httpd.conf.
+Директивы все остались прежние, просто их слили в один файл)</EM>
+<P>
+<H3>Способ 1</H3>
+
+<P>srm.conf
+Директива <CODE>ScriptAlias</CODE>
+<P><CODE>ScriptAlias /cgi-bin/ /usr/local/apache/cgi-bin/</CODE>
+<P>и в файле access.conf прописать
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+&lt;Directory /usr/local/apache/cgi-bin/&gt;
+ Options ExecCGI 
+  &lt;/Directory&gt; 
+</PRE>
+</CODE></BLOCKQUOTE>
+
+(если пригляделся, там нужно только раскоментировать опции) 
+Это позволит вам помещать программы в каталог
+/usr/local/apache/cgi-bin/ и они будут видны по URL
+http://you/cgi-bin/program_name
+<P>
+<H3>Способ 2</H3>
+
+<P>Добавить в srm.conf директиву  <CODE>AddHandler cgi-script .cgi</CODE> 
+и вы сможете вызывать cgi-программу из любого каталога. Но она должна иметь
+окончание .cgi и для нее должно быть разрешено исполнение CGI 
+(Options ExecCGI в access.conf, написано выше).
+Оба способа можно без проблем использовать совместно.
+<P>
+<P>
+<H2><A NAME="ss5.2">5.2 Мой CGI-скрипт не работает! Как установить причину?</A>
+</H2>
+
+<P>
+<P>Прежде чем читать дальше, убедитесь в том, что:
+<UL>
+<LI>Вы запустили скрипт с командной строки (не через CGI!!!) и он работает, а
+не говорит &quot;compilation stopped due to errors&quot;</LI>
+<LI>Скрипт не только работает, но и выдает нужный заголовок с пустой строкой
+после него</LI>
+<LI>Для многопользовательских систем) Вы сделали тоже под пользователем, под
+которым работает сервер (su -m имя_пользователя -c script в Unix) и он столь же
+благополучно работает</LI>
+</UL>
+<P>
+<P>
+<H2><A NAME="ss5.3">5.3 Ошибки HTTP 500 и 403. Что это значит и что с ними делать</A>
+</H2>
+
+<P>error_log для того и служит, чтобы туда смотреть :-)
+<P>
+<H3>Ошибка 403 &quot;Forbidden&quot;</H3>
+
+<P>Возникает, если сервер не может отдать вам содержимое по причине отсутствия
+полномочий. 
+<P>Проверьте:
+<UL>
+<LI> Может ли user (для apache под Unix это обычно nobody), под которым работает,  сервер исполнять файл? </LI>
+<LI> В частности, может ли сервер исполнять интерпретатор (в случае
+скриптовых языков)?</LI>
+<LI> Можно ли для этого каталога исполнять программы CGI? (Options ExecCGI для
+apache) </LI>
+</UL>
+<P>
+<H3>Ошибка 500 &quot;Internal Server Error&quot;</H3>
+
+<P>Возникает в случае внутренней ошибки.
+<P>Проверьте:
+<UL>
+<LI>Выводите ли вы строку "Content-Type:"?</LI>
+<LI>Правильно ли вы ее выводите? (Content-type, Content_Type --
+неправильно)</LI>
+<LI>Заканчиваете ли вы хедеры пустой строкой? Нельзя написать 
+<CODE>print "Content-Type: text/html\n";
+print "&lt;HTML&gt;\n";</CODE>
+Надо писать:
+<CODE>print "Content-Type: text/html\n\n"; # Два "\n"
+print "&lt;HTML&gt;\n";</CODE></LI>
+</UL>
+<P>Также, эта ошибка возникает, если CGI-программа завершилась с ненулевым
+кодом возврата, что часто встречается в случае некомпилируемости вашего
+скрипта perl'ом.
+<P>
+<P>Совет: делайте 
+<CODE>use CGI::Carp qw(fatalsToBrowser)</CODE>
+во время отладки, тогда вам выдадут сообщение об ошибке perl.
+<P>
+<P>
+<H2><A NAME="ss5.4">5.4 Почему $ENV{REMOTE_HOST} пуста?</A>
+</H2>
+
+<P>
+<P>apache устанавливает переменную окружения REMOTE_HOST, если ему
+разрешено проводить dns запросы для определения имени. Для 1.3.x
+по-умолчанию это выключено. Включается/выключается директивой
+HostNameLookups, которая может принимать 3 значения: on -- проводить
+запросы, off -- не запрашивать dns и double -- делать двойные запросы:
+запрашивать имя хоста, а затем по имени запрашивать ip адрес, для
+безопасности.
+<P>
+<P>
+<H2><A NAME="ss5.5">5.5 Почему $ENV{REMOTE_USER} пуста?</A>
+</H2>
+
+<P>
+<P>Переменная окружения REMOTE_USER устанавливается apache в случае, если
+скрипт защищен паролем. Как это сделать рассказано на
+<A HREF="http://www.apacheweek.com/features/userauth">http://www.apacheweek.com/features/userauth</A> и 
+<A HREF="http://www.apacheweek.com/features/dbmauth">http://www.apacheweek.com/features/dbmauth</A><P>
+<P>
+<HR>
+<A HREF="ru-perl-faq-6.html">Next</A>
+<A HREF="ru-perl-faq-4.html">Previous</A>
+<A HREF="http://books.gnu.technology/books/perl-faq/ru-perl-faq.html#toc5">Contents</A>
+</BODY>
+</HTML>

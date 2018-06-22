@@ -1,0 +1,451 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=koi8-r">
+<title>Locale &quot;AS IT IS&quot; - Unix i/o</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2>Ввод/вывод в системе UNIX и локализация.</h2>
+
+<p><font color="#000000">&nbsp;&nbsp; Когда-нибудь здесь будет
+небольшая статься о <strong>вводе/выводе</strong> в
+системе <strong>UNIX</strong>. :-) Пока же читатель может
+посмотреть кучу специальной литературы.
+Например :</font></p>
+
+<blockquote>
+  <blockquote>
+    <table border="1" width="551">
+      <tr>
+        <td width="276" valign="top" align="left"><font color="#008000"><strong>Робачевский
+        А.М.<br>
+        </strong>&quot;Операционная система Unix&quot;<br>
+        СПб. Издательство BHV<br>
+        Санкт-Петербург, 1997<br>
+        ISBN 5-7791-0057-8</font></td>
+        <td width="263" valign="top" align="left">Andrei Robachevsky<br>
+        Federal Centre RUNNet <br>
+        e-mail: <a href="mailto:andrei@run.net">andrei@run.net</a><br>
+        phone: +7-812-2388598<br>
+        fax: +7-812-2327622<br>
+        <a href="http://www.runnet.ru">http://www.runnet.ru</a></td>
+      </tr>
+    </table>
+  </blockquote>
+</blockquote>
+
+<p><font color="#000000">&nbsp;&nbsp;&nbsp; Здесь же кратко коснемся
+только проблем </font><font color="#FF0080"><strong>локализации
+ввода/вывода UNIX</strong></font><font color="#000000">.</font></p>
+
+<p><font color="#000000">&nbsp;&nbsp;&nbsp; Итак, цитируем :</font></p>
+
+<table border="1">
+  <tr>
+    <td><font color="#008000">&nbsp;&nbsp;&nbsp; В UNIX существуют 6 типов
+    файлов, различающихся по функциональному
+    назначению и действиям операционной системы при
+    выполнении тех или иных операций над файлами : </font><ul>
+      <li><font color="#008000">Обычный файл ( regular file )</font></li>
+      <li><font color="#008000">Каталог ( directory )</font></li>
+      <li><font color="#008000">Специальный файл устройства ( special
+        device file )</font></li>
+      <li><font color="#008000">FIFO или именованный канал ( named pipe )</font></li>
+      <li><font color="#008000">Связь ( link )</font></li>
+      <li><font color="#008000">Сокет</font></li>
+    </ul>
+    </td>
+  </tr>
+</table>
+
+<p><font color="#000000">&nbsp;&nbsp;&nbsp; Продолжаем цитировать :</font></p>
+
+<table border="1">
+  <tr>
+    <td><a name="file"></a><font color="#008000">&nbsp;&nbsp;&nbsp; <em><strong>Обычный
+    файл</strong></em> представляет собой наиболее общий
+    тип файлов, содержащий данные в некотором
+    формате. Для операционной системы такие файлы
+    представляют собой просто последовательность
+    байтов. Вся интерпретация содержимого файла
+    производится прикладной программой,
+    обрабатывающей файл. К этим файлам относятся
+    текстовые файлы, бинарные файлы, исполняемые
+    программы т.п.</font></td>
+  </tr>
+</table>
+
+<p>&nbsp;&nbsp;&nbsp; Из этого следует, что в общем случае
+&nbsp; <strong>не существует</strong> никакого способа
+узнать не только <strong>кодировку</strong>, но даже <strong>тип</strong>
+данных, содержащихся в файле.</p>
+
+<p>&nbsp;&nbsp;&nbsp; В принципе, существуют два основных
+способа определения содержимого файла
+(набора/потока данных) : 
+
+<ul>
+  <li><strong>In-band</strong> - свединия о кодировке содержатся <strong>внутри</strong>
+    файла</li>
+  <li><strong>Out-band</strong> - сведения о кодироке содержатся <strong>снаружи</strong>,
+    где-то <strong>в другом месте</strong>.</li>
+</ul>
+
+<p>&nbsp;&nbsp;&nbsp; Самый известный <strong>In-band</strong> способ
+- <a href="locale_m.html"><strong>MIME</strong></a>. Здесь кодировки и
+вид содержимого описываются явно, в полях <strong>Content-Type:
+text/plain; charset=koi8-r </strong>и <strong>Content-Transfer-Encoding: base64</strong>.
+Концепции<strong> MIME</strong> (описание типа)
+используются также в <strong>HTTP</strong> (<a href="http://www.cis.ohio-state.edu/htbin/rfc/rfc2616.html">RFC-2616</a>).</p>
+
+<p>&nbsp;&nbsp;&nbsp; Также <strong>In-band</strong> сведения о
+содержимом и кодировках содержатся, например, в
+файлах Microsoft Word .DOC(с включенными OLE объектами),
+Windows .EXE и .DLL (ресурсы), e.t.c. К <strong>In-band</strong> методам
+можно отнести и разнообразные языки разметки (<strong>MARK-UP</strong>
+Languages), например тэг <strong>&lt;LANG=&gt;</strong> языка <strong>HTML
+4.0</strong> и <strong>XML</strong> или спецификацию языка в
+файлах .RTF.</p>
+
+<p>&nbsp;&nbsp;&nbsp; Теперь об <strong>Out-band</strong> (внешних)
+способах. К сожалению, в <strong>UNIX</strong>
+поддерживается простая однопотоковая концепция
+организации файла. Нет никаких ресурсных вилок,
+как в MacOS <strong>HFS</strong>, нет Meta Info как в <strong>OS/2</strong> <strong>HPFS</strong>.
+Файл - это просто набор данных, имеющий имя (ну,
+еще даты создания/изменения/доступа, ну еще права
+доступа :<strong> rwxr-xr-x</strong> ). Без всяких
+&quot;расширенных атрибутов&quot;.</p>
+
+<p>&nbsp;&nbsp;&nbsp; Проблема зашла так далеко, что в <strong>UNIX</strong>
+появилась специальная утилита<em> <strong>file</strong></em>,
+которая &quot;эвристическими методами&quot; пытается
+определить тип содержимого.</p>
+
+<p>&nbsp;&nbsp;&nbsp; Единственный более-менее
+распространенным способом определения типа
+файла является <strong>расширение</strong>, то есть
+несколько конечных символов в <strong>имени</strong>
+файла после точки : &quot;.txt&quot;. На самом деле,
+никакого стандарта на &quot;расширения&quot; в UNIX нет,
+так как точка : &quot;<strong>.</strong>&quot; является
+допустимым символом имени. Так что вполне могут
+встретится имена типа &quot;file.doc.tar.gz&quot;,
+&quot;file............txt&quot; или &quot;.profile&quot;.</p>
+
+<p>&nbsp;&nbsp;&nbsp; Тем не менее, многие программы
+ориентируются именно на &quot;<strong>расширения</strong>&quot;,
+особенно при переводе в <strong>MIME</strong>, например для
+простановки типа в <strong>HTTP</strong> (<a href="http://www.cis.ohio-state.edu/htbin/rfc/rfc2068.html">RFC-2616</a>): 
+
+<ul>
+  <li><strong><a href="http://www.apache.org/docs/mod/mod_mime.html">apache</a></strong>
+    (/usr/local/etc/http/mime.types)</li>
+  <li><a href="http://squid.nlanr.net/"><strong>squid</strong></a>
+    (sqiud-1.1.2x/include/mime.table)</li>
+  <li><a href="http://lynx.browser.org/"><strong>lynx</strong></a> (/usr/local/etc/lynx.cfg
+    [SUFFIX])</li>
+</ul>
+
+<p>&nbsp;&nbsp;&nbsp; Насколько ненадежен этот метод,
+можно судить например по тому, что текстовый (!)
+файл &quot;<strong>ls-lR.ftp.anu.edu.au</strong>&quot; упорно
+интерпретируется как &quot;<strong>audio/basic</strong>&quot; и
+некоторые программы пытаются его &quot;сыграть&quot;
+;-))</p>
+
+<p>&nbsp;&nbsp;&nbsp; Тем не менее, иногда этим можно
+пользоваться, например задавая определения
+типов (и многие другие атрибуты) для файлов <strong>текущего</strong>
+каталога, в файле <strong>./.htaccess</strong> от <strong>apache</strong>
+( модуль<strong> mod_mime</strong> ):</p>
+
+<table border="1">
+  <tr>
+    <td>AddType text/plain text<br>
+    AddEncoding&nbsp;&nbsp;&nbsp; x-compress&nbsp;&nbsp;&nbsp; Z<br>
+    AddIconByType&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (TXT, icons/text.gif)
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; text/plain<br>
+    AddIconByEncoding&nbsp; (COMP, icons/comp.gif) application/x-compress<br>
+    e.t.c.</td>
+  </tr>
+</table>
+
+<p>&nbsp;&nbsp;&nbsp; Ну чем не <strong>Out-band</strong> метод ? Правда
+доступ к файлу в таком каталоге осуществлять
+придется только через <strong>HTTP</strong> от <strong>apache</strong>.
+;-)</p>
+
+<p>&nbsp;&nbsp;&nbsp; Но продолжаем цитировать :</p>
+
+<table border="1">
+  <tr>
+    <td><font color="#008000"><a name="dir"></a>&nbsp;&nbsp;<strong>&nbsp; <em>Каталог</em></strong>:
+    С помощью каталогов формируется логическое
+    дерево файловой системы. <em>Каталог</em> - это файл,
+    содержащий <strong>имена</strong> находящихся в нем
+    файлов, а также указатели на дополнительную
+    информацию - метаданные, позволяющие
+    операционной системе производить операции над
+    этими файлами. Каталоги определяют положение
+    файла в дереве файловой системы, поскольку сам
+    файл не содержит информации о своем
+    местонахождении.</font></td>
+  </tr>
+</table>
+
+<p>&nbsp;&nbsp;&nbsp; Файл в файловой системе имеет
+некоторое <em><strong>имя</strong></em> - последовательность
+символов. Когда-то считалось, что имя файла может
+состоять только из 7-bit<strong> ASCII</strong> символов. В
+случае же использования национальных символов
+для имени файла возникают проблемы. И в стандарте
+<strong>POSIX</strong> решения нет.</p>
+
+<p>Существующие способы определения кодировки
+символов в имени файла : 
+
+<ul>
+  <li>Файловая система поддерживает <strong>UNICODE</strong>,
+    например в <strong>UTF-8</strong> или <strong>UCS-2 :</strong><ul>
+      <li>JOLIET</li>
+      <li>NTFS</li>
+      <li>EXT2FS (Linux)</li>
+    </ul>
+  </li>
+  <li>Кодировка <strong>явно</strong> указывается (не <strong>POSIX</strong>
+    ! ) :<ul>
+      <li>При монтировании файловой системы :<ul>
+          <li>Linux mount :<br>
+            $ mount -t vfat -o umask=002,noexec,gid=100,codepage=866,iocharset=koi8-r /dev/hdb1 /mnt</li>
+          <li>FreeBSD mount : /etc/fstab<br>
+            /dev/sd0s1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /dos/c&nbsp;&nbsp; msdos &nbsp;&nbsp;
+            rw,-W=koi2dos,-L=ru_RU.KOI8-R&nbsp; 0&nbsp; 0<br>
+            детальное описание опций -W и -L смотрите в <em>mount_msdos
+            (8)</em></li>
+        </ul>
+      </li>
+      <li>SAMBA :<br>
+        client code page = 866<br>
+        character set = koi8-r</li>
+    </ul>
+  </li>
+  <li>??</li>
+</ul>
+
+<p>&nbsp;&nbsp;&nbsp; Все операции, оперирующие с именами
+файлов должны быть как минимум прозрачны в
+отношении 8 бит.</p>
+
+<table border="1">
+  <tr>
+    <td><font color="#008000"><a name="dev"></a>&nbsp;&nbsp;&nbsp; <em><strong>Специальный
+    файл устройства</strong></em> обеспечивает доступ к
+    физическому устройству. В UNIX различают <strong><em>символьные</em></strong>
+    (character) и <strong><em>блочные</em></strong> (block) файлы
+    устройств. Доступ к устройствам осуществляется
+    путем открытия, чтения и записи в специальный
+    файл устройства.</font></td>
+  </tr>
+</table>
+
+<p>&nbsp;&nbsp;&nbsp; <strong>Блочные</strong> файлы устройств
+позволяют организовать доступ к физическому
+устройству точно также, как доступ к обычному
+файлу. И точно также, как при работе с обычным
+файлом, интерпретация содержимого остается
+задачей программы. Никакой информации о
+кодировках содержимого не поддерживается.</p>
+
+<p>&nbsp;&nbsp;&nbsp; Более неприятна ситуация с <strong>симольными</strong>
+(<strong>character</strong>) устройствами, где также
+совершенно <strong>не существует </strong>определения <strong>character
+set</strong>. Другими словами, <strong>стандартными</strong>
+средствами UNIX (<strong>POSIX</strong>) невозможно ни <strong>определить</strong>
+текущую, ни <strong>установить</strong> необходимую
+кодироку символьного устройства (например,
+терминала).</p>
+
+<p>&nbsp;&nbsp;&nbsp; Стандартных средств изменения и
+определения кодировки нет ни для
+&quot;настоящих&quot; (подключенных через ASYNC-port)
+терминалов , ни для эмуляторов консоли (SCO, BSD или
+LINUX console), ни для окна <strong>xterm</strong> в X-Windows
+(работающих через псевдотерминалы /dev/pty). Понятий <strong>&quot;кодировка&quot;</strong>
+или <strong>&quot;набор символов&quot; </strong>нет ни в
+процедурах управления терминалом :<strong> termios (POSIX</strong>),
+ни в базах описания терминалов <strong>termcap</strong> и <strong>terminfo</strong>,
+ни даже в &quot;высокоуровневых&quot; библиотеках
+управления терминалом <strong>curses</strong> и <strong>ncurses</strong>.
+(TODO: посмотреть <strong>slang</strong>&nbsp; ).</p>
+
+<p>&nbsp;&nbsp;&nbsp; Точно также, нет указателя <strong>Charset</strong>
+у потоков STDIN, STDOUT, STDERR.</p>
+
+<p>* ПРИМЕЧАНИЕ: В настоящее время наметилось
+несколько путей решения этой проблемы: 
+
+<ul>
+  <li><strong>login class</strong> расширения <strong>BSD </strong>( не <strong>POSIX</strong>
+    ! )<strong><br>
+    </strong>&nbsp;&nbsp; <a href="http://www.freebsd.org/handbook/handbook.html">http://www.freebsd.org/handbook/handbook.html</a>
+    part 2.13<br>
+    &nbsp;&nbsp; (или то же самое, через Linux <strong>PAM</strong>)</li>
+  <li><strong>CHARSET-</strong>параметр протокола <strong>telnet. </strong><a href="http://www.cis.ohio-state.edu/htbin/rfc/rfc2066.html">RFC-2066</a><strong>.</strong></li>
+  <li>Новые переменные <strong>termacp/terminfo,</strong>
+    определяющие <strong>charset.</strong></li>
+  <li>&quot;Последовательности переключения&quot; ISO-2022 у <strong>xterm</strong></li>
+  <li>Реализация консоли с поддержкой <strong>UNICODE</strong> (в
+    виде <strong>UTF-7</strong>, <strong>UTF-8</strong>). <a href="http://www.cl.cam.ac.uk/~mgk25/unicode.html">Linux UTF-8 FAQ</a>.</li>
+</ul>
+
+<table border="1">
+  <tr>
+    <td><font color="#008000">&nbsp;<a name="fifo"></a>&nbsp; <em><strong>FIFO или
+    именованый канал</strong></em> - это файл, используемый
+    для связи между процессами. FIFO впервые появились
+    в System V UNIX, но большинство современных систем
+    поддерживают этот механизм.</font></td>
+  </tr>
+</table>
+
+<p>&nbsp;&nbsp;&nbsp; Не вдаваясь в тонкости отличий System V и
+BSD, скажем о FIFO следующее : 
+
+<ol>
+  <li>Именованный канал имеет <em><strong>имя</strong></em>.
+    Информацию о именах смотри в пункте <em><strong><a href="locale_io.html#dir">Каталог</a>.</strong></em></li>
+  <li>Функционально <strong>FIFO</strong> весьма близок к <a href="locale_io.html#soc"><em><strong>Сокету</strong></em></a>.</li>
+</ol>
+
+<table border="1">
+  <tr>
+    <td><font color="#008000">&nbsp;&nbsp;<a name="link"></a> <em><strong>Связь</strong></em>.
+    Особым типом файла является символическая связь,
+    позволяющая косвенно адресовать файл. В отличии
+    от жесткой связи, символическая связь адресует
+    файл, который в свою очередь, ссылается на другой
+    файл. В результате, последний файл адресуется
+    символической связью <strong>косвенно</strong>. Данные
+    файла, являющегося символической связью,
+    содержат только <strong>имя</strong> целевого файла.</font></td>
+  </tr>
+</table>
+
+<p>&nbsp;&nbsp;&nbsp; Собственно, на имя <em><strong>связи</strong></em>
+и на ее содержимое распространяются те же
+правила, что и на <em><strong>имя</strong></em> в <a href="locale_io.html#dir"><em><strong>Каталоге</strong></em></a>.</p>
+
+<table border="1">
+  <tr>
+    <td><a name="soc"></a>&nbsp; <font color="#008000"><em><strong>Сокет</strong></em>.
+    Сокет представляет собой двусторонний канал
+    обмена данными между процессами и является одним
+    из механизмов IPC (Inter-Process Communication).</font></td>
+  </tr>
+</table>
+
+<p>&nbsp;&nbsp;&nbsp; Механизм <strong>сокетов</strong> был
+разработан для унификации межпроцессорного
+взаимодействия и должен был работать независимо
+от : 
+
+<ul>
+  <li>Реального механизма передачи информации (IP, IPX,
+    X.25, e.t.c. )</li>
+  <li>Формата и схемы адресации (формата адресов)
+    объектов</li>
+  <li>Сетевого или локального характера
+    взаимодействия</li>
+</ul>
+
+<p>&nbsp;&nbsp;&nbsp; Для описания характеристик
+взаимодействия было введено понятие <strong><em>коммуникационный
+домен</em></strong> (<strong>communication domain</strong>). Сокеты
+создаются в рамках определенного
+коммуникационного домена, и, кроме прочих
+характеристик, имеют соответствующее <strong>имя</strong>
+(связываемое с сокетом при помощи вызова <em>bind()</em>
+). 
+
+<ul>
+  <li>В коммуникационном домене <strong>AF_UNIX</strong> сокет
+    связывается с определенным <strong>именем файла</strong>
+    в файловой системе. Соответственно, на имя этого
+    файла распространяются все правила именования в <a href="locale_io.html#dir">Каталоге</a>.</li>
+  <li>В коммуникационном домене <strong>AF_INET</strong> имена
+    являются именами хостов Internet, на которые
+    распространяются правила <a href="http://www.cis.ohio-state.edu/htbin/rfc/rfc1035.html">RFC-1035</a> &quot;Domain
+    names - concepts and facilities&quot;.</li>
+  <li>В коммуникационном домене <strong>AF_NS</strong> (куда
+    входят IPX/SPX) - ???.</li>
+</ul>
+
+<p>&nbsp;&nbsp;&nbsp; Не вдаваясь в подробности
+функционирования Socket API, рассмотрим лишь
+отношение сокетов и методов кодирования
+передаваемой информации.</p>
+
+<p>&nbsp;&nbsp;&nbsp; <strong>Сокеты</strong> (<em>stream socket</em>), после
+установления соединения предоставляют
+процессам чистый 8-ми битный канал обмена
+информацией (<strong>Out-Of-Band</strong> данные не
+рассматриваются). В принципе, пользователь может
+передавать данные в совершенно произвольном
+формате. Однако, существуют некоторые
+&quot;устоявшиеся правила&quot; организации
+протоколов обмена данными (IPC).</p>
+
+<p>&nbsp;&nbsp; <strong>1.</strong> Разделять управляющую
+информацию и пользовательские данные. Как
+сказано в <a href="http://www.cis.ohio-state.edu/htbin/rfc/rfc2277.html">RFC-2277</a>
+&quot;Srtings for humans, Protocols for computers&quot;.</p>
+
+<p>&nbsp;&nbsp;&nbsp; <strong>2.</strong> <strong>Текстовый</strong>
+управляющий протокол - это &quot;правильная
+вещь&quot;. (c) Eric S. Raymond, разработчик <a href="http://www.ccil.org/~esr/fetchmail">fetchmail</a>. Для облегчения
+разработки и сопровождения протокола,
+управляющие команды и ответы сервера лучше
+сделать в виде текстовых строк.</p>
+
+<p>&nbsp;&nbsp; <strong>3.</strong> Хорошо разработанный
+протокол содержит в себе созможности <strong>Handshake</strong>
+(или <strong>Negotiation</strong>)</p>
+
+<blockquote>
+  <ul>
+    <li><strong>Language Negotiation</strong>, например, поля<br>
+      &nbsp;&nbsp;&nbsp; Accept-Language:<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Content-Language:</li>
+    <li><strong>Type &amp; Charset Negotiation</strong>, например, поля<br>
+      &nbsp;&nbsp;&nbsp; Accept:<br>
+      &nbsp;&nbsp;&nbsp; Accept-Charset:<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Content-Type: text/plain; charset=<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Content-Type: text/html; charset=</li>
+    <li><strong>Transfer Encoding Negotiation<br>
+      &nbsp;&nbsp;&nbsp; </strong>Accept-Encoding:<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Content-Transfer-Encoding:</li>
+  </ul>
+  <p>См. например <a href="http://multiweb.urc.ac.ru/LANG=ru&amp;CS=koi8-r/papers/report.txt">один из
+  документов</a> проекта <a href="http://multiweb.urc.ac.ru">Multiweb</a>.</p>
+</blockquote>
+
+<hr>
+
+<p>Если у вас имеются каие-либо дополнения или
+исправления, пишите <a href="mailto:alec@sensi.org">mailto:alec@sensi.org</a></p>
+
+<p>--<br>
+-=AV=-</p>
+
+<hr>
+
+<p>Содержание <a href="index.html#toc">&quot;Locale AS IT IS&quot;</a></p>
+
+<hr>
+
+<h6><em>Last change : <!--webbot bot="Timestamp" S-Type="EDITED" S-Format="%d-%m-%Y" startspan -->01-10-2000<!--webbot bot="Timestamp" endspan i-checksum="12414" --></em></h6>
+</body>
+</html>

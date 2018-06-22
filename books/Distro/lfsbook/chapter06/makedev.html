@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>Creating devices (Makedev-1.7)</title><meta name="GENERATOR" content="Microsoft FrontPage 4.0" /=""><link rel="HOME" title="Linux From Scratch" href="http://www.linuxfromscratch.org/view/4.0/index.html" /=""><link rel="UP" title="Installing basic system software" href="http://www.linuxfromscratch.org/view/4.0/chapter06/chapter06.html" /=""><link rel="PREVIOUS" title="Creating the passwd and group files" href="http://www.linuxfromscratch.org/view/4.0/chapter06/pwdgroup.html" /=""><link rel="NEXT" title="Installing Linux-2.4.19" href="http://www.linuxfromscratch.org/view/4.0/chapter06/kernel.html" /=""></head><body class="sect1" bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#840084" alink="#006000"><div class="NAVHEADER"><table summary="Header navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><th colspan="3" align="Center">Linux From Scratch: Версия 4.0</th></tr><tr><td width="10%" align="Left" valign="Bottom"><a href="pwdgroup.html" accesskey="P">Назад</a></td><td width="80%" align="Center" valign="Bottom">Глава 6. Установка основных компонентов
+        системы</td><td width="10%" align="Right" valign="Bottom"><a href="kernel.html" accesskey="N">Вперед</a></td></tr></tbody></table><hr align="Left" width="100%" /=""></div><div class="sect1"><h1 class="sect1"><a name="ch06-makedev">Создание устройств (Makedev-1.7)</a></h1><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen">Приблизительное время компиляции:           0.07 SBU<br>Необходимое дисковое пространство:  50 KB</pre></td></tr></tbody></table><div class="sect2"><h2 class="sect2"><a name="AEN2306">Создание файлов устройств</a></h2><p>Примите к сведению, что при распаковке
+    архива MAKEDEV-1.7.bz2 не создается директория
+    для перехода, т.к. архив содержит только
+    файл скрипта.</p><p>Подготовим создание файлов устройств
+    следующей командой:</p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>cp MAKEDEV-1.7 /dev/MAKEDEV &amp;&amp;<br>cd /dev &amp;&amp;<br>chmod 754 MAKEDEV</b></tt></pre></td></tr></tbody></table><p>Большинство пользователей захотят сразу
+    же создать файлы устройств командой:</p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>./MAKEDEV -v generic</b></tt></pre></td></tr></tbody></table><p>Однако, если вы планируете использовать
+    devpts, выполните:</p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>./MAKEDEV -v generic-nopty</b></tt></pre></td></tr></tbody></table><p>Если вы не уверены в своих действиях, для
+    создания всех необходимых устройств
+    лучше выполнить команду <tt class="userinput"><b>./MAKEDEV -v generic</b></tt>. В случае, если вы уверены, что собираетесь
+    использовать devpts, вторая команда
+    пропускает создание ненужных устройств.</p><p><tt class="filename">MAKEDEV</tt>  создает устройства с hda[1-20] по hdh[1-20] и
+    многие другие подобные файлы дисковых
+    узлов, однако имейте ввиду, что из-за
+    ограничений ядра на максимальное
+    количество разделов многие из них будут
+    недоступны.</p></div><div class="sect2"><h2 class="sect2"><a name="AEN2325">Пояснения команд</a></h2><p><tt class="userinput"><b>./MAKEDEV -v generic:</b></tt>  Эта команда создает огромное количество
+    файлов устройств. Обычно, это все, что вам
+    нужно. Однако существует вероятность, что
+    некоторые специфические файлы для ваших
+    аппаратных устройств отсутствуют. Их
+    можно создать командой ./MAKEDEV -v &lt;устройство&gt;.
+    Опция <tt class="userinput"><b>generic-nopty</b></tt>  в создает, в основном, те же устройства,
+    что и опция <tt class="userinput"><b>generic</b></tt>, за исключением тех, которые не нужны при
+    использовании devpts.</p></div><div class="sect2">
+<div class="sect2"><h2 class="sect2"><a name="AEN7662">Содержимое MAKEDEV</a></h2><p>Последняя проверка: версия 1.5.</p><div class="sect3"><h3 class="sect3"><a name="AEN7665">Программы</a></h3><p>MAKEDEV</p></div><div class="sect3"><h3 class="sect3"><a name="AEN7668">Описания</a></h3><div class="sect4"><h4 class="sect4"><a name="AEN7670">MAKEDEV</a></h4><p><tt class="filename">MAKEDEV</tt> - скрипт, создающий необходимые
+статические связи с устройствами, обычно располагающимися в каталоге <tt class="filename">/dev</tt>. Детальная информация о связях с
+устройствами может быть найдена в дереве искходных кодов ядра Linux в <tt class="filename">Documentation/devices.txt</tt>.</p></div></div></div>
+<div class="sect2"><h2 class="sect2"><a name="AEN7676">Зависимости MAKEDEV</a></h2><p>Последняя проверка: версия 1.5.</p><p class="literallayout">Bash: sh<br>
+Fileutils: chmod, chown, cp, ln, mknod, mv, rm<br>
+Grep: grep<br>
+Sh-utils: expr, id</p></div>
+<h2 class="sect2"></h2></div></div><div class="NAVFOOTER"><hr align="Left" width="100%" /=""><table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="33%" align="Left" valign="Top"><a href="pwdgroup.html" accesskey="P">Назад</a></td><td width="34%" align="Center" valign="Top"><a href="../index.html" accesskey="H">Домой</a></td><td width="33%" align="Right" valign="Top"><a href="kernel.html" accesskey="N">Вперед</a></td></tr><tr><td width="33%" align="Left" valign="Top">Создание файлов passwd и group</td><td width="34%" align="Center" valign="Top"><a href="chapter06.html" accesskey="U">Наверх</a></td><td width="33%" align="Right" valign="Top">Установка Linux-2.4.19</td></tr></tbody></table></div></body></html>

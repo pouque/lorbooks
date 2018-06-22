@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE>RPM HOWTO: Что я могу по-настоящему делать с RPM?</TITLE>
+ <LINK HREF="RPM-HOWTO-6.html" REL=next>
+ <LINK HREF="RPM-HOWTO-4.html" REL=previous>
+ <LINK HREF="RPM-HOWTO.html#toc5" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="RPM-HOWTO-6.html">Следующий</A>
+<A HREF="RPM-HOWTO-4.html">Предыдущий</A>
+<A HREF="RPM-HOWTO.html#toc5">Содержание</A>
+<HR>
+<H2><A NAME="s5">5. Что я могу <EM>по-настоящему</EM> делать с RPM?</A></H2>
+
+<P>RPM это очень полезная утилита, и как вы видите имеет различные
+опции. Лучший способ прочувствовать их это посмотреть на несколько
+примеров. Я привел простые примеры установки/удаления выше, так что
+здесь будет несколько больше примеров:
+<P>
+<UL>
+<LI>Допустим вы случайно удалили некоторые файлы, но не уверены в
+том что удалили. Если вы хотите проверить всю систему и просмотреть
+что может отсутствовать, вы должны сделать:
+
+<BLOCKQUOTE><CODE>
+<PRE>
+rpm -Va
+</PRE>
+</CODE></BLOCKQUOTE>
+
+</LI>
+<LI>Допустим вы нашли файл, который вы не можете опознать. Для
+того чтобы найти к какому пакету он относится, вы должны сделать:
+
+<BLOCKQUOTE><CODE>
+<PRE>
+rpm -qf /usr/X11R6/bin/xjewel
+</PRE>
+</CODE></BLOCKQUOTE>
+
+
+Вывод должен быть:
+
+<BLOCKQUOTE><CODE>
+<PRE>
+xjewel-1.6-1
+</PRE>
+</CODE></BLOCKQUOTE>
+
+</LI>
+<LI>Вы нашли новый пакет RPM, но не знаете для
+чего он. Для того чтобы найти некоторую информацию о нем, сделайте:
+
+<BLOCKQUOTE><CODE>
+<PRE>
+rpm -qpi koules-1.2-2.i386.rpm
+</PRE>
+</CODE></BLOCKQUOTE>
+
+
+Вывод должен быть:
+
+<BLOCKQUOTE><CODE>
+<PRE>
+Name        : koules                      Distribution: Red Hat Linux Colgate
+Version     : 1.2                               Vendor: Red Hat Software
+Release     : 2                             Build Date: Mon Sep 02 11:59:12 1996
+Install date: (none)                        Build Host: porky.redhat.com
+Group       : Games                         Source RPM: koules-1.2-2.src.rpm
+Size        : 614939
+Summary     : SVGAlib action game with multiplayer, network, and sound support
+Description :
+This arcade-style game is novel in conception and excellent in execution.
+No shooting, no blood, no guts, no gore.  The play is simple, but you
+still must develop skill to play.  This version uses SVGAlib to
+run on a graphics console.
+</PRE>
+</CODE></BLOCKQUOTE>
+
+</LI>
+<LI>Теперь вы хотите посмотреть какие файлы установит этот пакет.
+Вы должны сделать:
+
+<BLOCKQUOTE><CODE>
+<PRE>
+rpm -qpl koules-1.2-2.i386.rpm
+</PRE>
+</CODE></BLOCKQUOTE>
+
+
+Вывод будет:
+
+<BLOCKQUOTE><CODE>
+<PRE>
+/usr/doc/koules
+/usr/doc/koules/ANNOUNCE
+/usr/doc/koules/BUGS
+/usr/doc/koules/COMPILE.OS2
+/usr/doc/koules/COPYING
+/usr/doc/koules/Card
+/usr/doc/koules/ChangeLog
+/usr/doc/koules/INSTALLATION
+/usr/doc/koules/Icon.xpm
+/usr/doc/koules/Icon2.xpm
+/usr/doc/koules/Koules.FAQ
+/usr/doc/koules/Koules.xpm
+/usr/doc/koules/README
+/usr/doc/koules/TODO
+/usr/games/koules
+/usr/games/koules.svga
+/usr/games/koules.tcl
+/usr/man/man6/koules.svga.6
+</PRE>
+</CODE></BLOCKQUOTE>
+
+</LI>
+</UL>
+<P>
+<P>Это только несколько примеров. Более творческие примеры могут
+придуманы легко, если вы подружитесь с RPM.
+<P>
+<HR>
+<A HREF="RPM-HOWTO-6.html">Следующий</A>
+<A HREF="RPM-HOWTO-4.html">Предыдущий</A>
+<A HREF="RPM-HOWTO.html#toc5">Содержание</A>
+</BODY>
+</HTML>

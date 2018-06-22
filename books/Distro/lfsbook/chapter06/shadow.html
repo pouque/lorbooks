@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>Installing Shadow-4.0.3</title><meta name="GENERATOR" content="Microsoft FrontPage 4.0" /=""><link rel="HOME" title="Linux From Scratch" href="http://www.linuxfromscratch.org/view/4.0/index.html" /=""><link rel="UP" title="Installing basic system software" href="http://www.linuxfromscratch.org/view/4.0/chapter06/chapter06.html" /=""><link rel="PREVIOUS" title="Installing Psmisc-21" href="http://www.linuxfromscratch.org/view/4.0/chapter06/psmisc.html" /=""><link rel="NEXT" title="Installing Sysklogd-1.4.1" href="http://www.linuxfromscratch.org/view/4.0/chapter06/sysklogd.html" /=""></head><body class="sect1" bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#840084" alink="#006000"><div class="NAVHEADER"><table summary="Header navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><th colspan="3" align="Center">Linux From Scratch: Версия 4.0</th></tr><tr><td width="10%" align="Left" valign="Bottom"><a href="psmisc.html" accesskey="P">Назад</a></td><td width="80%" align="Center" valign="Bottom">Глава 6. Установка основных компонентов
+        системы</td><td width="10%" align="Right" valign="Bottom"><a href="sysklogd.html" accesskey="N">Вперед</a></td></tr></tbody></table><hr align="Left" width="100%" /=""></div><div class="sect1"><h1 class="sect1"><a name="ch06-shadow">Установка Shadow-4.0.3</a></h1><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen">Приблизительное время компиляции:           0.88 SBU<br>Необходимое дисковое пространство:  7 MB</pre></td></tr></tbody></table><div class="sect2"><h2 class="sect2"><a name="AEN5162">Инсталляция Shadow Password Suite</a></h2><p>Перед тем как перейти к инсталляции
+    данного пакета, рекомендуем прочесть
+    руководство по теневым паролям &lt;Shadow
+    passwords&gt;, которое рассказывает о том, как
+    сделать систему более защищенной в
+    отношении паролей, как включить
+    поддержку паролей MD5 и как выжать из
+    пакета Shadow максимум пользы для системы.
+    См. <a href="http://hints.linuxfromscratch.org/hints/shadowpasswd_plus.txt" target="_top">http://hints.linuxfromscratch.org/hints/shadowpasswd_plus.txt</a>.</p><p>Для инсталляции Shadow Password Suite выполните:</p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>./configure --prefix=/usr \<br>    --libdir=/usr/lib --enable-shared &amp;&amp;<br>make &amp;&amp;<br>make install &amp;&amp;<br>cp etc/{limits,login.access} /etc &amp;&amp;<br>sed 's%/var/spool/mail%/var/mail%' \<br>    etc/login.defs.linux &gt; /etc/login.defs &amp;&amp;<br>ln -s vipw /usr/sbin/vigr &amp;&amp;<br>rm /bin/vipw &amp;&amp;<br>mv /bin/sg /usr/bin &amp;&amp;<br>mv /usr/lib/lib{shadow,misc}.so.0* /lib &amp;&amp;<br>ln -sf ../../lib/libshadow.so.0 /usr/lib/libshadow.so &amp;&amp;<br>ln -sf ../../lib/libmisc.so.0 /usr/lib/libmisc.so</b></tt></pre></td></tr></tbody></table><p>Sh-utils и Shadow Password Suite устанавливают свои
+    программы
+<tt class="filename">groups</tt>. Если вы захотите удалить программу <tt class="filename">groups</tt>  из пакета Shadow Password
+Suite выполните:</p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>rm /bin/groups</b></tt></pre></td></tr></tbody></table></div><div class="sect2"><h2 class="sect2"><a name="AEN5176">Пояснения команд</a></h2><p><tt class="userinput"><b>cp limits login.access /etc:</b></tt>  Эти файлы не инсталлируются при установке
+    пакета, поэтому необходимо скопировать
+    их вручную, т.к. они необходимы для
+    настроек аутентификации системы.</p><p><tt class="userinput"><b>sed "s%/var/spool/mail%/var/mail%" login.defs.linux &gt;
+/etc/login.defs</b></tt>: /var/spool/mail устаревшее местонахождение
+    почтовых ящиков пользователей. На
+    сегодняшний день используется каталог /var/mail.</p><p><tt class="userinput"><b>ln -s vipw vigr:</b></tt>  В соответствии с страницой руководства
+    команды vipw, на эту команду должна
+    существовать символическая ссылка vigr.
+    Так как при инсталляции Shadow эта
+    символическая ссылка не создается,
+    создадим ее вручную.</p></div><div class="sect2">
+<div class="sect2"><h2 class="sect2"><a name="AEN8264">Содержимое Shadow</a></h2><p>Последняя проверка: версия 4.0.3.</p><div class="sect3"><h3 class="sect3"><a name="AEN8267">Программы</a></h3><p>chage, chfn, chpasswd, chsh, dpasswd, expiry, faillog, gpasswd,
+groupadd, groupdel, groupmod, groups, grpck, grpconv, grpunconv,
+lastlog, login, logoutd, mkpasswd, newgrp, newusers, passwd, pwck,
+pwconv, pwunconv, sg (ссылка на newgrp), useradd, userdel, usermod, vigr
+(ссылка на vipw) и vipw</p></div><div class="sect3"><h3 class="sect3"><a name="AEN8270">Описания</a></h3><div class="sect4"><h4 class="sect4"><a name="AEN8272">chage</a></h4><p>chage изменяет число дней между сменами паролей и дату последнего
+изменения.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8275">chfn</a></h4><p>chfn изменяет полное имя пользователя и прочую информацию о нем
+(номер рабочего кабинета, рабочий и домашний телефоны).</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8278">chpasswd</a></h4><p>chpasswd читает файл, содержащий пользовательские имена и пароли, и
+использует эту информацию для обновления группы существующих
+пользователей.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8281">chsh</a></h4><p>chsh меняет командный интерпретатор, используемый пользователем.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8284">dpasswd</a></h4><p>dpasswd добавляет, удаляет и обновляет пароли dial-up подключений
+для командных оболочек.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8287">expiry</a></h4><p>expiry просматривает и изменяет правила истечения срока действия
+паролей.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8290">faillog</a></h4><p>faillog форматирует содержимое журнала ошибок /var/log/faillog и
+поддерживает счетчики и лимиты ошибок.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8293">gpasswd</a></h4><p>gpasswd используется для редактирования /etc/group.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8296">groupadd</a></h4><p>groupadd создает новую группу, используя заданные параметры и
+параметры по умолчанию.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8299">groupdel</a></h4><p>groupdel изменяет файлы учетных записей, удаляя все относящееся к
+заданной группе.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8302">groupmod</a></h4><p>groupmod изменяет файлы учетных записей групп, внося заданные
+изменения.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8305">groups</a></h4><p>groups выводит группы, к которым принадлежит пользователь.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8308">grpck</a></h4><p>grpck проверяет целостность системной информации об аутентификации.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8311">grpconv</a></h4><p>grpunconv конвертирует обычные файлы групп в теневые.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8314">grpunconv</a></h4><p>grpunconv конвертирует теневые файлы групп в обычные.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8317">lastlog</a></h4><p>lastlog форматирует и выводит содержимое журнала регистраций
+/var/log/lastlog. Выводится регистрационное имя, порт и время
+регистрации.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8320">login</a></h4><p>login используется для начала новой сессии работы с системой.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8323">logoutd</a></h4><p>logoutd контролирует время регистрации и прочие ограничения,
+указанные в /etc/porttime.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8326">mkpasswd</a></h4><p>mkpasswd читает файл в заданном формате и конвертирует его в базу
+данных соответствующего формата.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8329">newgrp</a></h4><p>newgrp изменяет текущую группу.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8332">newusers</a></h4><p>newusers читает файл с именами пользователей и пустыми полями
+паролей и обновляет группу существующих пользователей или создает новых.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8335">passwd</a></h4><p>passwd меняет пароли пользователей и групп.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8338">pwck</a></h4><p>pwck проверяет целостность файлов паролей.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8341">pwconv</a></h4><p>pwconv конвертирует обычный файл паролей в теневой.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8344">pwunconv</a></h4><p>pwunconv конвертирует теневой файл паролей в обычный.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8347">sg</a></h4><p>sg меняет GID пользователя на соответствующий указанной группе или
+выполняет заданную команду с правами указанной группы.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8350">useradd</a></h4><p>useradd создает нового пользователя или обновляет данные по
+умолчанию о новых пользователях.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8353">userdel</a></h4><p>userdel изменяет файлы, содержащие информацию о пользователях,
+удаляя все записи, относящиеся к указаннному регистрационному имени.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8356">usermod</a></h4><p>usermod изменяет файлы учетных записей пользователей, внося заданные
+изменения..</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8359">vipw и vigr</a></h4><p>vipw и vigr позволяют безопасно редактировать /etc/passwd и
+/etc/group. С флагом -s будут редактироваться теневые версии файлов,
+/etc/shadow и /etc/gshadow.</p></div></div><div class="sect3"><h3 class="sect3"><a name="AEN8362">Библиотеки</a></h3><p>libmisc.[a,so], libshadow.[a,so]</p></div><div class="sect3"><h3 class="sect3"><a name="AEN8365">Descriptions</a></h3><div class="sect4"><h4 class="sect4"><a name="AEN8367">libmisc</a></h4><p>На данный момент нет описания.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8370">libshadow</a></h4><p>libshadow предоставляет большинство функций для программ shadow.</p></div></div></div>
+<div class="sect2"><h2 class="sect2"><a name="AEN8373">Зависимости Shadow</a></h2><p>Последняя проверка: версия 20001016.</p><p class="literallayout">Autoconf: autoconf, autoheader<br>
+Automake: aclocal, automake<br>
+Bash: sh<br>
+Binutils: ar, as, ld, nm, ranlib<br>
+Diffutils: cmp<br>
+Fileutils: chmod, cp, install, ln, ls, mkdir, mv, rm, rmdir<br>
+Gettext: msgfmt, xgettext<br>
+Gcc: cc1, collect2, cpp0, gcc<br>
+Glibc: ldconfig<br>
+Grep: egrep, grep<br>
+M4: m4<br>
+Make: make<br>
+Gawk: gawk<br>
+Net-tools: hostname<br>
+Sed: sed<br>
+Sh-utils: basename, echo, expr, sleep, uname<br>
+Texinfo: makeinfo<br>
+Textutils: cat, sort, tr, uniq</p></div>
+<h2 class="sect2"></h2></div></div><div class="NAVFOOTER"><hr align="Left" width="100%" /=""><table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="33%" align="Left" valign="Top"><a href="psmisc.html" accesskey="P">Назад</a></td><td width="34%" align="Center" valign="Top"><a href="../index.html" accesskey="H">Домой</a></td><td width="33%" align="Right" valign="Top"><a href="sysklogd.html" accesskey="N">Вперед</a></td></tr><tr><td width="33%" align="Left" valign="Top">Установка Psmisc-21</td><td width="34%" align="Center" valign="Top"><a href="chapter06.html" accesskey="U">Наверх</a></td><td width="33%" align="Right" valign="Top">Установка Sysklogd-1.4.1</td></tr></tbody></table></div></body></html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>Installing Lilo-22.2</title><meta name="GENERATOR" content="Microsoft FrontPage 4.0" /=""><link rel="HOME" title="Linux From Scratch" href="http://www.linuxfromscratch.org/view/4.0/index.html" /=""><link rel="UP" title="Installing basic system software" href="http://www.linuxfromscratch.org/view/4.0/chapter06/chapter06.html" /=""><link rel="PREVIOUS" title="Installing Man-1.5k" href="http://www.linuxfromscratch.org/view/4.0/chapter06/man.html" /=""><link rel="NEXT" title="Installing Make-3.79.1" href="http://www.linuxfromscratch.org/view/4.0/chapter06/make.html" /=""></head><body class="sect1" bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#840084" alink="#006000"><div class="NAVHEADER" style="width: 756px; height: 61px; "><table summary="Header navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><th colspan="3" align="Center">Linux From Scratch: Версия 4.0</th></tr><tr><td width="10%" align="Left" valign="Bottom"><a href="man.html" accesskey="P">Назад</a></td><td width="80%" align="Center" valign="Bottom">Глава 6. Установка основных компонентов
+        системы</td><td width="10%" align="Right" valign="Bottom"><a href="make.html" accesskey="N">Вперед</a></td></tr></tbody></table><hr align="Left" width="100%" /=""></div><div class="sect1"><h1 class="sect1"><a name="ch06-lilo">Установка Lilo-22.2</a></h1><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen">Приблизительное время компиляции:           0.08 SBU<br>Необходимое дисковое пространство:  3 MB</pre></td></tr></tbody></table><div class="sect2"><h2 class="sect2"><a name="AEN4827">Инсталляция Lilo</a></h2><p>Мы выбрали LILO в качестве загрузчика, потому
+    что с ним на комфортно, однако вы можете
+    выбрать другой. Fabio Fracassi написал
+    руководство по установке GRUB, см. <a href="http://hints.linuxfromscratch.org/hints/grub-howto.txt" target="_top">http://hints.linuxfromscratch.org/hints/grub-howto.txt</a>.</p><p>Для инсталляции Lilo выполните:</p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>make &amp;&amp;<br>make install</b></tt></pre></td></tr></tbody></table><p>При компиляции этого пакета с опцией -g на
+    некоторых компьютерах возникают
+    проблемы. В случае если LILO не
+    компилируется, удалите -g из значения
+    переменной CFLAGS в файле
+<tt class="filename">Makefile</tt>.</p><p>В самом конце инсталляции, процедура make
+    install выведет на экран сообщение о том, что
+    необходимо выполнить команду /sbin/lilo для
+    обновления. Не делайте этого, т.к. на
+    данной стадии это бессмысленно: не
+    существует файла /etc/lilo.conf. Завершение
+    процесса установки LILO описано в Главе 8.</p><p>Стандартное приглашение (меню) LILO можно
+    заменить логотипом LFS или любым другим по
+    вашему усмотрению. См. руководство
+    Мартина Имоберстега на <a href="http://hints.linuxfromscratch.org/hints/bootlogo.txt" target="_top">http://hints.linuxfromscratch.org/hints/bootlogo.txt</a>.</p></div><div class="sect2">
+<div class="sect2"><h2 class="sect2"><a name="AEN7562">Содержимое Lilo</a></h2><p>Последняя проверка: версия 22.2.</p><div class="sect3"><h3 class="sect3"><a name="AEN7565">Программы</a></h3><p>lilo, mkrescue и keytab-lilo.pl</p></div><div class="sect3"><h3 class="sect3"><a name="AEN7568">Описания</a></h3><div class="sect4"><h4 class="sect4"><a name="AEN7570">lilo</a></h4><p>lilo устанавливает загрузчик Linux,  используемый для старта системы.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7573">mkrescue</a></h4><p>mkrescue создает загрузочную дискету, используя существующее ядро и
+любой инициализационный ramdisk.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7576">keytab-lilo.pl</a></h4><p>keytab-lilo.pl компилирует определения keytable в формат, который
+lilo может использовать для настройки клавиатуры во время загрузки.</p></div></div></div>
+<div class="sect2"><h2 class="sect2"><a name="AEN7579">Зависимости Lilo</a></h2><p>Последняя проверка: версия 22.1.</p><p class="literallayout">Bash: sh<br>
+Bin86: as86, ld86<br>
+Binutils: as, ld, strip<br>
+Fileutils: cp, dd, ln<br>
+Gcc: cc, cc1, collect2, cpp0<br>
+Make: make<br>
+Sed: sed<br>
+Textutils: cat</p></div>
+<h2 class="sect2"></h2></div></div><div class="NAVFOOTER"><hr align="Left" width="100%" /=""><table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="33%" align="Left" valign="Top"><a href="man.html" accesskey="P">Назад</a></td><td width="34%" align="Center" valign="Top"><a href="../index.html" accesskey="H">Домой</a></td><td width="33%" align="Right" valign="Top"><a href="make.html" accesskey="N">Вперед</a></td></tr><tr><td width="33%" align="Left" valign="Top">Установка Man-1.5k</td><td width="34%" align="Center" valign="Top"><a href="chapter06.html" accesskey="U">Наверх</a></td><td width="33%" align="Right" valign="Top">Установка Make-3.79.1</td></tr></tbody></table></div></body></html>

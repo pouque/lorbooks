@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE>                  Linux Modem sharing mini-HOWTO: Серверная сторона</TITLE>
+ <LINK HREF="Linux-Modem-Sharing-HOWTO-3.html" REL=next>
+ <LINK HREF="Linux-Modem-Sharing-HOWTO-1.html" REL=previous>
+ <LINK HREF="Linux-Modem-Sharing-HOWTO.html#toc2" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="Linux-Modem-Sharing-HOWTO-3.html">Next</A>
+<A HREF="Linux-Modem-Sharing-HOWTO-1.html">Previous</A>
+<A HREF="Linux-Modem-Sharing-HOWTO.html#toc2">Contents</A>
+<HR>
+<H2><A NAME="s2">2. Серверная сторона</A></H2>
+
+<P> 
+Предполагается, что сервер - это Linux машина с одним из двух устройств:
+<UL>
+<LI>        модемом, включенным как устройство <CODE>/dev/ttySx</CODE>
+    </LI>
+<LI>        модемом, эмулирующим <CODE>'isdn4linux'</CODE>, включенным как устройство 
+<CODE>/dev/ttyIx</CODE> </LI>
+</UL>
+    
+Наиболее простая настройка, как мне кажется, это 'модем-демон' - пять 
+строчек на perl.
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+        $ cat /usr/sbin/modemd
+    
+        #!/usr/bin/perl
+        select((select(STDOUT), $| = 1)[$[]);
+        select((select(STDIN), $| = 1)[$[]);
+        exec 'cu -s 115200 -l /dev/ttyS1';
+        die '$0: Cant exec cu: $!\n';
+</PRE>
+</CODE></BLOCKQUOTE>
+    
+Модем-демон запускается процессом INETD, если клиент подключается к 
+соответствующему порту, как описано ниже. <CODE>'modemd'</CODE> просто соединяет
+обработчик сокета с потоками STDIN и STDOUT команды <CODE>'cu'</CODE> и разрешает
+<CODE>'cu'</CODE> работать с модемом. если у вас нет <CODE>'cu'</CODE>, инсталлируйте пакет <CODE>'UUCP'</CODE>,
+<CODE>'cu'</CODE> обычно входит в пакет <CODE>'UUCP'</CODE>.
+<P>    
+Процессу INETD надо дать знать о существовании modemd. Отредактируйте
+файл настроек, обычно это <CODE>/etc/inetd.conf</CODE> :
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+        #
+        # modem daemon
+        #
+        modem stream tcp nowait root /usr/sbin/tcpd /usr/sbin/modemd /dev/ttyS1
+</PRE>
+</CODE></BLOCKQUOTE>
+    
+Чтобы это заработало, нужно добавить в '/etc/services' :
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+        modem           2006/tcp        modemd
+</PRE>
+</CODE></BLOCKQUOTE>
+    
+Эта запись связывает символическую ссылку с указанным портом (2006)
+Номер порта должен быть любым незанятым другим сервисом.
+<P> 
+После этих изменений надо перезапустить inetd, чтобы он перечитал сви
+настройки.
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+        $ ps |grep inetd
+        194  ?  S     0:00 /usr/sbin/inetd
+    
+        $ kill -HUP 194
+</PRE>
+</CODE></BLOCKQUOTE>
+    
+Серверная сторона готова к приему клиентов. Правильность настроек можно 
+проверить:
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+        $ telnet localhost modem
+    
+        Trying 127.0.0.1...
+        Connected to localhost.
+        Escape character is '^]'.
+</PRE>
+</CODE></BLOCKQUOTE>
+ 
+Сейчас вы подключены к модему. Вы можете ввести команду <CODE>'AT'</CODE> для проверки
+настройки:
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+        atz
+        atz
+        OK
+    
+        ati1
+        ati1
+        Linux ISDN
+        OK
+    
+        ^]
+        telnet>quit
+        $
+</PRE>
+</CODE></BLOCKQUOTE>
+    
+Вместо использования Perl-скрипта в качестве модемного сервера можно также
+использовать программу <CODE>'mserver'</CODE>. Ее можно взять на
+<A HREF="ftp://ftp.innet.be/pub/staff/carl/">ftp://ftp.innet.be/pub/staff/carl/</A>. Если ссылка не работает, воспользуйтесь
+<CODE>'archie'</CODE> или другим средством поиска. Пока что я не имел удовольствия
+ставить и использовать <CODE>mserver</CODE>.
+<P>
+<HR>
+<A HREF="Linux-Modem-Sharing-HOWTO-3.html">Next</A>
+<A HREF="Linux-Modem-Sharing-HOWTO-1.html">Previous</A>
+<A HREF="Linux-Modem-Sharing-HOWTO.html#toc2">Contents</A>
+</BODY>
+</HTML>

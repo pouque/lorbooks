@@ -1,0 +1,168 @@
+<HTML>
+<HEAD>
+<!-- Created by texi2html 1.56k from automake-ru.texi on 11 July 2000 -->
+
+<TITLE>automake - Другие утилиты GNU</TITLE>
+</HEAD>
+<BODY>
+Go to the <A HREF="automake-ru_1.html">first</A>, <A HREF="automake-ru_8.html">previous</A>, <A HREF="automake-ru_10.html">next</A>, <A HREF="automake-ru_25.html">last</A> section, <A HREF="automake-ru_toc.html">table of contents</A>.
+<P><HR><P>
+
+
+<H1><A NAME="SEC42" HREF="automake-ru_toc.html#TOC42">Другие утилиты GNU</A></H1>
+
+<P>
+Поскольку Automake в основном предназначен для генерации файлов
+<TT>`Makefile.in'</TT> для использования в программах проекта GNU, то он
+старается взаимодействовать с другими утилитами GNU.
+
+
+
+
+<H2><A NAME="SEC43" HREF="automake-ru_toc.html#TOC43">Emacs Lisp</A></H2>
+
+<P>
+<A NAME="IDX348"></A>
+<A NAME="IDX349"></A>
+<A NAME="IDX350"></A>
+
+
+<P>
+<A NAME="IDX351"></A>
+<A NAME="IDX352"></A>
+<A NAME="IDX353"></A>
+
+
+<P>
+Automake предоставляет некоторую поддержку Emacs Lisp. Основная
+переменная <SAMP>`LISP'</SAMP> используется для хранения списка файлов
+<TT>`.el'</TT>. Возможными префиксами являются <SAMP>`lisp_'</SAMP> и
+<SAMP>`noinst_'</SAMP>. Заметьте, что если определена переменная
+<CODE>lisp_LISP</CODE>, то в <TT>`configure.in'</TT> должен использоваться макрос
+<CODE>AM_PATH_LISPDIR</CODE> (see section <A HREF="automake-ru_5.html#SEC17">Макросы Autoconf, поставляемые с Automake</A>).
+
+
+<P>
+<A NAME="IDX354"></A>
+
+
+<P>
+По умолчанию Automake будет производить байт-компиляцию всех исходных
+текстов Emacs Lisp, используя Emacs, который найден при выполнении
+макроса <CODE>AM_PATH_LISPDIR</CODE>. Если вы не хотите производить
+байт-компиляцию, то просто определите переменную <CODE>ELCFILES</CODE> с
+пустым значением. Байт-скомпилированные файлы Emacs Lisp не переносимы
+между разными версиями Emacs, так что отключите компиляцию, если
+ожидаете, что целевые машины будут иметь несколько разных версий Emacs. 
+К тому же, многие пакеты на самом деле работают после байт-компиляции не 
+лучше. Однако мы
+рекомендуем вам оставить эту возможность разрешенной. Серверам с такими
+странными установками лучше дать возможность справиться самим, чем
+затруднять установку для остальных людей.
+
+
+
+
+<H2><A NAME="SEC44" HREF="automake-ru_toc.html#TOC44">Gettext</A></H2>
+
+<P>
+<A NAME="IDX355"></A>
+<A NAME="IDX356"></A>
+<A NAME="IDX357"></A>
+
+
+<P>
+Если в файле <TT>`configure.in'</TT> есть макрос <CODE>AM_GNU_GETTEXT</CODE>, то
+Automake включает поддержку GNU gettext, системы каталогов сообщений для
+интернационализации (see section `GNU Gettext' in <CITE>Утилиты GNU gettext</CITE>).
+
+
+<P>
+Поддержка <CODE>gettext</CODE> в Automake требует добавления в пакет двух
+подкаталогов, <TT>`intl'</TT> и <TT>`po'</TT>. Automake проверяет, что эти
+подкаталоги существуют и упомянуты в переменной <CODE>SUBDIRS</CODE>.
+
+
+<P>
+Также Automake проверяет, что определение переменной <CODE>ALL_LINGUAS</CODE>
+в файле <TT>`configure.in'</TT> соответствует в точности всем файлам
+<TT>`.po'</TT>, ни больше, ни меньше.
+
+
+
+
+<H2><A NAME="SEC45" HREF="automake-ru_toc.html#TOC45">Guile</A></H2>
+
+<P>
+Automake обеспечивает некоторую автоматическую поддержку написания
+модулей Guile. Automake включит поддержку Guile, если в
+<TT>`configure.in'</TT> используется макрос <CODE>AM_INIT_GUILE_MODULE</CODE>.
+
+
+<P>
+В настоящее время поддержка Guile означает, что при выполнении макроса 
+<CODE>AM_INIT_GUILE_MODULE</CODE> будет:
+
+<UL>
+<LI>
+
+Запущен макрос <CODE>AM_INIT_AUTOMAKE</CODE>.
+
+<LI>
+
+Запущен макрос <CODE>AC_CONFIG_AUX_DIR</CODE> с параметром <TT>`..'</TT>.
+</UL>
+
+<P>
+Когда Guile станет лучше поддерживать модули, нет никаких сомнений, что
+их поддержка в
+Automake будет развиваться.
+
+
+
+
+<H2><A NAME="SEC46" HREF="automake-ru_toc.html#TOC46">Libtool</A></H2>
+
+<P>
+Automake предоставляет поддержку GNU Libtool (see section `Introduction' in <CITE>The Libtool Manual</CITE>) с основной переменной
+<SAMP>`LTLIBRARIES'</SAMP>.  See section <A HREF="automake-ru_7.html#SEC24">Построение разделяемых библиотек</A>.
+
+
+
+
+<H2><A NAME="SEC47" HREF="automake-ru_toc.html#TOC47">Java</A></H2>
+
+<P>
+<A NAME="IDX358"></A>
+<A NAME="IDX359"></A>
+<A NAME="IDX360"></A>
+
+
+<P>
+Automake предоставляет минимальную поддержку компиляции файлов Java,
+используя основную переменную <SAMP>`JAVA'</SAMP>.
+
+
+<P>
+Все файлы <TT>`.java'</TT>, перечисленные в переменной <SAMP>`_JAVA'</SAMP>, будут
+скомпилированы с помощью <CODE>JAVAC</CODE>.  По умолчанию, файлы с расширением
+<TT>`.class'</TT> не включаются в дистрибутив.
+
+
+<P>
+<A NAME="IDX361"></A>
+
+
+<P>
+В настоящее время Automake принуждает к тому, что в каждом
+<TT>`Makefile.am'</TT> может быть использована только одна переменная
+<SAMP>`_JAVA'</SAMP>. Причиной этого ограничения является то, что невозможно
+узнать, какие файлы <TT>`.class'</TT> будут сгенерированы из файлов
+<TT>`.java'</TT> -- так что может быть невозможным узнать, какие файлы и куда
+необходимо устанавливать.
+
+
+<P><HR><P>
+Go to the <A HREF="automake-ru_1.html">first</A>, <A HREF="automake-ru_8.html">previous</A>, <A HREF="automake-ru_10.html">next</A>, <A HREF="automake-ru_25.html">last</A> section, <A HREF="automake-ru_toc.html">table of contents</A>.
+</BODY>
+</HTML>

@@ -1,0 +1,443 @@
+<TITLE>Краткое руководство по настройке uucp почты под Unix.</TITLE>
+<BODY>
+<?php include("/home/maxcom/linux_html/books/head.php3") ?>
+<CENTER><H1>Краткое руководство по настройке uucp почты под Unix.
+</H1></CENTER>
+<ADDRESS>Victor Sudakov</ADDRESS>
+<ADDRESS><A HREF="mailto:vas@vas.tsu.tomsk.su">vas@vas.tsu.tomsk.su</A>
+</ADDRESS>
+<ADDRESS>Версия 1.1, Дата последнего обновления 1998/3/8</ADDRESS>
+<HR>
+UUCP (Unix to Unix copy) предназначен для копирования файлов между машинами
+и для выполнения команд на удаленной машине. Его использование для передачи
+почты - только одно из возможных применений.
+<P>Hастоящее руководство ориентировано на FreeBSD и Taylor UUCP, в других
+системах все может быть совсем по-другому :-)
+<P>Представим себе, что вы являетесь узлом, который обменивается почтой с
+внешним миром через хост mail.provider.ru и раздает почту еще трем хостам:
+host1.your.domain.org, host2.your.domain.org, host3.your.domain.org. Весь
+обмен почтой происходит по uucp. При этом host1.your.domain.org,
+host2.your.domain.org, host3.your.domain.org звонят вам, а вы звоните
+mail.provider.ru.
+<P>Будем считать, что четыре машины, с которыми вам предстоит наладить
+обмен почтой по uucp, имеют следующие uucp-имена: provider, host1, host2 и
+host3 соответственно. Вообще-то доменное имя системы (hostname) и uucp-имя
+этой же самой системы совершенно не обязаны совпадать. Hапример,
+host2.your.domain.org вполне мог бы иметь uucp-имя foo или bar. Если мы
+здесь и выбрали совпадающие имена, это было сделано только для удобства
+изложения.
+<P>
+Пусть ваше собственное доменное имя будет yourhost.your.domain.org, а ваше
+uucp-имя будет yourhost.
+<P>
+Hастройка uucp почты в Unix подразумевает следующие шаги:
+<LI>настройка собственно uucp;
+<LI>настройка sendmail;
+<LI>разное.
+<HR>
+<H1>1. Hастройка собственно uucp</H1>
+<LI>
+Чтобы настроить uucp, надо настроить его конфиги. Вот они:
+<PRE>
+total 12
+drwxrwx---   3 uucp  uucp    512 15 ноя 16:23 ./
+drwxr-xr-x  10 root  wheel  2048 30 дек 21:44 ../
+-r--r-----   1 uucp  uucp     61 23 янв  1997 call
+-r--r-----   1 uucp  uucp    260  8 апр  1997 config
+-rw-r-----   1 uucp  uucp    250  3 сен 20:51 dial
+-r--r-----   1 uucp  uucp      1 25 авг  1996 dialcode
+-r--r-----   1 uucp  uucp     14 21 апр  1997 passwd
+-r--r-----   1 uucp  uucp     96 29 май  1997 port
+drwxr-xr-x   2 root  uucp    512 15 ноя 12:08 samples/
+-r--r-----   1 uucp  uucp    160 28 май  1997 sysin
+-r--r-----   1 uucp  uucp    366 16 ноя 16:06 sysout
+</PRE>
+<H1>1.1 call</H1>
+<P>В этом файле описывается ваш логин и пароль для прозвонки на другие
+uucp-машины. Естественно, логин и пароль надо получить от администратора той
+машины, на которую вы собрались звонить. В нашем случае он будет выглядеть
+примерно так:
+<PRE>
+======= call  ======
+
+# system     login      password
+provider uuyourhost Your_Secret_Password
+
+======= call  ======
+</PRE>
+<H1>1.2 config</H1>
+<P>
+В этом файле описываются различные параметры uucp, в основном пути и имена
+файлов, тут почти ничего не надо менять. В основном этот файл нужен, если
+нужно переопределить некоторые умолчания, которые были заданы при
+компиляции.
+<PRE>
+======= config  ======
+
+nodename yourhost # здесь надо указать ваше собственное uucp-имя
+spool /var/spool/uucp
+pubdir /var/spool/uucppublic
+logfile /var/spool/uucp/Log
+statfile /var/spool/uucp/Stats
+debugfile /var/spool/uucp/Debug
+sysfile sysin sysout # имена файлов с описаниями систем - ваших линков
+portfile port
+dialfile dial
+dialcodefile dialcode
+callfile call
+passwdfile passwd
+# количество одновременно выполняемых процессов раскладки почты
+max-uuxqts 1
+
+======= config  ======
+</PRE>
+Последний параметр подсказал мне Igor Nikolaev (2:5030/266@fidonet). Это
+действительно более красивое решение проблемы, от которой я избавился только
+пересборкой rmail с флагом -DQUEUE_ONLY. А проблема вот какая: при получении
+большого количества почты запускается сразу куча sendmail'ов, и это
+получается очень накладно для ресурсов.
+
+<H1>1.3 dial</H1>
+Это файл с описаниями модемов. Беру его без изменений со своей системы, imho
+тут и так все понятно. Полезно также посмотреть man chat и руководство к
+своему собственному модему. 
+<PRE>
+======= dial  ======
+
+dialer idc # произвольное имя модема, под которым он будет известен uucp
+dialtone w
+pause ,
+#chat "" ATZ\r\d\c OK ATM0DPW\T CONNECT \p\c
+chat "" ATZ\r\d\c OK ATM0DT\T CONNECT \p\c
+chat-fail BUSY
+chat-fail ERROR
+chat-fail NO\sDIALTONE
+chat-fail NO\sCARRIER
+#complete \d\d+++\d\dATH\r\c
+#abort \d\d+++\d\dATH\r\c
+
+======= dial  ======
+</PRE>
+Обратите внимание, что последние две строчки закомментарены. Если модем
+умеет сам класть трубку по окончании соединения или по опусканию DTR, они не
+нужны. Если их оставить, вреда они не принесут, просто uucp будет в логах
+ругаться.
+Еще хочу заметить - описаний модемов может быть сколько угодно, естественно,
+под разными именами.
+
+<H1>1.4 dialcode</H1>
+
+Служит для хитрого набора номера и imho вообще не нужен. У меня имеет
+нулевую длину.
+
+<H1>1.5 passwd</H1>
+
+В этом файле содержатся логин и соответствующий ему пароль для тех систем,
+которые будут звонить вам. 'uucico -l' само умеет авторизовать позвонивших
+пользователей, предлагая им при этом ввести логин и пароль, и проверяет
+верность пароля по этому файлу.
+
+Какие логины и пароли вы дадите своим даунлинкам - дело ваше. Учтите только,
+что удобнее и правильнее дать им логины, которые начинаются одинаково,
+например, с двух букв uu. Почему это так - объяснится позже.
+
+Пример:
+<PRE>
+======= passwd  ======
+
+uuhost1       Top_Secret_Password
+uuhost2       Smart_Password
+uuhost3       Stupid_Password
+
+======= passwd  ======
+</PRE>
+
+<H1>1.6 port</H1>
+
+В этом файле содержится описание портов. Портов может быть много. Каждый
+порт имеет свое имя, которое и используется в дальнейшем в файлах с
+описаниями систем - ваших линков.
+
+Imho тут все понятно. Hабор параметров не ограничивается нижеприведенным
+примером, если надо сделать что-нибудь особенно хитрое - читайте описание к
+Taylor UUCP. 
+<PRE>
+======= port  ======
+
+port port1 # имя порта
+type modem
+device /dev/cuaa1
+dialer idc
+speed 38400
+
+port port2 # тоже имя порта
+type tcp
+service 540
+
+======= port  ======
+</PRE>
+<H1>1.7 sysin</H1>
+
+Это файл с описаниями систем, которые будут звонить вам.
+<PRE>
+======= sysin  ======
+
+call-login *
+call-password *
+local-send /
+local-receive /
+port port1 # это, как вы помните, у нас модемный порт
+chat-timeout 90
+protocol g # возможно, вы захотите использовать какой-нибудь другой протокол
+time never # звонят только они, вы им никогда не звоните
+debug 1
+
+system host1
+myname yourhost # как вы представитесь системе host1, когда она позвонит
+called-login uuhost1
+
+system host2
+myname yourhost
+called-login uuhost2
+
+system host3
+myname yourhost
+called-login uuhost3
+
+======= sysin  ======
+</PRE>
+Зачем нужны первые четыре строчки и строчка called-login - не спрашивайте.
+Hе помню, но так надо. В документации описано, кому сильно интересно -
+вперед.
+
+<H1>1.8 sysout</H1>
+
+В этом файле удобно прописать те системы, на которые вы сами собираетесь
+звонить. В данном случае у нас только одна такая система - ваш провайдер.
+<PRE>
+======= sysout  ======
+
+call-login *
+call-password *
+local-send /
+local-receive /
+port port1
+chat-timeout 90
+protocol g
+time any # звонить в любое время. А вообще время можно задавать очень гибко.
+debug 1
+
+system provider
+chat ogin: \L word: \P # берется из файла call
+phone 111111
+alternate # так делается перебор номеров
+phone 222222
+alternate
+phone 333333
+
+======= sysout  ======
+</PRE>
+Корректность настройки всех конфигов можно проверить, запустив uuchk.
+
+Осталась еще самая малость. Чтобы периодически звонить своему провайдеру за
+почтой, вставьте строчку в ваш /etc/crontab, типа:
+
+<DT>0 * * * * uucp /usr/libexec/uucp/uucico -S provider
+<DT>
+Как принимать входящие звонки по uucp, описано в пункте 3.1
+<HR>
+<H1>2. Hастройка sendmail</H1>
+
+<H1>2.1 Hастройка sendmail.cf</H1>
+
+Hеобходимо создать новый sendmail.cf, который будет знать про uucp. Для его
+создания можно взять примерно вот такой файл-прототип:
+<PRE>
+====== uucp.mc =========
+
+divert(-1)
+include(`../m4/cf.m4')
+VERSIONID(`@(#)uucp.mc 1.01')
+OSTYPE(bsd4.4)dnl
+
+MAILER(local)dnl
+MAILER(smtp)dnl
+MAILER(uucp)dnl
+
+FEATURE(nodns)dnl
+FEATURE(nocanonify)dnl
+FEATURE(mailertable)dnl
+FEATURE(uucpdomain)dnl
+
+define(`SMART_HOST', `uucp-dom:provider')dnl
+define(`confCOPY_ERRORS_TO', `postmaster')dnl
+
+====== uucp.mc =========
+</PRE>
+После чего 
+
+<DT>m4 uucp.mc > /etc/sendmail.cf
+<P>
+Обратите внимание, что MAILER(smtp) убирать нельзя, даже если никакого smtp
+не предвидится. Он все равно нужен для того, чтобы работал мейлер uucp-dom.
+Это мейлер, который знает про доменную форму имен - вам же не хочется, чтобы
+адреса в письмах были в формате uucp (через восклицательные знаки).
+
+<H1>2.2 Hастройка mailertable</H1>
+
+Маршрутизация uucp почты происходит согласно правилам, описанным в
+mailertable. Иначе и нельзя - ведь uucp ничего не знает про DNS (хотя мейлер
+uucp-dom и знает про имена машин в доменной форме).
+
+В простейшем случае, чтобы просто заливать почту своему
+провайдеру, достаточно будет mailertable в таком формате:
+<PRE>
+======= /etc/mailertable ======
+
+.  uucp-dom:provider
+
+======= /etc/mailertable ======
+</PRE>
+Где provider - это uucp-имя системы провайдера (система должна быть описана в
+/etc/uucp/sysout)
+
+Точка здесь выступает в роли символа подстановки и означает то же самое, что
+у нормальных людей означает звездочка, то есть любое количество любых
+символов.
+
+Если вы не являетесь оконечной системой, то есть раздаете почту кому-то еще
+по uucp, то ваш mailertable может выглядеть так:
+<PRE>
+======= /etc/mailertable ======
+
+.host1.your.domain.org    uucp-dom:host1
+host1.your.domain.org     uucp-dom:host1
+.host2.your.domain.org    uucp-dom:host2
+host2.your.domain.org     uucp-dom:host2
+.host3.your.domain.org    uucp-dom:host3
+host3.your.domain.org     uucp-dom:host3
+.         uucp-dom:provider
+
+======= /etc/mailertable ======
+</PRE>
+Одиночная точка в конце означает - все остальное сваливать на провайдера, он
+сам разберется.
+
+Разумеется, речь в mailertable идет только об именах машин. Про
+пользователей он ничего не знает. То есть, записи
+
+<DT>host1.your.domain.org     uucp-dom:host1
+<DT>.host1.your.domain.org    uucp-dom:host1
+<P>
+означают только то, что почта для машин 
+
+<DT>host1.your.domain.org
+<DT>foo.host1.your.domain.org
+<DT>bar.host1.your.domain.org
+<DT>foo.bar.host1.your.domain.org 
+<P>
+и т.п. будет направляться через uucp-систему host1.
+
+Осталось только добавить, что sendmail использует mailertable в виде
+database map, поэтому осталось проделать следующее:
+
+<DT>makemap hash /etc/mailertable.db < mailertable
+
+<H1>2.3 Hастройка uudomain</H1>
+
+Как уже указывалось ранее, доменное имя системы (hostname) и uucp-имя этой
+же самой системы совершенно не обязаны совпадать. Поэтому в файле uudomain
+настраивается соответствие доменного имени хоста и его uucp-имени. В этом
+файле должны быть описаны все системы, с которыми у вас есть прямые линки по
+uucp. Пользуясь нашим примером, ваш uudomain будет выглядеть примерно так:
+<PRE>
+======= /etc/uudomain ======
+
+host1     host1.your.domain.org
+host2     host2.your.domain.org
+host3     host3.your.domain.org
+provider  mail.provider.ru
+
+======= /etc/uudomain ======
+</PRE>
+uudomain, так же как и mailertable, должен быть в виде database map, поэтому
+
+<DT>makemap hash /etc/uudomain.db < uudomain
+<P>
+Теперь осталось только 
+
+<DT>kill -1 `cat /var/run/sendmail.pid`
+<HR>
+<H1>3. Разное</H1>
+
+<H1>3.1 Hастройка uucp-сервера.</H1>
+
+Предполагается, что ваша машина является почтовым сервером, на который ваши
+клиенты (host1.your.domain.org, host2.your.domain.org,
+host3.your.domain.org) будут ходить за почтой. Ходить за почтой они могут по
+телефону или по IP. Быть сервером uucp очень просто - когда клиент позвонит
+модемом или зайдет на 540 порт, ему надо подсунуть uucico в качестве shell.
+Лучше подсовывать uucico с ключом -l, тогда оно будет само спрашивать
+пароль, а брать пароли будет из собственного файла с паролями
+(/etc/uucp/passwd).
+
+Как это сделать - существует ряд способов.
+
+<H1>3.1.1 UUCP over IP</H1>
+
+Если ваша машина будет отдавать почту по uucp over IP, то надо
+закомментарить в /etc/inetd.conf стандартную строчку, относящуюся к uucpd, и
+добавить свою:
+
+<DT>uucpd  stream  tcp nowait  root   /usr/libexec/uucp/uucico uucico -l
+<P>
+Hе знаю, почему по умолчанию там стоит неработающая строчка, но
+поговаривают, что стоит она там в расчете на то, что будет использоваться не
+Taylor, а какая-то другая реализация UUCP.
+
+<H1>3.1.2 mgetty</H1>
+
+Если клиенты будут звонить по телефону, проще всего поставить mgetty,
+которая умеет по стандартным именам пользователей запускать им в качестве
+shell различные программки. Hапример, вот такая строчка в
+/usr/local/etc/mgetty+sendfax/login.config
+
+<DT>uu*     uucp    @       /usr/lib/uucp/uucico -l -u @
+<P>
+означает, что для всех пользователей с именами, начинающимися на uu, mgetty
+будет запускать uucico вместо /usr/bin/login. 
+
+Чем хорош такой вариант - в частности тем, что не надо прописывать
+uucp-клиентов в /etc/passwd. То есть uucico с ключом -l будет брать пароль
+из своего файла /etc/uucp/passwd
+
+<H1>3.1.3 /etc/passwd</H1>
+
+Этот вариант я лично не пробовал, но должен работать. Каждого uucp-клиента
+надо будет прописать в /etc/passwd, при этом его строчка будет выглядеть
+примерно так:
+
+<DT>uuhost1:*:66:66::0:0:host1 uucp
+<DT>system:/var/spool/uucppublic:/usr/libexec/uucp/uucico
+<P>
+В этом случае для авторизации позвонившего будет использоваться не
+/etc/uucp/passwd, а стандартный механизм авторизации пользователей через
+/etc/passwd.
+
+Как подсказывает Sergey Zimin: "У всех пользователей uid и gid должен быть
+одинаковым и совпадать с uid/gid псевдо-пользователя "uucp", который также
+должен быть обязательно в системе! Это нужно и для правильной работы и для
+секьюрности - (забыл конкретно где, но один нерадивый админ давал всем
+разные uid, как стандартным пользователям и его сломали по ftp) а например в
+случае uucp-пользователя его uid прописан в /etc/ftpusers как тот, кому
+нельзя ломиться по ftp".
+<HR>
+<DT>Составитель: Victor Sudakov, 2:5005/49@FidoNet
+<DT>Отзывы и предложения просьба присылать по адресу
+<A HREF="mailto:vas@vas.tsu.tomsk.su">vas@vas.tsu.tomsk.su</A>
+<DT>
+Большое спасибо всем, кто помог мне в составлении этого FAQ:
+<LI><A HREF="mailto:zss@gw.dic.ru">zss@gw.dic.ru</A> (Sergey Zimin)
+<LI>Igor Nikolaev (2:5030/266@fidonet)
+
+

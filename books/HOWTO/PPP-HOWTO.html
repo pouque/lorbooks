@@ -1,0 +1,250 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE>PPP HOWTO</TITLE>
+ <LINK HREF="PPP-HOWTO-1.html" REL=next>
+
+
+</HEAD>
+<BODY>
+<A HREF="PPP-HOWTO-1.html">Next</A>
+Previous
+Contents
+<HR>
+<H1>PPP HOWTO</H1>
+
+<H2>Автор
+Robert Hart, 
+<A HREF="mailto:hartr@interweft.com.au">hartr@interweft.com.au</A> <BR>
+Русский перевод
+Ilgiz Kalmetev,
+<A HREF="mailto:ilgiz@mail.rb.ru">ilgiz@mail.rb.ru</A></H2> Версия v3.0, 31 марта 1997
+<P><HR>
+<EM>Этот документ рассказывает как подключить ваш Linux PC к серверу PPP, как
+использовать PPP для того, чтобы связать две LAN вместе и предлагает один
+из методов настройки вашего компьютера с Linux в качестве сервера PPP. Документ также предлагает помощь по отладке неработающих PPP соединений.</EM>
+<HR>
+<P><B>Авторские права</B>
+<P>
+<P>Этот документ распространяется под GPL (GNU Public License).
+<P><B>Распространение</B>
+<P>Этот документ отсылаться по мере обновления в comp.os.linux.answers
+Также он доступен в формате HTML на:
+<UL>
+<LI>    
+<A HREF="http://sunsite.unc.edu/mdw/linux.html#howto">Linux Howto Index </A></LI>
+<LI>    
+<A HREF="http://www.interweft.com.au/other/ppp-howto/ppp-howto.html">PPP-HOWTO</A></LI>
+</UL>
+<P>Другие форматы (SGML, ASCII, postscript, DVI) доступны на 
+<A HREF="ftp://sunsite.unc.edu/pub/Linux/docs/HOWTO/other-formats">ftp://sunsite.unc.edu/pub/Linux/docs/HOWTO/other-formats</A>.
+<P>Так как sunsite.unc.edu обычно сильно загружен, пожалуйста, пользуйтесь
+соответствующими зеркалами.
+<P><B>Подтверждения</B>
+<P>Огромное число людей помогло мне в подготовке этого документа. Специальная 
+благодарность Al Longyear за непосредственное руководство по PPP (если здесь 
+имеются ошибки, то они не оттуда), Грэг Ханкинс (ведущий системы Linux Howto) 
+и Debi Tackett (MaximumAccess.com) за множество полезных предложений по стилю, 
+упорядочению содержания, логичность и ясность объяснений.
+<P>В заключение, благодарю всех тех людей, которые контактировали со мной по емайл и
+предлагали комментарии. Как и для всех авторов HOWTO, удовлетворение от помощи
+всем - эта та плата, которую мы получаем и ее нам достаточно. Написанием этого
+HOWTO я возмещаю свой маленький долг, который я - и все другие пользователи 
+Linux - должны людям, которые пишут и поддерживают выбранную нами ОС.
+<P>
+<P>
+<H2><A NAME="toc1">1.</A> <A HREF="PPP-HOWTO-1.html">Введение</A></H2>
+
+<UL>
+<LI><A HREF="PPP-HOWTO-1.html#ss1.1">1.1 Клиенты и серверы</A>
+<LI><A HREF="PPP-HOWTO-1.html#ss1.2">1.2 Различия между дистрибутивами Linux</A>
+<LI><A HREF="PPP-HOWTO-1.html#ss1.3">1.3 Инструментальные средства конфигурации PPP, специфичные для дистрибутивов </A>
+</UL>
+<P>
+<H2><A NAME="toc2">2.</A> <A HREF="PPP-HOWTO-2.html">IP адреса</A></H2>
+
+<P>
+<H2><A NAME="toc3">3.</A> <A HREF="PPP-HOWTO-3.html">Цели этого Документа</A></H2>
+
+<UL>
+<LI><A HREF="PPP-HOWTO-3.html#ss3.1">3.1 Установка PPP Клиента</A>
+<LI><A HREF="PPP-HOWTO-3.html#ss3.2">3.2 Связывание двух LAN или LAN c Интернет, используя PPP</A>
+<LI><A HREF="PPP-HOWTO-3.html#ss3.3">3.3 Установка PPP сервера</A>
+<LI><A HREF="PPP-HOWTO-3.html#ss3.4">3.4 Использование PPP по прямому нульмодемному соединению</A>
+<LI><A HREF="PPP-HOWTO-3.html#ss3.5">3.5 Этот документ в настоящее время не раскрывает ...</A>
+</UL>
+<P>
+<H2><A NAME="toc4">4.</A> <A HREF="PPP-HOWTO-4.html">Версии упомянутого программного обеспечения</A></H2>
+
+<P>
+<H2><A NAME="toc5">5.</A> <A HREF="PPP-HOWTO-5.html">Другие полезные/важные документы</A></H2>
+
+<UL>
+<LI><A HREF="PPP-HOWTO-5.html#ss5.1">5.1 Полезные списки почтовой рассылки Linux</A>
+</UL>
+<P>
+<H2><A NAME="toc6">6.</A> <A HREF="PPP-HOWTO-6.html">Краткий обзор того, что должно быть сделано для работы PPP как клиента</A></H2>
+
+<UL>
+<LI><A HREF="PPP-HOWTO-6.html#ss6.1">6.1 Получение/установка программного обеспечения</A>
+<LI><A HREF="PPP-HOWTO-6.html#ss6.2">6.2 Вкомпилированная поддержка PPP в ядре</A>
+<LI><A HREF="PPP-HOWTO-6.html#ss6.3">6.3 Получение информации от вашего ISP</A>
+<LI><A HREF="PPP-HOWTO-6.html#ss6.4">6.4 Конфигурирование вашего модема и последовательного порта</A>
+<LI><A HREF="PPP-HOWTO-6.html#ss6.5">6.5 Настройка преобразования доменных имен в IP адрес (DNS)</A>
+<LI><A HREF="PPP-HOWTO-6.html#ss6.6">6.6 PPP и привилегии root </A>
+<LI><A HREF="PPP-HOWTO-6.html#ss6.7">6.7 Проверка PPP файлов вашего дистрибутива и установка опций PPP</A>
+<LI><A HREF="PPP-HOWTO-6.html#ss6.8">6.8 Если ваш PPP сервер использует PAP (Password Autentificaion Protocol)</A>
+<LI><A HREF="PPP-HOWTO-6.html#ss6.9">6.9 Соединение с PPP сервером вручную</A>
+<LI><A HREF="PPP-HOWTO-6.html#ss6.10">6.10 Автоматизация вашего PPP соединения</A>
+<LI><A HREF="PPP-HOWTO-6.html#ss6.11">6.11 Завершение связи</A>
+<LI><A HREF="PPP-HOWTO-6.html#ss6.12">6.12 Если у вас есть проблемы</A>
+<LI><A HREF="PPP-HOWTO-6.html#ss6.13">6.13 После того, как связь установлена</A>
+<LI><A HREF="PPP-HOWTO-6.html#ss6.14">6.14 Проблемы со стандартными IP услугами для PPP связи с динамическим       IP адресом</A>
+</UL>
+<P>
+<H2><A NAME="toc7">7.</A> <A HREF="PPP-HOWTO-7.html">Конфигурирование вашего Linux Ядра</A></H2>
+
+<UL>
+<LI><A HREF="PPP-HOWTO-7.html#ss7.1">7.1 Установка исходных текстов ядра Linux</A>
+<LI><A HREF="PPP-HOWTO-7.html#ss7.2">7.2 Знание ваших аппаратных средств</A>
+<LI><A HREF="PPP-HOWTO-7.html#ss7.3">7.3 Компиляция ядра - ядро Linux 1.2.13</A>
+<LI><A HREF="PPP-HOWTO-7.html#ss7.4">7.4 Компиляция ядра -  ядра Linux 1.3.x и 2.0.x</A>
+<LI><A HREF="PPP-HOWTO-7.html#ss7.5">7.5 Обратите внимание на PPP-2.2 и /proc/net/dev</A>
+<LI><A HREF="PPP-HOWTO-7.html#ss7.6">7.6 Общие настройки ядра для PPP</A>
+</UL>
+<P>
+<H2><A NAME="toc8">8.</A> <A HREF="PPP-HOWTO-8.html">Получение нужной информации о PPP сервере</A></H2>
+
+<P>
+<H2><A NAME="toc9">9.</A> <A HREF="PPP-HOWTO-9.html">Конфигурирование вашего модема и последовательного порта</A></H2>
+
+<UL>
+<LI><A HREF="PPP-HOWTO-9.html#ss9.1">9.1 Примечание, касающееся последовательных портов и возможностей быстродействия</A>
+<LI><A HREF="PPP-HOWTO-9.html#ss9.2">9.2 Имена последовательных портов</A>
+<LI><A HREF="PPP-HOWTO-9.html#ss9.3">9.3 Конфигурирование вашего модема</A>
+<LI><A HREF="PPP-HOWTO-9.html#ss9.4">9.4 Обратите внимание на управление потоком данных последовательного интерфейса</A>
+<LI><A HREF="PPP-HOWTO-9.html#ss9.5">9.5 Тестирование вашего модема на исходящие звонки</A>
+</UL>
+<P>
+<H2><A NAME="toc10">10.</A> <A HREF="PPP-HOWTO-10.html">Настройка преобразования доменных имен в IP адрес (DNS)</A></H2>
+
+<UL>
+<LI><A HREF="PPP-HOWTO-10.html#ss10.1">10.1 Файл /etc/resolv.conf</A>
+<LI><A HREF="PPP-HOWTO-10.html#ss10.2">10.2 Файл /etc/host.conf</A>
+</UL>
+<P>
+<H2><A NAME="toc11">11.</A> <A HREF="PPP-HOWTO-11.html">Использование PPP и привилегии root</A></H2>
+
+<P>
+<H2><A NAME="toc12">12.</A> <A HREF="PPP-HOWTO-12.html">Настройка файлов PPP соединения</A></H2>
+
+<UL>
+<LI><A HREF="PPP-HOWTO-12.html#ss12.1">12.1 Файл options.tpl</A>
+<LI><A HREF="PPP-HOWTO-12.html#ss12.2">12.2 Какие опции я должен использовать? (PAP/CHAP нет)</A>
+</UL>
+<P>
+<H2><A NAME="toc13">13.</A> <A HREF="PPP-HOWTO-13.html">Если ваш PPP сервер использует PAP (Password Authentication Protocol)</A></H2>
+
+<UL>
+<LI><A HREF="PPP-HOWTO-13.html#ss13.1">13.1 Использование MSCHAP</A>
+<LI><A HREF="PPP-HOWTO-13.html#ss13.2">13.2 Файл секретов PAP/CHAP</A>
+<LI><A HREF="PPP-HOWTO-13.html#ss13.3">13.3 Файл секретов PAP </A>
+<LI><A HREF="PPP-HOWTO-13.html#ss13.4">13.4 Файл секретов CHAP</A>
+<LI><A HREF="PPP-HOWTO-13.html#ss13.5">13.5 Обработка нескольких PAP соединений</A>
+</UL>
+<P>
+<H2><A NAME="toc14">14.</A> <A HREF="PPP-HOWTO-14.html">Установка PPP соединения вручную</A></H2>
+
+<P>
+<H2><A NAME="toc15">15.</A> <A HREF="PPP-HOWTO-15.html">Автоматизация ваших соединений - Создание скриптов соединения</A></H2>
+
+<UL>
+<LI><A HREF="PPP-HOWTO-15.html#ss15.1">15.1 Скрипты соединения для аутентификации по имени/паролю пользователя</A>
+<LI><A HREF="PPP-HOWTO-15.html#ss15.2">15.2 Скрипт ppp-on</A>
+<LI><A HREF="PPP-HOWTO-15.html#ss15.3">15.3 Редактирование скриптов запуска PPP </A>
+<LI><A HREF="PPP-HOWTO-15.html#ss15.4">15.4 Что означает скрипт chat...</A>
+<LI><A HREF="PPP-HOWTO-15.html#ss15.5">15.5 Сценарий chat для соединения PAP/CHAP</A>
+<LI><A HREF="PPP-HOWTO-15.html#ss15.6">15.6 Отладка pppd и опция file option_file</A>
+</UL>
+<P>
+<H2><A NAME="toc16">16.</A> <A HREF="PPP-HOWTO-16.html">Тестирование вашего сценария соединения</A></H2>
+
+<P>
+<H2><A NAME="toc17">17.</A> <A HREF="PPP-HOWTO-17.html">Закрытие PPP связи</A></H2>
+
+<P>
+<H2><A NAME="toc18">18.</A> <A HREF="PPP-HOWTO-18.html">Отладка</A></H2>
+
+<UL>
+<LI><A HREF="PPP-HOWTO-18.html#ss18.1">18.1 Я вкомпилировал поддержку PPP в ядро, но ...</A>
+<LI><A HREF="PPP-HOWTO-18.html#ss18.2">18.2 Мой модем соединяется, но ppp не запускается</A>
+<LI><A HREF="PPP-HOWTO-18.html#ss18.3">18.3 Syslog говорит "serial line is not 8 bit clean..."</A>
+<LI><A HREF="PPP-HOWTO-18.html#ss18.4">18.4 Заданный по умолчанию маршрут не установлен</A>
+<LI><A HREF="PPP-HOWTO-18.html#ss18.5">18.5 Другие проблемы</A>
+</UL>
+<P>
+<H2><A NAME="toc19">19.</A> <A HREF="PPP-HOWTO-19.html">Получение помощи, когда не знаете, что еще можно сделать</A></H2>
+
+<P>
+<H2><A NAME="toc20">20.</A> <A HREF="PPP-HOWTO-20.html">Общие проблемы, появляющиеся, когда связь заработает</A></H2>
+
+<UL>
+<LI><A HREF="PPP-HOWTO-20.html#ss20.1">20.1 Я не могу выйти дальше PPP сервера, к которому я подсоединяюсь</A>
+<LI><A HREF="PPP-HOWTO-20.html#ss20.2">20.2 Я могу посылать email, но не могу получить его</A>
+<LI><A HREF="PPP-HOWTO-20.html#ss20.3">20.3 Почему на моей машине не работают finger, WWW, gopher, talk итд?</A>
+</UL>
+<P>
+<H2><A NAME="toc21">21.</A> <A HREF="PPP-HOWTO-21.html">Использование услуг Интернет с динамическими IP адресами</A></H2>
+
+<UL>
+<LI><A HREF="PPP-HOWTO-21.html#ss21.1">21.1 Установка email</A>
+<LI><A HREF="PPP-HOWTO-21.html#ss21.2">21.2 Установка локального сервера доменных имен</A>
+</UL>
+<P>
+<H2><A NAME="toc22">22.</A> <A HREF="PPP-HOWTO-22.html">Связывание двух сетей, использующих PPP</A></H2>
+
+<UL>
+<LI><A HREF="PPP-HOWTO-22.html#ss22.1">22.1 Установка IP адресов</A>
+<LI><A HREF="PPP-HOWTO-22.html#ss22.2">22.2 Установка маршрутизации</A>
+<LI><A HREF="PPP-HOWTO-22.html#ss22.3">22.3 Сетевая безопасность</A>
+</UL>
+<P>
+<H2><A NAME="toc23">23.</A> <A HREF="PPP-HOWTO-23.html">После того, как связь установлена - скрипт /etc/ppp/ip-up</A></H2>
+
+<UL>
+<LI><A HREF="PPP-HOWTO-23.html#ss23.1">23.1 Специальная маршрутизация</A>
+<LI><A HREF="PPP-HOWTO-23.html#ss23.2">23.2 Обработка почтовой очереди</A>
+<LI><A HREF="PPP-HOWTO-23.html#ss23.3">23.3 Пример скрипта /etc/ppp/ip-up</A>
+<LI><A HREF="PPP-HOWTO-23.html#ss23.4">23.4 Обработка email</A>
+</UL>
+<P>
+<H2><A NAME="toc24">24.</A> <A HREF="PPP-HOWTO-24.html">Использование /etc/ppp/ip-down</A></H2>
+
+<P>
+<H2><A NAME="toc25">25.</A> <A HREF="PPP-HOWTO-25.html">Маршрутизация в LAN</A></H2>
+
+<UL>
+<LI><A HREF="PPP-HOWTO-25.html#ss25.1">25.1 Обратите внимание на защиту</A>
+</UL>
+<P>
+<H2><A NAME="toc26">26.</A> <A HREF="PPP-HOWTO-26.html">Установка PPP сервера</A></H2>
+
+<UL>
+<LI><A HREF="PPP-HOWTO-26.html#ss26.1">26.1 Компиляция ядра</A>
+<LI><A HREF="PPP-HOWTO-26.html#ss26.2">26.2 Краткий обзор серверной системы </A>
+<LI><A HREF="PPP-HOWTO-26.html#ss26.3">26.3 Состав программного обеспечения</A>
+<LI><A HREF="PPP-HOWTO-26.html#ss26.4">26.4 Установка стандартного (доступ через shell) коммутируемого доступа.</A>
+<LI><A HREF="PPP-HOWTO-26.html#ss26.5">26.5 Установка файлов PPP опций</A>
+<LI><A HREF="PPP-HOWTO-26.html#ss26.6">26.6 Настройка pppd, чтобы он был (успешно) доступен пользователям для запуска</A>
+<LI><A HREF="PPP-HOWTO-26.html#ss26.7">26.7 Установка глобального псевдонима для pppd</A>
+</UL>
+<P>
+<H2><A NAME="toc27">27.</A> <A HREF="PPP-HOWTO-27.html">Использование PPP по нульмодемному (прямому последовательному) кабелю</A></H2>
+
+<HR>
+<A HREF="PPP-HOWTO-1.html">Next</A>
+Previous
+Contents
+</BODY>
+</HTML>

@@ -1,0 +1,33 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=koi8-r"><title>Кириллица в PostScript</title><meta name="generator" content="DocBook XSL Stylesheets V1.59.1"><link rel="home" href="index.html" title="The Linux Cyrillic HOWTO (russian)"><link rel="up" href="ch10.html" title="Глава 10. Вывод на печать и PostScript"><link rel="previous" href="ch10s02.html" title="Преобразование текста в TeX"><link rel="next" href="ch10s04.html" title="Инкапсуляция шрифтов Type1 в Encapsulated PostScript
+(eps)"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Кириллица в PostScript</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch10s02.html">Пред.</a> </td><th width="60%" align="center">Глава 10. Вывод на печать и PostScript</th><td width="20%" align="right"> <a accesskey="n" href="ch10s04.html">След.</a></td></tr></table><hr></div><div class="sect1" lang="ru"><div class="titlepage"><div><h2 class="title" style="clear: both"><a name="postscript"></a>Кириллица в PostScript</h2></div></div><a class="indexterm" name="id2891670"></a><p>Чтобы печатать русский текст с использованием PostScript, вы
+должны удостовериться относительно следующих вещей:</p><div class="itemizedlist"><ul type="disc"><li><p>шрифт кириллицы <span class="emphasis"><em>загружен</em></span> в
+принтер, и тогда у вас всё уже должно работать.
+</p></li><li><p>текст кириллицы включён в документ &#8212; здесь
+можно воспользоваться следующим способом: Для того, чтобы вшить
+русские шрифты в сам ps-файл, нужно после printtool в соответствующем
+файле <tt>/var/spool/lpd/lp.../postscript.cfg</tt>
+заменить строку 'GSDEVICE=POSTSCRIPT' на 'GSDEVICE=pswrite'.  Кроме
+описанного метода, можно включить шрифты в файл PostScript руками с
+помощью обычного текстового редактора &#8212; подробно это описано в
+разделе <a href="ch10s04.html" title="Инкапсуляция шрифтов Type1 в Encapsulated PostScript
+(eps)">&#8220;Инкапсуляция шрифтов Type1 в Encapsulated PostScript
+(eps)&#8221;</a>.  </p></li><li><p>текст кириллицы использует символьные коды,
+которые соответствуют требованиям шрифта.  </p></li><li><p>чтобы печатать текст кириллицы,
+<span class="emphasis"><em>выбран</em></span> соответствующий
+шрифт.</p></li></ul></div><p>Не имеется никакого достаточно общего решения, чтобы
+рекомендовать его как окончательное.  Я попробую осветить различные
+способы для решения различных проблем, связанных с этим
+вопросом.</p><p>Один способ &#8212; это побороть проблемы установки
+кириллицы вообще, и состоит он в том, чтобы использовать <a href="http://www.cs.wisc.edu/~ghost/index.html" target="_top">Ghostscript</a>.
+<tt>Ghostscript</tt> (или просто <tt>gs</tt> от
+newspeak) абсолютно free (ну, не совсем) интерпретатор PostScript.  У
+него есть много преимуществ; среди них:</p><div class="itemizedlist"><ul type="disc"><li><p>Способность работать на многих платформах
+(различные Unix, MS Windows и т.д); </p></li><li><p>Поддержка для огромного количества не-PostScript
+принтеров; </p></li><li><p>Высокая степень настраиваемости.
+</p></li></ul></div><p>В нашем специфическом случае является важным то, что однажды
+установив и настроив <tt>Ghostscript</tt>, мы можем все
+печатать через него, таким образом нам не надо дополнительно
+настраивать другие PostScript устройства (например, <span class="emphasis"><em>HP
+LaserJet IV</em></span>).</p></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch10s02.html">Пред.</a> </td><td width="20%" align="center"><a accesskey="u" href="ch10.html">Уровень выше</a></td><td width="40%" align="right"> <a accesskey="n" href="ch10s04.html">След.</a></td></tr><tr><td width="40%" align="left" valign="top">Преобразование текста в TeX </td><td width="20%" align="center"><a accesskey="h" href="index.html">Начало</a></td><td width="40%" align="right" valign="top"> Инкапсуляция шрифтов Type1 в Encapsulated PostScript
+(eps)</td></tr></table></div></body></html>

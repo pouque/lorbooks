@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>Creating a new partition</title>
+  
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+  
+  <meta name="GENERATOR" content="Modular DocBook HTML Stylesheet Version 1.73">
+  <link rel="HOME" title="Linux From Scratch" href="http://www.linux.org.ru/books/Distro/lfsbook/chapter04/index.html">
+  <link rel="UP" title="Preparing a new partition" href="chapter04.html">
+  <link rel="PREVIOUS" title="Introduction" href="introduction.html">
+  <link rel="NEXT" title="Creating a file system on the new partition" href="creatingfs.html"></head><body class="sect1" bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#840084" alink="#006000">
+<div class="NAVHEADER"><table summary="Header navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><th colspan="3" align="Center">Linux From Scratch: Версия 4.0</th></tr><tr><td width="10%" align="Left" valign="Bottom"><a href="introduction.html" accesskey="P">Назад</a></td><td width="80%" align="Center" valign="Bottom">Глава 4. Готовим новый раздел</td><td width="10%" align="Right" valign="Bottom"><a href="creatingfs.html" accesskey="N">Вперед</a></td></tr></tbody></table><hr align="Left" width="100%"></div>
+<div class="sect1"><h1 class="sect1"><a name="ch04-creatingpart">Создаем новый раздел</a></h1><p>Возможно
+построить систему LFS на одном разделе с уже установленным дистрибутивом.
+Несмотря на то, что для первой установки LFS данный шаг не рекомендуется,
+это удобно, если у вас дефицит дискового пространства. Если вы решили рискнуть,
+см. совет по<em> Инсталляции LFS на один раздел с сосуществующими системами</em> на <a href="http://hints.linuxfromscratch.org/hints/lfs_next_to_existing_systems.txt" target="_top">http://hints.linuxfromscratch.org/hints/lfs_next_to_existing_systems.txt</a>.</p><p>Перед
+тем как перейти к установке LFS необходимо иметь пустой Linux-native раздел.
+Для установки LFS рекомендуется раздел размеров не менее 1 GB. Это дает возможность
+хранить tar-архивы с программами и компилировать пакеты. Если вы планируете
+использовать LFS в качестве основной Linux-системы, вам придется отвести
+для нее больше места для инсталляции дополнительного программного обеспечения.
+Если Linux-native раздел для LFS уже существует, можете смело пропустить
+эту подсекцию.</p><p>В
+связи с тем, что оперативная память компьютера может одновременно уместить
+ограниченное количество информации, рекомендуется отвести место на диске
+для файлов swap. Файл swap - это место, где хранится информация из памяти,
+которую можно вызвать в любой момент. LFS и ваш дистрибутив могут свместно
+использовать это дисковое пространство. Другими словами, если у вас уже есть
+swap-раздел, нет особого смысла создавать еще один. Если же у вас его нет,
+создайте его программой fdisk. В любом случае, запомните обозначение swap-раздела
+(например, hda2), это понадобится при создании файла /etc/fstab.</p><p>Программа
+cfdisk (аналогичная fdisk) запускается с соответствующим обозначением жесткого
+диска в качестве аргумента (например /dev/hda, в случае если новый раздел
+следует создать на жестком диске primary master с IDE интерфейсом). С помощью
+этой программы создайте раздел Linux native. Обратитесь к документации программы
+fdisk ( руководства man обычно неплохое начало для поиска информации) для
+получения информации о создании разделов Linux native и записи таблиц разделов.</p><p>Запомните обозначение раздела, оно будет
+выглядеть как например hda11. Этот раздел мы впоследствии будем называть разделом LFS.</p></div>
+<div class="NAVFOOTER"><hr align="Left" width="100%"><table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="33%" align="Left" valign="Top"><a href="introduction.html" accesskey="P">Назад</a></td><td width="34%" align="Center" valign="Top"><a href="../index.html" accesskey="H">Домой</a></td><td width="33%" align="Right" valign="Top"><a href="creatingfs.html" accesskey="N">Вперед</a></td></tr><tr><td width="33%" align="Left" valign="Top">Вступление<br>
+</td><td width="34%" align="Center" valign="Top"><a href="chapter04.html" accesskey="U">Наверх</a></td><td width="33%" align="Right" valign="Top">Создаем файловую систему на новом разделе<br>
+</td></tr></tbody></table></div>
+<br>
+
+</body></html>

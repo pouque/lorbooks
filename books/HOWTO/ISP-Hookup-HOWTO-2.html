@@ -1,0 +1,213 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE>ISP-Hookup-HOWTO: Как мне подсоединиться к остальному миру?</TITLE>
+ <LINK HREF="ISP-Hookup-HOWTO-3.html" REL=next>
+ <LINK HREF="ISP-Hookup-HOWTO-1.html" REL=previous>
+ <LINK HREF="ISP-Hookup-HOWTO.html#toc2" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="ISP-Hookup-HOWTO-3.html">Next</A>
+<A HREF="ISP-Hookup-HOWTO-1.html">Previous</A>
+<A HREF="ISP-Hookup-HOWTO.html#toc2">Contents</A>
+<HR>
+<H2><A NAME="s2">2. Как мне подсоединиться к остальному миру?</A></H2>
+
+<P>Предполагается, что мы уже имеем установленные модули сетевого программного
+обеспечения (напр., часть N-серии Slackware), и что вы используете
+последовательный порт /dev/modem.
+<P>Настройка по умолчанию позволяет обращаться к /dev/modem только как
+пользователь root.
+<P>Чтобы напрямую подсоединиться к shell ISP и поэкспериментировать над 
+процессом соединения, вы можете использовать программу minicom. 
+Она прекрасно подходит для этой цели.
+<P>
+<H2><A NAME="ss2.1">2.1 Основная настройка</A>
+</H2>
+
+<P>Настройка машины для использования в сети должна производиться от root.
+Первым делом удостоверьтесь, что файл /etc/hosts.deny содержит строки:
+<BLOCKQUOTE><CODE>
+<PRE>
+       ALL: ALL
+</PRE>
+</CODE></BLOCKQUOTE>
+
+Вы вероятно захотите позволить собственный трафик, потому добавьте в
+/etc/hosts.allow:
+<BLOCKQUOTE><CODE>
+<PRE>
+       ALL: LOCAL
+</PRE>
+</CODE></BLOCKQUOTE>
+
+или что тоже самое:
+<BLOCKQUOTE><CODE>
+<PRE>
+       ALL: 127.0.0.1
+</PRE>
+</CODE></BLOCKQUOTE>
+
+В последующем, заметьте, предполагается соединение по PPP с динамическим IP 
+адресом. Если вы имеете фиксированный адрес, то в настройках будут некоторые 
+изменения.
+<P>Прекрасно иметь имя у машины, имя, которое пользователь с динамическим 
+IP может действительно выбрать таким, каким пожелает. Введите имя в
+/etc/hostname:
+<BLOCKQUOTE><CODE>
+<PRE>
+       roderick
+</PRE>
+</CODE></BLOCKQUOTE>
+
+Следующий шаг - установка сервера имен в /etc/resolv.conf:
+<BLOCKQUOTE><CODE>
+<PRE>
+  search .
+  nameserver 193.212.1.0
+</PRE>
+</CODE></BLOCKQUOTE>
+
+Сервер имен должен быть указан числовым IP адресом, и отличается для
+каждого ISP. Если требуется, вы можете прописать до трех различных
+серверов. Они будут опрашиваться в том порядке, в каком вы их указали.
+<P>Если вы хотите иметь возможность использовать имена типа somemachine как
+сокращение для somemachine.acme.net, вы должны заменить первую строку на:
+<BLOCKQUOTE><CODE>
+<PRE>
+       search acme.net
+</PRE>
+</CODE></BLOCKQUOTE>
+
+Определенный минимум настройки также требуется для /etc/hosts.
+Большинство пользователей смогут управлять:
+<BLOCKQUOTE><CODE>
+<PRE>
+       127.0.0.1 localhost
+       0.0.0.0   roderick
+</PRE>
+</CODE></BLOCKQUOTE>
+
+Пользователь с фиксированным адресом очевидно должен вместо 0.0.0.0 указать 
+свой фиксированный адрес.
+<P>Аналогично минимальный /etc/networks:
+<BLOCKQUOTE><CODE>
+<PRE>
+       loopback  127.0.0.0
+       localnet  0.0.0.0
+</PRE>
+</CODE></BLOCKQUOTE>
+
+Также вы можете установить ваш внешний почтовый домен в /etc/mailname:
+<BLOCKQUOTE><CODE>
+<PRE>
+       acme.net
+</PRE>
+</CODE></BLOCKQUOTE>
+
+Имя пользователя и пароль для ISP должны быть указаны в /etc/ppp/pap-secrets
+<BLOCKQUOTE><CODE>
+<PRE>
+       dirk * PrettySecret
+</PRE>
+</CODE></BLOCKQUOTE>
+
+Для тех ISP, которые используют CHAP вместо PAP, имя файла будет
+/etc/ppp/chap-secrets.
+<P>Наконец, надо описать процедуру соединения, которая производится перед 
+инициализацией PPP проделать. Это делается в /etc/ppp/chatscript:
+<BLOCKQUOTE><CODE>
+<PRE>
+       TIMEOUT 5
+       "" ATZ
+       OK ATDT12345678
+       ABORT "NO CARRIER"
+       ABORT BUSY
+       ABORT "NO DIALTONE"
+       ABORT WAITING
+       TIMEOUT 45
+       CONNECT ""
+       TIMEOUT 5
+       "name:" ppp
+</PRE>
+</CODE></BLOCKQUOTE>
+
+Содержимое можно настроить по-своему. Телефонный номер в третьей
+строке, конечно, должен быть заменен на ваш. Некоторым пользователям может 
+понадобиться заменить строку инициализации модема ATZ на более 
+соответствующую их модему. Последняя строка указывает, что в ответ
+на приглашение name: надо ответить ppp. Другие системы могут иметь
+другие процедуры входа в систему.
+<P>Чтобы проинициировать звонок, PPP-протокол может быть активизирован командой:
+<BLOCKQUOTE><CODE>
+<PRE>
+       exec pppd connect \
+            'chat -v -f /etc/ppp/chatscript' \
+             -detach crtscts modem defaultroute \
+             user dirk \
+             /dev/modem 38400
+</PRE>
+</CODE></BLOCKQUOTE>
+
+Сейчас мы должны войти в сеть и оставаться на линии до тех пор, пока не 
+нажмем Ctrl-C.  Любые сообщения, отражающие состояние соединения, 
+добавляются в системный журнал. Чтобы прочесть их попробуйте:
+<BLOCKQUOTE><CODE>
+<PRE>
+       tail /var/adm/messages
+</PRE>
+</CODE></BLOCKQUOTE>
+
+Пока PPP поднят, вы напрямую подключены к Интернет, и можете использовать
+программы типа ftp, ncftp, rlogin, telnet, finger итд.  Все эти программы
+являются частью пакета network.
+<P>Также информация о PPP также доступна в:
+<UL>
+<LI>  /usr/lib/ppp/README.linux
+</LI>
+<LI>  /usr/lib/ppp/README.linux-chat</LI>
+</UL>
+
+Наконец, дополнительное слово о безопасности. Файл /etc/inetd.conf содержит
+список всех сервисов, которые ваша машина обслуживает внешне. Файлом
+/etc/hosts.deny мы запретим внешний доступ. Для нужных сервисов доступ можно
+позволить файлом /etc/hosts.allow. Локальный трафик может быть разрешен:
+<BLOCKQUOTE><CODE>
+<PRE>
+       ALL: LOCAL
+</PRE>
+</CODE></BLOCKQUOTE>
+
+См. также  man 5 hosts_access.
+<P>Маленькое замечание: Существует определенное недопонимание по поводу имен
+протоколов POP. Определения в /etc/services обычно такие:
+<BLOCKQUOTE><CODE>
+<PRE>
+       pop2      109/tcp   pop-2     # PostOffice V.2
+       pop3      110/tcp   pop-3 pop # PostOffice V.3
+</PRE>
+</CODE></BLOCKQUOTE>
+
+ALT: Вместо chatscript можно использовать намного более гибкий dip.
+Но не одновременно с diald.
+<P>ALT: Счастливчики, имеющие постоянное TCP/IP соединение через, например, 
+Ethernet, могут спокойно пропустить все, что касается, PPP, и сосредоточиться
+на вопросах установки их сетевых адаптеров.
+<P>ALT: У некоторых может не быть доступа через PPP, но может быть SLIP, для
+которого поддержка такая же, как для PPP. Другая возможность - UUCP.
+Другие могут иметь только новости и почту. Описание для варианта
+с почтой находится на:
+<UL>
+<LI>  
+<A HREF="ftp://ftp.sn.no/user/bjorn/Linux-offline.tgz">ftp://ftp.sn.no/user/bjorn/Linux-offline.tgz</A></LI>
+</UL>
+
+Также возможна программа TERM. Почитайте Term-HOWTO.
+<P>
+<HR>
+<A HREF="ISP-Hookup-HOWTO-3.html">Next</A>
+<A HREF="ISP-Hookup-HOWTO-1.html">Previous</A>
+<A HREF="ISP-Hookup-HOWTO.html#toc2">Contents</A>
+</BODY>
+</HTML>

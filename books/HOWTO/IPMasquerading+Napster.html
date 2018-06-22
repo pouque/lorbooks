@@ -1,0 +1,428 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>IP-Маскарадинг+Napster мини-HOWTO</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.57"></HEAD
+><BODY
+CLASS="ARTICLE"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="ARTICLE"
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="TITLE"
+><A
+NAME="AEN2"
+>IP-Маскарадинг+Napster мини-HOWTO</A
+></H1
+><DIV
+CLASS="AUTHORGROUP"
+><A
+NAME="AEN4"
+></A
+><H3
+CLASS="AUTHOR"
+><A
+NAME="AEN5"
+>John E. Danner</A
+></H3
+><H3
+CLASS="CORPAUTHOR"
+>  Перевод: <A
+HREF="mailto:sam@asp-linux.com"
+TARGET="_top"
+>Станислав Рогин</A
+>,
+  <A
+HREF="http://www.asplinux.com"
+TARGET="_top"
+>SWSoft Pte Ltd.</A
+>
+ </H3
+></DIV
+><P
+CLASS="PUBDATE"
+>версия 1.6, 11 Апреля 2000 года 
+<BR></P
+><DIV
+><DIV
+CLASS="ABSTRACT"
+><A
+NAME="AEN12"
+></A
+><P
+></P
+><P
+>Этот мини-HOWTO описывает механизм использования системы Napster
+пользователями, находящимися за IP маскарадинг-firewall.</P
+><P
+></P
+></DIV
+></DIV
+><HR></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Содержание</B
+></DT
+><DT
+>1. <A
+HREF="IPMasquerading+Napster.html#AEN16"
+>ОТВЕТСТВЕННОСТЬ</A
+></DT
+><DT
+>2. <A
+HREF="IPMasquerading+Napster.html#AEN19"
+>ВВЕДЕНИЕ</A
+></DT
+><DT
+>3. <A
+HREF="IPMasquerading+Napster.html#AEN22"
+>ПЕРЕД НАЧАЛОМ РАБОТЫ</A
+></DT
+><DT
+>4. <A
+HREF="IPMasquerading+Napster.html#AEN39"
+>ПОРЯДОК ДЕЙСТВИЙ</A
+></DT
+><DT
+>5. <A
+HREF="IPMasquerading+Napster.html#AEN57"
+>ДИНАМИЧЕСКИЕ IP АДРЕСА (Dial-up или DHCP)</A
+></DT
+><DT
+>6. <A
+HREF="IPMasquerading+Napster.html#AEN63"
+>РЕЗУЛЬТАТ</A
+></DT
+><DT
+>7. <A
+HREF="IPMasquerading+Napster.html#AEN66"
+>ПОДДЕРЖКА ЭТОГО ДОКУМЕНТА</A
+></DT
+><DT
+>8. <A
+HREF="IPMasquerading+Napster.html#AEN69"
+>Copyright and License</A
+></DT
+><DT
+>9. <A
+HREF="IPMasquerading+Napster.html#AEN77"
+>Авторские права</A
+></DT
+></DL
+></DIV
+><P
+>Для информации о системе Napster, обращайтесь на ее
+<A
+HREF="http://www.napster.com/"
+TARGET="_top"
+>Официальную
+Веб-Страницу</A
+></P
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN16"
+>1. ОТВЕТСТВЕННОСТЬ</A
+></H1
+><P
+>Для того, чтобы Napster работал правильно, необходимо создать обходной путь
+в системе вашего IP-маскарадинга. Это может повлечь за собой
+возможные проблемы безопасности. К сожалению, я не могу взять на себя
+ответственность за это. Поэтому, если вы что-то сделаете, а потом у вас из-за
+этого все сгорит...то это не моя вина. Хорошо...перейдем к главному...</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN19"
+>2. ВВЕДЕНИЕ</A
+></H1
+><P
+>После установки сети, у моих друзей и у меня возникла проблема,
+состоящая в том, что мы не могли использовать Napster из-за работы
+с IP-маскарадингом. Поэтому я потратил немного своего времени и нашел
+решение этой проблемы. Я надеюсь, что у вас получится так же хорошо,
+как и у меня...но ничего не могу обещать.</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN22"
+>3. ПЕРЕД НАЧАЛОМ РАБОТЫ</A
+></H1
+><P
+>Я проверил работу моего "обходного пути" со следующими параметрами:</P
+><P
+>&#13;<P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>Napster версия 2.0 Beta 5a (для Windows), см.
+<A
+HREF="http://www.napster.com/"
+TARGET="_top"
+>Официальную страницу Napster</A
+> </P
+></LI
+><LI
+><P
+>Один внешний IP адрес выхода в Интернет. </P
+></LI
+><LI
+><P
+>В настоящий момент 6 компьютеров работают за IP-маскарадингом, 4 из них
+используют Napster.</P
+></LI
+><LI
+><P
+>Установлен Linux с ядром версии 2.2.12-20 (Дистрибутив RedHat v6.1)</P
+></LI
+><LI
+><P
+>Утилита IPMASQADM версия 0.42, скачайте ее здесь
+<A
+HREF="http://juanjox.kernelnotes.org/"
+TARGET="_top"
+>здесь</A
+></P
+></LI
+></OL
+>&#13;</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN39"
+>4. ПОРЯДОК ДЕЙСТВИЙ</A
+></H1
+><P
+>Первым делом убедитесь, что у вас такие же или более новые версии программ,
+(они указаны в предыдущей главе). Также убедитесь в том, что они корректно
+установлены.</P
+><P
+>&#13;<P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>Установите Napster на Windows-машинах клиентов </P
+></LI
+><LI
+><P
+>После установки Napster и настройки всех установок пользователей, эта
+версия начнет процедуру под названием "Finding Acceptable Local Data Port"
+(поиск приемлимого локального порта данных), и через короткое
+время появится сообщение об ошибке. Внимание: если у вас уже установлен
+Napster версии 2.0 beta 5a, тогда в меню "Файл" (File) выберите "Свойства"
+(Properties).</P
+></LI
+><LI
+><P
+>Здесь выберите второй пункт "Я не использую Firewall или мой Firewall
+астроен - Использовать порт TCP:" (I am not behind a firewall or I
+configured my firewall - Use TCP port:)</P
+></LI
+><LI
+><P
+>Введите уникальный номер порта. Каждому компьютеру, использующему Napster,
+нужно будет сопоставить свой номер порта. Самое простое - использовать
+последнюю цифру IP-адреса. Например: если адрес компьютера 192.168.1.2, то
+наиболее просто будет запомнить число 6702. Внимание: убедитесь в том, что
+вы не используете уже занятые номера портов (например 21, 110, и
+т.п....полный список находится в файле /etc/services)</P
+></LI
+><LI
+><P
+>Повторите пункты 1 - 4 для всех систем, которые будут использовать Napster.</P
+></LI
+><LI
+><P
+>Теперь войдите в вашу систему, осуществляющую IP-маскарадинг, и измените
+файл стартовой конфигурации (у меня это /etc/rc.d/rc.local)
+Следующие команды проводят соединение к клиентским частям Napster на машинах, находящихся 
+за вашим IP-маскарадингом. (добавьте их в файл стартовой конфигурации - необходимо 
+добавить по одной команде для каждой машины, использующей Napster):
+
+<PRE
+CLASS="PROGRAMLISTING"
+>/usr/sbin/ipmasqadm portfw -a -P tcp -L xxx.xxx.xxx.xxx 6702 -R 192.168.1.2 6702
+/usr/sbin/ipmasqadm portfw -a -P tcp -L xxx.xxx.xxx.xxx 6703 -R 192.168.1.3 6703
+/usr/sbin/ipmasqadm portfw -a -P tcp -L xxx.xxx.xxx.xxx 6704 -R 192.168.1.4 6704
+/usr/sbin/ipmasqadm portfw -a -P tcp -L xxx.xxx.xxx.xxx 6705 -R 192.168.1.5 6705</PRE
+>
+
+Где XXX.XXX.XXX.XXX - это IP-адрес Linux-машины, осуществляющей IP-маскарадинг 
+(Интернетовский IP-адрес).
+Внимание: Если у вас трудности с утилитой IPMASQADM или с IP-маскарадингом
+вообще, то смотрите IPMASQ-HOWTO. Этот документ написан для тех, у кого
+системы работают правильно. В документе IPMASQ-HOWTO подробно описывается
+система переадресации портов и IP-маскарадинга вообще.&#13;</P
+></LI
+></OL
+>&#13;</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN57"
+>5. ДИНАМИЧЕСКИЕ IP АДРЕСА (Dial-up или DHCP)</A
+></H1
+><P
+>Прочитайте внимательно эту главу и главу "Порядок действий", если ваши
+IP-адреса меняются при каждом вашем подключении к Интернету.
+&#13;</P
+><P
+>Спасибо Peter Illmayer за то, что дал мне этот скрипт : (Это лучше всего
+работает у тех, у кого динамические IP адреса...)
+В debian, я создал файл переадресаций (forward) в /etc/ppp/ip-up.d и добавил туда следующие строки
+
+<PRE
+CLASS="PROGRAMLISTING"
+>#!/bin/sh
+ppp_ip="`/sbin/ifconfig ppp0 | grep 'inet addr' | awk '{print $2}' | sed -e
+'s/.*://'`"
+/usr/sbin/ipmasqadm portfw -f
+/usr/sbin/ipmasqadm portfw -a -P tcp -L ${ppp_ip} 6702 -R 192.168.0.2 6702</PRE
+>
+
+Это было в Linux-е с ядром версии 2.2.x kernel, с установленной утилитой ipmasqadm и с соответствующими скомпилированными модулями ядра.
+Charles J. Fisher подсказал, что подобный скрипт может быть использован и в случае применения DHCP: просто добавьте следующие строки в скрипт, запускающий DHCP, после того, как ваша машина уже получила IP-адрес. 
+
+<PRE
+CLASS="PROGRAMLISTING"
+>net_ip="`ifconfig eth0 | awk '/inet/ {sub(/addr:/,"",$2); print $2}'`"
+/usr/sbin/ipmasqadm portfw -f
+/usr/sbin/ipmasqadm portfw -a -P tcp -L ${net_ip} 6702 -R 192.168.1.2 6702</PRE
+>
+
+Конечно, чем больше машин используют Napster за вашим IP-маскарадингом, тем больше портов вам придется перенаправить. </P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN63"
+>6. РЕЗУЛЬТАТ</A
+></H1
+><P
+>Подобная система позволит Napster-у работать за машиной с IP-маскарадингом.
+Надеюсь, что эти советы помогут вам работать так же хорошо, как помогли
+мне! Пожалуйста, отправляйте комментарии/предложения/претензии по адресу
+jed204@psu.edu</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN66"
+>7. ПОДДЕРЖКА ЭТОГО ДОКУМЕНТА</A
+></H1
+><P
+>Это - начальная версия этого документа. Очень сырая, кстати, версия. Если у
+меня появится интерес или сменятся условия, то обновится и документ. Если у
+кого-то есть решение, которое они считают лучше...пожалуйста, любым
+способом, дайте мне знать, и мы сможем обсудить, которое из всех возможных
+решений наилучшее.</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN69"
+>8. Copyright and License</A
+></H1
+><P
+>Copyright (c) 2000 by John E. Danner</P
+><P
+>Please freely copy and distribute (sell or give away) this document in any format. It's
+requested that corrections and/or comments be fowarded to the document maintainer. You may create a derivative work and distribute it provided that you:</P
+><P
+>1.Send your derivative work (in the most suitable format such as sgml) to the LDP (Linux Documentation Project) or the like for posting on the Internet. If not the LDP, then let the LDP know where it is available.</P
+><P
+>2.License the derivative work with this same license or use GPL. Include a copyright notice and at least a pointer to the license used.</P
+><P
+>3.Give due credit to previous authors and major contributors.</P
+><P
+>If you're considering making a derived work other than a translation, it's requested that you discuss your plans with the current maintainer.</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN77"
+>9. Авторские права</A
+></H1
+><P
+>Авторские права на русский перевод этого текста принадлежат &copy; 2000 SWSoft Pte Ltd.
+Все права зарезервированы.</P
+><P
+>Этот документ является частью проекта Linux HOWTO.</P
+><P
+>Авторские права на документы Linux HOWTO принадлежат их авторам, если явно
+не указано иное. Документы Linux HOWTO, а также их переводы, могут
+быть воспроизведены и распространены полностью или частично на любом
+носителе, физическом или электронном, при условии сохранения этой заметки об
+авторских правах на всех копиях. Коммерческое распространение разрешается и
+поощряется; но, так или иначе, автор текста и автор перевода желали бы знать о
+таких дистрибутивах.</P
+><P
+>Все переводы и производные работы, выполненные по документам Linux HOWTO,
+должны сопровождаться этой заметкой об авторских правах. Это делается в
+целях предотвращения случаев наложения дополнительных ограничений на
+распространение документов HOWTO. Исключения могут составить случаи
+получения специального разрешения у координатора Linux HOWTO, с которым
+можно связаться по адресу приведенному ниже.</P
+><P
+>Мы бы хотели распространить эту информацию по всем возможным каналам. Но
+при этом сохранить авторские права и быть уведомленными о всех планах
+распространения HOWTO. Если у вас возникли вопросы, пожалуйста, обратитесь
+к координатору проекта Linux HOWTO по электронной почте:
+<TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:linux-howto@metalab.unc.edu"
+>linux-howto@metalab.unc.edu</A
+>&#62;</TT
+> или к координатору русского
+перевода Linux HOWTO компании SWSoft Pte Ltd. по адресу
+<TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:linux-howto@asplinux.ru"
+>linux-howto@asplinux.ru</A
+>&#62;</TT
+></P
+></DIV
+></DIV
+></BODY
+></HTML
+>

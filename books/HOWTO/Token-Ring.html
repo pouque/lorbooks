@@ -1,0 +1,1091 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Token-Ring mini-HOWTO</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.57"></HEAD
+><BODY
+CLASS="ARTICLE"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="ARTICLE"
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="TITLE"
+><A
+NAME="AEN2"
+>Token-Ring mini-HOWTO</A
+></H1
+><DIV
+CLASS="AUTHORGROUP"
+><A
+NAME="AEN4"
+></A
+><H3
+CLASS="AUTHOR"
+><A
+NAME="AEN5"
+>Mike Eckhoff</A
+></H3
+><DIV
+CLASS="AFFILIATION"
+><DIV
+CLASS="ADDRESS"
+><P
+CLASS="ADDRESS"
+>&nbsp;&nbsp;&nbsp;&nbsp;     mike.e@emissary.aus-etc.com
+    <br>
+&nbsp;&nbsp;&nbsp;</P
+></DIV
+></DIV
+><H3
+CLASS="CORPAUTHOR"
+> Перевод: <A
+HREF="mailto:denm@asp-linux.com"
+TARGET="_top"
+>Денис Дементьев</A
+>,
+ <A
+HREF="http://www.asplinux.com"
+TARGET="_top"
+>SWSoft Pte Ltd.</A
+>
+ </H3
+></DIV
+><P
+CLASS="PUBDATE"
+>версия 4.1, 7 января 1998<BR></P
+><DIV
+><DIV
+CLASS="ABSTRACT"
+><A
+NAME="AEN15"
+></A
+><P
+></P
+><P
+>Этот howto предназначен для того, чтобы помочь Вам установить и настроить
+TokenRing (в том числе, как установить патч в ядро). Обязательно
+прочитайте весь документ до того, как приступbть к установке драйвера
+Token-Ring для Linux.</P
+><P
+></P
+></DIV
+></DIV
+><HR></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Содержание</B
+></DT
+><DT
+>1. <A
+HREF="Token-Ring.html#AEN23"
+>Copyright и ответственность</A
+></DT
+><DT
+>2. <A
+HREF="Token-Ring.html#AEN30"
+>Авторские права</A
+></DT
+><DT
+>3. <A
+HREF="Token-Ring.html#AEN39"
+>Аппаратные требования</A
+></DT
+><DT
+>4. <A
+HREF="Token-Ring.html#AEN95"
+>Необходимое программное обеспечение</A
+></DT
+><DT
+>5. <A
+HREF="Token-Ring.html#AEN110"
+>Установка</A
+></DT
+><DT
+>6. <A
+HREF="Token-Ring.html#AEN162"
+>Установка NetTools</A
+></DT
+><DT
+>7. <A
+HREF="Token-Ring.html#AEN184"
+>Известные проблемы</A
+></DT
+><DT
+>8. <A
+HREF="Token-Ring.html#AEN188"
+>Вопросы и комментарии</A
+></DT
+><DT
+>9. <A
+HREF="Token-Ring.html#AEN257"
+>Установки, специфичные для дистрибутивов</A
+></DT
+><DD
+><DL
+><DT
+>9.1. <A
+HREF="Token-Ring.html#AEN259"
+>Slackware 96</A
+></DT
+><DT
+>9.2. <A
+HREF="Token-Ring.html#AEN269"
+>RedHat 4.0+</A
+></DT
+></DL
+></DD
+></DL
+></DIV
+><P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>Благодарности:</DT
+><DD
+><P
+>Mark Swanson, Peter De Schrijver, David Morris, Paul Norton и другим, кого
+я возможно упустил. Спасибо всем, кто находит время поддерживать этот
+драйвер. А также packrat за поддержку linux-tr listserv.&#13;</P
+></DD
+></DL
+></DIV
+></P
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN23"
+>1. Copyright и ответственность</A
+></H1
+><P
+>Я не гарантирую, что информация в данном howto в точности подойдет Вашей системе. Но у большинства людей не возникало никаких проблем. &#13;</P
+><P
+>ИСПОЛЬЗУЙТЕ ДАННЫЙ HOWTO НА СВОЙ СОБСТВЕННЫЙ СТРАХ И РИСК.</P
+><P
+>Если у Вас возникают проблемы с драйвером, то не стесняйтесь писать мне на
+mike.e@emissary.aus-etc.com. Вы также можете воспользоваться списком
+рассылки Token-Ring. Для этого необходимо отправить письмо по адресу
+majordomo@emissary.aus-etc.com, написав в письме:
+<PRE
+CLASS="SCREEN"
+>subscribe linux-tr</PRE
+>&#13;</P
+><P
+>This document is copyright (c) 1995-1998 by Michael Eckhoff.
+You may make copies of this document in whole or in part,
+in any medium physical or electronic, as long as the copyright
+notice is retained on all copies.
+Commercial redistribution is allowed and encouraged;
+however, please notify me so that I can make sure
+that you have the most current information available.</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN30"
+>2. Авторские права</A
+></H1
+><P
+>Авторские права на русский перевод этого текста принадлежат &copy; 2000 SWSoft Pte Ltd.
+Все права зарезервированы.</P
+><P
+>Этот документ является частью проекта Linux HOWTO.</P
+><P
+>Авторские права на документы Linux HOWTO принадлежат их авторам, если явно
+не указано иное. Документы Linux HOWTO, а также их переводы, могут
+быть воспроизведены и распространены полностью или частично на любом
+носителе, физическом или электронном, при условии сохранения этой заметки об
+авторских правах на всех копиях. Коммерческое распространение разрешается и
+поощряется; но, так или иначе, автор текста и автор перевода желали бы знать о
+таких дистрибутивах.</P
+><P
+>Все переводы и производные работы, выполненные по документам Linux HOWTO,
+должны сопровождаться этой заметкой об авторских правах. Это делается в
+целях предотвращения случаев наложения дополнительных ограничений на
+распространение документов HOWTO. Исключения могут составить случаи
+получения специального разрешения у координатора Linux HOWTO, с которым
+можно связаться по адресу приведенному ниже.</P
+><P
+>Мы бы хотели распространить эту информацию по всем возможным каналам. Но
+при этом сохранить авторские права и быть уведомленными о всех планах
+распространения HOWTO. Если у вас возникли вопросы, пожалуйста, обратитесь
+к координатору проекта Linux HOWTO по электронной почте:
+<TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:linux-howto@metalab.unc.edu"
+>linux-howto@metalab.unc.edu</A
+>&#62;</TT
+> или к координатору русского
+перевода Linux HOWTO компании SWSoft Pte Ltd. по адресу
+<TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:linux-howto@asplinux.ru"
+>linux-howto@asplinux.ru</A
+>&#62;</TT
+></P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN39"
+>3. Аппаратные требования</A
+></H1
+><P
+>Удостоверьтесь в том, что Ваша Token-Ring-карта поддерживается данным драйвером. В настоящее время драйвер поддерживает только карты на основе чипсета Tropiс. &#13;</P
+><P
+>Карты, работающие с данным драйвером: 
+
+<P
+></P
+><UL
+><LI
+><P
+>3Com 3C619B Token Link</P
+></LI
+><LI
+><P
+>3Com 3C619C Token Link</P
+></LI
+><LI
+><P
+>HyperRing Classic 16/4</P
+></LI
+><LI
+><P
+>IBM Turbo 16/4 ISA adapter**	</P
+></LI
+><LI
+><P
+>IBM Token Ring Auto 16/4 ISA adapter</P
+></LI
+><LI
+><P
+>IBM Token Ring Auto 16/4 adapter /A</P
+></LI
+><LI
+><P
+>IBM Token Ring 16/4 adapter /A</P
+></LI
+><LI
+><P
+>IBM Token Ring adapter /A</P
+></LI
+><LI
+><P
+>IBM Token Ring adapter II (4 Megabit only)</P
+></LI
+><LI
+><P
+>IBM 16/4 ISA Token Ring card (16bit)</P
+></LI
+><LI
+><P
+>IBM 16/4 ISA Token Ring card (8bit)</P
+></LI
+><LI
+><P
+>Madge Blue (100% IBM compatible)</P
+></LI
+></UL
+>
+Остальные IBM-совместимые адаптеры с разделяемой памятью также должны
+прекрасно работать. Пожалуйста, сообщите мне, если Вы найдете другие
+работающие карты. </P
+><P
+>Рекомендую в настоящее время использовать адаптеры с 16КБ разделяемой памяти. </P
+><P
+>Карты, использование которых с данным драйвером может вызвать проблемы: 
+<P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>IBM Turbo 16/4 ISA adapter</DT
+><DD
+><P
+>На самом деле эта карта будет прекрасно работать с драйвером Token-Ring под
+Linux, однако Вам надо будет запустить карту в режиме, совместимом с Auto
+16/4. Самый простой путь его установить - использовать диски LANAID,
+поставляемые вместе с Вашей картой, и воспользоваться командой:
+     
+
+<PRE
+CLASS="SCREEN"
+>LANAIDC /FAST=AUTO16
+       </PRE
+>
+Для настройки карты Вы должны использовать <TT
+CLASS="LITERAL"
+>LANAIDC</TT
+> или <TT
+CLASS="LITERAL"
+>LANAID</TT
+>.</P
+></DD
+><DT
+>Token-Ring Network 16/4 Adapter II</DT
+><DD
+><P
+>Эта карта <I
+CLASS="EMPHASIS"
+>не</I
+> работает. Не путайте ее с IBM
+Token Ring adapter II (4mbit), который работает без проблем. Это
+DMA/Busmaster-адаптер для ISA.</P
+></DD
+><DT
+>3Com TokenLink Velocity ISA</DT
+><DD
+><P
+>Эта карта может как работать, так и не работать. У меня было много писем от людей, у которых была такая карта, причем у одних она работала без проблем, а у других не работала вообще.&#13;</P
+></DD
+><DT
+>PCI адаптеры</DT
+><DD
+><P
+>В настоящее время ни один из IBM PCI-адаптеров не поддерживается. </P
+></DD
+><DT
+>IBM Auto LanStreamer 16/4 Token-Ring PCI Adapter</DT
+><DD
+><P
+>Данный адаптер в настоящее время не поддерживается, но работал. Этот
+драйвер должен поддерживать и полнодуплексный (Full Duplex) режим.</P
+></DD
+></DL
+></DIV
+></P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN95"
+>4. Необходимое программное обеспечение</A
+></H1
+><P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>Примечание:</DT
+><DD
+><P
+>Если Вы работаете с ядром версии 2.0 и выше, то обратитесь к следующему
+разделу данного документа. Все, перечисленное ниже, касается, главным образом,
+ядер версий 1.2.</P
+></DD
+></DL
+></DIV
+>
+Я предполагаю, что в данный момент перед Вами находится работающая Linux-машина.</P
+><P
+>Возьмите Token Ring патч по адресу: 
+
+<PRE
+CLASS="SCREEN"
+><A
+HREF="ftp://ftp.wayne.esu1.k12.ne.us/pub/Linux/Token-Ring/TokenRing.patch-1.2.0.gz"
+TARGET="_top"
+>ftp://ftp.wayne.esu1.k12.ne.us/pub/Linux/Token-Ring/TokenRing.patch-1.2.0.gz</A
+></PRE
+>
+
+Возьмите исправленные исходные тексты NetTools по адресу: 
+
+<PRE
+CLASS="SCREEN"
+><A
+HREF="ftp://ftp.wayne.esu1.k12.ne.us/pub/Linux/Token-Ring/net-tools-1.2.0.patched.tar.gz"
+TARGET="_top"
+>ftp://ftp.wayne.esu1.k12.ne.us/pub/Linux/Token-Ring/net-tools-1.2.0.patched.tar.gz</A
+></PRE
+>
+Создайте каталог для хранения патчей (например, <TT
+CLASS="LITERAL"
+>/usr/src/patches</TT
+>) и
+скопируйте патчи туда. Создать каталоги можно следующими командами:
+<PRE
+CLASS="SCREEN"
+>&#13;
+    Mkdir /usr/src/patches - основной каталог для хранения патчей 
+    Mkdir /usr/src/patches/token - сюда разместите патч Token Ring &#13;</PRE
+>&#13;</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN110"
+>5. Установка</A
+></H1
+><P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>Примечаниe:</DT
+><DD
+><P
+>Эта инструкция предназначена для внесения исправлений в ядро версии 1.2.
+Если у Вас ядро версии 2.0, то пересоберите его и ответьте
+<TT
+CLASS="LITERAL"
+>y</TT
+>es или <TT
+CLASS="LITERAL"
+>m</TT
+>odule,
+на вопрос о поддержке Token-Ring. Вам надо сделать следующее:</P
+></DD
+></DL
+></DIV
+>
+
+<P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>Установить Token-Ring-карту в систему и сконфигурировать ее в
+зависимости от того, для чего Вы хотите ее использовать. Будет хорошо, если
+есть возможность сперва проверить работоспособность карты под
+DOS, а только потом устанавливать ее под Linux. Скорее всего карта
+будет работать под Linux с теми же настройками, что и под DOS. Если
+карта поддерживает режим PnP, постарайтесь заблокировать его сразу, как
+только она начнет работать.
+&#13;</P
+></LI
+><LI
+><P
+>Сделайте резервные копии каталога с исходными текстами ядра. Это
+пригодится, если понадобится полностью удалить Token-Ring-патч и вернуться
+к оригинальному состоянию исходных текстов.
+
+<PRE
+CLASS="SCREEN"
+>cd /usr/src
+tar cvzhf linuxbak.tar.gz linux
+        </PRE
+>
+&#13;</P
+></LI
+><LI
+><P
+>Разархивируйте патч Token-Ring. 
+
+<PRE
+CLASS="SCREEN"
+>cd /usr/src/patches/token
+gzip -d TokenRing.patch-1.2.0.gz
+        </PRE
+>
+&#13;</P
+></LI
+><LI
+><P
+>Модифицируйте ваше ядро патчем Token-Ring 
+
+<PRE
+CLASS="SCREEN"
+>cd /usr/src/linux
+patch -p1 &#60; /usr/src/patches/token/TokenRing.patch-1.2.0
+        </PRE
+>
+
+-или- 
+
+<PRE
+CLASS="SCREEN"
+>patch -p1 &#60; &#60;directory-of-patchfile&#62;/TokenRing.patch-1.2.0
+        </PRE
+>
+&#13;</P
+></LI
+><LI
+><P
+>Найдите все rej-файлы патча и внесите, если надо, необходимые изменения 
+
+<PRE
+CLASS="SCREEN"
+>find . -name \*.rej -print
+        </PRE
+>
+&#13;</P
+></LI
+><LI
+><P
+>Найдите orig-файлы и удалите их 
+
+<PRE
+CLASS="SCREEN"
+>find . -name \*.orig -print | xargs rm
+        </PRE
+>
+&#13;</P
+></LI
+><LI
+><P
+>Конфигурация и сборка ядра
+<P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>Примечание:</DT
+><DD
+><P
+>Если у вас есть раздел подкачки, то удостоверьтесь в том, что он активен. </P
+></DD
+></DL
+></DIV
+>
+
+<PRE
+CLASS="SCREEN"
+>cd /usr/src/linux
+make config
+        </PRE
+>
+
+(Патч должен добавить две строки к Вашему файлу <TT
+CLASS="FILENAME"
+>config.in</TT
+>)
+
+<PRE
+CLASS="SCREEN"
+>Token Ring support (CONFIG_TR) [y]
+        </PRE
+>
+
+(and further down the list...)
+
+<PRE
+CLASS="SCREEN"
+>IBM Tropic chipset based adaptor support (CONFIG_IBMTR) [y]
+        </PRE
+>
+
+
+<PRE
+CLASS="SCREEN"
+>make dep
+make clean
+make zImage
+        </PRE
+>
+&#13;</P
+></LI
+><LI
+><P
+>Настройка LILO. Сперва переименуйте каталог <TT
+CLASS="LITERAL"
+>/vmlinuz</TT
+> в <TT
+CLASS="LITERAL"
+>vmlinuz.old</TT
+>
+Затем копируйте ядро в <TT
+CLASS="LITERAL"
+>/vmlinuz</TT
+>. На моей системе для этого необходимо было
+бы скопировать <TT
+CLASS="LITERAL"
+>/usr/src/linux/arch/i386/boot/zImage</TT
+> в <TT
+CLASS="LITERAL"
+>/vmlinuz</TT
+> и
+отредактировать <TT
+CLASS="FILENAME"
+>/etc/lilo.conf</TT
+> для загрузки ядра. Теперь из командной
+строки запустите LILO, набрав "<TT
+CLASS="LITERAL"
+>lilo</TT
+>"</P
+></LI
+><LI
+><P
+>Сейчас Вы должны быть готовы к перезагрузке вашей системы и использованию
+Token-Ring-карты в Вашем компьютере. ,Пожалуйста прочитайте раздел
+"установки, специфичные для дистрибутивов".</P
+></LI
+></OL
+>&#13;</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN162"
+>6. Установка NetTools</A
+></H1
+><P
+>Пакет NetTools содержит много основных утилит работы с сетевыми
+устройствами. NetTools включает в себя программы <TT
+CLASS="LITERAL"
+>arp</TT
+>, <TT
+CLASS="LITERAL"
+>rarp</TT
+>, <TT
+CLASS="LITERAL"
+>route</TT
+>,
+<TT
+CLASS="LITERAL"
+>ifconfig</TT
+> и <TT
+CLASS="LITERAL"
+>netstat</TT
+> и т.п. Эти программы не знают о Token Ring изначально, поэтому
+Вам необходимо модифицировать NetTools для того, чтобы эти утилиты могли
+более эффективно работать с драйвером Token Ring.
+<P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>Примечание:</DT
+><DD
+><P
+>Текущая версия NetTools предназначается для ядра 1.2.x. Если Вы используете ядро версии 2.0, то Ваша версия NetTools, скорее всего, новее. Однако можно взять последнюю версию NetTools по адресу 
+
+<PRE
+CLASS="SCREEN"
+><A
+HREF="ftp://tapac.inka.de/pub/comp/Linux/networking/NetTools/"
+TARGET="_top"
+>ftp://tapac.inka.de/pub/comp/Linux/networking/NetTools/</A
+></PRE
+>&#13;</P
+></DD
+></DL
+></DIV
+>
+
+<P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>(1) Скопируйте и разархивируйте исходные тексты NetTools в каталог исходных текстов. 
+
+<PRE
+CLASS="SCREEN"
+>cp net-tools-1.2.0.patched.tar.gz  /usr/src
+tar -zxvof /usr/src/net-tools-1.2.0.tar.gz 
+        </PRE
+>
+&#13;</P
+></LI
+><LI
+><P
+>(5) Соберите NetTools. 
+
+<PRE
+CLASS="SCREEN"
+>cd /usr/src/net
+make install
+        </PRE
+>&#13;</P
+></LI
+></OL
+>&#13;</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN184"
+>7. Известные проблемы</A
+></H1
+><P
+>У меня самого возникало с этим драйвером несколько проблем. Если у Вас проблемы с Token Ring, а Вы используете Linux с ядром 1.2.х, пожалуйста, обновите его до 2.0. На момент написания этого документа, текущей версией ядра была 2.0.33. В патчи Token-Ring было внесено много усовершенствований со времен версии 1.2.x. Большинство этих исправлений не было перенесено назад.  </P
+><P
+>Я бы не советовал вам использовать этот патч для ядер 2.0. В эти ядра уже встроена поддержка Token-Ring. Хотя существуют пробные патчи, поднимающие версию до 2.1. &#13;</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN188"
+>8. Вопросы и комментарии</A
+></H1
+><P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>Q:</DT
+><DD
+><P
+>Может ли Token Ring собираться как модуль?  </P
+></DD
+><DT
+>A:</DT
+><DD
+><P
+>Да, это можно сделать, причем Token-Ring при этом будет довольно хорошо
+работать. Имеется дополнительный параметр, который Вы можете использовать
+для компиляции Token Ring в качестве модуля. Если Вам когда-нибудь
+понадобится "обмануть" программы, например загрузочные диски RedHat, то в
+конфигурации Token-Ring-карты (для NFS/FTP и т.п.) используйте параметр
+"<TT
+CLASS="LITERAL"
+>device</TT
+>", отличный от <TT
+CLASS="LITERAL"
+>tr0</TT
+>. Вероятно возникнут проблемы, если
+попробовать использовать этот трюк с несколькими Token-Ring-совместимыми
+адаптерами. Он предназначен, главным образом, для нескольких несовместимых
+устройств. Пример:
+
+<PRE
+CLASS="SCREEN"
+>/sbin/insmod ibmtr device=eth0
+        </PRE
+>&#13;</P
+></DD
+><DT
+>Q:</DT
+><DD
+><P
+>Я получаю ошибку с кодом "0011". Что это значит? &#13;</P
+></DD
+><DT
+>A:</DT
+><DD
+><P
+>Удостоверьтесь, что Вы подсоединены к сети, и что у Вас есть loopback-коннектор на Token-Ring-карте. Это сообщение может означать, что не открыта сеть. В 99,99% оно означает, что Вы не подключены к ней. &#13;</P
+></DD
+><DT
+>C:</DT
+><DD
+><P
+>Если на машине установлена звуковая карта, использующая порт 0x220, то она может конфликтовать с Token-Ring-картой, использующей порт 0xa20. Если возникла данная ситуация, то попробуйте поменять порт Token-Ring-карты на 0xa24, или переместите/удалите звуковую карту.&#13;</P
+><P
+>Также у меня сохранились некоторые письма, касающиеся Token Ring под
+Linux. В некоторых сообщениях для экономии места я удалил не очень
+интересные части.&#13;</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>Q:</DT
+><DD
+><P
+>&#13;<PRE
+CLASS="SCREEN"
+>От: "Mr. Chuck Rickard" &lt;chuck@gl.umbc.edu&gt;
+          Тема: Re: Token Ring патч для ядра 
+
+Я поменял параметр "device" на tr0, но при сборке получил сообщение "tr0: Can't assign device to adapter", и параметр "device" снова стал tr1. У Вас есть какие-нибудь идеи по этому поводу? 
+
+Спасибо! 
+
+Chuck Rickard 
+(chuck@umbc8.umbc.edu) 
+
+              </PRE
+>&#13;</P
+></DD
+><DT
+>A:</DT
+><DD
+><P
+>&#13;<PRE
+CLASS="SCREEN"
+>От: David Morris &#60;dwm@shell.portal.com&#62;
+              </PRE
+>
+Когда это единственное получаемое сообщение, то оно скорее всего означает,
+что программно заданный адрес порта не используется Вашей tr-картой (см.
+<TT
+CLASS="LITERAL"
+>segment = inb(PIOaddr)</TT
+> в <TT
+CLASS="LITERAL"
+>ibmtr.c</TT
+>)).</P
+></DD
+><DT
+>Q:</DT
+><DD
+><P
+>&#13;<PRE
+CLASS="SCREEN"
+>&#13;От:  Mike Glover &#60;glover@credit.erin.utoronto.ca&#62;
+Тема: Token ring проблемы. 
+
+Спасибо за ответ. Вот мой файл /var/adm/messages: 
+
+                 May  2 10:03:14 linux kernel: tr0: Unable to assign adapter to device. 
+                 May  2 10:03:14 linux kernel: tr1: Unable to assign adapter to device. 
+
+Устройство tr0 не может связаться с адаптером, это смущает меня. Документации очень мало и я не знаю как поступить при таком сообщением. Я знаю, что я не ввел никакие параметры tr-карты, но я не знаю где это делать. 
+
+Железо: 
+   PC-клон  (Dell OMNIPLEX 560, если быть точным) 
+   tr-карта Olicom 16/4 Adapter. 
+
+У меня есть tr-драйвер для DOS и под DOS моя карта работает. Мне кажется, что я чего-то не доделываю в Linux. 
+
+
+              </PRE
+>&#13;</P
+></DD
+><DT
+>A:</DT
+><DD
+><P
+>Olicom 16/4 Adapter не использует Tropic-чипсет. Попробуйте использовать
+одну из карт, которые указаны в самом начале данного howto.&#13;</P
+></DD
+><DT
+>Q:</DT
+><DD
+><P
+>&#13;<PRE
+CLASS="SCREEN"
+>От: Mike Glover &#60;glover@credit.erin.utoronto.ca&#62;
+Тема: Нашел IBM-карту... 
+
+Я взял IBM tr-карту и добился немного большего, но все еще не могу полностью установить ее. 
+(Я изменял /etc/rc.d/rc.inet1 ifconfig от eth0 до tr0). Вот часть моего файла /var/adm/messages : 
+
+                 May  2 16:23:07 linux kernel: IPX Portions Copyright (c) 1995 Caldera, Inc. 
+                 May  2 16:23:07 linux kernel: tr0: PIOaddr:  a20 seg/intr: b8 mmio base: 
+                    000dc000 intr: 0 
+                 May  2 16:23:07 linux kernel: tr0: Channel ID string not found for PIOaddr: a20 
+                 May  2 16:23:07 linux kernel: tr0: Expected for ISA: 5049434f3631313039393020 
+                 May  2 16:23:07 linux kernel: tr0:            found: 000902003021111000182000 
+                 May  2 16:23:07 linux kernel: tr0: Expected for MCA: 4d4152533633583435313820 
+                 May  2 16:23:07 linux kernel: tr0: Unable to assign adapter to device. 
+                 May  2 16:23:07 linux kernel: tr1: Unable to assign adapter to device. 
+                 May  2 16:23:07 linux kernel: PPP: version 0.2.7 (4 channels) NEW_TTY_DRIVERS 
+                    OPTIMIZE_FLAGS 
+
+Это Вам говорит о чем-нибудь? Мне - практически ни о чем. 
+
+
+              </PRE
+>&#13;</P
+></DD
+><DT
+>A:</DT
+><DD
+><P
+>&#13;<PRE
+CLASS="SCREEN"
+>От: David Morris &#60;dwm@shell.portal.com&#62;
+              </PRE
+>
+
+Это сообщение означает или конфликт памяти с MMIO-областью или с TR-картой,
+которая не совместима с драйвером (по крайней мере эта сигнатура мне не
+известна).&#13;</P
+></DD
+><DT
+>Q:</DT
+><DD
+><P
+>&#13;<PRE
+CLASS="SCREEN"
+>От: Mike Glover &#60;glover@credit.erin.utoronto.ca&#62;
+Тема: Уже почти... 
+
+Я вижу в моем файле messages следующее: 
+               May  3 14:50:24 linux kernel: tr0: now opening the board... 
+               May  3 14:50:24 linux kernel: tr0: board opened... 
+               May  3 15:11:47 linux kernel: tr0: Arrg. Transmitter busy for more than 50 msec. 
+                  Donald resets adapter, but resetting 
+               May  3 15:11:47 linux kernel:  the IBM tokenring adapter takes a long time. 
+                  It might not even help when the 
+               May  3 15:11:47 linux kernel:  ring is very busy, so we just wait a little longer 
+                  and hope for the best. 
+               May  3 15:11:47 linux kernel: tr0: Arrg. Transmitter busy for more than 50 msec. 
+                  Donald resets adapter, but resetting 
+               May  3 15:11:47 linux kernel:  the IBM tokenring adapter takes a long time. 
+                  It might not even help when the 
+               May  3 15:11:47 linux kernel:  ring is very busy, so we just wait a little longer 
+                  and hope for the best. 
+               May  3 15:11:47 linux kernel: tr0: Arrg. Transmitter busy for more than 50 msec. 
+                  Donald resets adapter, but resetting 
+
+Запись Arrg появляется только тогда, когда я запускаю telnet, rlogin или
+ftp на удаленной машине. Как только это происходит, процесс связи надолго
+зависает. Я попробовал удалить все устройства из моего компьютера (такие
+как SCSI-карта) и работать только с tr-картой. Так что проблема не в
+аппаратной части. Вот переключатели DIP на карте:
+
+               1       Up      | 
+               2       Down    | 
+               3       Down    |       Согласно руководству эти переключатели устанавливают 
+               4       Up      |       базовый адрес CC000, что вполне подходит для моей машины. 
+               5       Up      | 
+               6       Down    | 
+               7       Down    +       Эти устанавливают IRQ=2, что тоже меня устраивает 
+               8       Down    + 
+               9       Up      X       Первичный сетевой адаптер. 
+               10      Up      =       16 KB RAM. Это хорошо? 
+               11      Down    = 
+               12      Up      #       16 Mbps скорость данных. 
+
+Я буду удивлен, если дело в DIP-переключателях, мне кажется, у меня
+неправильно сконфигурирована таблица маршрутизации и другие сетевые
+настройки.
+
+Mike 
+
+
+              </PRE
+>&#13;</P
+></DD
+><DT
+>A:</DT
+><DD
+><P
+>Эта проблема полностью устранена в ядре 2.0, исправления не были перенесены
+в ядро 1.2, поэтому, я советую переходить на ядро 2.0.&#13;</P
+></DD
+></DL
+></DIV
+></DD
+></DL
+></DIV
+></P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN257"
+>9. Установки, специфичные для дистрибутивов</A
+></H1
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN259"
+>9.1. Slackware 96</A
+></H2
+><P
+>Если у Вас еще не запущен "<TT
+CLASS="LITERAL"
+>netconfig</TT
+>", то сделайте это сейчас. Настройте
+все так, как если бы ваша машина находилась в Ethernet. Отредактируйте
+<TT
+CLASS="LITERAL"
+>/etc/rc.d/rc.inet1</TT
+> так, чтобы сперва проверялось устройство <TT
+CLASS="LITERAL"
+>tr0</TT
+>, а потом
+<TT
+CLASS="LITERAL"
+>eth0</TT
+>. У вас должна быть следующая строка:</P
+><P
+>&#13;<PRE
+CLASS="SCREEN"
+>/sbin/ifconfig eth0 ${IPADDR} broadcast ${BROADCAST} netmask ${NETMASK}</PRE
+>
+
+Переделайте ее в строку вида 
+
+<PRE
+CLASS="SCREEN"
+>/sbin/ifconfig tr0 ${IPADDR} broadcast ${BROADCAST} netmask ${NETMASK}</PRE
+>&#13;</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN269"
+>9.2. RedHat 4.0+</A
+></H2
+><P
+>В дистрибутиве RedHat 4.0+ имеется прекрасная панель управления XWindows,
+предназначенная для конфигурирования модулей и устройств. Если Вы
+устанавливаете tr-адаптер в стандартной комплектации RedHat 4.0+, то там
+уже должна быть поддержка Token Ring, собираемая в в качестве модуля.
+
+Попробуйте использовать команду:
+
+
+<PRE
+CLASS="SCREEN"
+>modprobe ibmtr</PRE
+>&#13;</P
+><P
+>Если в Вашем дистрибутиве действительно есть поддержка tr-адаптера, то,
+скорее всего, больше ничего не надо делать.</P
+><P
+>Самый простой способ сконфигурировать Ваш интерфейс - это использовать
+панель управления (control-panel). Сперва загрузите новое сетевое
+устройство Token Ring. При этом автоматически должен загружаться драйвер
+ibmtr. Затем перейдите в конфигурацию сети и добавьте новое устройство -
+tr, присвойте ему ip-адрес и т.п. После перезагрузки Ваш Linux RedHat 4.0+
+будет работать с Token Ring.
+&#13;</P
+><P
+>Пожалуйста, обратите внимание, что уже в течении длительного времени мне не
+приходилось настраивать ни одну из моих RedHat систем, поэтому данные
+инструкции я пишу по памяти. По крайней мере, они должны направить Вас на
+путь, по которому необходимо следовать при настройке.&#13;</P
+></DIV
+></DIV
+></DIV
+></BODY
+></HTML
+>

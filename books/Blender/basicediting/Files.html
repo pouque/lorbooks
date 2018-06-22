@@ -1,0 +1,147 @@
+<html>
+<head>
+ <title>Blender online-Руководство для пользователя v1.5 - Основы редактирования - Файлы</title>
+</head>
+
+<body bgcolor="#ffffff" link="#999966" vlink="#999966" alink="#000000" background="http://www.linux.org.ru/books/Blender/images/bgpage.gif">
+<table cellpadding="0" cellspacing="0" border="0" width="600">
+ <tr>
+ 	<td colspan="4" width="600"><img width="408" height="70"
+			src="http://www.linux.org.ru/books/Blender/images/blentitl.jpg" alt="http://www.blender.nl/"
+			border="0"><img 
+			src="http://www.linux.org.ru/books/Blender/images/topright.gif" alt=""><br>
+		<img 
+			src="http://www.linux.org.ru/books/Blender/images/trans.gif" width="20" height="16" alt="NAVBAR->"><a
+			href="../index.html"><img 
+				src="../images/nav-home.gif" border="0" alt="титульный лист"></a><a 
+			href="../introduction/Data-blocks.html"><img 
+				src="../images/nav-intro.gif" border="0" alt="введение"></a><a 
+			href="Input-commands.html"><img 
+				src="../images/nav-basiced.gif" border="0" alt="основы редактирования"></a><a 
+			href="../quickstart/Part-1.html"><img 
+				src="../images/nav-quick-start.gif" border="0" alt="самое начало"></a><img 
+				src="../images/black.gif" width="46" height="16" alt=""><img 
+				src="../images/nav-end.gif" border="0" alt=""></td>
+ </tr>
+
+<!-- second level navigation -->
+<tr>
+ 	<td width="93" valign="top"><br><br>
+		<img src="http://www.linux.org.ru/books/Blender/images/trans.gif" width="93" height="1" alt=""><br>
+			<a href="Input-commands.html"><img 
+			src="../images/Input-cmnds-off.gif" 
+			alt="Команды ввода" width="93" 
+			height="20" border="0"></a><br><br>
+			<a href="Selections.html"><img 
+			src="../images/Selections-off.gif" 
+			alt="Выбор" width="93" 
+			height="20" border="0"></a><br><br>
+			<a href="Transforms.html"><img 
+			src="../images/Transforms-off.gif" 
+			alt="Трансформации" width="93" 
+			height="20" border="0"></a><br><br>
+			<a href="EditMode.html"><img 
+			src="../images/EditMode-off.gif" 
+			alt="Режим редактирования" width="93" 
+			height="20" border="0"></a><br><br>
+			<a href="Materials.html"><img 
+			src="../images/Materials-off.gif" 
+			alt="Материалы" width="93" 
+			height="20" border="0"></a><br><br>
+			<a href="Animation.html"><img 
+			src="../images/Animation-off.gif" 
+			alt="Анимация" width="93" 
+			height="20" border="0"></a><br><br>
+			<img src="../images/Files-on.gif" 
+			alt="Файлы" width="93" height="20">
+		</td>
+	<td width="7"><img src="http://www.linux.org.ru/books/Blender/images/trans.gif" width="7" height="1"  alt=""></td>
+
+<!-- end second level navigation -->
+
+<!-- content -->
+ 	<td width="480" valign="top"><font face="Arial, sans-serif" size="-1">
+	<img src="http://www.linux.org.ru/books/Blender/images/trans.gif" width="400" height="1" alt="">
+			<!-- content -->
+			<h2>Основы редактирования</h2>
+			<h2>Сохранение и загрузка файлов</h2>
+
+			Для загрузки файла используйте горячую клавишу 
+			F1, для сохранения - F2. При нажатии этих клавиш 
+			вместо активного окна появляется окно FileWindow.
+			
+			<ul><li> 
+			Левая кнопка мыши: сделать файл активным/открыть поддиректорию.
+			<li> Средняя кнопка: загрузить/сохранить файл. 
+			<li> 
+			Для загрузки или сохранения активного файла (который 
+			выводится в поле "имя файла") нажмите ENTER. 
+			<li> 
+			Для отмены и возврата к тому окну, которое было до нажатия клавиш F1 или F2, нажмите 
+			ESC.
+			</ul>
+			
+			Две верхних поля в окне FileWindow показывают 
+			каталог и имя файла.
+			По левой кнопке мыши кнопка становится активной,
+			ENTER вводит в нее текст. 
+			<br><br>
+			В Blender существует следующая защита от возможных
+			сбоев программного обеспечения и сохранения испорченных данных: 
+				<ul><li> 
+				Создание нескольких копий (версий) файла:
+				В UserMenu (для его открытия 
+				потяните край окна над заголовком вверху)
+				есть кнопка "Versions" (Версии). При включенной кнопке
+				перед сохранением нового файла программа 
+				автоматически переименовывает старый (старые).
+					<br><br>
+					Пример: файл rt.blend 
+					переименовывается в rt.blend1.<br><br>
+				<li> 
+				Авто-сохранение:
+				При включенном "Auto save" (кнопка в UserMenu) 
+				программа будет сохранять на диск временный файл
+				каждые х минут с именем идентификатора процесса 
+				(уникальный номер).
+				После успешного выхода из Blender (по клавише Q)
+				этот файл переименовывается в 'quit.blend'.</ul>
+			
+			У  Blender консервативное управление памятью, что 
+			иногда может обескураживать.
+			<br><br>
+			Например, удаление Объекта не означает, что все, что с ним 
+			связано (Каркасы, Материалы и т.д.) немедленно высвобождается 
+			из памяти. После нескольких часов работы в памяти Вашего компьютера
+			может оставаться большое количество неиспользуемых блоков данных.
+			<br><br>
+			Эту особенность программы 
+			можно использовать для  
+			"отмены" (undo) удаления:
+			с помощью кнопки поиска (browse button) 
+			в заголовках окна связи можно восстановить. 
+			<br><br>
+			Блоки данных, неиспользуемые Объектами программы, в файл  
+			НЕ сохраняются.
+			<br><br>
+			Память высвобождается и реструктурируется только после 
+			загрузки файла Blender.
+			<br><br>
+			
+			<br><br><br><br>
+			
+			<!-- end content -->
+			</font>
+	</td>
+<!-- end content -->
+
+ 	<td width="100"><img src="http://www.linux.org.ru/books/Blender/images/trans.gif" width="100" height="1" alt=""></td>
+ </tr>
+ <tr>
+ 	<td colspan="4"><img width="93" height="43" src="../images/gradstrips.gif" alt=""><img width="507" height="43"
+			src="../images/bottom.gif" alt=""></td>
+ </tr>
+</table>
+
+</body>
+</html>

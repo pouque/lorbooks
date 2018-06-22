@@ -1,0 +1,463 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Краткое руководство по совмещению Win95 + WinNT + Linux с использованием LILO</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.57"></HEAD
+><BODY
+CLASS="ARTICLE"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="ARTICLE"
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="TITLE"
+><A
+NAME="AEN2"
+>Краткое руководство по совмещению Win95 + WinNT + Linux с использованием LILO</A
+></H1
+><DIV
+CLASS="AUTHORGROUP"
+><A
+NAME="AEN4"
+></A
+><H3
+CLASS="AUTHOR"
+><A
+NAME="AEN5"
+>Renzo Zanelli</A
+></H3
+><DIV
+CLASS="AFFILIATION"
+><DIV
+CLASS="ADDRESS"
+><P
+CLASS="ADDRESS"
+>rzanelli@southeast.net</P
+></DIV
+></DIV
+><H3
+CLASS="CORPAUTHOR"
+>Перевод: <A
+HREF="mailto:denm@asp-linux.com"
+TARGET="_top"
+>Денис Дементьев</A
+>,
+<A
+HREF="http://www.asplinux.com"
+TARGET="_top"
+>SWSoft Pte Ltd.</A
+></H3
+></DIV
+><P
+CLASS="PUBDATE"
+>Версия 1.0, 26 Марта 1998<BR></P
+><DIV
+><DIV
+CLASS="ABSTRACT"
+><A
+NAME="AEN15"
+></A
+><P
+></P
+><P
+>Данный документ описывает процесс обеспечения нормального запуска  систем Windows 95, Windows NT и Linux, установленных на одном компьютере, с помощью LILO - системного загрузчика Linux.</P
+><P
+></P
+></DIV
+></DIV
+><HR></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Содержание</B
+></DT
+><DT
+>1. <A
+HREF="Multiboot-with-LILO.html#AEN17"
+>Вступление</A
+></DT
+><DT
+>2. <A
+HREF="Multiboot-with-LILO.html#AEN23"
+>Установка операционных систем</A
+></DT
+><DD
+><DL
+><DT
+>2.1. <A
+HREF="Multiboot-with-LILO.html#AEN26"
+>Установка Windows 95</A
+></DT
+><DD
+><DL
+><DT
+>2.1.1. <A
+HREF="Multiboot-with-LILO.html#AEN31"
+>Установка Windows NT 4.0</A
+></DT
+></DL
+></DD
+></DL
+></DD
+><DT
+>3. <A
+HREF="Multiboot-with-LILO.html#AEN40"
+>Необходимые действия в среде Linux</A
+></DT
+><DT
+>4. <A
+HREF="Multiboot-with-LILO.html#AEN51"
+>Windows NT</A
+></DT
+><DT
+>5. <A
+HREF="Multiboot-with-LILO.html#AEN65"
+>Windows 95</A
+></DT
+><DT
+>6. <A
+HREF="Multiboot-with-LILO.html#AEN71"
+>Ссылки и благодарности</A
+></DT
+><DT
+>7. <A
+HREF="Multiboot-with-LILO.html#AEN77"
+>Авторские права</A
+></DT
+></DL
+></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="AEN17"
+>1. Вступление</A
+></H1
+><P
+>Существует много общедоступных пособий, которые подробно описывают, как
+можно обеспечить загрузку нескольких операционных систем на одном
+компьютере, с помощью загрузчика операционной системы Windows NT. Но, когда
+я наконец-то приобрел Windows NT, у меня уже были установлены системы
+Windows 95 и Linux, а для их загрузки я использовал LILO. И я вполне
+справедливо решил, что надо просто добавить загрузку Windows NT в меню
+LILO.</P
+><P
+>На компьютере у меня стояли: Windows 95 - на первом IDE винчестере, и Linux - на
+втором IDE винчестере. Диск с Linux стал потом моим третьим жестким диском,
+так как вторым я поставил винчестер с Windows NT. Хотя я и не пробовал
+другие варианты расположения систем, я уверен что то, в каком порядке и
+какие системы расположены в компьютере, не играет особой роли, и в целом
+несущественно.</P
+><P
+>На всякий случай, не забудьте создать загрузочные дискеты для каждой из операционных систем!</P
+><P
+>Так как я использовал программу BootPart от Gilles Vollant, а BootPart
+поддерживает диски размером только до 4Гб, то все, описанное далее по
+тексту, может не сработать на вашей системе (в случае, если вы имеете
+винчестеры большего размера). Если вы все-таки хотите проделать эти
+действия на жестких дисках размеров больших, чем 4Гб, то обратитесь
+непосредственно к Gilles (его электронный адрес вы найдете в документации к
+программе BootPart).</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN23"
+>2. Установка операционных систем</A
+></H1
+><P
+>Когда вы начнете устанавливать операционные системы на компьютер, то
+убедитесь, что устанавливаете их на основные загружаемые разделы. Я
+устанавливал и Windows 95 и Windows NT на разделы с файловой системой
+Fat16, так что точно могу сказать, что все работает на таких дисках. Если
+вы решитесь использовать Fat32 для Windows 95 или NTFS для Windows NT, то
+проверьте, поддерживает ли их ваша версия Linux, и до какой степени.</P
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN26"
+>2.1. Установка Windows 95</A
+></H2
+><P
+>Установите Windows 95 на первый винчестер (это будет диск C:). Не забудьте создать загрузочные дискеты для Windows 95, когда вам предложат это сделать при инсталляции.</P
+><P
+>Я рекомендую убрать винчестер, с установленным на нем Linux, из компьютера на период установки Windows 95, чтобы он никоим образом не был обнаружен и для Windows 95 не существовал.</P
+><P
+>Теперь, если все сделано правильно, вы должны нормально загружаться, и работать в Windows 95.</P
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN31"
+>2.1.1. Установка Windows NT 4.0</A
+></H3
+><P
+>Установите Windows NT 4.0 на второй винчестер. Когда будете создавать
+разделы на винчестере, то обязательно сделайте раздел загрузочным. Не все
+версии Linux поддерживают NTFS, поэтому для безопасности я создавал раздел
+с FAT16, к тому же, этим я обеспечил свободный обмен информацией между
+дисками Windows.</P
+><P
+>Программа установки Windows NT определит присутствие диска с установленным
+Windows 95 и добавит возможность его загрузки в свой стартовый загрузчик NT
+так, что при старте Windows NT, вы сможете выбрать вариант загрузки в таком
+меню:
+
+<PRE
+CLASS="SCREEN"
+>Windows NT Workstation Version 4.00
+Windows NT Workstation Version 4.00 [VGA mode]
+Microsoft Windows</PRE
+>&#13;</P
+><P
+>Теперь, если все сделано правильно, вы должны нормально загружаться и
+работать в Windows NT и в Windows 95.</P
+><DIV
+CLASS="SECT4"
+><HR><H4
+CLASS="SECT4"
+><A
+NAME="AEN37"
+>2.1.1.1. Установка Linux</A
+></H4
+><P
+>Установите Linux на третий винчестер. Когда я устанавливал Linux, у меня уже была установлена система Windows 95, так что в LILO я добавлял только ее. Вы можете устанавливать все операционные системы параллельно с установкой LILO, либо сначала установить и позднее добавлять их в конфигурационные файлы LILO. В любом случае, я привел пример того, как должно выглядеть содержимое файла /etc/lilo.conf, далее по тексту. После того, как процесс установки Linux окончится, вы должны свободно загружать Linux и работать в нем.</P
+></DIV
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN40"
+>3. Необходимые действия в среде Linux</A
+></H1
+><P
+>Под Linux необходимо отредактировать фалй /etc/lilo.conf и перезагрузить LILO. В файле /etc/lilo.conf должна быть такая строка:
+
+<PRE
+CLASS="SCREEN"
+>boot=/dev/hda</PRE
+>&#13;</P
+><P
+>Строки, описывающие пункт меню "Linux", уже должны быть в файле:
+
+<PRE
+CLASS="SCREEN"
+># Linux stanza
+image=/vmlinuz
+root=/dev/hdc1
+label=Linux
+# End Linux stanza</PRE
+>&#13;</P
+><P
+>Теперь добавим строки для пункта меню "Windows 95":
+
+<PRE
+CLASS="SCREEN"
+># Windows 95 stanza
+other=/dev/hda1
+table=/dev/hda
+label=Windows95
+# End Windows 95 stanza</PRE
+>&#13;</P
+><P
+>И еще добавим строки для пункта меню "Windows NT":
+
+<PRE
+CLASS="SCREEN"
+># Windows 95 stanza
+other=/dev/hdb1
+table=/dev/hda
+loader=/boot/any_d.b
+label=WindowsNT
+# End Windows 95 stanza</PRE
+>&#13;</P
+><P
+>Сейчас необходимо перезапустить LILO. Теперь при загрузке LILO у вас в меню должны быть и Windows 95, и Windows NT, и Linux. Пока должны загружаться только Linux и Windows 95 (при запуске Windows вы должны попадать в меню загрузчика NT). Чтобы нормально загружать Windows NT, нужно сделать еще кое-что под Windows NT (пункт 4).</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN51"
+>4. Windows NT</A
+></H1
+><P
+>Прежде всего необходимо сделать две вещи.</P
+><P
+>Во-первых, скачать и разархивировать программу BootPart (автор Gilles
+Vollant). Найти ее можно по адресу <A
+HREF="http://www.winimage.com/bootpart.htm"
+TARGET="_top"
+>http://www.winimage.com/bootpart.htm</A
+>
+там же находится и информация о ее использовании.</P
+><P
+>Во-вторых, необходимо скопировать (и пока не удалять!) следующие файлы в корневой каталог диска с установленным Windows NT:
+
+<PRE
+CLASS="SCREEN"
+>Boot.ini
+Bootsect.dos
+Ntdetect.com
+Ntldr</PRE
+>
+
+Эти файлы и есть системный загрузчик NT. Они расположены в корневом каталоге диска с Windows 95, туда их поместила программа установки Windows NT при инсталляции.</P
+><P
+>Как только все это сделано, загрузитесь в режиме командной строки MSDOS (нажимайте Shift+F5 при загрузке Windows 95) и выполните следующую команду:
+
+<PRE
+CLASS="SCREEN"
+>BOOTPART WINNT BOOT:D:</PRE
+>
+
+Сейчас надо отредактировать файл Boot.ini в корневом каталоге Windows NT. Надо поправить три строки, одну в разделе [boot loader], и две в разделе [operating systems].</P
+><P
+>Вот как выглядел до правки файл Boot.ini:
+
+<PRE
+CLASS="SCREEN"
+>[boot loader]
+timeout=30
+default=multi(0)disk(0)rdisk(1)partition(1)\WINNT
+[operating systems]
+multi(0)disk(0)rdisk(1)partition(1)\WINNT="Windows NT Workstation Version 4.00" 
+multi(0)disk(0)rdisk(1)partition(1)\WINNT="Windows NT Workstation Version 4.00 [VGA mode]" /basevideo /sos
+C:\ = "Microsoft Windows"</PRE
+>&#13;</P
+><P
+>А вот как теперь выглядит исправленный файл Boot.ini:
+
+<PRE
+CLASS="SCREEN"
+>[boot loader]
+timeout=30
+default=multi(0)disk(0)rdisk(0)partition(1)\WINNT
+[operating systems]
+multi(0)disk(0)rdisk(0)partition(1)\WINNT="Windows NT Workstation Version 4.00" 
+multi(0)disk(0)rdisk(0)partition(1)\WINNT="Windows NT Workstation Version 4.00 [VGA mode]" /basevideo /sos</PRE
+>
+
+Отметьте, что все вхождения "rdisk(1)" были изменены на "rdisk(0)", а все строки, касающиеся Windows 95, удалены.</P
+><P
+>Если все сделано правильно, то после сохранения Boot.ini и перезагрузки, вы должны просто запустить Windows NT из меню LILO.</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN65"
+>5. Windows 95</A
+></H1
+><P
+>Создайте загрузочную DOS дискету из режима командной строки MSDOS (нажимайте Shift+F5 при загрузке Windows 95). Вы должны сделать эту дискету не в окне Windows, а именно в режиме MSDOS! Не загружайте Windows 95 до того, как выполните все эти действия! Скопируйте на эту дискету файл C:\WINDOWS95\COMMAND\SYS.COM (возможно у вас будет по-другому называться каталог с установленным Windows). Теперь перезагрузитесь с этой дискеты и выполните команду:
+
+<PRE
+CLASS="SCREEN"
+>SYS C:</PRE
+>
+
+Результатом ее выполнения должно стать удаление системного загрузчика NT. Теперь Windows 95 должен просто запускаться из меню LILO.</P
+><P
+>И только сейчас вы можете удалить файлы, оставшиеся от системного загрузчика NT:
+
+<PRE
+CLASS="SCREEN"
+>Boot.ini
+Bootsect.dos
+Ntdetect.com
+Ntldr</PRE
+>&#13;</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN71"
+>6. Ссылки и благодарности</A
+></H1
+><P
+>Большое спасибо всем, кто помог при написании данного документа (список неупорядочен):</P
+><P
+>James C. Bevier &#38; D. Michael McFarland. При обмене сообщениями они помогли с информацией о том, как загрузить NT под Linux.</P
+><P
+>Gilles Vollant. Его BootPart - прекрасная утилита, а Gilles сделал ее общедоступной, снабдив, к тому же, хорошей документацией. Спасибо Gilles.</P
+><P
+>Mike Harlan. Чтение его "Краткого руководства о совмещении Linux-DOS-Win95-OS2" помогло прояснить некоторые особенности в работе LILO.</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN77"
+>7. Авторские права</A
+></H1
+><P
+>Авторские права на русский перевод этого текста принадлежат &copy; 2000 SWSoft Pte Ltd.
+Все права зарезервированы.</P
+><P
+>Этот документ является частью проекта Linux HOWTO.</P
+><P
+>Авторские права на документы Linux HOWTO принадлежат их авторам, если явно
+не указано иное. Документы Linux HOWTO, а также их переводы, могут
+быть воспроизведены и распространены полностью или частично на любом
+носителе, физическом или электронном, при условии сохранения этой заметки об
+авторских правах на всех копиях. Коммерческое распространение разрешается и
+поощряется; но, так или иначе, автор текста и автор перевода желали бы знать о
+таких дистрибутивах.</P
+><P
+>Все переводы и производные работы, выполненные по документам Linux HOWTO,
+должны сопровождаться этой заметкой об авторских правах. Это делается в
+целях предотвращения случаев наложения дополнительных ограничений на
+распространение документов HOWTO. Исключения могут составить случаи
+получения специального разрешения у координатора Linux HOWTO, с которым
+можно связаться по адресу приведенному ниже.</P
+><P
+>Мы бы хотели распространить эту информацию по всем возможным каналам. Но
+при этом сохранить авторские права и быть уведомленными о всех планах
+распространения HOWTO. Если у вас возникли вопросы, пожалуйста, обратитесь
+к координатору проекта Linux HOWTO по электронной почте:
+<TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:linux-howto@metalab.unc.edu"
+>linux-howto@metalab.unc.edu</A
+>&#62;</TT
+> или к координатору русского
+перевода Linux HOWTO компании SWSoft Pte Ltd. по адресу
+<TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:linux-howto@asplinux.ru"
+>linux-howto@asplinux.ru</A
+>&#62;</TT
+></P
+></DIV
+></DIV
+></BODY
+></HTML
+>

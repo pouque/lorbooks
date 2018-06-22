@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE>Vim Color Editor HOW-TO (Vi Улучшенный с цветной подсветкой синтаксиса) : Как получить помощь по vim</TITLE>
+ <LINK HREF="Vim-7.html" REL=next>
+ <LINK HREF="Vim-5.html" REL=previous>
+ <LINK HREF="Vim.html#toc6" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="Vim-7.html">Next</A>
+<A HREF="Vim-5.html">Previous</A>
+<A HREF="Vim.html#toc6">Contents</A>
+<HR>
+<H2><A NAME="s6">6. Как получить помощь по vim</A></H2>
+
+<P>Просмотрите man страницы по vim. Для этого введите <B>'man vim'</B> и <B>'man gvim'</B>
+<P>Или внутри gvim дайте команду :help, чтобы просмотреть страницу помощи.
+Смотрите также 
+<A HREF="Vim-8.html#Vim Tutorial">Vim Tutorial</A>
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+                        VIM - главный файл помощи
+
+       Перемещение:  Используйте клавиши со стрелками, или "h" чтобы переместиться влево,
+                     "j" вниз, "k" вверх, "l" вправо.
+                     ":1" переход на первую строку страницы
+                     ":n" переход на строку номер n 
+                     "&lt;SHIFT>g" переход на край страницы
+                     ":/someword/ найдет "someword" в документе
+
+ Закрыть это окно:   Используйте ":q&lt;Enter>".
+
+  Перейти к секции:  Разместите курсор на тэге  между | | и нажмите CTRL-].
+
+   С помощью мышки:  ":set mouse=a" чтобы включить мышку  (в xterm или GUI).
+                     Двойной щелчок на тэге между ||.
+
+   Вернуться назад:  Введите CTRL-T или CTRL-O.
+
+Специфичная помощь:  Можно отправиться прямо к секции,которая вас интересует,
+                     указав в команде ":help" аргумент.
+                     Также возможно более конкретно задать что вам необходимо:  
+                    
+                      Что                        База       Пример      ~
+             Команды нормального режима          (нет)     :help x
+             Команды визуального режима           v_       :help v_u
+             Команды режима вставки               i_       :help i_&lt;Esc>
+             Команда командной строки             :        :help :quit
+             Редактирование командной строки      c_       :help c_&lt;Del>
+             Аргументы команд vi                  -        :help -r
+                      опции                       '        :help 'textwidth'
+
+Список файлов документации:
+
+|howto.txt|     как делать большинство простых вещей
+|intro.txt|     введение в Vim
+|index.txt|     алфавитный индекс для каждого режима
+|autocmd.txt|   автоматическое выполнение команд при каких либо событиях
+|change.txt|    удаление и замещение текста
+</PRE>
+</CODE></BLOCKQUOTE>
+<HR>
+<A HREF="Vim-7.html">Next</A>
+<A HREF="Vim-5.html">Previous</A>
+<A HREF="Vim.html#toc6">Contents</A>
+</BODY>
+</HTML>

@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<TITLE>Часто задаваемые вопросы по KDE: Известные исправления ошибок в KDE</TITLE>
+<META HTTP-EQUIV="content-type" CONTENT="text/html; charset=koi8-r">
+<META NAME="keywords" CONTENT="KDE FAQ Russian translation Dmitry Mozzherin Часто задаваемые вопросы перевод русский Дмитрий Мозжерин">
+<META NAME="description" CONTENT="KDE FAQ , Russian translation made by Dmitry Mozzherin">
+</HEAD>
+<BODY BGCOLOR="#ffffff" LINK="#aa0000" TEXT="#000000" > 
+<?php include("/home/maxcom/linux_html/books/head.php3") ?>
+<FONT FACE="Helvetica">
+<A HREF="http://www.kde.org/"><IMG SRC="http://books.gnu.technology/books/kde/general/faq/logotp3.gif" BORDER="0" ALT="The K Desktop Environment"></A>
+<HR WIDTH="100%" SIZE=2 ALIGN="CENTER" NOSHADE>
+
+ 
+<P ALIGN="RIGHT">
+
+<A HREF="index-13.html"> Вперед </A>
+<A HREF="index-11.html"> Назад </A>
+<A HREF="index.html#toc12"> Содержание </A>
+</P>
+<H3><A NAME="s12">12. Известные исправления ошибок в KDE</A></H3>
+
+<H3><A NAME="ss12.1">12.1 Опечатка в kzip.kdelnk</A>
+</H3>
+
+<P>В файле kzip.kdelnk (обычно расположенном в
+$KDEDIR/share/applnk/Utilities/) есть опечатка.  В разделе
+MimeType есть пункт "application/x-tbz", что на самом деле должно означать 
+"application/x-tgz".  Если ее не исправить, она может привести к следующему
+сообщению об ошибке во время запуска KDE:
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+Error
+Could not find mime type
+application/x-tbz
+in opt/kde/share/applnk/Utilities/kzip.kdelnk
+</PRE>
+</CODE></BLOCKQUOTE>
+ 
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+(Ошибка
+Не найден mime-тип
+application/x-tbz
+в opt/kde/share/applnk/Utilities/kzip.kdelnk)
+</PRE>
+</CODE></BLOCKQUOTE>
+ 
+<P>
+<P ALIGN="RIGHT">
+
+<A HREF="index-13.html"> Вперед </A>
+<A HREF="index-11.html"> Назад </A>
+<A HREF="index.html#toc12"> Содержание </A>
+</P>
+<CENTER>
+<HR WIDTH="100%" SIZE=3 ALIGN=CENTER NOSHADE>
+</CENTER>    
+</FONT>
+
+ 
+</BODY>
+</HTML>

@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE>Font HOWTO: Making Fonts Available To Ghostscript</TITLE>
+ <LINK HREF="Font-HOWTO-6.html" REL=next>
+ <LINK HREF="Font-HOWTO-4.html" REL=previous>
+ <LINK HREF="Font-HOWTO.html#toc5" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="Font-HOWTO-6.html">Далее</A>
+<A HREF="Font-HOWTO-4.html">Назад</A>
+<A HREF="Font-HOWTO.html#toc5">Оглавление</A>
+<HR>
+<H2><A NAME="s5">5. Обеспечение доступа к фонтам для Ghostscript</A></H2>
+
+<P>Чтобы сделать фонт доступным для ghostscript, достаточно сообщить 
+ghostscript, где расположен файл(ы) соответствующего фонта. Для этого 
+необходимо подредактировать файл
+<CODE>/usr/share/ghostscript/version/Fontmap</CODE>. 
+Этот файл имеет очень простой формат, почти очевидный, если его внимательно 
+просмотреть.
+
+<A NAME="ghostscript"></A> 
+<H2><A NAME="ss5.1">5.1 Type1</A></H2>
+
+<P>Добавление фонтов Type1 осуществляется очень просто. Запустите 
+<CODE>type1inst</CODE> в каталоге, содержащем файл фонта. <CODE>type1inst</CODE> 
+создаст файл с именем <CODE>Fontmap</CODE>. Присоедините этот файл к 
+ghostscript-овскому файлу <CODE>Fontmap</CODE>.
+
+<H2><A NAME="ss5.2">5.2 True Type</A></H2>
+
+<P>Добавление фонтов truetype немного сложнее, потому что мы должны получить 
+имя фонта. Первый способ сделать это (увы, грубой силой) 
+состоит в использовании конвертера TrueType фонтов в Type1 
+<CODE>ttf2pt1</CODE> и последующем извлечении имени фонта из файла 
+<CODE>afm</CODE> (вероятно должен существовать и более эффективный путь! но этот способ 
+работает, как бы уродлив он не был). Вы можете сделать это примерно так:
+<PRE>
+                ttf2pt1 -A fontname - 2 &gt; /dev/null | grep FontName
+</PRE>
+
+Затем Вы добавляете в ghostscript-овский файл <CODE>Fontmap</CODE> строку 
+правильного формата, примерно так:
+<PRE>
+        some-font       (/usr/share/fonts/subdirectory/somefont.pbf);
+</PRE>
+
+Этот способ, конечно, работает, но попробуйте сделать это для 500 фонтов! 
+Такого рода вещи просто требуют создания короткого скрипта на Perl:
+<PRE>
+#!/usr/bin/perl
+# ttfontmap -- generate fontmap file for TrueType fonts
+my $directory=shift || print STDERR "Usage: ttfontmap {directory}\n";
+
+$directory=~s/\/$//;
+
+for my $fontname ( glob ( "$directory/*.ttf" ) )
+{
+    open ( R, "sh -c \"ttf2pt1 -A $fontname - 2&gt;/dev/null\" |" );
+    while ( &lt;R> )
+    {
+        if ( $_ =~ /^FontName/ )
+        {
+            s/^FontName\s*//;
+            chomp;
+            print "/" .  $_ . "    ($fontname);\n" ;
+        }
+    }
+    close R;
+}           
+</PRE>
+
+<EM>Вы можете  
+<A HREF="http://pegasus.rutgers.edu/~elflord/font_howto/ttfontmap">скачать 
+этот скрипт</A>.</EM>   
+<P>Чтобы установить этот скрипт, скопируйте его в файл с именем 
+<CODE>ttfontmap</CODE> и поместите в один из каталогов, указанных 
+в переменной <CODE>PATH</CODE> (например, в <CODE>/usr/bin</CODE>).
+После этого Вы можете запускать его следующим образом: 
+<PRE>
+        ttfontmap directory &gt; output_file
+</PRE>
+
+где <CODE>directory</CODE> - это каталог, содержащий файлы фонтов.
+Вы получите <CODE>output_file</CODE>, который сможете присоединить 
+к перечню фонтов ghostscript. Примечание: кто-то может заметить, что 
+можно просто запустить команду
+<PRE>
+        ttfontmap directory &gt;&gt; /usr/share/ghostscript/version/Fontmap
+</PRE>
+
+но я не рекомендую этого делать (что будет, если Вы введете ``&gt;'' 
+вместо ``&gt;&gt;''?).
+
+<H2><A NAME="ss5.3">5.3 Использование Ghostscript для предварительного 
+просмотра фонтов</A>
+</H2>
+
+<P>Как только Вы сделали фонты доступными для ghostscript, Вы можете их 
+просмотреть. Это делается путем запуска интерпретатора языка ghostscript на 
+файле <CODE>prfont.ps</CODE> из Вашей инсталляции  ghostscript. После его 
+запуска напечатайте (введите) 
+<PRE>
+        /Fontname DoFont
+</PRE>
+
+где <CODE>FontName</CODE> - это имя в ghostscript 
+фонта, который Вы хотите увидеть. Существует несколько разных способов 
+вызвать <CODE>gs</CODE>. Например, если Вы хотите создать 
+postscript-файл, который Вы хотите просматривать в одной из более удобных 
+программ, к примеру <CODE>gv</CODE>, Вы можете использовать команду 
+<PRE>
+        gs -sDEVICE=pswrite -sOutputFile=somefile.ps  prfont.ps
+</PRE>
+
+Воспользовавшись этим способом, Вы сможете также распечатать выходной файл.
+<P>
+<HR>
+<A HREF="Font-HOWTO-6.html">Далее</A>
+<A HREF="Font-HOWTO-4.html">Назад</A>
+<A HREF="Font-HOWTO.html#toc5">Оглавление</A>
+</BODY>
+</HTML>

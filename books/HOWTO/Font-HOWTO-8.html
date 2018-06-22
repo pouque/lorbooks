@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE>Font HOWTO: Netscape</TITLE>
+ <LINK HREF="Font-HOWTO-9.html" REL=next>
+ <LINK HREF="Font-HOWTO-7.html" REL=previous>
+ <LINK HREF="Font-HOWTO.html#toc8" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="Font-HOWTO-9.html">Далее</A>
+<A HREF="Font-HOWTO-7.html">Назад</A>
+<A HREF="Font-HOWTO.html#toc8">Оглавление</A>
+<HR>
+<H2><A NAME="s8">8. Netscape</A></H2>
+
+<P>В том, что касается фонтов, самым печально известным приложением является, 
+вероятно, страшилка-Netscape. Однако, существует достаточно простая 
+процедура исправления этого дефекта Netscape. Основная проблема состоит в том, 
+что Netscape хочет использовать фонты с разрешением 75dpi, которые 
+обычно слишком малы. Вы можете исправить это, указав соответствующие ресурсы 
+в своем файле <CODE>.Xdefaults</CODE> file:
+<PRE>
+        Netscape*documentFonts.sizeIncrement: 20
+        Netscape*documentFonts.xResolution*iso-8859-1: 100
+        Netscape*documentFonts.yResolution*iso-8859-1: 100
+</PRE>
+
+Число 100 здесь проставлено для примера. Например, если Вы предпочитаете, 
+как и я, действительно большие шрифты, Вы можете подставить 150.
+
+<P>Еще одна существенная подсказка, касающаяся использования фонтов 
+в Netscape - разыщите пакет фонтов от Microsoft. Эти фонты широко 
+используются и получается очень большая разница в том случае, когда 
+Вы их имеете (или не имеете).
+
+<HR>
+<A HREF="Font-HOWTO-9.html">Далее</A>
+<A HREF="Font-HOWTO-7.html">Назад</A>
+<A HREF="Font-HOWTO.html#toc8">Оглавление</A>
+</BODY>
+</HTML>

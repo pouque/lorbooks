@@ -1,0 +1,49 @@
+<HTML>
+<HEAD>
+<!-- Created by texi2html 1.56k from automake-ru.texi on 11 July 2000 -->
+
+<TITLE>automake - Включение дополнительных файлов</TITLE>
+</HEAD>
+<BODY>
+Go to the <A HREF="automake-ru_1.html">first</A>, <A HREF="automake-ru_16.html">previous</A>, <A HREF="automake-ru_18.html">next</A>, <A HREF="automake-ru_25.html">last</A> section, <A HREF="automake-ru_toc.html">table of contents</A>.
+<P><HR><P>
+
+
+<H1><A NAME="SEC59" HREF="automake-ru_toc.html#TOC59">Включение дополнительных файлов</A></H1>
+
+<P>
+<A NAME="IDX463"></A>
+Для включения других файлов (может быть для подключения общих правил)
+поддерживается следующий синтаксис:
+
+
+
+<PRE>
+include ($(srcdir)|$(top_srcdir))/filename
+</PRE>
+
+<P>
+Используя файлы в текущем каталоге:
+
+
+
+<PRE>
+include $(srcdir)/Makefile.extra
+</PRE>
+
+
+<PRE>
+include Makefile.generated
+</PRE>
+
+<P>
+Используя файлы в каталоге верхнего уровня:
+
+<PRE>
+include $(top_srcdir)/filename
+</PRE>
+
+<P><HR><P>
+Go to the <A HREF="automake-ru_1.html">first</A>, <A HREF="automake-ru_16.html">previous</A>, <A HREF="automake-ru_18.html">next</A>, <A HREF="automake-ru_25.html">last</A> section, <A HREF="automake-ru_toc.html">table of contents</A>.
+</BODY>
+</HTML>

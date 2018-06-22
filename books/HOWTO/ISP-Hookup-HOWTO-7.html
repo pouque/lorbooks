@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE>ISP-Hookup-HOWTO: Слова напоследок</TITLE>
+ <LINK HREF="ISP-Hookup-HOWTO-8.html" REL=next>
+ <LINK HREF="ISP-Hookup-HOWTO-6.html" REL=previous>
+ <LINK HREF="ISP-Hookup-HOWTO.html#toc7" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="ISP-Hookup-HOWTO-8.html">Next</A>
+<A HREF="ISP-Hookup-HOWTO-6.html">Previous</A>
+<A HREF="ISP-Hookup-HOWTO.html#toc7">Contents</A>
+<HR>
+<H2><A NAME="s7">7. Слова напоследок</A></H2>
+
+<H2><A NAME="ss7.1">7.1 О каких других вещах я должен знать?</A>
+</H2>
+
+<P>
+<UL>
+<LI>    Различные сообщения об ошибках в системе обычно будут выдаваться в виде 
+внутреннего email. Чтобы гарантировать, что их можно будет прочесть, нужно
+создать /etc/aliases. Не забудьте выполнить команду newaliases при каждом 
+изменении этого файла. Пример, подходящий в большинстве случаев:
+<BLOCKQUOTE><CODE>
+<PRE>
+       PostMaster: root
+       ftp: root
+       news: root
+       usenet: root
+       FaxMaster: root
+       fax: root
+       WebMaster: root
+       MAILER.DAEMON: root
+</PRE>
+</CODE></BLOCKQUOTE>
+</LI>
+<LI>    Многие программы для Linux могут быть надены на Sunsite, который обычно
+весьма загружен. Однако существует куча зеркал, и вам стоит попытаться
+выйти на зеркало поближе к дому, например,
+<A HREF="ftp://ftp.nvg.unit.no/pub/linux/sunsite/">ftp://ftp.nvg.unit.no/pub/linux/sunsite/</A>
+</LI>
+<LI>    Если вам пришлось перейти из Yarn, он должен быть преоразован в
+стандартные почтовые ящики, используя yarn2mf, который доступен:
+<UL>
+<LI>  
+<A HREF="ftp://ftp.sn.no/user/egilk/yarn2mf.zip">ftp://ftp.sn.no/user/egilk/yarn2mf.zip</A></LI>
+</UL>
+</LI>
+</UL>
+<HR>
+<A HREF="ISP-Hookup-HOWTO-8.html">Next</A>
+<A HREF="ISP-Hookup-HOWTO-6.html">Previous</A>
+<A HREF="ISP-Hookup-HOWTO.html#toc7">Contents</A>
+</BODY>
+</HTML>

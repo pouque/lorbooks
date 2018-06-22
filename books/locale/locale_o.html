@@ -1,0 +1,231 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=koi8-r">
+<title>Locale &quot;AS IT IS&quot; - On </title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1>Как включить локализацию ?</h1>
+
+<p>&nbsp;&nbsp; Если на <strong>UNIX</strong> машине (с <strong>POSIX:1996</strong>)
+средства <strong>locale</strong> правильно <a href="locale_t.html">установлены</a>
+и программы правильно <a href="locale_p.html">написаны</a>,
+то локализация включается путем задания строки
+окружения <a href="http://www.linux.org.ru/books/man/man_e/lang.html"><strong>LANG</strong></a> :</p>
+
+<pre><strong>$ export LANG={язык} </strong></pre>
+
+<p>&nbsp;&nbsp;&nbsp; Если такой строки окружения нет, то
+работает значение локализации по умолчанию : <strong>LANG=&quot;C&quot;</strong>
+или <strong>LANG=&quot;POSIX&quot; </strong>(что то же самое) -
+минимальный набор параметров, необходимый для
+функцонирования программ на ANSI C (ISO 9899:1990), в
+кодировке <strong>US-ASCII</strong> (7 bit) (<a href="http://www.linux.org.ru/books/man/man_b/p_charset.html">Portable Character Set</a>).</p>
+
+<p>&nbsp;&nbsp; Если ваша система имеет полный набор
+утилит <strong>POSIX.2</strong>, то узнать установленные в
+системе и допустимые значения для <strong>LANG=</strong>
+можно командой <a href="http://www.linux.org.ru/books/man/man1/locale.html"><em>locale</em></a> :</p>
+
+<pre><strong>$ locale -a</strong></pre>
+
+<hr>
+
+<p align="left">&nbsp;&nbsp; По новому стандарту (<strong>POSIX.2</strong>
+приложение E (?)) значения локализации
+записываются в форме:</p>
+
+<pre>	<strong>language_TERRITORY.Codeset </strong></pre>
+
+<p align="left">или формально: </p>
+<div align="left">
+
+<pre>	<strong>language[_TERRITORY[.Codeset[@modyfier]]] </strong></pre>
+</div>
+
+<p>&nbsp;&nbsp;&nbsp; Стандарт <a href="http://www.unicode.org/unicode/onlinedat/languages.htm">ISO 639</a>
+описывает &quot;<strong>language names</strong>&quot;, <a href="http://www.unicode.org/unicode/onlinedat/countries.html">ISO 3166</a> - &quot;<strong>territory
+names</strong>&quot;. <font color="#FF0080">Территории <strong>_SU</strong>
+более не существует</font> (вернее теперь она
+означает Судан), однако для совместимости
+некоторые системы продолжают ее поддерживать
+как <strong>alias</strong> : <strong>ru_SU</strong> --&gt; <strong>ru _RU</strong>.</p>
+
+<p>&nbsp;&nbsp;&nbsp; К сожалению, стандарта на названия <strong>Codeset</strong>-ов
+формально <font color="#FF0080"><strong>нет</strong></font> (см. <a href="other/charsets.html">Charset и его имя</a>), но в основном
+принято пользоваться названиями,
+зарегистрированными для <strong>MIME</strong> в <a href="http://www.isi.edu/in-notes/iana/assignments/character-sets">IANA</a> или в <a href="http://www.cis.ohio-state.edu/htbin/rfc/rfc1700.html">RFC-1700</a>.</p>
+
+<p>&nbsp;&nbsp; Для русского языка <strong>LANG={язык}</strong>
+устанавливается как правило равным <strong>LANG=&quot;ru_RU.KOI8-R&quot;</strong>
+или <strong>LANG=&quot;ru_RU.ISO_8859-5&quot;</strong> . То есть : </p>
+
+<pre><strong>$ export LANG=&quot;ru_RU.KOI8-R&quot;</strong></pre>
+
+<p>&nbsp;&nbsp; Согласно стандарту допустимы также
+короткие именования значений <strong>locale</strong>,
+которые часто оформляются как <strong>aliases</strong>
+(псевдонимы) полного наименования. Hапример &quot;<strong>C</strong>&quot;
+--&gt; &quot;<strong>POSIX</strong>&quot;.</p>
+
+<pre><strong>$ export LANG=ru
+$ export LANG=ru_RU
+$ export LANG=ru_RU.KOI8-R</strong></pre>
+
+<p>&nbsp;&nbsp;&nbsp; Однако, если вы указываете короткое
+имя, может оказаться что <strong>Codeset</strong> вовсе не <strong>KOI8-R</strong>
+(см. например <a href="other/glibc-trbl.html">RedHat troubles)</a>. Лучше
+не пользоваться умолчаниями, а указывать точное
+длинное имя.</p>
+
+<p>&nbsp;&nbsp;&nbsp; Во <strong>FreeBSD 2.x</strong> так и есть. Для <strong>Linux</strong>
+- зависит от дистрибутива. В коммерческих
+реализациях (Solaris, SCO, AIX e.t.c.) как правило
+используется значение <strong>LANG=&quot;ru_RU&quot;</strong>, или
+укороченное <strong>LANG=&quot;ru&quot; </strong>(и как правило
+Codeset <strong>ISO8859-5</strong> по умолчанию).</p>
+
+<p>&nbsp;&nbsp; Hекоторые могут пожелать <a href="locale_t.html">сделать</a>
+себе локализацию в другом наборе символов : <strong>ru_RU.X-CP-866</strong>
+( <strong>ru_RU.IBM866</strong> )<strong>, ru_RU.x-mac-cyrillic</strong>, <strong>ru_RU.ISO_8859-5</strong>
+или даже <strong>ru_RU.CP1251</strong> - на это нет никаких
+ограничений. :) Все эти кодировки <strong>совершенно</strong>
+равноправны и зарегистрированы (кроме x-mac-cyrillic) в <a href="http://www.iana.org">IANA</a> . Только не забудте, что
+локализация,&nbsp; <a href="locale_io.html">ввод-вывод</a> и
+отображение национальных символов на терминале -
+это совершенно разные вещи.</p>
+
+<p>&nbsp;&nbsp;&nbsp; Для США <strong>LANG={язык}</strong>
+устанавливается <strong>LANG=en_US.US-ASCII</strong> (что
+полностью совпадает с <strong>LANG=C</strong>) или <strong>LANG=en_US.ISO646-IRV</strong>
+(ISO646-IRV - это тот же US-ASCII, но опубликованный <a href="http://www.iso.ch">ISO</a>). А вот для Великобритании
+необходимо устанавливать <strong>LANG=en_GB.ISO8859-1</strong>
+поскольку в наборе символов US-ASCII не содержится
+символа &quot;фунт стерлингов&quot;.</p>
+
+<hr>
+
+<p>&nbsp;&nbsp; Переменная окружения <a href="http://www.linux.org.ru/books/man/man_e/lang.html"><strong>LANG</strong></a>
+впервые была введена в <strong>HP-UX Multi Language Subsystem</strong>
+и формально относится к подсистеме <a href="locale_n.html">NLS</a>,
+и поэтому имеет множество &quot;побочных&quot;
+эффектов : изменяет пути поиска и язык <strong>message-catalog</strong>-ов
+(<a href="http://www.linux.org.ru/books/man/man_e/nlspath.html"><strong>NLSPATH</strong></a>), пути поиска
+и язык страничек <strong>man </strong>(<strong>MANPATH</strong>),
+влияет на систему X-Windows, MOTIF e.t.c.</p>
+
+<p>&nbsp;&nbsp; Если система локализована не полностью
+и использовать полное переключение на другой
+язык (с помощью export <strong>LANG={язык</strong>}) нельзя,
+можно включить <strong>locale</strong> только для функций <strong>locale
+API</strong> библиотеки <strong>libc</strong>, задав значение <a href="locale_g.html">категорий локализации</a>. Можно также
+присваивать <strong>разные</strong> значения разным
+категориям, задавая их имена в строках окружения
+: </p>
+
+<pre><strong>$ unset LANG</strong></pre>
+
+<p>&nbsp;&nbsp;&nbsp; или</p>
+
+<pre><strong>$ export LANG=&quot;C&quot;
+$ export LC_CTYPE=&quot;ru_RU.KOI8-R</strong>&quot;
+<strong>$ export LC_COLLATE=&quot;ru_RU.KOI8-R&quot;</strong>
+<strong>$ export LC_TIME=&quot;C&quot;</strong></pre>
+
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <blockquote>
+        <p>- (если Вас раздражают русские даты, сообщения и <strong>man</strong>-ы,
+        но нужно обрабатывать русские буквы ;-) и т.д.</p>
+      </blockquote>
+    </blockquote>
+  </blockquote>
+</blockquote>
+
+<p>&nbsp;&nbsp;&nbsp; По возможности сдедует использовать
+как можно <strong>более полное</strong> имя для задания
+локализации, например :</p>
+
+<pre><strong>$ export LANG=&quot;ru_RU.KOI8-R&quot;
+$ export LANG=&quot;ru_RU&quot;
+$ export LANG=&quot;ru&quot;</strong></pre>
+
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <p>- первый вариант наиболее предпочтителен,
+      поскольку <font color="#FF0080"><strong>точно</strong></font> задает
+      язык, страну и кодировку.</p>
+    </blockquote>
+  </blockquote>
+</blockquote>
+
+<p>&nbsp;&nbsp;&nbsp; <font color="#FF0080"><strong>Не рекомендуется</strong></font>
+использовать строку окружения :</p>
+
+<pre><strong>$ export LC_ALL={язык}</strong></pre>
+
+<p>&nbsp;&nbsp;&nbsp; поскольку формально такой <a href="locale_g.html">категории локализации</a> нет, она
+&quot;виртуальная&quot; и обозначает &quot;одновременно
+все категории&quot; (* - wildcard). Из за этого во многих
+реализациях <strong>locale API</strong> возникают проблемы
+после вызова функции&nbsp; <a href="locale_p.html"><em>setlocale(LC_ALL,&quot;&quot;)</em></a>
+поскольку <strong>LC_ALL</strong> оказывается
+&quot;сильнее&quot; чем конкретная категория,
+например <strong>LC_TIME</strong>.</p>
+
+<p>&nbsp;&nbsp;&nbsp; Проблемы могут возникнуть также с
+программами, работающими с <strong>PostScript</strong> : в
+категории <strong>LC_NUMERIC</strong> локализации <strong>ru_RU</strong>
+в соответствии со стандартом ГОСТ в качестве
+десятичного разделителя используется символ
+'запятая' : &quot;<strong>,</strong>&quot; в то время, как в
+стандарте языка <strong>PostScript</strong> : точка &quot;<strong>.</strong>&quot;
+А категория <strong>LC_NUMERIC</strong> оказывает влияние на <em>printf(&quot;%f&quot;,float);</em>
+. Используйте значение <strong>C</strong> (<strong>POSIX</strong>)
+для <strong>LC_NUMERIC</strong>, если вы работаете с <strong>PostScript</strong>
+:</p>
+
+<pre><strong>$ export LC_NUMERIC=&quot;POSIX&quot;</strong></pre>
+
+<hr>
+
+<p>&nbsp;&nbsp;&nbsp; Посмотреть текущие значения
+категорий локализации можно все той же утилитой<em>
+<a href="http://www.linux.org.ru/books/man/man1/locale.html">locale</a></em> (без параметров).</p>
+
+<pre><strong>$ locale</strong></pre>
+
+<p>&nbsp;&nbsp;&nbsp; После включения, работу средств
+локализации можно <a href="locale_h.html">проверить</a>.</p>
+
+<hr>
+
+<p>* ПРИМЕЧАHИЕ: Хотя <strong>MIME</strong> и <strong>POSIX locale</strong>
+используют одни и те же концепции <strong>charset </strong>и <strong>codeset</strong>,
+взаимоотношение между <strong>MIME</strong> и <strong>locale</strong>
+далеко не <a href="locale_m.html">однозначно.</a> Так что
+правильная настройка <strong>locale</strong> вовсе не
+гарантирует правильную работу почтовой системы
+(в области работы с национальными символами).</p>
+
+<p>* ПРИМЕЧАНИЕ: В некоторых современных системах
+начинает появляться локализация в <strong><a href="http://www.linux.org.ru/books/unicode/index.html">UNICODE</a></strong>. Включается она
+заданием строки окружения <strong>LANG=&quot;en_US.UTF-8&quot; </strong>для
+США или соответственно<strong> LANG=&quot;ru_RU.UTF-8</strong>&quot;
+для России, <strong>LANG=&quot;ja_JP.UTF-8</strong>&quot; для Японии и
+т.д. См: <a href="http://www.cl.cam.ac.uk/~mgk25/unicode.html">UTF-8 FAQ</a>.</p>
+
+<hr>
+
+<p>Содержание &quot;<a href="http://www.sensi.org/~alec/locale/index.html#toc">Locale
+AS IT IS</a>&quot;</p>
+
+<hr>
+
+<h6><em>Last change : <!--webbot bot="Timestamp" S-Type="EDITED" S-Format="%d-%m-%Y" startspan -->01-10-2000<!--webbot bot="Timestamp" endspan i-checksum="12414" --></em></h6>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>Installing Autoconf-2.53</title><meta name="GENERATOR" content="Microsoft FrontPage 4.0" /=""><link rel="HOME" title="Linux From Scratch" href="http://www.linuxfromscratch.org/view/4.0/index.html" /=""><link rel="UP" title="Installing basic system software" href="http://www.linuxfromscratch.org/view/4.0/chapter06/chapter06.html" /=""><link rel="PREVIOUS" title="Installing Texinfo-4.2" href="http://www.linuxfromscratch.org/view/4.0/chapter06/texinfo.html" /=""><link rel="NEXT" title="Installing Automake-1.6.3" href="http://www.linuxfromscratch.org/view/4.0/chapter06/automake.html" /=""></head><body class="sect1" bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#840084" alink="#006000"><div class="NAVHEADER"><table summary="Header navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><th colspan="3" align="Center">Linux From Scratch: Версия 4.0</th></tr><tr><td width="10%" align="Left" valign="Bottom"><a href="texinfo.html" accesskey="P">Назад</a></td><td width="80%" align="Center" valign="Bottom">Глава 6. Установка основных компонентов
+        системы</td><td width="10%" align="Right" valign="Bottom"><a href="automake.html" accesskey="N">Вперед</a></td></tr></tbody></table><hr align="Left" width="100%" /=""></div><div class="sect1"><h1 class="sect1"><a name="ch06-autoconf">Установка Autoconf-2.53</a></h1><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen">Приблизительное время компиляции:           0.05 SBU<br>Необходимое дисковое пространство:  6 MB</pre></td></tr></tbody></table><div class="sect2"><h2 class="sect2"><a name="AEN4127">Инсталляция Autoconf</a></h2><p>Для инсталляции Autoconf выполните:</p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>./configure --prefix=/usr &amp;&amp;<br>make &amp;&amp;<br>make install</b></tt></pre></td></tr></tbody></table></div><div class="sect2">
+<div class="sect2"><h2 class="sect2"><a name="AEN6111">Содержание Autoconf</a></h2><p>Последняя проверка: версия 2.53.</p><div class="sect3"><h3 class="sect3"><a name="AEN6114">Программы</a></h3><p>autoconf, autoheader, autom4te, autoreconf, autoscan, autoupdate и  ifnames</p></div><div class="sect3"><h3 class="sect3"><a name="AEN6117">Описания</a></h3><div class="sect4"><h4 class="sect4"><a name="AEN6119">autoconf</a></h4><p>autoconf - инструмент для создания скриптов командного интерпретатора,
+ автоматически конфигурирующих пакеты с исходным кодом для адаптации ко многим
+ Unix системам. Настроечные скрипты, созданные autoconf, независимы от autoconf
+ во время их исполнения, так что пользователям необязательно использование
+ autoconf.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6122">autoheader</a></h4><p>autoheader создает шаблонный файл, состоящий из выражений C #define для
+ использования configure.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6125">autom4te</a></h4><p>autom4te запускает GNU M4 для обработки заданных файлов.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6128">autoreconf</a></h4><p>При наличии множества настроечных скриптов, созданных autoconf, autoreconf
+ может сэкономить время. Утилита повторно запускает autoconf and autoheader
+ (когда необходимо) для повторной генерации настроечных скриптов autoconf
+и настройки шаблонов заголовков рекурсивно, начиная с текущего каталога.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6131">autoscan</a></h4><p>autoscan может помочь в написании configure.in для программного пакета.
+ autoscan просматривает исходные файлы в дереве каталогов. Если не указан
+каталог, то используется текущий. Исходный код проверяется на наличие распространенных
+ проблем переносимости, создаваемый configure.scan служит предварительным
+configure.in для пакета.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6134">autoupdate</a></h4><p>autoupdate обновляет имена вызова макросов autoconf в configure.in.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6137">ifnames</a></h4><p>ifnames может помочь во время написания configure.in для программного
+пакета. Выводятся идентификаторы, которые пакет уже использует в условиях
+препроцессора C. Если пакет уже настроен для некоторой переносимости, программа
+может помочь в определении, что необходимо проверить configure. Она также
+может заполнить некоторые пропуски в configure.in, вставленные autoscan.</p></div></div></div>
+<div class="sect2"><h2 class="sect2"><a name="AEN6140">Зависимости Autoconf</a></h2><p>Последняя проверка: версия 2.52.</p><p class="literallayout">Bash: sh<br>
+   Diffutils: cmp<br>
+   Fileutils: chmod, install, ln, ls, mkdir, mv, rm<br>
+   Grep: fgrep, grep<br>
+   M4: m4<br>
+   Make: make<br>
+   Gawk: gawk<br>
+   Sed: sed<br>
+   Sh-utils: echo, expr, hostname, sleep, uname<br>
+   Texinfo: install-info<br>
+   Textutils: cat, tr</p></div>
+<h2 class="sect2"></h2></div></div><div class="NAVFOOTER"><hr align="Left" width="100%" /=""><table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="33%" align="Left" valign="Top"><a href="texinfo.html" accesskey="P">Назад</a></td><td width="34%" align="Center" valign="Top"><a href="../index.html" accesskey="H">Домой</a></td><td width="33%" align="Right" valign="Top"><a href="automake.html" accesskey="N">Вперед</a></td></tr><tr><td width="33%" align="Left" valign="Top">Установка Texinfo-4.2</td><td width="34%" align="Center" valign="Top"><a href="chapter06.html" accesskey="U">Наверх</a></td><td width="33%" align="Right" valign="Top">Установка Automake-1.6.3</td></tr></tbody></table></div></body></html>

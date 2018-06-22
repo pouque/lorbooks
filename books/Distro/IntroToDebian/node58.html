@@ -1,0 +1,192 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Кратко об оформлении окон и модулях.</TITLE>
+<META NAME="description" CONTENT="Кратко об оформлении окон и модулях.">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<!-- Meta http equivalent was here                               -->
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="IntroToLinux.css">
+
+<LINK REL="previous" HREF="node57.html">
+<LINK REL="up" HREF="node54.html">
+<LINK REL="next" HREF="node59.html">
+</HEAD>
+
+<BODY background="backgr.jpg" vlink="#000099" bgcolor="#E6E6FA">
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A NAME="tex2html902"
+  HREF="node59.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html898"
+  HREF="node54.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html894"
+  HREF="node57.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html900"
+  HREF="IntroToLinux.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A>  
+<BR>
+<B> След.:</B> <A NAME="tex2html903"
+  HREF="node59.html">Введение в ViM</A>
+<B> Вверх:</B> <A NAME="tex2html899"
+  HREF="node54.html">Введение в FVWM2</A>
+<B> Пред.:</B> <A NAME="tex2html895"
+  HREF="node57.html">События.</A>
+ &nbsp; <B>  <A NAME="tex2html901"
+  HREF="IntroToLinux.html">Содержание</A></B> 
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION00053400000000000000">
+Кратко об оформлении окон и модулях.</A>
+</H3>
+
+<P>
+В этом пункте я сообщу только о тех принципах оформления и о модулях, которыми пользуюсь сам.
+Как я уже упоминал&nbsp;-- документацию на FVWM читать (увы и ах!) необходимо.
+И это правильно.
+
+<P>
+Внешний вид задается командами вида ``*Style''.
+Так, например, часть моих настроек:
+<PRE>
+# Шрифт по умолчанию. Можно использовать и TTF-ы
+Style "default-style" Font -*-helvetica-medium-r-*-*-12-*-*-*-*-*-koi8-r
+
+# Определяем вид руксора на ``рабочем столе''
+CursorStyle   ROOT   left_ptr
+
+# Определяем параметры оформления окон по умолчанию 
+# Заголовок - 15 пикселей с градиентной заливкой
+DestroyDecor default-decor
+AddToDecor default-decor
++ TitleStyle Height 15
++ TitleStyle HGradient 300 #758591 #102030
+
+# Добавляем вышеопределенные настройки к стилю по умолчанию
+Style "default-style" UseDecor default-decor, Color Black/DarkGrey
+
+# Применяем оный стиль ко всем возможным
+Style "*" UseStyle default-style
+
+# И комю нужны бордюры? Только место занимают :o)
+Style "*" BorderWidth 0
+Style "*" HandleWidth 0
+
+# Интересный метод фокусировки
+Style "*" SloppyFocus
+
+# Размещаем новые окна с минимальным перекрытием
+Style "*" MinOverlapPlacement
+
+# Новые окна захватывают фокус
+Style "*" GrabFocus
+
+# Броузеры только на первом деке,
+# терминалы на втором,
+# логи и вовсе на последнем (но первой его странице)
+Style "Mozilla*"    StartsOnDesk 0
+Style "*term"       StartsOnDesk 1
+Style "xconsole"    StartsOnDesk 3, StartsOnPage 0 0
+
+# Часы всегда видны на всех экранах, без заголовка, не указываются 
+# в списке окон и нельзя на них переглючиться по Alt+TAB
+Style "*clock"      Sticky, StaysOnTop, NoTitle, CirculateSkip, WindowListSkip
+
+# Со все той-же градиентной заливкой меню
+MenuStyle * Background #455561, ActiveFore #ccfcf0, \
+        ForeGround black, \
+        Font -cronyx-helvetica-bold-r-*-*-12-*-*-*-*-*-koi8-r
+MenuStyle * popupoffset 0 100
+MenuStyle * MenuFace HGradient 64 1 #758591 100 #102030
+</PRE>
+
+<P>
+С FVWM поставляется множество весьма полезных модулей (спросите авторов -- сколько придложенных модулей они отвергают на один принятый).
+Соответственно имеет смысл прочитать документацию на каждый из них (<TT>man Fvwm&lt;TAB&gt;</TT> в <SPAN  CLASS="textit">zsh</SPAN>), здесь я привожу пример использования пары их (FvwmButtons и FvwmPager):
+<PRE>
+#-----------------------------------------------------------
+#---------А вот и панель с декером (типа пейджера)----------
+#-----------------------------------------------------------
+
+DestroyModuleConfig DeskerPanelButtons: *
+DestroyModuleConfig FvwmDesker: *
+
+Style "DeskerPanelButtons"  NoTitle,NoHandles,Sticky,\
+    WindowListSkip, BorderWidth 0, CirculateSkip, StaysOnTop
+Style "FvwmDesker"   NoTitle, NoHandles, Sticky, \
+    WindowListSkip, CirculateSkip, StaysOnTop
+
+*DeskerPanelButtons: Fore #102030
+*DeskerPanelButtons: Back #758591
+*DeskerPanelButtons: Geometry 12x73-0-0
+*DeskerPanelButtons: Font -*-helvetica-bold-r-*-*-10-*-*-*-*-*-koi8-r
+*DeskerPanelButtons: Rows 1
+*DeskerPanelButtons: Frame 1
+*DeskerPanelButtons: Padding 0 0
+*DeskerPanelButtons: (Panel(left, steps 12, delay 0, position \
+    module top, indicator10) "FvwmDesker" 'Module FvwmPager \
+    FvwmDesker 0 3')
+
+*FvwmDesker: Back #758591
+*FvwmDesker: Fore #102030
+*FvwmDesker: Hilight white
+*FvwmDesker: Font -*-helvetica-bold-r-*-*-10-*-*-*-*-*-koi8-r
+*FvwmDesker: Geometry 319x69+5000+5000
+*FvwmDesker: MiniIcons
+*FvwmDesker: Balloons
+*FvwmDesker: Label 0 Web
+*FvwmDesker: Label 1 Term
+*FvwmDesker: Label 2 Multimedia
+*FvwmDesker: Label 3 Misc
+</PRE>
+Теперь у вас в правом нижнем углу экрана выезжает переключатель экранов/деков.
+
+<P>
+Также можете ознакомиться с моими текущими <A HREF="http://www.uic.nnov.ru/~nik/articles/IntroToLinux/.fvwm2rc">настройками к <SPAN  CLASS="textit">fvwm2</SPAN></A>...
+
+<P>
+
+<DIV CLASS="navigation"><HR>
+<!--Navigation Panel-->
+<A NAME="tex2html902"
+  HREF="node59.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html898"
+  HREF="node54.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html894"
+  HREF="node57.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html900"
+  HREF="IntroToLinux.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A>  
+<BR>
+<B> След.:</B> <A NAME="tex2html903"
+  HREF="node59.html">Введение в ViM</A>
+<B> Вверх:</B> <A NAME="tex2html899"
+  HREF="node54.html">Введение в FVWM2</A>
+<B> Пред.:</B> <A NAME="tex2html895"
+  HREF="node57.html">События.</A>
+ &nbsp; <B>  <A NAME="tex2html901"
+  HREF="IntroToLinux.html">Содержание</A></B> </DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<TABLE border="0" cellpadding="0" cellspacing="0" width="100%"><TR bgcolor="#336699"><TD bgcolor="#8080c0"><P align="center"><FONT color="#FFFFFF" size="1"><A href="http://www.gnu.org/copyleft/fdl.html"><FONT color="#FFFFFF" size="1">Copyleft</FONT></A> © 2002-2003 г. &nbsp; Nikolay A. Panov, <A href="http://www.uic.nnov.ru/~nik/articles/IntroToLinux/"><FONT color="#FFFFFF">"Intro To Linux" (orig)</FONT></A>, &nbsp;<a href="mailto:&#110;&#105;&#107;&#115;&#105;&#116;&#101;&#64;&#109;&#97;&#105;&#108;&#46;&#114;&#117;"><FONT color="#FFFFFF">&#110;&#105;&#107;&#115;&#105;&#116;&#101;&#64;&#109;&#97;&#105;&#108;&#46;&#114;&#117;</FONT></A>, &nbsp;ICQ: 122-40-8888</FONT></P></TD></TR></TABLE>
+</ADDRESS>
+</BODY>
+</HTML>

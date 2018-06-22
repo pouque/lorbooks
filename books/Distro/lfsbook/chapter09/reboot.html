@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>Перезагрузка системы</title><meta name="GENERATOR" content="Modular DocBook HTML Stylesheet Version 1.73" /=""><link rel="HOME" title="Linux From Scratch" href="../index.html" /=""><link rel="UP" title="The End" href="../chapter09/chapter09.html" /=""><link rel="PREVIOUS" title="Get Counted" href="../chapter09/getcounted.html" /=""><link rel="NEXT" title="Part III - Appendixes" href="../part3.html" /=""></head><body class="sect1" bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#840084" alink="#006000"><div class="NAVHEADER"><table summary="Header navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><th colspan="3" align="Center">Linux From Scratch: Версия 4.0</th></tr><tr><td width="10%" align="Left" valign="Bottom"><a href="getcounted.html" accesskey="P">назад</a></td><td width="80%" align="Center" valign="Bottom">Глава 9. Заключение.</td><td width="10%" align="Right" valign="Bottom"><a href="../part3.html" accesskey="N">Вперед</a></td></tr></tbody></table><hr align="Left" width="100%" /=""></div><div class="sect1"><h1 class="sect1"><a name="ch09-reboot">Перезагрузка системы</a></h1><p>Теперь все по установлено, загрузочные скрипты созданы, и настало время перезагрузить компьютер
+Перед этим надо размонтировать $LFS/proc и саму $LFS партицию.
+запустив следующее:</p><p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>umount $LFS/proc &amp;&amp;<br>umount $LFS</b></tt></pre></td></tr></tbody></table></p><p>Если вы создали систему со множеством партиций, вы должны размонтировать их тоже перед тем, как размонтируете партицию $LFS
+:</p><p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>umount $LFS/proc &amp;&amp;<br>umount $LFS/usr &amp;&amp;<br>umount $LFS/home &amp;&amp;<br>umount $LFS</b></tt></pre></td></tr></tbody></table></p><p>И теперь перезагрузить систему  используя что-то типа:
+</p><p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>/sbin/shutdown -r now</b></tt></pre></td></tr></tbody></table></p><p>В строке приглашения LILO, убедитесь, что вы загружаете
+<em>lfs</em>  систему, даже если она загружается и не по умолчанию.</p><p>После перезагрузки вы можете начать работу в вашей собственной системе, 
+устанавливать дополнительное ПО и т.д.</p><p>Единственная последняя вещь, которую вы, может быть, захотите сделать - это 
+запустить lilo на предмет запуска с вашего HDD. Мы опишем инсталяцию lilo в MBR
+вашего диска. На разных системах могут быть незначительные отличия. В любом случае,
+сверяйтесь с документацией, в случае, если вам надо включить дополнительные опции.
+</p><p>В любом случае запустите следующую комманду для того, что бы убедиться в том, что lilo
+установлено:
+</p><p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>/sbin/lilo</b></tt></pre></td></tr></tbody></table></p><p>Возможно вам понадобиться удалить статические директории. Если надо, 
+то перечитайте Главу 5 , затем сохраните статические директории (backup) перед
+их удалением. Для удаления статических директорий выполните следующее:
+</p><p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>rm -rf /static</b></tt></pre></td></tr></tbody></table></p><p>Ну вот, вы закончили создание вашей собственной LFS системы, и, теперь хотите
+поставить дополнительное ПО, например веб-браузер или почтовый клиент.
+Первое, посмотрите проект Beyond Linux From Scratch в котором можете найти разные
+ примеры:
+<a href="http://beyond.linuxfromscratch.org/" target="_top">http://beyond.linuxfromscratch.org/</a>. Вякие примочки и дополнителные описания могут быть найдены здесь:
+<a href="http://hints.linuxfromscratch.org/hints.shtml" target="_top">http://hints.linuxfromscratch.org/hints.shtml</a>. В случае, если вы новичок не только в LFS, но и в Linux системах вообще, то
+есть смысл почитать советы для новичков:
+ <a href="http://hints.linuxfromscratch.org/hints/newbie.txt" target="_top">http://hints.linuxfromscratch.org/hints/newbie.txt</a> - очень интересно.</p><p> Помните, что существуют списки рассылки по системам LFS, на которые 
+вы можете подписаться для получения помощи. Смотрите
+<a href="../chapter01/maillists.html">Глава 1 - Списки рассылки и архивы</a> для детальной информации
+.</p><p>Теперь, мы благодарим вас за использование книги по LFS и надеемся, что вы нашли ее
+полезной в использовании и сохранили ваше (да и наше) время ...<br> ;-)
+</p></div><div class="NAVFOOTER"><hr align="Left" width="100%" /=""><table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="33%" align="Left" valign="Top"><a href="getcounted.html" accesskey="P">Назад</a></td><td width="34%" align="Center" valign="Top"><a href="../index.html" accesskey="H">Домой</a></td><td width="33%" align="Right" valign="Top"><a href="../part3.html" accesskey="N">Вперед</a></td></tr><tr><td width="33%" align="Left" valign="Top">Впиши себя в пользователи LFS<br>
+</td><td width="34%" align="Center" valign="Top"><a href="chapter09.html" accesskey="U">Наверх</a></td><td width="33%" align="Right" valign="Top">Часть III - Приложения<br>
+</td></tr></tbody></table></div></body></html>

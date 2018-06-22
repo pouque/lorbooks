@@ -1,0 +1,879 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE>DNS HOWTO: Простой домен.</TITLE>
+ <LINK HREF="DNS-HOWTO-5.html" REL=next>
+ <LINK HREF="DNS-HOWTO-3.html" REL=previous>
+ <LINK HREF="DNS-HOWTO.html#toc4" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="DNS-HOWTO-5.html">Следующий</A>
+<A HREF="DNS-HOWTO-3.html">Предыдущий</A>
+<A HREF="DNS-HOWTO.html#toc4">Содержание</A>
+<HR>
+<H2><A NAME="simple"></A> <A NAME="s4">4. <EM>Простой</EM> домен.</A></H2>
+
+<P><B>Как установить свой собственный домен</B>
+<H2><A NAME="ss4.1">4.1 Но сначала некоторое количество сухой теории</A>
+</H2>
+
+<P>До того как мы в <EM>действительности</EM> начнем этот раздел, я хочу
+дать вам некоторые теоретические сведения о том как работает DNS и пример
+ее работы. И вы должны читать дальше, потому что это полезно для вас. Если
+вы не `хотите' делать это, то вы по крайней мере должны быстро просмотреть
+его. Остановитесь, когда вы увидите указания о том, что вы должны делать с
+вашим файлом <CODE>named.conf</CODE>.
+<P>DNS&nbsp;-- это иерархическая, организованная в виде дерева
+система. Вершина записывается как `<CODE>.</CODE>' и произносится как `root
+(корень)'.  В . существует некоторое количество Доменов верхнего уровня
+(Top Level Domains, TLDs), наиболее известными из которых являются ORG,
+COM, EDU и NET, но на самом деле их намного больше. ТОчно также как и
+дерево, они имеют корни и ветви. Если у вас есть некоторое образование в
+области компьютерных наук, то вы сможете думать о DNS как о дереве поиска,
+и вы сможете находить узлы, листья и связи между вершинами этого дерева.
+<P>При поиске машины, запрос обрабатывается рекурсивно, начиная с
+корня. Если вы хотите найти адрес машины <CODE>prep.ai.mit.edu</CODE>, то ваш
+сервер имен должен найти сервер имен, который обслуживает <CODE>edu</CODE>. Он
+запрашивает корневой сервер (<CODE>.</CODE>) (он уже знает корневые <CODE>.</CODE>
+сервера&nbsp;-- они перечислены в файле <CODE>root.hints</CODE>), корневой сервер
+<CODE>.</CODE> дает список серверов <CODE>edu</CODE>:
+
+<BLOCKQUOTE><CODE>
+<PRE>
+$ nslookup
+Default Server:  localhost
+Address:  127.0.0.1
+</PRE>
+</CODE></BLOCKQUOTE>
+
+
+Запросите корневой сервер:
+
+<BLOCKQUOTE><CODE>
+<PRE>
+> server c.root-servers.net.
+Default Server:  c.root-servers.net
+Address:  192.33.4.12
+</PRE>
+</CODE></BLOCKQUOTE>
+
+
+Установите тип запроса (Query type) в NS (записи о серверах имен):
+
+<BLOCKQUOTE><CODE>
+<PRE>
+> set q=ns
+</PRE>
+</CODE></BLOCKQUOTE>
+
+
+Запросите его о <CODE>edu</CODE>:
+
+<BLOCKQUOTE><CODE>
+<PRE>
+> edu.
+</PRE>
+</CODE></BLOCKQUOTE>
+
+
+Заключительная точка <CODE>.</CODE> очень важна, она сообщает <CODE>nslookup</CODE>,
+что мы запрашиваем о edu находящемся прямо под корневым сервером <CODE>.</CODE>
+(это ускоряет поиск).
+
+<BLOCKQUOTE><CODE>
+<PRE>
+edu     nameserver = A.ROOT-SERVERS.NET
+edu     nameserver = H.ROOT-SERVERS.NET
+edu     nameserver = B.ROOT-SERVERS.NET
+edu     nameserver = C.ROOT-SERVERS.NET
+edu     nameserver = D.ROOT-SERVERS.NET
+edu     nameserver = E.ROOT-SERVERS.NET
+edu     nameserver = I.ROOT-SERVERS.NET
+edu     nameserver = F.ROOT-SERVERS.NET
+edu     nameserver = G.ROOT-SERVERS.NET
+A.ROOT-SERVERS.NET      internet address = 198.41.0.4
+H.ROOT-SERVERS.NET      internet address = 128.63.2.53
+B.ROOT-SERVERS.NET      internet address = 128.9.0.107
+C.ROOT-SERVERS.NET      internet address = 192.33.4.12
+D.ROOT-SERVERS.NET      internet address = 128.8.10.90
+E.ROOT-SERVERS.NET      internet address = 192.203.230.10
+I.ROOT-SERVERS.NET      internet address = 192.36.148.17
+F.ROOT-SERVERS.NET      internet address = 192.5.5.241
+G.ROOT-SERVERS.NET      internet address = 192.112.36.4
+</PRE>
+</CODE></BLOCKQUOTE>
+
+<P>Это дает нам информацию о том, что все <CODE>ROOT-SERVERS.NET</CODE> обслуживают
+<CODE>edu.</CODE>, так что мы можем продолжать опрашивать сервер <CODE>C</CODE>. Теперь мы
+хотим знать кто обслуживает следующий уровень имени домена: <CODE>mit.edu.</CODE>:
+
+<BLOCKQUOTE><CODE>
+<PRE>
+> mit.edu.
+Server:  c.root-servers.net
+Address:  192.33.4.12
+
+Non-authoritative answer:
+mit.edu nameserver = W20NS.mit.edu
+mit.edu nameserver = BITSY.mit.edu
+mit.edu nameserver = STRAWB.mit.edu
+
+Authoritative answers can be found from:
+W20NS.mit.edu   internet address = 18.70.0.160
+BITSY.mit.edu   internet address = 18.72.0.3
+STRAWB.mit.edu  internet address = 18.71.0.151
+</PRE>
+</CODE></BLOCKQUOTE>
+
+
+Сервера <CODE>steawb</CODE>, <CODE>w20ns</CODE> и <CODE>bitsy</CODE> все обслуживают <CODE>mit</CODE>,
+выберите один из них и запросите у него информацию о <CODE>ai.mit.edu</CODE>:
+
+<BLOCKQUOTE><CODE>
+<PRE>
+> server W20NS.mit.edu.
+</PRE>
+</CODE></BLOCKQUOTE>
+
+
+Имена машин не зависят от регистра, но я просто использую мышь для
+вырезания и вставки текста, так что я получаю их такими же, как
+они написаны на экране. 
+
+<BLOCKQUOTE><CODE>
+<PRE>
+Server:  W20NS.mit.edu
+Address:  18.70.0.160
+
+> ai.mit.edu.
+Server:  W20NS.mit.edu
+Address:  18.70.0.160
+
+Non-authoritative answer:
+ai.mit.edu      nameserver = ALPHA-BITS.AI.MIT.EDU
+ai.mit.edu      nameserver = GRAPE-NUTS.AI.MIT.EDU
+ai.mit.edu      nameserver = TRIX.AI.MIT.EDU
+ai.mit.edu      nameserver = MUESLI.AI.MIT.EDU
+ai.mit.edu      nameserver = LIFE.AI.MIT.EDU
+ai.mit.edu      nameserver = BEET-CHEX.AI.MIT.EDU
+ai.mit.edu      nameserver = MINI-WHEATS.AI.MIT.EDU
+ai.mit.edu      nameserver = COUNT-CHOCULA.AI.MIT.EDU
+ai.mit.edu      nameserver = MINTAKA.LCS.MIT.EDU
+
+Authoritative answers can be found from:
+AI.MIT.EDU      nameserver = ALPHA-BITS.AI.MIT.EDU
+AI.MIT.EDU      nameserver = GRAPE-NUTS.AI.MIT.EDU
+AI.MIT.EDU      nameserver = TRIX.AI.MIT.EDU
+AI.MIT.EDU      nameserver = MUESLI.AI.MIT.EDU
+AI.MIT.EDU      nameserver = LIFE.AI.MIT.EDU
+AI.MIT.EDU      nameserver = BEET-CHEX.AI.MIT.EDU
+AI.MIT.EDU      nameserver = MINI-WHEATS.AI.MIT.EDU
+AI.MIT.EDU      nameserver = COUNT-CHOCULA.AI.MIT.EDU
+AI.MIT.EDU      nameserver = MINTAKA.LCS.MIT.EDU
+ALPHA-BITS.AI.MIT.EDU   internet address = 128.52.32.5
+GRAPE-NUTS.AI.MIT.EDU   internet address = 128.52.36.4
+TRIX.AI.MIT.EDU internet address = 128.52.37.6
+MUESLI.AI.MIT.EDU       internet address = 128.52.39.7
+LIFE.AI.MIT.EDU internet address = 128.52.32.80
+BEET-CHEX.AI.MIT.EDU    internet address = 128.52.32.22
+MINI-WHEATS.AI.MIT.EDU  internet address = 128.52.54.11
+COUNT-CHOCULA.AI.MIT.EDU        internet address = 128.52.38.22
+MINTAKA.LCS.MIT.EDU     internet address = 18.26.0.36
+</PRE>
+</CODE></BLOCKQUOTE>
+
+<P>Так что <CODE>museli.ai.mit.edu</CODE> является сервером имен для
+<CODE>ai.mit.edu</CODE>:
+
+<BLOCKQUOTE><CODE>
+<PRE>
+> server MUESLI.AI.MIT.EDU
+Default Server:  MUESLI.AI.MIT.EDU
+Address:  128.52.39.7
+</PRE>
+</CODE></BLOCKQUOTE>
+
+<P>Теперь я изменил тип запроса, поскольку мы нашли сервер имен и можем
+опрашивать его том, что мы хотим знать о <CODE>prep.ai.mit.edu</CODE>.
+
+<BLOCKQUOTE><CODE>
+<PRE>
+> set q=any
+> prep.ai.mit.edu.
+Server:  MUESLI.AI.MIT.EDU
+Address:  128.52.39.7
+
+prep.ai.mit.edu CPU = dec/decstation-5000.25    OS = unix
+prep.ai.mit.edu
+        inet address = 18.159.0.42, protocol = tcp
+          ftp  telnet  smtp  finger
+prep.ai.mit.edu preference = 1, mail exchanger = gnu-life.ai.mit.edu
+prep.ai.mit.edu internet address = 18.159.0.42
+ai.mit.edu      nameserver = beet-chex.ai.mit.edu
+ai.mit.edu      nameserver = alpha-bits.ai.mit.edu
+ai.mit.edu      nameserver = mini-wheats.ai.mit.edu
+ai.mit.edu      nameserver = trix.ai.mit.edu
+ai.mit.edu      nameserver = muesli.ai.mit.edu
+ai.mit.edu      nameserver = count-chocula.ai.mit.edu
+ai.mit.edu      nameserver = mintaka.lcs.mit.edu
+ai.mit.edu      nameserver = life.ai.mit.edu
+gnu-life.ai.mit.edu     internet address = 128.52.32.60
+beet-chex.ai.mit.edu    internet address = 128.52.32.22
+alpha-bits.ai.mit.edu   internet address = 128.52.32.5
+mini-wheats.ai.mit.edu  internet address = 128.52.54.11
+trix.ai.mit.edu internet address = 128.52.37.6
+muesli.ai.mit.edu       internet address = 128.52.39.7
+count-chocula.ai.mit.edu        internet address = 128.52.38.22
+mintaka.lcs.mit.edu     internet address = 18.26.0.36
+life.ai.mit.edu internet address = 128.52.32.80
+</PRE>
+</CODE></BLOCKQUOTE>
+
+<P>Так начиная от корня <CODE>.</CODE>, мы нашли нужные сервера имен для каждого
+уровня, указанных в имени домена. Если бы вы использовали ваш собственный
+сервер DNS вместо использования всех перечисленных серверов, то ваш сервер
+конечно же кешировал бы всю информацию, которую он находил во время
+прохождения этого пути, и тогда бы он больше не запрашивал эту информацию
+при повторном обращении.
+<P>В аналогии с деревом каждый знак ``<CODE>.</CODE>'' в имени является
+точкой ответвления дерева. И каждая часть между знаками ``<CODE>.</CODE>'' является
+именем индивидуальной ветви в дереве.
+<P>Мы поднимаемся по дереву взяв нужное имя (<CODE>prep.ai.mit.edu</CODE>), потом
+находим корень дерева (<CODE>.</CODE>) и затем ищем следующую ветвь по которой
+будем подниматься, в нашем случае это <CODE>edu</CODE>. Однажды найдя эту ветвь, мы
+будем подниматься по ней, переключившись на сервер, который знает об этой
+части имени. Затем мы ищем ветвь <CODE>mit</CODE> в ветви <CODE>edu</CODE> (объединеное имя
+становится равным <CODE>mit.edu</CODE>) и поднимаемся по ней, переключившись на
+сервер, который знает о <CODE>mit.edu</CODE>. Далее мы ищем слудующую ветвь--
+<CODE>ai.mit.edu</CODE> и переключаемся на сервер, который знает об этом
+домене. Теперь мы достигли нужного сервера в нужной точке
+ветвления. Последней задачей будет нахождение <CODE>prep.ai.mit.edu</CODE>, что
+является простой задачей. В научной литературе мы обычно называем машину
+<CODE>prep</CODE> <EM>листом</EM> дерева.
+<P>Менее обсуждаемым, но все равно важным является домен
+<CODE>in-addr.arpa</CODE>. Он также имеет иерархическую структуру, подобно
+`обычным' доменам. <CODE>in-addr.arpa</CODE> позволяет нам получить имя машины, по
+ее адресу. Необходимо заметить, то что ip-адреса в домене in-addr.arpa
+записаны в обратном порядке. Например, Если у вас есть машина с адресом:
+192.128.52.43, то named обрабатывает ее точно также как в примере для
+<CODE>prep.ai.mit.edu</CODE>: находит сервера <CODE>arpa.</CODE>. Находит сервера для
+домена <CODE>in-addr.arpa.</CODE>, находит сервера <CODE>192.in-addr.arpa.</CODE>, находит
+сервера для <CODE>128.192.in-addr.arpa.</CODE>, сервера для
+<CODE>52.128.192.in-addr.arpa.</CODE>. А потом уже находит необходимые записи о
+<CODE>43.52.128.192.in-addr.arpa.</CODE> Ловко? (скажите 'да'). Хотя обратный
+порядок может смущать, но это только первые два года.
+<P>Я вам солгал. DNS не работает точно так, как я это описал. Но достаточно
+близко к описанному процессу.
+<H2><A NAME="ss4.2">4.2 Наш собственный домен</A>
+</H2>
+
+<P>Теперь определим наш собственный домен. Мы будем делать домен
+<CODE>linux.bogus</CODE> и определим машины в нем. Я использую полностью поддельное 
+имя домена, для того чтобы быть уверенным, что мы не побеспокоим никого во
+внешнем мире. 
+<P>Одно важное замечание до того как мы начнем: Не все символы разрешено
+использовать в именах машин. Мы ограничимся символами английского алфавита:
+a-z, цифрами: 0-9 и символом '-' (тире). Придерживайтесь использования этих
+символов. Прописные и строчные символы не различаются DNS, так что
+<CODE>pat.uio.no</CODE> является равным <CODE>Pat.UiO.No</CODE>.
+<P>Мы уже начали эту часть строкой в <CODE>named.conf</CODE>:
+
+<HR>
+<PRE>
+zone "0.0.127.in-addr.arpa" {
+        type master;
+        file "pz/127.0.0";
+};
+</PRE>
+<HR>
+
+<P>Заметьте отсутствие `<CODE>.</CODE>' в конце имен доменов в этом файле. Это
+указывает, что мы сейчас будем определять зону <CODE>0.0.127.in-addr.arpa</CODE>,
+и что мы будем основным сервером для нее, а также то, что она хранится в файле,
+названном <CODE>pz/127.0.0</CODE>. Мы уже сделали этот файл, в нем записано:
+
+<HR>
+<PRE>
+@               IN      SOA     ns.linux.bogus. hostmaster.linux.bogus. (
+                                1       ; Serial
+                                8H      ; Refresh
+                                2H      ; Retry
+                                1W      ; Expire
+                                1D)     ; Minimum TTL
+                        NS      ns.linux.bogus.
+1                       PTR     localhost.
+</PRE>
+<HR>
+
+<P>Заметьте наличие символа `<CODE>.</CODE>' в конце полных имен доменов в этом
+файле, в противоположность вышеприведенному файлу
+<CODE>named.conf</CODE>. Некоторые люди любят начинать каждый файл зон с директивы
+<CODE>$ORIGIN</CODE>, но это является излишним. Расположение (origin) (место
+зоны в иерархии DNS) файла зоны указывается в разделе зон в файле
+<CODE>named.conf</CODE>, в данном случае это <CODE>0.0.127.in-addr.arpa</CODE>.
+<P>Этот `файл зоны' содержит 3 `записи ресурсов (resource records)'
+(<CODE>RR</CODE>s): <CODE>A SOA RR</CODE>, <CODE>A NS RR</CODE> и <CODE>PTR RR</CODE>.  <CODE>SOA</CODE> это
+сокращение для Начала Полномочий (Start Of Authority). Символ `@' это
+специальный символ обозначающий расположение, и поскольку в колонке `домен
+(domain)' для этого файла записано <CODE>0.0.127.in-addr.arpa</CODE>, то первая
+строка на самом деле значит
+
+<BLOCKQUOTE><CODE>
+<PRE>
+0.0.127.in-addr.arpa.   IN      SOA ...
+</PRE>
+</CODE></BLOCKQUOTE>
+
+<P>NS это RR для сервера имен (Name Server). В начале строки символ '@' не
+указывается, это подразумевается, поскольку предыдущая строка начиналась с
+символа '@'. Это сэкономит нам несколько нажатий на клавиши. Так что
+строка NS в действительности читается как
+
+<BLOCKQUOTE><CODE>
+<PRE>
+0.0.127.in-addr.arpa.   IN      NS      ns.linux.bogus
+</PRE>
+</CODE></BLOCKQUOTE>
+
+<P>Эта строка сообщает DNS, что машина является сервером имен домена
+<CODE>0.0.127.in-addr.arpa</CODE>, это <CODE>ns.linux.bogus</CODE>.  'ns' традиционное имя
+для серверов имен, но как и для web-серверов, чьим традиционным именем
+является <CODE>www.</CODE><EM>что-нибудь</EM>, данное имя может быть любым.
+<P>И в в окончание - запись PTR гласит, что машина с адресом 1 в подсети
+<CODE>0.0.127.in-addr.arpa</CODE>, например, 127.0.0.1 называется <CODE>localhost</CODE>.
+<P>Запись SOA находится в преамбуле каждого из файлов зон. Она описывает
+зону&nbsp;-- откуда она появляется (машина, названная <CODE>ns.linux.bogus</CODE>),
+кто отвечает за содержимое зоны (<CODE>hostmaster@linux.bogus</CODE>, вы должны
+вставить здесь свой адрес электронной почты), какая версия файла зоны
+текущая (serial: 1), и другие вещи, которые надо сделать для кеширующих и
+вторичных серверов DNS. Для полей refresh, retry, expire и minimum
+используйте числа приведенные в этом документе и вы должны быть в
+безопасности, используя их.
+<P>Затем перезапустите ваш  named (команда <CODE>ndc restart</CODE>) и используйте
+программу nslookup для проверки того, что сделано:
+
+<BLOCKQUOTE><CODE>
+<PRE>
+$ nslookup
+
+Default Server:  localhost
+Address:  127.0.0.1
+
+> 127.0.0.1
+Server:  localhost
+Address:  127.0.0.1
+
+Name:    localhost
+Address:  127.0.0.1
+</PRE>
+</CODE></BLOCKQUOTE>
+
+
+мы видим, что named работает и можно получить данные о <CODE>localhost</CODE> из
+домена 127.0.0.1, это очень хорошо. Теперь приступим к нашей основной
+задаче, домену <CODE>linux.bogus</CODE>, вставим новый раздел '(zone)' в файл
+<CODE>named.conf</CODE>:
+
+<HR>
+<PRE>
+zone "linux.bogus" {
+        notify no;
+        type master;
+        file "pz/linux.bogus";
+};
+</PRE>
+<HR>
+
+<P>Заметим, что мы продолжаем опускать завершающий символ `<CODE>.</CODE>' в имени
+домена в файле <CODE>named.conf</CODE>.
+<P>В файле зоны <CODE>linux.bogus</CODE> мы поместим некоторые поддельные
+данные:
+
+<HR>
+<PRE>
+;
+; Файл зоны для linux.bogus
+;
+; Полный файл зоны
+;
+@       IN      SOA     ns.linux.bogus. hostmaster.linux.bogus. (
+                        199802151       ; serial, todays date + todays serial #
+                        8H              ; refresh, seconds
+                        2H              ; retry, seconds
+                        1W              ; expire, seconds
+                        1D )            ; minimum, seconds
+;
+                NS      ns              ; Internet адрес сервера имен
+                MX      10 mail.linux.bogus     ; Основной почтовый сервер
+                MX      20 mail.friend.bogus.   ; Дополнительный почтовый сервер
+;
+localhost       A       127.0.0.1
+ns              A       192.168.196.2
+mail            A       192.168.196.4
+</PRE>
+<HR>
+
+<P>Необходимо упомянуть две вещи о записи SOA.  <CODE>ns.linux.bogus</CODE>
+<EM>должен</EM> быть настоящей машиной с записью A. Не разрешается указывать
+машину с записью CNAME в записи SOA.  Это имя не обязательно должно быть
+`ns', оно может быть любым правильным именем машины. Далее,
+hostmaster.linux.bogus должен читаться как hostmaster@linux.bogus, это
+должен быть почтовый псевдоним или почтовый ящик для человека
+сопровождающего DNS и читающего почту достаточно часто. Любая почта,
+относительно домена будет посылаться на адрес указаный здесь. Имя не
+обязательно должно быт `hostmaster', это может быть любой правильный адрес
+электронной почты, но адрес с именем `hostmaster' как ожидается будет
+работать.
+<P>В этом файле приведен еще один новый тип записи о ресурсах (RR)&nbsp;--
+MX, или запись ресурса Почтовый Сервер (Mail eXchanger). Она сообщает
+почтовой системе куда посылать почту адресованную <CODE>someone@linux.bogus</CODE>,
+а именно серверам <CODE>mail.linux.bogus</CODE> или <CODE>mail.friend.bogus</CODE>. Число
+перед каждым именем машины&nbsp;-- это приоритет записи MX RR. Запись
+ресурса с наименьшим номером (10)&nbsp;-- это машины куда почта должна
+посылаться, если это возможно. Если происходит ошибка, то почта может быть
+послана на машину с большим номером, вторичному почтовому серверу,
+например, <CODE>mail.friend.bogus</CODE> для которого приоритет установлен
+равным&nbsp;20.
+<P>Перезапустите named с помощью команды <CODE>ndc restart</CODE>. Проверьте
+результаты работы используя команду nslookup:
+
+<BLOCKQUOTE><CODE>
+<PRE>
+$ nslookup
+> set q=any
+> linux.bogus
+Server:  localhost
+Address:  127.0.0.1
+
+linux.bogus
+        origin = ns.linux.bogus
+        mail addr = hostmaster.linux.bogus
+        serial = 199802151
+        refresh = 28800 (8 hours)
+        retry   = 7200 (2 hours)
+        expire  = 604800 (7 days)
+        minimum ttl = 86400 (1 day)
+linux.bogus     nameserver = ns.linux.bogus
+linux.bogus     preference = 10, mail exchanger = mail.linux.bogus.linux.bogus
+linux.bogus     preference = 20, mail exchanger = mail.friend.bogus
+linux.bogus     nameserver = ns.linux.bogus
+ns.linux.bogus  internet address = 192.168.196.2
+mail.linux.bogus        internet address = 192.168.196.4
+</PRE>
+</CODE></BLOCKQUOTE>
+
+<P>При внимательном тестировании вы обнаружите ошибку. Строка
+
+<BLOCKQUOTE><CODE>
+<PRE>
+linux.bogus     preference = 10, mail exchanger = mail.linux.bogus.linux.bogus
+</PRE>
+</CODE></BLOCKQUOTE>
+
+
+является полностью неправильной. Она должна выглядеть следующим образом
+
+<BLOCKQUOTE><CODE>
+<PRE>
+linux.bogus     preference = 10, mail exchanger = mail.linux.bogus
+</PRE>
+</CODE></BLOCKQUOTE>
+
+<P>Я сознательно сделал ошибку, чтобы вы смогли получить некоторый
+опыт&nbsp;--:-) Глядя в файл зоны мы обнаружим, что в строке
+
+<BLOCKQUOTE><CODE>
+<PRE>
+                MX      10 mail.linux.bogus     ; Основной почтовый сервер
+</PRE>
+</CODE></BLOCKQUOTE>
+
+
+отсутствует точка. Или лишний раз написано 'linux.bogus'. Если имя машины
+не заканчивается на символ точки в файле зоны, то к концу этого имени
+добавляется текущее расположение (origin), вызывая в итоге дублирование
+текста <CODE>linux.bogus.linux.bogus</CODE>. Так запись
+
+<HR>
+<PRE>
+                MX      10 mail.linux.bogus.    ; Основной почтовый сервер
+</PRE>
+<HR>
+
+
+или
+
+<HR>
+<PRE>
+                MX      10 mail                 ; Основной почтовый сервер
+</PRE>
+<HR>
+
+
+является правильной. Я предпочитаю последнюю форму, поскольку надо меньше
+набирать на клавиатуре. Существуют пользователи bind, которые не согласны с
+этим подходом, но есть и те, которые согласны с этим. В файле зоны имя
+домена должно быть написано и закачиваться на символ `<CODE>.</CODE>' или домен не
+должен быть указан, в этом случае по умолчанию доменом будет текущее
+расположение (origin) машины.
+<P>Я должен подчеркнуть, что в файле named.conf <EM>не должно</EM> быть символа 
+`<CODE>.</CODE>' после имен доменов. У вас может не быть понятия про символ
+`<CODE>.</CODE>' -- это слишком часто или наоборот слишком редко заполняет разные
+вещи и смущает много людей. 
+<P>Так что опираясь на мою точку зрения мы напишем новый файл зоны, с
+некоторой дополнительной информацией.
+
+<HR>
+<PRE>
+;
+; Файл зоны для linux.bogus
+;
+; Полный файл зоны
+;
+@       IN      SOA     ns.linux.bogus. hostmaster.linux.bogus. (
+                        199802151       ; serial, todays date + todays serial #
+                        8H              ; refresh, seconds
+                        2H              ; retry, seconds
+                        1W              ; expire, seconds
+                        1D )            ; minimum, seconds
+;
+                TXT     "Linux.Bogus, your DNS consultants"
+                NS      ns              ; Internet адрес сервера имен
+                NS      ns.friend.bogus.
+                MX      10 mail.linux.bogus     ; Основной почтовый сервер
+                MX      20 mail.friend.bogus.   ; Дополнительный почтовый сервер
+
+localhost       A       127.0.0.1
+
+gw              A       192.168.196.1
+                HINFO   "Cisco" "IOS"
+                TXT     "The router"
+
+ns              A       192.168.196.2
+                MX      10 mail
+                MX      20 mail.friend.bogus.
+                HINFO   "Pentium" "Linux 2.0"
+www             CNAME   ns
+
+donald          A       192.168.196.3
+                MX      10 mail
+                MX      20 mail.friend.bogus.
+                HINFO   "i486"  "Linux 2.0"
+                TXT     "DEK"
+
+mail            A       192.168.196.4
+                MX      10 mail
+                MX      20 mail.friend.bogus.
+                HINFO   "386sx" "Linux 1.2"
+
+ftp             A       192.168.196.5
+                MX      10 mail
+                MX      20 mail.friend.bogus.
+                HINFO   "P6" "Linux 2.1.86"
+</PRE>
+<HR>
+
+<P>Здесь присутствует несколько новых записей о ресурсах (RR): запись HINFO
+(Информация о машине, Host INFOrmation) имеет две части, хорошей привычкой
+является заключение каждой из этих частей в кавычки. Первая часть&nbsp;--
+это информация об оборудовании машины, а вторая часть описывает программное
+обеспечение и операционную систему данной машины. Машина, названная 'ns',
+имеет процессор Pentium и работает под управлением Linux 2.0. CNAME
+(Каноническое имя, Canonical NAME)&nbsp;-- это способ присвоить каждой
+машине несколько имен. Так, что www является алиасом для ns.
+<P>Использование записи CNAME является немного неоднозначным. Но безопасным
+способом будет следовать правилу, что записи MX, CNAME или SOA <EM>никогда</EM>
+не должны ссылаться на имя, указанное как запись CNAME, они должны
+ссылаться на имя определенное записью A, так что будет неправильно записать
+
+<HR>
+<PRE>
+foobar          CNAME   www                     ; NO!
+</PRE>
+<HR>
+
+
+но вместо этого необходимо записать
+
+<HR>
+<PRE>
+foobar          CNAME   ns                      ; Yes!
+</PRE>
+<HR>
+
+<P>Также лучше считать, что запись CNAME не является настоящим именем
+машины для использования в адресе электронной почты: адрес
+<CODE>webmaster@www.linux.bogus</CODE> является неправильным адресом электронной
+почты. Вы можете ожидать, что некоторые администраторы электронной почты во
+внешнем мире следят за моблюдением этого правила, даже если у вас все
+работает нормально. Для того, чтобы избежать этого используйте запись A (и
+возможно также некоторые другие записи, такие как MX) вместо:
+
+<HR>
+<PRE>
+www             A       192.168.196.2
+</PRE>
+<HR>
+
+<P>Некоторые из разработчиков архитектуры bind (arch-bind-wizards),
+рекомендуют <EM>не</EM> использовать запись CNAME. Так, что ее использование
+надо рассматривать серьезно.
+<P>Но как вы видите, этот документ также как и множество других серверов не следуют этому правилу.
+<P>Загрузите новую базу данных выполнив команду <CODE>ndc reload</CODE>, это
+заставит named перечитать файлы зон заново.
+
+<BLOCKQUOTE><CODE>
+<PRE>
+$ nslookup
+Default Server:  localhost
+Address:  127.0.0.1
+
+> ls -d linux.bogus
+</PRE>
+</CODE></BLOCKQUOTE>
+
+<P>Это означает, что должны быть перечислены все записи в данном домене. В
+результате получится следующее:
+
+<BLOCKQUOTE><CODE>
+<PRE>
+[localhost]
+$ORIGIN linux.bogus.
+
+                        1D IN NS        ns
+                        1D IN NS        ns.friend.bogus.
+                        1D IN TXT       "Linux.Bogus, your DNS consultants"
+                        1D IN MX        10 mail
+                        1D IN MX        20 mail.friend.bogus.
+gw                      1D IN A         192.168.196.1
+                        1D IN HINFO     "Cisco" "IOS"
+                        1D IN TXT       "The router"
+mail                    1D IN A         192.168.196.4
+                        1D IN MX        10 mail
+                        1D IN MX        20 mail.friend.bogus.
+                        1D IN HINFO     "386sx" "Linux 1.0.9"
+localhost               1D IN A         127.0.0.1
+www                     1D IN CNAME     ns
+donald                  1D IN A         192.168.196.3
+                        1D IN MX        10 mail
+                        1D IN MX        20 mail.friend.bogus.
+                        1D IN HINFO     "i486" "Linux 1.2"
+                        1D IN TXT       "DEK"
+ftp                     1D IN A         192.168.196.5
+                        1D IN MX        10 mail
+                        1D IN MX        20 mail.friend.bogus.
+                        1D IN HINFO     "P6" "Linux 1.3.59"
+ns                      1D IN A         192.168.196.2
+                        1D IN MX        10 mail
+                        1D IN MX        20 mail.friend.bogus.
+                        1D IN HINFO     "Pentium" "Linux 1.2"
+@                       1D IN SOA       ns hostmaster (
+                                        199802151       ; serial
+                                        8H              ; refresh
+                                        2H              ; retry
+                                        1W              ; expiry
+                                        1D )            ; minimum
+</PRE>
+</CODE></BLOCKQUOTE>
+
+<P>Это хорошо. Как вы видите, это выглядит почти как сам файл зоны. Теперь
+проверим какой будет ответ только для машины с именем <CODE>www</CODE>:
+
+<BLOCKQUOTE><CODE>
+<PRE>
+> set q=any
+> www.linux.bogus.
+Server:  localhost
+Address:  127.0.0.1
+
+www.linux.bogus canonical name = ns.linux.bogus
+linux.bogus     nameserver = ns.linux.bogus
+linux.bogus     nameserver = ns.friend.bogus
+ns.linux.bogus  internet address = 192.168.196.2
+</PRE>
+</CODE></BLOCKQUOTE>
+
+<P>Другими словами, настоящим именем для <CODE>www.linux.bogus</CODE> является
+<CODE>ns.linux.bogus</CODE>, и он также дается некоторая дополнительная информацию
+о машине ns, достаточная, чтобы соединиться с ней.
+<P>Теперь мы находимся на середине пути.
+<H2><A NAME="ss4.3">4.3 Обратная (reverse) зона</A>
+</H2>
+
+<P>Теперь программы могут преобразовывать имена машин в домене linux.bogus
+в адреса, по которым они могут связаться с этими машинами. Но также, кроме
+этого, требуется обратная зона, которая дает возможность DNS
+преобразовывать адреса в имена машин. Эти имена используются достаточным
+количеством серверов различного рода (FTP, IRC, WWW и другими) для того,
+чтобы решить, хотят ли они с вами общаться или нет, и даже иногда имя машины
+используется для того, чтобы решить какой приоритет вам дать. Обратная зона
+требуется для полного доступа к различным сервисам в Internet.
+<P>Поместите следующие строки в файл <CODE>named.conf</CODE>:
+
+<HR>
+<PRE>
+zone "196.168.192.in-addr.arpa" {
+        notify no;
+        type master;
+        file "pz/192.168.196";
+};
+</PRE>
+<HR>
+
+<P>Эти строки похожи на описание зоны <CODE>0.0.127.in-addr.arpa</CODE>, а файл зоны 
+также имеет сходное содержание:
+
+<HR>
+<PRE>
+@       IN      SOA     ns.linux.bogus. hostmaster.linux.bogus. (
+                        199802151 ; Serial, todays date + todays serial
+                        8H      ; Refresh
+                        2H      ; Retry
+                        1W      ; Expire
+                        1D)     ; Minimum TTL
+                NS      ns.linux.bogus.
+
+1               PTR     gw.linux.bogus.
+2               PTR     ns.linux.bogus.
+3               PTR     donald.linux.bogus.
+4               PTR     mail.linux.bogus.
+5               PTR     ftp.linux.bogus.
+</PRE>
+<HR>
+
+<P>Теперь перезапустите ваш named (<CODE>ndc restart</CODE>) и снова проверьте его
+работу с помощью программы nslookup:
+
+<HR>
+<PRE>
+> 192.168.196.4
+Server:  localhost
+Address:  127.0.0.1
+
+Name:    mail.linux.bogus
+Address:  192.168.196.4
+</PRE>
+<HR>
+
+<P>так, это выглядит нормально, теперь выдайте полный список машин в домене, для того 
+чтобы проверить правильность информации:
+
+<HR>
+<PRE>
+> ls -d 196.168.192.in-addr.arpa
+[localhost]
+$ORIGIN 196.168.192.in-addr.arpa.
+@                       1D IN SOA       ns.linux.bogus. hostmaster.linux.bogus. (
+                                        199802151       ; serial
+                                        8H              ; refresh
+                                        2H              ; retry
+                                        1W              ; expiry
+                                        1D )            ; minimum
+
+                        1D IN NS        ns.linux.bogus.
+1                       1D IN PTR       gw.linux.bogus.
+2                       1D IN PTR       ns.linux.bogus.
+3                       1D IN PTR       donald.linux.bogus.
+4                       1D IN PTR       mail.linux.bogus.
+5                       1D IN PTR       ftp.linux.bogus.
+@                       1D IN SOA       ns.linux.bogus. hostmaster.linux.bogus. (
+                                        199802151       ; serial
+                                        8H              ; refresh
+                                        2H              ; retry
+                                        1W              ; expiry
+                                        1D )            ; minimum
+</PRE>
+<HR>
+
+<P>Выглядит хорошо! Если вывод вашей команды выглядит не так, то посмотрите
+сообщения об ошибках в вашем syslog, я объяснял как это сделать в самом
+начале главы.
+<H2><A NAME="ss4.4">4.4 Предупреждение</A>
+</H2>
+
+<P>Существует несколько вещей, которые я должен добавить здесь. Сетевые
+адреса, используемые здесь взяты из одного из блоков 'личных (private)
+сетей', их не разрешается публично использовать в internet. Так, что их
+можно спокойно использовать как пример в этом документе. Вторая вещь это
+строка <CODE>notify no;</CODE>. Она заставляет named не извещать вторичные
+(ведомые) сервера, когда вы обновляете один из файлов зон. В bind-8, named
+может уведомлять другие сервера, перечисленные в записях NS в файлах зон,
+когда конкретная зона обновляется. Это является удобным для обычного
+использования, но для личных экспериментов с зонами эта возможность должна
+быть отключена, мы же не хотим, чтобы наш эксперимент загрязнял internet?
+<P>И конечно, этот домен является фиктивным, также как и все адреса в
+нем. Для настоящего примера действующего домена смотрите следующий раздел.
+<H2><A NAME="ss4.5">4.5 Почему не работает поиск в обратной зоне</A>
+</H2>
+
+<P>Существует набор  ``gotchas'', которые обычно избегаются в процессе
+поиска имен, что часто появляются при установке обратных зон. До того как
+вы продолжите продвигаться вперед вам необходимо обеспечить работу
+обратного поиска ваших машин на вашем сервере имен. Если эта часть не
+работает, то вернитесь назад и исправьте это до того, как продолжите
+читать. 
+<P>Я буду обсуждать два сбоя обратного поиска так, как они видятся извне
+вашей сети:
+<H3>Обратная зона не делегируется</H3>
+
+<P>Когда вы просите вашего сетевого провайдера о предоставлении диапазона
+сетевых адресов и имени домена, то имя домена обычно
+делегируется. Делегирование является клеем, который связывает записи NS,
+которые помогают вам переходить от одного сервера имен к другому, как это
+описывалось в теоретическом разделе. Вы прочитали его, не так ли? Если ваша
+обратная зона не работает, то вернитесь назад и прочитайте нужный
+раздел. Прямо сейчас.
+<P>Обратную зону также надо делегировать. Если вы получили от вашего
+провайдера сеть <CODE>192.168.196</CODE> с доменом <CODE>linux.bogus</CODE>, то вам
+необходимо поместить запись <CODE>NS</CODE> в вашу обратную зону, точно так же как
+и для прямой зоны. Если вы проследуете по цепочке с <CODE>in-addr.arpa</CODE> и
+поднимитесь до своей сети то вы скорее всего обнаружете разорванную
+цепочку. Скорее всего в районе вашего сетевого провайдера. Обнаружив разрыв 
+цепочки свяжитесь с вашим сетевым провайдером и попросите его исправить
+ошибку. 
+<H3>Вы получили бесклассовую сеть.</H3>
+
+<P>Это может показаться сложной темой, но бесклассовые подсети в настоящее
+время являются часто используемыми и у вас вероятно есть такая сеть, если
+вы не являетесь компанией средних размеров.
+<P>Бесклассовая сеть -- это то, что сохраняет работу Internet в наши
+дни. Несколько лет назад было много разговоров о том., что ip-номера
+слишком коротки. Умные люди в IETF (Internet Engineering Task Force, они
+сохраняют  Internet в рабочем состоянии) объединились вместе и решили
+данную проблему. За цену. Цена заключается в том, что вы получаете подсеть
+меньше подсети класса ``C'' и некоторые вещи могут не работать. Пожалуйста
+посмотрите страницу 
+<A HREF="http://www.acmebw.com/askmrdns/00007.htm">Ask Mr. DNS at http://www.acmebw.com/askmrdns/00007.htm</A> для
+подробного объяснения об этом и как с этим работать.
+<P>Вы прочитали эту информацию? Я ничего не буду объяснять здесь, так что
+пожалуйста прочитайте.
+<P>Первая часть проблемы заключается в том, что ваш провайдер должен
+понимать технологию, описанную Mr. DNS. Не все маленькие провайдеры имеют
+работающее решение данной проблемы. Если это так, то вы должны объяснить
+это провайдеру и быть настойчивы. Но сначала убедитесь, что вы сами это
+понимаете ;-). Они смогут установить правильную обратную зону на своем
+сервере, который вы должны проверить на работоспособность используя команду
+nslookup.
+<P>Вторая и последняя часть этой проблемы заключается в том, что вы должны
+понять применяемую технологию. Если вы не уверены в этом, то вернитесь
+назад и заново прочитайте все материалы. Затем вы сможете настроить
+обратную зону своей собственной бесклассовой сети, как это описано Mr. DNS.
+<P>Существует другая возможность для скрытой ошибки. Старые программы
+разрешения имен не смогут следовать приему с  <CODE>CNAME</CODE> в цепочке
+разрешения имен и буду давать сбой при выяснении имени вашей машины. В
+результате этого различные сервисы будут относить вас к классу
+неправильного доступа, запрщать доступ или делать что-то подобное. Если вы
+столкнулись с таким сервисом, то решение (которое я знаю) заключается
+только в том, чтобы ваш правайдер вставил вашу запись PTR прямо в фиктивный 
+файл бесклассовой зоны вместо фиктивной записи CNAME.
+<P>Некоторые провайдеры будут предлагать другие способы решения этой
+проблемы, подобные основанным на  Web формам ввода ваших записей обратной
+зоны или другие автоматические системы.
+
+<HR>
+<A HREF="DNS-HOWTO-5.html">Следующий</A>
+<A HREF="DNS-HOWTO-3.html">Предыдущий</A>
+<A HREF="DNS-HOWTO.html#toc4">Содержание</A>
+</BODY>
+</HTML>

@@ -1,0 +1,188 @@
+<HTML
+><HEAD
+><TITLE
+>Creating the bash and sh symlinks</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Microsoft FrontPage 4.0"/><LINK
+REL="HOME"
+TITLE="Linux From Scratch"
+HREF="http://www.linuxfromscratch.org/view/4.0/index.html"/><LINK
+REL="UP"
+TITLE="Installing basic system software"
+HREF="http://www.linuxfromscratch.org/view/4.0/chapter06/chapter06.html"/><LINK
+REL="PREVIOUS"
+TITLE="Creating the mtab symlink"
+HREF="http://www.linuxfromscratch.org/view/4.0/chapter06/mtablink.html"/><LINK
+REL="NEXT"
+TITLE="Creating the passwd and group files"
+HREF="http://www.linuxfromscratch.org/view/4.0/chapter06/pwdgroup.html"/></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#006000"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Linux From Scratch: Версия 4.0</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="mtablink.html"
+ACCESSKEY="P"
+>Назад</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Глава 6. Установка основных компонентов
+        системы</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="pwdgroup.html"
+ACCESSKEY="N"
+>Вперед</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"/></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="ch06-createfiles"
+>Создание символических ссылок bash и sh</A
+></H1
+><P
+>Некоторые программы при компиляции
+  прописывают ссылки на пока не
+  существующие программы. Для
+  предотвращения связанных с этим проблем,
+  создадим символические ссылки
+<TT
+CLASS="filename"
+>/bin/bash</TT
+> и <TT
+CLASS="filename"
+>/bin/sh</TT
+>, указывающие на программу <TT
+CLASS="filename"
+>bash</TT
+>, скомпилированную с использованием
+  статических ссылок.</P
+><P
+>Для создания символических ссылок <TT
+CLASS="filename"
+>/bin/bash</TT
+> и <TT
+CLASS="filename"
+>/bin/sh</TT
+>, выполните:</P
+><P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="screen"
+><TT
+CLASS="userinput"
+><B
+>ln -s /static/bin/bash /bin/bash &amp;&amp;
+ln -s bash /bin/sh</B
+></TT
+></PRE
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"/><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="mtablink.html"
+ACCESSKEY="P"
+>Назад</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="../index.html"
+ACCESSKEY="H"
+>Домой</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="pwdgroup.html"
+ACCESSKEY="N"
+>Вперед</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Создание символической ссылки mtab</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="chapter06.html"
+ACCESSKEY="U"
+>Наверх</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Создание файлов passwd и group</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

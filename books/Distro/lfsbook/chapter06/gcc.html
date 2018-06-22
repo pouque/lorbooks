@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>Installing GCC-3.2</title><meta name="GENERATOR" content="Microsoft FrontPage 4.0" /=""><link rel="HOME" title="Linux From Scratch" href="http://www.linuxfromscratch.org/view/4.0/index.html" /=""><link rel="UP" title="Installing basic system software" href="http://www.linuxfromscratch.org/view/4.0/chapter06/chapter06.html" /=""><link rel="PREVIOUS" title="Installing Glibc-2.2.5" href="http://www.linuxfromscratch.org/view/4.0/chapter06/glibc.html" /=""><link rel="NEXT" title="Installing Zlib-1.1.4" href="http://www.linuxfromscratch.org/view/4.0/chapter06/zlib.html" /=""></head><body class="sect1" bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#840084" alink="#006000"><div class="NAVHEADER"><table summary="Header navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><th colspan="3" align="Center">Linux From Scratch: Версия 4.0</th></tr><tr><td width="10%" align="Left" valign="Bottom"><a href="glibc.html" accesskey="P">Назад</a></td><td width="80%" align="Center" valign="Bottom">Глава 6. Установка основных компонентов
+        системы</td><td width="10%" align="Right" valign="Bottom"><a href="zlib.html" accesskey="N">Вперед</a></td></tr></tbody></table><hr align="Left" width="100%" /=""></div><div class="sect1"><h1 class="sect1"><a name="ch06-gcc">Установка GCC-3.2</a></h1><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen">Приблизительное время компиляции:           13.26 SBU<br>Необходимое дисковое пространство:  221 MB</pre></td></tr></tbody></table><div class="sect2"><h2 class="sect2"><a name="AEN2660">Инсталляция  GCC</a></h2><p>Перед установкой пакета примените патч.
+    Удостоверьтесь, что патч и пакет
+    распакованы перед инсталляцией.</p><p>Этот пакет известен своим нестабильным
+    поведением при компиляции с измененными
+    опциями оптимизации (включая опции -march и -mcpu).
+    GCC рекомендуется компилировать с
+    настройками по умолчанию. Следовательно,
+    если вы задали переменные такие как CFLAGS
+    или CXXFLAGS, изменяющие уровень оптимизации
+    по умолчанию, рекомендуется убрать их при
+    сборке пакета GCC. Изменяя оптимизации для
+    GCC, вы действуете на свой страх и риск.</p><p>Для инсталляции GCC выполните приведенные
+    ниже команды, собирающие компиляторы
+    языка Си и С++. Также можно установить
+    компиляторы других языков
+    программирования из пакета GCC. В случае,
+    если вы хотите инсталлировать все
+    компиляторы из пакета GCC, уберите опцию --enable-languages=c,c++
+    из команды configure. Для получения
+    информации о доступных компиляторах, см
+    документацию пакета GCC.</p><p>Примечание: инсталляция других
+    компиляторов не тестировалась
+    разработчиками проекта LFS.</p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>patch -Np1 -i ../gcc-3.2.patch &amp;&amp;<br>mkdir ../gcc-build &amp;&amp;<br>cd ../gcc-build &amp;&amp;<br>../gcc-3.2/configure --prefix=/usr --enable-shared \<br>    --enable-languages=c,c++ --enable-threads=posix \<br>    --with-slibdir=/lib --enable-__cxa_atexit \<br>    --enable-clocale=gnu &amp;&amp;<br>make bootstrap &amp;&amp;<br>make install &amp;&amp;<br>ln -s ../usr/bin/cpp /lib &amp;&amp;<br>ln -s ../bin/cpp /usr/lib &amp;&amp;<br>ln -s gcc /usr/bin/cc</b></tt></pre></td></tr></tbody></table></div><div class="sect2"><h2 class="sect2"><a name="AEN2669">Пояснение команд</a></h2><p><tt class="userinput"><b>--enable-threads=posix:</b></tt>  Эта опция включает обработку исключений в
+    многопоточном коде на С++.</p><p><tt class="userinput"><b>--enable-__cxa_atexit:</b></tt>  Эта опция позволит использовать shared-библиотеки
+    C++ и программы, написанные на C++, с другими
+    дистрибутивами Linux.</p><p><tt class="userinput"><b>--enable-clocale=gnu:</b></tt>  Существует опасность, что у некоторых
+    пользователей будут компилироваться ABI-несовместимые
+    библиотеки С++, если glibc localedata не
+    установлен полностью. Использование
+    опции --enable-clocale=gnu гарантирует корректную
+    компиляцию во всех случаях. Если вы не
+    хотите использовать эту опцию,
+    удостоверьтесь, что по крайней мере,
+    устанавливается локаль <em>de_DE</em>. Когда GCC находит эту конкретную локаль,
+    выполняется верный режим локали (<em>gnu</em>).</p></div><div class="sect2">
+<div class="sect2"><h2 class="sect2"><a name="AEN6805">Содержимое GCC</a></h2><p>Последняя проверка: версия 3.1.</p><div class="sect3"><h3 class="sect3"><a name="AEN6808">Программы</a></h3><p>c++, c++filt, cc (link to gcc), cc1, cc1plus, collect2, cpp, cpp0, g++,
+gcc, gccbug, gcov и tradcpp0</p></div><div class="sect3"><h3 class="sect3"><a name="AEN6811">Описания</a></h3><div class="sect4"><h4 class="sect4"><a name="AEN6813">cc, cc1, cc1plus, gcc</a></h4><p>Компилятор C. Компилятор переводит код из текстового формата в формат,
+понятный компьютеру. После того, как исходный код скомпилирован в объектный
+файл, линкер создаст исполняемый файл из одного или нескольких объектных.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6816">c++, cc1plus, g++</a></h4><p>Компилятор C++, эквивалент cc,  gcc etc.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6819">c++filt</a></h4><p>Язык C++ позволяет осуществлять перезагрузку фуннкций, делая возможным
+написание многих функций с одним именем (с разным набором параметром). Все
+имена фунций C++ закодированы в низкоуровневые метки ассемблера (этот процесс
+известен как mangling). c++filt совершает обратное действие: низкоуровневые
+имена переводятся (demangling) в имена, понятные пользователю, так что линкер
+избегает конфликта между перезагруженными функциями.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6822">collect2</a></h4><p>collect2 помогает в компиляции конструкторов.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6825">cpp, cpp0</a></h4><p>cpp осуществляет препроцессинг исходных файлов, например включает в них
+содержимое заголовочных файлов. Просто добавьте в ваш исходный файл строку
+вроде #include &lt;filename&gt;. Препроцессор вставит содержимое заголовочного
+файла.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6828">gccbug</a></h4><p>gccbug - скрипт, облегчающий создание сообщений об ошибках.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6831">gcov</a></h4><p>gcov анализирует программы, чтобы помочь в создании более эффективного
+и быстрого кода путем его оптимизации.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6834">tradcpp0</a></h4><p>На данный момент описания нет.</p></div></div><div class="sect3"><h3 class="sect3"><a name="AEN6837">Библиотеки</a></h3><p>libgcc.a, libgcc_eh.a, libgcc_s.so, libiberty.a, libstdc++.[a,so],  libsupc++.a</p></div><div class="sect3"><h3 class="sect3"><a name="AEN6840">Описания</a></h3><div class="sect4"><h4 class="sect4"><a name="AEN6842">libgcc, libgcc_eh, libgcc_s</a></h4><p>Файлы поддержки gcc времени исполнения.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6845">libiberty</a></h4><p>libiberty - коллекция подпрограмм, используемых различными программами
+GNU, включая getopt, obstack, strerror, strtol и strtoul.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6848">libstdc++</a></h4><p>libstdc++ - библиотека C++. Она используется программами на C++ и содержит
+часто используемые функции. Таким образом, программисту не нужно писать стандартные
+фунции (например, вывод строки текста на экран) с нуля при каждом создании
+программы.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6851">libsupc++</a></h4><p>libsupc++ предоставляет поддержку языка программирования C++. Помимо прочего,
+libsupc++ содержит функции для обработки исключений.</p></div></div></div>
+<div class="sect2"><h2 class="sect2"><a name="AEN6854">Зависимости GCC</a></h2><p>Последняя проверка: версия 2.95.3.</p><p class="literallayout">Bash: sh<br>
+ Binutils: ar, as, ld, nm, ranlib<br>
+ Diffutils: cmp<br>
+ Fileutils: chmod, cp, ln, ls, mkdir, mv, rm, touch<br>
+ Find: find<br>
+ Gcc: cc, cc1, collect2, cpp0, gcc<br>
+ Grep: egrep, grep<br>
+ Make: make<br>
+ Patch: patch<br>
+ Sed: sed<br>
+ Sh-utils: basename, dirname, echo, expr, hostname, sleep, true, uname<br>
+ Tar: tar<br>
+ Texinfo: install-info, makeinfo<br>
+ Textutils: cat, tail, tr</p></div>
+<h2 class="sect2"></h2></div></div><div class="NAVFOOTER"><hr align="Left" width="100%" /=""><table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="33%" align="Left" valign="Top"><a href="glibc.html" accesskey="P">Назад</a></td><td width="34%" align="Center" valign="Top"><a href="../index.html" accesskey="H">Домой</a></td><td width="33%" align="Right" valign="Top"><a href="zlib.html" accesskey="N">Вперед</a></td></tr><tr><td width="33%" align="Left" valign="Top">Установка Glibc-2.2.5</td><td width="34%" align="Center" valign="Top"><a href="chapter06.html" accesskey="U">Наверх</a></td><td width="33%" align="Right" valign="Top">Установка Zlib-1.1.4</td></tr></tbody></table></div></body></html>

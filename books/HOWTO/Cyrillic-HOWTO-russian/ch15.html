@@ -1,0 +1,265 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=koi8-r"><title>Глава 15. Кириллические шрифты</title><meta name="generator" content="DocBook XSL Stylesheets V1.59.1"><link rel="home" href="index.html" title="The Linux Cyrillic HOWTO (russian)"><link rel="up" href="index.html" title="The Linux Cyrillic HOWTO (russian)"><link rel="previous" href="ch14s02.html" title="Поддержка кириллицы в программах gtk"><link rel="next" href="ch15s02.html" title="Шрифты Type1"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Глава 15. Кириллические шрифты</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch14s02.html">Пред.</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch15s02.html">След.</a></td></tr></table><hr></div><div class="chapter" lang="ru"><div class="titlepage"><div><h2 class="title"><a name="CyrFonts"></a>Глава 15. Кириллические шрифты</h2></div></div><div class="toc"><p><b>Содержание</b></p><dl><dt><a href="ch15.html#CyrFontsLaTeX">Шрифты для TeX/LaTeX</a></dt><dd><dl><dt><a href="ch15.html#CyrFontsLaTeXlh">lh</a></dt><dt><a href="ch15.html#CyrFontsLaTeXType1">Как &quot;прикрутить&quot;  произвольный Type1 шрифт.</a></dt></dl></dd><dt><a href="ch15s02.html">Шрифты Type1</a></dt><dd><dl><dt><a href="ch15s02.html#CyrFontsType1cm-super">cm-super</a></dt><dt><a href="ch15s02.html#CyrFontsType1literat">literat</a></dt><dt><a href="ch15s02.html#CyrFontsType1PsCyr">PSCYR</a></dt><dt><a href="ch15s02.html#CyrFontsType1Paradissa">Paradissa</a></dt><dt><a href="ch15s02.html#CyrFontsType1dmtr-fonts">dmtr-fonts</a></dt><dt><a href="ch15s02.html#CyrFontsType1sharatype">sharatype</a></dt></dl></dd><dt><a href="ch15s03.html">Шрифты для X Window</a></dt><dd><dl><dt><a href="ch15s03.html#CyrFontsXCyr-RFX">Cyr-RFX</a></dt><dt><a href="ch15s03.html#CyrFontsXCronyx">Cronyx</a></dt><dt><a href="ch15s03.html#CyrFontsXxrus">xrus</a></dt><dt><a href="ch15s03.html#CyrFontsXEuropean">European</a></dt><dt><a href="ch15s03.html#CyrFontsXxcyr">xcyr</a></dt></dl></dd><dt><a href="ch15s04.html">Шрифты TrueType</a></dt><dt><a href="ch15s05.html">Консольные шрифты</a></dt><dd><dl><dt><a href="ch15s05.html#ConsolFontsEURORUS">EURORUS и PANCYRILLIC</a></dt></dl></dd></dl></div><a class="indexterm" name="id2967463"></a><p>На настоящий момент на рынке кириллических шрифтов
+существует только один продавец&#8212; это ParaType.  Остальные (в том
+числе и &quot;свободные&quot; сайты типа Vedi или Litera) предлагают в основном
+акцидентные шрифты, для набора текстов не пригодные. С ценами Paratype
+можно ознакомится, естественно, на <a href="http://www.paratype.com" target="_top">www.paratype.com</a>.  Однако при
+отборе шрифтов надо очень внимательно прочитать лицензию и
+договор<sup>[<a name="id2807634" href="ch15.html#ftn.id2807634">12</a>]</sup>. Кроме того, необходимо
+озаботиться грамотным подбором гарнитур для начертаний
+<tt>\rm</tt>, <tt>\sf</tt>,
+<tt>\sc</tt>, <tt>\tt </tt> так, чтобы они были
+совместны. Иначе можно было бы ограничиться &quot;свободной Литературной&quot;
+от ParaType, но вопрос: откуда взять замену всем остальным ТеХовским
+шрифтам?!</p><p>Так что лучше пользоваться стандартными шрифтами
+    <span class="emphasis"><em>lh</em></span> Ольги Лапко (раздел <a href="ch15.html#CyrFontsLaTeXlh" title="lh">&#8220;lh&#8221;</a>). Относительно недавно появился
+    полностью свободный набор шрифтов Type1
+    <tt>cm-super</tt>, которые получены преобразованием из
+    стандартных cm-шрифтов (раздел <a href="ch15s02.html#CyrFontsType1cm-super" title="cm-super">&#8220;cm-super&#8221;</a>). Возможно шрифты
+    <tt>cm-super</tt> являются самым перспективным
+    решением.</p><div class="sect1" lang="ru"><div class="titlepage"><div><h2 class="title" style="clear: both"><a name="CyrFontsLaTeX"></a>Шрифты для <tt>TeX/LaTeX</tt></h2></div></div><a class="indexterm" name="id2807741"></a><a class="indexterm" name="id2807757"></a><a class="indexterm" name="id2807773"></a><a class="indexterm" name="id2805904"></a><p>При работе с <tt>TeX/LaTeX</tt> можно использовать
+Type1 шрифты &#8212; где их можно найти, описано в разделе <a href="ch15s02.html" title="Шрифты Type1">&#8220;Шрифты Type1&#8221;</a>.</p><p><span class="emphasis"><em>Внимание:</em></span> При использовании Type1
+шрифтов в тексте, насыщенном математическими символами, восприятие
+текста умеренно ухудшится. Математические CM-шрифты не будут
+сочетаться с текстовыми шрифтами. Это утверждение не относится к
+шрифтам <tt>cm-super</tt> (раздел <a href="ch15s02.html#CyrFontsType1cm-super" title="cm-super">&#8220;cm-super&#8221;</a>) и в меньшей степени к шрифтам PsCyr
+(раздел <a href="ch15s02.html#CyrFontsType1PsCyr" title="PSCYR">&#8220;PSCYR&#8221;</a>).</p><div class="sect2" lang="ru"><div class="titlepage"><div><h3 class="title"><a name="CyrFontsLaTeXlh"></a>lh</h3></div></div><a class="indexterm" name="id2805979"></a><a class="indexterm" name="id2805999"></a><a class="indexterm" name="id2806019"></a><a class="indexterm" name="id2806034"></a><a class="indexterm" name="id2806050"></a><p>В этом разделе описаны стандартные кириллические шрифты
+<span class="emphasis"><em>LaTeX</em></span>, которых хватает в 90% случаев. В тех
+случаях, когда этих шрифтов не хватает (например, для просмотра pdf)
+следует воспользоваться шрифтами <tt>cm-super</tt> (раздел <a href="ch15s02.html#CyrFontsType1cm-super" title="cm-super">&#8220;cm-super&#8221;</a>).</p><p>Благодаря Ольге Лапко (Издательство Мир) мы имеем
+бесплатный шрифт, который позволяет оформлять научные тексты с помощью
+<span class="emphasis"><em>LaTeX</em></span>, совершенно не заботясь о подборке шрифтов
+для формул/текста. Как правило, эти шрифты уже есть в дистрибутиве
+<span class="emphasis"><em>LaTeX</em></span>. Эти шрифты развиваются &#8212; в будущем
+обещают новые начертания (относительно недавно обещали добавить
+Concreate &#8212; &quot;Конкретная Математика&quot;). Шрифты
+<span class="emphasis"><em>lh</em></span> всегда можно достать по следующим
+адресам:</p><div class="itemizedlist"><ul type="disc"><li><p><tt>CTAN:fonts/cyrillic/lh</tt></p></li><li><p> <a href="ftp://ftp.vsu.ru/pub/tex/" target="_top">ftp://ftp.vsu.ru/pub/tex/</a></p></li><li><p> <a href="http://www.cemi.rssi.ru/cyrtug/files/cyremtex.98" target="_top">http://www.cemi.rssi.ru/cyrtug/files/cyremtex.98</a></p></li><li><p> <a href="http://www.cemi.rssi.ru/cyrtug/eng/news.htm" target="_top">http://www.cemi.rssi.ru/cyrtug/eng/news.htm</a></p></li></ul></div><p>Начиная с версии 3.20 <span class="emphasis"><em>LH</em></span> поддерживает
+стандартные кодировки LaTeX <a href="ch08.html#LaTeX-T2" title="Пакет T2">&#8220;Пакет T2&#8221;</a>, кроме того,
+поддерживаются LCY, OT2 и др.</p></div><div class="sect2" lang="ru"><div class="titlepage"><div><h3 class="title"><a name="CyrFontsLaTeXType1"></a>Как &quot;прикрутить&quot;  произвольный Type1 шрифт.</h3></div></div><a class="indexterm" name="id2806904"></a><a class="indexterm" name="id2806924"></a><a class="indexterm" name="id2806939"></a><p>Текст для этого раздела взят из fido7.ru.tex и пренадлежит
+      перу Виктора Фигурнова.</p><p>Перед началом установки следует убедиться, что:</p><div class="orderedlist"><ol type="1"><li><p>шрифты правильные. В частности, чтобы
+имена символов в шрифтовых файлах соответствуют своим символам
+(глифам). То есть, например, скажем, символ &quot;Д&quot;  должен
+называться afii10021, а не Adieresis или как-то еще, как в некоторых
+кривых шрифтах. А символ с именем Adieresis должен выглядеть как
+латинская A с двумя точками сверху, а не как-то по другому...</p></li><li><p>для курсивных или наклонных шрифтов параметр
+ItalicAngle (угол наклона) установлен правильно. Он должен быть
+отрицательным, т.к. в PostScript углы меряются против часовой
+стрелки. В некоторых шрифтах этот параметр указан без знака минус
+(скажем, ItalicAngle 12, тогда как правильно было бы ItalicAngle
+-12).</p></li><li><p>для Type1-шрифтов имеются AFM-файлы. Если их
+нет, то можно их создать из .PFB + .PFM:</p><div class="orderedlist"><ol type="a"><li><p>прочесть шрифт любым редактором Type1 шрифтов
+   (скажем, FontLab 2.5) и затем сохранить шрифт. В FontLab 2.5 это
+   можно сделать сразу для многих шрифтов (<tt>File | Find
+   Font</tt>, и задать преобразование из PFB в PFB);</p></li><li><p>или использовать PostScript-программу
+   <tt>pf2afm</tt>, она есть на диске TeX Live.  Программы
+   типа <tt>pfm2afm</tt> лучше не использовать &#8212; они
+   не все шрифты обрабатывают правильно (составные символы, например,
+   не понимают).</p></li></ol></div></li></ol></div><p>Основная проблема связана с тем, что модные сейчас
+кодировки TeX-овских шрифтов &#8212; T2а и им подобные, не
+соответствуют кодировкам имеющихся Type1 шрифтов, которые в
+большинстве своем сделаны либо в кодировке Windows CP 1251
+(кириллические шрифты), либо в &quot;стандартной кодировке Adobe&quot;
+(латинские шрифты). Поэтому для установки этих шрифтов приходится
+использовать нетривиальные средства, такие как &quot;виртуальные шрифты&quot;
+(vf-файлы) и программу <tt>fontinst</tt>.</p><p>Ниже приведена примерная последовательность действий, при
+установке Type1 шрифтов для работы в TeX-овской кодировке T2A.</p><div class="itemizedlist"><ul type="disc"><li><p> Копируете аfm-файлы шрифтов устанавливаемого
+семейства (гарнитуры) в рабочий каталог. Туда же &#8212; pfb-файлы
+(для удобства).</p></li><li><p> Если хотите, то можно переименовать эти файлы, чтобы
+имена соответствовали (более или менее) схеме Берри
+(см. <tt>texmf/doc/fontname/fontname.dvi</tt>)</p></li><li><p> Пишите задание для <tt>fontinst</tt>. Это
+лучше показать на примере. Скажем, мы хотим установить семейство
+&quot;Академическая&quot;, и у нас есть ps-шрифты для русской, латинской и
+восточноевропейской кодировок, начертаний regular, bold и italic. Для
+удобства мы переименовали шрифты (AFM и PFB-файлы) так, что они имеют
+вид <tt>zacdBIE.afm</tt> (или .pfb), где</p><div class="orderedlist"><ol type="1"><li><p>B &#8212; насыщенность шрифта: r &#8212; regular,
+	      b &#8212; bold;</p></li><li><p>I &#8212; начертание: n &#8212; обычное, i &#8212;
+	      курсивное;</p></li><li><p>E &#8212; кодировка: c &#8212; кириллическая
+	      (Windows-1251), a &#8212; латинская, e &#8212;
+	      восточноевропейская.</p></li></ol></div><p>Вот задание для Fontinst:</p><pre class="programlisting">
+\input fontinst.sty
+\input fnstcorr
+\input cyralias
+
+\installfonts
+% ------ Читаем метрики шрифтов (AFM) и делаем метрики в формате MMX.
+% ------ начертание regular --
+\aliasfonts{}{}{zacdrnc}      % Читаем zacdrnc.afm (afm-метрики
+                              %  кириллических шрифтов должны
+                              %  преобразовываться в MMX с помощью
+                              %  команды aliasfonts )
+\transformfont{zacdrnr}{\reencodefont{8r}{\fromafm{zacdrna}}}
+                              % Шрифт zacdrna имеет кодировку
+                              %  AdobeStandard, и мы должны его
+                              %  преобразовать в кодировку 8r, иначе не
+                              %  сможем использовать многие его символы.
+\fromafm{zacdrne}             % Читаем zacdrne.afm (метрика
+                              %  восточноевропейского шрифта)
+
+% ------ начертание bold --(без комментариев: все аналогично)
+\aliasfonts{}{}{zacdbnc}
+\transformfont{zacdbnr}{\reencodefont{8r}{\fromafm{zacdbna}}}
+\fromafm{zacdbne}
+% ------ начертание Italic --
+\aliasfonts{}{}{zacdric}
+\transformfont{zacdrir}{\reencodefont{8r}{\fromafm{zacdria}}}
+\fromafm{zacdrie}
+% ------ начертание Bold Italic -- делаем наклонный шрифт из Bold:
+%        Здесь 212 = целое(1000 * tan(12 градусов)), а 12 градусов -- это
+%        угол наклона курсива для данного шрифта (см. параметр
+%        ItalicAngle AFM-файла для курсивного начертания шрифта).
+\transformfont{zacdbic}{\slantfont{212}{\frommtx{zacdbnc}}}
+\transformfont{zacdbir}{\slantfont{212}{\frommtx{zacdbnr}}}
+\transformfont{zacdbie}{\slantfont{212}{\frommtx{zacdbne}}}
+
+% Устанавливаем семейство ZACD (Academy) в кодировке T2A
+
+\installfamily{T2A}{zacd}{}
+\installfont{zacdr6a}{zacdrnc,zacdrnr,zacdrne,cyrillic}%   T2A regular
+                     {T2A}{T2A}{zacd}{m}{n}{}
+\installfont{zacdb6a}{zacdbnc,zacdbnr,zacdbne,cyrillic}%   T2A bold
+                     {T2A}{T2A}{zacd}{b}{n}{}
+\installfont{zacdri6a}{zacdric,zacdrir,zacdrie,cyrillic}%  T2A italic
+                     {T2A}{T2A}{zacd}{m}{it}{}
+\installfont{zacdbi6a}{zacdbic,zacdbir,zacdbie,cyrillic}%  T2A bold italic
+                     {T2A}{T2A}{zacd}{b}{it}{}
+\installfont{zacdrc6a}{zacdrnc,zacdrnr,zacdrne,cyrillic}%  T2A small caps
+                     {T2Ac}{T2A}{zacd}{m}{sc}{}
+
+% Замечание: порядок перечисления исходных шрифтов во втором аргументе
+% команды installfont важен: так, для начертания regular нужные символы
+% берутся из Type1-шрифта zacdrnc (кириллица), не найденные там символы
+% -- из Type1-шрифта zacdrnr (это перекодированный в кодировку 8r
+% шрифт zacdrnа), а потом, если символ все же не найден -- из Type1-шрифта
+% zacdrne (восточноевропейского).
+
+% Устанавливаем семейство ZACD (Academy) в кодировке T1.
+
+\installfamily{T1}{zacd}{}
+\installfont{zacdr8t}{zacdrnr,zacdrne,zacdrnc,latin}%  T1 regular
+                     {T1}{T1}{zacd}{m}{n}{}
+\installfont{zacdb8t}{zacdbnr,zacdbne,zacdbnc,latin}%  T1 bold
+                     {T1}{T1}{zacd}{b}{n}{}
+\installfont{zacdri8t}{zacdrir,zacdrie,zacdric,latin}% T1 italic
+                     {T1}{T1}{zacd}{m}{it}{}
+\installfont{zacdbi8t}{zacdbir,zacdbie,zacdbic,latin}% T1 bold italic
+                     {T1}{T1}{zacd}{b}{it}{}
+\installfont{zacdbc8t}{zacdbir,zacdbie,zacdbic,latin}% T1 bold italic
+                     {T1c}{T1}{zacd}{b}{it}{}
+
+% Замечание: если бы у нас был только один исходный кириллический
+% pfb-шрифт (в кодировке Windows=CP1251), то устанавливать этот
+% шрифт в TeX-овской кодировке T1 смысла бы, по видимому, не имело --
+% материала для создания многих нужных символов кодировки T1
+% в исходном шрифте нет.
+
+% Устанавливаем семейство ZACD (Academy) в кодировке TS1
+% (text companion). Эта кодировка содержит некоторые полезные
+% вспомогательные символы -- параграф, номер, копирайт, и т.п.,
+% для которых обычно нужно, чтобы они соответствовали по
+% своему виду (гарнитуре и начертанию) символам текста.
+
+\installfamily{TS1}{zacd}{}
+\installfont{zacdr8c}{zacdrnr,zacdrne,zacdrnc,textcomp}%
+                     {TS1}{TS1}{zacd}{m}{n}{}
+\installfont{zacdri8c}{zacdrir,zacdrie,zacdric,textcomp}%
+                     {TS1}{TS1}{zacd}{m}{it}{}
+\installfont{zacdb8c}{zacdbnr,zacdbne,zacdbnc,textcomp}%
+                     {TS1}{TS1}{zacd}{b}{n}{}
+\installfont{zacdbi8c}{zacdbir,zacdbie,zacdbic,textcomp}%
+                     {TS1}{TS1}{zacd}{b}{it}{}
+
+\endinstallfonts
+\documentclass[12pt]{article}
+\begin{document}
+\end{document}
+</pre><p>Этот текст надо записать в тот же каталог, что
+AFM-файлы.</p></li><li><p>Прогоняете полученный TeX-файл через
+	  <span class="emphasis"><em>LaTeX</em></span>.</p></li><li><p>Для каждого полученного VPL-файла выполняете команду
+   <tt>VPtoVF</tt> имя-файла.VPL имя-файла.VF
+   имя-файла.TFM</p></li><li><p>Перемещаете:</p><div class="orderedlist"><ol type="1"><li><p>afm-файлы &#8212; в каталог
+	      <tt>texmf/fonts/afm/XXX</tt></p></li><li><p>pfb-файлы &#8212; в каталог
+	      <tt>texmf/fonts/type1/XXX</tt></p></li><li><p>tfm-файлы &#8212; в каталог
+	      <tt>texmf/fonts/tfm/XXX</tt></p></li><li><p>vf-файлы &#8212; в каталог
+	      <tt>texmf/fonts/vf/XXX</tt></p></li><li><p>fd-файл &#8212; в каталог
+	      <tt>texmf/tex/latex/XXX</tt></p></li></ol></div><p>Где XXX &#8212; имя, которое вы выбрали для каталогов
+   со своими шрифтами.  Например, вы можете вместо XXX использовать
+   &quot;DFFonts&quot;.</p></li><li><p> Удаляете файлы с расширениями .log, .aux, .pl, .mtx.</p></li><li><p>Делаете файл для <tt>dvips</tt>, указывающий
+   ему, как загружать (или создавать) Type1-шрифты, которые служат
+   основой для создания виртуальных TeX-овских шрифтов (т.е. шрифтов в
+   кодировках T2a, T1, TS1 и др.). Идентификаторы (&quot;клички&quot;) этих
+   Type1 шрифтов заданы в команде <tt>\aliasfonts</tt> (3-ий
+   параметр), <tt>\transformfont</tt> (1-ый параметр) и
+   <tt>\fromafm</tt> (когда эта команда используется
+   отдельно). То есть, в нашем случае, надо определить для dvips
+   шрифты с идентификаторами (условными кличками):</p><div class="orderedlist"><ol type="1"><li><p>zacdrnc, zacdrnr, zacdrne &#8212; для создания
+	    начертания regular, т.е. прямых светлых шрифтов;</p></li><li><p>zacdric, zacdrir, zacdrie &#8212; для создания
+	    начертания italic, т.е. курсивных светлых шрифтов;</p></li><li><p>zacdbnc, zacdbnr, zacdbne &#8212; для создания
+	    начертания bold, т.е. прямых полужирных шрифтов;</p></li><li><p>zacdbic, zacdbir, zacdbie &#8212; для создания
+	    начертания bold italic, т.е. &quot;курсивных&quot; (на самом деле
+	    наклонных) полужирных шрифтов.</p></li></ol></div><p>Вот соответствующие команды для dvips:</p><pre class="programlisting">
+zacdrnc AcademyC &lt; zacdrnc.pfb
+zacdrnr AcademyA &quot; TeXBase1Encoding ReEncodeFont &quot; &lt;8r.enc &lt; zacdrna.pfb
+zacdrne AcademyE &lt; zacdrne.pfb
+zacdbnc AcademyC-Bold &lt; zacdbnc.pfb
+zacdbnr AcademyA-Bold &quot; TeXBase1Encoding ReEncodeFont &quot; &lt;8r.enc &lt; zacdbna.pfb
+zacdbne AcademyE-Bold &lt; zacdbne.pfb
+zacdric AcademyC-Italic &lt; zacdric.pfb
+zacdrir AcademyA-Italic &quot; TeXBase1Encoding ReEncodeFont &quot; &lt;8r.enc &lt; zacdria.pfb
+zacdrie AcademyE-Italic &lt; zacdrie.pfb
+zacdbic AcademyC-Bold &quot; .212 SlantFont &quot; &lt; zacdbnc.pfb
+zacdbir AcademyA-Bold &quot; .212 SlantFont TeXBase1Encoding ReEncodeFont &quot; &lt;8r.enc &lt; zacdbna.pfb
+zacdbie AcademyE-Bold &quot; .212 SlantFont &quot; &lt; zacdbne.pfb
+</pre><p> Здесь второй параметр в каждой команде &#8212; это
+   PS-имя исходного шрифта, его можно посмотреть в AFM-файле: параметр
+   FontName AFM-файла.</p></li><li><p> Все такие команды для устанавливаемых тобой шрифтов
+   надо записать в один файл. Назовем его, скажем, DFFonts.map.
+   Поместим его в каталог <tt>config</tt> программы
+   <span class="emphasis"><em>DVIPS</em></span> (<tt>texmf/dvips/config</tt>),
+   а в файл <tt>config.ps</tt> из этого же каталога
+   вставляем ссылку на него (строку <tt>+p
+   DFFonts.map</tt>).</p><p> При использовании <tt>pdftex</tt>, тот же
+   файл надо поместить в каталог <tt>config</tt> программы
+   <span class="emphasis"><em>PDFTEX</em></span>
+   (<tt>texmf/pdftex/config</tt>), и в файл
+   <tt>pdftex.cfg</tt> из этого каталога вставить на него
+   ссылку (строку <tt>map +DFFonts.map</tt>).</p><p> Настройка <tt>dvipdfm</tt> на используемые
+   шрифты, видимо, аналогична, но там формат .map-файла чуть
+   другой. Видимо, .map-файл должен быть таким:</p><pre class="programlisting">
+   zacdrnc  default  zacdrna.pfb
+   zacdrnr  8r.enc   zacdrna.pfb
+   zacdrne  default  zacdrne.pfb
+   zacdbnc  default  zacdbnc.pfb
+   zacdbnr  8r.enc   zacdbna.pfb
+   zacdbne  default  zacdbne.pfb
+   zacdric  default  zacdric.pfb
+   zacdrir  8r.enc   zacdria.pfb
+   zacdrie  default  zacdrie.pfb
+   zacdbic  default  zacdbnc.pfb  -s 0.212
+   zacdbir  8r.enc   zacdbna.pfb  -s 0.212
+   zacdbie  default  zacdbne.pfb  -s 0.212
+</pre><p> Назовите файл с такими командами, например,
+   <tt>DFFontsD.map</tt>. Тогда надо поместить его в каталог
+   <tt>config</tt> программы <tt>dvipdfm</tt> и
+   вставить в файл config из этого каталога строку <tt>f
+   DFFontsD.map</tt> . Пока что работоспособность этого
+   варианта не проверялась.</p></li><li><p>При необходимости &#8212; пишете пакет, чтобы
+    установленными шрифтами было удобно пользоваться. Если
+    &quot;собезьяннничать&quot;  пакет <tt>pscyr</tt> (раздел
+    <a href="ch15s02.html#CyrFontsType1PsCyr" title="PSCYR">&#8220;PSCYR&#8221;</a>), то можно написать что-то
+    вроде: Файл <tt>DFFonts.sty</tt></p><pre class="programlisting">
+\ProvidesPackage{dffonts}[2002/09/20 v0.1]
+
+\def\acddefault{zacd}
+\DeclareRobustCommand\acdfamily
+        {\not@math@alphabet\rmfamily\mathrm
+         \fontfamily\acddefault\selectfont}
+\DeclareTextFontCommand{\textacd}{\acdfamily}
+
+% ... и так для каждого семейства установленных тобой шрифтов
+
+\endinput
+</pre></li><li><p>Перегенерируйте индексные файлы TeX-а. Например с
+    помощью команды <tt>initexmf -u </tt>.</p></li></ul></div></div></div><div class="footnotes"><br><hr width="100" align="left"><div class="footnote"><p><sup>[<a name="ftn.id2807634" href="ch15.html#id2807634">12</a>] </sup>То есть, какие реально у вас будут права,
+какие реально есть гарантии и какую реально поддержку и сопровождение
+обеспечивает Paratype.</p></div></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch14s02.html">Пред.</a> </td><td width="20%" align="center"><a accesskey="u" href="index.html">Уровень выше</a></td><td width="40%" align="right"> <a accesskey="n" href="ch15s02.html">След.</a></td></tr><tr><td width="40%" align="left" valign="top">Поддержка кириллицы в программах gtk </td><td width="20%" align="center"><a accesskey="h" href="index.html">Начало</a></td><td width="40%" align="right" valign="top"> Шрифты Type1</td></tr></table></div></body></html>

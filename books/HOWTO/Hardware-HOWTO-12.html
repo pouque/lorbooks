@@ -1,0 +1,310 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE>Linux Hardware Compatibility HOWTO: Сетевые карты</TITLE>
+ <LINK HREF="Hardware-HOWTO-13.html" REL=next>
+ <LINK HREF="Hardware-HOWTO-11.html" REL=previous>
+ <LINK HREF="Hardware-HOWTO.html#toc12" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="Hardware-HOWTO-13.html">Next</A>
+<A HREF="Hardware-HOWTO-11.html">Previous</A>
+<A HREF="Hardware-HOWTO.html#toc12">Contents</A>
+<HR>
+<H2><A NAME="s12">12. Сетевые карты</A></H2>
+
+<P>Ethernet карты имеют различную производительность (чем более поздняя модель карты, тем большее быстродействие она обычно имеет). Будьте очень осторожны
+при выборе сетевой карты, т.к. некоторые модели такие как 3Com 3c501 уже настолько морально устарели , что утратили всякую ценность.
+Также опасайтесь использования карт аналогов моделей известных фирм , т.к. 
+некачественные клоны часто вызывают проблемы при использовании в Линукс.
+Чтобы получить более детальную информации о различных карта и их настройке 
+читайте Ethernet HOWTO : 
+<A HREF="http://metalab.unc.edu/LDP/HOWTO/">http://metalab.unc.edu/LDP/HOWTO/</A><P>
+<H2><A NAME="ss12.1">12.1 Поддерживаемые</A>
+</H2>
+
+<H3>Ethernet</H3>
+
+<P>Для ethernet карт с чипсетами семейства DECchip DC21x4x имеется драйвер
+"Tulip". Прочитать о нем можно по адресу :  
+<A HREF="http://cesdis.gsfc.nasa.gov/linux/drivers/tulip.html">http://cesdis.gsfc.nasa.gov/linux/drivers/tulip.html</A>.
+<P>
+<UL>
+<LI>3Com 3c501 - ``опасайтесь использования этой модели'' (драйвер 3c501)</LI>
+<LI>3Com 3c503 (3c503 драйвер), 3c505 (3c505 драйвер), 3c507 (3c507 драйвер), 3c509/3c509B (<B>ISA</B>) / 3c579 (<B>EISA</B>)</LI>
+<LI>3Com Etherlink III Vortex Ethercards (3c590, 3c592, 3c595, 3c597) (<B>PCI</B>),
+3Com Etherlink XL Boomerang (3c900, 3c905) (<B>PCI</B>) и Cyclone (3c905B, 3c980) Ethercards (3c59x драйвер) и 
+3Com Fast EtherLink Ethercard (3c515) (<B>ISA</B>) (3c515 драйвер)<BR>
+Свежие версии этих драйверов можно получить по адресу :
+<A HREF="http://cesdis.gsfc.nasa.gov/linux/drivers/vortex.html">http://cesdis.gsfc.nasa.gov/linux/drivers/vortex.html</A><BR>
+Избегайте,если это возможно, использования карты 3c900 т.к. её драйвер
+не полностью функционален.</LI>
+<LI>3Com 3ccfe575 Cyclone Cardbus (3c59x драйвер)</LI>
+<LI>3Com 3c575 серия Cardbus (3c59x драйвер) (все PCMCIA ??)</LI>
+<LI>AMD LANCE (79C960) / PCnet-ISA/PCI (AT1500, HP J2405A, NE1500/NE2100)</LI>
+<LI>AT&amp;T GIS WaveLAN</LI>
+<LI>Allied Telesis AT1700</LI>
+<LI>Allied Telesis LA100PCI-T</LI>
+<LI>Allied Telesyn AT2400T/BT (модуль "ne")</LI>
+<LI>Ansel Communications AC3200 (<B>EISA</B>)</LI>
+<LI>Apricot Xen-II / 82596</LI>
+<LI>Cabletron E21xx</LI>
+<LI>Cogent EM110</LI>
+<LI>Crystal Lan CS8920, Cs8900<BR>
+<A HREF="http://www.cirrus.com/private/drivers/ethernet/edrivers.html">http://www.cirrus.com/private/drivers/ethernet/edrivers.html</A></LI>
+<LI>Danpex EN-9400</LI>
+<LI>DEC DE425 (<B>EISA</B>) / DE434/DE435 (<B>PCI</B>) / DE450/DE500 (DE4x5 драйвер)</LI>
+<LI>DEC DE450/DE500-XA (dc21x4x) (Tulip драйвер)</LI>
+<LI>DEC DEPCA и EtherWORKS</LI>
+<LI>DEC EtherWORKS 3 (DE203, DE204, DE205)</LI>
+<LI>DEC QSilver's (Tulip драйвер)</LI>
+<LI>Digi International RightSwitch</LI>
+<LI>DLink DE-220P, DE-528CT, DE-530+, DFE-500TX, DFE-530TX<BR>
+Дополнительная информация доступна по адресу : 
+<A HREF="http://www.dlink.ca/linux.html">http://www.dlink.ca/linux.html</A></LI>
+<LI>Fujitsu FMV-181/182/183/184</LI>
+<LI>HP PCLAN (27245 и 27xxx серии)</LI>
+<LI>HP PCLAN PLUS (27247B and 27252A)</LI>
+<LI>HP 10/100VG PCLAN (J2577, J2573, 27248B, J2585) (<B>ISA/EISA/PCI</B>)<BR>
+Дополнительная информация : 
+<A HREF="http://cesdis1.gsfc.nasa.gov:80/linux/drivers/100vg.html">http://cesdis1.gsfc.nasa.gov:80/linux/drivers/100vg.html</A></LI>
+<LI>ICL EtherTeam 16i / 32 (<B>EISA</B>)</LI>
+<LI>Intel EtherExpress</LI>
+<LI>Intel EtherExpress Pro</LI>
+<LI>KTI ET16/P-D2, ET16/P-DC ISA (работает без джамперов с
+and with hardware-configuration options) </LI>
+<LI>Macromate MN-220P (PnP или NE2000 режим)</LI>
+<LI>NCR WaveLAN</LI>
+<LI>NE2000/NE1000 (будьте осторожны с аналогами)</LI>
+<LI>Netgear FA-310TX (Tulip чип)</LI>
+<LI>New Media Ethernet</LI>
+<LI>PureData PDUC8028, PDI8023</LI>
+<LI>SEEQ 8005</LI>
+<LI>SMC Ultra / EtherEZ (<B>ISA</B>)</LI>
+<LI>Серия SMC 9000 </LI>
+<LI>SMC PCI EtherPower 10/100 (Tulip драйвер)</LI>
+<LI>SMC EtherPower II (epic100.c драйвер)</LI>
+<LI>Sun LANCE карты (ядро 2.2 и выше)</LI>
+<LI>Sun Intel карты (ядро 2.2 и выше)</LI>
+<LI>Schneider &amp; Koch G16</LI>
+<LI>Western Digital WD80x3</LI>
+<LI>Zenith Z-Note / IBM ThinkPad 300 встроенная карта</LI>
+<LI>Znyx 312 etherarray (Tulip драйвер)</LI>
+</UL>
+<P>
+<H3>ISDN</H3>
+
+<P>
+<UL>
+<LI>Программы и утилиты для работы с ISDN под Линукс доступны по адресу :
+<A HREF="ftp://ftp.franken.de/pub/isdn4linux/v2.0">ftp://ftp.franken.de/pub/isdn4linux/v2.0</A></LI>
+</UL>
+<P>
+<UL>
+<LI>3Com Sonix Arpeggio<BR>
+<A HREF="ftp://metalab.unc.edu/pub/Linux/kernel/patches/network/sonix.tgz">ftp://metalab.unc.edu/pub/Linux/kernel/patches/network/sonix.tgz</A></LI>
+<LI>ASUSCOM Network Inc. ISDNLink 128K PC карта (HiSax)</LI>
+<LI>AVM A1 (HiSax)</LI>
+<LI>AVM B1 (avmb1)</LI>
+<LI>Combinet EVERYWARE 1000 ISDN<BR>
+<A HREF="ftp://metalab.unc.edu/pub/Linux/kernel/patches/network/combinet1000isdn-1.02.tar.gz">ftp://metalab.unc.edu/pub/Linux/kernel/patches/network/combinet1000isdn-1.02.tar.gz</A></LI>
+<LI>Compaq ISDN S0 (<B>ISA</B>) (HiSax)</LI>
+<LI>Creatix PnP S0 (HiSax)</LI>
+<LI>Dr. Neuhaus Niccy PnP/PCI (HiSax)</LI>
+<LI>Dynalink IS64PH (HiSax)</LI>
+<LI>Eicon.Diehl Diva 2.0 (<B>ISA/PCI</B>) (S0 и U интерфейс, не PRO версия) (HiSax)</LI>
+<LI>Eicon.Diehl Diva Piccola (HiSax)</LI>
+<LI>Elsa Microlink PCC-16, PCF, PCF-Pro, PCC-8 (HiSax)</LI>
+<LI>ELSA QuickStep 1000/1000PCI/3000 (HiSax)</LI>
+<LI>HFC-2BS0 базирующиеся карты (HiSax)</LI>
+<LI>IBM Active 2000 (<B>ISA</B>) (act2000)</LI>
+<LI>ICN ISDN cards (icn)</LI>
+<LI>Ith Kommunikationstechnik GmbH MIC 16 (ISA) (HiSax)</LI>
+<LI>ITK ix1-micro Rev.2 (HiSax)</LI>
+<LI>Octal PCBIT (pcbit)</LI>
+<LI>Sedlbauer Speed Card (HiSax)</LI>
+<LI>Teles SO-8/SO-16.0/SO-16.3/SO-16.3c/SO-16.4 и совместимые (HiSax)</LI>
+<LI>Traverse Technologie NETjet PCI S0 (HiSax)</LI>
+<LI>USR Sportster internal TA (HiSax)</LI>
+</UL>
+
+ISDN карты которые эмулируют стандартные модемы или распространенные Ethernet карты не нуждаются в специальном драйвере.
+<P>
+<H3>Frame Relay</H3>
+
+<P>
+<UL>
+<LI>Emerging Technologies Inc Synchronous Adapters (
+<A HREF="http://www.etinc.com">http://www.etinc.com</A>)
+<UL>
+<LI>ET/5025 (1 порт, 8-бит <B>ISA</B>)</LI>
+<LI>ET/5025-16 (2 порта, 16-бит <B>ISA</B>)</LI>
+<LI>ET/5025-25 (2 порта, 16-бит <B>ISA</B>)</LI>
+<LI>ET/5025pq (4 порта, <B>PCI</B>)</LI>
+</UL>
+</LI>
+</UL>
+<P>
+<H3>Беспроводные</H3>
+
+<P>
+<UL>
+<LI>ZCOM WL2420 ISA<BR>
+Информация о этой карте находиться по адресу 
+<A HREF="http://www.zcom.com.tw">http://www.zcom.com.tw</A>.Модуль для ядра :  
+<A HREF="http://www.linux.org.ru/books/HOWTO/www.boerde.de/~matthias/airnet/zcom_v12">www.boerde.de/~matthias/airnet/zcom_v12</A></LI>
+</UL>
+<P>
+<H3>X25</H3>
+
+<P>
+<UL>
+<LI>Emerging Technologies Inc Synchronous Adapters (
+<A HREF="http://www.etinc.com">http://www.etinc.com</A>)
+<UL>
+<LI>ET/5025 (1 порт, 8-bit <B>ISA</B>)</LI>
+<LI>ET/5025-16 (2 порта, 16-bit <B>ISA</B>)</LI>
+<LI>ET/5025-25 (2 порта, 16-bit <B>ISA</B>)</LI>
+<LI>ET/5025pq (4 порта, <B>PCI</B>)</LI>
+</UL>
+</LI>
+</UL>
+<P>
+<H3>Карманные и переносимые карты</H3>
+
+<P>
+<UL>
+<LI>Информацию о использовании парралельного порта в Линукс можно найти на : 
+<A HREF="http://www.torque.net/linux-pp.html">http://www.torque.net/linux-pp.html</A> или 
+<A HREF="http://www.torque.net/parport/">http://www.torque.net/parport/</A>.
+Смотрите также приложение C для получения полного списка поддерживаемых
+устройств , подключаемых к парралельному порту. (не включая принтеры)</LI>
+</UL>
+<P>
+<H3>Карты подключаемые к портам</H3>
+
+<P>
+<UL>
+<LI>SLIP/CSLIP/PPP (последовательный порт)</LI>
+<LI>EQL (последовательная балансировка загрузки IP)</LI>
+<LI>PLIP (парралельный порт) - используя ``LapLink кабель'' или
+дву-направленный кабель.</LI>
+</UL>
+<P>
+<H3>ARCnet</H3>
+
+<P>
+<UL>
+<LI>Поддерживаются все существующие ARCnet карты</LI>
+</UL>
+<P>
+<A HREF="http://www.linuxtr.net">http://www.linuxtr.net</A><H3></H3>
+
+<P>
+<UL>
+<LI>3Com 3C619/B/C Tokenlink 16/4 (ibmtr)</LI>
+<LI>3Com 3C319 Velocity ISA (ibmtr)</LI>
+<LI>IBM PCI token ring карта</LI>
+<LI>IBM Wake on Lan TR карта</LI>
+<LI>IBM 16/4 TR PCI Adapter 2, Adapter 2 Wake on Lan, Adapter 2 Wake on Lan Special</LI>
+<LI>IBM High Speedd 100/16/4 token ring</LI>
+<LI>IBM ISA 16/4, MCA 16/4 (ibmtr)</LI>
+<LI>IBM Карты на чипсете Tropic </LI>
+<LI>Olicom RapidFire 3139, 3140, 3141, 3540<BR>
+<A HREF="http://www.olicom.com">http://www.olicom.com</A></LI>
+<LI>Olicom OC-3136, OC-3137, OC-3138, OC-3129<BR>
+<A HREF="http://www.olicom.com">http://www.olicom.com</A></LI>
+<LI>Madge Smart 100/16/4 PCI, 16/4 PCI Mk3, 16/4 PCI Mk2<BR>
+<A HREF="http://www.madge.com">http://www.madge.com</A></LI>
+<LI>Madge Presto PCI, 16/4 CardBus<BR>
+<A HREF="http://www.madge.com">http://www.madge.com</A></LI>
+<LI>Syskonnect TR4/16(+) SK-4190 ISA, SK-4590 PCI, SK-4591 PCI (sktr)</LI>
+</UL>
+<P>
+<H3>FDDI</H3>
+
+<P>
+<UL>
+<LI>DEC DEFEA (<B>EISA</B>) / DEFPA (<B>PCI</B>) (ядро 2.0.24 и
+старше)</LI>
+</UL>
+<P>
+<H3>Amateur radio (AX.25)</H3>
+
+<P>
+<UL>
+<LI>Gracilis PackeTwin</LI>
+<LI>Ottawa PI/PI2</LI>
+<LI>Большинство стандартных 8530 базирующих-ся на платах HDLC</LI>
+</UL>
+<P>
+<H3>PCMCIA карты</H3>
+
+<P>
+<UL>
+<LI>Полный список можно увидеть в приложении B или на странице David Hinds: 
+<A HREF="http://hyper.stanford.edu/HyperNews/get/pcmcia/home.html">http://hyper.stanford.edu/HyperNews/get/pcmcia/home.html</A></LI>
+</UL>
+<P>
+<H2><A NAME="ss12.2">12.2 Альфа,Бета драйвера</A>
+</H2>
+
+<H3>Ethernet</H3>
+
+<P>
+<UL>
+<LI>Racal-Interlan NI5210 (i82586 Ethernet чип). Улучшенная поддержка в ядрах 2.2 и старше.</LI>
+<LI>Racal-Interlan NI6510 (am7990 lance чип).Начиная с ядра 1.3.66 поддерживается более 16Мб памяти.</LI>
+<LI>Racal-Interlan PCI card (AMD PC net чип 97c970) ??</LI>
+</UL>
+<P>
+<H3>ISDN</H3>
+
+<P>
+<UL>
+<LI>SpellCaster's Datacomute/BRI, Telecomute/BRI (<B>ISA</B>) (sc)</LI>
+</UL>
+<P>
+<H3>ATM</H3>
+
+<P>
+<UL>
+<LI>Efficient Networks ENI155P-MF 155 Mbps ATM карта (<B>PCI</B>)<BR>
+<A HREF="http://lrcwww.epfl.ch/linux-atm/">http://lrcwww.epfl.ch/linux-atm/</A></LI>
+</UL>
+<P>
+<H3>Frame Relay</H3>
+
+<P>
+<UL>
+<LI>Sangoma S502 56K Frame Relay карта<BR>
+<A HREF="ftp://ftp.sovereign.org/pub/wan/fr/">ftp://ftp.sovereign.org/pub/wan/fr/</A></LI>
+</UL>
+<P>
+<H3>Wireless</H3>
+
+<P>
+<UL>
+<LI>Proxim RangeLan2 7100 (<B>ISA</B>) / 630x (OEM <B>mini-ISA</B>)<BR>
+<A HREF="http://www.komacke.com/distribution.html">http://www.komacke.com/distribution.html</A></LI>
+</UL>
+<P>
+<H2><A NAME="ss12.3">12.3 Неподдерживаються</A>
+</H2>
+
+<P>
+<UL>
+<LI>3Com 3C359 Velocity XL PCI</LI>
+<LI>3Com 3C339 Velocity PCI</LI>
+<LI>IBM PCI LANStreamer, MCA LANStreamer token ring</LI>
+<LI>Intel TokenExpress PRO, TokenExpress 16/4</LI>
+<LI>Sysconnect / Schneider &amp; Koch Token Ring карты (все)</LI>
+</UL>
+<P>
+<HR>
+<A HREF="Hardware-HOWTO-13.html">Next</A>
+<A HREF="Hardware-HOWTO-11.html">Previous</A>
+<A HREF="Hardware-HOWTO.html#toc12">Contents</A>
+</BODY>
+</HTML>

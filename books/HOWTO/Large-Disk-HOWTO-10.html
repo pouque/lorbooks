@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE> Large-Disk-HOWTO : Выводы</TITLE>
+ <LINK HREF="Large-Disk-HOWTO-11.html" REL=next>
+ <LINK HREF="Large-Disk-HOWTO-9.html" REL=previous>
+ <LINK HREF="Large-Disk-HOWTO.html#toc10" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="Large-Disk-HOWTO-11.html">Next</A>
+<A HREF="Large-Disk-HOWTO-9.html">Previous</A>
+<A HREF="Large-Disk-HOWTO.html#toc10">Contents</A>
+<HR>
+<H2><A NAME="s10">10. Выводы</A></H2>
+
+<P>
+<!--
+диск!выводы о трансляции
+-->
+
+Что значит все выше сказанное? Для пользователей Линукс только 
+одну вещь: необходимость быть уверенными в том, что LILO и fdisk
+используют правильную геометрию. Правильная геометрия для 
+fdisk - та, которая используется ОС находящейся на том же диске,
+а для LILO - та которая позволяет успешно взаимодействовать с
+BIOS во время загрузки. (обычно эти две геометрии совпадают)
+<P>Как <CODE>fdisk</CODE> узнает о геометрии?
+Он спрашивает ядро,используя  <CODE>HDIO_GETGEO</CODE> ioctl.
+Но пользователь может заставить <CODE>fdisk</CODE> использовать
+другую геометрию в интерактивном режиме или в командной строке. 
+<P>Как LILO узнает о геометрии?
+Оно запрашивает ядро, используя <CODE>HDIO_GETGEO</CODE> ioctl.
+Но пользователь также может обойти эту геометрию, указав специальный 
+параметр  `<CODE>disk=</CODE>' в файле <CODE>/etc/lilo.conf</CODE> (см. lilo.conf(5)).
+Возможно также задание опции <CODE>linear</CODE> , которая заставит
+LILO хранить в его map файле LBA адреса, вместо CHS и будет 
+определять геометрию при загрузке с помощью INT13(функция 8).
+<P>Как ядро узнает о геометрии?
+Во первых, возможно,что пользователь указал детальную геометрию
+в командной строке ядра  `<CODE>hda=</CODE><I>cyls</I><CODE>,</CODE><I>heads</I><CODE>,</CODE><I>secs</I>'
+(см. bootparam(7)),вручную или указав загрузчику необходимость передать
+эти параметры ядру. 
+Например,для LILO нужно добавить строку `<CODE>append =
+"hda=</CODE><I>cyls</I><CODE>,</CODE><I>heads</I><CODE>,</CODE><I>secs</I><CODE>"</CODE>'
+в <CODE>/etc/lilo.conf</CODE> (см. lilo.conf(5)).
+Или же ядро может само догадаться о геометрии, опросив BIOS
+или "железо".
+<P>Начиная с версии ядра 2.1.79 возможно указание геометрии ядру
+с помощью файловой системы  <CODE>/proc</CODE>.
+Например:
+<BLOCKQUOTE><CODE>
+<PRE>
+# sfdisk -g /dev/hdc
+/dev/hdc: 4441 cylinders, 255 heads, 63 sectors/track
+# cd /proc/ide/ide1/hdc
+# echo bios_cyl:17418 bios_head:128 bios_sect:32 > settings
+# sfdisk -g /dev/hdc
+/dev/hdc: 17418 cylinders, 128 heads, 32 sectors/track
+#
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>
+<H2><A NAME="ss10.1">10.1 Вычисление параметров LILO.</A>
+</H2>
+
+<P>Иногда бывает удобно указать какую либо конкретную геометрию
+указав  `<CODE>hda=</CODE><I>cyls</I><CODE>,</CODE><I>heads</I><CODE>,</CODE><I>secs</I>'
+в командной строке ядра. Почти всегда необходимо указывать <I>secs</I>=63,
+для того чтобы указать <I>heads</I>.
+(Наиболее удачными значениями на сегодняшний день будут <I>heads</I>=16 и <I>heads</I>=255.)
+Что необходимо указать для  <I>cyls</I>? Это должно быть число соответствующее
+полной емкости диска в секторах C*H*S.
+Например для диска с 71346240 секторами (36529274880 байт)
+С должно быть вычислено как 71346240/(255*63)=4441 (посчитать это можно например с помощью <CODE>bc</CODE>)
+, и заданы следующие параметры <CODE>hdc=4441,255,63</CODE>.
+Как можно узнать полную емкость диска? Например ,
+<BLOCKQUOTE><CODE>
+<PRE>
+# hdparm -g /dev/hdc | grep sectors
+ geometry     = 4441/255/63, sectors = 71346240, start = 0
+# hdparm -i /dev/hdc | grep LBAsects
+ CurCHS=16383/16/63, CurSects=16514064, LBA=yes, LBAsects=71346240
+</PRE>
+</CODE></BLOCKQUOTE>
+
+дает два способа нахождения полного числа секторов - 71346240.
+Нахождение путем просмотра сообщений выдаваемых ядром при загрузке
+<BLOCKQUOTE><CODE>
+<PRE>
+# dmesg | grep hdc
+...
+hdc: Maxtor 93652U8, 34837MB w/2048kB Cache, CHS=70780/16/63
+ hdc: [PTBL] [4441/255/63] hdc1 hdc2 hdc3! hdc4 &lt; hdc5 > ...
+</PRE>
+</CODE></BLOCKQUOTE>
+
+говорит нам о (как минимум) 34837*2048=71346176 секторах и
+соотвественно о 70780*16*63=71346240 секторах. 
+В данном случае вторая величина корректна, но в общем то обе
+могут быть округлены в меньшую сторону.
+Это хороший способ получить представление о размере диска когда
+<CODE>hdparm</CODE> не доступен.
+Но некогда не задавайте слишком большое значение для  <I>cyls</I>!
+В случае с SCSI дисками, точное число секторов выдается ядром при загрузке.
+<BLOCKQUOTE><CODE>
+<PRE>
+SCSI device sda: hdwr sector= 512 bytes. Sectors= 17755792 [8669 MB] [8.7 GB]
+</PRE>
+</CODE></BLOCKQUOTE>
+
+(и MB, GB округляются, но никогда в меньшую сторону, и являются `двоичными').
+<HR>
+<A HREF="Large-Disk-HOWTO-11.html">Next</A>
+<A HREF="Large-Disk-HOWTO-9.html">Previous</A>
+<A HREF="Large-Disk-HOWTO.html#toc10">Contents</A>
+</BODY>
+</HTML>

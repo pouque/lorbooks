@@ -1,0 +1,1155 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Мини-HOWTO: Перехват соединений</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.57"></HEAD
+><BODY
+CLASS="ARTICLE"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="ARTICLE"
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="TITLE"
+><A
+NAME="AEN2"
+>Мини-HOWTO: Перехват соединений</A
+></H1
+><DIV
+CLASS="AUTHORGROUP"
+><A
+NAME="AEN4"
+></A
+><H3
+CLASS="AUTHOR"
+><A
+NAME="AEN5"
+>Ilia Baldine</A
+></H3
+><DIV
+CLASS="AFFILIATION"
+><DIV
+CLASS="ADDRESS"
+><P
+CLASS="ADDRESS"
+>ibaldin@anr.mcnc.org</P
+></DIV
+></DIV
+><H3
+CLASS="CORPAUTHOR"
+> Перевод: <A
+HREF="mailto:sam@asp-linux.com"
+TARGET="_top"
+>Станислав Рогин</A
+>,
+ <A
+HREF="http://www.asplinux.com"
+TARGET="_top"
+>SWSoft Pte Ltd.</A
+></H3
+></DIV
+><P
+CLASS="PUBDATE"
+>Версия 1.1, 27 февраля 2000<BR></P
+><DIV
+><DIV
+CLASS="ABSTRACT"
+><A
+NAME="AEN15"
+></A
+><P
+></P
+><P
+>В этом документе содежится информация по установке и настройке в Linux 2.2.12 перехвата
+IP-соединений, при помощи системы divert-сокетов, входящей в комплект
+FreeBSD.</P
+><P
+></P
+></DIV
+></DIV
+><HR></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Содержание</B
+></DT
+><DT
+>1. <A
+HREF="Divert-Sockets-mini-HOWTO.html#AEN17"
+>Copyright</A
+></DT
+><DT
+>2. <A
+HREF="Divert-Sockets-mini-HOWTO.html#AEN20"
+>Авторские права</A
+></DT
+><DT
+>3. <A
+HREF="Divert-Sockets-mini-HOWTO.html#AEN29"
+>Ответственность</A
+></DT
+><DT
+>4. <A
+HREF="Divert-Sockets-mini-HOWTO.html#AEN35"
+>Вступительное слово</A
+></DT
+><DT
+>5. <A
+HREF="Divert-Sockets-mini-HOWTO.html#AEN39"
+>Введение</A
+></DT
+><DT
+>6. <A
+HREF="Divert-Sockets-mini-HOWTO.html#AEN47"
+>Получение и сборка исходных текстов</A
+></DT
+><DD
+><DL
+><DT
+>6.1. <A
+HREF="Divert-Sockets-mini-HOWTO.html#AEN50"
+>Где взять исходные тексты?</A
+></DT
+><DT
+>6.2. <A
+HREF="Divert-Sockets-mini-HOWTO.html#AEN56"
+>Сборка</A
+></DT
+><DD
+><DL
+><DT
+>6.2.1. <A
+HREF="Divert-Sockets-mini-HOWTO.html#COMP-TIME"
+>Опции, необходимые при сборке ядра</A
+></DT
+></DL
+></DD
+></DL
+></DD
+><DT
+>7. <A
+HREF="Divert-Sockets-mini-HOWTO.html#AEN89"
+>Использование перехвата соединений</A
+></DT
+><DD
+><DL
+><DT
+>7.1. <A
+HREF="Divert-Sockets-mini-HOWTO.html#AEN92"
+>Divert-сокеты и другие подобные системы</A
+></DT
+><DD
+><DL
+><DT
+>7.1.1. <A
+HREF="Divert-Sockets-mini-HOWTO.html#AEN95"
+>Сокеты Netlink</A
+></DT
+><DT
+>7.1.2. <A
+HREF="Divert-Sockets-mini-HOWTO.html#AEN103"
+>Raw-сокеты</A
+></DT
+><DT
+>7.1.3. <A
+HREF="Divert-Sockets-mini-HOWTO.html#AEN106"
+>libpcap</A
+></DT
+></DL
+></DD
+><DT
+>7.2. <A
+HREF="Divert-Sockets-mini-HOWTO.html#AEN109"
+>Потоки firewall</A
+></DT
+><DT
+>7.3. <A
+HREF="Divert-Sockets-mini-HOWTO.html#AEN134"
+>Использование ipchains</A
+></DT
+><DT
+>7.4. <A
+HREF="Divert-Sockets-mini-HOWTO.html#AEN141"
+>Пример программы</A
+></DT
+><DD
+><DL
+><DT
+>7.4.1. <A
+HREF="Divert-Sockets-mini-HOWTO.html#AEN143"
+>Текст программы</A
+></DT
+></DL
+></DD
+><DT
+>7.5. <A
+HREF="Divert-Sockets-mini-HOWTO.html#AEN155"
+>Пределы</A
+></DT
+></DL
+></DD
+><DT
+>8. <A
+HREF="Divert-Sockets-mini-HOWTO.html#AEN159"
+>Варианты использования перехвата соединений</A
+></DT
+><DD
+><DL
+><DT
+>8.1. <A
+HREF="Divert-Sockets-mini-HOWTO.html#AEN161"
+>Модификация пакетов</A
+></DT
+><DT
+>8.2. <A
+HREF="Divert-Sockets-mini-HOWTO.html#AEN171"
+>Посылка пакетов без перехвата</A
+></DT
+><DT
+>8.3. <A
+HREF="Divert-Sockets-mini-HOWTO.html#AEN178"
+>Фрагментация</A
+></DT
+></DL
+></DD
+><DT
+>9. <A
+HREF="Divert-Sockets-mini-HOWTO.html#AEN181"
+>Источники дополнительной информации</A
+></DT
+><DD
+><DL
+><DT
+>9.1. <A
+HREF="Divert-Sockets-mini-HOWTO.html#AEN183"
+>Веб-сайт</A
+></DT
+><DT
+>9.2. <A
+HREF="Divert-Sockets-mini-HOWTO.html#AEN187"
+>Список рассылки</A
+></DT
+></DL
+></DD
+><DT
+>10. <A
+HREF="Divert-Sockets-mini-HOWTO.html#AEN196"
+>Планы на будущее</A
+></DT
+></DL
+></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="AEN17"
+>1. Copyright</A
+></H1
+><P
+>Copyright 1999(c) by Ilia Baldine. This document may be distributed only subject to the terms and conditions
+set forth in the LDP License at, except that this document must not be distributed in modified form without
+the author's consent.</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN20"
+>2. Авторские права</A
+></H1
+><P
+>Авторские права на русский перевод этого текста принадлежат &copy; 2000 SWSoft Pte Ltd.
+Все права зарезервированы.</P
+><P
+>Этот документ является частью проекта Linux HOWTO.</P
+><P
+>Авторские права на документы Linux HOWTO принадлежат их авторам, если явно
+не указано иное. Документы Linux HOWTO, а также их переводы, могут
+быть воспроизведены и распространены полностью или частично на любом
+носителе, физическом или электронном, при условии сохранения этой заметки об
+авторских правах на всех копиях. Коммерческое распространение разрешается и
+поощряется; но, так или, иначе автор текста и автор перевода желали бы знать о
+таких дистрибутивах.</P
+><P
+>Все переводы и производные работы, выполненные по документам Linux HOWTO
+должны сопровождаться этой заметкой об авторских правах. Это делается в
+целях предотвращения случаев наложения дополнительных ограничений на
+распространение документов HOWTO. Исключения могут составить случаи
+получения специального разрешения у координатора Linux HOWTO, с которым
+можно связаться по адресу приведенному ниже.</P
+><P
+>Мы бы хотели распространить эту информацию по всем возможным каналам. Но
+при этом сохранить авторские права и быть уведомленными о всех планах
+распространения HOWTO. Если у вас возникли вопросы, пожалуйста, обратитесь
+к координатору проекта Linux HOWTO по электронной почте:
+<TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:linux-howto@metalab.unc.edu"
+>linux-howto@metalab.unc.edu</A
+>&#62;</TT
+> или к координатору русского
+перевода Linux HOWTO компании SWSoft Pte Ltd. по адресу
+<TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:linux-howto@asplinux.ru"
+>linux-howto@asplinux.ru</A
+>&#62;</TT
+></P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN29"
+>3. Ответственность</A
+></H1
+><P
+><A
+NAME="DISCLAIMER"
+></A
+></P
+><P
+>Этот документ был разработан в рамках проекта по обеспечению безопасности компьютерных сетей, финансируемого агентством DARPA. Ни я (Ilia Baldine), ни мой работодатель (MCNC), ни DARPA не несут ответственности за нанесенный или потенциальный ущерб, который может вызвать применение программы и/или использование процедур, описанных в документе. Как и множество других сетевых приложений, divert-сокеты могут использоваться как в законной плоскости, так и незаконной, а выбор этой плоскости остается 
+<I
+CLASS="EMPHASIS"
+>за вами</I
+>!</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN35"
+>4. Вступительное слово</A
+></H1
+><P
+>&#13;<PRE
+CLASS="SCREEN"
+>Here's an easy game to play,
+Here's an easy thing to say:
+
+If a packet hits a pocket
+ on a socket on a port
+And the bus is interrupted
+  as a very last resort,
+And the address of the memory
+  makes your floppy disk abort,
+Then the socket packet pocket
+  has an error to report!!
+
+If your cursor finds a menu item
+  followed by a dash,
+And the double clicking icon puts  your
+  window in the trash,
+And your data is corrupted 'cause the
+  index doesn't hash,
+Then the situation's hopeless, and your 
+  system's gonna crash!
+
+YOU CAN'T SAY THIS? WHAT A SHAME SIR!
+WE'LL FIND ANOTHER GAME SIR
+
+If the label on the cable on the table
+  at your house,
+Says the network is connected to
+  the button on your mouse,
+But your packets want to tunnel
+  on another protocol,
+That's repeatedly rejected 
+  by the printer down the hall,
+And your screen is all distorted
+  by the side effects of gauss
+So your icons in the window are
+  as wavy as a souse,
+Then you  may as well reboot and
+  go out with a bang,
+'Cause as sure as I'm a poet,
+  the sucker's gonna hang!
+When the copy of your floppy's
+  getting sloppy on the disk
+And the microcode instructions cause
+ unnecessary risc,
+Then you have to flash your memory and
+  you'll want to RAM your  ROM
+Quickly turn off your computer and
+  be sure  to tell your mom!
+
+-- Anonymous</PRE
+>&#13;</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN39"
+>5. Введение</A
+></H1
+><P
+>Вам, наверное. не раз хотелось перехватить пакеты, проходящие туда-сюда
+через вашу машину? Нет, я не говорю о простом просмотре пакетов в
+натуральном виде (как в raw-сокетах или libpcap (tcpdump)). Я говорю именно
+о том, чтобы перехватить пакет и, затем, возможно, после некоторой
+модификации, переслать его дальше. Ну что ж, время, когда это было простой
+мечтой, закончилось - теперь у нас есть divert-сокеты для Linux!</P
+><P
+>Divert-сокеты именно это и делают - они отфильтровывают пакеты, в
+соответствии с настройками firewall, и передают их вашей программе. Затем
+вы можете: просто отправить пакет дальше, модифицировать и отправить, или не
+пересылать его вообще.</P
+><P
+>Как вы наверно уже догадались по названию пакета, этот механизм включает в себя использование специальных RAW-сокетов, называемых divert (IPPROTO_DIVERT), позволяющих вам производить <I
+CLASS="EMPHASIS"
+>передачу</I
+> и <I
+CLASS="EMPHASIS"
+>прием</I
+> данных на них таким же образом, как и на обычных сокетах. Единственное различие состоит в том, что этот сокет привязан к порту - на него можно пересылать конкретные пакеты, попадающие в firewall. Любые данные, проходящие через firewall, могут быть посланы в этот сокет. </P
+><P
+>Эта система изначально входила в состав FreeBSD. Divert-сокеты для Linux - это адаптированная версия исходного пакета, претендующая на совместимость с ним (по крайней мере на уровне исходных текстов программ, использующих этот механизм).</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN47"
+>6. Получение и сборка исходных текстов</A
+></H1
+><P
+>Для использования divert-сокетов в Linux, вам понадобятся две вещи - модифицированные патчем исходные тексты ядра и исходные тексты пакета ipchains версии 1.3.9, также модифицированные соответствующим патчем.</P
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN50"
+>6.1. Где взять исходные тексты?</A
+></H2
+><P
+><A
+NAME="KERNEL"
+></A
+>Оба патча можно взять с веб-сайта divert-сокетов <A
+HREF="http://www.anr.mcnc.org/~divert"
+TARGET="_top"
+>http://www.anr.mcnc.org/~divert</A
+>
+Для ядра существуют два варианта - патч к неизмененным исходным текстам ядра версии 2.2.12, или готовые модифицированные исходные тексты ядра 2.2.12 (значительно большие по размеру, чем патч). <I
+CLASS="EMPHASIS"
+>ipchains</I
+> находится там же, в виде уже модифицированного пакета с исходными текстами.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN56"
+>6.2. Сборка</A
+></H2
+><P
+>Собрать <I
+CLASS="EMPHASIS"
+>ipchains</I
+> достаточно просто - дайте команду 
+
+<PRE
+CLASS="SCREEN"
+>make</PRE
+>
+
+в подкаталоге ipchains-1.3.9.</P
+><P
+>Для включения поддержки divert-сокетов, вам надо пересобрать ядро, предварительно настроив его командой: 
+
+<PRE
+CLASS="SCREEN"
+>make config 
+или
+make menuconfig 
+или 
+make xconfig</PRE
+>
+
+Не забудьте включить опцию "Поддержку неполных и/или разрабатываемых кодов/драйверов" ("Prompt for development and/or incomplete code/drivers"). Существуют всего три опции, влияющих на работу divert-сокетов, и все они описаны в следующей <A
+HREF="Divert-Sockets-mini-HOWTO.html#COMP-TIME"
+>главе</A
+>.</P
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="COMP-TIME"
+>6.2.1. Опции, необходимые при сборке ядра</A
+></H3
+><P
+>Чтобы использовать divert-сокеты, вам надо включить в ядро поддержку firewall и
+IP-firewall. На работу divert-сокетов влияют три опции сборки ядра:
+<P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>IP: divert sockets</DT
+><DD
+><P
+>Включает поддержку divert-сокетов в ядре.</P
+></DD
+><DT
+>IP: divert pass-through</DT
+><DD
+><P
+><A
+NAME="PASSTHRU"
+></A
+>Определяет поведение правил DIVERT: по умолчанию
+правило DIVERT, описанное в firewall, отбрасывает пакеты, при отсутствии
+программы на порте, определенном этим правилом, то есть действует
+аналогично правилу DENY.</P
+><P
+>При включении данной опции, эти пакеты будут проходить дальше через firewall.
+Опцию можно использовать, если вам нужно статическое правило в
+firewall, но вы не хотите, чтобы с портом divert-сокетов постоянно работала
+ваша программа.</P
+></DD
+><DT
+>IP: always defragment</DT
+><DD
+><P
+>Определяет, выполнять ли дефрагментирование при передаче данных в сокет. По умолчанию код divert-сокет получает отдельные фрагменты пакетов, имеющих больший, чем MTU, размер и посылает их в таком же виде программе. Задача дефрагментации в этом случае лежит на приложении, использующем divert-сокеты. Более того, приложение не может послать фрагмент пакета, больший, чем MTU - он сразу будет отброшен (это ограничение ядра, а не divert-сокетов - ядра Linux версии до 2.2.x НЕ фрагментируют пакеты с установленной опцией IP_HDRINCL). Обычно в таком поведении нет ничего страшного - в основном, вы просто пересылаете те же фрагменты пакетов, которые получили, и все прекрасно работает - в этом случае, размер фрагментов не будет больше MTU.</P
+><P
+>Если вы включите опцию <I
+CLASS="EMPHASIS"
+>always defragment</I
+>, то все
+дефрагментирование будет производиться в ядре. Это сильно уменьшает
+производительность механизма перехвата - каждый большой пакет, который вы
+хотите перехватить, должен быть сначала собран из фрагментов, и только
+после этого будет передан вашей программе. Затем, когда вы захотите послать
+его дальше, он будет снова разбит на части (если в ядре включить эту опцию,
+то оно будет фрагментировать пакеты, имеющие флаг IP_HDRINCL)</P
+><P
+>В ядрах Linux версии 2.0.36 подобный выбор не предоставлялся из-за
+неправильной структуры кода firewall - он обрабатывал только первый фрагмент
+пакета, а с остальными фрагментами поступал так же, как и с первым, не обрабатывая их. В
+результате этого, если первый фрагмент был отброшен firewall, то и все
+остальные отбрасывались дефрагментатором. Поэтому для нормальной работы с
+divert-сокетами в этой версии ядра вы ДОЛЖНЫ были использовать опцию
+<I
+CLASS="EMPHASIS"
+>always defragment</I
+> для того, чтобы получать весь пакет,
+а не только его первый фрагмент.</P
+><P
+>В версии 2.2.12 структура кода firewall была исправлена, и вы можете сами решать, будет ли ядро заниматься (де)фрагментацией, или вы будете делать этой в своей программе.</P
+><P
+><I
+CLASS="EMPHASIS"
+>ВНИМАНИЕ:</I
+> в версии 1.0.4 divert-сокетов функция дефрагментирования не реализована. Работа над этим продолжается.</P
+></DD
+></DL
+></DIV
+></P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN89"
+>7. Использование перехвата соединений</A
+></H1
+><P
+>В этой главе обсуждаются возможности применения divert-cокетов, и чем они отличаются от других существующих механизмов перехвата соединений.</P
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN92"
+>7.1. Divert-сокеты и другие подобные системы</A
+></H2
+><P
+>Существуют другие пакеты, позволяющие производит перехват IP-пакетов. Ниже описано, чем они отличаются от divert-сокетов:</P
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN95"
+>7.1.1. Сокеты Netlink</A
+></H3
+><P
+>Сокеты Netlink могут перехватывать IP-пакеты так же, как и divert sockets -
+используя firewall. Для них существует специальный тип (AF_NETLINK) и с
+первого взгляда они ничем не отличаются от divert. Но, на самом деле,
+существуют два серьезных отличия:
+
+<P
+></P
+><UL
+><LI
+><P
+>В системе Netlink-сокетов нет портов, поэтому очень сложно иметь несколько
+процессов, перехватывающих разные потоки данных (в divert-сокетах встроено
+стандартное 16-битное пространство портов - соответственно, у вас может
+работать параллельно до 65535 процессов, перехватывающих разные потоки
+данных)</P
+></LI
+><LI
+><P
+>В системе Netlink-сокетов не существует простого способа посылать пакеты дальше (обратно в сеть), потому что в нее не встроена защита от повторного перехвата этих же пакетов. В divert-сокетах эта проверка производится автоматически</P
+></LI
+></UL
+>
+
+Если честно, netlink-сокеты существуют не только для перехвата. В общих словах, механизм netlink предназначен для осуществления связи между ядром и пользователем. Существуют, например, netlink-сокеты маршрутизатора, позволяющие вам работать с подсистемой маршрутизации пакетов. Однако, с точки зрения перехвата пакетов, netlink-сокеты не настолько гибки, как divert.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN103"
+>7.1.2. Raw-сокеты</A
+></H3
+><P
+>Использование RAW-сокетов - неплохой способ прослушивания сетевого потока (особенно в Linux, в котором RAW-сокеты могут прослушивать и TCP, и UDP-трафик - многие другие UNI*-ы этого не позволяют), но RAW-сокет не может помешать пакету продолжить свой путь до получателя - он просто предоставляет вам копию пакета. Нет никакого способа послать модифицированный пакет дальше, потому что исходный пакет не останавливается. Более того, вы можете фильтровать пакеты только по номеру протокола, который задается при открытии RAW-сокета. RAW-сокеты никоим образом не взаимодействуют с firewall.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN106"
+>7.1.3. libpcap</A
+></H3
+><P
+>Библиотека libpcap, и в частности ее наиболее известная утилита tcpdump,
+позволяет прослушивать трафик, идущий через сетевой интерфейс (это может
+быть ppp, eth, и т.п.). В ethernet вы можете включить на своей сетевой
+карте режим " promisc", и она станет обрабатывать весь IP-трафик, идущий по
+сети, а не только адресованные ей пакеты. Конечно, в libpcap не встроено
+способов перехвата пакетов, и нет способа их послать. На самом деле, libpcap
+и divert-сокеты служат для разных целей - их нельзя сравнивать.</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN109"
+>7.2. Потоки firewall</A
+></H2
+><P
+>В Linux существует три потока пакетов: входящий (input), исходящий (output)
+и проходящий (forward). Существуют также учетные потоки, но они нас не
+интересуют. В зависимости от происхождения пакета, он проходит через один
+или несколько из следующих потоков:
+<P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>Входящий поток (Input)</DT
+><DD
+><P
+>через него проходят все пакеты, попадающие в машину извне - пакеты, предназначенные для этой машины, и пакеты, которые будут переданы дальше.</P
+></DD
+><DT
+>Исходящий поток (Output)</DT
+><DD
+><P
+>через него проходят все пакеты, отправленные этой машиной, а также пересылаемые пакеты</P
+></DD
+><DT
+>Проходящий поток (Forward)</DT
+><DD
+><P
+>через него проходят все пакеты, пересылаемые этой машиной.</P
+></DD
+></DL
+></DIV
+></P
+><P
+>Переадресованный пакет проходит через все три потока в следующем порядке:
+
+<P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>Входящий</P
+></LI
+><LI
+><P
+>Проходящий</P
+></LI
+><LI
+><P
+>Исходящий</P
+></LI
+></OL
+>
+
+Иногда из-за этого возникают проблемы - вас могут интересовать только
+пакеты, предназначенные для этой машины, или наоборот - те, которые должны
+быть переадресованы. Часто бывает не совсем ясно, какой поток использовать.</P
+><P
+>Для полной ясности надо придерживаться следующего правила - проходящий
+поток должен использоваться только для отбрасывания пакетов, не
+предназначенных для этой машины, и не посланных ей. Если вам интересны и
+пересылаемые пакеты и пакеты, относящиеся к этой машине, - используйте
+входящий или исходящий потоки. Перехват однотипных пакетов на входящем и
+исходящем потоках не только создаст проблемы с пересылкой, но и, что более
+важно, в этом просто нет необходимости.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN134"
+>7.3. Использование ipchains</A
+></H2
+><P
+>Модифицированная версия ipchains, которую вы возьмете на указанном выше веб-сайте - это утилита, позволяющая изменять правила firewall из командной строки. Существует также способ задать эти правила из программы. В примере программы перехвата будет использоваться именно этот способ - настройка правила DIVERT аналогична настройке правила REDIRECT - указываете DIVERT в роли получателя, номер divert-порта, и у вас все готово.</P
+><P
+>Синтаксис команды ipchains для настройки правил  firewall не изменился. Для
+использования правила DIVERT, вы должны использовать опцию <TT
+CLASS="LITERAL"
+>-j DIVERT &lt;port num&gt;</TT
+> в роли получателя, а все
+остальное остается без изменений. Например команда
+
+<PRE
+CLASS="SCREEN"
+>ipchains -A input -p ICMP -j DIVERT 1234</PRE
+>
+
+настроит правило divert для ICMP-пакетов - они будут передаваться из входящего потока на порт 1234.</P
+><P
+>В следующей главе мы опишем, как использовать ipchains совместно с программой перехвата пакетов.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN141"
+>7.4. Пример программы</A
+></H2
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="AEN143"
+>7.4.1. Текст программы</A
+></H3
+><P
+>Здесь приведен пример программы, которая читает пакеты с divert-сокета,
+выводит их содержимое на экран и затем пересылает дальше.  В командной
+строке ей надо указать номер divert-порта для перехвата.
+
+<PRE
+CLASS="SCREEN"
+>#include &#60;stdio.h&#62;
+#include &#60;errno.h&#62;
+#include &#60;limits.h&#62;
+#include &#60;string.h&#62;
+#include &#60;stdlib.h&#62;
+#include &#60;unistd.h&#62;
+#include &#60;getopt.h&#62;
+#include &#60;netdb.h&#62;
+#include &#60;netinet/in.h&#62;
+#include &#60;sys/types.h&#62;
+#include &#60;signal.h&#62;
+
+#include &#60;netinet/ip.h&#62;
+#include &#60;netinet/tcp.h&#62;
+#include &#60;netinet/udp.h&#62;
+#include &#60;net/if.h&#62;
+#include &#60;sys/param.h&#62;
+
+#include &#60;linux/types.h&#62;
+#include &#60;linux/icmp.h&#62;
+#include &#60;linux/ip_fw.h&#62;
+
+#define IPPROTO_DIVERT 254
+#define BUFSIZE 65535
+
+char *progname;
+
+#ifdef FIREWALL
+
+char *fw_policy="DIVERT";
+char *fw_chain="output";
+struct ip_fw fw;
+struct ip_fwuser ipfu;
+struct ip_fwchange ipfc;
+int fw_sock;
+
+/* удаляем все существующие правила firewall */
+void intHandler (int signo) {
+
+  if (setsockopt(fw_sock, IPPROTO_IP, IP_FW_DELETE, &amp;ipfc, sizeof(ipfc))==-1) {
+    fprintf(stderr, "%s: невозможно удалить правило: %s\n", progname, strerror(errno));
+    exit(2);
+  }
+
+  close(fw_sock);
+  exit(0);
+}
+
+#endif
+
+int main(int argc, char** argv) {
+  int fd, rawfd, fdfw, ret, n;
+  int on=1;
+  struct sockaddr_in bindPort, sin;
+  int sinlen;
+  struct iphdr *hdr;
+  unsigned char packet[BUFSIZE];
+  struct in_addr addr;
+  int i, direction;
+  struct ip_mreq mreq;
+
+  if (argc!=2) {
+    fprintf(stderr, "Использование: %s &#60;port number&#62;\n", argv[0]);
+    exit(1); 
+  }
+  progname=argv[0];
+
+  fprintf(stderr,"%s:Создание сокета\n",argv[0]);
+  /* открываем divert-сокет */
+  fd=socket(AF_INET, SOCK_RAW, IPPROTO_DIVERT);
+
+  if (fd==-1) {
+    fprintf(stderr,"%s:Невозможно открыть divert-сокет\n",argv[0]);
+    exit(1);
+  }
+
+  bindPort.sin_family=AF_INET;
+  bindPort.sin_port=htons(atol(argv[1]));
+  bindPort.sin_addr.s_addr=0;
+
+  fprintf(stderr,"%s:Подключение сокета\n",argv[0]);
+  ret=bind(fd, &amp;bindPort, sizeof(struct sockaddr_in));
+
+  if (ret!=0) {
+    close(fd);
+    fprintf(stderr, "%s: Ошибка bind(): %s",argv[0],strerror(ret));
+    exit(2);
+  }
+#ifdef FIREWALL
+  /* сначала заполняем поля правила */
+  bzero(&amp;fw, sizeof (struct ip_fw));
+  fw.fw_proto=1; /* ICMP */
+  fw.fw_redirpt=htons(bindPort.sin_port);
+  fw.fw_spts[1]=0xffff;
+  fw.fw_dpts[1]=0xffff;
+  fw.fw_outputsize=0xffff;
+
+  /* заполняем структуру fwuser */
+  ipfu.ipfw=fw;
+  memcpy(ipfu.label, fw_policy, strlen(fw_policy));
+
+  /* заполняем структуру fwchange */
+  ipfc.fwc_rule=ipfu;
+  memcpy(ipfc.fwc_label, fw_chain, strlen(fw_chain));
+
+  /* открываем сокет */
+  if ((fw_sock=socket(AF_INET, SOCK_RAW, IPPROTO_RAW))==-1) {
+    fprintf(stderr, "%s: невозможно создать raw-сокет: %s\n", argv[0], strerror(errno));
+    exit(2);
+  }
+
+  /* записываем правило */
+  if (setsockopt(fw_sock, IPPROTO_IP, IP_FW_APPEND, &amp;ipfc, sizeof(ipfc))==-1) {
+    fprintf(stderr, "%s невозможно установить правило firewall: %s\n", argv[0], strerror(errno));
+    exit(2);
+  }
+ 
+  /* устанавливаем обработчик сигнала для удаления правила */
+  signal(SIGINT, intHandler);
+#endif /* FIREWALL */
+  
+  printf("%s: Ожидание данных...\n",argv[0]);
+  /* читаем данные */
+  sinlen=sizeof(struct sockaddr_in);
+  while(1) {
+    n=recvfrom(fd, packet, BUFSIZE, 0, &amp;sin, &amp;sinlen);
+    hdr=(struct iphdr*)packet;
+    
+    printf("%s: Содержимое пакета:\n",argv[0]);
+	for( i=0; i&#60;40; i++) {
+		printf("%02x ", (int)*(packet+i));
+		if (!((i+1)%16)) printf("\n");
+	};
+    printf("\n"); 
+
+    addr.s_addr=hdr-&#62;saddr;
+    printf("%s: Адрес отправителя: %s\n",argv[0], inet_ntoa(addr));
+    addr.s_addr=hdr-&#62;daddr;
+    printf("%s: Адрес получателя: %s\n", argv[0], inet_ntoa(addr));
+    printf("%s: IF-адрес получателя: %s\n", argv[0], inet_ntoa(sin.sin_addr));
+    printf("%s: Номер протокола: %i\n", argv[0], hdr-&#62;protocol);
+
+    /* пересылка */
+
+#ifdef MULTICAST 
+   if (IN_MULTICAST((ntohl(hdr-&#62;daddr)))) {
+	printf("%s: Multicast-адрес!\n", argv[0]);
+	addr.s_addr = hdr-&#62;saddr;
+	errno = 0;
+	if (sin.sin_addr.s_addr == 0)
+	    printf("%s: set_interface вернул %i ошибку номер =%i\n", argv[0], setsockopt(fd, IPPROTO_IP, IP_MULTICAST_IF, &amp;addr, sizeof(addr)), errno);
+    }
+#endif
+
+#ifdef REINJECT
+   printf("%s Пересылка DIVERT %i байт\n", argv[0], n);
+   n=sendto(fd, packet, n ,0, &amp;sin, sinlen);
+   printf("%s: переслано %i байт.\n", argv[0], n); 
+
+   if (n&#60;=0) 
+     printf("%s: Ошибка номер %i\n", argv[0], errno);
+   if (errno == EBADRQC)
+     printf("errno == EBADRQC\n");
+   if (errno == ENETUNREACH)
+     printf("errno == ENETUNREACH\n");
+#endif
+  }
+}</PRE
+>&#13;</P
+><P
+>Вы можете просто скопировать эту программу и откомпилировать ее. Если вы
+хотите разрешить пересылку - соберите ее с флагом -DREINJECT, в противном
+случае, она будет только перехватывать пакеты.</P
+><P
+>Чтобы использовать эту программу, соберите ядро и ipchains-1.3.8 (как это сделать, описано 
+<A
+HREF="Divert-Sockets-mini-HOWTO.html#KERNEL"
+>выше</A
+>. Установите правило в любой из потоков firewall: входящий, исходящий или проходящий, затем пошлите пакеты, соответствующие правилу, и смотрите их содержимое, которое будет появляться на экране. После этого пакеты будут посылаться дальше, если вы использовали соответствующую опцию при компиляции.</P
+><P
+>Например, после команды:
+
+<PRE
+CLASS="SCREEN"
+>ipchains -A output -p TCP -s 172.16.128.10 -j DIVERT 4321
+interceptor 4321</PRE
+>
+
+будут перехвачены все TCP-пакеты, идущие от машины 172.16.128.10
+(предположим, что ваша машина - это шлюз). Программа перехватит их, выдаст
+на экран и только затем отправит дальше.</P
+><P
+>Если вы не использовали опцию pass-through при сборке ядра, то добавление в
+первой строчке правила firewall приведет к тому, что пакеты, отвечающие
+этому правилу, будут отбрасываться, если нет программы перехвата. Подробнее
+читайте <A
+HREF="Divert-Sockets-mini-HOWTO.html#PASSTHRU"
+>выше</A
+>.</P
+><P
+>Если вы хотите, чтобы правило firewall задавалось вашей программой - соберите ее с опцией -DFIREWALL, и она будет перехватывать все ICMP-пакеты из входящего потока. Она также автоматически удалит правило DIVERT по окончании работы. В этом случае опция pass-through ядра не влияет на поведение программы.</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN155"
+>7.5. Пределы</A
+></H2
+><P
+>По моему мнению, область применения divert-сокетов может быть ограничена
+лишь пределами вашего воображения. Мне будет очень интересно услышать о
+программах, использующих divert-сокеты.</P
+><P
+>Удачи!</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN159"
+>8. Варианты использования перехвата соединений</A
+></H1
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN161"
+>8.1. Модификация пакетов</A
+></H2
+><P
+>После перехвата пакета, вы можете изменить его содержимое перед тем, как
+переслать его дальше. Вам надо просто помнить о следующих правилах:
+
+<P
+></P
+><UL
+><LI
+><P
+>Перед пересылкой должна пересчитываться контрольная сумма в заголовке IP-пакета</P
+></LI
+><LI
+><P
+>Поле IP ID будет заполняться за вас, если вы оставите его равным 0.</P
+></LI
+><LI
+><P
+>Обновление длины пакета зависит от вас.</P
+></LI
+></UL
+>
+
+Вы можете изменять любые другие поля заголовка, и правильность этого заполнения зависит от вас.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN171"
+>8.2. Посылка пакетов без перехвата</A
+></H2
+><P
+>Абсолютно необязательно перехватывать пакет для того, чтобы послать его
+дальше. Вы можете сформировать свои собственные пакеты и послать их через
+открытый подключенный divert-сокет. Правила заполнения заголовка аналогичны
+тем, что описаны в предыдущем разделе.</P
+><P
+>В дополнение к этому, вы должны будете передать divert-сокету структуру <TT
+CLASS="LITERAL"
+>sockaddr_in</TT
+> (см. программу), в которой будет описываться, куда передать пакет. Если вы заполните эту структуру нулями или передадите вместо нее NULL, то divert-сокет будет пытаться передать пакет наружу. Если же вы укажете в структуре <TT
+CLASS="LITERAL"
+>sockaddr_in</TT
+> адрес одного из сетевых интерфейсов, то divert-сокет попытается послать пакет "внутрь" машины, как будто он пришел извне. Все адреса, конечно, должны быть заданы в соответствии с порядком байт в сетевом адресе.</P
+><P
+>Пересылка пакетов, которые выглядят так, как будто переадресованы вашей
+машиной, должны включать в себя адрес входящего интерфейса (на самом деле,
+подойдет любой правильный адрес интерфейса).</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN178"
+>8.3. Фрагментация</A
+></H2
+><P
+>Как уже было упомянуто выше, divert-сокеты не поддерживают (де)фрагментацию перехваченных пакетов - вы всегда получаете фрагменты пакетов в том виде, в котором они были в сети, и вы не можете переслать пакет, имеющий размер больше PMTU. Предполагается, что поддержка фрагментации и дефрагментации пакетов будет реализована в ближайшем будущем.</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN181"
+>9. Источники дополнительной информации</A
+></H1
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN183"
+>9.1. Веб-сайт</A
+></H2
+><P
+>Как уже было упомянуто выше, более подробная информация о divert-сокетах находится на веб-сайте Divert-сокетов для Linux <A
+HREF="http://www.anr.mcnc.org/~divert"
+TARGET="_top"
+>http://www.anr.mcnc.org/~divert</A
+>. </P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN187"
+>9.2. Список рассылки</A
+></H2
+><P
+>Существует список рассылки, который можно найти на веб-сайте. Чтобы подписаться на этот список, отправьте письмо с пустой темой, написав в нем:
+
+<PRE
+CLASS="SCREEN"
+>subscribe divert</PRE
+>
+
+по адресу <A
+HREF="mailto:anr-majordomo@list.anr.mcnc.org"
+TARGET="_top"
+>anr-majordomo@list.anr.mcnc.org</A
+>. Адрес списка рассылки 
+<A
+HREF="mailto:divert@list.anr.mcnc.org"
+TARGET="_top"
+>divert@list.anr.mcnc.org</A
+>.</P
+><P
+>Чтобы отказаться от подписки, пошлите по адресу <A
+HREF="mailto:anr-majordomo@list.anr.mcnc.org"
+TARGET="_top"
+>anr-majordomo@list.anr.mcnc.org</A
+> письмо с пустой темой, написав в нем:
+
+<PRE
+CLASS="SCREEN"
+>unsubscribe divert</PRE
+>&#13;</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN196"
+>10. Планы на будущее</A
+></H1
+><P
+>Как уже было упомянуто в разделе "Ответственность", работа над divert-сокетами производится в рамках проекта разработки систем безопасности сетей, финансируемого DARPA. Мы продолжим работу по адаптации будущих версий ядра к divert-сокетам по мере возможности. По той причине, что ядра версии 2.4 уже недалеко, мы полностью пропустим серию ядер 2.3.x.</P
+></DIV
+></DIV
+></BODY
+></HTML
+>

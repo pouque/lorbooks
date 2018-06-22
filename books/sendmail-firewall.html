@@ -1,0 +1,399 @@
+<html>
+<title>К вопросу о настройке фильтра в почтовом демоне sendmail</title>
+<body>
+
+<h2>Sendmail from-to firewall HOWTO</h2>
+
+<p>Данный мануал рассматривает реализацию системы фильтрации почты в
+программе sendmail. Большое преимущество этого метода (по крайней мере, мне
+оно кажется немаловажным) -- это то, что все изменения претерпевает лишь
+файл конфигурации sendmail. Никаких левых патчей, тем более бинарников --
+несколько строчек в sendmail.mc, пересборка sendmail.cf и -- вуаля.  И
+никаких мейлеров писать не надо, все уже написано до нас.</p>
+
+      <p>Для начала поставим задачу. Вот приходит, допустим, пользователь
+к почтовому админу (то есть к вам), и говорит: меня, говорит, сильно
+утомляют эти чертовы спамеры. При том, говорит, что почта мне нужна всего с
+двух-трех адресов со всего земного шара, а я каждый день получаю по три
+десятка писем, и все равно удаляю их, не читая. Можно ли что-нибудь с этим
+сделать? Ха, скажете вы, да легко. Сейчас, заправим пару строчек в
+access-файл, и будешь ты весь в шоколаде. Нет, останавливает он вас
+(продвинутый такой пользователь, админ, наверное, бывший), так делать
+нельзя. Наш манагер по рекламе (уж не знаю, есть ли такая должность, и чем
+этот человек занимается) получает почту с этих адресов, и она ему порой
+бывает нужна. Нельзя ли как-нибудь по-другому? Ну отчего же, можно, менее
+уверенно говорите вы. В cyrus-imapd реализован протокол sieve, так вроде он
+что-то такое делать умеет, впрочем, я не уверен...  Ну, sieve так sieve,
+соглашается он. Только учти, что это письмо придет целиком, а там --
+пол-мегабайта мусора. Умножай на двадцать-тридцать, а потом -- на
+количество сотрудников. Получишь бесполезный выход трафика.</p>
+
+      <p>То есть, надо организовать этакий фильтр на стадии 'rcpt to:', когда
+все необходимые входные параметры, а именно: почтовый адрес отправителя,
+почтовый адрес получателя, IP-адрес отправителя -- уже известны.  Прибегнем
+к опыту IP-firewall'ов. Там (в самом простом случае) на пропуск пакетов
+во-первых, ставится политика (разрешить пропуск пакета, если не найден его
+точный шаблон в правилах firewall'а, или запретить его), во-вторых
+прописываются правила: от такого-то тому-то -- разрешить, тому-то --
+запретить.</p>
+
+    <p>Начинаем думать. Надо организовать такую функцию, которая
+требует на вход два или три параметра -- адрес отправителя и/или
+IP-адрес машины отправителя и адрес получателя, и один выходной --
+разрешить или запретить. В sendmail'е есть так называемый <tt>map</tt>,
+который вообще-то нам бы подошел, но на вход он берет только один
+параметр, не больше и не меньше. Попытаемся это обойти следующим
+образом:</p>
+
+      <p>
+<table width="100%"><tr>
+<td width="70%"><tt>spammer@badcompany.com!vav@mail.snz.ru</tt></td>
+<td><tt>REJECT</tt></td>
+</tr></table></p>
+    
+<p>Надеюсь, идея уже понятна? Мы просто об"единяем адрес
+отправителя и адрес получателя таким образом, чтобы они образовывали
+один параметр только разделяем их знаком '!'.
+
+    <p>
+На выходе, соответственно, тоже один параметр, уже бинарый:
+запретить (REJECT) или пропустить (ACCEPT). Не наляпайте пробелов между
+адресами, ибо пробел -- это разделитель RHS и LHS.
+
+<p>
+Теперь -- вариации на тему:
+
+<p>
+<table width="70%">
+<tr><td width="70%"><tt>POLICY!vav@mail.snz.ru</tt></td><td><tt>REJECT</tt></td></tr>
+<tr><td width="70%"><tt>spammer@baddomain.ru!vav@mail.snz.ru</tt></td><td><tt>REJECT</tt></td></tr>
+<tr><td width="70%"><tt>friend@goodomain.net!vav@mail.snz.ru</tt></td><td><tt>ACCEPT</tt></td></tr>
+<tr><td width="70%"><tt>@snakespit.com!vav@mail.snz.ru</tt></td><td><tt>REJECT</tt></td></tr>
+<tr><td width="70%"><tt>spammer@!vav@mail.snz.ru</tt></td><td><tt>REJECT</tt></td></tr>
+<tr><td width="70%"><tt>@frienddom.com!vav@mail.snz.ru</tt></td><td><tt>ACCEPT</tt></td></tr>
+<tr><td width="70%"><tt>[192.168.0.1]!vav@mail.snz.ru</tt></td><td><tt>ACCEPT</tt></td></tr>
+<tr><td width="70%"><tt>[192.168.2]!vav@mail.snz.ru</tt></td><td><tt>REJECT</tt></td></tr>
+<tr><td width="70%"><tt>exchange.spamer.ru!vav@mail.snz.ru</tt></td><td><tt>REJECT</tt></td></tr>
+<tr><td width="70%"><tt>zdes-horoshih-lyudej.net!vav@mail.snz.ru</tt></td><td><tt>REJECT</tt></td></tr>
+</table>
+В этом примере подопытным респондентом является
+<tt>vav@mail.snz.ru</tt>.
+<ul>
+<li>1. в данной конфигурации умолчательная политика принятия
+писем на адрес <tt>vav@mail.snz.ru</tt> -- политика отвержения.
+<li>2. от <tt>spammer@baddomain.ru</tt> письма не принимать под
+каким угодно предлогом.
+<li>3. принимать письма от <tt>friend@goodomain.net</tt>.
+<li>4. не принимать письма с доменом <tt>@snakespit.com</tt>,
+каким бы ни было имя пользователя.
+<li>5. не принимать письма, если имя пользователя -- spammer,
+неважно при каком домене.
+<li>6. принимать все письма с домена <tt>frienddom.com</tt>.
+<li>7. принимать письма, пришедшие с адреса <tt>192.168.0.1</tt>
+<li>8. отвергать все письма, пришедшие из подсетки <tt>192.168.2.0/255.255.255.0</tt>
+<li>9. отвергать все письма, пришедшие от хоста <tt>exchange.spamer.ru</tt>
+<li>10. отвергать все письма, пришедшие от хоста из домена
+<tt>zdes-horoshih-lyudej.net</tt>
+</ul>
+
+
+<p>
+Если вы опытны достаточно, чтобы писать и понимать правила
+подстановки, то здесь открывается широкое поле для вашей фантазии.
+Все, что я привел здесь -- лишь то, что понадобилось мне в моей битве
+с пользователями. Таким образом можно об"единить не два, и не три
+параметра, а все, которые доступны на текущий момент исполнения ловушки.
+Но мне кажется, что это ненужное усложнение.
+
+
+<p>
+
+<p>
+Приоритет правил: а что делать, если пришло
+письмо от <tt>friend@spamer.ru</tt>, а файл firewall содержит следующие
+строки:
+
+<p>
+<table width="70%">
+<tr><td width="70%"><tt>POLICY!vav@mail.snz.ru</tt></td><td><tt>REJECT</tt></td></tr>
+<tr><td width="70%"><tt>@spamer.ru!vav@mail.snz.ru</tt></td><td><tt>REJECT</tt></td></tr>
+<tr><td width="70%"><tt>friend@!vav@mail.snz.ru</tt></td><td><tt>ACCEPT</tt></td></tr>
+</table>
+?
+
+<p>
+Это уже зависит от порядка разборов правил sendmail'а.
+В нижеследующем примере, который я здесь привожу, сначала ищется
+точное попадание, потом имя пользователя, потом домен, потом IP-адрес,
+потом проверяет доменное имя хоста.
+Поэтому это письмо пройдет нормально.
+
+
+<p>
+Итак, идея осознана, осталось ее только впрограммировать.
+Пишем в хвост sendmail.mc:
+
+<p>
+
+
+<p>
+<hr>
+
+
+<p>
+<tt>
+LOCAL_CONFIG
+
+<p>
+# Это будет у нас база данных firewall'ьных правил.
+
+<p>
+Kfirewall hash -o /etc/mail/sendmail-firewall
+
+<p>
+
+
+<p>
+# Local_check_rcpt -- локальное расширение для ловушки 'rcpt to:'
+
+<p>
+# После исполнение команды 'rcpt to:' срабатывает ловушка check_rcpt,
+
+<p>
+# в которой стоит вызов правила Local_check_rcpt
+
+<p>
+# Hint: не смотрите эти правила lynx'ом.
+
+<p>
+# Смотрите это links'ом или чем-нибудь графическим,
+
+<p>
+# жалательно с широким экраном, чтобы правила не переносились
+
+<p>
+
+<p>
+# И НЕ ЗАБЫВАЕМ, ЧТО ЛЕВАЯ ЧАСТЬ ПРАВИЛА ДОЛЖНА ОТДЕЛЯТЬСЯ
+
+<p>
+# ОТ ПРАВОЙ ТАБУЛЯЦИЕЙ.
+
+<p>
+SLocal_check_rcpt
+
+<p>
+</tt>
+# Канонизируем адрес получателя, чтобы привести его
+
+<p>
+# к виду user@domain
+
+<p>
+<table width="100%"><tr>
+ <td width="33%"><tt>R$*</tt></td>
+  <td><tt>$:&nbsp;$&gt;3&nbsp;$1</tt></td></tr>
+</table>
+# Запоминая адрес получателя, канонизируем адрес посылателя</p>
+
+<p>
+<table width="100%"><tr>
+ <td width="33%"><tt>R$*&nbsp;&lt;&nbsp;@&nbsp;$*&nbsp;.&nbsp;&gt;</tt></td>
+  <td><tt>$:&nbsp;$1@$2&nbsp;$|&nbsp;$&gt;3&nbsp;$&amp;f</tt></td></tr>
+</table>
+# Проверяем точное попадание
+<table width="100%"><tr>
+ <td width="33%"><tt>R$*&nbsp;$|&nbsp;$*&nbsp;&lt;&nbsp;@&nbsp;$*.&nbsp;&gt;</tt></td>
+  <td><tt>$:&nbsp;$1&nbsp;$|&nbsp;&lt;&nbsp;$(firewall&nbsp;$2@$3!$1&nbsp;$:&nbsp;$)&nbsp;&gt;</tt></td></tr>
+</table>
+# Разбираем полученное
+<table width="100%"><tr>
+ <td width="33%"><tt>R$*&nbsp;$|&nbsp;&lt;ACCEPT&gt;</tt></td>
+  <td><tt>$@&nbsp;$1</tt></td></tr>
+</table>
+<table width="100%"><tr>
+ <td width="33%"><tt>R$*&nbsp;$|&nbsp;&lt;REJECT&gt;</tt></td>
+  <td><tt>$#error&nbsp;$@&nbsp;5.2.5&nbsp;$:&nbsp;"Direct&nbsp;prohibition"</tt></td></tr>
+</table>
+# Точное попадание не найдено -- двигаемся дальше
+<table width="100%"><tr>
+ <td width="33%"><tt>R$*&nbsp;$|&nbsp;&lt;&gt;</tt></td>
+  <td><tt>$:&nbsp;$1&nbsp;$|&nbsp;$&gt;3&nbsp;$&amp;f</tt></td>
+</table>
+# Попытаемся проверить на имя пользователя и на домен.</p>
+
+<p>
+# Делаем это сразу одним правилом, чтобы не мудрить.
+<table width="99%"><tr>
+ <td width="33%"><tt>R$*&nbsp;$|&nbsp;$*&nbsp;&lt;&nbsp;@&nbsp;$*&nbsp;.&nbsp;&gt;</tt></td>
+  <td><tt>$:&nbsp;$1&nbsp;$|&nbsp;&lt;&nbsp;$(firewall&nbsp;$2@!$1&nbsp;$:&nbsp;NO&nbsp;$)&nbsp;&gt;&nbsp;&lt;&nbsp;$(firewall&nbsp;@$3!$1&nbsp;$:&nbsp;NO&nbsp;$)&nbsp;&gt;</tt></td>
+</table>
+# Сначала просматриваем, было ли разрешено/запрещено имя пользователя
+<table width="100%"><tr>
+ <td width="33%"><tt>R$*&nbsp;$|&nbsp;&lt;ACCEPT&gt;&nbsp;&lt;$-&gt;</tt></td>
+  <td><tt>$@&nbsp;$1</tt></td>
+</table>
+<table width="100%"><tr>
+ <td width="33%"><tt>R$*&nbsp;$|&nbsp;&lt;REJECT&gt;&nbsp;&lt;$-&gt;</tt></td>
+  <td><tt>$#error&nbsp;$@&nbsp;5.2.6&nbsp;$:&nbsp;"Name&nbsp;prohibition"</tt></td>
+</table>
+# Потом проверяем доменную часть
+<table width="100%"><tr>
+ <td width="33%"><tt>R$*&nbsp;$|&nbsp;&lt;$-&gt;&nbsp;&lt;ACCEPT&gt;</tt></td>
+  <td><tt>$@&nbsp;$1</tt></td>
+</table>
+<table width="100%"><tr>
+ <td width="33%"><tt>R$*&nbsp;$|&nbsp;&lt;$-&gt;&nbsp;&lt;REJECT&gt;</tt></td>
+  <td><tt>$#error&nbsp;$@&nbsp;5.2.7&nbsp;$:&nbsp;"Domain&nbsp;rejection"</tt></td>
+</table>
+
+# Упоминание об имени пользователя и домене не найдено.</p>
+
+<p>
+# Следующая проверка -- подставляем IP-адрес -- client_addr
+<table width="100%"><tr>
+ <td width="33%"><tt>R$*&nbsp;$|&nbsp;&lt;$-&gt;&nbsp;&lt;$-&gt;</tt></td>
+  <td><tt>$:&nbsp;$1&nbsp;$|&nbsp;$&amp;{client_addr}&nbsp;$|&nbsp;&lt;&gt;</tt></td>
+</table>
+# Ищем сначала рекурсивно...
+<table width="100%"><tr>
+ <td width="33%"><tt>R$*&nbsp;$|&nbsp;$+.$-&nbsp;$|&nbsp;&lt;&gt;</tt></td>
+  <td><tt>$1&nbsp;$|&nbsp;$2&nbsp;$|&nbsp;&lt;&nbsp;$(firewall&nbsp;[$2.$3]!$1&nbsp;$:&nbsp;$)&nbsp;&gt;</tt></td>
+</table>
+# ..., а так как последнее число в IP-адресе рекурсивно</p>
+
+<p>
+# отыскать не получится, то обрабатываем этот случай отдельной</p>
+
+<p>
+# строкой.
+<table width="100%"><tr>
+ <td width="33%"><tt>R$*&nbsp;$|&nbsp;$-.$-&nbsp;$|&nbsp;&lt;&gt;</tt></td>
+  <td><tt>$1&nbsp;$|&nbsp;$2&nbsp;$|&nbsp;&lt;&nbsp;$(firewall&nbsp;[$2]!$1&nbsp;$:&nbsp;$)&nbsp;&gt;</tt></td>
+</table>
+# Разбираем найденное.
+<table width="100%"><tr>
+ <td width="33%"><tt>R$*&nbsp;$|&nbsp;$*&nbsp;$|&nbsp;&lt;ACCEPT&gt;</tt></td>
+  <td><tt>$@&nbsp;$1</tt></td>
+</table>
+<table width="100%"><tr>
+ <td width="33%"><tt>R$*&nbsp;$|&nbsp;$*&nbsp;$|&nbsp;&lt;REJECT&gt;</tt></td>
+  <td><tt>$#error&nbsp;$@&nbsp;5.2.8&nbsp;$:&nbsp;"Bad&nbsp;ip"</tt></td>
+</table>
+# Ищем по имени хоста -- подставляем макрос client_name
+<table width="100%"><tr>
+ <td width="33%"><tt>R$*&nbsp;$|&nbsp;$*&nbsp;$|&nbsp;&lt;&gt;</tt></td>
+  <td><tt>$:&nbsp;$1&nbsp;$|&nbsp;$&amp;{client_name}&nbsp;$|&nbsp;&lt;&gt;</tt></td>
+</table>
+# По аналогии с IP-адресами -- ищем рекурсивно,</p>
+
+<p>
+# только в IP-адресах с каждой итерацией последнюю лексему, </p>
+
+<p>
+# а здесь -- первую
+<table width="100%"><tr>
+ <td width="33%"><tt>R$*&nbsp;$|&nbsp;$-.$+&nbsp;$|&nbsp;&lt;&gt;</tt></td>
+  <td><tt>$1&nbsp;$|&nbsp;$3&nbsp;$|&nbsp;&lt;$(firewall&nbsp;$2.$3!$1&nbsp;$:&nbsp;$)&gt;</tt></td>
+</table>
+# Точно так же обрабатываем последнюю часть доменного имени хоста.</p>
+
+<p>
+# (net, ru, com, edu, etc...)
+<table width="100%"><tr>
+ <td width="33%"><tt>R$*&nbsp;$|&nbsp;$-.$-&nbsp;$|&nbsp;&lt;&gt;</tt></td>
+  <td><tt>$:&nbsp;$1&nbsp;$|&nbsp;$2&nbsp;$|&nbsp;&lt;$(firewall&nbsp;$3!$1&nbsp;$:&nbsp;$)&gt;</tt></td>
+</table>
+<table width="100%"><tr>
+ <td width="33%"><tt>R$*&nbsp;$|&nbsp;$*&nbsp;$|&nbsp;&lt;ACCEPT&gt;</tt></td>
+  <td><tt>$@&nbsp;$1</tt></td>
+</table>
+<table width="100%"><tr>
+ <td width="33%"><tt>R$*&nbsp;$|&nbsp;$*&nbsp;$|&nbsp;&lt;REJECT&gt;</tt></td>
+  <td><tt>$#error&nbsp;$@&nbsp;5.2.8&nbsp;$:&nbsp;"Bad&nbsp;hostname"</tt></td>
+</table>
+# Если все прошли -- нет ничего, то смотрим на политику</p>
+
+<p>
+# Если политика не прописана -- значит, ACCEPT
+<table width="100%"><tr>
+ <td width="33%"><tt>R$*&nbsp;$|&nbsp;$*&nbsp;$|&nbsp;&lt;&gt;</tt></td>
+  <td><tt>$:&nbsp;$1&nbsp;$|&nbsp;&lt;&nbsp;$(firewall&nbsp;POLICY!$1&nbsp;$:&nbsp;ACCEPT&nbsp;$)&nbsp;&gt;</tt></td>
+</table>
+<table width="100%"><tr>
+ <td width="33%"><tt>R$*&nbsp;$|&nbsp;&lt;ACCEPT&gt;</tt></td>
+  <td><tt>$@&nbsp;$1</tt></td>
+</table>
+<table width="100%"><tr>
+ <td width="33%"><tt>R$*&nbsp;$|&nbsp;&lt;REJECT&gt;</tt></td>
+  <td><tt>$#error&nbsp;$@&nbsp;5.2.5&nbsp;$:&nbsp;"Default&nbsp;policy&nbsp;works"</tt></td>
+</table></p>
+
+
+<p>
+После всего этого исполняет две команды:</p>
+
+<p>
+пересобираем файл конфигурации sendmail.cf
+
+<p>
+<tt>[root@mail mail]# m4 sendmail.mc &gt; sendmail.cf</tt></p>
+
+<p>
+и заставляем sendmail перечитать свой файл конфигурации.</p>
+
+<p>
+<tt>[root@mail mail]# kill -HUP `head -n1 /var/run/sendmail.pid`</tt></p>
+
+<p>
+Будучи под Linux'ом, я предпочитаю для перезапуска sendmail'а
+пользоваться командой</p>
+
+<p><tt>[root@mail mail]# /etc/rc.d/init.d/sendmail restart</tt></p>
+    
+<p>
+Для проверок почаще пользуйтесь командой <tt>sendmail -bt</tt>:</p>
+
+
+<pre>
+[vav@mail mail]$ sendmail -bt
+ADDRESS TEST MODE (ruleset 3 NOT automatically invoked)
+Enter &lt;ruleset&gt; &lt;address&gt;
+&gt;.Dfspammer@mail.ru
+&gt;.D{client_addr}194.67.57.105
+&gt;Local_check_rcpt vav@mail.snz.ru
+Local_check_rcpt&nbsp;input:&nbsp;vav&nbsp;@&nbsp;mail&nbsp;.&nbsp;snz&nbsp;.&nbsp;ru
+Local_check_rcpt&nbsp;returns:&nbsp;$#&nbsp;error&nbsp;$@&nbsp;5&nbsp;.&nbsp;2&nbsp;.&nbsp;5&nbsp;$:&nbsp;"Exact&nbsp;prohibition"
+&gt;
+</pre>
+
+<p> Небольшое замечание: такую подробную диагностику причин не принятия
+почты я бы рекомендовал только на период отладки системы.  Потому как
+всякая дополнительная информация будет давать спамерам намек, как ее
+(систему) обмануть. В общем, вместо всяких там "Bad user name" или "Default
+policy rejects your mail" говорите просто: "You can't send a letter to this
+user. Go away."</p>
+
+<p> Собственно, на этом месте можно было бы поставить точку.  Но
+присутствует в этой схеме некая незавершенность. Что, если пользователь
+поставил себе политику <i>отвергать</i>, разрешил доступ паре-тройке
+корреспондентов и забыл про это все. И тут, вместе со спамом приходит
+нужное письмо, а мы ему -- "go away". Нехорошо получится.  Побороть в
+принципе это можно, только поставив политику <i>принимать</i>.  В общем,
+если ставится политика <i>отвергать</i>, то неплохо бы обрабатывать логи и
+посылать пользователю каждый день письмо, в котором содержится список
+адресов отвегнутых корреспондентов. Еще лучше было бы, если бы sendmail
+слал бы куда-нибудь какой-нибудь сигнал, чтобы все это ловить на лету, но
+как это сделать средствами sendmail'а, я не знаю.</p>
+
+<p>Вот, собственно, и все. Если у вас есть какие-нибудь вопросы, то можете
+послать их <a href="mailto:vav@mail.snz.ru">мне</a>.  Если вопрос
+интересный, я его с удовольствием почитаю. Отвечать не обещаю.</p>
+
+
+<p>
+
+<p align="right">Вронский Владимир, ноябрь 2001 года.</p>
+
+</body>
+</html>

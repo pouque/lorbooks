@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE>Печать в Linux HOWTO (Linux Printing HOWTO) : Экранный просмотр файлов для печати</TITLE>
+ <LINK HREF="Printing-HOWTO-16.html" REL=next>
+ <LINK HREF="Printing-HOWTO-14.html" REL=previous>
+ <LINK HREF="Printing-HOWTO.html#toc15" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="Printing-HOWTO-16.html">Следующий</A>
+<A HREF="Printing-HOWTO-14.html">Предыдущий</A>
+<A HREF="Printing-HOWTO.html#toc15">Содержание</A>
+<HR>
+<H2><A NAME="s15">15. Экранный просмотр файлов для печати</A>      </H2>
+
+<P>Почти все что вы можете напечатать вы также можете просмотреть на
+экране.
+<P>
+<H2><A NAME="ss15.1">15.1 PostScript</A>
+        </H2>
+
+<P>Ghostscript имеет драйвер для X11, который лучше всего
+используется под управлением просмотрщика PostScript, называемого
+<A HREF="http://www.picante.com/~gtaylor/pht/man/gv.1x.html">Ghostview</A>. Последние
+версии этих программ также должны уметь просматривать файлы
+PDF. Заметим, что gv заменил более старый просмотрщик "Ghostview";
+новый интерфейс пользователя более приятный и функциональный чем
+линейный интерфейс ghostview на основе старого Athena gui.
+<P>
+<H2><A NAME="ss15.2">15.2 TeX dvi</A>
+        </H2>
+
+<P>Независящие от устройства (DeVice Independant) файлы TeX могут
+быть просмотрены под X11 с помощью 
+<A HREF="http://www.picante.com/~gtaylor/pht/man/xdvi.1.html">xdvi</A>. Современные
+версии xdvi вызывают ghostscript для обработки специальных вставок
+PostScript.
+<P>
+<P>Также существует драйвер VT100. Он называется
+<CODE>dgvt</CODE>. <CODE>Tmview</CODE> работает с Linux и svgalib, если надо вы
+можете работать с ним.
+<P>
+<H2><A NAME="ss15.3">15.3 Adobe PDF      </A>
+</H2>
+
+<P>Adobe Acrobat Reader доступен для Linux; просто загрузите его с
+сервера фирмы 
+<A HREF="http://www.adobe.com/">http://www.adobe.com/</A>.
+<P>
+<P>Вы также можете использовать xpdf, который является freeware и
+идет с исходными текстами, и я думаю сейчас Ghostview поддерживает
+просмотр файлов PDF при помощи gs под X11.
+<P>
+<HR>
+<A HREF="Printing-HOWTO-16.html">Следующий</A>
+<A HREF="Printing-HOWTO-14.html">Предыдущий</A>
+<A HREF="Printing-HOWTO.html#toc15">Содержание</A>
+</BODY>
+</HTML>

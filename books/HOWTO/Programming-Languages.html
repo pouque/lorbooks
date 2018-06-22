@@ -1,0 +1,1193 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Mini-HOWTO по языкам программирования</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.57"></HEAD
+><BODY
+CLASS="ARTICLE"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="ARTICLE"
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="TITLE"
+><A
+NAME="AEN2"
+>Mini-HOWTO по языкам программирования</A
+></H1
+><DIV
+CLASS="AUTHORGROUP"
+><A
+NAME="AEN4"
+></A
+><H3
+CLASS="AUTHOR"
+><A
+NAME="AEN5"
+>Risto S. Varanka</A
+></H3
+><DIV
+CLASS="AFFILIATION"
+><DIV
+CLASS="ADDRESS"
+><P
+CLASS="ADDRESS"
+>&nbsp;&nbsp;&nbsp;&nbsp;    <br>
+&nbsp;&nbsp;&nbsp;</P
+></DIV
+></DIV
+><H3
+CLASS="CORPAUTHOR"
+> Перевод: <A
+HREF="mailto:ave@asp-linux.com"
+TARGET="_top"
+>Александр Ермолаев</A
+>,
+ <A
+HREF="http://www.asplinux.com"
+TARGET="_top"
+>SWSoft Pte Ltd.</A
+>
+ </H3
+></DIV
+><P
+CLASS="PUBDATE"
+>22 июля 2000г. <BR></P
+><DIV
+><DIV
+CLASS="ABSTRACT"
+><A
+NAME="AEN15"
+></A
+><P
+></P
+><P
+>Краткое сравнение основных языков программирования в
+Linux, а также библиотек для создания графических интерфейсов пользователя
+(GUIs) в Linux.</P
+><P
+></P
+></DIV
+></DIV
+><HR></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Содержание</B
+></DT
+><DT
+>1. <A
+HREF="Programming-Languages.html#AEN17"
+>Введение</A
+></DT
+><DD
+><DL
+><DT
+>1.1. <A
+HREF="Programming-Languages.html#AEN23"
+>Новые версии этого документа</A
+></DT
+><DT
+>1.2. <A
+HREF="Programming-Languages.html#AEN27"
+>Copyright</A
+></DT
+><DT
+>1.3. <A
+HREF="Programming-Languages.html#AEN30"
+>License</A
+></DT
+><DD
+><DL
+><DT
+>1.3.1. <A
+HREF="Programming-Languages.html#AEN33"
+>Requirements of Modified Works</A
+></DT
+></DL
+></DD
+><DT
+>1.4. <A
+HREF="Programming-Languages.html#AEN58"
+>Авторские права</A
+></DT
+><DT
+>1.5. <A
+HREF="Programming-Languages.html#AEN67"
+>ОТВЕТСТВЕННОСТЬ</A
+></DT
+><DT
+>1.6. <A
+HREF="Programming-Languages.html#AEN70"
+>Связь с автором</A
+></DT
+><DT
+>1.7. <A
+HREF="Programming-Languages.html#AEN76"
+>Благодарности</A
+></DT
+><DT
+>1.8. <A
+HREF="Programming-Languages.html#AEN79"
+>Ссылки</A
+></DT
+></DL
+></DD
+><DT
+>2. <A
+HREF="Programming-Languages.html#AEN97"
+>Языки программирования</A
+></DT
+><DD
+><DL
+><DT
+>2.1. <A
+HREF="Programming-Languages.html#AEN100"
+>Принятые обозначения</A
+></DT
+><DT
+>2.2. <A
+HREF="Programming-Languages.html#AEN132"
+>Основные языки</A
+></DT
+><DT
+>2.3. <A
+HREF="Programming-Languages.html#AEN136"
+>Shell программирование</A
+></DT
+><DT
+>2.4. <A
+HREF="Programming-Languages.html#AEN141"
+>Другие языки</A
+></DT
+><DT
+>2.5. <A
+HREF="Programming-Languages.html#AEN144"
+>Ссылки</A
+></DT
+></DL
+></DD
+><DT
+>3. <A
+HREF="Programming-Languages.html#AEN169"
+>Средства разработки GUI</A
+></DT
+><DD
+><DL
+><DT
+>3.1. <A
+HREF="Programming-Languages.html#AEN172"
+>Принятые обозначения</A
+></DT
+><DT
+>3.2. <A
+HREF="Programming-Languages.html#AEN204"
+>Основные средства разработки GUI</A
+></DT
+><DT
+>3.3. <A
+HREF="Programming-Languages.html#AEN268"
+>Ссылки</A
+></DT
+></DL
+></DD
+></DL
+></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="AEN17"
+>1. Введение</A
+></H1
+><P
+>Linux можно назвать интерактивнай операционной системой, потому что она
+позволяет пользователям учавствовать в ее разработке. Для большинства
+начинающих разработчиков многие существующие языки программирования могут показаться очень
+сложными. Этот документ поможет вам разобраться в их преимуществах и
+недостатках (которые я отметил).</P
+><P
+>Моей целью не является выявление оптимального языка. Каждый из них является
+инструментом для решения определенных задач. Вы можете о них узнать у своих
+знакомых, но такая информация будет довольно спорной. Воспользовавшись
+главой, содержащей ссылки, вы можете самостоятельно получить информацию об
+этих языках.</P
+><P
+>Существует целая плеяда языков и библиотек для Linux, этот документ
+затрагивает лишь некоторые из них. Я постарался быть беспристрастным, но
+не смог сделать обозрение всех языков. Так как мои рассуждения основываются
+на личном опыте, то я бы посоветовал серьезным разработчикам заглянуть и на
+официальные сайты.</P
+><P
+>Этот документ один из последних добавлений в LDP, поэтому я еще не получил
+отзывов о его содержании. Тем не менее, надеюсь, он будет полезен всем
+интересующимся программированием в Linux, в особенности, начинающим.
+Знак вопроса в таблицах означает недостаток сведений. Если вы ей
+владеете, то проинформируйте меня об этом.</P
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN23"
+>1.1. Новые версии этого документа</A
+></H2
+><P
+>Вы можете найти последние версии по адресу <A
+HREF="http://www.helsinki.fi/~rvaranka/Computer/Linux/HOWTO/"
+TARGET="_top"
+>http://www.helsinki.fi/~rvaranka/Computer/Linux/HOWTO/</A
+></P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN27"
+>1.2. Copyright</A
+></H2
+><P
+>Copyright (c) 2000 Risto Varanka.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN30"
+>1.3. License</A
+></H2
+><P
+>The following license terms apply to all LDP documents, unless
+otherwise stated in the document.  The LDP documents may be
+reproduced and distributed in whole or in part, in any medium
+physical or electronic, provided that this license notice is
+displayed in the reproduction.  Commercial redistribution is
+permitted and encouraged.  Thirty days advance notice via email to
+the author(s) of redistribution is appreciated, to give the
+authors time to provide updated documents.</P
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN33"
+>1.3.1. Requirements of Modified Works</A
+></H3
+><P
+>All modified documents, including translations, anthologies,
+and partial documents, must meet the following requirements:</P
+><P
+>&#13;<P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>The modified version must be labeled as such.</P
+></LI
+><LI
+><P
+>The person making the modifications must be identified.</P
+></LI
+><LI
+><P
+>Acknowledgement of the original author must be retained.</P
+></LI
+><LI
+><P
+>The location of the original unmodified document be identified.</P
+></LI
+><LI
+><P
+>The original author's (or authors') name(s) may not be used to
+assert or imply endorsement of the resulting document without
+the original author's (or authors') permission.</P
+></LI
+></OL
+>&#13;</P
+><P
+>In addition it is requested that:</P
+><P
+>&#13;<P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>The modifications (including deletions) be noted.</P
+></LI
+><LI
+><P
+>The author be notified by email of the modification in
+advance of redistribution, if an email address is provided
+in the document.</P
+></LI
+></OL
+>&#13;</P
+><P
+>As a special exception, anthologies of LDP documents may
+include a single copy of these license terms in a conspicuous
+location within the anthology and replace other copies of this
+license with a reference to the single copy of the license without
+the document being considered ``modified'' for the purposes of
+this section.</P
+><P
+>Mere aggregation of LDP documents with other documents or
+programs on the same media shall not cause this license to apply
+to those other works.</P
+><P
+>All translations, derivative documents, or modified documents
+that incorporate any LDP document may not have more restrictive
+license terms than these, except that you may require distributors
+to make the resulting document available in source format.</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN58"
+>1.4. Авторские права</A
+></H2
+><P
+>Авторские права на русский перевод этого текста принадлежат &copy; 2000 SWSoft Pte Ltd.
+Все права зарезервированы.</P
+><P
+>Этот документ является частью проекта Linux HOWTO.</P
+><P
+>Авторские права на документы Linux HOWTO принадлежат их авторам, если явно
+не указано иное. Документы Linux HOWTO, а также их переводы, могут
+быть воспроизведены и распространены полностью или частично на любом
+носителе физическом или электронном, при условии сохранения этой заметки об
+авторских правах на всех копиях. Коммерческое распространение разрешается и
+поощряется; но так или иначе автор текста и автор перевода желали бы знать о
+таких дистрибутивах.</P
+><P
+>Все переводы и производные работы, выполненные по документам Linux HOWTO
+должны сопровождаться этой заметкой об авторских правах. Это делается в
+целях предотвращения случаев наложения дополнительных ограничений на
+распространение документов HOWTO. Исключения могут составить случаи
+получения специального разрешения у координатора Linux HOWTO с которым
+можно связаться по адресу приведенному ниже.</P
+><P
+>Мы бы хотели распространить эту информацию по всем возможным каналам. Но
+при этом сохранить авторские права и быть уведомленными о всех планах
+распространения HOWTO. Если у вас возникли вопросы, пожалуйста, обратитесь
+к координатору проекта Linux HOWTO по электронной почте:
+<TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:linux-howto@metalab.unc.edu"
+>linux-howto@metalab.unc.edu</A
+>&#62;</TT
+>, или к координатору русского
+перевода Linux HOWTO компании SWSoft Pte Ltd. по адресу
+<TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:linux-howto@asplinux.ru"
+>linux-howto@asplinux.ru</A
+>&#62;</TT
+></P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN67"
+>1.5. ОТВЕТСТВЕННОСТЬ</A
+></H2
+><P
+>ЭТОТ ДОКУМЕНТ ОХВАТЫВАЕТ ОЧЕНЬ БОЛЬШУЮ И ПОСТОЯННО
+МЕНЯЮЩУЮСЯ ОБЛАСТЬ ИНФОРМАЦИОННЫХ ТЕХНОЛОГИЙ. ПО ЭТОЙ
+ПРИЧИНЕ, ИНФОРМАЦИЯ В ЭТОМ ДОКУМЕНТЕ МОЖЕТ БЫТЬ НЕВЕРНОЙ
+ИЛИ УСТАРЕВШКЙ. ИСПОЛЬЗУЙТЕ ЭТОТ ДОКУМЕНТ И ИНФОРМАЦИЮ,
+В НЕМ СОДЕРЖАЩУЮСЯ, ИСКЛЮЧИТЕЛЬНО НА СВОЙ СТРАХ И РИСК.
+АВТОР НЕ ДАЕТ НИКАКИХ ГАРАНТИЙ, ПРЯМЫХ ИЛИ КОСВЕННЫХ.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN70"
+>1.6. Связь с автором</A
+></H2
+><P
+>Вы можете послать свои отзывы и предложения автору по адресу: <A
+HREF="mailto:risto.varanka@helsinki.fi"
+TARGET="_top"
+>risto.varanka@helsinki.fi</A
+>.</P
+><P
+>Домашняя страничка автора находится по адресу <A
+HREF="http://www.helsinki.fi/~rvaranka/"
+TARGET="_top"
+>http://www.helsinki.fi/~rvaranka/</A
+>.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN76"
+>1.7. Благодарности</A
+></H2
+><P
+>Я благодарен нескольким людям, которые консультировали меня по вопросам
+различных языков. Эти консультации дали мне возможность рассмотреть все
+языки с точки зрения различных сторон применения. В особенности, я бы хотел
+поблагодарить людей из чата RCNet #linux: Morphy, Bluesmurf, Vadim,
+Zonk&circ;, Rikkus и других, чьи имена я, к сожалению, не помню. Большое спасибо
+Stig Erik Sandoe за полезные советы и комментарии.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN79"
+>1.8. Ссылки</A
+></H2
+><P
+>Исчерпывающий список библиотек и инструментов разработчика обеспечения в Linux:</P
+><P
+>&#13;<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="http://www.freshmeat.net/appindex/development/"
+TARGET="_top"
+>Freshmeat</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="http://www.hotfeet.ch/~gemi/LDT/"
+TARGET="_top"
+>Linux Development Tools</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="http://www.linuxprogramming.com/"
+TARGET="_top"
+>linuxprogramming.com</A
+></P
+></LI
+></UL
+>&#13;</P
+><P
+>The <A
+HREF="http://www.tuxedo.org/~esr/faqs/hacker-howto.html"
+TARGET="_top"
+>Hacker FAQ</A
+> Это еще один интересный текст написанный Eric S.  Raymond. Он написан для
+новичков в разработке программного обеспечения в Linux. Там затронуты
+аспекты культурного и психологического плана, в связи с разработкой
+программного обеспечения с общедоступными исходными текстами.</P
+><P
+><A
+HREF="http://www.linuxdoc.org/"
+TARGET="_top"
+>LDP documents</A
+>
+покрывают общие темы программирования, включая Reading List HOWTO и
+Руководство разработчика в Linux (Linux Programmer's Guide) - еще
+несколько написаны на более узкие темы.</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN97"
+>2. Языки программирования</A
+></H1
+><P
+>C, Lisp и Perl являются традиционными языками программирования в системе
+GNU/Linux; Python, PHP, Java и C++ присоединились к их числу совсем недавно.</P
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN100"
+>2.1. Принятые обозначения</A
+></H2
+><P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>Язык</DT
+><DD
+><P
+>Название языка.</P
+></DD
+><DT
+>Начинающий</DT
+><DD
+><P
+>Указывает, насколько язык удовлетворяет потребности людей с небольшим
+опытом программирования. Язык, отмеченный ``да'', должен быть прост для
+изучения новичком.</P
+></DD
+><DT
+>Эффективность</DT
+><DD
+><P
+>Как быстро ваши приложения будут работать, когда вы выпустите их в виде
+готового продукта. Эффективность зависит более от личных навыков
+алгоритмического программирования, чем от фактического языка. Как правило,
+C, C++ и Fortran являются иногда необходимыми, потому что они могут решать
+больше задач, в отличии от других языков - с другой стороны они могут быть
+неприменимы для достижения желаемой цели. (Одна идея для тестирования
+языков состояла в том, чтобы осуществить простой алгоритм сортировки во
+всех из них, а затем сравнивать продолжительность выполнения задания.
+Кто-нибудь хочет помочь мне в этом?)</P
+></DD
+><DT
+>ООП, Объектно-ориентированное программирование против других парадигм</DT
+><DD
+><P
+>Объектно-ориентированное программирование - важная составляющая
+программирования, которая получает все большее распространение. В
+объектно-ориентированном программировании, структуры данных и алгоритмы
+интегрированы в модули, часто называемые классами. ООП часто контрастирует
+с процедурным программированием (которое использует разделение алгоритмов и
+структуры данных). Это строго не зависит от языка: вы можете осуществлять
+ООП на языках, не причисляемых к объектно-ориентированным (C например), и
+программирование в процедурном стиле на языках, причисляемых к ОО. Я
+причислил к объектно-ориентированным языки, которые имеют специальные
+особенности или расширения, чтобы облегчить ООП. Функциональные языки (Lisp
+например) являются иным - среди других, функциональное программирование -
+надмножество ООП. Логическое программирование (Prolog), также называемое
+декларативным программированием, с другой стороны, не связано с иными
+типами программирования, в подобном смысле.</P
+></DD
+><DT
+>RAD, Быстрая разработка приложений</DT
+><DD
+><P
+>Многое зависит от инструментальных средств, которые вы используете, а не от
+языка. Имеется HOWTO по инструментам разработки GUI для Linux, хотя уже
+устаревшее. С хорошим графическим инструментом вы можете быстро
+разрабатывать приложения. Иногда RAD основан на многократном использовании
+готового кода, тем более что свободно распространяемое ПО - хорошая основа
+для этого.</P
+></DD
+><DT
+>Примеры</DT
+><DD
+><P
+>Области, в которых наиболее часто используется данный язык
+программирования. Другие области существуют, но в них  применение данного
+языка не так ярко выражено. </P
+></DD
+><DT
+>Комментарии</DT
+><DD
+><P
+>Дополнительная информация относительно языка, "диалекты". </P
+></DD
+></DL
+></DIV
+></P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN132"
+>2.2. Основные языки</A
+></H2
+><P
+><PRE
+CLASS="SCREEN"
+>&#13;PERL
+Начинающий: Да - ООП: Да
+Примеры: Создание скриптов, системное администрирование, веб-программирование
+Комментарии: Мощный для обработки текста и строк, очень популярный
+
+Python
+Начинающий: Да - ООП: Да
+Примеры: Создание скриптов, системное администрирование, веб-программирование
+Комментарии:
+
+TCL
+Начинающий: Да - ООП: Нет
+Примеры: Создание скриптов, системное администрирование, создание приложений
+Комментарии:
+
+PHP
+Начинающий: Да - ООП: Да
+Примеры: веб-программирование
+Комментарии: Популярен для работы с базами данных в веб
+
+Java
+Начинающий: Да - ООП: Да
+Примеры: Кросс-платформенный приложения, веб-программирование
+Комментарии:
+
+Lisp
+Начинающий: Да - ООП: Функциональный
+Примеры: Режимы Emacs (для elisp)
+Комментарии: Варианты Elisp, Clisp и Scheme
+
+Fortran
+Начинающий: Нет  - ООП: Нет
+Примеры: Математические приложения
+Комментарии: Варианты f77 и f90/95
+
+C
+Начинающий: Нет  - ООП: Нет
+Примеры: Системное программирование, создание приложений
+Комментарии: Очень популярный
+
+C++
+Начинающий: Нет  - ООП: Да
+Примеры: Создание приложений
+Комментарии:&#13;</PRE
+></P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN136"
+>2.3. Shell программирование</A
+></H2
+><P
+>Оболочки - это также важная среда программирования. Я не охватил эту
+область, потому что не до конца понимаю ее. Знание shell важно для
+любого, кто регулярно работает на Linux, особенно для системных
+администраторов. Имеются подобия между shell программированием и созданием
+скриптов (сценариев) - часто они могут достигать тех же самых целей, и вы
+можете выбирать между родной оболочкой и скрипт-языком. Среди наиболее
+популярных оболочек можно отметить bash, tcsh, csh, ksh и zsh. Вы можете получить
+основную информацию по вашей оболочке с помощью команды
+<I
+CLASS="EMPHASIS"
+>man</I
+> например, <I
+CLASS="EMPHASIS"
+>man bash</I
+>.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN141"
+>2.4. Другие языки</A
+></H2
+><P
+>Другие языки: AWK, SED, Smalltalk, Eiffel, ADA, Prolog, assembler,
+Objective C, Logo, Pascal (p2c конвертер)</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN144"
+>2.5. Ссылки</A
+></H2
+><P
+>&#13;<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="http://www.tunes.org/Review/Languages.html"
+TARGET="_top"
+>Общий информационный сайт</A
+> по языкам программирования, большое количество информации и мнений. </P
+></LI
+><LI
+><P
+><A
+HREF="http://dev.scriptics.com/"
+TARGET="_top"
+>TCL</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="http://www.perl.org/"
+TARGET="_top"
+>Perl</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="http://www.python.org/"
+TARGET="_top"
+>Python</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="http://www.php.net"
+TARGET="_top"
+>PHP</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="http://www.javasoft.com/"
+TARGET="_top"
+>Java</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="http://clisp.cons.org/~haible/packages-clisp.html"
+TARGET="_top"
+>clisp</A
+></P
+></LI
+></UL
+>&#13;</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN169"
+>3. Средства разработки GUI</A
+></H1
+><P
+>Стандартные графические подсистемы для UNIX и Linux, называемые X(иксами),
+имеют свои собственные библиотеки для разработки GUI. Они обеспечивают
+программный интерфейс на низком уровне для X, но довольно сложны в
+использовании. Они, конечно, хороши для старых приложений, но в настоящее
+время используются GTK+ и Qt, так как их используют две популярные среды -
+GNOME и KDE.</P
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN172"
+>3.1. Принятые обозначения</A
+></H2
+><P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>Библиотеки</DT
+><DD
+><P
+>Общее название или аббревиатура библиотеки.  </P
+></DD
+><DT
+>Начинающий</DT
+><DD
+><P
+>Подходит ли библиотека для начинающего программиста. </P
+></DD
+><DT
+>Лицензия</DT
+><DD
+><P
+>Различные лицензии для различных средств (инструментов) разработки GUI имеют
+практическое значение. Лицензии GTK+ и TK позволят вам разрабатывать
+приложения с открытыми исходными текстами и без них, без оплаты за лицензию.
+Лицензия Motif требует оплаты, лицензия QT требует оплаты, если вы
+распространяете приложения без исходных текстов. </P
+></DD
+><DT
+>Язык</DT
+><DD
+><P
+>Язык, который наиболее часто используется со средствами разработки. </P
+></DD
+><DT
+>Связанные</DT
+><DD
+><P
+>Другие языки, которые могут использовать комплект инструментов. </P
+></DD
+><DT
+>Примеры</DT
+><DD
+><P
+>Приложения, использующие библиотеку. </P
+></DD
+><DT
+>Комментарии</DT
+><DD
+><P
+>Дополнительная информация по средствам разработки. </P
+></DD
+></DL
+></DIV
+></P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN204"
+>3.2. Основные средства разработки GUI</A
+></H2
+><P
+>&#13;<DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN207"
+></A
+><P
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="17%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>Библиотеки</TD
+><TD
+WIDTH="17%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>Начинающий</TD
+><TD
+WIDTH="17%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>Лицензия</TD
+><TD
+WIDTH="17%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>Язык</TD
+><TD
+WIDTH="17%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>Связанные</TD
+><TD
+WIDTH="17%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>Примеры</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Комментарии</TD
+></TR
+><TR
+><TD
+WIDTH="17%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>TK</TD
+><TD
+WIDTH="17%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>Да</TD
+><TD
+WIDTH="17%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>Бесплатная</TD
+><TD
+WIDTH="17%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>TCL</TD
+><TD
+WIDTH="17%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>Perl, Python, другие</TD
+><TD
+WIDTH="17%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>make xconfig, TKDesk</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>&nbsp;</TD
+></TR
+><TR
+><TD
+WIDTH="17%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>GTK+</TD
+><TD
+WIDTH="17%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>Нет</TD
+><TD
+WIDTH="17%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>Бесплатная (LGPL)</TD
+><TD
+WIDTH="17%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>C</TD
+><TD
+WIDTH="17%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>Perl, C++, Python, многие другие</TD
+><TD
+WIDTH="17%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>GNOME, Gimp</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Очень популярна</TD
+></TR
+><TR
+><TD
+WIDTH="17%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>QT</TD
+><TD
+WIDTH="17%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>No</TD
+><TD
+WIDTH="17%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>Бесплатные исходники</TD
+><TD
+WIDTH="17%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>C++</TD
+><TD
+WIDTH="17%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>Python, Perl, C, другие?</TD
+><TD
+WIDTH="17%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>KDE</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Очень популярна</TD
+></TR
+><TR
+><TD
+WIDTH="17%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>Motif</TD
+><TD
+WIDTH="17%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>Нет</TD
+><TD
+WIDTH="17%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>Покупается</TD
+><TD
+WIDTH="17%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>C/C++</TD
+><TD
+WIDTH="17%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>Python, другие?</TD
+><TD
+WIDTH="17%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>Netscape, Wordperfect</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="http://www.lesstif.org/"
+TARGET="_top"
+>Lesstif</A
+> бесплатная версия (может заменить коммерческую)</TD
+></TR
+><TR
+><TD
+WIDTH="17%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>GNUstep</TD
+><TD
+WIDTH="17%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>Нет</TD
+><TD
+WIDTH="17%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>Бесплатная (LGPL)</TD
+><TD
+WIDTH="17%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>Объектный C</TD
+><TD
+WIDTH="17%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>Guile, Java?</TD
+><TD
+WIDTH="17%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>не распространенная, но вы можете просмотреть <A
+HREF="http://www.gnustep.org/resources/apps.html"
+TARGET="_top"
+>область применения</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>GNUstep до сих пор находится в стадии разработки</TD
+></TR
+><TR
+><TD
+WIDTH="17%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>&nbsp;</TD
+><TD
+>&nbsp;</TD
+><TD
+>&nbsp;</TD
+><TD
+>&nbsp;</TD
+><TD
+>&nbsp;</TD
+><TD
+>&nbsp;</TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+>&#13;</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN268"
+>3.3. Ссылки</A
+></H2
+><P
+>&#13;<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="http://dev.scriptics.com/"
+TARGET="_top"
+>TK</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="http://www.gtk.org/"
+TARGET="_top"
+>GTK+</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="http://www.troll.no/"
+TARGET="_top"
+>QT</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="http://www.metrolink.com/"
+TARGET="_top"
+>Motif</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="http://www.gnustep.org/"
+TARGET="_top"
+>GNUstep</A
+></P
+></LI
+></UL
+>&#13;</P
+></DIV
+></DIV
+></DIV
+></BODY
+></HTML
+>

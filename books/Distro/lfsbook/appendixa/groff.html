@@ -1,0 +1,238 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=KOI8-R">
+  <title>Groff</title>
+  <meta name="GENERATOR"
+ content="Modular DocBook HTML Stylesheet Version 1.73">
+  <link rel="HOME" title="Linux From Scratch" href="../index.html">
+  <link rel="UP" title="Package descriptions and dependencies"
+ href="appendixa.html">
+  <link rel="PREVIOUS" title="Grep" href="grep.html">
+  <link rel="NEXT" title="Gzip" href="gzip.html">
+</head>
+<body class="sect1" bgcolor="#ffffff" text="#000000" link="#0000ff"
+ vlink="#840084" alink="#006000">
+<div class="NAVHEADER">
+<table summary="Header navigation table" width="100%" border="0"
+ cellpadding="0" cellspacing="0">
+  <tbody>
+    <tr>
+      <th colspan="3" align="center">Linux From Scratch: Версия 4.0</th>
+    </tr>
+    <tr>
+      <td width="10%" align="left" valign="bottom"><a
+ href="grep.html" accesskey="P">Назад</a></td>
+      <td width="80%" align="center" valign="bottom">Приложение A.
+Описания пакетов и зависимостей</td>
+      <td width="10%" align="right" valign="bottom"><a
+ href="gzip.html" accesskey="N">Вперед</a></td>
+    </tr>
+  </tbody>
+</table>
+<hr align="left" width="100%"></div>
+<div class="sect1">
+<h1 class="sect1"><a name="aa-groff">Groff</a></h1>
+<div class="sect2">
+<h2 class="sect2"><a name="AEN7172">Официальная ссылка</a></h2>
+<p></p>
+<p class="literallayout">Groff (1.18): <br>
+<a href="ftp://ftp.gnu.org/gnu/groff/" target="_top">ftp://ftp.gnu.org/gnu/groff/</a></p>
+<p></p>
+</div>
+<div class="sect2">
+<h2 class="sect2"><a name="AEN7177">Содержимое Groff</a></h2>
+<p>Последняя проверка: версия 1.17.2.</p>
+<div class="sect3">
+<h3 class="sect3"><a name="AEN7180">Программы</a></h3>
+<p>addftinfo, afmtodit, eqn, geqn (ссылка на eqn), grn, grodvi, groff,
+grog, grolbp, grolj4, grops, grotty, gtbl (ссылка на tbl), hpftodit,
+indxbib, lkbib, lookbib, mmroff, neqn, nroff, pfbtops, pic,
+post-grohtml, pre-grohtml, refer, soelim, tbl, tfmtodit, troff и zsoelim
+(ссылка на soelim)</p>
+</div>
+<div class="sect3">
+<h3 class="sect3"><a name="AEN7183">DОписания</a></h3>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN7185">addftinfo</a></h4>
+<p>addftinfo чиатет файл шрифтов troff и добавляет некоторую
+дополнительную информацию о шрифтах,используемую groff.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN7188">afmtodit</a></h4>
+<p>afmtodit создает файл шрифтов, используемый groff с grops.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN7191">eqn</a></h4>
+<p>eqn компилирует описания выражений, включенных во файлы troff в
+команды, понимаемые troff.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN7194">geqn</a></h4>
+<p>geqn - GNU реализация eqn.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN7197">grn</a></h4>
+<p>grn - препроцессор groff для файлов gremlin.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN7200">grodvi</a></h4>
+<p>grodvi - драйвер groff, позволяющий использование формата TeX dvi.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN7203">groff</a></h4>
+<p>groff - оболочка, к системе форматирования документов groff. Обычно,
+выполняется troff и постпроцессор, соответствующий выбранному
+устройству.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN7206">grog</a></h4>
+<p>grog читает файлы и определяет, какие опции groff (-e, -man, -me,
+-mm, -ms, -p, -s, и -t) необходимы для их вывода, а также выводит
+команду groffс этими опциями на стандартный вывод.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN7209">grolbp</a></h4>
+<p>grolbp - драйвер groff driver для принтеров Canon CAPSL (лазерные
+принтеры серий LBP-4 и LBP-8).</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN7212">grolj4</a></h4>
+<p>grolj4 - драйвер groff, позволяющий вывод в формате PCL5 на
+принтерах HP Laserjet 4.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN7215">grops</a></h4>
+<p>grops конвертирует вывод GNU troff в Postscript.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN7218">grotty</a></h4>
+<p>grotty конвертирует вывод GNU troff в формат, воспринимаемый
+устройствами вроде typewriter.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN7221">gtbl</a></h4>
+<p>gtbl - GNU реализация tbl.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN7224">hpftodit</a></h4>
+<p>hpftodit создает файл шрифта для использования groff -Tlj4 из файла
+метрик шрифта, размеченного HP.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN7227">indxbib</a></h4>
+<p>indxbib создает обратное оглавление для библиографических баз данных
+из указанного файла, для использования refer, lookbib и lkbib.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN7230">lkbib</a></h4>
+<p>lkbib ищет в библиографических базах данных ссылки, содержащие
+указанные образцы, и выводит найденное на стандартный вывод.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN7233">lookbib</a></h4>
+<p>lookbib выводит предупреждение о стандартной ошибке (если
+стандартный вывод - не терминал), читает со стандартного ввода строку,
+содержащую набор ключевых слов, ищет в библиографических базах данных в
+укзанном файле ссылки с этими ключевыми словами, выводит найденное на
+стандартный вывод и повторяет процесс до окончания ввода.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN7236">mmroff</a></h4>
+<p>mmroff - простой препроцессор groff.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN7239">neqn</a></h4>
+<p>Скрипт neqn форматирует выражения для вывода в формате ascii.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN7242">nroff</a></h4>
+<p>Скрипт nroff эмулирует nroff через groff.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN7245">pfbtops</a></h4>
+<p>pfbtops конвертирует шрифт Postscript в формате .pfb в ASCII.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN7248">pic</a></h4>
+<p>pic компилирует описания изображений, включенных во входные файлы
+troff или TeX, в команды, воспринимаемые TeX или troff.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN7251">pre-grohtml и post-grohtml</a></h4>
+<p>pre- и post-grohtml конвертируют вывод GNU troff в html.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN7254">refer</a></h4>
+<p>refer копирует содержимое файла на стандартный вывод, исключая
+строки между .[ and .], которые интерпретируются как цитаты, и строки
+между .R1 и .R2, которые интерпретируются как команды обработки цитат.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN7257">soelim</a></h4>
+<p>soelim читает файлы и заменяет строки вида <em>.so file</em>
+содержимым <em>file</em>.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN7262">tbl</a></h4>
+<p>tbl компилирует описания таблиц, включенных во входные файлы troff,
+в команды, воспринимаемые troff.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN7265">tfmtodit</a></h4>
+<p>tfmtodit создает файл шрифтов для использования <tt
+ class="userinput"><b>groff -Tdvi</b></tt>.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN7269">troff</a></h4>
+<p>troff хорошо совместим с Unix-версией troff. Обычно должен быть
+вызван командой groff, которая также запустит пре- и постпроцессоры в
+соответствующем порядке и с соответствующими опциями.</p>
+</div>
+<div class="sect4">
+<h4 class="sect4"><a name="AEN7272">zsoelim</a></h4>
+<p>zsoelim - GNU реализация soelim.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h2 class="sect2"><a name="AEN7275">Зависимости Groff</a></h2>
+<p>Последняя проверка: версия 1.17.2.</p>
+<p class="literallayout">Bash: sh<br>
+Binutils: ar, as, ld, ranlib<br>
+Bison: bison<br>
+Diffutils: cmp<br>
+Fileutils: chmod, cp, install, ln, ls, mkdir, mv, rm, touch<br>
+Gcc: cc1, cc1plus, collect2, cpp0, g++, gcc<br>
+Grep: egrep, grep<br>
+Make: make<br>
+Gawk: awk<br>
+Sed: sed<br>
+Sh-utils: basename, date, echo, expr, hostname, uname<br>
+Textutils: cat, tr</p>
+</div>
+</div>
+<div class="NAVFOOTER">
+<hr align="left" width="100%">
+<table summary="Footer navigation table" width="100%" border="0"
+ cellpadding="0" cellspacing="0">
+  <tbody>
+    <tr>
+      <td width="33%" align="left" valign="top"><a
+ href="grep.html" accesskey="P">Назад</a></td>
+      <td width="34%" align="center" valign="top"><a
+ href="../index.html" accesskey="H">Домой</a></td>
+      <td width="33%" align="right" valign="top"><a
+ href="gzip.html" accesskey="N">Вперед</a></td>
+    </tr>
+    <tr>
+      <td width="33%" align="left" valign="top">Grep</td>
+      <td width="34%" align="center" valign="top"><a
+ href="appendixa.html" accesskey="U">Вверх</a></td>
+      <td width="33%" align="right" valign="top">Gzip</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</body>
+</html>

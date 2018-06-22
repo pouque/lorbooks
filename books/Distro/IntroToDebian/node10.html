@@ -1,0 +1,149 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Поддержка устройств.</TITLE>
+<META NAME="description" CONTENT="Поддержка устройств.">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<!-- Meta http equivalent was here                               -->
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="IntroToLinux.css">
+
+<LINK REL="next" HREF="node14.html">
+<LINK REL="previous" HREF="node9.html">
+<LINK REL="up" HREF="node3.html">
+<LINK REL="next" HREF="node11.html">
+</HEAD>
+
+<BODY background="backgr.jpg" vlink="#000099" bgcolor="#E6E6FA">
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A NAME="tex2html267"
+  HREF="node11.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html263"
+  HREF="node3.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html257"
+  HREF="node9.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html265"
+  HREF="IntroToLinux.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A>  
+<BR>
+<B> След.:</B> <A NAME="tex2html268"
+  HREF="node11.html">Работа с DVD/CD-RW</A>
+<B> Вверх:</B> <A NAME="tex2html264"
+  HREF="node3.html">Основы Linux.</A>
+<B> Пред.:</B> <A NAME="tex2html258"
+  HREF="node9.html">Русификация.</A>
+ &nbsp; <B>  <A NAME="tex2html266"
+  HREF="IntroToLinux.html">Содержание</A></B> 
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00024000000000000000">
+Поддержка устройств.</A>
+</H2>
+
+<P>
+Сетевая карта.
+<BR>По идее вы должны были добавить и настроить вашу сетевую карту на этапе инсталляции.
+Если же вы пропустили что-либо при установке Linux, то не помешает разобраться в сетевой поддержке самостоятельно.
+Я вкратце опишу то, что пришлось однажды выполнять для подключения Debian GNU/Linux  к сети.
+
+<P>
+Для начала отредактируйте файл <TT>/etc/network/interfaces</TT>, если вы забыли указать соответствующие параметры во время установки.
+
+<P>
+Теперь следует добавить модуль вашей сетевой карты, для чего наберите из под рута команду <TT>modconf</TT><A NAME="tex2html8"
+  HREF="node10.html#foot811"><SUP><SPAN CLASS="arabic">8</SPAN></SUP></A>, выбираем <TT>kernel/net/ne</TT>, например, для добавления модуля карты NE.
+В качестве параметров указываем соответствующие вашей карте io и irq, впрочем и то и другое система попытается определить самостоятельно, но если знаете - то лучше не рисковать...
+
+<P>
+Если же вы имеете несчастье использовать модем для выхода в сеть, то воспользуйтесь программой <SPAN  CLASS="textit">pppconfig</SPAN> для настройки вашего PPP соединения и демоном <SPAN  CLASS="textit">diald</SPAN> для автоматизации подключения при появлении в этом нужды.
+
+<P>
+Точно так же добавляются и другие модули - например, поддержки звуковой карты.
+Для моей AWE64 оказалось достаточно прописать в <SPAN  CLASS="textbf">modules.conf</SPAN> (а точнее в каталог <SPAN  CLASS="textbf">/etc/modutils</SPAN>, данные из которого переносятся в <SPAN  CLASS="textbf">modules.conf</SPAN> при очередном <TT>update-modules</TT>):
+<PRE>
+alias sound-slot-0 sb                                                                                            
+options sound dmabuf=1                                                                                           
+options opl3 io=0x388                                                                                            
+alias synth0 awe_wave                                                                                            
+post-install awe_wave /usr/bin/sfxload /etc/midi/GU11-ROM.SF2                                                    
+options sb io=0x220 irq=5 dma=1 dma16=5 mpu_io=0x330
+</PRE>
+
+<P>
+Если OSS поддержки вашей звуковой карты нет, то рекомендую воспользоваться программным пакетом <SPAN  CLASS="textit">ALSA</SPAN>, установив помимо всего прочего (имеющего в своем составе слово alsa) версию пакета <SPAN  CLASS="textbf">alsa-modules</SPAN> под ваше ядро, либо <SPAN  CLASS="textbf">alsa-source</SPAN>, если ядро самосборное. В последнем случае вам придется самостоятельно (а пользователям Debian GNU/Linux  одной командой <TT>make-kpkg modules</TT>, находясь в каталоге <SPAN  CLASS="textbf">/usr/src/linux</SPAN>) собрать модуль вашей аудиокарты под ваше же ядро.
+Затем запускаем <SPAN  CLASS="textit">alsaconf</SPAN> и наслаждаемся прекрасным звуком (если звук не очень прекрасен, то рекомендую для начала запустить программу <SPAN  CLASS="textit">alsamixer</SPAN> и настроить ей аудиокарту, а если это не помогло, то купить Audigy 2).
+
+<P>
+Вы можете столкнуться с не очевидными (по методу разрешения) проблемами при использовании новейших чипсетов.
+В подобных ситуациях я рекомендую в первую очередь обратится на сайт изготовителя вашего чипсета в надежде, что там окажется решение проблемы.
+Так, например, в обеспечении поддержки <TT>i845G</TT> с его интегрированным audio-video мне весьма помог сайт <A HREF="http://support.intel.com/support/graphics/intel845g/linux.htm">www.intel.com</A>.
+Также рекомендую не забывать про существование <A HREF="http://groups.google.com">USENET</A>, в котором почти наверняка найдется ответ на ваш (или похожий) вопрос...
+
+<P>
+<BR><HR><H4>Сноски</H4>
+<DL>
+<DT><A NAME="foot811">...modconf</A><A
+ HREF="node10.html#tex2html8"><SUP><SPAN CLASS="arabic">8</SPAN></SUP></A></DT>
+<DD>Либо, если ее нет, то воспользуйтесь командой <TT>modprobe имя_модуля</TT>, где имя модуля берите исходя из содержимого <SPAN  CLASS="textbf">/lib/modules/ваше_ядро/kernel/</SPAN>
+
+</DD>
+</DL>
+<BR><HR>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Подразделы</STRONG></A>
+
+<UL CLASS="ChildLinks">
+<LI><A NAME="tex2html269"
+  HREF="node11.html">Работа с DVD/CD-RW</A>
+<LI><A NAME="tex2html270"
+  HREF="node12.html">Файловая система</A>
+<LI><A NAME="tex2html271"
+  HREF="node13.html">Поиск файлов</A>
+</UL>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation"><HR>
+<!--Navigation Panel-->
+<A NAME="tex2html267"
+  HREF="node11.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html263"
+  HREF="node3.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html257"
+  HREF="node9.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html265"
+  HREF="IntroToLinux.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A>  
+<BR>
+<B> След.:</B> <A NAME="tex2html268"
+  HREF="node11.html">Работа с DVD/CD-RW</A>
+<B> Вверх:</B> <A NAME="tex2html264"
+  HREF="node3.html">Основы Linux.</A>
+<B> Пред.:</B> <A NAME="tex2html258"
+  HREF="node9.html">Русификация.</A>
+ &nbsp; <B>  <A NAME="tex2html266"
+  HREF="IntroToLinux.html">Содержание</A></B> </DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<TABLE border="0" cellpadding="0" cellspacing="0" width="100%"><TR bgcolor="#336699"><TD bgcolor="#8080c0"><P align="center"><FONT color="#FFFFFF" size="1"><A href="http://www.gnu.org/copyleft/fdl.html"><FONT color="#FFFFFF" size="1">Copyleft</FONT></A> © 2002-2003 г. &nbsp; Nikolay A. Panov, <A href="http://www.uic.nnov.ru/~nik/articles/IntroToLinux/"><FONT color="#FFFFFF">"Intro To Linux" (orig)</FONT></A>, &nbsp;<a href="mailto:&#110;&#105;&#107;&#115;&#105;&#116;&#101;&#64;&#109;&#97;&#105;&#108;&#46;&#114;&#117;"><FONT color="#FFFFFF">&#110;&#105;&#107;&#115;&#105;&#116;&#101;&#64;&#109;&#97;&#105;&#108;&#46;&#114;&#117;</FONT></A>, &nbsp;ICQ: 122-40-8888</FONT></P></TD></TR></TABLE>
+</ADDRESS>
+</BODY>
+</HTML>

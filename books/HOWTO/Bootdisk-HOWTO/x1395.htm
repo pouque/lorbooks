@@ -1,0 +1,254 @@
+<HTML
+><HEAD
+><TITLE
+>Процесс загрузки Linux.</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="The Linux Bootdisk HOWTO"
+HREF="t1.htm"><LINK
+REL="UP"
+TITLE="Ресурсы и указатели."
+HREF="a1338.htm"><LINK
+REL="PREVIOUS"
+TITLE="Использование Ramdisk."
+HREF="x1389.htm"><LINK
+REL="NEXT"
+TITLE="Коды ошибок LILO при загрузке."
+HREF="a1438.htm"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>The Linux Bootdisk HOWTO</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x1389.htm"
+ACCESSKEY="P"
+>&#1055;&#1088;&#1077;&#1076;.</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>A. Ресурсы и указатели.</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="a1438.htm"
+ACCESSKEY="N"
+>&#1057;&#1083;&#1077;&#1076;.</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="AEN1395">Процесс загрузки Linux.</H1
+><P
+>Подробнее о процессе загрузки Linux, можно узнать по следующим ссылкам:
+
+<P
+></P
+><UL
+><LI
+><P
+>The <A
+HREF="http://linuxdoc.org/LDP/sag/c1596.html"
+TARGET="_top"
+><I
+CLASS="CITETITLE"
+>Гид  
+Системных Администраторов Linux (Linux System Administrators' Guide) </I
+></A
+> содержит секцию о загрузке.</P
+></LI
+><LI
+><P
+><A
+HREF="http://metalab.unc.edu/pub/Linux/system/boot/lilo/lilo-t-21.ps.gz"
+TARGET="_top"
+>``Технический обзор'' LILO</A
+>  содержит достаточно подробное техническое, 
+низкоуровневое описание процесса загрузки, до момента запуска ядра.</P
+></LI
+><LI
+><P
+> Исходный код - первоисточник. Ниже приведены некоторые файлы 
+ядра, относящиеся к процессу загрузки. Если у Вас есть исходный код ядра 
+Linux, Вы можете найти их в <TT
+CLASS="FILENAME"
+>/usr/src/linux</TT
+> на вашей 
+машине; в качестве альтернативы, у Shigio Yamaguchi (shigio at tamacom.com) 
+очень хороший <A
+HREF="http://www.tamacom.com/tour/linux/index.html"
+TARGET="_top"
+> 
+гипертекстовый просмотрщик исходного кода ядра</A
+>. Взгляните на несколько 
+относящихся к делу файлов:
+
+                                                                   
+<P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+><TT
+CLASS="FILENAME"
+>arch/i386/boot/bootsect.S</TT
+> и
+<TT
+CLASS="FILENAME"
+>setup.S</TT
+></DT
+><DD
+><P
+>Содержит ассемблерный код загрузочного сектора.</P
+></DD
+><DT
+><TT
+CLASS="FILENAME"
+>arch/i386/boot/compressed/misc.c</TT
+></DT
+><DD
+><P
+>Содержит код декомпрессии ядра.</P
+></DD
+><DT
+><TT
+CLASS="FILENAME"
+>arch/i386/kernel/</TT
+></DT
+><DD
+><P
+>Каталог, содержащий код инициализации ядра. <TT
+CLASS="FILENAME"
+>setup.c</TT
+> 
+определяет слово ramdisk.</P
+></DD
+><DT
+><TT
+CLASS="FILENAME"
+>drivers/block/rd.c</TT
+></DT
+><DD
+><P
+>Содержит драйвер ramdisk. Процедуры <B
+CLASS="COMMAND"
+>rd&lowbar;load</B
+> и
+<B
+CLASS="COMMAND"
+>rd&lowbar;load&lowbar;image</B
+> загружают блоки из устройства в 
+ramdisk. Процедура <B
+CLASS="COMMAND"
+>identify&lowbar;ramdisk&lowbar;image</B
+> 
+определяет тип найденной файловой системы и сжата ли она.</P
+></DD
+></DL
+></DIV
+>&#13;</P
+></LI
+></UL
+>&#13;</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x1389.htm"
+ACCESSKEY="P"
+>&#1055;&#1088;&#1077;&#1076;.</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="t1.htm"
+ACCESSKEY="H"
+>&#1053;&#1072;&#1095;&#1072;&#1083;&#1086;</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="a1438.htm"
+ACCESSKEY="N"
+>&#1057;&#1083;&#1077;&#1076;.</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Использование Ramdisk.</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="a1338.htm"
+ACCESSKEY="U"
+>&#1059;&#1088;&#1086;&#1074;&#1077;&#1085;&#1100; &#1074;&#1099;&#1096;&#1077;</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Коды ошибок LILO при загрузке.</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

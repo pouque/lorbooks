@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE>IPX в Linux HOWTO: Настройка машины под Linux как клиента печати Novell</TITLE>
+ <LINK HREF="IPX-HOWTO-12.html" REL=next>
+ <LINK HREF="IPX-HOWTO-10.html" REL=previous>
+ <LINK HREF="IPX-HOWTO.html#toc11" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="IPX-HOWTO-12.html">Следующий</A>
+<A HREF="IPX-HOWTO-10.html">Предыдущий</A>
+<A HREF="IPX-HOWTO.html#toc11">Содержание</A>
+<HR>
+<H2><A NAME="s11">11. Настройка машины под Linux как клиента печати Novell</A>      </H2>
+
+<P>Пакет <EM>ncpfs</EM> включает две маленькие программы, которые
+позволяю вам производить печать с вашей Linux-машины на принтер
+подключенный к серверу печати Novell. Команда <EM>nprint</EM>
+позволяет вам печатать файл на очередь печати NetWare. Команда
+<EM>pqlist</EM> позволяет вам выводить список доступных очередей
+печати на сервере NetWare.
+<P>
+<P>Для получения и установки этих команд просто следуйте описанным
+ранее инструкциям относящимся к клиенту NCP.
+<P>
+<P>Обе команды требуют чтобы вы указали имя пользователя и пароль,
+так что вы можете нормально рассматривать создание некоторых скриптов
+чтобы сделать задачу печати более легкой. 
+<P>
+<P>Пример может выглядеть так:
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+# pqlist -S ACCT_FS01 -U guest -n
+# nprint -S ACCT_FS01 -q LASER -U guest -n filename.txt
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>
+<P>Синтаксис схож с синтаксисом команды
+<EM>ncpmount</EM>. Вышеприведенные примеры предполагают, что файловый
+сервер <CODE>ACCT_FS01</CODE> имеет пользователя <CODE>guest</CODE> без пароля,
+очередь печати называемая <CODE>LASER</CODE> существует и пользователю
+<CODE>guest</CODE> разрешено печатать в нее.
+<P>
+<P>На моих машинах с Linux у меня имеется короткий скрипт на
+командном языке для каждого из принтеров Novell. Они могут быть
+использованы как фильтры печати, для того, чтобы можно было печатать
+используя стандартную систему печати Linux.
+<P>
+<HR>
+<A HREF="IPX-HOWTO-12.html">Следующий</A>
+<A HREF="IPX-HOWTO-10.html">Предыдущий</A>
+<A HREF="IPX-HOWTO.html#toc11">Содержание</A>
+</BODY>
+</HTML>

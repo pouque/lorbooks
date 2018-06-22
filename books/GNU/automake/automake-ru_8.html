@@ -1,0 +1,204 @@
+<HTML>
+<HEAD>
+<!-- Created by texi2html 1.56k from automake-ru.texi on 11 July 2000 -->
+
+<TITLE>automake - Другие порожденные объекты</TITLE>
+</HEAD>
+<BODY>
+Go to the <A HREF="automake-ru_1.html">first</A>, <A HREF="automake-ru_7.html">previous</A>, <A HREF="automake-ru_9.html">next</A>, <A HREF="automake-ru_25.html">last</A> section, <A HREF="automake-ru_toc.html">table of contents</A>.
+<P><HR><P>
+
+
+<H1><A NAME="SEC37" HREF="automake-ru_toc.html#TOC37">Другие порожденные объекты</A></H1>
+
+<P>
+Automake может обрабатывать порожденные объекты, которые не являются
+программами на C.  Иногда поддержка построения таких объектов должна
+быть предоставлена явно, но Automake все равно будет автоматически
+отрабатывать процесс установки и создания дистрибутива.
+
+
+
+
+<H2><A NAME="SEC38" HREF="automake-ru_toc.html#TOC38">Исполняемые скрипты</A></H2>
+
+<P>
+<A NAME="IDX314"></A>
+<A NAME="IDX315"></A>
+<A NAME="IDX316"></A>
+
+
+<P>
+Существует также возможность определить и установить программы, которые
+являются скриптами.  Эти программы перечисляются с использованием основной 
+переменной <SAMP>`SCRIPTS'</SAMP>.  Automake не определяет зависимости для скриптов;
+файл <TT>`Makefile.am'</TT> должен явно включать в себя соответствующие
+правила.
+<A NAME="IDX317"></A>
+
+
+<P>
+Automake не считает, что скрипты являются унаследованными объектами;
+такие скрипты должны удаляться вручную (see section <A HREF="automake-ru_12.html#SEC52">Что будет удалено</A>).
+
+
+<P>
+Сама программа <CODE>automake</CODE> является скриптом на Perl, так что она
+генерируется на этапе конфигурации из <TT>`automake.in'</TT>. Вот как это
+обрабатывается:
+
+
+
+<PRE>
+bin_SCRIPTS = automake
+</PRE>
+
+<P>
+Поскольку <CODE>automake</CODE> появляется в макросе <CODE>AC_OUTPUT</CODE>, то для
+нее цель создается автоматически.
+
+
+<P>
+<A NAME="IDX318"></A>
+<A NAME="IDX319"></A>
+<A NAME="IDX320"></A>
+
+
+<P>
+<A NAME="IDX321"></A>
+<A NAME="IDX322"></A>
+<A NAME="IDX323"></A>
+<A NAME="IDX324"></A>
+<A NAME="IDX325"></A>
+
+
+<P>
+Скрипты могут быть установлены в каталоги <CODE>bindir</CODE>, <CODE>sbindir</CODE>,
+<CODE>libexecdir</CODE> или <CODE>pkgdatadir</CODE>.
+
+
+
+
+<H2><A NAME="SEC39" HREF="automake-ru_toc.html#TOC39">Заголовочные файлы</A></H2>
+
+<P>
+<A NAME="IDX326"></A>
+<A NAME="IDX327"></A>
+<A NAME="IDX328"></A>
+
+
+<P>
+<A NAME="IDX329"></A>
+
+
+<P>
+Заголовочные файлы определяются семейством переменных <SAMP>`HEADERS'</SAMP>. 
+Обычно заголовочные файлы не устанавливаются, так что в большинстве
+случаев будет определена переменная <CODE>noinst_HEADERS</CODE>.
+<A NAME="IDX330"></A>
+
+
+<P>
+Все заголовочные файлы должны быть перечислены; отсутствующие файлы не
+будут включены в дистрибутив. Часто лучше всего перечислить
+неустанавливаемые заголовочные файлы вместе с другими исходными текстами
+программы.  See section <A HREF="automake-ru_7.html#SEC20">Построение программ и библиотек</A>.  Заголовочные файлы, перечисленные в
+переменных <SAMP>`_SOURCES'</SAMP>, не надо указывать ни в одной из переменных
+<SAMP>`_HEADERS'</SAMP>.
+
+
+<P>
+<A NAME="IDX331"></A>
+<A NAME="IDX332"></A>
+<A NAME="IDX333"></A>
+
+
+<P>
+<A NAME="IDX334"></A>
+<A NAME="IDX335"></A>
+<A NAME="IDX336"></A>
+
+
+<P>
+Заголовочные файлы могут быть установлены в каталоги <CODE>includedir</CODE>,
+<CODE>oldincludedir</CODE> или <CODE>pkgincludedir</CODE>.
+
+
+
+
+<H2><A NAME="SEC40" HREF="automake-ru_toc.html#TOC40">Файлы данных, не зависимые от архитектуры машины</A></H2>
+
+<P>
+<A NAME="IDX337"></A>
+<A NAME="IDX338"></A>
+<A NAME="IDX339"></A>
+
+
+<P>
+Automake поддерживает установку различных файлов данных, используя
+семейство переменных <SAMP>`DATA'</SAMP>.
+<A NAME="IDX340"></A>
+
+
+<P>
+<A NAME="IDX341"></A>
+<A NAME="IDX342"></A>
+<A NAME="IDX343"></A>
+<A NAME="IDX344"></A>
+<A NAME="IDX345"></A>
+
+
+<P>
+Такие данные могут быть установлены в каталоги <CODE>datadir</CODE>,
+<CODE>sysconfdir</CODE>, <CODE>sharedstatedir</CODE>, <CODE>localstatedir</CODE> или
+<CODE>pkgdatadir</CODE>.
+
+
+<P>
+По умолчанию файлы данных <EM>не</EM> включаются в дистрибутив.
+
+
+<P>
+Вот как Automake устанавливает свои вспомогательные файлы данных:
+
+
+
+<PRE>
+pkgdata_DATA = clean-kr.am clean.am ...
+</PRE>
+
+
+
+<H2><A NAME="SEC41" HREF="automake-ru_toc.html#TOC41">Построение исходных текстов</A></H2>
+
+<P>
+<A NAME="IDX346"></A>
+
+
+<P>
+Время от времени файлы, которые могли бы быть названы <EM>исходными</EM>
+(например, файлы <SAMP>`.h'</SAMP> в C), в действительности порождаются из
+других файлов.  Такие файлы должны быть перечислены в
+переменной  <CODE>BUILT_SOURCES</CODE>.
+<A NAME="IDX347"></A>
+
+
+<P>
+Построенные исходные тексты по умолчанию не компилируются. Для
+компиляции исходных текстов вы должны явно указать их в других
+переменных <SAMP>`_SOURCES'</SAMP>.
+
+
+<P>
+Заметьте, что в некоторые случаях, <CODE>BUILT_SOURCES</CODE> будет работать
+достаточно странным образом.  Для того, чтобы построение исходных текстов
+работало с автоматическим отслеживанием зависимостей, файл
+<TT>`Makefile'</TT> должен зависеть от <CODE>$(BUILT_SOURCES)</CODE>.  При этом
+такие исходные тексты могут начать пересобираться в самый неудобный
+момент.
+
+
+<P><HR><P>
+Go to the <A HREF="automake-ru_1.html">first</A>, <A HREF="automake-ru_7.html">previous</A>, <A HREF="automake-ru_9.html">next</A>, <A HREF="automake-ru_25.html">last</A> section, <A HREF="automake-ru_toc.html">table of contents</A>.
+</BODY>
+</HTML>

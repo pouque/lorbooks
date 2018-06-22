@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>События.</TITLE>
+<META NAME="description" CONTENT="События.">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<!-- Meta http equivalent was here                               -->
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="IntroToLinux.css">
+
+<LINK REL="next" HREF="node58.html">
+<LINK REL="previous" HREF="node56.html">
+<LINK REL="up" HREF="node54.html">
+<LINK REL="next" HREF="node58.html">
+</HEAD>
+
+<BODY background="backgr.jpg" vlink="#000099" bgcolor="#E6E6FA">
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A NAME="tex2html892"
+  HREF="node58.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html888"
+  HREF="node54.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html882"
+  HREF="node56.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html890"
+  HREF="IntroToLinux.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A>  
+<BR>
+<B> След.:</B> <A NAME="tex2html893"
+  HREF="node58.html">Кратко об оформлении окон</A>
+<B> Вверх:</B> <A NAME="tex2html889"
+  HREF="node54.html">Введение в FVWM2</A>
+<B> Пред.:</B> <A NAME="tex2html883"
+  HREF="node56.html">Функции.</A>
+ &nbsp; <B>  <A NAME="tex2html891"
+  HREF="IntroToLinux.html">Содержание</A></B> 
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION00053300000000000000">
+События.</A>
+</H3>
+
+<P>
+Само собой разумеется, что вызов любой функции можно привязать к наиболее интуитивному для <SPAN  CLASS="textit">вас</SPAN> событию.
+События могут поступать, например, от клавиатуры и мыши. 
+Синтаксис в обоих случаях (а они не единственны -- читайте документацию) одинаков: <TT>Key Keyname Context Modifiers Function</TT> и <TT>Mouse Button Context Modifiers Function</TT> соответственно.
+Keyname соответствует название интересующей вас клавиши (что выдает, например, программа <SPAN  CLASS="textit">xev</SPAN>), например, <TT>Multi_key</TT>.
+Context означает контекст события, то есть то место, где находился фокус во время события.
+Это может быть ``R'' для ``рабочего стола'', ``W'' для окна приложения, ``D'' для дектопного приложения (например, Nautilus), ``T'' для заголовка окна, ``S'' для границы окна (``['',``]'',``-'' и ``_'' для каждой границы соответственно), ``F'' для уголка границы (соответственно ``<TT>&lt;</TT>'', ``^'', ``<TT>&gt;</TT>'' и ``v''), ``I'' для иконки окна и цифры от 0 до 9 для соответствующих им кнопок заголовка.
+Естественно, вы можете указывать одновременно несколько контекстов (например, ``FST'').
+Модификатором может служить любая не запрещенная вами (по умолчанию запрещена <TT>Caps-Lock</TT>) клавиша-модификатор, например ``C'' соответствует Ctrl, ``S'' -- Shift, ``M'' -- Meta (обычно Alt), ``L'' -- Caps-Lock (если вы отмените его игнорирование), ``N'' -- если ваше событие должно выполняться только при выключенных модификаторах и ``A'' для любого модификатора.
+
+<P>
+Как видите все очень просто.
+Пример:
+<PRE>
+# Выводим меню выбора параметров окна по привычной
+# клавише, либо по правой (третьей) кнопке мыши на
+# заголовке
+Key    Menu W  N  Popup Window-Ops Title o0 o0
+Mouse  3    T  A  Popup Window-Ops
+
+# Выводим главное меню по правой Win-кнопке
+Key Multi_key  A  N  Popup /Debian
+
+# По Ctrl+TAB, или средней кнопке на ``рабочем столе''
+# список окон
+Mouse 2   R  A  WindowList \
+    NoGeometryWithInfo NoCurrentDeskTitle
+Key   TAB A  C  WindowList Root o70 o30 \
+    NoGeometryWithInfo NoCurrentDeskTitle
+
+# Ctrl-Esc для закрытия окна (ИМХО интуитивнее Alt+F4)
+# А по Ctrl+Shift+Esc закрываем все окна данного класса
+Key Escape A    C    Close
+Key Escape A    CS   Pick All ($c) Close
+
+# Для перемещения окна удерживая Alt
+# хватаем его правой кнопкой мыши и тащим...
+# Для изменения размера --- средная кнопка
+Mouse 3 W M Move
+Mouse 2 W M Resize
+</PRE>
+Если вам не по нраву то, что в число модификаторов разработчики FVWM включили NumLock и ScrollLock, то (конечно же) это легко исправить командой <TT>IgnoreModifiers L25</TT>
+
+<P>
+Но и это не все!
+Как вам возможность изобразить курсором мыши некоторую фигуру, нажать некую кнопку и тем самым запустить ассоциированную с данной фигурой и кнопкой функцию?
+Подробности читайте в документации. 
+Пример, запускающий Netscape, при рисовании буквы ``N'' и правой кнопке мыши: <TT>Stroke  7415963  3  R  N  Exec exec netscape</TT>...
+
+<P>
+
+<DIV CLASS="navigation"><HR>
+<!--Navigation Panel-->
+<A NAME="tex2html892"
+  HREF="node58.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html888"
+  HREF="node54.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html882"
+  HREF="node56.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html890"
+  HREF="IntroToLinux.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A>  
+<BR>
+<B> След.:</B> <A NAME="tex2html893"
+  HREF="node58.html">Кратко об оформлении окон</A>
+<B> Вверх:</B> <A NAME="tex2html889"
+  HREF="node54.html">Введение в FVWM2</A>
+<B> Пред.:</B> <A NAME="tex2html883"
+  HREF="node56.html">Функции.</A>
+ &nbsp; <B>  <A NAME="tex2html891"
+  HREF="IntroToLinux.html">Содержание</A></B> </DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<TABLE border="0" cellpadding="0" cellspacing="0" width="100%"><TR bgcolor="#336699"><TD bgcolor="#8080c0"><P align="center"><FONT color="#FFFFFF" size="1"><A href="http://www.gnu.org/copyleft/fdl.html"><FONT color="#FFFFFF" size="1">Copyleft</FONT></A> © 2002-2003 г. &nbsp; Nikolay A. Panov, <A href="http://www.uic.nnov.ru/~nik/articles/IntroToLinux/"><FONT color="#FFFFFF">"Intro To Linux" (orig)</FONT></A>, &nbsp;<a href="mailto:&#110;&#105;&#107;&#115;&#105;&#116;&#101;&#64;&#109;&#97;&#105;&#108;&#46;&#114;&#117;"><FONT color="#FFFFFF">&#110;&#105;&#107;&#115;&#105;&#116;&#101;&#64;&#109;&#97;&#105;&#108;&#46;&#114;&#117;</FONT></A>, &nbsp;ICQ: 122-40-8888</FONT></P></TD></TR></TABLE>
+</ADDRESS>
+</BODY>
+</HTML>

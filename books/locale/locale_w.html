@@ -1,0 +1,208 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=koi8-r">
+<meta name="GENERATOR" content="Microsoft FrontPage 3.0">
+<title> Locale &quot;AS IT IS&quot; - What</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1>Локализация, интернационализация,
+глобализация.</h1>
+
+<h2><font color="#000000">Что это такое ?</font></h2>
+
+<p><font color="#000000">&nbsp;&nbsp; Так уж сложилось, что языком
+разработчиков вычислительных машин был
+английский язык. ;-)</font></p>
+
+<p>&nbsp;&nbsp; По мере распространения компьютеров и
+(ПО) программного обеспечения для них <strong>по
+всему миру</strong>, постепенно стала нарастать
+потребность в обработке информации не только на
+английском, но и на других - немецком, японском,
+русском, e.t.c. -- <font color="#FF0080"><strong>национальных</strong></font>
+языках.</p>
+
+<p>&nbsp;&nbsp;&nbsp; Потребность в такой многоязыковой
+поддержке ощущали как <strong>пользователи</strong>
+программного обеспечения - для решения своих
+конкретных задач, так и <strong>производители</strong>
+ПО - для расширения рынков сбыта.</p>
+
+<p>&nbsp;&nbsp;&nbsp; Таким образом сложилась идея <font color="#FF0080"><strong>инернационализации</strong></font> ( <strong>internationalization</strong>,
+или сокращенно <font color="#FF0080"><strong>i18n</strong></font> )
+программных продуктов.</p>
+
+<p>&nbsp;&nbsp;&nbsp; Термин<strong> интернационализация</strong>
+( i18n ) подразумевает под собой такой <strong>способ
+проектирования</strong> ( <font color="#FF0080">дизайн</font> ) ПО,
+при котором возможность многоязыковой поддержки
+закладывается с самого начала. </p>
+
+<p>&nbsp;&nbsp;&nbsp; Самым желательным вариантом
+реализации многоязыковой поддержки является
+такой, при котором нацонально-<strong>зависимая</strong>
+часть приложения хранится <strong>отдельно</strong> от
+приложений в виде набора данных : <strong>объектов
+локализации.</strong> При этом возможность гибкого и
+простого изменения языкового окружения под
+конкретные требования происходит <strong>без
+перекомпиляции</strong> этих приложений. </p>
+
+<p>&nbsp;&nbsp;&nbsp; Таким образом,<strong> локализация </strong>(
+<strong>localization</strong>, или сокращенно <strong>l10n</strong> ) -
+это <strong>процесс</strong> адаптации ПО под конкретные
+национальные требования . А технически,
+локализация - это изготовление отдельных <strong>объектов
+локализации</strong> в соответствии c требованиями
+конкретного языка.</p>
+
+<hr>
+
+<h2 align="left"><a name="posix"></a>POSIX locale</h2>
+
+<p>&nbsp;&nbsp;&nbsp; В <a href="locale_s.html">стандарте</a> <strong>POSIX</strong>
+(Portable Operating System) были определены средства
+локализации, названные<strong> locale</strong><br>
+(к сожалению, не существует адекватного русского
+перевода этого термина).<em> Locale (англ.) - местные
+особенности.</em></p>
+
+<p>ПРИМЕЧАНИЕ: К сожалению, пока еще не устоялось
+русское произношение термина <strong>locale</strong> . Но
+постепенно, под действием &quot;живого
+великорусского&quot; слово <em><strong>locale</strong></em>
+начинает все чаще употребляться в виде кальки
+&quot;<em><strong>локаль</strong></em>&quot; то есть женского
+рода. Ближайшим аналогом может быть слово <em><strong>morale</strong></em>,
+которое довольно устойчиво переволится русским
+словом &quot;<em><strong>мораль</strong></em>&quot; того же
+женского рода. Таким образом, допустимы
+выражения &quot;Какая у тебя локаль ?&quot;, &quot;Я
+установил русскую локаль и все перестало
+работать !&quot; ;-)</p>
+
+<p>&nbsp;&nbsp; Формально говоря, <strong>locale</strong> - это
+такое системное средство (фича ;-) позволяющее
+настроить систему на работу с данными в
+конкретном национальном (местном) представлении.
+Отдаленно напоминает средство CodePage в MS-DOS или OS/2. </p>
+
+<p>&nbsp;&nbsp;&nbsp; Средства <strong>POSIX locale</strong> охватывает
+немого больший круг понятий, чем просто работа с
+национальными <a href="locale_c.html">символами</a>.</p>
+
+<p>&nbsp;&nbsp;&nbsp; Зачем ? Дело в том, что кроме
+собственно <strong>языка</strong> общения и алфавита, в
+разных странах различаются такие <strong>обычаи</strong>,
+как представление даты, времени, финансовых
+величин и т.д. Эти <strong>&quot;культурные правила&quot;</strong>
+уже закреплены традицией и национальными
+стандартами, иногда довольно давно, поэтому при
+&quot;локализации&quot; программных продуктов
+существует необходимость в настройке их еще и на
+эти &quot;культурные правила&quot;. В стандарте <strong>POSIX</strong>
+культурные правила объединены в группы - <a href="locale_g.html">категории локализации</a>.</p>
+
+<p>&nbsp;* ПРИМЕЧАНИЕ : В принципе, каких
+&quot;культурных нюансов&quot; можно найти много. См.
+например статью : <a href="http://library.pittstate.edu/staff/susan/colore~1.html">Colors, Buttons, Words and
+Culture: Designing Software for the Global Community</a> (копия <a href="other/colore~1.htm">здесь</a>) или<a href="http://perch.nosc.mil:8095/Docs/UIS_Supp/I18N.html"> Internationalization</a>. Но
+в большинстве случаев, для машинной обработки
+информации вполне хватает понятий <strong>POSIX</strong>&nbsp;
+<strong>locale</strong>.</p>
+
+<p>&nbsp;&nbsp;&nbsp; Структурно, средства<strong> POSIX locale</strong>
+состоят из следующих компонентов : 
+
+<ol>
+  <li>Набор библиотечных (<strong>libc</strong>) вызовов (locale API):
+    <a href="http://www.linux.org.ru/books/man/man3/setlocale.html"><em>setlocale()</em></a>, <a href="http://www.linux.org.ru/books/man/man3/isalpha.html"><em>isalpha()</em></a>, <a href="http://www.linux.org.ru/books/man/man3/toupper.html"><em>toupper()</em></a>,
+    e.t.c.</li>
+  <li>Переменные окружения, для управления
+    средствами <strong>locale</strong> :<strong> <a href="http://www.linux.org.ru/books/man/man_e/lang.html">LANG</a></strong>,
+    LC_CTYPE. e.t.c.</li>
+  <li>Утилита для получения информации о средствах <strong>locale</strong>
+    : <a href="http://www.linux.org.ru/books/man/man1/locale.html"><em>locale</em></a></li>
+  <li>Исходные тексты описания <strong>locale</strong> : <strong>locale
+    definitions</strong>, <a href="http://www.linux.org.ru/books/man/man_b/charset.html">Character Set Definition File</a></li>
+  <li>Утилита для изготовления (компиляции) объектов
+    локализации : <a href="http://www.linux.org.ru/books/man/man1/localedef.html"><em>localedef</em></a></li>
+  <li>Собственно объекты локализации (наборы данных <strong>locale</strong>)
+    : <em>/usr/share/locale/*</em></li>
+</ol>
+
+<p align="center">*&nbsp;&nbsp;&nbsp; *&nbsp;&nbsp;&nbsp; *</p>
+
+<p>&nbsp;&nbsp;&nbsp; Существующая также &quot;система
+управления сообщениями на национальном языке&quot;
+: <a href="locale_n.html">NLS</a> (<strong>Native Language Support</strong>)
+формально не входит в <strong>POSIX locale</strong>, хотя во
+многом дополняет функции <strong>locale</strong>.</p>
+
+<p>&nbsp;&nbsp;&nbsp; Также довольно тесно пересекаются с <strong>locale</strong>
+такие механизмы <strong>POSIX</strong> как поддержка
+многобайтных (<strong>multibyte</strong>) и &quot;широких&quot; (<strong>wide-char</strong>)
+символов. Эта связь не очень заметна для
+европейских языков, но в для поддержки алфавитов
+с большим числом знаков (японский ~2000, китайский
+~8000, UNICODE ~25000) это становится жизненно необходимо.</p>
+
+<p>* ПРИМЕЧАНИЕ : <strong>POSIX locale</strong> HЕ ИМЕЕТ накакого
+отношения к <strong>физическому</strong> <a href="locale_io.html">вводу/выводу</a>
+в UNIX и к проблемам работы терминала, клавиатуры и
+печатающих устройств с национальными символами.</p>
+
+<hr>
+
+<h2>Локализация от Microsoft.</h2>
+
+<p>&nbsp;&nbsp;&nbsp; Фирма <a href="http://www.microsoft.com/globaldev/"><strong>Microsoft</strong></a>
+уделяет значительное внимание локализации
+продуктов и захвате национальных рынков
+программного обеспечения. Первый европейский
+офис был открыт в 1982 г. В мае 1983 г. была выпущена
+операционная система MS-DOS 2.1 с поддержкой
+японского языка для компьютеров IBM 5550 и NEC PC-9801.</p>
+
+<p>&nbsp;&nbsp;&nbsp; В операционных системах от <strong>Microsoft</strong>
+применяются совершенно другие понятия и схема
+организации локализации чем в системах <strong>POSIX</strong>,
+хотя они имеют некоторые общие идеи.</p>
+
+<p>&nbsp;&nbsp;&nbsp; Стоит также сказать, что
+операционная система <strong>Windows 2000</strong> (Windows NT 5.0)
+имеет полную поддержку <strong>UNICODE</strong>, от файловой
+системы до шрифтов и Notepad. Кроме того, она
+содержит классическую схему локализации : то
+есть разделен исполняемый код и
+национально-зависимые части. Вся информация,
+имеющая отношение к &quot;национальной
+специфике&quot; вынесена в &quot;объекты
+локализации&quot;. Таким образом, национальные
+версии отличаются только небольшим числом
+файлов.</p>
+
+<p>&nbsp;&nbsp;&nbsp; Наиболее полное описание модели
+локализации от Microsoft можно найти в книге <strong>Nadine
+Kano</strong> : &quot;<strong>Developing International Software for Windows 95 and Windows
+NT</strong>&quot;. Эта книга есть на <strong>MSDN</strong>.</p>
+
+<hr>
+
+<p>&nbsp;&nbsp;&nbsp; <a href="locale_i.html#l10n">Дополнительная
+информация.</a></p>
+
+<hr>
+
+<p>Содержание <a href="http://www.sensi.org/~alec/locale/index.html#toc">&quot;Locale
+AS IT IS&quot;</a> </p>
+
+<hr>
+
+<h6><em>Last change : <!--webbot bot="Timestamp" S-Type="EDITED" S-Format="%d-%m-%Y" startspan -->14-10-2000<!--webbot bot="Timestamp" endspan i-checksum="12421" --></em></h6>
+</body>
+</html>

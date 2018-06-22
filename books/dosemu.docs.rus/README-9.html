@@ -1,0 +1,61 @@
+<HTML>
+<HEAD>
+<TITLE>DOSEmu: Logging from DOSEmu</TITLE>
+</HEAD>
+<BODY>
+<?php include("/home/maxcom/linux_html/books/head.php3") ?>
+<A HREF="README-8.html">Назад</A>
+<A HREF="README-10.html">Вперед</A>
+<A HREF="README.html#toc9">Оглавление</A>
+<HR>
+<H2><A NAME="s9">9. Регистрация действий DOSEmu</A></H2>
+
+<P>This section was written by Erik Mouw 
+<A HREF="mailto:J.A.K.Mouw@et.tudelft.nl">&lt;J.A.K.Mouw@et.tudelft.nl&gt;</A> on February 17, 1996 and last edited
+on 21 June 1997.</P>
+<P>Этот раздел описывает возможности регистрации в DOSEMU.</P>
+<P>
+DOSEMU может регистрировать все действия через email или syslogd(8).
+Если вы хотите включить регистрацию, создайте файл  /etc/dosemu.loglevel.
+В нем вы можете установить уровень регистрации как почтовой, так и через
+syslog в очень простой форме. Распознаются только четыре ключевых слова:</P> 
+<P>
+<DL>
+<DT><B>mail_error</B><DD><P>посылать сообщения об ошибках пользователю root</P>
+<DT><B>mail_always</B><DD><P>посылать сообщения о любом использовании DOSEMU пользователю root</P>
+<DT><B>syslog_error</B><DD><P>записывать сообщения об ошибках через syslogd(8)</P>
+<DT><B>syslog_always</B><DD><P>записывать все использование DOSEMU через syslogd(8)</P>
+</DL>
+</P>
+<P>Строки, начинающиеся с '#' - комментарии.</P>
+<P>примеры:</P>
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+#
+# отсылать все root-у, но не записывать в журнал
+#
+mail_always
+
+#
+# сообщения об ошибках отылать root-у, записывать все
+# (рекомендуемый способ)
+#
+mail_error
+syslog_always
+
+#
+# заносить в журнал только сообщения об ошибках
+#
+syslog_errors
+</PRE>
+</CODE></BLOCKQUOTE>
+</P>
+<HR>
+<A HREF="README-8.html">Назад</A>
+<A HREF="README-10.html">Вперед</A>
+<A HREF="README.html#toc9">Оглавление</A>
+
+<HR><I>Перевод: Валерий Груздев (grue@vpti.vladimir.ru)</I>
+</BODY>
+</HTML>

@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>RPM-based дистрибутивы</TITLE>
+<META NAME="description" CONTENT="RPM-based дистрибутивы">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<!-- Meta http equivalent was here                               -->
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="IntroToLinux.css">
+
+<LINK REL="next" HREF="node26.html">
+<LINK REL="previous" HREF="node24.html">
+<LINK REL="up" HREF="node23.html">
+<LINK REL="next" HREF="node26.html">
+</HEAD>
+
+<BODY background="backgr.jpg" vlink="#000099" bgcolor="#E6E6FA">
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A NAME="tex2html472"
+  HREF="node26.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html468"
+  HREF="node23.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html462"
+  HREF="node24.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html470"
+  HREF="IntroToLinux.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A>  
+<BR>
+<B> След.:</B> <A NAME="tex2html473"
+  HREF="node26.html">RedHat Linux</A>
+<B> Вверх:</B> <A NAME="tex2html469"
+  HREF="node23.html">Выбор дистрибутива</A>
+<B> Пред.:</B> <A NAME="tex2html463"
+  HREF="node24.html">Source Based дистрибутивы</A>
+ &nbsp; <B>  <A NAME="tex2html471"
+  HREF="IntroToLinux.html">Содержание</A></B> 
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION00041200000000000000">
+RPM-based дистрибутивы</A>
+</H3>
+
+<P>
+Второй тип - RPM-based.
+RPM, кстати, является представителем очень любимых в open source мире рекурсивных аббревиатур (RPM = RPM Package Manager<A NAME="tex2html23"
+  HREF="node25.html#foot817"><SUP><SPAN CLASS="arabic">23</SPAN></SUP></A>).
+Данный менеджер пакетов привлекает своей простотой - <TT>rpm -i пакет.rpm</TT>, <TT>rpm -r пакет</TT> и никакой мороки с компиляцией...
+
+<P>
+Это да - с компиляцией мороки нет, но (увы) начинается морока с самим менеджером пакетов, коий у меня, к примеру, неоднократно вынуждал сказать <TT>rpm -rebuilddb</TT>, а раз, обновив себя, решил, что не поддерживает формат базы данных предыдущей версии rpm (после чего долго уверял, что не может ничего поставить по причине отсутствия как glibc пакета, так и всей остальной системы...).
+Также RPM-пакеты отличаются слабой системой контроля зависимостей, что часто вынуждает пользователей использовать <TT>rpm -nodeps</TT>, что является явным признаком его недоработанности...
+
+<P>
+Ну да оставим менеджер пакетов в покое - перейдем к анализу достоинств и недостатков существующих на базе RPM дистрибутивов.
+
+<P>
+<BR><HR><H4>Сноски</H4>
+<DL>
+<DT><A NAME="foot817">... Manager</A><A
+ HREF="node25.html#tex2html23"><SUP><SPAN CLASS="arabic">23</SPAN></SUP></A></DT>
+<DD>Не удивляйтесь, видя вариант расшифровки вида <SPAN  CLASS="textit">Red Hat Package Manager</SPAN> - до недавних пор так оно и было...
+
+</DD>
+</DL>
+<DIV CLASS="navigation"><HR>
+<!--Navigation Panel-->
+<A NAME="tex2html472"
+  HREF="node26.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html468"
+  HREF="node23.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html462"
+  HREF="node24.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html470"
+  HREF="IntroToLinux.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A>  
+<BR>
+<B> След.:</B> <A NAME="tex2html473"
+  HREF="node26.html">RedHat Linux</A>
+<B> Вверх:</B> <A NAME="tex2html469"
+  HREF="node23.html">Выбор дистрибутива</A>
+<B> Пред.:</B> <A NAME="tex2html463"
+  HREF="node24.html">Source Based дистрибутивы</A>
+ &nbsp; <B>  <A NAME="tex2html471"
+  HREF="IntroToLinux.html">Содержание</A></B> </DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<TABLE border="0" cellpadding="0" cellspacing="0" width="100%"><TR bgcolor="#336699"><TD bgcolor="#8080c0"><P align="center"><FONT color="#FFFFFF" size="1"><A href="http://www.gnu.org/copyleft/fdl.html"><FONT color="#FFFFFF" size="1">Copyleft</FONT></A> © 2002-2003 г. &nbsp; Nikolay A. Panov, <A href="http://www.uic.nnov.ru/~nik/articles/IntroToLinux/"><FONT color="#FFFFFF">"Intro To Linux" (orig)</FONT></A>, &nbsp;<a href="mailto:&#110;&#105;&#107;&#115;&#105;&#116;&#101;&#64;&#109;&#97;&#105;&#108;&#46;&#114;&#117;"><FONT color="#FFFFFF">&#110;&#105;&#107;&#115;&#105;&#116;&#101;&#64;&#109;&#97;&#105;&#108;&#46;&#114;&#117;</FONT></A>, &nbsp;ICQ: 122-40-8888</FONT></P></TD></TR></TABLE>
+</ADDRESS>
+</BODY>
+</HTML>

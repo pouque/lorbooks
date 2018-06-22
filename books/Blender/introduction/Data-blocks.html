@@ -1,0 +1,118 @@
+<html>
+<head>
+ <title>Blender online-Руководство для пользователя v1.5- ВВЕДЕНИЕ - Блоки данных</title>
+</head>
+
+<body bgcolor="#ffffff" link="#999966" vlink="#999966" alink="#000000" background="http://www.linux.org.ru/books/Blender/images/bgpage.gif">
+<table cellpadding="0" cellspacing="0" border="0" width="600">
+ <tr>
+ 	<td colspan="4" width="600"><img width="408" height="70"
+			src="http://www.linux.org.ru/books/Blender/images/blentitl.jpg" alt="http://www.blender.nl/"
+			border="0"><img 
+			src="http://www.linux.org.ru/books/Blender/images/topright.gif" alt=""><br>
+		<img 
+			src="http://www.linux.org.ru/books/Blender/images/trans.gif" width="20" height="16" alt="NAVBAR->"><a
+			href="../index.html"><img 
+				src="../images/nav-home.gif" border="0" alt="титульный лист"></a><a 
+			href="Data-blocks.html"><img 
+				src="../images/nav-intro.gif" border="0" alt="введение"></a><a 
+			href="../basicediting/Input-commands.html"><img 
+				src="../images/nav-basiced.gif" border="0" alt="основы редактирования"></a><a 
+			href="../quickstart/Part-1.html"><img 
+				src="../images/nav-quick-start.gif" border="0" alt="самое начало"></a><img 
+				src="../images/black.gif" width="46" height="16" alt=""><img 
+				src="../images/nav-end.gif" border="0" alt=""></td>
+ </tr>
+
+<!-- second level navigation -->
+<tr>
+ 	<td width="93" valign="top"><br><br>
+		<img src="http://www.linux.org.ru/books/Blender/images/trans.gif" width="93" height="1" alt=""><br>
+			<img src="../images/Data-blocks-on.gif"
+			alt="Блоки данных" width="93" height="20"><br><br>
+			<a href="Data-structure.html"><img 
+			src="../images/Data-structure-off.gif"
+			alt="Структура данных" width="93" 
+			height="20" border="0"></a><br><br>
+			<a href="Screens.html"><img 
+			src="../images/Screens-off.gif"
+			alt="Экраны" width="93" 
+			height="20" border="0"></a>
+		</td>
+	<td width="7"><img src="http://www.linux.org.ru/books/Blender/images/trans.gif" width="7" height="1" alt=""></td>
+
+<!-- end second level navigation -->
+
+<!-- content -->
+ 	<td width="400"><font face="Arial, sans-serif" size="-1">
+	<img src="http://www.linux.org.ru/books/Blender/images/trans.gif" width="400" height="1" alt="">
+			<h2>Введение</h2>
+			<h4>Объектно ориентированная система</h4>
+			Программа Blender имеет строгую объектно ориентированную структуру. 
+			Все параметры 3D-мира составлены из мелких блоков данных. 
+			Соединяя эти блоки, копируя и редактируя 
+			их, или используя их повторно, можно создавать сложные среды 
+			при минимальном использовании памяти.
+			<br><br>
+			<h2>Основные блоки данных</h2>
+			<b>Сцена (Scene)</b><br>
+				"Картина" 3D-мира. Содержит 
+				специфическую информацию для рендеринга (камера, разрешение) 
+				и связи с Объектами. Одни и те же объекты могут использоваться разными сценами. Кроме того, сцены можно объединять в набор сцен или "фильм".<br><br>
+			<b>Мир (World)</b><br>  
+				Этот блок хранит параметры  неба, звезд,
+				выдержки и других переменных среды.   <br><br>
+			<b>Объект (Object)</b><br> 
+				Основной (элементарный) блок 3D-информации. 
+				Содержит информацию о положении, угле поворота, 
+				размере и матрицах трансформации. 
+				Его можно связывать с другими Объектами для создания 
+				иерархий или изменения формы.
+			        Объекты могут быть "пустыми" (Empty - только оси координат), 
+				но могут содержать и ObData, т.е. непосредственно саму 3D-информацию: 
+				Mesh (каркас), Curve (кривая), Lattice (решетка), Lamp (лампа) и т.д. <br>
+				Кроме того, Объекты можно связывать с анимационными 
+				кривыми (Ipo) и Материалами (Materials).
+				<br><br>
+			<b>Каркас (Mesh)</b><br>
+				Содержит данные о каркасе, составленном из треугольных или квадратных граней: вершины, грани и перпендикуляры. Может иметь блок информации о ключевых кадрах для морфинга. 
+				Этот блок можно связывать с Материалами.   <br><br>
+			<b>Кривая (Curve)</b><br>
+				Эти данные могут использоваться для Текста (Text), кривых Безье (Bezier) или B-сплайнов (BSplines) и 3D NURBS-поверхностей. 
+				Этот блок также содержит ссылку на ключевые кадры, 
+				и его можно связывать с Материалами (Materials).
+				<br><br>
+			<b>Материал (Material)</b><br> 
+				Это блок данных хранит информацию о таких "видимых" качествах Объекта как 
+				цвет, коэффициент отражения (reflectivity) и прозрачность.
+				Его можно связать с восемью различными блоками Текстур (Texture). 	
+				<br><br>
+			<b>Текстура (Texture)</b><br> 
+				Для задания текстур можно использовать растровые изображения (images), 
+				вычисляемые 3D-карты (procedural formulas - процедурные, параметрические формулы) или плуг-ины.
+				Текстуры можно связывать с блоками Материал, Лампа и Мир. 	
+				<br><br>
+			<b>Лампа (Lamp)</b><br>
+				Хранит такие данные о свете, как параметры цвета и тени. 
+				Этот блок также можно связать с блоком Текстур.
+				<br><br>
+			<b>Ipo</b><br>
+				Основная система анимационных кривых.
+				С помощью блоков Ipo возможна анимация Объектов (движение)
+				и Материалов (анимация изменения цвета).
+				<br><br>
+				<br><br><br>
+			</font>
+	</td>
+<!-- end content -->
+
+ 	<td width="100"><img src="http://www.linux.org.ru/books/Blender/images/trans.gif" width="100" height="1" alt=""></td>
+ </tr>
+ <tr>
+ 	<td colspan="4"><img width="93" height="43" src="../images/gradstrips.gif" alt=""><img width="507" height="43"
+			src="../images/bottom.gif" alt=""></td>
+ </tr>
+</table>
+
+</body>
+</html>

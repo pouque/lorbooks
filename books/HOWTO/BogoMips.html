@@ -1,0 +1,2204 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>BogoMips mini-Howto</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.57"></HEAD
+><BODY
+CLASS="ARTICLE"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="ARTICLE"
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="TITLE"
+><A
+NAME="AEN2"
+>BogoMips mini-Howto</A
+></H1
+><DIV
+CLASS="AUTHORGROUP"
+><A
+NAME="AEN4"
+></A
+><H3
+CLASS="AUTHOR"
+><A
+NAME="AEN5"
+>Wim van Dorst</A
+></H3
+><DIV
+CLASS="AFFILIATION"
+><DIV
+CLASS="ADDRESS"
+><P
+CLASS="ADDRESS"
+>&nbsp;&nbsp;&nbsp;&nbsp;     baron@clifton.hobby.nl
+    <br>
+&nbsp;&nbsp;&nbsp;</P
+></DIV
+></DIV
+><H3
+CLASS="CORPAUTHOR"
+> Перевод: <A
+HREF="mailto:kmic@asp-linux.com"
+TARGET="_top"
+>Михаил Корепанов</A
+>,
+ <A
+HREF="http://www.asplinux.com"
+TARGET="_top"
+>SWSoft Pte Ltd.</A
+>
+ </H3
+></DIV
+><P
+CLASS="PUBDATE"
+>2000-02-06<BR></P
+><DIV
+><DIV
+CLASS="ABSTRACT"
+><A
+NAME="AEN15"
+></A
+><P
+></P
+><P
+>В этой главе рассказывается о BogoMips, информация собрана из различных источников,
+таких как электронная почта и конференции. Так же здесь есть части из
+различных архивов Linux в частности, файлов <A
+HREF="http://www.hobby.nl/~clifton"
+TARGET="_top"
+>HOWTO/mini/BogoMips</A
+>. На сколько
+я знаю, есть переводы на французский, японский, итальянский, немецкий,
+польский, португальский,  <A
+HREF="http://www.linux.org.tw/CLDP"
+TARGET="_top"
+>китайский</A
+>, и <A
+HREF="http://free.netlap.hu/howto/BogoMips.html"
+TARGET="_top"
+>венгерский</A
+> . Пояснительная статья,
+под названием  'the Quintessential Linux Benchmark,' появилась в январском
+выпуске Linux Journal, за 1996. Пояснения по BogoMips можно также найти в
+<A
+HREF="http://www.tuxedo.org/~esr"
+TARGET="_top"
+>The Jargon File</A
+>. Мы были бы благодарны за добавления в mini-Howto для
+неописанных процессоров (CPU). Добавления высылать автору по e-mail.</P
+><P
+></P
+></DIV
+></DIV
+><HR></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Содержание</B
+></DT
+><DT
+>1. <A
+HREF="BogoMips.html#AEN22"
+>Самые низкие и самые высокие рейтинги BogoMips</A
+></DT
+><DD
+><DL
+><DT
+>1.1. <A
+HREF="BogoMips.html#AEN25"
+>Самый низкий рейтинг BogoMips</A
+></DT
+><DT
+>1.2. <A
+HREF="BogoMips.html#AEN36"
+>Самый высокий рейтинг BogoMips для однопроцессорных систем</A
+></DT
+><DT
+>1.3. <A
+HREF="BogoMips.html#AEN50"
+>Самый высокий рейтинг BogoMips для многопроцессорных систем</A
+></DT
+><DT
+>1.4. <A
+HREF="BogoMips.html#AEN61"
+>Самый высокий ретйинг BogoMips для систем, не использующих Linux</A
+></DT
+></DL
+></DD
+><DT
+>2. <A
+HREF="BogoMips.html#AEN74"
+>Наиболее часто задаваемые вопросы по BogoMips</A
+></DT
+><DD
+><DL
+><DT
+>2.1. <A
+HREF="BogoMips.html#AEN77"
+>Что такое BogoMips</A
+></DT
+><DT
+>2.2. <A
+HREF="BogoMips.html#AEN95"
+>Как определить, какой рейтинг BogoMips должен быть</A
+></DT
+><DT
+>2.3. <A
+HREF="BogoMips.html#AEN103"
+>Как определить текущий рейтинг BogoMips</A
+></DT
+><DT
+>2.4. <A
+HREF="BogoMips.html#AEN123"
+>Разница в рейтингах BogoMips</A
+></DT
+><DT
+>2.5. <A
+HREF="BogoMips.html#AEN132"
+>BogoMips ... failed</A
+></DT
+><DT
+>2.6. <A
+HREF="BogoMips.html#AEN143"
+>Похожие процессоры (Cyrix, NexGen, AMD)</A
+></DT
+><DT
+>2.7. <A
+HREF="BogoMips.html#AEN148"
+>Почему надо обращать внимание на рейтинг BogoMips</A
+></DT
+></DL
+></DD
+><DT
+>3. <A
+HREF="BogoMips.html#AEN167"
+>Сравнение рейтингов</A
+></DT
+><DD
+><DL
+><DT
+>3.1. <A
+HREF="BogoMips.html#AEN170"
+>Неправильно настроенные системы 386</A
+></DT
+><DT
+>3.2. <A
+HREF="BogoMips.html#AEN173"
+>Нормальные системы 386: SX, DX, Nexgen</A
+></DT
+><DT
+>3.3. <A
+HREF="BogoMips.html#AEN176"
+>Неправильно настроенные системы 486</A
+></DT
+><DT
+>3.4. <A
+HREF="BogoMips.html#AEN179"
+>Нормальные системы 486</A
+></DT
+><DT
+>3.5. <A
+HREF="BogoMips.html#AEN182"
+>Нормально настроенные системы 486: Cyrix/IBM, UMC</A
+></DT
+><DT
+>3.6. <A
+HREF="BogoMips.html#AEN185"
+>Неправильно настроенные системы Pentium</A
+></DT
+><DT
+>3.7. <A
+HREF="BogoMips.html#AEN188"
+>Нормально настроенные системы Pentium</A
+></DT
+><DT
+>3.8. <A
+HREF="BogoMips.html#AEN191"
+>Нормально настроенные системы Pentium : Intel</A
+></DT
+><DT
+>3.9. <A
+HREF="BogoMips.html#AEN194"
+>Нормально настроенные системы Pentium: Cyrix, AMD</A
+></DT
+><DT
+>3.10. <A
+HREF="BogoMips.html#AEN197"
+>Нормально настроенные системы Alpha</A
+></DT
+><DT
+>3.11. <A
+HREF="BogoMips.html#AEN200"
+>Нормально настроенные системы Motorola</A
+></DT
+><DT
+>3.12. <A
+HREF="BogoMips.html#AEN203"
+>Другие системы: Sparc, PowerPC, Mips, Intel 8088/286 ELKS</A
+></DT
+><DT
+>3.13. <A
+HREF="BogoMips.html#AEN206"
+>Нормально настроенные многопроцессорные системы</A
+></DT
+><DT
+>3.14. <A
+HREF="BogoMips.html#AEN209"
+>Системы, работающие не под Linux (для сравнения)</A
+></DT
+></DL
+></DD
+><DT
+>4. <A
+HREF="BogoMips.html#AEN212"
+>Подпись</A
+></DT
+><DT
+>5. <A
+HREF="BogoMips.html#AEN215"
+>Авторские права</A
+></DT
+></DL
+></DIV
+><P
+>Замечание: в период с февраля по апрель 1999 года я получил очень интересную информацию по BogoMips. К сожалению, из-за проблем с оборудованием, этот архив был утерян. Поэтому, если вы посылали информацию, но ее нет в этом файле, пошлите мне ее еще раз, пожалуйста. 
+Прощу прощение за это недоразумение. </P
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN22"
+>1. Самые низкие и самые высокие рейтинги BogoMips</A
+></H1
+><P
+>Ниже приведены самые высокие и самые низкие рейтинги BogoMips, они сообщаются прямо мне или выкладываются на Usenet. </P
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN25"
+>1.1. Самый низкий рейтинг BogoMips</A
+></H2
+><P
+>&#13;<P
+></P
+><UL
+><LI
+><P
+>Tim Van der Linden, <TT
+CLASS="LITERAL"
+>timvdl@innet.be</TT
+> </P
+></LI
+><LI
+><P
+>Intel 8088, тактовая частота  4.77 MHz, ELKS</P
+></LI
+><LI
+><P
+>0.02 BogoMips </P
+></LI
+></UL
+>&#13;</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN36"
+>1.2. Самый высокий рейтинг BogoMips для однопроцессорных систем</A
+></H2
+><P
+>&#13;<P
+></P
+><UL
+><LI
+><P
+>Jon Berlin <TT
+CLASS="LITERAL"
+>jberlin@worldbank.org</TT
+></P
+></LI
+><LI
+><P
+>Laurent <TT
+CLASS="LITERAL"
+>blackm@pop.multimania.com</TT
+></P
+></LI
+><LI
+><P
+>AMD K6-2 3D тактовая частота  500MHz</P
+></LI
+><LI
+><P
+>999.42 BogoMips</P
+></LI
+></UL
+>&#13;</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN50"
+>1.3. Самый высокий рейтинг BogoMips для многопроцессорных систем</A
+></H2
+><P
+>&#13;<P
+></P
+><UL
+><LI
+><P
+>Richard Langis, <TT
+CLASS="LITERAL"
+>rlangis@primux.geekfest.net</TT
+></P
+></LI
+><LI
+><P
+>8x Pentium III (Xeon) тактовая частота 500 MHz</P
+></LI
+><LI
+><P
+>3996.06 BogoMips</P
+></LI
+></UL
+>&#13;</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN61"
+>1.4. Самый высокий ретйинг BogoMips для систем, не использующих Linux</A
+></H2
+><P
+>&#13;<P
+></P
+><UL
+><LI
+><P
+><TT
+CLASS="LITERAL"
+>omega@sequent.com</TT
+></P
+></LI
+><LI
+><P
+>Sequent NUMA-Q, 32 CPUs P6, тактовая частота 180 MHz</P
+></LI
+><LI
+><P
+>операционная система Dynix </P
+></LI
+><LI
+><P
+>3776.00 BogoMips</P
+></LI
+></UL
+>&#13;</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN74"
+>2. Наиболее часто задаваемые вопросы по BogoMips</A
+></H1
+><P
+>Несколько респондентов способствовали моему изучению BogoMips. В этой главе мне хочется их отблагодарить. </P
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN77"
+>2.1. Что такое BogoMips</A
+></H2
+><P
+>Это цитата из Internet, автор неизвестен, но оттуда вытащили ее Eric S
+Raymond <TT
+CLASS="LITERAL"
+>esr@thyrsus.com</TT
+>, и Geoff Mackenzie <TT
+CLASS="LITERAL"
+>freon@dialstart.net</TT
+>, далее
+следует юмористическое определение BogoMips, ''сколько миллионов раз в
+cекунду, процессор может ничего не делать.''
+&#13;</P
+><P
+>Более серьезное определение, написанное Lars Wirzenius'
+<TT
+CLASS="LITERAL"
+>wirzeniu@kruuna.Helsinki.FI</TT
+> от 9 Сентября 1993, с добавлениями Alessandro
+Rubini, <TT
+CLASS="LITERAL"
+>rubini@norgana.systemy.it</TT
+>, и моими:</P
+><P
+><SPAN
+CLASS="QUOTE"
+>"`MIPS - это аббревиатура, миллионы операций в секунду (Millions of Instructions Per Second). Это измерение скорости выполнения программы. Как и большинство таких мер, ей больше злоупотребляют, чем правильно используют (очень трудно сравнивать MIPS различных типов компьютеров).
+
+BogoMips - это изобретение Linus Torvalds. Ядру требуются (или это драйвер устройства?) временные задержки состоящие, из пустых циклов, которые должны быть отрегулированы по отношению к скорости процессора. Так как 
+ядро вычисляет при загрузке, сколько времени занимает каждый тип цикла. 
+"Bogo" происходит от "bogus" (фальшивый, поддельный). 
+Так как величина BogoMips дает представление о скорости процессора, но 
+она настолько антинаучна, что ее назвали не иначе, как BogoMips.
+
+Причины (а их две), почему это выводится во время загрузки, являются: 
+a) удобство для отладки и  проверки работы кэша и режима турбо, и 
+b) потому что Linus любит посмеиваться над растерянными людьми в новостях. "</SPAN
+></P
+><P
+>BogoMips определяются в <TT
+CLASS="LITERAL"
+>/usr/src/linux/init/main.c</TT
+> (простой алгоритм на
+C), и записывает ее в переменную ядра <TT
+CLASS="LITERAL"
+>loops_per_sec</TT
+>,
+ которая используется
+некоторыми драйверами для более серьезных нужд. Реальная функция задержки
+<TT
+CLASS="LITERAL"
+>udelay()</TT
+> написана на ассемблере, и поэтому каждый порт имеет свое
+собственное определение <TT
+CLASS="LITERAL"
+>/include/asm/delay.h</TT
+>. Переменные  <TT
+CLASS="LITERAL"
+>loops_per_sec</TT
+> и
+функция <TT
+CLASS="LITERAL"
+>udelay()</TT
+> используются многими драйверами:</P
+><PRE
+CLASS="SCREEN"
+>cd /usr/src/linux	# или где еще у вас там лежат исходники
+find . -name '*.[hcS]' -exec fgrep loops_per_sec {} /dev/null \; 
+find . -name '*.[hcS]' -exec fgrep udelay {} /dev/null \;</PRE
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN95"
+>2.2. Как определить, какой рейтинг BogoMips должен быть</A
+></H2
+><P
+>По инициативе Ian Jackson, <TT
+CLASS="LITERAL"
+>ijackson@nyx.cs.du.edu</TT
+>, и Przemek Klosowski,
+дополненной и расширенной мной.</P
+><P
+>Как весьма приближенный ориентир, BogoMips могут быть рассчитаны так: </P
+><PRE
+CLASS="SCREEN"
+>Система                     BogoMips           Сравнение
+ 
+Intel 8088                  clock * 0.004         0.02 
+Intel/AMD 386SX             clock * 0.14          0.8 
+Intel/AMD 386DX             clock * 0.18          1 (по определению) 
+Motorola 68030              clock * 0.25          1.4 
+Cyrix/IBM 486               clock * 0.34          1.8 
+Intel Pentium               clock * 0.40          2.2 
+Intel 486                   clock * 0.50          2.8
+AMD 5x86                    clock * 0.50          2.8 
+Mips R4000/R4400            clock * 0.50          2.8
+Nexgen Nx586                clock * 0.75          4.2 
+PowerPC 601                 clock * 0.84          4.7
+
+Alpha 21064/21064A          clock * 0.99          5.5
+Alpha 21066/21066A          clock * 0.99          5.5 
+Alpha 21164/21164A          clock * 0.99          5.5 
+Intel Pentium Pro           clock * 0.99          5.5 
+Cyrix 5x86/6x86             clock * 1.00          5.6 
+Intel Pentium II/III        clock * 1.00          5.6
+Intel Celeron               clock * 1.00          5.6
+AMD K7/Athlon               clock * 1.00          5.6
+Mips R4600                  clock * 1.00          5.6 
+
+Alpha 21264                 clock * 1.99         11.1
+AMD K5/K6/K6-2/K6-III       clock * 2.00         11.1
+UltraSparc II               clock * 2.00         11.1
+Pentium MMX                 clock * 2.00         11.1 
+PowerPC 604/604e/750        clock * 2.00         11.1
+Motorola 68060              clock * 2.01         11.2 
+
+Motorola 68040              недостаточно информации
+
+IBM S390                    недостаточно информации</PRE
+><P
+>Примечание: данный способ вычисления BogoMips  не является актуальным для параллельных систем, таких как Intel Pentium и Alpha 21164.</P
+><P
+>Примечание: способ вычисления BogoMips для процессоров, несовместимых с Intel, похож, но не такой же. </P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN103"
+>2.3. Как определить текущий рейтинг BogoMips</A
+></H2
+><P
+>Существует три метода для определения BogoMips: </P
+><P
+>&#13;<P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>Посмотрите в <TT
+CLASS="LITERAL"
+>/proc/cpuinfo</TT
+>, напр., при помощи <TT
+CLASS="LITERAL"
+>`cat /proc/cpuinfo`</TT
+>. Этот метод предпочтительнее других. </P
+></LI
+><LI
+><P
+>Просмотрите то, что было написано во время загрузки в файле syslog   (если потребуется, загляните в файлы dmesg или syslogk). В этих файлах указана точная информация. </P
+></LI
+><LI
+><P
+>При помощи программы  bogomips. Это рекомендуется для не-Linux систем, по причинам описанным ниже. </P
+></LI
+></OL
+>&#13;</P
+><P
+>Программу BogoMips можно использовать для систем не-Linux, таких как Cray и
+т.д. Выдержка из файла readme, написанного Jeff Tranter,
+<TT
+CLASS="LITERAL"
+>jeff_tranter@mitel.com</TT
+>:</P
+><P
+><SPAN
+CLASS="QUOTE"
+>"Устав перезагружать свою систему, вы можете посмотреть, сколько BogoMIPS 
+она сегодня выдает [...] "Bogomips" - это отдельная программа, 
+которая показывает быстродействие вышей системы, используя самый 
+известный алгоритм. Программа использует тот же код, что и ядро Linux при 
+загрузке, но работает как, пользовательская программа. [...] Версия 1.3 BogoMIPs может быть установлена и запущена на любой системе, которая поддерживает компилятор и библиотеку ANSI C."</SPAN
+></P
+><P
+>Примечание: из-за загрузки системы Linux значение, вычисляемое этой программой, 
+может быть ниже, чем на самом деле. На самом деле, любая пользовательская программа 
+не может дать более точную информацию, чем BogoMips, вычисленное при 
+загрузке системы. Поэтому ниже приводятся только значения вычисленные, при загрузке. </P
+><P
+>Удостоверьтесь, что файл
+<TT
+CLASS="LITERAL"
+>sunsite.unc.edu:/pub/Linux/system/status/bogo-1.2.tar.gz/</TT
+> содержит
+последнюю версию 1.3 (на текущий момент). Но благодаря своей высокой
+совместимости, она должна откомпилироваться почти на любой системе с
+компилятором C.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN123"
+>2.4. Разница в рейтингах BogoMips</A
+></H2
+><P
+>Linus Torvalds, <TT
+CLASS="LITERAL"
+>torvalds@cc.helsinki.fi</TT
+> объясняет, 
+почему бывают различия в рейтингах  BogoMips, в c.o.l.development, от 28 апреля 1994:</P
+><P
+><SPAN
+CLASS="QUOTE"
+>"BogoMips дает числовой результат, и вы хотите чтобы, он был одинаковым все время. 
+Но обычно вы будете получать разные числа, если скорость работы близка к предельной."</SPAN
+></P
+><P
+>Также, если вы не скомпилировали ядро специально для своего процессора, то 
+может получиться несовпадение рейтинга  BogoMips. 
+Эта проблема присуща  различным  x86 процессорам (Intel и его клоны). 
+Но, к счастью, она решается просто: откомпилируйте ядро специально для своего процессора.</P
+><P
+>Примечание:  на алгоритм BogoMips, вопреки распространенному мнению, версия ядра <I
+CLASS="EMPHASIS"
+>НЕ</I
+> влияет .   </P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN132"
+>2.5. BogoMips ... failed</A
+></H2
+><P
+>Эта глава родилась из огромного числа вопросов появившихся в новостях и
+полученных мною по почте, напр.,  Lily, <TT
+CLASS="LITERAL"
+>lbliao@alumni.caltech.edu</TT
+>, и Pierre
+Frenkiel, <TT
+CLASS="LITERAL"
+>frenkiel@cdfap2.in2p3.fr</TT
+>. в марте 1995 они спрашивали:</P
+><P
+><SPAN
+CLASS="QUOTE"
+>"Когда я загружаю Linux, то я получаю следующее сообщение: 
+      Calibrating delay loop.. ok - 23.96 BogoMips
+      failed.
+Где/почему возникает ошибка в цикле настройки задержки?' "</SPAN
+></P
+><P
+>Ошибки не было. Если бы она произошла, то вы бы получили сообщение 
+<SPAN
+CLASS="QUOTE"
+>"Calibrating delay loop.. failed"</SPAN
+></P
+><P
+>Скорее всего, это случилось из-за драйвера какого-нибудь устройства, если у вас не
+подключено это устройство. Сразу после подсчета рейтинга BogoMips 
+инициализируются все драйверы. Первыми идут устройства SCSI, затем сетевые устройства, 
+и т.д. О любой неисправности сразу сообщается. Из-за частых отказов, достопримечательностью является драйвер AHA152x. Другими причинами, по которым произошел сбой драйверов (а не подсчета рейтинга BogoMips), являются - сбои системы, большие задержки, зависание системы, произошедшие близко по времени (немного до или сразу после) к выводу "ok - xx.xx BogoMips".</P
+><P
+>Так как в версии Linux 1.2 многие сообщения об ошибках доработаны, 
+то установите эту версию или выше для того, чтобы узнать, какой именно драйвер 
+является причиной неудач. А так же откомпилируйте машину, чтобы она содержала только нужные драйвера. </P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN143"
+>2.6. Похожие процессоры (Cyrix, NexGen, AMD)</A
+></H2
+><P
+>Процессорам, типа Cyrix 486 необходима специальная программа, 
+включающая кэш (эту программу иногда называют - BogoBoost). Рейтинг BogoMips у  Cyrix 5x86 и 6x86 CPU резко увеличивается, если в BIOS включить опцию branch-prediction. Заметьте, что увеличение скорости работы имеет свой предел. Есть несколько пакетов для настройки процессоров Cyrix: bogoboost, cx5x86mod, set6x86. Их архивы можно найти на известных сайтах. Еще говорят, что Cyrix 6x86 показывает лучшие результаты с ядром, собранным для 486, а не для Pentium.</P
+><P
+>Информация о машине на основе процессора NexGen 386-enhanced (Nx586), приведена в одном разделе с 386. Несмотря на то, что они работают как Pentium, по рейтингу BogoMips они относятся именно к 386</P
+><P
+>AMD 5x86, так же называемые AMD 486DX5 - это учетверенные машины 486/33, 
+поэтому они находятся в одном разделе с другими 486 CPU. Процессоры AMD K5 и K6 являются Pentium-совместимыми CPU. </P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN148"
+>2.7. Почему надо обращать внимание на рейтинг BogoMips</A
+></H2
+><P
+>Разрешите объяснить мне две причины, по которым надо уделять внимание рейтингу BogoMips,
+ получившемуся при загрузке Linux: </P
+><P
+>&#13;<P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>Для того чтобы увидеть, на сколько отклоняется рейтинг от присущего машине по типу процессора, частоте и кэшу. С точки зрения рейтинга, самыми уязвимыми местами у систем являются: 
+
+<P
+></P
+><UL
+><LI
+><P
+>настройки кэша основной памяти (отложенная запись отрицательно влияет на рейтинг BogoMips, часто он бывает ниже 5;  лучше использовать прямую запись) </P
+></LI
+><LI
+><P
+>кнопка turbo (должна быть включена) </P
+></LI
+><LI
+><P
+>программно эмулированный BIOS псевдо-кэш (включите настоящий кэш) </P
+></LI
+><LI
+><P
+>и другие подобные настройки кэша и рабочих частот, также иногда относящиеся к BIOS </P
+></LI
+></UL
+>
+&#13;</P
+></LI
+><LI
+><P
+>Вы хотите узнать, быстрее ли ваша система по сравнению с моей? Конечно, это абсолютно 
+некорректно, ненадежно и ненужно, но это общая "болезнь" всех программ тестирования 
+производительности. Поэтому, почему бы и нет? Эта глупость никогда никого не останавливала? :-) </P
+></LI
+></OL
+>&#13;</P
+><P
+>Замечание: более серьезно эта тема затронута в Linux Benchmarking Howto, написанном Andru D. Balsa. </P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN167"
+>3. Сравнение рейтингов</A
+></H1
+><P
+>Эти таблицы дают представление о рейтингах BogoMips для различных систем (более 1000, 
+тестов произведенных  более чем 800 человеками, примерно из 50 различных стран). 
+Все это рейтинги систем под Linux, разумеется, кроме таблицы для не Linux систем. </P
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN170"
+>3.1. Неправильно настроенные системы 386</A
+></H2
+><PRE
+CLASS="SCREEN"
+>   Система                BogoMips  Кто проверял
+
+   386DX/16 387 nocache   0.57   H. Peter Anvin &#60;hpa@nwu.edu&#62; 
+   386DX/25               0.82   P Wright &#60;philip.wright@purplet.demon.co.uk&#62; 
+   386DX/25 nocache       1.03   Mark A. Horton &#60;mahmha@crl.com&#62; 
+   386SX/16               1.5    Stefan Kromer &#60;sk@galaxy.sunflower.sub.org&#62; 
+   386SX/16               1.6    Bill Davidsen &#60;davidsen@tmr.com&#62;
+   386SX/20               1.87   Paul C. Dulany &#60;pcdulany@wam.umd.edu&#62;
+   386SX/20               2.45   Roger Harkess &#60;roger@visi.com&#62;
+   386DX/25(?) 128c       6.03   Chuck Meo &#60;meo@solbourne.com&#62; 
+   386DX/20              13      Ed Runnion &#60;erunnio@hubcap.clemson.edu&#62;</PRE
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN173"
+>3.2. Нормальные системы 386: SX, DX, Nexgen</A
+></H2
+><PRE
+CLASS="SCREEN"
+>   Система                BogoMips  Кто проверял
+
+   386SX/8 undercl        1.04   Andrew Costa &#60;c_chaos@wahnapitae.on.ca&#62;
+   386SX/12               1.78   Klaus Kettner &#60;kk@sesom.de&#62;
+   386SX/16               1.99   James Vahn &#60;jvahn@short.circuit.com&#62;
+   386SX/16 Packard Bell  2.05   &#60;root@Belvedere\%hip-hop.suvl.ca.us&#62;  
+   386SX/16               2.09   David E. Fox &#60;dfox@belvedere.sbay.org&#62;
+   386SX/16               2.15   W Stevens &#60;wgsteven@math.uwaterloo.co&#62; 
+   386SX/16               2.2    Lech Marcinkowski &#60;puolalm@tekla.fi&#62; 
+   386SX/16               2.23   Andrew Bulhak &#60;acb@yoyo.cc.monash.edu.au&#62; 
+   386SX/16               2.23   Steven M. Gallo &#60;smgallo@cs.buffalo.edu&#62; 
+   386SX/16               2.34   Kevin Burtch &#60;kburtch@pts.mot.com&#62;
+   386SX/16 turbo         2.38   Andrew Haylett &#60;ajh@gec-mrc.co.uk&#62; 
+   386SX/16 0c            2.43   Adam Clarke &#60;adamc@loose.apana.org.au&#62; 
+   386SX/16               2.49   Waymon &#60;waymon@pacifier.com&#62;
+   386SX/20               2.7    Alex Strasheim &#60;astrashe@nyx.cs.du.edu&#62; 
+   386SX/20               2.70   J.L. Brothers &#60;brothers@halcyon.com&#62;
+   386SX/20               2.89   Anders Stenback &#60;stenback@hehe.com&#62;
+   386SXL/25 AMD          2.9    Vaughan R. Pratt &#60;pratt@sunburn.stanford.edu&#62; 
+   386SX/25 AMD 0c        3.06   K.J. MacDonald &#60;kenny@festival.ed.ac.uk&#62; 
+   386SX/25 AMD           3.38   Hamish Coleman &#60;hamish@zot.apana.org.au&#62; 
+   386SX/25 0c            3.52   Rogier Wolff &#60;r.e.wolff@et.tudelft.nl&#62;
+   386SL/25 Intel         3.57   S Harris &#60;harris@teaching.physics.ox.ac.uk&#62; 
+   386SX/25 AMD           3.62   S Harris &#60;harris@teaching.physics.ox.ac.uk&#62; 
+   386SXL/25 AMD 0c       3.71   David E.A. Wilson &#60;david@cs.uow.edu.au&#62;
+   386SX/25 Intel         3.92   Yves Bellefeuille &#60;yan@storm.ca&#62;
+   386SX/33 Intel         4.06   Kenneth J. Hoover &#60;ken@psuedvax.psu.edu&#62; 
+   386SX/33               4.71   Alexander Komlik &#60;apkom@l.ukrcom.kherson.ua&#62; 
+   386SX/40 Intel 0c      6.03   Michael Kenyon &#60;u3g12@keele.ac.uk&#62;
+   
+   386DX/16               2.49   Mike &#60;mike@emgee.demon.co.uk&#62;
+   386DX/20 Intel         3.0    Malcolm Reeves &#60;reeves@rocky1.usask.ca&#62; 
+   386DX/20 Intel         3.08   Si. Harris &#60;harris@teaching.physics.ox.ac.uk&#62; 
+   386DX/20 Nec Powermate 3.22   David J Dawkins &#60;davidd@isl.co.uk&#62; 
+   386DX/20 Micronics     3.25   M Haardt &#60;u31b3hs@informatik.rwth-aachen.de&#62;
+   386DX/20               3.67   Joost Helberg &#60;jhelberg@nlsun8.oracle.nl&#62; 
+   386DX/25               3.91   Ian McCloghrie &#60;imcclogh@cs.ucsd.edu&#62; 
+   386DX/25               3.95   Grant Edwards &#60;grante@aquarius.rosemount.com&#62; 
+   386DX/25 0cache        3.96   J.O. Williams &#60;jow@techbase.com&#62;
+   386DX/25 32cache       4.53   J.M.A. Lahtinen &#60;jmalahti@klaava.Helsinki.FI&#62; 
+   386DX/33               5.86   Tim Lacy &#60;timla@microsoft.com&#62; 
+   386DX/33 64cache       5.99   Lars Wirzenius &#60;wirzeniu@kruuna.Helsinki.FI&#62; 
+   386DX/33 Intel         5.99   Harri Pasanen &#60;hpasanen@cs.hut.fi&#62; 
+   386DX/33 no387         6.03   Joel B.Levin &#60;levin@bbn.com&#62; 
+   386DX/33 387           6.03   Peter Bechtold &#60;peter@fns.greenie.muc.de&#62; 
+   386DX/40               6.21   J.L. Brothers &#60;brothers@halcyon.com&#62;
+   386DX/33               6.46   Dennis Robinson &#60;djrobins@uxa.cso.uiuc.edu&#62;
+   386DX/33               6.5    Dean Nelson &#60;deannelson@aol.com&#62;
+   386DX/33 387 256cache  6.65   Wim van Dorst &#60;baron@clifton.hobby.nl&#62; 
+   386DX/33               6.65   Rick Lim &#60;ricklim@opus.freenet.vancouver.bc.ca&#62;
+   386DX/33               6.7    Craig Hagan &#60;hagan@cih.com&#62;
+   386DX/40               6.99   Ken Wilcox &#60;wilcox@math.psu.edu&#62; 
+   386DX/40 AMD           7.76   Joe Phillips &#60;rchandra@letter.com&#62;
+   386DX/40 AMD           7.10   Kerry Person &#60;kperson@plains.NoDak.edu&#62; 
+   386DX/40               7.10   D. Bikram Singh &#60;a336dhal@cdf.toronto.edu&#62; 
+   386DX/40 128cache      7.23   Julian Francis Day &#60;jfd0@aber.ac.uk&#62; 
+   386DX/40 bogoboosted   7.23   Pat St Jean &#60;stjean@math.enmu.edu&#62; 
+   386DX/40 AMD 128cache  7.23   R.Bergs &#60;rabe@akela.informatik.rwth-aachen.de&#62; 
+   386DX/40 slow DRAM     7.26   John Lockwood &#60;lockwood@pan.vlsi.uiuc.edu&#62;
+   386DX/40 128c          7.29   Karsten Friese &#60;ftdkafr@ftd.ericsson.se&#62;
+   386DX/40               7.29   E.C. Garrison &#60;ericg@nickel.ucs.indiana.edu&#62; 
+   386DX/40               7.29   Darin Cowan &#60;cowan@rubicon.org&#62; 
+   386DX/40               7.29   Bonne van Dijk &#60;bonne@cs.utwente.nl&#62; 
+   386DX/40 AMD           7.76   Todd Lindner &#60;tlindner@panix.com&#62;
+   386DX/40               7.76   Bear Giles &#60;bear@indra.com&#62;
+   386DX/40 AMD 387 64c   7.91   &#60;wires@gnu.ai.mit.edu&#62; 
+   386DX/40               7.98   Frank Pilhofer &#60;fp@informatik.uni-frankfurt.de&#62;
+   386DX/40 64c           7.98   Dean Junk &#60;dpjunk@mm.com&#62;
+   386DX/40 AMD 32c       7.98   Tommy Olsen &#60;tommyo@ifi.uio.no&#62; 
+   386DX/40 AMD           7.98   James Reith &#60;reith@racores.com&#62;
+   386DX/40               7.98   Aaron T. Baldie &#60;atb@u.washington.edu&#62;
+   386DX/40 128c          7.98   John Pate &#60;jpate@easynet.co.uk&#62;
+   386DX/40               7.98   Christian Nelson &#60;cnelson@csugrad.cs.vt.edu&#62; 
+   386DX/40               7.98   Alan Peckham &#60;peckham@drei.enet.dec.com&#62;
+   386DX/40               8.06   Michael Guslick &#60;michaelg@alpha2.csd.uwm.edu&#62;
+   386DX/40               8.06   Richard Brown &#60;brown@midget.towson.edu&#62;
+   386DX/40               8.06   Bill G. Bohling &#60;bs146@tali.uchsc.edu&#62;
+
+   Nx586/90 NexGen       67.44   &#60;root@wgw.mnsinc.com&#62;
+   Nx586/90 NexGen       67.44   Robert Gehring &#60;rag@cs.tu-berlin.de&#62;
+   Nx586/90 NexGen       67.48   David G. Eckard &#60;dgeckard@eos.ncsu.edu&#62;
+   Nx586/100 NexGen      74.34   Cameron L. Spitzer &#60;cls@truffala.sj.ca.us&#62;
+   Nx586/100 NexGen 256c 74.56   Marius Groenendijk &#60;marius@cray-systems.lu&#62;
+   Nx586/110 NexGen 256c 81.51   Michael J. Micek &#60;mmicek@muddcs.cs.hmc.edu&#62;
+   Nx586/110 NexGen      81.51   Ron Marsh &#60;rmarsh@plains.nodak.edu&#62;</PRE
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN176"
+>3.3. Неправильно настроенные системы 486</A
+></H2
+><PRE
+CLASS="SCREEN"
+>   Система                BogoMips  Кто проверял
+
+   486DX/33 0c            1.45   Mark Gray &#60;vatavian@gvu1.gatech.edu&#62; 
+   486SL/25 0c            1.95   Paraskevas Evripidou &#60;skevos@seas.smu.edu&#62;
+   486DLC/40 0c           2.45   S.Schendel &#60;sschend@magnus.acs.ohio-state.edu&#62; 
+   486DX/33 128c          2.94   P.J. Nefkens &#60;p.nefkens@student.utwente.nl&#62;
+   486DX4/120 AMD         3.04   Andrew Steinbach &#60;stei0113@maroon.tc.umn.edu&#62;
+   486DX5/133 AMD         3.05   Eric Hagen &#60;ehagen@hawaii.edu&#62;
+   486DX4/100 Cyrix       3.06   Stuart Harvey &#60;sharvey@primenet.com&#62;
+   486DX5/133 AMD         3.06   Charles Galpin &#60;chg@severn.wash.inmet.com&#62;
+   486DX4/100             3.06   Bear Giles &#60;bear@indra.com&#62;
+   486DX2/80              3.08   Gerald E. Butler &#60;gbutler@phoenix.kent.edu&#62;
+   486DX4/120 AMD         3.08   Charles Hines &#60;chuck_hines@vnet.ibm.com&#62;
+   486DX4/66 256c         3.10   Riccardo Capella &#60;mc8508@mclink.it&#62;
+   486DX4/100 wb-cache    3.10   Paul Close &#60;pdc@sgi.com&#62;
+   486DX4/120             3.13   Brian Perkins &#60;bperkins@netspace.com&#62;
+   486DX4/120 AMD         3.15   &#60;eruston@net2.intserv.com&#62;
+   486DX4/100             3.17   Thomas Sudbrak &#60;sudbrak@borneo.gmd.de&#62;
+   486SLC2/50 Cyrix       3.30   Colin J. Wynne &#60;cwynne@sage.wlu.edu&#62;
+   486DX/33               3.61   Marten van de Laan &#60;marten@cs.rug.nl&#62; 
+   486DX/33 noturbo       3.61   Dimitris Evmorfopoulos &#60;devmorfo@mtu.edu&#62; 
+   486DX4/120             3.74   Brian Wheeler &#60;bdwheele@indiana.edu&#62;
+   486DX4/120 AMD         3.74   Frank Pilhofer &#60;fp@informatik.uni-frankfurt.de&#62;
+   486DX4/100 Cyrix 256c  4      Joel Kelso &#60;joel@cs.murdoch.edu.au&#62;
+   486DX/33 256c noturbo  4.25   Wouter Liefting &#60;wlieftin@cs.vu.nl&#62; 
+   486DX/33               4.66   Mark Gray &#60;vatavian@gvu1.gatech.edu&#62; 
+   486Rx2 Cyrix 25/50     4.85   &#60;cosc19v2@menudo.uh.edu&#62;  
+   486SX/33 noturbo       5.21   Scott D. Heavner &#60;sdh@fishmonger.uucp&#62; 
+   486DX2/66 overdrive    5.37   Jeremy Orr &#60;jeremy@careercenter.sfsu.edu&#62;
+   486DX/33               5.66   Ryan Tucker &#60;rtucker@ttgcitn.com&#62;
+   486DX2/66              5.88   P.J. Nefkens &#60;p.nefkens@student.utwente.nl&#62;
+   486DX4/100             5.94   Howard Goldstein &#60;hg@n2wx.ampr.org&#62;
+   486DX4/100 AMD         5.94   Mr Pink &#60;vince@dallas.demon.co.uk&#62;
+   486DX4/100 notebook    6.55   Thomas &#60;tom@dirac.physik.uni-konstanz.de&#62;
+   486DX4/100 notebook    6.55   Hugh McCurdy &#60;hmccurdy@ix.netcom.com&#62;
+   486SLC Cyrix           7      Pieter Verhaeghe &#60;pive@uia.ac.be&#62; 
+   486SX/33               7.84   Paul Hedderly &#60;prh6@unix.york.ac.uk&#62;
+   486DLC/40              7.98   Wil Cromer &#60;nwc2@Ra.MsState.Edu&#62;
+   486DX/33 256c          8.27   Rohan Tronson &#60;rohan@kihi.com.au&#62;
+   486DX4/100            11.11   NN &#60;usenet@uxmail.ust.hk&#62;
+   486DX4/100            11.3    Earl Gooch &#60;egooch@mc.com&#62; 
+   486/66 Cyrix          13.02   Mike Baptiste &#60;baptiste@bnr.ca&#62;
+   486SLC2/25            14.6    Vaughan R. Pratt &#60;pratt@Sunburn.Stanford.EDU&#62; 
+   486DX2/66 laptop      14.46   Robert Knop &#60;rknop@netcom.com&#62;
+   486SLC2/66            18.94   &#60;root@avalon.net&#62;
+   486DX/33 turbo        19.98   C Vetter &#60;cbvetter@informatik.th-darmstadt.de&#62; 
+   486DX4/75             21.5    Theo Scott &#60;rkwtgs@pukrs3.puk.ac.za&#62;
+   486DX4/75             24.13   Sherman Hsieh &#60;shieh@csua.berkeley.edu&#62;
+   486DX2/58             26.3    Vassili Leonov &#60;leonov@iedv7.acd.com&#62;
+   486DX4/100 overclock  28.67   Theo Scott &#60;rkwtgs@pukrs3.puk.ac.za&#62;
+   486DX2/80             36      Mark Lee &#60;mlee@heartlab.rri.uwo.ca&#62;
+   486DX2/80             50.08   Mark Lee &#60;mlee@heartlab.rri.uwo.ca&#62;
+   486DX4/100            60      Sebastien Dedieu &#60;dedieu@emi.u-bordeaux.fr&#62;
+   486DX2/100 overclock  60.45   Tony D Shan &#60;tdsst9+@pitt.edu&#62;
+   486DX5/133 AMD        75.40   Jeff Hyche &#60;jwhyche@scott.net&#62;
+   486DX5/133 AMD        80.08   NN &#60;guesta@slip-29-7.ots.utexas.edu&#62;
+   486DX5/133 AMD        87      John Wiggins &#60;jwiggins@comp.uark.edu&#62;</PRE
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN179"
+>3.4. Нормальные системы 486</A
+></H2
+><PRE
+CLASS="SCREEN"
+>   Система                BogoMips  Кто проверял
+
+   486SX/20 DECpc         9.98   Thomas Pfau &#60;pfau@cnj.digex.com&#62; 
+   486SX/25              12.24   M. Buchenrieder &#60;mibu@scrum.greenie.muc.de&#62;  
+   486SX/25              12.3    Darren McKay &#60;e9bh@unb.ca&#62;
+   486SX/25              12.42   Mark R. Lindsey &#60;mlindsey@nyx.cs.du.edu&#62; 
+   486SX/25              12.42   Samuel Thibault &#60;samuel.thibault@fnac.net&#62;
+   486DX/25              12.5    Phillip Hardy &#60;phillip@mserve.kiwi.gen.nz&#62; 
+   486SX/25              12.52   Emmanual Emore &#60;emor7672@elan.rowan.edu&#62;
+   486DX/33 256c         16.33   Eric Kemminan &#60;ekemmina@pms709.ms.ford.com&#62; 
+   486DX/33              16.35   Christopher L. Morrow &#60;cm43@andrew.cmu.edu&#62; 
+   486DX/33              16.43   Rob Janssen &#60;pe1chl@amsat.org&#62;
+   486DX/33 64cache      16.44   H. Peter Anvin &#60;hpa@nwu.edu&#62; 
+   486DX/33 256c DIY     16.44   Wouter Liefting &#60;wlieftin@cs.vu.nl&#62; 
+   486DX/33 Intel 128c   16.44   Rafal Kustra &#60;g1krakow@cdf.toronto.edu&#62; 
+   486DX/33              16.5    Alex Freed &#60;freed@europa.orion.adobe.com&#62; 
+   486DX/33              16.6    Vaughan R. Pratt &#60;pratt@Sunburn.Stanford.EDU&#62; 
+   486DX/33 noturbo      16.61   C Vetter &#60;cbvetter@informatik.th-darmstadt.de&#62; 
+   486DX/33              16.61   Jeffrey L. Newbern &#60;jnewbern@athena.mit.edu&#62; 
+   486DX/33              16.61   Giuseppe De Marco &#60;gdemarco@freenet.hut.fi&#62;
+   486DX/33              16.61   M Heuler &#60;heuler@informatik.uni-wuerzburg.de&#62; 
+   486DX/33              16.61   Frank Lofaro &#60;ftlofaro@unlv.edu&#62; 
+   486SX/33              16.64   Jacob Papenfuss &#60;webmaster@the-corridor.com&#62;
+   486SX/33              16.64   Samuel Thibault &#60;samuel.thibault@fnac.net&#62;
+   486DX/33              16.77   Donald Lewis &#60;dlewis@jackson.freenet.org&#62;
+   486DX/33              16.77   Stephan Boettcher &#60;staphan@alzt.tau.ac.il&#62;
+   486DX/33 256c         16.77   David Manchester &#60;mustang@tartarus.uwa.edu.au&#62;
+   486DX/40              19.8    Jose Calhariz &#60;cal@minerva.inesc.pt&#62; 
+   486DX/40              19.91   M Heuler &#60;heuler@informatik.uni-wuerzburg.de&#62; 
+   486DX/40              19.96   David A. Ranch &#60;dranch@ecst.csuchico.edu&#62;
+   486DX/40 AMD          19.97   M Haardt &#60;u31b3hs@informatik.RWTH-Aachen.DE&#62;
+   486DX/40 Intel        19.97   Paul van Spronsen &#60;vspr@teppic.sun.ac.za&#62; 
+   486DX/40              19.97   Ulf Tietz &#60;ulf@rio70.bln.sni.de&#62; 
+   486DX/40              19.97   &#60;Eberhard_Moenkeberg@p27.rollo.central.de&#62; 
+   486DX/40              19.97   Zoltan Lajber &#60;lajbi@lajli.gau.hu&#62;
+   486DX/40              19.97   Wim van Dorst &#60;baron@wiesje.hobby.nl&#62;
+   486DX/40 AMD          20      Chuck Munro &#60;chuckm@canada.hp.com&#62;
+   486DX/40 AMD          20.09   Pieter Eendebak &#60;peendebak@bbsw.idn.nl&#62;
+   486DX/50              24.48   Arnd Gehrmann &#60;arnd@rea&#62; 
+   486DX/50 AMD          24.85   Klaas Hemstra &#60;hst@mh.nl&#62; 
+   486DX/50 DTK          24.85   Randolph Christophers &#60;randyc@lna.oz.au&#62; 
+   486DX/50              24.85   Kevin Lentin &#60;kevinl@bruce.cs.monash.edu.au&#62; 
+   486DX2/50             24.85   Jason Matthew &#60;jmatthew@kn.pacbell.com&#62; 
+   486DX2/50             24.85   Gregory P. Smith &#60;smithgr@cs.colorado.edu&#62;
+   486DX/50 VLB          24.97   Tom Miller &#60;tvtom@en.com&#62;
+   486DX/50              24.99   Jeff &#60;css@erols.com&#62;
+   486DX/50 Intel 256c   24.99   Mike &#60;mike@emgee.demon.co.uk&#62;
+   486DX/50              25      Robert Herzog &#60;rherzog@rc1.vub.ac.be&#62; 
+   486DX2/50             25      M. Abrahamsson &#60;swmike@uplift.df.lth.se&#62;
+   486DX2/50             25.0    Christian Holtje &#60;choltje@ux1.cso.uiuc.edu&#62; 
+   486DX2/50 DECpc       25.04   Thomas Pfau &#60;pfau@cnj.digex.com&#62; 
+   486DX2/50 Eisa        25.04   John Willing &#60;willing@cimage.com&#62;
+   486DX2/50 256c        25.04   Zhou Yanmo &#60;zhou@gauss.math.usf.edu&#62;
+   486DX/50              25.04   Michael Kress &#60;kress@hal.saar.de&#62;
+   486DX2/50             25.04   Mats Wikholm &#60;mwikholm@news.abo.fi&#62;
+   486DX2/50             25.04   Jean C Delepine &#60;delepine@linux.u-picardia.fr&#62;
+   486DX/50              25.04   Jean C Delepine &#60;delepine@linux.u-picardia.fr&#62;
+   486DX/50              25.04   Kevin Burtch &#60;kburtch@pts.mot.com&#62;
+   486DX/50 notebook     25.04   Pierre Frenkiel &#60;frenkiel@cdfap1.in2p3.fr&#62;
+   486DX/50              25.10   M Heuler &#60;heuler@informatik.uni-wuerzburg.edu&#62; 
+   486DX2/50             25.4    Brian Kennedy &#60;bkenned@hubcap.clemson.edu&#62;
+   486DX2/66             32      Lee Sau Dan &#60;h9210876@khuxa.hku.hk&#62;
+   486DX2/66             32.87   Samuel Thibault &#60;samuel.thibault@fnac.net&#62;
+   486DX2/66             32.9    Frederick &#60;niles@axp745.gsfc.nasa.gov&#62;
+   486DX2/66             33      Alec Muffett &#60;alecm@uk-usenet.uk.sun.com&#62; 
+   486DX2/66             33      NN &#60;coolefa@pmifeg.com&#62;
+   486DX2/66             33      Steve Tinney &#60;sjt@enlil.museum.upenn.edu&#62; 
+   486DX2/66 Intel       33      Chuck Munro &#60;chuckm@canada.hp.com&#62;
+   486DX2/66 VLB         33.0    Sebastien Dedieu &#60;dedieu@emi.u-bordeaux.fr&#62;
+   486DX2/66 AMD         33.05   G. Skinner &#60;gskinner@gwsunix1.crystalball.com&#62;
+   486DX2/66 VLB         33.18   Pablo Iranzo Gomez &#60;iranzop@gong.ci.uv.es&#62;
+   486DX2/66 VLB         33.18   Dag Wieers &#60;dag@digibel.be&#62;
+   486DX2/66             33.20   Arnd Gehrmann &#60;arnd@rea.com&#62; 
+   486DX2/66 Intel/PCI   33.22   C. Menke &#60;carsten.menke@post.uni-bielefeld.de&#62;
+   486DX2/66             33.22   Brian Ricker &#60;gt2327c@prism.gatech.edu&#62; 
+   486DX2/66             33.22   Don Bennett &#60; &#60;don@engr.mun.ca&#62;
+   486DX2/66             33.22   Robert Heller &#60;heller@cs.umass.edu&#62;
+   486DX2/66             33.22   Warwick Ward-Cox &#60;wwar@lostlink.alt.za&#62;
+   486DX2/66             33.22   Chien-An Chen &#60;giant@nwu.edu&#62;
+   486DX2/66 Eisa/VL     33.22   Serge &#60;sviznyuk@magnus.acs.ohio-state.edu&#62;
+   486DX2/66 AMD         33.22   Wayne Robinson &#60;wayner@renoir.cftnet.com&#62;
+   486DX2/66 Intel       33.22   Jim Barber &#60;yeul@marsh.cs.martin.edu.au&#62;
+   486DX2/66             33.22   Tom Lowery &#60;tlowery@mcs.kent.edu&#62;
+   486DX2/66             33.27   S Viznyuk &#60;sviznyuk@magnus.acs.ohio-state.edu&#62;
+   486SX2/66             33.28   Jacob Papenfuss &#60;root@the-corridor.com&#62;
+   486DX2/66             33.3    Devon Tuck &#60;devon@netcom.com&#62; 
+   486DX2/66 256cache    33.4    H. Peter Anvin &#60;hpa@nwu.edu&#62; 
+   486DX2/66             33.5    Jongyoon Lee &#60;mr2@netcom.com&#62; 
+   486DX2/66             33.5    Petrovsky Alexey &#60;gong@cs.msu.su&#62;
+   486DX2/66             33.5    Sung Lee &#60;slee2@umbc.edu&#62;
+   486DX2/66             33.55   Gene McCulley &#60;mcculley@greatwall.cctt.com&#62;
+   486DX2/66             33.55   W. Zeilinger &#60;wzeil@doradus.ast.univie.ac.at&#62;
+   486DX2/66             33.55   Donald Lewis &#60;dlewis@jackson.freenet.org&#62;
+   486DX2/66             33.55   Eric Malkowski &#60;malk@world.std.com&#62;
+   486DX2/66 0c          33.55   Chris Petit &#60;mystere@ix.net.com&#62;
+   486DX2/66             33.55   &#60;al-b@minster.york.ac.uk&#62; 
+   486DX2/66             33.55   Jesper de Jong &#60;jesper@cas.et.tudelft.nl&#62;
+   486DX2/66             33.55   John Paul Morrison &#60;jmorriso@bogomips.com&#62;
+   486DX2/66             33.55   Arash &#60;ei39594@ios.chalmers.se&#62;
+   486DX2/66             33.55   Ralph Lewis &#60;rlewis@mail.wsu.edu&#62;
+   486DX2/66             33.55   Ulisses Alonso Camaro &#60;alonso@bebe.uv.es&#62;
+   486DX2/66             33.55   Bussmann &#60;bussmann@wolpi.infomatik.uni-bonn.de&#62;
+   486DX2/66 Intel/PCI   33.55   Louis J. LaBash &#60;labash@lcjones.aclib.siue.edu&#62;
+   486DX2/66 Intel       33.55   Andrew Tubbiolo &#60;enigma@seds.lpl.arizona.edu&#62;
+   486DX2/66             33.55   W Fink &#60;werner.fink@physik.uni-stuttgart.de&#62;
+   486DX2/66 ICL         33.55   Mathias Koerber &#60;mathias@solomon.technet.sg&#62; 
+   486DX2/66             33.55   Bill Pogue &#60;gwp@dithots.dithots.org&#62;
+   486DX2/66 256c        33.58   Theo Scott &#60;rkwtgs@pukrs3.puk.ac.za&#62;
+   486DX2/66             33.7    C Triantafillou &#60;triant@pegasus.montcleair.edu&#62;
+   486DX2/66 256c Intel  33.81   S Harris &#60;harris@teaching.physics.ox.ac.uk&#62; 
+   486DX2/66             33.9    Magnus Back &#60;erambk@eraj.ericsson.se&#62;
+   486DX2/66 notebook    33.9    Robert A Knop &#60;rknop@mop.caltech.edu&#62;
+   486DX2/66             34.06   Al Clark &#60;aclark@netcom.com&#62; 
+   486DX4/75             37.47   G Asmundarson &#60;grettir@wordperfect.com&#62;
+   486DX2/80             39.83   Samuel Thibault &#60;samuel.thibault@fnac.net&#62;
+   486DX2/80             39.93   Andrew Tubbiolo &#60;enigma@seds.lpl.arizona.edu&#62;
+   486DX2/80 overcl/66   39.94   Mario L. Guttierez &#60;mgutier@mentor.sdu.edu&#62;
+   486DX2/80 AMD         39.94   Corey D Brenner &#60;brenner@umr.edu&#62;
+   486DX2/80             39.94   Dan Delaney &#60;cgdela01@homer.louisville.edu&#62;
+   486DX2/80             39.94   D t Haar &#60;danny@caution.cistron.nl.mugnet.org&#62; 
+   486DX2/80 overcl      39.94   Peter Suetterlin &#60;ps@kis.uni-freiburg.de&#62;
+   486DX2/80 overcl      39.94   Alex Montaron &#60;canal@multimania.com&#62;
+   486DX2/80 AMD         39.94   JL Gomez &#60;kitana!sysop@caprica.com&#62;
+   486DX2/80 AMD         39.94   Pete Krawczyk &#60;pkrawczy@uiuc.edu&#62;
+   486DX2/80 AMD         40      Rene Baart &#60;baart@simplex.nl&#62;
+   486DX2/80 AMD         40      Wolfgang Kalthoff &#60;wo@rio70.bln.sni.de&#62;
+   486DX2/80             40.0    Rick Brown &#60;ccastrb@prism.gatech.edu&#62; 
+   486DX2/80 AMD         40.14   Jon Lewis &#60;jlewis@inorganic5.chem.ufl.edu&#62;
+   486DX2/80 AMD         40.14   Richard S. Stone &#60;rstone@edgp.com&#62;
+   486DX2/80             40.15   Oleg &#60;oleg@hpcms.co.il&#62;
+   486DX2/80 AMD         40.18   Adri Verhoef &#60;a3@a3.xs4all.nl&#62;
+   486DX2/80             40.18   Mats Andtbacka &#60;mandtback@abo.fi&#62;
+   486DX2/100 AMD overcl 49.14   Jon Lewis &#60;jlewis@inorganic5.chem.ufl.edu&#62;
+   5x86/100 AMD undercl  49.66   NN &#60;root@tailor.aleim.net&#62;
+   486DX4/100            49.66   Pete Cervasio &#60;cervasio@airmail.net&#62;
+   486DX4/100 256c       49.71   Lutz Pressler &#60;lutz.pressler@med-stat.GWDG.de&#62;
+   486DX4/100            49.71   Brett Gersekowski &#60;bgrerseko@powerup.com.au&#62;
+   486DX4/100 Intel 256c 49.77   Angelo Haritsis &#60;ah@doc.ic.ac.uk&#62;
+   5x86/100 AMB undercl  49.77   Bernd Hentig &#60;bernd.hentig@guug.de&#62;
+   486DX4/100            49.78   Aurel Balmosan &#60;aurel@xylo.owl.de&#62;
+   486DX4/100            49.87   Chris Saia &#60;minkie@concentric.net&#62;
+   486DX4/100            49.87   Aaron Brick &#60;abrick@dcc.uchile.cl&#62;
+   486DX4/100            50      Donald Lewis &#60;dlewis@jackson.freenet.org&#62;
+   486DX4/100            50.02   Peter Skov Knudsen &#60;gogol@ask.diku.dk&#62;
+   486DX4/100            50.02   Shadow Weaver &#60;djamison@students.wisc.edu&#62;
+   486DX4/100 AMD        50.3    Dave &#60;shodan@shodan.clark.net&#62;
+   486DX4/100 AMD        50.04   Tony Smolar &#60;asmolar@fast.net&#62;
+   486DX4/100            50.05   fredk &#60;fredk@shadow.net&#62;
+   486DX4/100            50.06   Ronald Prague &#60;ronp@fisnet.net&#62;
+   486DX4/100            50.08   Matt Gisher &#60;matt@matt.fidalgo.net&#62;
+   486DX4/100            50.08   Steven A. Duchene &#60;sduchene@cis.ysu.edu&#62;
+   486DX4/100            50.08   Miles O'Neal &#60;meo@schoneal.com&#62;
+   486DX4/100            50.08   Will &#60;zxmvg07@hp12.zdv.uni-tuebingen.de&#62;
+   486DX4/100            50.08   Piet de Bondt &#60;bondt@dutiws.twi.tudelft.nl&#62;
+   486DX4/100 laptop     50.08   Karl Kleinpaste &#60;karl_kleinpaste@cs.cmu.edu&#62;
+   486DX4/100 256c       50.08   Thomas Kanschik &#60;y0000997@ws.rz.tu-bs.de&#62;
+   486DX4/100            50.08   Linas Vepstas &#60;linas@fc.net&#62;
+   486DX4/100            50.08   Ed Daiga &#60;daiga@engin.umich.edu&#62;
+   486DX4/100 notebook   50.08   Gerry Quejada &#60;fd863@cleveland.freenet.edu&#62;
+   486DX4/100 AMD        50.08   B Schuller &#60;schuller@ind136a.wi.leidenuniv.nl&#62;
+   486DX4/100            50.08   J.L. Brothers &#60;brothers@halcyon.com&#62;
+   486DX4/100            50.08   David E.A. Wilson &#60;david@cs.uow.edu.au&#62;
+   486DX4/100            50.08   Mark Lumsden &#60;root@titan2.physics.mcmaster.ca&#62;
+   486DX4/100            50.08   Ashar &#60;ashar@netcom12.netcom.com&#62;
+   486DX4/100            50.08   Jacob Waltz &#60;waltz@pcjiw.lampf.lanl.gov&#62;
+   486DX4/100            50.08   Tom Sinclair &#60;sinner@cafe.net&#62;
+   486DX4/100 AMD        50.08   G. Skinner &#60;gskinner@gwsunix1.crystalball.com&#62;
+   486DX4/100 AMD        50.08   Nick Savoiu &#60;nick@ritz.mordor.com&#62;
+   486DX4/100            50.08   Thomas J Fisher &#60;twb5odt@nmia.com&#62;
+   486DX4/100            50.08   Pascal Pensa &#60;pensa@aurora.unice.fr&#62;
+   486DX4/100            50.08   Julian Bradbury &#60;julian@xabcs.demon.co.uk&#62;
+   486DX4/100            50.51   Frederic Potter &#60;frederic@swing.ibp.fr&#62;
+   486DX4/100            50.66   Bill Stegers &#60;bill_ste@zeelandnet.nl&#62;
+   486DX4/120 256c       59.1    Kevin &#60;kalichwa@oakland.edu&#62;
+   486DX4/120 AMD        59.80   Mark Tranchant &#60;mat92@ecs.soton.ac.uk&#62;
+   486DX4/120 AMD        59.80   Fred Broce &#60;fbroce@atlanta.com&#62;
+   486DX4/120 AMD        59.90   Marko Ovaska &#60;ovaska@cc.helsinki.fi&#62;
+   486DX4/120 AMD        59.80   Bob Purdon &#60;bobp@mpx.com.au&#62;
+   486DX4/120 AMD        59.80   Pat Young &#60;dice@netbsd.warped.com&#62;
+   486DX4/120            59.91   Will &#60;zxmvg07@hp12.zdv.uni-tuebingen.de&#62;
+   486DX4/120 AMD 256c   60.01   Angelo Haritsis &#60;ah@doc.ic.ac.uk&#62;
+   486DX4/120 overcl     60.45   Pascal Pensa &#60;pensa@aurora.unice.fr&#62;
+   486DX4/120            60.45   Neal Howard &#60;neal@metronet.com&#62;
+   486DX4/120 AMD        60.45   Oscar Belmar Madrid &#60;obelmar@anakena.usach.cl&#62;
+   486DX4/120            60.45   Jason Buchanan &#60;jsb@digistar.com&#62;
+   486DX4/120            60.45   Foersterling &#60;dirk@informatik.uni-frankfurt.de&#62;
+   486DX4/120            60.45   Bernd Hentig &#60;bernd@finow.snafu.de&#62;
+   5x86/133 AMD          66.15   NN &#60;root@tailor.aleim.net&#62;
+   5x86/133 AMD          66.15   Brad Wilson &#60;bwilson@deltanet.com&#62; 
+   5x86/133 AMD          66.15   Paul S. Doyle &#60;paul.doyle@mci.com&#62;
+   5x86/133 AMD          66.44   P Yli-Krekola &#60;perttu@ntcmar01ba.ntc.nokia.com&#62;
+   5x86/133 AMD          66.44   V. Tailor &#60;vtailor@ibm.net&#62;
+   5x86/133 AMD          66.55   Andrew B. Cramer &#60;cramer@ripco.com&#62;
+   5x86/133 AMD          66.56   Bob Nielsen &#60;nielsen@primenet.com&#62;
+   5x86/133 AMD          66.65   Geoff Raye &#60;gtraye@igsrsparc2.er.usgs.gov&#62;
+   5x86/133 AMD          66.7    Klaas Hemstra &#60;hst@mh.nl&#62;
+   5x86/133 AMD          66.80   N.N. &#60;vp24njcb@ubvms.cc.buffalo.edu&#62;
+   5x86/133 AMD   256c   67.10   Vasily Lewis
+   5x86/133 AMD          67.10   James Reith &#60;reith@racores.com&#62;
+   5x86/133 AMD   256c   67.10   Yves Rougy &#60;yrougy%siam@cal.fr&#62;
+   5x86/133 AMD   256c   67.10   Peter A. Koren &#60;pkoren@lvdc20.dseg.ti.com&#62;
+   5x86/133 AMD   256c   67.10   Wim Joppe &#60;joppe@xs4all.nl&#62;
+   5x86/133 AMD   256c   67.10   Gunnar Stefansson &#60;gunnars@rhi.hi.is&#62;
+   5x86/133 AMD   256c   67.10   Vernard Martin &#60;vernard.martin@cc.gatech.edu&#62;
+   5x86/150 AMD overcl   74.75   Sergio Riveros &#60;riveros@musca.unm.edu&#62;
+   5x86/150 AMD overcl   74.75   Arthur K. Chan &#60;artchan@cs.ucr.edu&#62;
+   5x86/160 AMD overcl   79.87   M.Suencksen &#60;msuencks@techfak.uni-bielefeld.de&#62;
+   5x86/160 AMD overcl   79.87   J. Chris Hammond &#60;cosmo@pcisys.net&#62;
+   5x86/160 AMD overcl   79.87   Bird Chen &#60;luca@linux.taiwan.hp.com&#62;
+   5x86/160 AMD overcl   79.89   Geir Skaugen &#60;geir.skaugen@energy.sintef.no&#62;
+   5x86/160 AMD overcl   79.89   Martin Vernon &#60;martin@gw6hva.demon.co.uk&#62;
+   5x86/160 AMD overcl   79.92   T. Zerucha &#60;zerucha@shell.portal.com&#62;
+   5x86/160 AMD overcl   80.36   Paul Colucci &#60;pcolucci@acsu.buffalo.edu&#62;
+   5x86/160 AMD overcl   80.36   Steinar Haug &#60;sthaug@nethelp.no&#62;
+   5x86/160 AMD overcl   80.36   James Daniel &#60;triadmin@bga.com&#62;
+   5x86/160 AMD          80.36   David H.S. Oh &#60;david@std.net&#62;</PRE
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN182"
+>3.5. Нормально настроенные системы 486: Cyrix/IBM, UMC</A
+></H2
+><PRE
+CLASS="SCREEN"
+>   Система                BogoMips  Кто проверял
+
+   486DLC/33                 9.42  Dennis Robinson &#60;djrobins@uxa.cso.uiuc.edu&#62;
+   486DLC/33 387DX/40        9.47  Denis Solaro &#60;drzob@vectrex.login.qc.ca&#62; 
+   486DLC/33 Cyrix wb        9.5   M. Asplund &#60;matt@xenon.cchem.berkely.edu&#62;
+   486DLC/33 Cyrix 386      11.2   Alex Freed &#60;freed@europa.orion.adobe.com&#62; 
+   486DLC/40 256c           11.33  Schendel &#60;sschend@magnus.acs.ohio-state.edu&#62; 
+   486Dx/40 Cyrix           11.73  Malcolm Bremer &#60;malcolm@strw.LeidenUniv.nl&#62;
+   486DRx2/40 Cyrix         13.10  Christopher Lau &#60;clau@acs.ucalgary.ca&#62; 
+   486DX/33 Cyrix           13.21  M Haardt &#60;u31b3hs@informatik.RWTH-Aachen.DE&#62;
+   486DLC/40 bogoboost      13.21  Harry Pasanen &#60;ps@tekla.fi&#62; 
+   486DLC/40 487 Cyrix      13.21  Ian A. Verschuren &#60;iav@po.CWRU.Edu&#62; 
+   486DCL Cyrix             13.3   Tracer Bullet P.I. &#60;ges@earth.baylor.edu&#62; 
+   486DLC/40                13.31  Adam Frampton &#60;frampton@access2.digex.net&#62; 
+   486DLC/40                13.31  Rick Chow &#60;crc@cacs.usl.edu&#62; 
+   486SLC-S/33              13.51  Brad Pepers &#60;pepersb@cuug.ab.ca&#62;
+   486DLC/40 no Cxpatch     15.47  Sergei O. Naoumov &#60;serge@envy.astro.unc.edu&#62;
+   486DLC/40 TI 128c        15.97  Philip K. Roban &#60;phil@seal.micro.umn.edu&#62; 
+   486DLC/40 Cyrix          15.97  L.J. LaBash &#60;labash@lcjones.aclib.siue.edu&#62;
+   486DRx2/40               15.99  Christopher Lau &#60;lauc@fusion.cuc.ab.ca&#62; 
+   486DX2/66 IBM no-FF      19     NN &#60;coolefa@pmifeg.com&#62;
+   486SLC2/66 IBM 64c       18.95  Sujat Jamil &#60;sujat@shasta.ee.umn.edu&#62; 
+   486SLC2/66 IBM 128c      18.95  Sujat Jamil &#60;sujat@shasta.ee.umn.edu&#62; 
+   486SLC2/66               19.02  Harry Mangalam &#60;mangalam@uci.edu&#62; 
+   486SLC/50                19.28  Sion Arrowsmith &#60;sion@bast.demon.co.uk&#62;
+   486BL3/75 IBM 256c       21.40  Anders Stenback &#60;stenback@kuai.se&#62;
+   486BL3/75 IBM 256c       21.50  Ming S. Chan &#60;ming.chan@canrem.com&#62;
+   486DX2/66 Cyrix 128c     26.63  Derek Kwan &#60;dkwan@zeus.UWaterloo.ca&#62;
+   486DX2/66 Cyrix          26.63  Adrian Parker &#60;adrian@willen.demon.co.uk&#62;
+   486DX2-S/66 256c         26.63  Jean-Marc Wislez &#60;JeanMarc.Wislez@rug.ac.be&#62;
+   486DX2/66 Cyrix          26.63  Curran W. Fey &#60;fey@biotech.washington.edu&#62;
+   486BL3/100 IBM 256c      28.36  Anders Stenback &#60;stenback@kuai.se&#62;
+   
+   486SX-S/33 UMC 0c        20.20  Hynek Med &#60;xmedh02@manes.vse.cz&#62;
+   486SX-S/40 UMC 0c        26.52  Hynek Med &#60;xmedh02@manes.vse.cz&#62;
+   486SX-U5/40 UMC 0c       26.63  Dusan Mihajlovic &#60;zdule@herkules.co.yu&#62;</PRE
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN185"
+>3.6. Неправильно настроенные системы Pentium</A
+></H2
+><PRE
+CLASS="SCREEN"
+>   Система                BogoMips  Кто проверял
+
+   Pentium/66                2.18  Bob Myers &#60;root@shyguy.lonestar.org&#62;
+   Pentium/90 notebook       9.5   Mark Maybee &#60;markm@cs.colorado.edu&#62;
+   6x86/120 Cyrix           52.32  Joel Boring &#60;dwild@eskimo.com&#62;
+   Pentium/83 Overdrive     82.85  Brian Smith &#60;smithb@laraby.tiac.net&#62;
+   Pentium/83 Overdrive     83.32  Scott Francis &#60;mord@netcom.com&#62;
+   Pentium/83 Overdrive     82.94  G. Spiegelberg &#60;greg@owens.ridgecrest.ca.us&#62;
+   Pentium/83 Overdrive     83.35  Jacek Polewczak &#60;jacek.polewczak@csun.edu&#62;
+   6x86/120 P120+overcl    104.86  Howard Poe &#60;falcor@kingsnet.com&#62;
+   Pentium MMX/266         130.66  &#60;yorkchan@hotmail.com&#62;
+   Pentium MMX/263 overcl  392.40  John Appleby &#60;jma24@cam.ac.uk&#62;
+   AMD K6-2/300            399.95  Chris Ebenezer &#60;chriseb@nortelworks.com&#62;
+   Pentium MMX/231         419.43  Juan Domenech &#60;domenech@mail.seric.es&#62;
+   Pentium MMX/263 overcl  435.87  Juan Domenech &#60;domenech@mail.seric.es&#62;
+   SMP4 Pentium Pro/200    700.13  R. Carrico &#60;robert_carrico@themoneystore.com&#62;</PRE
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN188"
+>3.7. Нормально настроенные системы Pentium</A
+></H2
+><PRE
+CLASS="SCREEN"
+>   Система                BogoMips  Кто проверял
+
+   Pentium/60               23     Chien-An Chen &#60;giant@nwu.edu&#62;
+   Pentium/60               23.96  Joost Helberg &#60;jhelberg@nlsun8.oracle.nl&#62; 
+   Pentium/60               23.96  Ulf Tietz &#60;ulf@rio70.bln.sni.de&#62; 
+   Pentium/60 Gateway       23.96  Manoj Kasichainula &#60;mvkasich@eos.ncsu.edu&#62; 
+   Pentium/60               23.96  Pierre Frenkiel &#60;frenkiel@cdfap1.in2p3.fr&#62;
+   Pentium/60               23.96  Tim Oosterbroek &#60;tim@astro.uva.nl&#62;
+   Pentium/60 NCR 3455      24     Mathias Koerber &#60;mathias@solomon.technet.sg&#62; 
+   Pentium/60               24     Joe Sloan &#60;jjs@engr.ucr.edu&#62;
+   Pentium/60               24.0   Mark H. Wood &#60;mwood@indyvax.iupui.edu&#62;
+   Pentium/60               24.13  R.M. van Rijswijk &#60;rijswijk@cs.utwente.nl&#62;
+   Pentium/66               25     Chuck Munro &#60;chuckm@canada.hp.com&#62;
+   Pentium/66               26.63  Jason M. Naughton &#60;jnaughto@ee.ryerson.ca&#62;
+   Pentium/66               26.84  Kelly Carmichael &#60;kcarmich@cln.etc.bc.ca&#62;
+   Pentium/75 256c          29.5   Chris Dodd &#60;cdodd@super.win.or.jp&#62;
+   Pentium/75               29.79  Scott M. Grim &#60;sgrim@netwalk.com&#62;
+   Pentium/75               29.80  Torbjoern Kristoffersen &#60;torbkris@online.no&#62;
+   Pentium/75               29.95  Steve Martin &#60;smartin@mrg.uswest.com&#62;
+   Pentium/75               30.22  Zoran Marjanski &#60;bagzor@enterprise.ca&#62;
+   Pentium/75               30.22  Andrew Buckby &#60;c4ab1@dmu.ac.uk&#62;
+   Pentium/75               30.22  Stuart Nuttall &#60;u9230106@sys.uea.ac.uk&#62;
+   Pentium/90 notebook      32.73  Rich Neves &#60;neves@cs.colorado.edu&#62;
+   Pentium/83 overdrive     33.55  JCS &#60;jean-claude.schwartz@contiteves.com&#62;
+   Pentium/90               34.07  A. Galbraith &#60;ajgalb@postman.essex.ac.uk&#62;
+   Pentium/90 zappa 256c    35.6   Sebastien Dedieu &#60;dedieu@emi.u-bordeaux.fr&#62;
+   Pentium/90               35.84  Jason Nunn &#60;jsno@stormfront.com.au&#62;
+   Pentium/90               35.88  Joe Anderson &#60;CPJJA@ttacs3.ttu.edu&#62;
+   Pentium/90               35.88  Warwick Allison &#60;warwick@cs.uq.oz.au&#62;
+   Pentium/90               35.94  Erik Walthinsen &#60;omega@teleport.com&#62;
+   Pentium/90               36     Joe Sloan &#60;jjs@engr.ucr.edu&#62;
+   Pentium/90               36     Larry Auton &#60;lda@nfa.research.att.com&#62;
+   Pentium/90               36     Richard Knipe &#60;knipe@lobby.ti.com&#62;
+   Pentium/90               36.0   Werner Almesberger &#60;almesber@lrc.epfl.ch&#62;
+   Pentium/90               36.06  Rob J. Nauta &#60;rob@iaehv.nl&#62;
+   Pentium/90               36.08  Leung Hon Wa &#60;cshwleun@cs.citu.edu.hk&#62;
+   Pentium/90 Zeos          36.08  Chris Laurel &#60;claurel@mr.net&#62;
+   Pentium/90               36.08  Ronald Prague &#60;ronp@fishnet.net&#62;
+   Pentium/90               36.08  Adrian Blues &#60;adrian@hypereality.co.uk&#62;
+   Pentium/90               36.08  Pak Yin Tam "Fred" &#60;ptam@eesun1.tamu.edu&#62;
+   Pentium/90               36.08  Jason Heiss &#60;jheiss@cco.caltech.edu&#62;
+   Pentium/90               36.08  Tim Krantz &#60;tek@dsinc.com&#62;
+   Pentium/90 Gateway       36.08  Pete Stewart &#60;stewart@bae.bellcore.com&#62;
+   Pentium/90               36.08  Tom Manos &#60;tmanos@infi.net&#62;
+   Pentium/90               36.08  Richard Mundell &#60;R.Mundell@uea.ac.uk&#62;
+   Pentium/90               36.08  NN &#60;usenet@uxmail.ust.hk&#62;
+   Pentium/90               36.08  Yavuz Batmaz &#60;yavuzb@knidos.cc.metu.edu.tr&#62;
+   Pentium/90               36.08  Alan Skelley &#60;askelley@gpu.srv.ualberta.ca&#62;
+   Pentium/90               36.08  Ralph Sims &#60;ralphs@locus.halcyon.com&#62;
+   Pentium/90               36.08  Julian Bradbury &#60;julian@xabcs.demon.co.uk&#62;
+   Pentium/90               36.08  Dan Langrill &#60;langrlld@mussel.cig.mot.com&#62;
+   Pentium/90               36.08  Ravi Krishna Swamy &#60;rkswamy@eos.ncsu.edu&#62;
+   Pentium/90               36.08  J.L. Brothers &#60;brothers@halcyon.com&#62;
+   Pentium/90 Micronics     36.09  Andrew Brown &#60;andrewbrown@acm.org&#62;
+   Pentium/90               36.27  Giao H. Phan &#60;giao@concrete.resnet.upenn.edu&#62;
+   Pentium/90 Plato         36.4   Joe Valenzuela &#60;smarm@ibm.net&#62;
+   Pentium/90               36.5   Mike Kelleher &#60;mikejk@umfacad.maine.edu&#62;
+   Pentium/90               36.9   Ted Gaunt &#60;tgaunt@pms701.pms.ford.com&#62;
+   Pentium/100 overcl       38.39  Stefan Onderka &#60;stefan.onderka@metronet.de&#62;
+   Pentium/100              39.52  Adrian Blues &#60;adrian@hypereality.co.uk&#62;
+   Pentium/100 overcl       39.73  Phil Howard &#60;phil@clr.com&#62;
+   Pentium/100              39.73  &#60;Peter.Weiss@informatik.uni-oldenburg.de&#62;
+   Pentium/100 0c           39.73  Jason Crawford &#60;jasonc1@gramercy.ios.com&#62;
+   Pentium/100 overcl       39.83  Stefan Onderka &#60;stefan.onderka@metronet.de&#62;
+   Pentium/100              39.93  Tom Miller &#60;tvtom@en.com&#62;
+   Pentium/100 Cyrix        39.94  Mike Holland &#60;myk@cygnus.uwa.edu.au&#62;
+   Pentium/100              39.94  KAZ Vorpal &#60;kaz@upx.net&#62;
+   Pentium/100 overcl       39.94  Donar G.E. Alofs &#60;donar@cs.vu.nl&#62;
+   Pentium/100              39.94  Larry Snyder &#60;larry@trauma.iag.net&#62;
+   Pentium/100              39.94  Ian Hill &#60;ian@hecate.phy.queensu.ca&#62;
+   Pentium/100              39.94  John Crawford &#60;link@spu.edu&#62;
+   Pentium/100              39.94  Alexandre de Menezes &#60;menezes@peta.com.br&#62;
+   Pentium/100              39.94  Jered &#60;jered@mit.edu&#62;
+   Pentium/100 overcl       39.94  Ian &#60;irs2@tweedledum.amp.york.ac.uk&#62;
+   Pentium/100              39.94  Brian McGhee &#60;brianm@iceonline.com&#62;
+   Pentium/100              39.94  M Skjelland &#60;morten.skjelland@pvv.unit.no&#62;
+   Pentium/100              39.96  Dan Kha &#60;dkha@yorku.ca&#62;
+   Pentium/100              39.98  Phillipe Charon &#60;charron@ecoledoc.ibp.fr&#62;
+   Pentium/100              40.03  &#60;bon@elektron.ikp.physik.th-darmstadt.de&#62;
+   Pentium/100              40.08  Ronny Spiegel &#60;rspiegel@htwm.de&#62;
+   Pentium/100              40.18  David Baldwin &#60;davidb@exis.net&#62;
+   Pentium/100              40.18  &#60;habibie@catevr.fiu.edu&#62;
+   Pentium/120 Cyrix        47.8   Simon Ho &#60;simon@epsilon.win-uk.net&#62;
+   Pentium/120              47.82  Jorge Juan-Chico &#60;jjchico@imse.cnm.es&#62;
+   Pentium/120 Cyrix        47.92  Joel N. Squire &#60;squire@colorado.edu&#62;
+   Pentium/120              47.93  Umberto d'Ortona &#60;umberto@grenet.fr&#62;
+   Pentium/120 Cyrix        47.93  Jim T. Polk &#60;jtpolk@cris.com&#62;
+   Pentium/120              47.93  Jon Trowbridge &#60;trow@mcs.com&#62;
+   Pentium/120              47.98  Craig Bates &#60;cbates@psu.edu&#62;
+   Pentium/120              47.92   Aaron Brick &#60;abrick@dcc.uchile.cl&#62;
+   Pentium/120 Cyrix        48     Steve &#60;horne@mhd2.pfc.mit.edu&#62;
+   Pentium/120              48.00  Michael Wazenski &#60;mwazenski@dsrnet.com&#62;
+   Pentium/120 Intel        48.02  Scott M. Grim &#60;sgrim@netwalk.com&#62;
+   Pentium/120 Cyrix        48.27  Glenn T. Jayaputera &#60;gjt@budgie.apana.org.au&#62;
+   Pentium/120              48.27  Roman Mitnitski &#60;mitnits@shany.net&#62;
+   Pentium/120              48.27  Peter Walsh &#60;pwalsh@rain.org&#62;
+   Pentium/120 Cyrix        48.2   Viznyuk &#60;sviznyuk@magnus.acs.ohio-state.edu&#62;
+   Pentium/120              49.27  Simon Hargrave &#60;simon@revell.demon.co.uk&#62;
+   Pentium/133              53.04  Wayne Roberts &#60;wroberts@aug.com&#62;
+   Pentium/133              53.04  A.J. Wilson &#60;wilston.austin.aj@bhp.com.au&#62;
+   Pentium/133              53.04  Gregory Travis &#60;greg@indiana.edu&#62;
+   Pentium/133 overcl       53.04  A. Kunigelis &#60;algikun@santaka.sc-uni.ktu.lt&#62;
+   Pentium/133 Intel        53.04  Jimmie Farmer &#60;calvin@malchick.com&#62;
+   Pentium/133              53.25  Chuck Mattern &#60;cmattern@mindspring.com&#62;
+   Pentium/133              53.26  Glenn Holt &#60;gholt@lsil.com&#62;
+   Pentium/133              53.26  Heikki Levanto &#60;heikki@lsd.ping.dk&#62;
+   Pentium/133              53.26  Chaim Tarshish &#60;chaim@ipl.med.nyu.edu&#62;
+   Pentium/133              53.26  Mitchell B. Hamm &#60;hamm@one.net&#62;
+   Pentium/133              53.26  Donald Lewis &#60;dlewis@jackson.freenet.org&#62;
+   Pentium/133              53.26  Jon Trowbridge &#60;trow@kremlin.emccta.com&#62;
+   Pentium/133              53.26  Charny Peete Mitchell &#60;cpmiche@eos.ncsu.edu&#62;
+   Pentium/133 256c         53.26  David Wuertele &#60;dave@gctech.com&#62;
+   Pentium/133 256c         53.68  Guiseppe Miceli &#60;ferdy@ccii.unipi.it&#62;
+   Pentium/133              53.68  Michael Kress &#60;kress@hal.saar.de&#62;
+   Pentium/150 Intel        59.80  Joel D. Young &#60;jdyoung@afit.af.mil&#62;
+   Pentium/150              60.01  Joost de Greef &#60;joost@stack.nl&#62;
+   Pentium/150 overcl       60.21  Duarte Cordeiro &#60;l38404@alfa.ist.utl.pt&#62;
+   Pentium/166              66.16  Pedro Soria-Rodriguez &#60;sorrodp@wpi.edu&#62;
+   Pentium/166              66.35  K. Visweswaran &#60;kviswesw@lehman.com&#62;
+   Pentium/166              66.36  T. Endo &#60;enchan@trc.rwcp.or.jp&#62;
+   Pentium/166              66.44  Donald Lewis &#60;dlewis@jackson.freenet.org&#62;
+   Pentium/166              66.76  F. Baitinger &#60;baiti@herrenberg.netsurf.de&#62;
+   Pentium/166              67.10  Jon Trowbridge &#60;trow@mcs.com&#62;
+   Pentium/166              67.10  Dylan &#60;dylan@ert.com&#62;
+   Pentium/166 512c         67.10  Dirk Freese &#60;freese@infra.de&#62;
+   Centaur C6/200           79.46  James Rotenberry &#60;rotenber@jmr.lasx.com&#62;
+   Pentium/200              79.66  Piete Brooks &#60;Piete.Brooks@cl.cam.ac.uk&#62;
+   Pentium/200              79.69  Timm Gleason &#60;timm@bess.net&#62;
+   Pentium/200              79.89  Dave S. Baker &#60;dave@acedia.demon.co.uk&#62;
+   Pentium/200              78.87  Nick D'Apice &#60;ndapice@erols.com&#62;
+   Pentium/200              80.08  Anders Stenback &#60;stenback@hehe.com&#62;
+   Pentium/200              80.08  Steve Freeland &#60;sfreel@cs.mcgill.ca&#62;
+   Pentium/200              81.92  Steve Baur &#60;steve@xemacs.org&#62;
+   Centaur C6-2/233        154.83  Joe Noble &#60;noble@flashman.com&#62;</PRE
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN191"
+>3.8. Нормально настроенные системы Pentium : Intel</A
+></H2
+><PRE
+CLASS="SCREEN"
+>   Система                BogoMips  Кто проверял
+
+
+   Pentium MMX/133         265.77  Ron Peters &#60;rpeters@f15fast.al.intel.com&#62;
+   Pentium MMX/150         307.53  Sami Sihvonen &#60;buggy@fix.no&#62;
+   Pentium MMX/166 notebk  331.75  n.n. &#60;visionary@aura.title14.com&#62;
+   Pentium MMX/166         331.78  Rob Janssen &#60;pe1chl@amsat.org&#62;
+   Pentium MMX/166         331.78  Dave Page &#60;dave@vale-housing.co.uk&#62;
+   Pentium MMX/166         331.78  Matthew C. Sell &#60;amtmcs@amsta.leeds.ac.uk&#62;
+   Pentium MMX/166         333.41  Sjoelie &#60;patrick@sjoel.xs4all.nl&#62;
+   Pentium MMX/166         333.41  Viet Yen Nguyen &#60;vt@multiweb.nl&#62;
+   Pentium MMX/166         333.41  Marcin Owsiany &#60;porridge@lo4.ids.bielsko.pl&#62;
+   Pentium MMX/180         358.81  David Efflandt &#60;efflandt@xnet.com&#62;
+   Pentium MMX/200         398.13  Andy Saunders &#60;andi@numenor.oucs.ox.ac.uk&#62;
+   Pentium MMX/200         398.13  A. James Lewis &#60;james@vrtx.net&#62;
+   Pentium MMX/200         398.13  Sean Horan &#60;sean@psy.ed.asu.edu&#62;
+   Pentium MMX/200         398.19  Fabio Comolli &#60;comolli@tin.it&#62;
+   Pentium MMX/200         398.95  Reinhold J. Gerharz &#60;rgerharx@erols.com&#62;
+   Pentium MMX/200         398.95  Eric Beymer &#60;beymer@soundex.com&#62;
+   Pentium MMX/200         398.95  Duane Steel &#60;dsteele@direct.ca&#62;
+   Pentium MMX/200         398.95  &#60;ndpilatz@undergrad.math.uwaterloo.ca&#62;
+   Pentium MMX/200         399.77  Wei-shi Tsai &#60;perdita@dallas.crosswinds.net&#62;
+   Pentium MMX/200         400     Rob Jokinen &#60;rjokinen@rt66.com&#62;
+   Pentium MMX/200         400.59  Paul Black &#60;paul@darwin.demon.co.uk&#62;
+   Pentium MMX/200         400.59  Juho Cederstrom &#60;cederstrom@kolumbus.fi&#62;
+   Pentium MMX/200         400.59  Bart &#60;bart@aceonline.com.au&#62;
+   Pentium MMX/210 overcl  416.97  John Saunders &#60;john@nlc.net.au&#62;
+   Pentium MMX/225 overcl  448.92  Ingo Reimann &#60;reimann@uni-muenster.de&#62;
+   Pentium MMX/225 overcl  448.92  Mattias Hembruch &#60;mghembru@ece.uwaterloo.ca&#62;
+   Pentium MMX/225 overcl  448.92  Larry Lade &#60;lade@btigate.com&#62;
+   Pentium MMX/230 overcl  461.85  Rene Stanneveld &#60;edge@huizen.nhkanaal.nl&#62;
+   Pentium MMX/233         463.67  Rui M.B. Machado &#60;rui@nifdl7.fd.ul.pt&#62;
+   Pentium MMX/233         463.67  Rob Janssen &#60;pe1chl@amsat.org&#62;
+   Pentium MMX/233         463.67  Jose Maria Perez Box &#60;jmpbox@etsin.upm.es&#62;
+   Pentium MMX/233         465.31  Per Andersson &#60;ppan@cntw.com&#62;
+   Pentium MMX/233         466.94  Eric George &#60;ergeorge@worldnet.att.net&#62;
+   Pentium MMX/233         466.94  Van Overbruggen &#60;marcel@johannes.iconnect.nl&#62;
+   Pentium MMX/233         466.94  Erwin Lubbers &#60;erwin@box.nl&#62;
+   Pentium MMX/250 overcl  498.07  Maarten van Rossum &#60;m@vr.xs4all.nl&#62;
+   Pentium MMX/266 overcl  525.93  Frank &#60;r2@xs4all.nl&#62;
+   Pentium MMX/266         532.48  Wade Mealing &#60;root@damage&#62;
+   Pentium MMX/290 overcl  581.63  Brian &#60;eradicator@home.com&#62;
+
+   Pentium Pro/133         132.88  John D. Sundberg &#60;jdsundberg@mmm.com&#62;
+   Pentium Pro/150         149.50  Rogier Wolff &#60;wolff@bitwizard.nl&#62;
+   Pentium Pro/180         179.61  Chuck Fee &#60;fee@ch4549.org&#62;
+   Pentium Pro/200         197.42  Michael Griffith &#60;grif@cs.ucr.edu&#62;
+   Pentium Pro/200         197.42  Curtis Varner &#60;carner@cs.ucr.edu&#62;
+   Pentium Pro/200         198.84  Erik Max Francis &#60;max@alcyone.com&#62;
+   Pentium Pro/200         198.84  Marc Winkler &#60;marcus@healthchex.com&#62;
+   Pentium Pro/200         199.04  V. Bostrom &#60;Vareck_Bostrom@ccm.jf.intel.com&#62;
+   Pentium Pro/200         199.06  Justin Clancy &#60;justin@hippos.demon.co.uk&#62;
+   Pentium Pro/200         199.06  Glenn Lamb &#60;mumford@netcom15.netcom.com&#62;
+   Pentium Pro/200         199.06  Laszlo Herczeg &#60;las@light-house.com&#62;
+   Pentium Pro/200         199.07  Stefan &#60;boresch@schuber.u-strasbg.fr&#62;
+   Pentium Pro/200         199.07  Greg Fausak &#60;lgfausak@august.com&#62;
+   Pentium Pro/200         199.07  Chris Jones &#60;chris@planetsymphone.com&#62;
+   Pentium Pro/200         199.07  Matthew S. Crocker &#60;matthew@crocker.com&#62;
+   Pentium Pro/200         199.95  Reinhold J. Gerharz &#60;rgerharx@erols.com&#62;
+   Pentium Pro/200         200.32  Gil Megidish &#60;gmegidis@ort.org.il&#62;
+   Pentium Pro/200         200.32  Jose Navarro &#60;jnavarro@aoc.nrao.edu&#62;
+   Pentium Pro/200         200.32  &#60;Eric_Zucker@om.hp.com&#62;
+   Pentium Pro/200         200.32  Wayne Scott &#60;wscott@ichips.intel.com&#62;
+   Pentium Pro/200         200.32  Adrian L. Hosey &#60;ahosey@cs.indiana.edu&#62;
+   Pentium Pro/233 overcl  234.43  S. Curtarolo &#60;auro@spiro.fisica.unipd.it&#62;
+
+   Pentium II/233          233.47  Torbjoern Kristoffersen &#60;torbkris@online.no&#62;
+   Pentium II/233          233.47  Sorin Mitran &#60;mitran@irs.fzk.de&#62;
+   Pentium II/266          265.42  Jon Trowbridge &#60;trow@kremlin.emccta.com&#62;
+   Pentium II/266          265.42  A. Hochwimmer &#60;a.hochwimmer@auckland.ac.nz&#62;
+   Pentium II/266          265.42  Matt Garman &#60;garman@ews.uiuc.edu&#62;
+   Pentium II/266          265.44  Nick Ullman &#60;nick@avenza.com&#62;
+   Pentium II/266          266.24  Pieter Eendebak &#60;p.t.eendebak@phys.uu.nl&#62;
+   Pentium II/266          267.06  James McKinnon &#60;jmack@phys.ualberta.ca&#62;
+   Pentium II/266          267.06  Greg &#60;gl2hughes@undergrad.math.uwaterloo.ca&#62;
+   Pentium II/266          267.06  Pros Robaer &#60;pros@innet.be&#62;
+   Pentium II/266          272.79  Frank Hale &#60;frankhale@worldnet.att.net&#62;
+   Pentium II/300 overcl   299.01  Martin Lathoud &#60;nytral@endirect.qc.ca&#62;
+   Pentium II/300          299.83  Andy Busch &#60;buschap@acs.wooster.edu&#62;
+   Pentium II/333          332.60  Eric Games &#60;frequenc@laf.cioe.com&#62;
+   Pentium II/350          349.80  Rizzoli &#60;rizzoli@planet.it&#62;
+   Pentium II/350          349.80  Jeff Bishop &#60;jbish@airmail.net&#62;
+   Pentium II/400          396.49  Abhijit Menon-Sen &#60;ams@wiw.org&#62;
+   Pentium II/400          398.13  Floris Martens &#60;fmartens@bigfoot.com&#62;
+   Pentium II/420 overcl   416.15  Rafal &#60;rafamiga@uucp.polbox.pl&#62;
+   Pentium II/448 overcl   447.28  Mathieu Bois &#60;mathieu.bois@nomura.co.uk&#62;
+   Pentium II/450          447.28  Mathieu Bois &#60;mathieu.bois@nomura.co.uk&#62;
+   Pentium II/450          447.28  Stuart Nuttall &#60;stu@etcs.demon.co.uk&#62;
+   Pentium II/450          447.28  Richard R. Urena &#60;urena@wilde.oit.umass.edu&#62;
+   Pentium II/450          447.28  Brantley Jones &#60;bjones@cte.net&#62;
+   Pentium II/450          447.28  Esmail Bonakdarian &#60;esmail@uiowa.edu&#62;
+   Pentium II/466          462.03  Bjorn Lindgren &#60;bjorn@chiba.cx&#62;
+   Pentium II/504 overcl   502.99  David Hand &#60;dhand@best.com&#62;
+
+   Celeron/300             299.83  Abhijit Menon-Sen &#60;ams@wiw.org&#62;
+   Celeron/300             299.97  Helmut &#60;helmut@cancon.com&#62;
+   Celeron/333             332.6   Florian &#60;florian@egon-bbs.n-a-m.de&#62;
+   Celeron/333             330.96  Douglas E Harmon &#60;genius91@gate.net&#62;
+   Celeron/366             367.00  Raul Belisario &#60;storm@gold.com.br&#62;
+   Celeron/400             398.13  Polaris &#60;polaris_c@my-deja.com&#62;
+   Celeron/466 overcl      462.03  Tim Moore &#60;timothymoore@bigfoot.com&#62;
+
+   Pentium III/450         450.56  Rogier Spieker &#60;rogier@metallica.com&#62;
+   Pentium III/500         498.00  Rajko Wehrhahn &#60;seymour@link-c.cl.sub.de&#62;
+   Pentium III/500         499.71  Morris Walton &#60;mccw@ipass.net&#62;</PRE
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN194"
+>3.9. Нормально настроенные системы Pentium: Cyrix, AMD</A
+></H2
+><PRE
+CLASS="SCREEN"
+>   Система                BogoMips  Кто проверял
+
+
+   Cyrix 5x86/100          100.16  NN &#60;root@anxa04.cc.ic.ac.uk&#62;
+   Cyrix 5x86/100          100.19  Valient Gough &#60;vgough@teton.mines.edu&#62;
+   Cyrix 5x86/100          100.47  C.Chan &#60;chan@alfrothul.uchicago.edu&#62;
+   Cyrix 5x86/120 P150+    119.60  Wynstan Tong &#60;wynstan@eecg.toronto.ca&#62;
+   Cyrix 5x86/120 P150+    119.60  Joel N. Squire &#60;squire@colorado.edu&#62;
+   Cyrix 5x86/120 P150+    119.83  Leland Olds &#60;olds@eskimo.com&#62;
+   Cyrix 5x86/120 P150+    119.83  NN &#60;root@anxa04.cc.ic.ac.uk&#62;
+   Cyrix 5x86/120 P150+    120.68  C.Chan &#60;chan@alfrothul.uchicago.edu&#62;
+   Cyrix 5x86/120 P150+    122.01  Andre Coetzee &#60;acoetzee@ctcc.gov.za&#62;
+
+   Cyrix 6x86/100           99.42  Stig M. Valstad &#60;svalstad@sn.no&#62;
+   Cyrix 6x86/110 P133+    109.77  Matthew Flint &#60;matthew@philtrum.demon.co.uk&#62;
+   Cyrix 6x86/110 P133+    109.77  John Merriam &#60;suprnaut@esslink.com&#62;
+   Cyrix 6x86/110 P133+    109.77  Keith Smith &#60;keith@ksmith.com&#62;
+   Cyrix 6x86/120 P150+    119     Jean-Claude Gouiran &#60;jcg13@ibm.net&#62;
+   Cyrix 6x86/120 P150+    119.60  Taso Lyristis &#60;taso@remus.rutgers.edu&#62;
+   Cyrix 6x86/120 P150+    119.60  Hrvoje Stipetic &#60;stipe@zemris.fer.hr&#62;
+   Cyrix 6x86/120          119.60  Yakko J. Warner &#60;yakko@wtower.com&#62;
+   Cyrix 6x86/120 P150+    119.60  B. James Philippe &#60;bryan@terran.org&#62;
+   Cyrix 6x86/120 P150+    119.83  Roger Merchberger &#60;zmerch@northernway.net&#62;
+   Cyrix 6x86/120          119.83  Daniel Wold &#60;danw@panix.com&#62;
+   Cyrix 6x86/120          120     John C. Beasley &#60;beaslej1@nevada.edu&#62;
+   Cyrix 6x86/120 P150+    120.01  Jay Thorne &#60;jay@result.com&#62;
+   Cyrix 6x86/120 P150+    120.01  Jeawan Kim &#60;jaewan@harc.edu&#62;
+   Cyrix 6x86/120 P150+    120.91  Cymen &#60;cymen@ziplink.net&#62;
+   Cyrix 6x86/133 undercl  132.30  Maurice Janssen &#60;mauricej@xs4all.nl&#62;
+   Cyrix 6x86/133 P166+    132.71  Holger Kemper &#60;hok@balu.ping.de&#62;
+   Cyrix 6x86/133 P166+    132.71  Hrvoje Stipetic &#60;stipe@zemris.fer.hr&#62;
+   Cyrix 6x86/133 P166+    132.82  Alex Liffers &#60;aliffers@tartarus.uwa.edu.au&#62;
+   Cyrix 6x86/133 P166+    132.82  Brian C. Theobald &#60;theobald@nortel.ca&#62;
+   Cyrix 6x86/133 P166+    132.88  Alvaro Lopes &#60;alvieboy@utad.pt&#62;
+   Cyrix 6x86/133 P166+    132.88  Craig Andersen &#60;andersen@fastlane.net&#62;
+   Cyrix 6x86/133 P166+    133.73  C. Drews &#60;drews_c@informatik.fh-hamburg.de&#62;
+   Cyrix 6x86/133 P166+    133.12  Daniel Gritter &#60;dgritt47@calvin.edu&#62;
+   Cyrix 6x86/150 P200+    149.50  Evan L. Schemm &#60;elschemm@mtu.edu&#62;
+   Cyrix 6x86/150 P200+    149.50  Steven Rainwater &#60;srainwater@ncc.com&#62;
+   Cyrix 6x86/150 P200+    149.91  Sid Boyce &#60;szb50@amdahl.com&#62;
+   Cyrix 6x86/150 P200+    149.91  Eric Haas &#60;haas@andrew.cmu.edu&#62;
+   IBM 6x86/150 P200       149.96  M.D. Guardia &#60;mikedg@ghostbbs.pandora.it&#62;
+   Cyrix 6x86MX/166 A-Step 166.71  David Anderson &#60;rovaughn@infoave.net&#62;
+   Cyrix 6x86MX/188 P233   186.78  Dominic Baines &#60;rdab100@hermes.cam.ac.uk&#62;
+   Cyrix 6x86MX/188 P233   187.19  Dominic Baines &#60;rdab100@hermes.cam.ac.uk&#62;
+   Cyrix 6x86/225          223.28  Dean Mills &#60;deanmills@home.com&#62;
+   Cyrix 6x86MII/233 P300  233.47  Russell Marks &#60;rus@forfree.at&#62;
+   Cyrix 6x86MII/233 P300  233.47  S. Fuller &#60;stu@c49395-a.wodhvn1.mi.home.com&#62;
+   Cyrix 6x86MX/300 overcl 280     Terry Porter &#60;tjporter@odyssey.apana.org.au&#62;
+
+   AMD K5/75               149.91  Simon Karpen &#60;slk@linux-shell.net&#62;
+   AMD K5/90               179.40  &#60;root@krabi.mbp.ee&#62;
+   AMD K5/90               179.40  Ken Edwards &#60;edwards@thor.xon.cuug.ab.ca&#62;
+   AMD K5/90               179.40  Marcin Owsiany &#60;porridge@lo4.ids.bielsko.pl&#62;
+   AMD K5/90               179.81  Marcin Owsiany &#60;porridge@lo4.ids.bielsko.pl&#62;
+   AMD K5/90               180.22  Hector DC Gonzalez &#60;turbo@linux.lsl.com.mx&#62;
+   AMD K5/90               181.00  Drew Golden &#60;golden@platinum.nb.net&#62;
+   AMD K5/100 PR133        198.66  Trond Solem &#60;trond.solem@homemail.com&#62;
+   AMD K5/100 PR133        199.07  Henri Jamgotchian &#60;hjamgot@planete.net&#62;
+   AMD K5/100 PR133        199.48  Dark Mind &#60;root@dmh.ml.org&#62;
+   AMD K5/100 PR133        199.88  J. Grassel &#60;grassel@heart.cas.und.nodak.edu&#62;
+   AMD K5/100 PR133        199.88  Berend Reitsma &#60;berend@united-info.com&#62;
+   AMD K5/100 PR133        200.29  Tilman Sommer &#60;sommer@vsun02.ag01.kodak.com&#62;
+   AMD K5/100 PR133        200.32  Carlo Politi &#60;cpoliti@mare.gol.grosseto.it&#62;
+   AMD K5/100 PR133        199.07  Franco De Angelis &#60;fda@ied.unipr.it&#62;
+   AMD K5/100 PR133        199.07  HaJo Simons &#60;hajo@frodo.com&#62;
+   AMD K5/116 PR166        233.47  Hans-Joachim Baader &#60;hans@grumber.ika.de&#62;
+   AMD K5/116 PR166        233.47  Sean Kelly &#60;s.kelly@newcastle.ac.uk&#62;
+   AMD K5/120 PR133 overcl 239.21  Chris Harshman &#60;harshman@paradigm.uor.edu&#62;
+
+   AMD K6-2/150 undercl    299.83  Alex Montaron &#60;canal@multimania.com&#62;
+   AMD K6/166              332.60  David Parsons &#60;orc@pell.chi.il.us&#62;
+   AMD K6/166              331     Bill Petersen &#60;brp@cuberramp.net&#62;
+   AMD K6/200              398.85  n.n. &#60;uh886@freenet.victoria.bc.ca&#62;
+   AMD K6/200              398.89  Ian Hanschen &#60;hanschen@uwyo.edu&#62;
+   AMD K6/200              398.98  Philip Lijnzaad &#60;lijnzaad@columba.ebi.ac.uk&#62;
+   AMD K6/200              399.77  Murtaza Amiji &#60;murti@wpi.edu&#62;
+   AMD K6/200              399.78  Dan Hetzel &#60;dan@icor.fr&#62;
+   AMD K6/200              400.58  Paco Culebras Amigo &#60;paco@hades.udg.es&#62;
+   AMD K6/200              400.59  Sverre H. Huseby &#60;s.h.huseby@usit.uio.no&#62;
+   AMD K6/200              400.59  Steve Conley &#60;sconley@muck.leonine.com&#62;
+   AMD K6/200              400.59  Mark Lehrer &#60;edge@dux.raex.com&#62;
+   AMD K6/200              400.59  Chris Esser &#60;ksqueak@erols.com&#62;
+   AMD K6/200              400.59  Federico Pellegrin &#60;fede@triangolo.it&#62;
+   AMD K6/200              400.59  Howard Poe &#60;falcor@kingsnet.com&#62;
+   AMD K6/200              400.64  Fabrizio Santini &#60;sanfff@tin.it&#62;
+   AMD K6/208 overcl       416.15  Jani Halme &#60;jaadha@utu.fi&#62;
+   AMD K6/208 overcl       416.15  Donnie Savage &#60;dsavage@cris.com&#62;
+   AMD K6/208              417.97  J.F. Ursetto &#60;ursetto@uiuc.edu&#62;
+   AMD K6/225              440     n.n. &#60;uh886@freenet.victoria.bc.ca&#62;
+   AMD K6/225 overcl       448.92  Paco Culebras Amigo &#60;paco@hades.udg.es&#62;
+   AMD K6/225 undercl      448.92  Henrik Storner &#60;storner@image.dk&#62;
+   AMD K6/225 overcl       450.56  M. Cramer &#60;mccramer@stuttgart.netscape.de&#62;
+   AMD K6/233              463.67  Aduanne Carter &#60;drow@blazenet.net&#62;
+   AMD K6/233              465.31  Michael Haardt &#60;haardt@gmd.de&#62;
+   AMD K6/233              466.5   R. Garcia &#60;rgarciaitt@aol.com&#62;
+   AMD K6/233 overcl       466.84  Francesco &#60;root@fly.cnuce.cnr.it&#62;
+   AMD K6/233 overcl       466.94  Paco Culebras Amigo &#60;paco@hades.udg.es&#62;
+   AMD K6/233              466.94  Howard Poe &#60;hpoe@nyx.net&#62;
+   AMD K6/233              466.94  Andreas Haumer &#60;andreas@xss.co.at&#62;
+   AMD K6/233              466.94  Damien Castelltort &#60;eznerald@mail.mnet.fr&#62;
+   AMD K6/233              466.94  G. Cantallops Ramis &#60;gcantallopsr@jet.se&#62;
+   AMD K6/233              466.94  Juergen Hammelmann &#60;juergen@neptun.stgt.de&#62;
+   AMD K6/233              466.94  Chris Gushue &#60;seymour@iname.com&#62;
+   AMD K6/239              478.41  Torbjoern Kristoffersen &#60;torbkris@online.no&#62;
+   AMD K6/239              478.41  Mark Neill &#60;btech@styx.phy.vanderbilt.edu&#62;
+   AMD K6/239              478.41  Louis van Dompselaar &#60;etaoin@xs4all.nl&#62;
+   AMD K6/266              534.12  Andreas Czerniak &#60;cognac@toppoint.de&#62;
+   AMD K6-2/300            598.02  Pasa Guglielmo &#60;gpasa@omedia.ch&#62;
+   AMD K6-2/300 3D overcl  598.02  Jozsef &#60;formater@eunet.yu&#62;
+   AMD K6-2/300            599.65  Ivo Plana &#60;ipv@tinet.fut.es&#62;
+   AMD K6-2/300            599.65  Juan Domenech &#60;domenech@mail.seric.es&#62;
+   AMD K6-2/300            599.65  Scrambo &#60;pinche@my-deja.com&#62;
+   AMD K6-2/300            599.65  Ashley Penney &#60;ashp@bastard.co.uk&#62;
+   AMD K6-2/300            599.65  Rob &#60;im@home.com&#62;
+   AMD K6-2/300            599.65  Stephen Jenuth &#60;jenuths@homacjen.ab.ca&#62;
+   AMD K6-2/308            614.40  Erv Walter &#60;walter@chem.wisc.edu&#62;
+   AMD K6-2/333            663.55  &#60;kuhn@ernie.lpr.e-technik.tu-muenchen.de&#62;
+   AMD K6-2/333            663.55  Sebastian &#60;sebastian882@my-deja.com&#62;
+   AMD K6-2/333            665.19  A. Bihlmaier &#60;stormtank@gmx.net&#62;
+   AMD K6-2/338 overcl     675.02  Nicola Fabiano &#60;mx8644@mclink.it&#62;
+   AMD K6-2/350            699.60  Juan Domenech &#60;domenech@mail.seric.es&#62;
+   AMD K6-2/350 3D         699.60  Mirko Schur &#60;mschur@t-online.de&#62;
+   AMD K6-2/350 3D         699.60  D. Breuer &#60;dirk.breuer@post.rwth-aachen.de&#62;
+   AMD K6-2/366            734.00  Alex Montaron &#60;canal@multimania.com&#62;
+   AMD K6-2/366 3D overcl  734.00  Enrico Oreglia &#60;oreglia@ibm.net&#62;
+   AMD K6-2/400 overcl     799.54  Ivo Plana &#60;ipv@tinet.fut.es&#62;
+   AMD K6-2/400 overcl     799.54  Alex Montaron &#60;canal@multimania.com&#62;
+   AMD K6-2/400 3D         799.54  Rajko Wehrhahn &#60;seymour@link-c.cl.sub.de&#62;
+   AMD K6-2/400 overcl     801.18  Phillip Deackes &#60;gsmh@gmx.net&#62;
+   AMD K6-2/400 overcl     801.18  Jon Riekenberg &#60;jrr8208@ksu.edu&#62;
+   AMD K6-2/400 overcl     801.18  Ryan Bethke &#60;immortal26@prodigy.net&#62;
+   AMD K6-2/400            799.54  Silvio Nordio &#60;nordio@unive.it&#62;
+   AMD K6-2/400            799.54  Chris &#60;cpr@intergate.bc.ca&#62;
+   AMD K6-2/400 3D         799.54  Hamid Misnan &#60;hamidmisnan@ieee.org&#62;
+   AMD K6-2/400            801.18  Wolfgang Zekoll &#60;wzk@um1.pce.de&#62;
+   AMD K6-2/400            801.18  Ignacio Valdes &#60;ivaldes@csi.com&#62;
+   AMD K6-2/400            801.18  Ted E. Suter &#60;nexion@home.com&#62;
+   AMD K6-2/400            801.29  Birko Bergt &#60;birko.bergt@cdc.com&#62;
+   AMD K6-2/400 overcl     801.5   Juan Domenech &#60;domenech@tarraco.seric.es&#62;
+   AMD K6-2/400            808.7   Bob &#60;rebry@@atomicsys.com&#62;
+   AMD K6-III/417 overcl   833.95  Chris Priest &#60;chris@idol.demon.co.uk&#62;
+   AMD K6-2/440            878.18  Steve Bourland &#60;sbourlan@ecn.purdue.edu&#62;
+   AMD K6-2/450 overcl     901.12  Ted E. Suter &#60;nexion@home.com&#62;
+   AMD K6-2/450 overcl     901.12  Juan Domenech &#60;domenech@tarraco.seric.es&#62;
+   AMD K6-2/450            901.12  John Jaeger &#60;john@jjgb.com&#62;
+   AMD K6-2/450            901.12  Piet Ekkebus &#60;piet_e@zeelandnet.nl&#62;
+   AMD K6-2/453            902.30  Birko Bergt &#60;birko.bergt@cdc.com&#62;
+   AMD K6-2/455 3D overcl  914.23  Graham Reed &#60;grwr@ssm.ca&#62;
+   AMD K6-2/500            999.42  Jon Berlin &#60;jberlin@worldbank.org&#62;
+   AMD K6-2/500 3D         999.42  Laurent &#60;blackm@pop.multimania.com&#62;
+
+   AMD K7/500              498.07  Ludwig &#60;cludwig@informatik.uni-tuebingen.de&#62;
+   AMD K7/550              548.86  Kieffer &#60;Jerome.KIEFFER@crans.ens-cachan.fr&#62;
+   AMD Athlon/600          598.02  C. Heiming &#60;heiming@informatik.uni-kl.de&#62;
+   AMD Athlon/600          598.02  Ted Michael &#60;obliv10n@netscape.net&#62;
+   AMD K7/655              652.08  Mark Steele &#60;msteele@belent.com&#62;
+   AMD Athlon/755          752.03  Mark Steele &#60;msteele@belent.com&#62;</PRE
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN197"
+>3.10. Нормально настроенные системы Alpha</A
+></H2
+><PRE
+CLASS="SCREEN"
+>   Система                BogoMips  Кто проверял
+
+   21064/150 Jensen        148.37  Linus Torvalds &#60;torvalds@cc.helsinki.fi&#62;
+   21064/150 Jensen        149.49  J.L. Brothers &#60;brothers@halcyon.com&#62;
+   21064/150 Jensen        148.89  Martin Osterman &#60;ost@comnets.rwth-aachen.de&#62;
+
+   21064A/233 AS225 Avanti 228.58  Roverto Giungato &#60;giungator@acm.org&#62;
+   21064A/275 Cabriolet    271.58  Michal Jaegermann &#60;michal@phys.ualberta.ca&#62;
+   21064A/275 Cabriolet    272     Linus Torvalds &#60;torvalds@cc.helsinki.fi&#62;
+   21064A/275              272     Stephen Gaudet &#60;sjg@tiac.net&#62;
+   21064A/275 Cabriolet    272.63  Jay Estabrook &#60;jestabro@amt.tay1.dec.com&#62;
+   21064A/275 Cabriolet    273.37  David Mosberger-Tang &#60;davidm@cs.arizona.edu&#62;
+   21064A/275              274.11  Kevin Jacobs &#60;jacobs@eek.cwru.edu&#62;
+   21064A/300 Cabriolet    298     Jay Estabrook &#60;jestabro@amt.tay1.dec.com&#62;
+   21064A/300              298     Stephen Gaudet &#60;sjg@tiac.net&#62;
+
+   21066/166               162.53  Phil Bostley &#60;pbostley@qualcomm.com&#62;
+   21066/166               163.05  Matthew Jacob &#60;mjacob@feral.com&#62;
+   21066/166               163.05  Jon Spreha &#60;jxs557@psu.edu&#62;
+   21066/166               164.59  David Mosberger-Tang &#60;davidm@cs.arizona.edu&#62;
+   21066/166 Multia        164.63  Rudolf Gabler &#60;rug@usm.uni-muenchen.de&#62;
+   21066/166               165     Gareth Bult &#60;gareth@ftech.net&#62;
+   21066/166               165.04  Craig Ruff &#60;cruff@ncar.ucar.edu&#62;
+   21066/200               196.9   Danny ter Haar &#60;danny@cistron.nl&#62;
+   21066/200 UDB overcl    198     Kari Davidsson &#60;d154402@cs.tut.fi&#62;
+
+   21066A/233 UDB          229.63  Toon van der Pas &#60;toon@vdpas.hobby.nl&#62;
+   21066A/233 AS400        230.16  Ophir Ronen &#60;ophir@connectsoft.com&#62;
+   21066A/233 AS200 Avanti 230.16  B. James Phillippe &#60;bryan@terran.org&#62;
+   21066A/233 NoName       230.67  T. Bogendoerfer &#60;tsbogend@bigbug.franken.de&#62;
+   21066A/233 UDB          230.68  Ted Schipper &#60;ted@tedux.hobby.nl&#62;
+   21066A/233 NoName       230.76  Mikael Nykvist &#60;viper@ludd.luth.se&#62;
+   21066A/233 UDB          231.21  Eric Smith &#60;eric@goonsquad.spies.com&#62;
+   21066A/233 NoName       231.21  Jay Estabrook &#60;jestabro@amt.tay1.dec.com&#62;
+   21066A/266 NoName ov.cl 261.62  Andreas Johansson &#60;ajo@ludd.luth.se&#62;
+   21066A/266 UDB overcl   261.62  Michael Brennen &#60;mbrennen@fni.net&#62;
+   21066A/266 NoName ov.cl 262.14  Wim van Dorst &#60;baron@clifton.hobby.nl&#62;
+   21066A/266 Multia       264     Joshua Grubman &#60;joshg@dn.net&#62;
+   21066A/284 NoName ov.cl 281.0   &#60;imakino@gloria.cord.edu&#62;
+   21066A/297 NoName ov.cl 293.6   &#60;imakino@gloria.cord.edu&#62;
+   21066A/300 UDB ov.cl    294.65  Topi Kanerva &#60;tkanerva@nks.oulu.fi&#62;
+
+   21164/266 EB164         265.29  Jay Estabrook &#60;jestabro@amt.tay1.dec.com&#62;
+   21164/300 EB164         297.79  Hilarius &#60;maurice@ellpspace.math.ualberta.ca&#62;
+   21164/300 XLT Alcor     297.79  Dave Wreski &#60;dave@nic.com&#62;
+   21164/300 AS1000        297.79  Salvador Pinto Abreu &#60;spa@sc.uevora.pt&#62;
+   21164/333 Alcor         331.35  Linus Torvalds &#60;torvalds@cs.helsinki.fi&#62;
+   21164/333 Alcor         331.35  David Mosberger-Tang &#60;davidm@azstarnet.com&#62;
+   21164/366 PC164 Durango 363.85  Geerten Kuiper &#60;geerten@bart.nl&#62;
+   21164/433 PC164         429.89  Paul D. Robertson &#60;proberts@clark.net&#62;
+   21164/433 PC164         429.91  Bernd Meyer &#60;bmeyer@cs.monash.edu.au&#62;
+   21164/433 Maita         429.91  Bill Broadley &#60;bill@math.ucdavis.edu&#62;
+   21164/433 PC164         430.96  &#60;rainer.landes@physik.uni-karlsruhe.de&#62;
+   21164/433 EB164         430.96  &#60;Metod.Kozelj@rzs-hm.si&#62;
+   21164/433 PC164         430.96  H. Sumargo &#60;habibie@robotic.eng.fiu.edu&#62;
+   21164/433 PC164         431.94  Timm Gleason &#60;timm@bess.com&#62;
+   21164/466 PC164         464.51  Daryll Strauss &#60;daryll@d2.com&#62;
+   21164/500               497     Alex Butcher &#60;alex@asimov.annex.co.uk&#62;
+   21164/500 PC164         497.02  C.J. Grayce &#60;cgrayce@wasatch.ps.uci.edu&#62;
+   21164/500               497.05  Heiner Kruener &#60;hk@martian.ping.de&#62;
+   21164/500 AS500         497.03  Jim Nance &#60;jlnance@avanticorp.com&#62;
+   21164/500 P7            497.03  Jan guldentops &#60;jacko@ba.be&#62;
+   21164/500 EB164 Durango 497.43  Kevin Jacobs &#60;jacobs@eek.cwru.edu&#62;
+
+   21164A/500  PWS         497.02  Robert Harley &#60;robert.harley@inria.fr&#62;
+   21164A/500  PC164       497.02  Stephen Oberski &#60;sfo@deterministic.com&#62;
+   21164A/533  PC164LX     529.53  Dumb Kid &#60;dumbkid@hotmail.com&#62;
+   21164A/533  PC164LX     529.53  Harvey J. Stein &#60;hjstein@bfr.co.il&#62;
+   21164PC/533 PC164SX     529.53  Danny ter Haar &#60;dth@cistron.nl&#62;
+   21164PC/533 PC164SX     529.53  Shane Sturrock &#60;sss@holyrood.ed.ac.uk&#62;
+   21164PC/533 PC164SX     529.53  Wim van Dorst &#60;baron@clifton.hobby.nl&#62;
+   21164A/533  Ruffian     530.57  Andreas Czerniak &#60;cognac@toppoint.de&#62;
+   21164A/533  PC164LX     530.57  Ronny Ranerup &#60;ronny@axis.com&#62;
+   21164A/533  PC164LX     530.57  Bill Broadley &#60;bill@math.ucdavis.edu&#62;
+   21164A/600  PC164LX     595.59  L.F. Donaldson &#60;donaldlf@cs.rose-hulman.edu&#62;
+   21164A/600  PC164LX     595.59  &#60;stepan@wesley.informatik.uni-freiburg.de&#62;
+   21164A/600  PC164       597.60  Fabrizio Santini &#60;sanfff@tin.it&#62;
+   21164A/666  PC164LX     662.70  &#60;stepan@wesley.informatik.uni-freiburg.de&#62;
+
+   21264/400 Pass-1        794.82  Jay Estabrook &#60;jay.estabrook@digital.com&#62;
+   21264/466 DS10          920.64  Paul Novarese &#60;novarese@alf.dec.com&#62;
+   21264/500 XP1000        996     Wes Bauske &#60;wsb@paralleldata.com&#62;
+   21264/500               996.14  Lionel Tricon &#60;lionel.tricon@digital.com&#62;
+   21264/500 DS20          996.14  Paul Novarese &#60;novarese@alf.dec.com&#62;
+   21264/500 XP1000        996.40  P. Caulfield &#60;patrick@balti.london.sco.com&#62;</PRE
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN200"
+>3.11. Нормально настроенные системы Motorola</A
+></H2
+><PRE
+CLASS="SCREEN"
+>   Система                BogoMips  Кто проверял
+
+   68030/14.7 LCII nofpu     3.69  Ruda Moura &#60;ruda@conectiva.com.br&#62;
+   68030/16 Atari Falcon     3.90  Jay T. Millar &#60;jmillar@eaglequest.com&#62;
+   68030/16 Atari Falcon     3.90  Bruno Aubin &#60;baubin@lemel.fr&#62;
+   68030/16 Atari Falcon     3.95  J.L. Brothers &#60;brothers@halcyon.com&#62;
+   68030/16 Atari Falcon     3.98  &#60;Roman.Hodek@informatik.uni-erlangen.de&#62;
+   68030/20 MacII Si         4.88  Bill Maloy &#60;maloy@goldinc.com&#62;
+   68030/20 0c               4.92  Chris Nadigh &#60;chrnadig@iiic.ethz.ch&#62;
+   68030    Amiga 3000       6.08  Andy Wick &#60;awick@vt.edu&#62;
+   68030/30 Amiga 4000       6.09  Karsten Merker &#60;km@golf.dinet.com&#62;
+   68030/25 Amiga 3000       6.12  Glen Hewlett &#60;hewlett@planeteer.com&#62;
+   68030/25 Amiga 3000       6.21  Hamish Macdonald &#60;hamish@bnr.ca&#62; 
+   68030/25 Amiga 3000       6.21  J.L. Brothers &#60;brothers@halcyon.com&#62;
+   68030/32 Atari Falcon     7.91  Franz Korntner &#60;fkorntne@bazis.nl&#62;
+   68030    Atari TT         7.96  &#60;schwab@issan.informatik.uni-dortmund.de&#62;
+   68030/32 Atari MegaST     7.98  E.J. van den Bussche &#60;busscheh@ksepl.nl&#62;
+   68030/33 Atari TT         7.98  &#60;Roman.Hodek@informatik.uni-erlangen.de&#62;
+   68030    Atari TT         7.98  Wayne Booth &#60;trek@ihgp114r.ih.att.com&#62;
+   68030/60                  8.06  Korey Budgen &#60;kbudgen@st.nepean.uws.edu.au&#62;
+   68030/33 Amiga 2000       8.14  W. Haidinger &#60;e9225662@stud1.tuwien.ac.at&#62;
+   68030/48 32c             11.89  Martin Rogge &#60;Martin_Rogge@ki.maus.de&#62;
+   68030/50 Atari           12     &#60;Roman.Hodek@informatik.uni-erlangen.de&#62;
+   68030/50 Amiga 1200      12.36  Chris Sumner &#60;chris@ganymede.sonnet.co.uk&#62;
+   68030/50 Amiga 1200      12.4   Richard Jerome &#60;etlrdje@tigger.ericsson.se&#62;
+   68030/50 32c             12.42  Michael Plonus &#60;michi@pluto.ping.de&#62;
+   68030/50 Amiga 1200      12.33  Detrix &#60;detrix@popd.ix.netcom.com&#62;
+   68030/50 Amiga 1200      12.36  E.J.M. Brocklesby &#60;ejb@klamath.demon.co.uk&#62;
+
+   68040/24 Amiga 4000      16.59  Bjarne Wichmann Petersen &#60;mekanix@nospam.dk&#62;
+   68040/24 Amiga 4000-40   16.6   Hamish Macdonald &#60;hamish@bnr.ca&#62; 
+   68040/24 Amiga 4000-20   16.60  J.L. Brothers &#60;brothers@halcyon.com&#62;
+   68040/25 Amiga 4000-040  16.61  &#60;Geert.Uytterhoeven@cs.ku-leuven.ac.be&#62;
+   68040/25 Amiga 4000      16.61  Lawrence &#60;lawrenc@nextwork.rose-hulmand.edu&#62;
+   68040/60 Amiga 4000-40   18.99  Darren Enns &#60;dmenns@surf.pangea.ca&#62;
+   68040/28 Mac Quadra650   18.99  Warren James &#60;wjames1@my-deja.com&#62;
+   68040/32 Medusa T40      21.25  &#60;Hartmut.Koptein@et-inf.fho-emden.de&#62;
+   68040    Amiga 2000      21.86  Ron Flory &#60;rjflory@feist.com&#62;
+   68040/40 Amiga 1200      26.52  Gavin Kinsey &#60;gavin@kinsey.u-net.com&#62;
+
+   68060/50 Amiga 1200      99.53  baba &#60;baba@pa.yokogawa.jp&#62;
+   68060/50 Amiga 4000      99.74  Stefan Tauche &#60;otauche@uni-paderborn.de&#62;
+   68060/50 Amiga 4000     100.16  Jan Johansson &#60;jj@mordor.it.kth.se&#62;
+   68060/66 Amiga CS MkII  132.71  Paul Hill &#60;paul@lagernet.clara.co.uk&#62;</PRE
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN203"
+>3.12. Другие системы: Sparc, PowerPC, Mips, Intel 8088/286 ELKS</A
+></H2
+><PRE
+CLASS="SCREEN"
+>   Система                BogoMips  Кто проверял
+
+   Sparc sun4c              17.94  J.L. Brothers &#60;brothers@halcyon.com&#62;
+   Sparc SLC/20 S1          19.86  Simon Karpen &#60;slk@linux-shell.net&#62;
+   Sparc sun4c/25           24.88  Paolo &#60;paolo0@yahoo.com&#62;
+   Sparc IPX 4c             39.83  Paul D. Robertson &#60;proberts@clark.net&#62;
+   Sparc SS10 super50 4m    39.93  Juan Cespedes &#60;cespedes@etsit.upm.es&#62;
+   Sparc microS/50 SS-LX    49.76  Will Shaw &#60;romulan@netwatch.clemson.edu&#62;
+   Sparc SS20/50            49.86  Gary A. Donahue &#60;lordgad@webspan.net&#62;
+   Sparc hyperS Classic 4m  49.86  Juan Cespedes &#60;cespedes@etsit.upm.es&#62;
+   Sparc Voyager portable   59.80  Edward Austin &#60;eastin@shl.com&#62;
+   Sparc SS5 Netra          68     Craig Falconer &#60;cf@papanui.school.nz&#62;
+   Sparc SS5                69.84  Richard D. Davis &#60;rddavis1@lucent.com&#62;
+   Sparc SS50               74.95  Kaz &#60;kaz@latte.cafe.net&#62;
+   Sparc SS10 hyperS        99.73  Thomas B. Fox &#60;tfox@oliverdesign.com&#62;
+   Sparc SS5/66            109.77  Lance S. Nehring &#60;lnehrin@uswest.com&#62;
+   Sparc SS4/110           109.77  Chris Sylvain &#60;csylvain@umms-itg.ab.umd.edu&#62;
+   Sparc hSparc sum4m      124.92  Georg Schwarz &#60;schwarz@physik.tu-berlin.de&#62;
+   Sparc hSparc/150 Sun4m  150.32  Tethys &#60;tethys@ml.com&#62;
+
+   Sparc Ultra I/143       278.00  Helmut &#60;helmut@cancon.com&#62;
+   Sparc Ultra I sun4u     284.05  Iban Cardona &#60;icc@seric.es&#62;
+   Sparc Ultra II/270      539.03  Pieter Krul &#60;pieter@dare.demon.nl&#62;
+   Sparc Ultra II/360      719.26  Bjoern Augustsson &#60;d3august@dtek.chalmers.se&#62;
+
+   PowerPC 601    Mac       33.28  David Wetzel &#60;dave@turbocat.de&#62;
+   PowerPC 601/60 Mac6100   45.24  J.L. Brothers &#60;brothers@halcyon.com&#62;
+   PowerPC 601/66 Mac       51.62  Fred Klein &#60;klein@des3.u-strasbg.fr&#62;
+   PowerPC 601/60 Mac6100   59.38  Kent Radek &#60;goo@itd.sterling.com&#62;
+   PowerPC 601/75 Mac7200   73.93  Dimitris Tsifakis &#60;jimmy@typhoeus.dg.uoa.gr&#62;
+   PowerPC 601/90 Mac7200   89.00  Heinrich H. Beck &#60;thebigduck@earthlink.net&#62;
+   PowerPC 601/100 Mac7500  98.91  Russ Hoffman &#60;reh@fore.com&#62;
+   PowerPC 601/110 Mac8100 108     Charles Eicher &#60;ceicher@inav.net&#62;
+
+   PowerPC 603/100          66.56  A. Costa &#60;c_chaos@chaosnet.wahnapitae.on.ca&#62;
+
+   PowerPC 604/100 PPS6050  99.74  Evaldas Darcianovas &#60;evaldas@isi.kvm.lt&#62;
+   PowerPC 604/100         199     Hamish Marson &#60;hamish@aixrules.nz.ibm.com&#62;
+   PowerPC 604/100 PPS7248 199.48  Evaldas Darcianovas &#60;evaldas@isi.kvm.lt&#62;
+   PowerPC 604     Mac8500 239.21  Steve &#60;sjs132@psu.edu&#62;
+   PowerPC 604/132 Mac9500 263.78  Matt Templeton &#60;cybear@pacbell.net&#62;
+   PowerPC 604/132 Mac7500 263.78  Patrick Murmann &#60;murmann@mi.uni-erlangen.de&#62;
+   PowerPC 604/133 MOT PS  266.24  Christoper Harrel &#60;cnh@eng.mindspring.net&#62;
+   PowerPC 604/150 Mac9500 297.73  Jean-Philippe Lord &#60;jpl@binex.com&#62;
+   PowerPC 604e/195        359.63  Michael Potts &#60;pottsjam@flyernet.udayton.edu&#62;
+   PowerPC 604/200 Mac8600 320     Julien Sebot &#60;sebot@lri.fr&#62;
+   PowerPC 604/180 SM900   367.82  J.E. Cook &#60;jcojones@mail.athen1.ga.home.com&#62;
+   PowerPC 604e/200 SM4000 399.12  Roland Kuhn &#60;kuhn@physik.uni-kassel.de&#62;
+
+   PowerPC 750/266 Mac     532.48  Fritz Anderson &#60;fritza@tezcat.com&#62;
+   PowerPC 750/292 Mac     586.38  John McAulay &#60;johnmcaulay@ndirect.co.uk&#62;
+
+   Mips R4000/100           48.30  J.L. Brothers &#60;brothers@halcyon.com&#62;
+   Mips R4000/100 Magnum    50.03  Andreas Busse &#60;andy@soft-n-hard.de&#62;
+   Mips R4400/134 Acer Pica 67.10  Andreas Busse &#60;andy@soft-n-hard.de&#62;
+   Mips R4400/134 Acer Pica 67.10  Ralf Baechle &#60;ralf@waldorf-gmbh.de&#62;
+   Mips R4600/133 Tyne     133.12  Ralf Baechle &#60;ralf@waldorf-gmbh.de&#62;
+   Mips R4600/133 RM200    133.08  Ralf Baechle &#60;ralf@julia.de&#62;
+   Mips R5000/150 Indy     154.83  Ralf Baechle &#60;ralf@julie.de&#62;
+   
+   Intel 8088/4.77           0.02  Tim Van der Linden &#60;timvdl@innet.be&#62;
+   Intel 8088/10             0.05  Tim Van der Linden &#60;timvdl@innet.be&#62;
+   Intel 8086                0.5   Kin Lau &#60;gabe@zot.io.org&#62;
+   Intel 286 Tandy           0.75  Joey Hess &#60;joey@kite.ml.org&#62;
+   Intel 286 Nec V20/16      0.88  Vasilhs Ventirozos &#60;r00t666@hotmail.com&#62;
+   Intel 286                 0.99  Anders Stenback &#60;stenback@hehe.com&#62;
+   Intel 286/8 VAXMate       1.03  Andrew Costa &#60;c_chaos@wahnapitae.on.ca&#62;
+   Intel 286/10 Commodore    1.30  Hans-Joachim Baader &#60;hans@grumber.inka.de&#62;
+   Intel 286 PS2             2.32  Morillas C.H. Antonio &#60;morilla@fie.us.es&#62;
+   Intel 286 PS2             2.34  Joey Hess &#60;joey@kite.ml.org&#62;</PRE
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN206"
+>3.13. Нормально настроенные многопроцессорные системы</A
+></H2
+><PRE
+CLASS="SCREEN"
+>   Система                BogoMips  Кто проверял
+
+   SMP2 Pentium/75          59.50  Michael Engel &#60;engel@unix-ag.uni-siegen.de&#62;
+   SMP2 Pentium/90          71.68  Edwin Whitelaw &#60;elw@ivc.com&#62;
+   SMP2 Pentium/90          71.98  Daniel Luhde-Thompson &#60;dl10010@cam.ac.uk&#62;
+   SMP2 Pentium/90          72.08  Alan Cox &#60;alan@cymru.net&#62;
+   SMP2 Pentium/100         79.46  Lam Dang &#60;dangit@ix.netcom.com&#62;
+   SMP2 Pentium/100         80.08  Christian Tan &#60;pigeon@xs4all.nl&#62;
+   SMP2 Pentium/100         80.08  McNalley &#60;jmcnalle@attila.stevens-tech.edu&#62;
+   SMP2 Pentium/120         95.85  Maurice de Bijl &#60;maurice.d.bijl@topic.nl&#62;
+   SMP2 Pentium/133        106.09  Maurice de Bijl &#60;maurice.d.bijl@topic.nl&#62;
+   SMP2 Pentium/166        133.53  &#60;Reinhard.Simkovics@jk.uni-linz.ac.at&#62;
+   SMP2 Pentium/200        158.72  Ed Hoppitt &#60;edward@dcs.rhbnc.ac.uk&#62;
+
+   SMP2 Pentium MMX/200    794.62  Kristian Koehntopp &#60;kris@koehntopp.de&#62;
+   SMP2 Pentium MMX/200    796.26  Eric Clark &#60;eclark@opencominc.com&#62;
+   SMP2 Pentium MMX/233    927.33  Jeff White &#60;jwhite@ghq.com&#62;
+
+   SMP2 Pentium Pro/150    299.00  Steven Gallo &#60;smgallo@numenor.csgeeks.org&#62;
+   SMP2 Pentium Pro/150    299.01  Eric van Dijken &#60;E.vanDijken@PTT-Telecom.nl&#62;
+   SMP2 Pentium Pro/166    331.78  Eric van Dijken &#60;E.vanDijken@PTT-Telecom.nl&#62;
+   SMP2 Pentium Pro/180    358.81  Eric van Dijken &#60;E.vanDijken@PTT-Telecom.nl&#62;
+   SMP2 Pentium Pro/180    358.81  Frankie East &#60;fae2401@rit.edu&#62;
+   SMP2 Pentium Pro/180    358.81  James K. Wiggs &#60;wiggs@wolfenet.com&#62;
+   SMP2 Pentium Pro/200    396.25  Will Shaw &#60;shaww@dialup.dstm.com&#62;
+   SMP2 Pentium Pro/200    397.32  Abhijit Menon-Sen &#60;ams@wiw.org&#62;
+   SMP2 Pentium Pro/200    398.13  David Konerding &#60;dek@cgl.ucsf.edu&#62;
+   SMP2 Pentium Pro/200    398.13  B. Heinen &#60;benedikt.heinen@infrasys.ascom.ch&#62;
+   SMP2 Pentium Pro/200    398.13  Ramon Huerta &#60;huerta@minerva.ii.uam.es&#62;
+   SMP2 Pentium Pro/200    398.14  C.-A. Possamai &#60;camille@sugiton.cnrs-mrs.fr&#62;
+   SMP2 Pentium Pro/200    398.14  Leland &#60;llucius@millcom.com&#62;
+   SMP2 Pentium Pro/200    398.14  John Lellis &#60;lellis@dmccorp.com&#62;
+   SMP2 Pentium Pro/200    398.14  Jim Gifford &#60;jim@mail.rath.peachnet.edu&#62;
+   SMP2 Pentium Pro/200    398.14  Manuel Galan &#60;root@ulpgc.es&#62;
+   SMP2 Pentium Pro/200    398.6   Bill Davidsen &#60;davidsen@tmr.com&#62;
+   SMP2 Pentium Pro/200    398.95  Fons Rademakers &#60;f.rademakers@cern.ch&#62;
+   SMP2 Pentium Pro/200    398.98  Greg Fausak &#60;glfausak@august.com&#62;
+   SMP2 Pentium Pro/200    400.18  Attila Karpati &#60;karpati@cs.elte.hu&#62;
+   SMP2 Pentium Pro/233    464.49  F. Baitinger &#60;baiti@zenon.toplink.net&#62;
+   SMP4 Pentium Pro/133    532.07  Erik Walthinsen &#60;omega@sequent.com&#62;
+   SMP4 Pentium Pro/200    794.62  Kenneth Hedlund &#60;c415khd@nll.se&#62;
+   SMP4 Pentium Pro/200    796.28  John Pelan &#60;j.pelan@am.qub.ac.uk&#62;
+
+   SMP2 Pentium II/233     466.94  Eli Kane &#60;eli@crl.nmsu.edu&#62;
+   SMP2 Pentium II/266     530.84  Shon Martin &#60;cshoon@oberlin.edu&#62;
+   SMP2 Pentium II/266     534.12  n.n. &#60;service@cprompt.sk.ca&#62;
+   SMP2 Pentium II/266     534.12  Emmanuel Tychon &#60;manu@acm.org&#62;
+   SMP2 Pentium II/274     546.41  Richard Jellinek &#60;rj@suse.de&#62;
+   SMP2 Pentium II/300     597.20  Paul Sheer &#60;psheer@obsidian.co.za&#62;
+   SMP2 Pentium II/300     598.02  Hans Ameel &#60;hans@pla.to&#62;
+   SMP2 Pentium II/300     599.66  Abhijit Menon-Sen &#60;ams@wiw.org&#62;
+   SMP2 Pentium II/300     599.76  S. Curtarolo &#60;auro@spiro.fisica.unpd.it&#62;
+   SMP2 Pentium II/333 ov  665.73  S. Curtarolo &#60;auro@spiro.fisica.unpd.it&#62;
+   SMP2 Pentium II/350     697.14  Riley &#60;rhw@bigfoot.com&#62;
+   SMP2 Pentium II/350     700.42  David Overeem &#60;overeem.1@osu.edu&#62;
+   SMP2 Pentium II/350     700.42  Mathijs &#60;matthijs@helena.tux.nu&#62;
+   SMP2 Pentium II/350     700.42  Joe Gray &#60;jgray_111@yahoo.com&#62;
+   SMP2 Pentium II/400     796.26  Michael Necaise &#60;necaise@jlab.org&#62;
+   SMP2 Pentium II/400     800.20  Simon van Sleuwen &#60;sleuwen@hotmail.com&#62;
+   SMP2 Pentium II/400     800.36  Gloger &#60;joachim.j.gloger@daimlerchrysler.com&#62;
+   SMP2 Pentium II/400     800.36  Marcel Lanz &#60;marcel.lanz@ds9.ch&#62;
+   SMP2 Pentium II/400     800.36  Frank &#60;frank@sazza.ping.de&#62;
+   SMP2 Pentium II/400     800.47  Jung Pyo Hong &#60;hongjungpyo@my-deja.com&#62;
+   SMP2 Pentium II/448 ov  894.57  Rob Leach &#60;dslfreak@pacbell.net&#62;
+   SMP2 Pentium II/450     901.12  Abhijit Menon-Sen &#60;ams@wiw.org&#62;
+   SMP2 Pentium II/466     925.70  A. Giachino &#60;a.giachine@ekkinc.com&#62;
+
+   SMP2 Celeron/400        796.26  Stuart Hall &#60;stuarthall@mailandnews.com&#62;
+   SMP2 Celeron/400        798.21  Stefan Onderka &#60;nop@gameart.com&#62;
+   SMP2 Celeron/450        894.57  Stephan Eisler &#60;stephan@lingo.gun.sub.org&#62;
+   SMP2 Celeron/500        999.42  Ingimar Rovertsson &#60;iar@skyrr.is&#62;
+   SMP2 Celeron/500        999.42  Rob Farrell &#60;rpf@home.com&#62;
+   SMP2 Celeron/515 overc 1028.92  Ryan Werber &#60;rwerber@ctel.net&#62;
+   SMP2 Celeron/550 overc 1101.00  Olof Zachrisson &#60;eraolza@ks.ericsson.se&#62;
+   SMP2 Celeron/550 overc 1101.00  John Katagawa &#60;dhc@50k.com&#62;
+   SMP2 Celeron/550 overc 1101.00  Mattias Moberg &#60;mattias.moberg@home.se&#62;
+   SMP2 Celeron/550 overc 1101.00  Kieffer &#60;Jerome.KIEFFER@crans.ens-cachan.fr&#62;
+   SMP2 Celeron/563 overc 1120     Cecchinel Stephan &#60;inter.zone@free.fr&#62;
+   SMP2 Celeron/606 overc 1207.50  Mattias Moberg &#60;mattias.moberg@home.se&#62;
+
+   SMP2 Pentium III/450    899.48  Ramses Smeyers &#60;fatman@khk.org&#62;
+   SMP2 Pentium III/450    899.48  Roland Exler &#60;r.exler@jk.uni-linz.ac.at&#62;
+   SMP2 Pentium III/500    996.14  Ola Samuelson &#60;ola@datalink.se&#62;
+   SMP2 Pentium III/500    996.15  Rob Green &#60;mooncrow@lava.net&#62;
+   SMP2 Pentium III/500    999.42  Douglas Osborn &#60;daozb@earthlink.net&#62;
+   SMP2 Pentium III/560   1117.39  Nathan Laredo &#60;laredo@gnu.org&#62;
+   SMP4 Pentium III/450   1794.00  Glenn Stone &#60;glenns@ami.com&#62;
+   SMP4 Pentium III/550   2195.46  Yan P. Yuan &#60;Yanping.Yuan@EMBL-Heidelberg.de&#62;
+   SMP8 Pentium III/500   3996.06  Richard Langis &#60;rlangis@primux.geekfest.net&#62;
+
+   SMP2 Sparc SS/50         99.84  Dimitris Tsifakis &#60;sv1det@freemail.gr&#62;</PRE
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN209"
+>3.14. Системы, работающие не под Linux (для сравнения)</A
+></H2
+><PRE
+CLASS="SCREEN"
+>   Система                               BogoMips  Кто проверял
+
+   Z80 TRS80 model 4           TRSDOS     0.004 &#60;cervasio@airmail.net&#62;
+   Z80/4.6 NC100               ZCN        0.013 &#60;rus@forfree.at&#62;
+   68000/8 Macintosh Classic   MacOS      0.53  &#60;jimmy@typhoeus.dg.uoa.gr&#62;
+   68020/20 Sun 3              SUNOS      2.0   &#60;korpela@ssl.berkeley.edu&#62;
+   68020/16 Macintosh LC       MacOS      3.09  &#60;jimmy@typhoeus.dg.uoa.gr&#62;
+   68020/25 Sun 3-180          SUNOS      4.0   &#60;korpela@ssl.berkeley.edu&#62;
+   Sparc Sun 3-60              SUNOS      4.00  &#60;tranter@software.mitel.com&#62;
+   Sparc Sun 3-80              SUNOS      4.00  &#60;tranter@software.mitel.com&#62;
+   68030/25 Macintosh IIci     NetBSD     5.62  &#60;kirk-corey@uiowa.edu&#62;
+   68040/25 Macintosh LC475    MacOS     12.27  &#60;jimmy@typhoeus.dg.uoa.gr&#62;
+   68040/33 HP9000-280         HP-UX     14     &#60;niles@axp745.gsfc.nasa.gov&#62;
+   68040/25 Apollo 5500        DomainOS  14.00  &#60;kirk-corey@uiowa.edu&#62;
+   Sparc Sun 4-280/20          SUNOS     16.0   &#60;korpela@ssl.berkeley.edu&#62;
+   Sparc Sun IPC/40            Solaris   16.00  &#60;gong@cs.msu.su&#62;
+   68040/25 HP9000-425         DomainOS  16.00  &#60;kirk-corey@uiowa.edu&#62;
+   68040 NextStep              (?)       16.26  &#60;petergun@coffeehaus.com&#62;
+   Sparc Sun SS1               SUNOS     18.00  &#60;tranter@software.mitel.com&#62;
+   Sparc Sun SS1               SUNOS     18.00  &#60;jimmy@typhoeus.dg.uoa.gr&#62;
+   IBM RS6000 320              AIX       18.00  &#60;mg@svtpc3.fb12.tu-berlin.de&#62;
+   Sparc Sun SS1+              SUNOS     19     &#60;swmike@uplift.df.lth.se&#62;
+   Sparc Sun SS1+              SUNOS     24.00  &#60;tranter@software.mitel.com&#62;
+   Sparc Sun IPC               SUNOS     24.00  &#60;tranter@software.mitel.com&#62;
+   IBM RS6000 320H             AIX       24.00  &#60;mg@svtpc3.fb12.tu-berlin.de&#62;
+   Sparc Sun Sparcstation2     SUNOS     26.00  &#60;gong@cs.msu.su&#62;
+   SparcClassic/50             Solaris   32.00  &#60;gong@cs.msu.su&#62;
+   Sparc Sun ELC               SUNOS     32.00  &#60;tranter@software.mitel.com&#62;
+   HP-PA 9000-720              HP-UX     32.00  &#60;metod.kozelj@rzs-hm.si&#62;
+   Sparc Sun SS10              SUNOS     34.00  &#60;tranter@software.mitel.com&#62;
+   Sparc Sun SS10              SUNOS     34.00  &#60;makler@man.torun.pl&#62;
+   Pentium/100                 Win-NT    36.21  &#60;marcus@healthchex.com&#62;
+   Sparc Sun Sparcstation2     SUNOS     38.0   &#60;korpela@ssl.berkeley.edu&#62;
+   Mips R4000/100 Indy         (?)       48.00  &#60;p.verwer@organon.akzonobel.nl&#62;
+   Mips R4000/100 SGI IndySC   Irix      48.00  &#60;lziegler@csbsju.edu&#62;
+   HP-PA 9000-720              HP-UX     48.00  &#60;metod.kozelj@rzs-hm.si&#62;
+   Sparc SS10                  SUNOS     48.00  &#60;makler@man.torun.pl&#62;
+   IBM RS-6000-250/66          AIX       52.00  &#60;gl23@e4.hrz.uni-giessen.de&#62;
+   Sparc Sun Sparcstation10d   SUNOS     54.0   &#60;korpela@ssl.berkeley.edu&#62;
+   Sparc SS1000 2CPU           SUNOS     58.00  &#60;gong@cs.msu.su&#62;
+   Sparc SS20                  SUNOS     60.00  &#60;makler@man.torun.pl&#62;
+   IBM RS6000-250/80           AIX       62.00  &#60;gl23@e4.hrz.uni-giessen.de&#62;
+   Alpha 21064/133 Decstation  OSF1      64     &#60;niles@axp745.gsfc.nasa.gov&#62;
+   Alpha 21064/133 Dec3000     OSF1      66.00  &#60;daniels@helplaxp1.harvard.edu&#62;
+   Sparc Sun SS5               SUNOS     68.00  &#60;tranter@software.mitel.com&#62;
+   Sparc Sun SS20              SUNOS     72.00  &#60;tranter@software.mitel.com&#62;
+   Sparc Sun SS20/712          Solaris   74     &#60;spohr@qmos.com&#62;
+   Mips R4400/150 Challenge    (?)       74.00  &#60;p.verwer@organon.akzonobel.nl&#62;
+   Mips R4400/150 Indigo2Extr  (?)       74.00  &#60;p.verwer@organon.akzonobel.nl&#62;
+   HP-PA 9000-715              HP-UX     74.00  &#60;metod.kozelj@rzs-hm.si&#62;
+   Sparc SS5 sun4m             SUNOS     84.00  &#60;chrisv@allegria.com&#62;
+   Sparc SS1000E               SUNOS     84.00  &#60;makler@man.torun.pl&#62;
+   Alpha                       OSF1      92.00  &#60;petergun@coffeehaus.com&#62;
+   Mips R4400/200 Indigo2Extr  (?)       98.00  &#60;p.verwer@organon.akzonobel.nl&#62;
+   HP-PA 9000-735/99           HP-UX     98.00  &#60;lankhors@cs.rug.nl&#62;
+   Sparc SS5                   SUNOS    104.00  &#60;makler@man.torun.pl&#62;
+   Sparc Sun SS4/110           Solaris  108     &#60;spohr@qmos&#62;
+   Sparc Sun SS4               Solaris  108.00  &#60;jimmy@typhoeus.dg.uoa.gr&#62;
+   Sparc Sun SS5               SUNOS    110     &#60;swmike@uplift.df.lth.se&#62;
+   Alpha 21064A/233            OSF1     114     &#60;niles@axp745.gsfc.nasa.gov&#62;
+   Alpha 3000 21064/300        OSF1     120.00  &#60;gl23@e4.hrz.uni-giessen.de&#62;
+   HP-PA 700/125               HP-UX    122     &#60;niles@axp745.gsfc.nasa.gov&#62;
+   HP-PA 9000-735/125          HP-UX    122.00  &#60;lankhors@cs.rug.nl&#62;
+   Mips R4600/133 SGI Indy     Irix     132     &#60;lziegler@csbsju.edu&#62;
+   MIPS R5000/150              Irix     148.00  &#60;nachiket@indimax.hydroqual.com&#62;
+   IBM 6x86                    OS/2     149.13  &#60;mikedg@ghostbbs.pandora.it&#62;
+   Alpha                       OSF1     180.0   &#60;mauger@ensinfo.univ-nantes.fr&#62;
+   MIPS R10000/195             Irix     194.00  &#60;nachiket@indimax.hydroqual.com&#62;
+   Alpha 21164/333 AS500       OSF1     222.00  &#60;daniels@helplaxp1.harvard.edu&#62;
+   Sparc Ultra-1 sun4u         Solaris  254.00  &#60;alternat@rwth-aachen.de&#62;
+   PPC604/133 IBM RS6000       AIX      254.00  &#60;kirk-corey@uiowa.edu&#62;
+   IBM RS-6000 43P powerpc     AIX      260.00  &#60;gl23@e4.hrz.uni-giessen.de&#62;
+   Sparc U-1 sun4u             SunOS    284.00  &#60;gl23@e4.hrz.uni-giessen.de&#62;
+   Alpha 21164/433 DPW433au    OSF1     286.00  &#60;daniels@helplaxp1.harvard.edu&#62;
+   HP9000-C160/160             HP-UX    316.00  &#60;nicolai@prz.tu-berlin.de&#62;
+   Sparc Sun US1/170           Solaris  330     &#60;spohr@qmos&#62;
+   Sparc Sun US1/167           Solaris  330     &#60;jimmy@typhoeus.dg.uoa.gr&#62;
+   Sparc Ultra-1 sun4u         SUNOS    334.00  &#60;chrisv@allegria.com&#62; 
+   Alpha 3000-600S             VMS      348.61  &#60;metod.kozelj@rzs-hm.si&#62;
+   Alpha server 1000-4/200     VMS      397.68  &#60;metod.kozelj@rzs-hm.si&#62;
+   Sparc Sun-Ultra30/248       Solaris  482.00  &#60;marc.Quinton@stna.dgac.fr&#62;
+   Sparc US2/296 2cpu          SUNOS    596.00  &#60;manu@acm.org&#62;
+   Cray J90 Y-MP/100 16cpu     Unicos   912.00  &#60;lankhors@cs.rug.nl&#62;
+   Sequent Symmetry 6xP5/166   Dynix    984.00  &#60;omega@sequent.com&#62;
+   Sequent Symmetry 16xP5/66   Dynix   1056.00  &#60;omega@sequent.com&#62;
+   HP9000-C160/160             HP-UX   1278.00  &#60;nicolai@prz.tu-berlin.de&#62;
+   Sequent NUMA-Q 12x P6/180   Dynix   1416.00  &#60;omega@sequent.com&#62;
+   Sequent NUMA-Q 32x P6/180   Dynix   3776.00  &#60;omega@sequent.com&#62;</PRE
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN212"
+>4. Подпись</A
+></H1
+><P
+>Met vriendelijke groeten, Wim 'Dad' van Dorst.
+------------------------------------------------------------------------
+Wim van Dorst, Clifton Scientific Text Services, tel/fax +31 355 242 319
+                   This sentence have three erors</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN215"
+>5. Авторские права</A
+></H1
+><P
+>Авторские права на русский перевод этого текста принадлежат &copy; 2000 SWSoft Pte Ltd.
+Все права зарезервированы.</P
+><P
+>Этот документ является частью проекта Linux HOWTO.</P
+><P
+>Авторские права на документы Linux HOWTO принадлежат их авторам, если явно
+не указано иное. Документы Linux HOWTO, а также их переводы, могут
+быть воспроизведены и распространены полностью или частично на любом
+носителе, физическом или электронном, при условии сохранения этой заметки об
+авторских правах на всех копиях. Коммерческое распространение разрешается и
+поощряется; но, так или иначе, автор текста и автор перевода желали бы знать о
+таких дистрибутивах.</P
+><P
+>Все переводы и производные работы, выполненные по документам Linux HOWTO,
+должны сопровождаться этой заметкой об авторских правах. Это делается в
+целях предотвращения случаев наложения дополнительных ограничений на
+распространение документов HOWTO. Исключения могут составить случаи
+получения специального разрешения у координатора Linux HOWTO, с которым
+можно связаться по адресу приведенному ниже.</P
+><P
+>Мы бы хотели распространить эту информацию по всем возможным каналам. Но
+при этом сохранить авторские права и быть уведомленными о всех планах
+распространения HOWTO. Если у вас возникли вопросы, пожалуйста, обратитесь
+к координатору проекта Linux HOWTO по электронной почте:
+<TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:linux-howto@metalab.unc.edu"
+>linux-howto@metalab.unc.edu</A
+>&#62;</TT
+> или к координатору русского
+перевода Linux HOWTO компании SWSoft Pte Ltd. по адресу
+<TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:linux-howto@asplinux.ru"
+>linux-howto@asplinux.ru</A
+>&#62;</TT
+></P
+></DIV
+></DIV
+></BODY
+></HTML
+>

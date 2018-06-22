@@ -1,0 +1,227 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE>The Linux NIS(YP)/NYS/NIS+ HOWTO: Что мне нужно для установки NIS+ ?</TITLE>
+ <LINK HREF="NIS-HOWTO-8.html" REL=next>
+ <LINK HREF="NIS-HOWTO-6.html" REL=previous>
+ <LINK HREF="NIS-HOWTO.html#toc7" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="NIS-HOWTO-8.html">Next</A>
+<A HREF="NIS-HOWTO-6.html">Previous</A>
+<A HREF="NIS-HOWTO.html#toc7">Contents</A>
+<HR>
+<H2><A NAME="s7">7. Что мне нужно для установки NIS+ ?</A></H2>
+
+<P>
+<P>
+<H2><A NAME="ss7.1">7.1 Программное обеспечение</A>
+</H2>
+
+<P>
+<P>Код клиента Linux NIS+ был разработан для GNU C library 2. Также
+имеется порт для версии Linux libc5, так как многие коммерческие
+приложения собраны с этой библиотекой и не могут быть
+перекомпилированы для использования glibc. Имеется несколько проблем с
+libc5 и NIS+: статические программы не могут быть связаны с ней и
+программы скомпилированные с этой библиотекой не работают с другими
+версиями libc5.
+<P>Вам нужно получить и скомпилировать библиотеку GNU C Library 2.1 для
+платформы Intel или GNU C Library 2.1.1 для 64bit платформ. В качестве
+базовой системы вам понадобится основанный на glibc дистрибутив Linux,
+такой как Debian 2.x, RedHat 5.x или SuSE Linux 6.x.
+<P>Для других дистрибутивов вам понадобится перекомпилировать компилятор
+gcc/g++, libstdc++ и ncurses. Для Redhat, вам понадобится сделать
+большое количество изменений в настройках PAM. Для SuSE Linux 6.0, вам
+понадобится перекомпилировать пакет shadow.
+<P>Клиент NIS+ может быть получен отсюда:
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+  Site             Directory                     File Name
+
+  ftp.funet.fi     /pub/gnu/funet                libc-*, glibc-crypt-*,
+                                                 glibc-linuxthreads-*
+  ftp.kernel.org   /pub/linux/utils/net/NIS+     nis-utils-19990223.tar.gz
+  ftp.kernel.org   /pub/linux/utils/net/NIS+     pam_keylogin-1.2.tar.gz
+</PRE>
+</CODE></BLOCKQUOTE>
+
+Дистрибутивы основанные на glibc могут быть получены отсюда:
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+  Site                   Directory
+
+  ftp.debian.org         /pub/debian/dists/slink
+  ftp.redhat.com         /pub/redhat/redhat-5.2
+  ftp.suse.de            /pub/SuSE-Linux/6.0
+</PRE>
+</CODE></BLOCKQUOTE>
+
+Для компиляции библиотеки GNU C пожалуйста следуйте инструкциям,
+которые идут вместе с исходными текстами. Вы можете найти исправленную
+версию libc5, основанную на NYS, и исходные тексты как замену
+стандартной libc5 здесь:
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+  Site               Directory                  File Name
+
+  ftp.kernel.org     /pub/linux/utils/net/NIS+  libc-5.4.44-nsl-0.4.10.tar.gz
+</PRE>
+</CODE></BLOCKQUOTE>
+
+Вы должны также посмотреть
+<A HREF="http://www.suse.de/~kukuk/linux/nisplus.html">http://www.suse.de/~kukuk/linux/nisplus.html</A> для подробной
+информации и последних версиях исходных текстов.
+<P>
+<H2><A NAME="ss7.2">7.2 Установка клиента NIS+</A>
+</H2>
+
+<P>
+<P>ВАЖНО: Для установки клиента NIS+ прочтите вашу документацию Solaris
+NIS+ которая говорит о стороне сервера. Этот документ описывает только
+то, что нужно сделать на стороне клиента!
+<P>После установки новой libc и nis-tools, создайте мандат для нового
+клиента на сервере NIS+. Убедитесь, что запущен portmap. Затем
+проверьте, чтобы ваш Linux PC имел то же самое время как и NIS+
+сервер. По соображениям безопастности RPC, вы имеете только маленькое
+окно около 3-х минут, в котором созданные вами мандаты разрешены.
+Хорошо бы запустить xntpd на каждый узел. После этого, выполните
+команды
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+ domainname nisplus.domain.
+ nisinit -c -H &lt;NIS+ server>
+</PRE>
+</CODE></BLOCKQUOTE>
+
+для инициализации файла холодного старта. Прочтите страницу
+руководства по nisinit на предмет опций. Убедитесь, что имя домена
+будет всегда установлено после перезагрузки. Если вы не знаете какое у
+вас в сети имя домена NIS+, спросите у администратора вашей
+системы/сети.
+<P>Теперь вы должны изменить ваш файл /etc/nsswitch.conf. Убедитесь, что
+только после publickey стоит nisplus ("publickey: nisplus"), и ничего
+другого!
+<P>Затем запустите keyserv и убедитесь, что он будет всегда запускаться
+во время загрузки как первый демон после portmap. Запустите
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+ keylogin -r
+</PRE>
+</CODE></BLOCKQUOTE>
+
+для записи root secretkey на вашей системе. (Я надеюсь, что вы
+добавили publickey для нового узла в NIS+ сервер?).
+<P>Команда "niscat passwd.org_dir" должна выдать вам все ваши записи в
+базе данных паролей.
+<P>
+<H2><A NAME="ss7.3">7.3 NIS+, keylogin, login и PAM</A>
+</H2>
+
+<P>
+<P>Когда пользователь входит в систему, ему нужно установить его
+secretkey для keyserv. Это делается вызовом "keylogin". login из
+пакета shadow будет делать это для пользователя, если он был
+скомпилирован для glibc 2.1. Для login, основанном на PAM, вы должны
+установить pam_keylogin-1.2.tar.gz и изменить файл /etc/pam.d/login
+для использования pam_unix_auth, а не pwdb, который не поддерживает
+NIS+. Например:
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+ #%PAM-1.0
+ auth       required     /lib/security/pam_securetty.so
+ auth       required     /lib/security/pam_keylogin.so
+ auth       required     /lib/security/pam_unix_auth.so
+ auth       required     /lib/security/pam_nologin.so
+ account    required     /lib/security/pam_unix_acct.so
+ password   required     /lib/security/pam_unix_passwd.so
+ session    required     /lib/security/pam_unix_session.so
+</PRE>
+</CODE></BLOCKQUOTE>
+<H2><A NAME="ss7.4">7.4 Файл nsswitch.conf</A>
+</H2>
+
+<P>
+<P>Файл Переключателя Служб Имен /etc/nsswitch.conf определяет порядок
+поиска, который выполняется когда требуется определенный кусок
+информации, также как файл /etc/host.conf, который определяет способ
+выполнения поиска узлов. Например, строка
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+    hosts: files nis dns
+</PRE>
+</CODE></BLOCKQUOTE>
+
+говорит, что функции поиска узлов должны сперва смотреть в локальный
+файл /etc/hosts, затем производить поиск через NIS+ и наконец
+использовать службу доменных имен (/etc/resolv.conf и демон named), и
+если нужный узел не найден, возвратить ошибку. Данный файл должен быть
+доступен на чтение для любого пользователя! Вы можете найти больше
+информации на станице руководства nsswitch(5) или nsswitch.conf(5).
+<P>Хороший файл /etc/nsswitch.conf для NIS+ это:
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+ #
+ # /etc/nsswitch.conf
+ #
+ # An example Name Service Switch config file. This file should be
+ # sorted with the most-used services at the beginning.
+ #
+ # The entry '[NOTFOUND=return]' means that the search for an
+ # entry should stop if the search in the previous entry turned
+ # up nothing. Note that if the search failed due to some other reason
+ # (like no NIS server responding) then the search continues with the
+ # next entry.
+ #
+ # Legal entries are:
+ #
+ #       nisplus                 Use NIS+ (NIS version 3)
+ #       nis                     Use NIS (NIS version 2), also called YP
+ #       dns                     Use DNS (Domain Name Service)
+ #       files                   Use the local files
+ #       db                      Use the /var/db databases
+ #       [NOTFOUND=return]       Stop searching if not found so far
+ #  
+
+ passwd:     compat
+ # for libc5: passwd: files nisplus
+ group:      compat
+ # for libc5: group: files nisplus
+ shadow:     compat
+ # for libc5: shadow: files nisplus
+
+ passwd_compat: nisplus
+ group_compat:  nisplus
+ shadow_compat: nisplus
+
+ hosts:      nisplus files dns
+
+ services:   nisplus [NOTFOUND=return] files
+ networks:   nisplus [NOTFOUND=return] files
+ protocols:  nisplus [NOTFOUND=return] files
+ rpc:        nisplus [NOTFOUND=return] files
+ ethers:     nisplus [NOTFOUND=return] files
+ netmasks:   nisplus [NOTFOUND=return] files
+ netgroup:   nisplus
+ bootparams: nisplus [NOTFOUND=return] files
+ publickey:  nisplus
+ automount:  files
+ aliases:    nisplus [NOTFOUND=return] files
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>
+<HR>
+<A HREF="NIS-HOWTO-8.html">Next</A>
+<A HREF="NIS-HOWTO-6.html">Previous</A>
+<A HREF="NIS-HOWTO.html#toc7">Contents</A>
+</BODY>
+</HTML>

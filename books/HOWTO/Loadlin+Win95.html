@@ -1,0 +1,1762 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Мини-HOWTO: Loadlin+Win95</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.57"></HEAD
+><BODY
+CLASS="ARTICLE"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="ARTICLE"
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="TITLE"
+><A
+NAME="AEN2"
+>Мини-HOWTO: Loadlin+Win95</A
+></H1
+><DIV
+CLASS="AUTHORGROUP"
+><A
+NAME="AEN4"
+></A
+><H3
+CLASS="AUTHOR"
+><A
+NAME="AEN5"
+>Chris Fischer</A
+></H3
+><DIV
+CLASS="AFFILIATION"
+><DIV
+CLASS="ADDRESS"
+><P
+CLASS="ADDRESS"
+>protek@brigadoon.com</P
+></DIV
+></DIV
+><H3
+CLASS="CORPAUTHOR"
+>Перевод: <A
+HREF="mailto:ave@asp-linux.com"
+TARGET="_top"
+>Александр Ермолаев</A
+>,
+<A
+HREF="http://www.asplinux.com"
+TARGET="_top"
+>SWSoft Pte Ltd.</A
+></H3
+></DIV
+><P
+CLASS="PUBDATE"
+>Версия 1.4.6, 13 Марта 1999<BR></P
+><DIV
+><DIV
+CLASS="ABSTRACT"
+><A
+NAME="AEN15"
+></A
+><P
+></P
+><P
+>В этом документе содержится информация о том, как использовать Loadlin с
+Windows 95, чтобы загрузить Linux.</P
+><P
+></P
+></DIV
+></DIV
+><HR></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Содержание</B
+></DT
+><DT
+>1. <A
+HREF="Loadlin+Win95.html#AEN17"
+>Введение</A
+></DT
+><DD
+><DL
+><DT
+>1.1. <A
+HREF="Loadlin+Win95.html#AEN22"
+>Copyright</A
+></DT
+><DT
+>1.2. <A
+HREF="Loadlin+Win95.html#AEN26"
+>Авторские права</A
+></DT
+><DT
+>1.3. <A
+HREF="Loadlin+Win95.html#AEN35"
+>Новые версии этого документа и Windows 98</A
+></DT
+><DT
+>1.4. <A
+HREF="Loadlin+Win95.html#AEN39"
+>Обратная связь</A
+></DT
+><DT
+>1.5. <A
+HREF="Loadlin+Win95.html#AEN43"
+>Ответственность</A
+></DT
+></DL
+></DD
+><DT
+>2. <A
+HREF="Loadlin+Win95.html#AEN46"
+>Важно: Предварительная информация и установка</A
+></DT
+><DD
+><DL
+><DT
+>2.1. <A
+HREF="Loadlin+Win95.html#AEN48"
+>ПРЕДУПРЕЖДЕНИЕ! для пользователей Windows95 OSR2 (версия 4.00.950b):</A
+></DT
+><DT
+>2.2. <A
+HREF="Loadlin+Win95.html#AEN61"
+>Что должно быть:</A
+></DT
+><DT
+>2.3. <A
+HREF="Loadlin+Win95.html#SECTION-2.3"
+>Компоненты, необходимые до начала:</A
+></DT
+></DL
+></DD
+><DT
+>3. <A
+HREF="Loadlin+Win95.html#AEN99"
+>Начало:</A
+></DT
+><DD
+><DL
+><DT
+>3.1. <A
+HREF="Loadlin+Win95.html#AEN101"
+>Определите, какая версия Windows 95 у вас установлена.</A
+></DT
+><DT
+>3.2. <A
+HREF="Loadlin+Win95.html#AEN104"
+>Определите, используете ли вы файловую систему FAT32.</A
+></DT
+><DT
+>3.3. <A
+HREF="Loadlin+Win95.html#SECTION-3.3"
+>Удостоверьтесь, что расширения имени файла показываются в Проводнике
+(Explorer) Windows.</A
+></DT
+><DT
+>3.4. <A
+HREF="Loadlin+Win95.html#AEN128"
+>Переименуйте ваши системные файлы.</A
+></DT
+><DT
+>3.5. <A
+HREF="Loadlin+Win95.html#AEN136"
+>Важное предупреждение.</A
+></DT
+><DT
+>3.6. <A
+HREF="Loadlin+Win95.html#SECTION-3.6"
+>Отредактируйте ваши системные файлы.</A
+></DT
+></DL
+></DD
+><DT
+>4. <A
+HREF="Loadlin+Win95.html#SECTION-4"
+>*** Используйте этот раздел, ТОЛЬКО если вы используете загрузочный диск DOS 6.x.***</A
+></DT
+><DD
+><DL
+><DT
+>4.1. <A
+HREF="Loadlin+Win95.html#AEN184"
+>Редактирование и переименование системных файлов DOS 6.x.</A
+></DT
+></DL
+></DD
+><DT
+>5. <A
+HREF="Loadlin+Win95.html#AEN204"
+>Заключительные шаги</A
+></DT
+><DD
+><DL
+><DT
+>5.1. <A
+HREF="Loadlin+Win95.html#AEN206"
+>Почти закончили</A
+></DT
+><DT
+>5.2. <A
+HREF="Loadlin+Win95.html#AEN218"
+>Вы закончили!</A
+></DT
+><DT
+>5.3. <A
+HREF="Loadlin+Win95.html#AEN221"
+>Как это работает.</A
+></DT
+></DL
+></DD
+><DT
+>6. <A
+HREF="Loadlin+Win95.html#SECTION-6"
+>Дополнительные способы авто-загрузки Linux, особенно для пользователей файловой системой FAT32.</A
+></DT
+><DD
+><DL
+><DT
+>6.1. <A
+HREF="Loadlin+Win95.html#AEN227"
+>Способ 1.</A
+></DT
+><DT
+>6.2. <A
+HREF="Loadlin+Win95.html#AEN261"
+>Способ 2.</A
+></DT
+></DL
+></DD
+><DT
+>7. <A
+HREF="Loadlin+Win95.html#FAQ"
+>Часто задаваемые вопросы:</A
+></DT
+><DD
+><DL
+><DT
+>7.1. <A
+HREF="Loadlin+Win95.html#SECTION-7.1"
+>Где я могу найти больше информации по использованию Loadlin?</A
+></DT
+><DT
+>7.2. <A
+HREF="Loadlin+Win95.html#AEN304"
+>Я не уверен, на каком раздел установлен Linux. Как это выяснить?</A
+></DT
+><DT
+>7.3. <A
+HREF="Loadlin+Win95.html#AEN312"
+>Где найти файл образа ядра, и как мне скопировать его в мой раздел MS-DOS?</A
+></DT
+><DT
+>7.4. <A
+HREF="Loadlin+Win95.html#AEN327"
+>Имеет ли значение очередность установки Linux и Windows 95?</A
+></DT
+><DT
+>7.5. <A
+HREF="Loadlin+Win95.html#AEN333"
+>В настоящее время у меня установлен LILO, но я хочу использовать Loadlin вместо него. Как мне удалить LILO?</A
+></DT
+><DT
+>7.6. <A
+HREF="Loadlin+Win95.html#AEN340"
+>Что, если у меня уже есть двойная загрузка между Windows 95 и
+Windows 3.x, и я хочу загружать Linux, используя этот метод?</A
+></DT
+><DT
+>7.7. <A
+HREF="Loadlin+Win95.html#AEN346"
+>Возможно ли запускать Linux с рабочего стола Windows 95?</A
+></DT
+><DT
+>7.8. <A
+HREF="Loadlin+Win95.html#AEN358"
+>Где я могу получить текстовую версию этого документа?</A
+></DT
+></DL
+></DD
+><DT
+>8. <A
+HREF="Loadlin+Win95.html#AEN366"
+>Благодарности</A
+></DT
+></DL
+></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="AEN17"
+>1. Введение</A
+></H1
+><P
+>Этот документ расскажет вам, как использовать комбинацию загрузочного меню
+Windows 95 и Loadlin.exe для автозагрузки Linux, используя функциональную
+клавишу F4. Эта процедура должна работать с Windows 95 версий 4.00.950,
+4.00.950a, и 4.00.95b с файловой системой FAT16, и со всеми версиями Linux,
+поддерживающими Loadlin. Если вы предпочитаете использовать boot-менеджер
+LILO, прочтите документ <A
+HREF="http://metalab.unc.edu/LDP/HOWTO/mini/Linux+Win95.html"
+TARGET="_top"
+> Linux+Win95
+Mini-HOWTO</A
+>.</P
+><P
+>Имеются также два дополнительных метода для двойной загрузки между Linux и
+Windows 95, используя Loadlin, для пользователей использующих FAT32 с Windows
+95 версии 4.00.950b.</P
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN22"
+>1.1. Copyright</A
+></H2
+><P
+>The Loadlin+Win95 mini-HOWTO is copyright (C) 1997- 1998 by Protek
+Computer Solutions. This document may be reproduced and distributed
+in whole or in part, in any medium physical or electronic, as long as
+this copyright notice is retained on all copies. Commercial
+redistribution is allowed and encouraged; however, the author would
+<I
+CLASS="EMPHASIS"
+>like</I
+> to be notified of any such distributions.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN26"
+>1.2. Авторские права</A
+></H2
+><P
+>Авторские права на русский перевод этого текста принадлежат &copy; 2000 SWSoft Pte Ltd.
+Все права зарезервированы.</P
+><P
+>Этот документ является частью проекта Linux HOWTO.</P
+><P
+>Авторские права на документы Linux HOWTO принадлежат их авторам, если явно
+не указано иное. Документы Linux HOWTO, а также их переводы, могут
+быть воспроизведены и распространены полностью или частично на любом
+носителе, физическом или электронном, при условии сохранения этой заметки об
+авторских правах на всех копиях. Коммерческое распространение разрешается и
+поощряется; но, так или иначе, автор текста и автор перевода желали бы знать о
+таких дистрибутивах.</P
+><P
+>Все переводы и производные работы, выполненные по документам Linux HOWTO
+должны сопровождаться этой заметкой об авторских правах. Это делается в
+целях предотвращения случаев наложения дополнительных ограничений на
+распространение документов HOWTO. Исключения могут составить случаи
+получения специального разрешения у координатора Linux HOWTO, с которым
+можно связаться по адресу приведенному ниже.</P
+><P
+>Мы бы хотели распространить эту информацию по всем возможным каналам. Но
+при этом сохранить авторские права и быть уведомленными о всех планах
+распространения HOWTO. Если у вас возникли вопросы, пожалуйста, обратитесь
+к координатору проекта Linux HOWTO по электронной почте:
+<TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:linux-howto@metalab.unc.edu"
+>linux-howto@metalab.unc.edu</A
+>&#62;</TT
+> или к координатору русского
+перевода Linux HOWTO компании SWSoft Pte Ltd. по адресу
+<TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:linux-howto@asplinux.ru"
+>linux-howto@asplinux.ru</A
+>&#62;</TT
+></P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN35"
+>1.3. Новые версии этого документа и Windows 98</A
+></H2
+><P
+>Этот mini-HOWTO впервые был опубликован на <A
+HREF="http://www.eskimo.com/~praxis"
+TARGET="_top"
+>The Linux+Windows 95  Reference
+Page</A
+>, где и можно проверить наличие самой последней версии этого
+документа. Там вы найдете и ссылку на документ, описывающий двойную
+загрузку с Windows 98. Следующая версия этого документа будет включать
+информацию, относительно двойной загрузки с Windows 98.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN39"
+>1.4. Обратная связь</A
+></H2
+><P
+>Вопросы, комментарии и предложения приветствуются. В наших интересах
+дополнять и развивать этот mini-HOWTO. Мы будем вам благодарны за отзывы и
+предложения. Если у вас возникли вопросы, отсылайте нам их по адресу <A
+HREF="mailto:protek@brigadoon.com"
+TARGET="_top"
+>protek@brigadoon.com</A
+>, и мы
+постараемся на них ответить.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN43"
+>1.5. Ответственность</A
+></H2
+><P
+>Мы сделали все, чтобы информация, содержащаяся в этом документе, была
+безопасной для вашей системы и максимально точной. Однако, мы не можем вам
+предоставить никаких гарантий, так как ее применение специфично для каждой
+системы. Мы рекомендуем сделать резервную копию ваших системных файлов до
+того, как вы внесете изменения в системную конфигурацию и/или файлы.</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN46"
+>2. Важно: Предварительная информация и установка</A
+></H1
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN48"
+>2.1. ПРЕДУПРЕЖДЕНИЕ! для пользователей Windows95 OSR2 (версия 4.00.950b):</A
+></H2
+><P
+><I
+CLASS="EMPHASIS"
+>НЕ</I
+> пытайтесь делать <A
+HREF="http://www.compuclinic.com/osr2faq/index.html#dualboot"
+TARGET="_top"
+>двойную
+загрузку с Windows 95</A
+> без первой консультации с <A
+HREF="http://www.compuclinic.com/osr2faq/"
+TARGET="_top"
+>Windows 95 OSR2 FAQ</A
+>. FAQ
+также содержит много информации, относительно файловой системы <A
+HREF="http://www.compuclinic.com/osr2faq/index.html#fat32"
+TARGET="_top"
+>FAT32</A
+>.
+Если вы имеете OSR2 и используете файловую систему FAT16, то можете
+использовать двойную загрузку, используя функциональную клавишу F4.</P
+><DIV
+CLASS="CAUTION"
+><P
+></P
+><TABLE
+CLASS="CAUTION"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="http://www.linux.org.ru/books/images/caution.gif"
+HSPACE="5"
+ALT="Предостережение"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+><I
+CLASS="EMPHASIS"
+>ВНИМАНИЕ: Если вы используете Windows 95 OSR2 с файловой системой FAT32, тогда двойная загрузка <I
+CLASS="EMPHASIS"
+>не будет работать и не пытайтесь.</I
+></I
+></P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>Однако, имеется пара дополнительных методов, которые Вы можете
+использовать, чтобы автоматизировать загрузку Linux при запуске;
+они обсуждаются в <A
+HREF="Loadlin+Win95.html#SECTION-6"
+>этой главе</A
+>.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN61"
+>2.2. Что должно быть:</A
+></H2
+><P
+>&#13;<P
+></P
+><UL
+><LI
+><P
+>Вы успешно установили Windows 95.</P
+></LI
+><LI
+><P
+>Windows 95 установлена на диске C.</P
+></LI
+><LI
+><P
+>Вы успешно установили Linux.</P
+></LI
+><LI
+><P
+>Вы знаете, на каком раздел установлен Linux. </P
+></LI
+><LI
+><P
+>LILO НЕ установлен на вашем жестком диске.</P
+></LI
+><LI
+><P
+>Если вы используете Windows 95 OSR2 (версия 4.00.950b), вы хорошо читали <A
+HREF="http://www.compuclinic.com/osr2faq/"
+TARGET="_top"
+>Windows95 OSR2 FAQ</A
+>.</P
+></LI
+></UL
+>&#13;</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="SECTION-2.3"
+>2.3. Компоненты, необходимые до начала:</A
+></H2
+><P
+>&#13;<P
+></P
+><UL
+><LI
+><P
+>Загрузочный диск DOS 5.0 или DOS 6.x с системными файлами (io.sys,
+msdos.sys, command.com) и с файлом config.sys. Если вы используете
+загрузочный диск DOS 5.0, вам будет также необходим файл autoexec.bat. Если
+вы используете Windows 95 OSR2 (версия 4.00.950b), то будете должны
+с помощью текстового редактора создать файл Winboot.sys, и поместить его в
+корневой каталог диска C. Winboot.sys может быть пустой.</P
+></LI
+></UL
+>&#13;</P
+><DIV
+CLASS="CAUTION"
+><A
+NAME="NOTE-OF-SECTION-2.3"
+></A
+><P
+></P
+><TABLE
+CLASS="CAUTION"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="http://www.linux.org.ru/books/images/caution.gif"
+HSPACE="5"
+ALT="Предостережение"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+><I
+CLASS="EMPHASIS"
+>ВНИМАНИЕ:</I
+> Если ваш жесткий диск уже содержит файлы
+autoexec.dos, config.dos, io.dos, msdos.dos, и command.dos, тогда вам не
+нужна дискета. Можно проверить это, введя команды: <TT
+CLASS="LITERAL"
+>dir</TT
+> <I
+CLASS="EMPHASIS"
+>и</I
+> <TT
+CLASS="LITERAL"
+>dir /ah</TT
+> в корне диска C. Если вы устанавливали
+обновленную версию Windows 95, то должны иметь их.</P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>&#13;<P
+></P
+><UL
+><LI
+><P
+>Программа Loadlin.exe</P
+></LI
+><LI
+><P
+>Файл образа ядра, обычно zImage или vmlinuz. (Для информации смотри <A
+HREF="Loadlin+Win95.html#FAQ"
+>FAQ</A
+>).</P
+></LI
+><LI
+><P
+>Простой текстовый редактор, типа Блокнот (Notepad).</P
+></LI
+></UL
+>&#13;</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN99"
+>3. Начало:</A
+></H1
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN101"
+>3.1. Определите, какая версия Windows 95 у вас установлена.</A
+></H2
+><P
+>Загрузите Windows 95 и щелкните правой клавишей мыши по значку Мой компьютер (My computer). Из контекстного меню выберите пункт Свойства (Properties). На вкладке Общие (General) посмотрите, под надписью "Система:" (System) вы увидите номер версии системы.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN104"
+>3.2. Определите, используете ли вы файловую систему FAT32.</A
+></H2
+><DIV
+CLASS="CAUTION"
+><P
+></P
+><TABLE
+CLASS="CAUTION"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="http://www.linux.org.ru/books/images/caution.gif"
+HSPACE="5"
+ALT="Предостережение"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+><I
+CLASS="EMPHASIS"
+>ВНИМАНИЕ:</I
+> Если у вас Windows 95 версия
+4.00.950b, <I
+CLASS="EMPHASIS"
+>то возможно вы <I
+CLASS="EMPHASIS"
+>не</I
+>
+используете FAT32</I
+>. Выполните двойной щелчок по значку Мой
+компьютер (My Computer), после этого щелчок правой клавишей мыши по значку
+диска C: (Drive C). Выберите пункт Свойства (Properties). На вкладке Общие
+(General) под надписью "Тип:" (Type) указано, действительно ли вы
+используете FAT32. <I
+CLASS="EMPHASIS"
+>Если вы используете FAT32,
+перейдите к чтению <A
+HREF="Loadlin+Win95.html#SECTION-6"
+>этой главы</A
+> </I
+>. Если нет,
+продолжите с <A
+HREF="Loadlin+Win95.html#SECTION-3.3"
+>отсюда</A
+>.</P
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="SECTION-3.3"
+>3.3. Удостоверьтесь, что расширения имени файла показываются в Проводнике
+(Explorer) Windows.</A
+></H2
+><P
+>&#13;<P
+></P
+><UL
+><LI
+><P
+>Запустите Проводник (Explorer) Windows - диспетчер файлов.</P
+></LI
+><LI
+><P
+>В меню окна выберите пункт Вид (View), затем Параметры (Options). На вкладке Вид (View) удостоверьтесь, что выбран переключатель (radio button) "Показать все файлы" (Show all files). Также убедитесь, что не поставлен флажок "Не показывать расширения для зарегистрированных типов файлов" (Hide MS-DOS file extensions for file types that are registered). Щелкните кнопку OK.</P
+></LI
+></UL
+>&#13;</P
+><DIV
+CLASS="CAUTION"
+><P
+></P
+><TABLE
+CLASS="CAUTION"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="http://www.linux.org.ru/books/images/caution.gif"
+HSPACE="5"
+ALT="Предостережение"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+><I
+CLASS="EMPHASIS"
+>ВНИМАНИЕ:</I
+> Если на вашем жестком диске уже
+содержаться файлы *.dos, упомянутые <A
+HREF="Loadlin+Win95.html#NOTE-OF-SECTION-2.3"
+>здесь</A
+>,
+тогда пропустите следующее <A
+HREF="Loadlin+Win95.html#NOTE"
+>примечание</A
+>. Если нет, продолжите с
+<I
+CLASS="EMPHASIS"
+>Раздела 3.4</I
+>.</P
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN128"
+>3.4. Переименуйте ваши системные файлы.</A
+></H2
+><P
+>&#13;<P
+></P
+><UL
+><LI
+><P
+>Вставьте загрузочный диск системы DOS 5.0 или DOS 6.x в устройство A. Щелкните по значку устройства A и вы увидите содержимое флоппи диска.</P
+></LI
+><LI
+><P
+>Переименуйте каждый файл в файл с расширением .dos. Вы можете делать это, щелкая мышью по файлу, затем нажать клавишу F2, и ввести новое имя файла. Если вы нуждаетесь в загрузочной дискете, просто переименуйте файлы обратно после окончания процедуры.</P
+></LI
+></UL
+>&#13;</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN136"
+>3.5. Важное предупреждение.</A
+></H2
+><P
+>&#13;<P
+></P
+><UL
+><LI
+><P
+><I
+CLASS="EMPHASIS"
+>ЧРЕЗВЫЧАЙНО ВАЖНО:</I
+> Удостоверьтесь, что переименовываете файлы на дискете <I
+CLASS="EMPHASIS"
+>ПРЕЖДЕ, ЧЕМ</I
+> скопируете их на Диск C, иначе перепишете системные файлы вашего Windows 95. <I
+CLASS="EMPHASIS"
+>Вы были предупреждены</I
+>. 
+Далее скопируйте все файлы в корневой каталог диска C. Для этого щелкните по значку диска A, нажмите CTRL+A, затем CTRL+C, щелкните по значку диска C и нажмите CTRL+V.</P
+></LI
+></UL
+>&#13;</P
+><DIV
+CLASS="CAUTION"
+><A
+NAME="NOTE"
+></A
+><P
+></P
+><TABLE
+CLASS="CAUTION"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="http://www.linux.org.ru/books/images/caution.gif"
+HSPACE="5"
+ALT="Предостережение"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+><I
+CLASS="EMPHASIS"
+>ВНИМАНИЕ:</I
+> Если у вас <I
+CLASS="EMPHASIS"
+>не</I
+> Windows 95 OSR2 (версия 4.00.950b), пропустите
+<A
+HREF="Loadlin+Win95.html#SECTION-3.6"
+>эту главу</A
+>.</P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>&#13;<P
+></P
+><UL
+><LI
+><P
+>Если (и только если) вы имеете Windows95 версии 4.00.950b, удостоверьтесь,
+что у вас есть файл Winboot.sys в корневом каталоге диска C, как сказано в
+<A
+HREF="Loadlin+Win95.html#SECTION-2.3"
+>этой главе</A
+>. <I
+CLASS="EMPHASIS"
+>Отсутствие файла
+Winboot.sys в корневом каталоге диска C приведет к ошибке, и вам придется
+загружать систему с более старой версии DOS.</I
+></P
+></LI
+></UL
+>&#13;</P
+><DIV
+CLASS="CAUTION"
+><P
+></P
+><TABLE
+CLASS="CAUTION"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="http://www.linux.org.ru/books/images/caution.gif"
+HSPACE="5"
+ALT="Предостережение"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+><I
+CLASS="EMPHASIS"
+>ВНИМАНИЕ:</I
+> Если вы используете загрузочный
+диск системы DOS 6.x, пропустите <A
+HREF="Loadlin+Win95.html#SECTION-4"
+>раздел 4</A
+>, если нет,
+продолжите со следующего шага.</P
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="SECTION-3.6"
+>3.6. Отредактируйте ваши системные файлы.</A
+></H2
+><P
+>&#13;<P
+></P
+><UL
+><LI
+><P
+>Откройте программу Блокнот (Notepad). В меню "Файл" выберите пункт "Открыть". Измените "Тип файлов" (Files of type) на "Все файлы (*.*)" (All files (*.*)). Выберите диск C. Откройте Config.dos двойным щелчком по имени файла. Удалите все содержимое файла. Получится файл размером в 0Kб..., для чего это делается, будет объяснено позже. Сохраните файл.</P
+></LI
+><LI
+><P
+>Используйте Блокнот (Notepad), чтобы открыть и отредактировать файл Autoexec.dos, и введите команду Loadlin. Команда Loadlin должна быть такого вида: </P
+></LI
+></UL
+>&#13;</P
+><P
+>&#13;<PRE
+CLASS="PROGRAMLISTING"
+>&#13; Loadlin DriveLetter:\LinuxKernelFile root=/dev/LinuxBootPartition ro</PRE
+>&#13;</P
+><P
+>Ниже приводится файл Autoexec.dos в качестве примера:</P
+><P
+>&#13;<PRE
+CLASS="PROGRAMLISTING"
+>&#13; Loadlin f:\vmlinuz root=/dev/hdc2 ro</PRE
+>&#13;</P
+><DIV
+CLASS="CAUTION"
+><P
+></P
+><TABLE
+CLASS="CAUTION"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="http://www.linux.org.ru/books/images/caution.gif"
+HSPACE="5"
+ALT="Предостережение"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+><I
+CLASS="EMPHASIS"
+>ВНИМАНИЕ:</I
+> Ядро, также как и Loadlin.exe, может находиться где угодно на вашем диске, главное указать правильный путь к нему. Например, если файл ядра находится в каталоге e:\linux\kernels, а Loadlin.exe в c:\utils, то вы должны использовать команду:</P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>&#13;<PRE
+CLASS="PROGRAMLISTING"
+>&#13; c:\utils\loadlin e:\linux\kernels\vmlinuz root=/dev/hdc2 ro</PRE
+>&#13;</P
+><P
+>&#13;<P
+></P
+><UL
+><LI
+><P
+>Сохраните файл.</P
+></LI
+></UL
+>&#13;</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="SECTION-4"
+>4. *** Используйте этот раздел, ТОЛЬКО если вы используете загрузочный диск DOS 6.x.***</A
+></H1
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN184"
+>4.1. Редактирование и переименование системных файлов DOS 6.x.</A
+></H2
+><P
+>&#13;<P
+></P
+><UL
+><LI
+><P
+>Откройте программу Блокнот (Notepad). В меню "Файл" выберите пункт "Открыть". Измените "Тип файлов" (Files of type) на "Все файлы (*.*)" (All files (*.*)). Выберите диск C. Сейчас откройте Config.dos двойным щелчком по имени файла. Удалите все содержимое файла. Сейчас вы будете должны ввести команду установки оболочки (shell) со следующим синтаксисом:</P
+></LI
+></UL
+>&#13;</P
+><P
+>&#13;<PRE
+CLASS="PROGRAMLISTING"
+>&#13; shell=loadlin.exe LinuxKernelFile root=/dev/LinuxBootPartition ro</PRE
+>&#13;</P
+><P
+>Здесь мой файл Config.dos в качестве примера:</P
+><P
+>&#13;<PRE
+CLASS="PROGRAMLISTING"
+>&#13; shell=f:\loadlin.exe f:\vmlinuz root=/dev/hdc2 ro</PRE
+>&#13;</P
+><DIV
+CLASS="CAUTION"
+><P
+></P
+><TABLE
+CLASS="CAUTION"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="http://www.linux.org.ru/books/images/caution.gif"
+HSPACE="5"
+ALT="Предостережение"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+><I
+CLASS="EMPHASIS"
+>ВНИМАНИЕ:</I
+> Ядро, также как Loadlin.exe, может находиться где угодно на вашем диске, пока к нему указан правильный путь. Например, если файл ядра находится в каталоге e:\linux\kernels, а Loadlin.exe - в c:\utils, то вы должны использовать команду:</P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>&#13;<PRE
+CLASS="PROGRAMLISTING"
+>&#13; shell=f:\utils\loadlin.exe e:\linux\kernels\vmlinuz root=/dev/hdc2 ro</PRE
+>&#13;</P
+><P
+>&#13;<P
+></P
+><UL
+><LI
+><P
+>Сохраните файл.</P
+></LI
+></UL
+>&#13;</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN204"
+>5. Заключительные шаги</A
+></H1
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN206"
+>5.1. Почти закончили</A
+></H2
+><P
+>&#13;<P
+></P
+><UL
+><LI
+><P
+>Остался один файл для редактирования, и тогда вы закончите. Используйте блокнот, чтобы открыть и исправить файл Msdos.sys. Перейдите к разделу "Options". Ищите строку, которая имеет BootMulti=. Установите значение этого параметра равное 1. Это должно выглядеть примерно так:</P
+></LI
+></UL
+>&#13;</P
+><P
+>&#13;<PRE
+CLASS="PROGRAMLISTING"
+>&#13; [Options] 
+ BootMulti=1</PRE
+>&#13;</P
+><P
+>&#13;<P
+></P
+><UL
+><LI
+><P
+>Могут быть и другие параметры. Только оставьте их. Теперь сохраните файл.</P
+></LI
+></UL
+>&#13;</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN218"
+>5.2. Вы закончили!</A
+></H2
+><P
+>Сейчас все готово, чтобы перезагрузить компьютер (Не забудьте в дисководе флоппи диск). Когда вы увидите "Starting Windows 95...", нажмите клавишу F4, и Linux должен загрузится.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN221"
+>5.3. Как это работает.</A
+></H2
+><P
+>Windows 95 имеет встроенное меню начальной загрузки. По умолчанию вы не
+видите его при запуске (хотя вы можете изменить это, если желаете), но
+вы увидете его, если нажмете клавишу F8, когда появится надпись "Starting
+Windows 95...". В меню вы увидите несколько пунктов. Последний пункт -
+"Previous version of MS-DOS". Вместо нажатия на клавишу F8 и выбора пункта
+"Previous version of MS-DOS", можно использовать клавишу F4, когда на
+экране появится надпись "Starting Windows 95...". Когда Windows 95
+загружает предыдущую версию MS-DOS, используются системные файлы с
+расширением .dos. Поэтому важно иметь правильный файл Config.dos, если вы
+инициализируете Linux из файла Autoexec.dos. Если Windows 95 не находит
+файлы с расширением .dos расширением при попытке загрузить предыдущую
+операционную систему, загрузятся файлы для запуска Windows 95. Поэтому,
+если вы не имеете файла Config.dos, Windows 95 загрузит все драйверы,
+указанные в файле Config.sys. Это не помешает, Linux загрузится, но
+загрузка будет более длительной. Наличие правильного файла Config.dos
+предотвращает Windows 95 от чтения файла Config.sys файла при загрузке
+предыдущей версии MS-DOS.</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="SECTION-6"
+>6. Дополнительные способы авто-загрузки Linux, особенно для пользователей файловой системой FAT32.</A
+></H1
+><P
+>Этот раздел будет работать для всех версий Windows 95 до настоящего
+времени, независимо от того, имеете ли вы файловую систему FAT32. Существует
+два метода, которые я буду рассматривать в этом разделе. Сначала я начну с
+самого простого.</P
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN227"
+>6.1. Способ 1.</A
+></H2
+><P
+>Этот метод использует файл Autoexec.bat, чтобы вызвать (или выполнить)
+другой командный файл под именем Linux.bat в течение начальной загрузки.</P
+><P
+>&#13;<P
+></P
+><UL
+><LI
+><P
+>Создайте файл Linux.bat, используя простой текстовый редактор EDIT или
+Notepad. Содержимое должно быть подобно следующему:</P
+></LI
+></UL
+>&#13;</P
+><P
+>&#13;<PRE
+CLASS="PROGRAMLISTING"
+>&#13; @echo off 
+ cls 
+ echo. 
+ echo. 
+ echo. 
+ echo. 
+ choice /t:y,5 " Вы желаете загрузить Linux? " 
+ if errorlevel 2 goto End 
+ c:\loadlin c:\vmlinuz root=/dev/hdc2 ro 
+ :End</PRE
+>&#13;</P
+><P
+>Этот командный файл очищает экран, добавляет 4 пустых строки, выводит на
+экран текст (записанный в кавычках) + [Y,N] и ожидает нажатия клавиши в
+течении 5 секунд. Если не нажмете клавишу в течении 5 секунд, то
+запускается Linux. Если вы нажмете клавишу Y("Да") или N("Нет"), командный
+файл выполнит ваш выбор. Например, если вы выбрали 'N', тогда командный файл
+прерывается, и дальше обрабатывается файл Autoexec.bat, который загружает
+Windows 95. Если вы выбрали 'Y', тогда конечно будет загружен Linux.</P
+><P
+>Если не хотите видеть 4 пустых строки перед текстом, измените число строк с
+командой <TT
+CLASS="LITERAL"
+>echo</TT
+>. Если не хотите очищать
+экран, удалите строку с командой <TT
+CLASS="LITERAL"
+>cls</TT
+>. Ключ
+<TT
+CLASS="LITERAL"
+>/t</TT
+> сообщает команде выбора (choice) ждать 5
+секунд, и если не нажата клавиша, то принять по умолчанию, что нажата
+клавиша Y. Измените <TT
+CLASS="LITERAL"
+>y</TT
+> на <TT
+CLASS="LITERAL"
+>n</TT
+>, если хотите, чтобы по умолчанию загружалась
+Windows 95: <TT
+CLASS="LITERAL"
+>choice /t:n,5</TT
+>. Также вы можете
+изменить время ожидания от 0 до 99 секунд. Для большей информации по
+команде <I
+CLASS="EMPHASIS"
+>choice</I
+> введите в командной строке: <TT
+CLASS="LITERAL"
+>choice /?</TT
+>.</P
+><DIV
+CLASS="CAUTION"
+><P
+></P
+><TABLE
+CLASS="CAUTION"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="http://www.linux.org.ru/books/images/caution.gif"
+HSPACE="5"
+ALT="Предостережение"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+><I
+CLASS="EMPHASIS"
+>ВНИМАНИЕ:</I
+> Вы будете должны изменить строку,
+которая загружает Linux, чтобы она соответствовала вашей конфигурации. Смотрите
+<A
+HREF="Loadlin+Win95.html#SECTION-3.6"
+>раздел 3.6</A
+> для примеров того, как конфигурировать
+Loadlin, чтобы загрузить Linux.</P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>&#13;<P
+></P
+><UL
+><LI
+><P
+>Затем создайте файл Autoexec.bat (если у вас его еще нет) в простом
+текстовом редакторе. И в <I
+CLASS="EMPHASIS"
+>первой</I
+> строке
+добавьте следующее:</P
+></LI
+></UL
+>&#13;</P
+><P
+>&#13;<PRE
+CLASS="PROGRAMLISTING"
+>&#13;	call c:\linux</PRE
+>&#13;</P
+><P
+>Если файл Linux.bat находится в другом каталоге, вы должны указать
+правильный путь. Например, если Linux.bat в каталоге C:\batch, вы должны
+добавить:</P
+><P
+>&#13;<PRE
+CLASS="PROGRAMLISTING"
+>&#13;	call c:\batch\linux</PRE
+>&#13;</P
+><P
+>к первой строке файла Autoexec.bat. Сохраните файл. Сейчас необходимо перезагрузить компьютер.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN261"
+>6.2. Способ 2.</A
+></H2
+><P
+>Этот способ немного более сложен, но более гибок. Этот способ позволяет создать ваше
+собственное меню начальной загрузки, хотя оно не заменяет меню начальной
+загрузки Windows 95. Вам будут нужны файлы Config.sys и Autoexec.bat.</P
+><P
+>&#13;<P
+></P
+><UL
+><LI
+><P
+>Вначале нужно определить меню загрузки в файле Config.sys (коментарии
+находятся в круглых скобках):</P
+></LI
+></UL
+>&#13;</P
+><P
+>&#13;<PRE
+CLASS="PROGRAMLISTING"
+>&#13; [menu] 
+ menuitem=Linux, Загрузка Linux  (Это определяет блок меню и дает ему описание).
+ menuitem=Win95, Загрузка Windows 95. 
+ menucolor=15,1  (Белый текст на синем фоне). 
+ menudefault=Linux, 15  (Пункт по умолчанию и ожидание ввода в течении 15 секунд).
+
+ [linux]
+ shell=f:\loadlin.exe f:\vmlinuz root=/dev/hdc2 ro (Смотрите Раздел 4 для примеров и по синтаксису).
+
+ [win95] 
+ (Включите нормальное содержимое  вашего файла  config.sys здесь. Если вы не имели до этого файл config.sys - оставьте этот раздел пустым).</PRE
+>&#13;</P
+><P
+>&#13;<P
+></P
+><UL
+><LI
+><P
+>Сохраните ваш файл Config.sys. Если вы хотите, то можете использовать этот файл
+<A
+HREF="http://www.eskimo.com/~praxis/config.sys"
+TARGET="_top"
+>Config.sys template</A
+> для начала.</P
+></LI
+><LI
+><P
+>Затем, редактируйте файл Autoexec.bat file (коментарии находятся в круглых скобках):</P
+></LI
+></UL
+>&#13;</P
+><P
+>&#13;<PRE
+CLASS="PROGRAMLISTING"
+>&#13; goto %config%
+
+ :win95 
+ (Включите нормальное содержимое  вашего файла  autoexec.bat здесь. Если вы не имели до этого
+ файл autoexec.bat - оставьте этот раздел пустым).</PRE
+>&#13;</P
+><P
+>&#13;<P
+></P
+><UL
+><LI
+><P
+>Сохраните файл Autoexec.bat file. Если вы хотите, вы можете использовать этот файл <A
+HREF="http://www.eskimo.com/~praxis/autoexec.bat"
+TARGET="_top"
+>Autoexec.bat template</A
+> для начала. При каждой загрузке должно появляться меню начальной загрузки Linux и Window 95.</P
+></LI
+></UL
+>&#13;</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="FAQ"
+>7. Часто задаваемые вопросы:</A
+></H1
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="SECTION-7.1"
+>7.1. Где я могу найти больше информации по использованию Loadlin?</A
+></H2
+><P
+>&#13;<P
+></P
+><UL
+><LI
+><P
+>Slackware версий 3.2 и 3.5 содержит файл "loadlin.tgz" в каталоге \slakware\A5, в Slackware версий 3.3 и 3.4 есть loadlin.tgz в каталоге \slakware\A4. Slackware версии 3.6 содержит loadlin.tgz в каталоге \slackware\A8. Разархивируйте файл и смотрите в каталоге \docs файл manual.txt. Я не знаю относительно более ранних версий Slackware.</P
+></LI
+><LI
+><P
+>RedHat версий 4.2 до 5.2 содержит файл "loadlin16.tgz" в каталоге \dosutils. Разархивируйте файл и смотрите в каталоге \docs файл manual.txt. RedHat 4.1 кажется, не имеет этот архив. Файл manual.txt также доступен для скачки по адресу: </P
+></LI
+></UL
+>&#13;</P
+><P
+>&#13;<PRE
+CLASS="SCREEN"
+><A
+HREF="ftp://ftp.eskimo.com/u/p/praxis/manual.txt"
+TARGET="_top"
+>ftp://ftp.eskimo.com/u/p/praxis/manual.txt</A
+></PRE
+>&#13;</P
+><P
+>&#13;<P
+></P
+><UL
+><LI
+><P
+>Дополнительная информация доступна здесь:</P
+></LI
+></UL
+>&#13;</P
+><P
+>&#13;<PRE
+CLASS="SCREEN"
+><A
+HREF="http://metalab.unc.edu/LDP/HOWTO/BootPrompt-HOWTO-2.html#ss2.2"
+TARGET="_top"
+>http://metalab.unc.edu/LDP/HOWTO/BootPrompt-HOWTO-2.html#ss2.2</A
+></PRE
+>&#13;</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN304"
+>7.2. Я не уверен, на каком раздел установлен Linux. Как это выяснить?</A
+></H2
+><P
+>&#13;<P
+></P
+><UL
+><LI
+><P
+>В Linux, запустите утилиту <TT
+CLASS="LITERAL"
+>fdisk</TT
+> и нажмите
+<TT
+CLASS="LITERAL"
+>"p"</TT
+>. Там вы все увидите. Если вам нужна дополнительная помощь по использованию утилиты fdisk, смотрите страницы руководства (man).</P
+></LI
+></UL
+>&#13;</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN312"
+>7.3. Где найти файл образа ядра, и как мне скопировать его в мой раздел MS-DOS?</A
+></H2
+><P
+>&#13;<P
+></P
+><UL
+><LI
+><P
+>Чтобы найти файл ядра Linux, выполните:
+
+
+<PRE
+CLASS="PROGRAMLISTING"
+>&#13;	find / -name vmlinuz</PRE
+>
+в командной строке Linux. Будет осуществлен поиск по всем разделам Linux
+файла vmlinuz. Если у вас несколько файлов vmlinuz, то удостоверитесь,
+что используете правильный. Если не уверены, тогда попробуйте
+использовать самый свежий.</P
+><P
+>Чтобы скопировать ядро в раздел DOS, нужно сделать ваш раздел DOS
+видимым для Linux, и подключить его. Вообще, это устанавливается при
+инсталляции Linux. Перейдите в каталог, где находится файл vmlinuz, и
+скопируйте его в раздел DOS, используя команду cp.</P
+><P
+>Однако, если Linux не был установлен, чтобы распознавать ваш раздел DOS, тогда скопируйте vmlinuz на дискету. Берите любую отформатированную дискету для DOS (с достаточным дисковым пространством, чтобы поместилось ядро) и вставьте ее в ваш дисковод для гибких дисков. Введите:</P
+><P
+>&#13;<PRE
+CLASS="PROGRAMLISTING"
+>&#13;	mount /dev/fd0 /tmp</PRE
+>&#13;</P
+><P
+>в командной строке Linux. Перейдите в каталог, где находится файл vmlinuz, и введите команду:</P
+><P
+>&#13;<PRE
+CLASS="PROGRAMLISTING"
+>&#13;	cp vmlinuz /tmp</PRE
+>&#13;</P
+><P
+>Ядро будет скопировано на диск, и диск можно будет прочитать в DOS.
+Закончите работу с Linux, загрузите DOS, скопируйте vmlinuz в любой каталог
+по выбору. Если вы перекомпилируете ядро, не забудьте скопировать
+новый образ ядра в раздел DOS. Старый файл перепишется, но на всякий случай
+сделайте его копию, вдруг новое ядро не будет работать должным образом.</P
+></LI
+></UL
+>&#13;</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN327"
+>7.4. Имеет ли значение очередность установки Linux и Windows 95?</A
+></H2
+><P
+>&#13;<P
+></P
+><UL
+><LI
+><P
+>Технически нет. Однако, проще сначала установить Win95. Linux проще распознать ваш раздел DOS во время установки.</P
+></LI
+></UL
+>&#13;</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN333"
+>7.5. В настоящее время у меня установлен LILO, но я хочу использовать Loadlin вместо него. Как мне удалить LILO?</A
+></H2
+><P
+>&#13;<P
+></P
+><UL
+><LI
+><P
+>Вам нужно восстановить Win95 MBR (master boot record - главная загрузочная
+запись Windows 95), которая была перезаписана при устаноке LILO. В командной
+строке DOS введите:</P
+></LI
+></UL
+>
+
+
+<PRE
+CLASS="PROGRAMLISTING"
+>        fdisk /mbr</PRE
+>&#13;</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN340"
+>7.6. Что, если у меня уже есть двойная загрузка между Windows 95 и
+Windows 3.x, и я хочу загружать Linux, используя этот метод?</A
+></H2
+><P
+>&#13;<P
+></P
+><UL
+><LI
+><P
+>Искренне, если вы хотите сделать это, я рекомендовал бы использовать LILO.
+Однако, если вы действительно не хотите использовать LILO, нужно
+загружать первым Win 3.x, затем запустите команду Loadlin. (Удостоверитесь,
+что Windows 3.x не выполняется, и что вы находитесь в DOS 5.0 или 6.x).</P
+></LI
+></UL
+>&#13;</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN346"
+>7.7. Возможно ли запускать Linux с рабочего стола Windows 95?</A
+></H2
+><P
+>&#13;<P
+></P
+><UL
+><LI
+><P
+>Да. Вначале, создайте командный файл "linux.bat" со следующим содержимым:
+
+
+<PRE
+CLASS="PROGRAMLISTING"
+>&#13;	loadlin f:\vmlinuz root=/dev/hdc2 ro</PRE
+>
+Сохраните файл в каталог \windows\Рабочий стол (\windows\desktop). Щелкните
+правой клавишей мыши по значку Linux.bat и выберите пункт Свойства
+(Properties). Выберите вкладку Программа (Program), затем щелкните по
+кнопке Дополнительно (Advanced). Поставьте флажок "Режим MS-DOS" (MS-DOS
+mode) и поставте флажок в поле "Выдавать предупреждение при входе в режим
+MS-DOS" (Warn before entering MS-DOS mode is checked). Щелкните кнопку OK
+и еще раз OK. Когда вы выполните двойной щелчок по значку Linux, выдается
+предупреждающее сообщение при входе в режим MS-DOS. Если щелкнете по
+кнопке "Да" (Yes), то Windows перейдет в режим MS-DOS и выполнит
+Linux.bat.</P
+><DIV
+CLASS="CAUTION"
+><P
+></P
+><TABLE
+CLASS="CAUTION"
+WIDTH="90%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="http://www.linux.org.ru/books/images/caution.gif"
+HSPACE="5"
+ALT="Предостережение"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+><I
+CLASS="EMPHASIS"
+>ВНИМАНИЕ:</I
+> Вы должны быть в режиме MS-DOS,
+чтобы использовать Loadlin. Смотрите файл manual.txt, упомянутый в <A
+HREF="Loadlin+Win95.html#SECTION-7.1"
+>главе 7.1</A
+> или в <A
+HREF="Loadlin+Win95.html#FAQ"
+>FAQ</A
+>,
+для большей информации.</P
+></TD
+></TR
+></TABLE
+></DIV
+></LI
+></UL
+>&#13;</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN358"
+>7.8. Где я могу получить текстовую версию этого документа?</A
+></H2
+><P
+>&#13;<P
+></P
+><UL
+><LI
+><P
+>Текстовую версию документа можно взять здесь:
+
+<PRE
+CLASS="SCREEN"
+><A
+HREF="ftp://ftp.eskimo.com/u/p/praxis/loadlin.txt"
+TARGET="_top"
+>ftp://ftp.eskimo.com/u/p/praxis/loadlin.txt</A
+></PRE
+>&#13;</P
+></LI
+></UL
+>&#13;</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN366"
+>8. Благодарности</A
+></H1
+><P
+><I
+CLASS="EMPHASIS"
+>Особая благодарность<A
+HREF="http://www.aa.net/~normj"
+TARGET="_top"
+>Norm Jacobowitz</A
+> и <A
+HREF="http://www.phys.hawaii.edu:80/~fah/"
+TARGET="_top"
+>Fred Harris</A
+> за помощь по различным выпускам Windows 95 OSR2 и за помощь в улучшении этого mini-HOWTO.</I
+></P
+></DIV
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Просмотр файла</TITLE>
+<META NAME="description" CONTENT="Просмотр файла">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<!-- Meta http equivalent was here                               -->
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="IntroToLinux.css">
+
+<LINK REL="next" HREF="node48.html">
+<LINK REL="previous" HREF="node46.html">
+<LINK REL="up" HREF="node43.html">
+<LINK REL="next" HREF="node48.html">
+</HEAD>
+
+<BODY background="backgr.jpg" vlink="#000099" bgcolor="#E6E6FA">
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A NAME="tex2html770"
+  HREF="node48.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html766"
+  HREF="node43.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html760"
+  HREF="node46.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html768"
+  HREF="IntroToLinux.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A>  
+<BR>
+<B> След.:</B> <A NAME="tex2html771"
+  HREF="node48.html">Работа с пакетами</A>
+<B> Вверх:</B> <A NAME="tex2html767"
+  HREF="node43.html">Введение в Debian GNU/Linux</A>
+<B> Пред.:</B> <A NAME="tex2html761"
+  HREF="node46.html">Авто-загрузка демонов</A>
+ &nbsp; <B>  <A NAME="tex2html769"
+  HREF="IntroToLinux.html">Содержание</A></B> 
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION00051400000000000000">
+Просмотр файла</A>
+</H3>
+
+<P>
+Предположим, что мы нашли интересующий нас файл.
+Что это за файл нам расскажет команда <TT>file</TT>, но что с ним можно делать? 
+Чем, например, просмотреть?
+
+<P>
+Воспользуйтесь замечательной командой <TT>see</TT><A NAME="tex2html43"
+  HREF="node47.html#foot822"><SUP><SPAN CLASS="arabic">43</SPAN></SUP></A>, что в зависимости от того, откуда вы ее вызвали (из консоли, или из иксов, например) запустит соответствующую данному файлу программу-просмотрщик.
+Так в консоли файлам <TT>.mp3</TT> соответствует <TT>mpg123</TT>, а в иксах - <SPAN  CLASS="textit">XMMS</SPAN>.
+
+<P>
+MIME-тип данных регистрируется, и сопоставляется с расширением в файле <SPAN  CLASS="textbf">/etc/mime.types</SPAN>.
+Данные о программах-обработчиках (не обязательно просмотрщиках) хранятся в файле <SPAN  CLASS="textbf">/etc/mailcap</SPAN>, в котором также содержится секция <TT>User Section</TT>, содержимое которой вам позволяется редактировать.
+У меня, например, данная секция содержит (помимо всего прочего) запуск mplayer`а на соответствующие ему файлы, что выражено в строчке:
+<PRE>
+# ----- User Section Begins ----- #
+video/mpeg; mplayer -vo sdl '%s'; test=test "$DISPLAY" != ""
+# -----  User Section Ends  ----- #
+</PRE>
+
+<P>
+<BR><HR><H4>Сноски</H4>
+<DL>
+<DT><A NAME="foot822">...see</A><A
+ HREF="node47.html#tex2html43"><SUP><SPAN CLASS="arabic">43</SPAN></SUP></A></DT>
+<DD>Не забудьте сперва установить пакет <SPAN  CLASS="textbf">mime-support</SPAN>, если он, конечно, еще не установлен.
+
+</DD>
+</DL>
+<DIV CLASS="navigation"><HR>
+<!--Navigation Panel-->
+<A NAME="tex2html770"
+  HREF="node48.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html766"
+  HREF="node43.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html760"
+  HREF="node46.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html768"
+  HREF="IntroToLinux.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A>  
+<BR>
+<B> След.:</B> <A NAME="tex2html771"
+  HREF="node48.html">Работа с пакетами</A>
+<B> Вверх:</B> <A NAME="tex2html767"
+  HREF="node43.html">Введение в Debian GNU/Linux</A>
+<B> Пред.:</B> <A NAME="tex2html761"
+  HREF="node46.html">Авто-загрузка демонов</A>
+ &nbsp; <B>  <A NAME="tex2html769"
+  HREF="IntroToLinux.html">Содержание</A></B> </DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<TABLE border="0" cellpadding="0" cellspacing="0" width="100%"><TR bgcolor="#336699"><TD bgcolor="#8080c0"><P align="center"><FONT color="#FFFFFF" size="1"><A href="http://www.gnu.org/copyleft/fdl.html"><FONT color="#FFFFFF" size="1">Copyleft</FONT></A> © 2002-2003 г. &nbsp; Nikolay A. Panov, <A href="http://www.uic.nnov.ru/~nik/articles/IntroToLinux/"><FONT color="#FFFFFF">"Intro To Linux" (orig)</FONT></A>, &nbsp;<a href="mailto:&#110;&#105;&#107;&#115;&#105;&#116;&#101;&#64;&#109;&#97;&#105;&#108;&#46;&#114;&#117;"><FONT color="#FFFFFF">&#110;&#105;&#107;&#115;&#105;&#116;&#101;&#64;&#109;&#97;&#105;&#108;&#46;&#114;&#117;</FONT></A>, &nbsp;ICQ: 122-40-8888</FONT></P></TD></TR></TABLE>
+</ADDRESS>
+</BODY>
+</HTML>

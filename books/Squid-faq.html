@@ -1,0 +1,1968 @@
+<HTML>
+<HEAD>
+   <META NAME="title" CONTENT="SQUID Frequently Asked Questions">
+   <META NAME="owner" CONTENT="National Laboratory for Applied Network Research">
+   <META NAME="description" CONTENT="Frequently Asked Questions about the SQUID Object Cache">
+   <META HTTP-EQUIV="keywords" CONTENT="SQUID, Squid, WWW Cache, Caching, Object Cache, Harvest, NLANR, ICP">
+   <META HTTP-EQUIV="Last-Modified" CONTENT="18 Dec 1996">
+   <META HTTP-EQUIV="Reply-to" CONTENT="squid-faq@nlanr.net">
+   <TITLE>SQUID Часто задаваемые вопросы</TITLE>
+</HEAD>
+<BODY>
+<?php include("/home/maxcom/linux_html/books/head.php3") ?>
+<!-- BASE   HREF="http://squid.nlanr.net/Squid/" -->
+<BR> 
+<CENTER> <IMG SRC="Squidlogo2.gif" HEIGHT=185 WIDTH=360></CENTER>
+
+<CENTER>
+<HR WIDTH="100%"></CENTER>
+
+<CENTER><I><FONT SIZE=-1>Squid - это кеширующий прокси сервер, являющийся,
+на наш взгляд, наиболее продвинутым из свободно распространяемых прокси
+серверов. Это перевод FAQ по этому серверу. Недавно появилась новая версия
+этого документа. Тем не менее этот перевод содержит ответы на большинство
+важных вопросов по Squid.</FONT></I></CENTER>
+
+<CENTER><I><FONT SIZE=-1>Присылайте ваши замечания и предложения на <A HREF="mailto:ilgam@atlas.net.ru">ilgam@atlas.net.ru</A></FONT></I></CENTER>
+
+<CENTER>
+<HR WIDTH="100%"></CENTER>
+<B><I>Перевод на русский язык -  Васильев Ильгам, Атлас Нетворкс, Copyright
+© 1997</I></B>
+<H1>
+Часто задаваемые вопросы</H1>
+
+<UL>
+<LI>
+1 <A HREF="Squid-faq.html#1">О Squid, этот FAQ, и другая информация по Squid</A></LI>
+
+<UL>
+<LI>
+1.1 <A HREF="Squid-faq.html#1.1">Что такое Squid?</A></LI>
+
+<LI>
+1.2 <A HREF="Squid-faq.html#1.2">Что такое кеширование объектов интернет?</A></LI>
+
+<LI>
+1.3 <A HREF="Squid-faq.html#1.3">Почему Squid?</A></LI>
+
+<LI>
+1.4 <A HREF="Squid-faq.html#1.4">Какая последняя версия Squid?</A></LI>
+
+<LI>
+1.5 <A HREF="Squid-faq.html#1.5">Кто автор Squid?</A></LI>
+
+<LI>
+1.6 <A HREF="Squid-faq.html#1.6">Где можно взять Squid?</A></LI>
+
+<LI>
+1.7 <A HREF="Squid-faq.html#1.7">Где подписаться на список рассылки Squid?</A></LI>
+
+<LI>
+1.8 <A HREF="Squid-faq.html#1.8">Web страницы посвященные Squid</A></LI>
+
+<LI>
+1.9 <A HREF="Squid-faq.html#1.9">Какой официальный статус Squid?</A></LI>
+
+<LI>
+1.10 <A HREF="Squid-faq.html#1.10">Распространители Squid FAQ</A></LI>
+</UL>
+
+<LI>
+2 <A HREF="Squid-faq.html#2">Инсталляция</A></LI>
+
+<UL>
+<LI>
+2.1 <A HREF="Squid-faq.html#2.1">Какие файлы следует брать?</A></LI>
+
+<LI>
+2.2 <A HREF="Squid-faq.html#2.2">Как мне установить Squid?</A></LI>
+
+<LI>
+2.3 <A HREF="Squid-faq.html#2.3">На каких операционных системах работает Squid?</A></LI>
+
+<LI>
+2.4 <A HREF="Squid-faq.html#2.4">Для чего нужен файл <I>squid.conf</I>?</A></LI>
+
+<LI>
+2.5 <A HREF="Squid-faq.html#2.5">А есть ли пример <I>squid.conf</I>?</A></LI>
+
+<LI>
+2.6 <A HREF="Squid-faq.html#2.6">Как мне запустить <I>squid</I>?</A></LI>
+
+<LI>
+2.7 <A HREF="Squid-faq.html#2.7">Как мне узнать что Squid запущен?</A></LI>
+
+<LI>
+2.8 <A HREF="Squid-faq.html#2.8">Как использовать патчи?</A></LI>
+</UL>
+
+<LI>
+3 <A HREF="Squid-faq.html#3">Конфигурирование</A></LI>
+
+<UL>
+<LI>
+3.1 <A HREF="Squid-faq.html#3.1">Как сделать иерархию прокси?</A></LI>
+
+<LI>
+3.2 <A HREF="Squid-faq.html#3.2">Как мне подключиться к иерархии NLANR?</A></LI>
+
+<LI>
+3.3 <A HREF="Squid-faq.html#3.3">Почему я должен подключаться к иерархии NLANR?</A></LI>
+
+<LI>
+3.4 <A HREF="Squid-faq.html#3.4">Как мне зарегистрировать свой кеш на NLANR?</A></LI>
+
+<LI>
+3.5 <A HREF="Squid-faq.html#3.5">Как мне найти ближайшие ко мне кеши и организовать родительские/дочерние/братские
+отношения с ними?</A></LI>
+
+<LI>
+3.6 <A HREF="Squid-faq.html#3.6">Что такое режим httpd-ускорителя?</A></LI>
+
+<LI>
+3.7 <A HREF="Squid-faq.html#3.7">Как мне задать, чтобы Squid работал за брандмауэром?</A></LI>
+
+<LI>
+3.8 <A HREF="Squid-faq.html#3.8">У меня несколько <I>dnsserver</I> процессов, которые
+не используются, могу я уменьшить их число в <I>squid.conf</I>?</A></LI>
+
+<LI>
+3.9 <A HREF="Squid-faq.html#3.9">Мы бы хотели использовать Squid, но нам нужно использовать
+socks для подключения к внешнему миру. Поддерживает ли Squid Socks?</A></LI>
+
+<LI>
+3.10 <A HREF="Squid-faq.html#3.10">Как Squid решает когда обновить объект кеша?</A></LI>
+</UL>
+
+<LI>
+4 <A HREF="Squid-faq.html#4">Squid и браузеры</A></LI>
+
+<UL>
+<LI>
+4.1 <A HREF="Squid-faq.html#4.1">Ручная настройка Netscape</A></LI>
+
+<LI>
+4.2 <A HREF="Squid-faq.html#4.2">Автоматическая настройка Netscape</A></LI>
+
+<LI>
+4.3 <A HREF="Squid-faq.html#4.3">Настройка Lynx и Mosaic</A></LI>
+
+<LI>
+4.4 <A HREF="Squid-faq.html#4.4">Настройка Microsoft Internet Explorer</A></LI>
+
+<LI>
+4.5 <A HREF="Squid-faq.html#4.5">Настройка Netmanage Internet Chameleon WebSurfer</A></LI>
+
+<LI>
+4.6 <A HREF="Squid-faq.html#4.6">Как сделать, чтобы пользователи браузеров пользовались
+кешем без их настройки?</A></LI>
+
+<UL>
+<LI>
+4.6.1 <A HREF="Squid-faq.html#4.6.1">Прозрачный прокси для Solaris, SunOS, и BSD систем</A></LI>
+
+<LI>
+4.6.2 <A HREF="Squid-faq.html#4.6.1">Прозрачный прокси для</A><A HREF="Squid-faq.html#4.6.2"> Linux</A></LI>
+</UL>
+</UL>
+
+<LI>
+5 <A HREF="Squid-faq.html#5">Описание работы</A></LI>
+
+<UL>
+<LI>
+5.1 <A HREF="Squid-faq.html#5.1">Как посмотреть системную статистику работы Squid?</A></LI>
+
+<LI>
+5.2 <A HREF="Squid-faq.html#5.2">Что я могу узнать из log файлов?</A></LI>
+
+<LI>
+5.3 <A HREF="Squid-faq.html#5.3">Какие log файлы я могу удалять?</A></LI>
+
+<LI>
+5.4 <A HREF="Squid-faq.html#5.4">Как мне найти самый большой объект кеша?</A></LI>
+
+<LI>
+5.5 <A HREF="Squid-faq.html#5.5">Я хочу перезапустить Squid с чистым кешем</A></LI>
+</UL>
+
+<LI>
+6 <A HREF="Squid-faq.html#6">Кеш-менеджер</A></LI>
+
+<UL>
+<LI>
+6.1 <A HREF="Squid-faq.html#6.1">Что такое кеш-менеджер?</A></LI>
+
+<LI>
+6.2 <A HREF="Squid-faq.html#6.2">Как его установить?</A></LI>
+
+<LI>
+6.3 <A HREF="Squid-faq.html#6.3">Настройка CERN httpd 3.0 для работы с кеш-менеджером</A></LI>
+
+<LI>
+6.4 <A HREF="Squid-faq.html#6.4">Настройка Apache для работы с кеш-менеджером</A></LI>
+
+<LI>
+6.5 <A HREF="Squid-faq.html#6.5">Задание ACL (списка пользователей) для кеш-менеджера
+в <I>squid.conf</I></A></LI>
+
+<LI>
+6.6 <A HREF="Squid-faq.html#6.6">Почему он спрашивает у меня какой-то пароль и URL?</A></LI>
+
+<LI>
+6.7 <A HREF="Squid-faq.html#6.7">Я хочу удаленно остановить кеш. Какой пароль?</A></LI>
+
+<LI>
+6.8 <A HREF="Squid-faq.html#6.8">Как сделать, чтобы в поле cache host по умолчанию было
+имя <I>моего</I> кеша?</A></LI>
+
+<LI>
+6.9 <A HREF="Squid-faq.html#6.9">Какая разница между TCP и UDP соединениями Squid?</A></LI>
+
+<LI>
+6.10 <A HREF="Squid-faq.html#6.10">Он говорит, что срок хранения кеша истечет в 1970
+году!</A></LI>
+
+<LI>
+6.11 <A HREF="Squid-faq.html#6.11">Что значат записи мета-данных?</A></LI>
+
+<LI>
+6.12 <A HREF="Squid-faq.html#6.12">Pool for in-memory objects <B>огромен</B> и не становится
+меньше! Это что утечка памяти?</A></LI>
+
+<LI>
+6.13 <A HREF="Squid-faq.html#6.13">Значение поля "Total accounted" не совпадает с размером
+занимаемым моим <I>squid</I>!</A></LI>
+
+<LI>
+6.14 <A HREF="Squid-faq.html#6.14">В разделе utilization, что есть <TT>Other</TT>?</A></LI>
+
+<LI>
+6.15 <A HREF="Squid-faq.html#6.15">В разделе utilization, почему колонка <TT>Transfer
+KB/sec</TT> всегда нулевая?</A></LI>
+
+<LI>
+6.16 <A HREF="Squid-faq.html#6.16">В разделе utilization, что значит <TT>Object Count</TT>?</A></LI>
+
+<LI>
+6.17 <A HREF="Squid-faq.html#6.17">В разделе utilization, что значит <TT>Max/Current/Min
+KB</TT>?</A></LI>
+
+<LI>
+6.18 <A HREF="Squid-faq.html#6.18">О чем раздел <TT>I/O</TT>?</A></LI>
+
+<LI>
+6.19 <A HREF="Squid-faq.html#6.19">Что находится в разделе <TT>Objects</TT>?</A></LI>
+
+<LI>
+6.20 <A HREF="Squid-faq.html#6.20">Для чего раздел <TT>VM Objects</TT>?</A></LI>
+
+<LI>
+6.21 <A HREF="Squid-faq.html#6.21">Что значит <TT>AVG RTT</TT>?</A></LI>
+
+<LI>
+6.22 <A HREF="Squid-faq.html#6.22">В разделе IP cache , какая разница между hit, negative
+hit и miss?</A></LI>
+
+<LI>
+6.23 <A HREF="Squid-faq.html#6.23">Что значит содержимое раздела IP cache?</A></LI>
+
+<LI>
+6.24 <A HREF="Squid-faq.html#6.24">Как анализировать использование памяти из данных <I>cachemgr.cgi</I>?</A></LI>
+
+<LI>
+6.25 <A HREF="Squid-faq.html#6.25">Что такое fqdncache и чем отличается от ipcache?</A></LI>
+</UL>
+
+<LI>
+7 <A HREF="Squid-faq.html#7">Troubleshooting</A></LI>
+
+<UL>
+<LI>
+7.1 <A HREF="Squid-faq.html#7.1">Почему у меня нет доступа к прокси: "Proxy Access Denied"?</A></LI>
+
+<LI>
+7.2 <A HREF="Squid-faq.html#7.2">Не работает <TT>local_domain</TT>.</A></LI>
+
+<LI>
+7.3 <A HREF="Squid-faq.html#7.3">Когда кеш пытается получить объект с братского кеша,
+получает <TT>Connection Refused,</TT> даже когда тот кеш считает, что объект
+получен успешно.</A></LI>
+
+<LI>
+7.4 <A HREF="Squid-faq.html#7.4">Не хватает файловых дескрипторов</A></LI>
+
+<LI>
+7.5 <A HREF="Squid-faq.html#7.5">Мой <I>squid</I> периодически вываливается с ошибкой,
+что не может <TT>malloc(3)</TT> больше памяти, но у меня достаточно ОЗУ!</A></LI>
+
+<LI>
+7.6 <A HREF="Squid-faq.html#7.6">Что за странные строки об удалении объектов?</A></LI>
+
+<LI>
+7.7 <A HREF="Squid-faq.html#7.7">Почему я не могу задать <TT>cache_effective_user</TT>
+в <TT>nobody</TT> под Linux?</A></LI>
+
+<LI>
+7.8 <A HREF="Squid-faq.html#7.8">Могу я указать Windows NT FTP серверу выводить директории
+в Unix формате?</A></LI>
+
+<LI>
+7.9 <A HREF="Squid-faq.html#7.9">Почему так часто появляются сообщения ERR_NO_CLIENTS_BIG_OBJ?</A></LI>
+
+<LI>
+7.10 <A HREF="Squid-faq.html#7.10">Почему Squid требует так много памяти!?</A></LI>
+
+<LI>
+7.11 <A HREF="Squid-faq.html#7.11">Почему я получаю "Ignoring MISS from non-peer x.x.x.x"?</A></LI>
+</UL>
+
+<LI>
+8 <A HREF="Squid-faq.html#8">Как Squid работает?</A></LI>
+
+<UL>
+<LI>
+8.1 <A HREF="Squid-faq.html#8.1">Какие объекты кешируются?</A></LI>
+
+<LI>
+8.2 <A HREF="Squid-faq.html#8.2">Что за протокол ICP?</A></LI>
+
+<LI>
+8.3 <A HREF="Squid-faq.html#8.3">Что такое <I>dnsserver</I>?</A></LI>
+
+<LI>
+8.4 <A HREF="Squid-faq.html#8.4">Для чего нужна программ<I>ftpget</I>?</A></LI>
+
+<LI>
+8.5 <A HREF="Squid-faq.html#8.5">FTP PUT не работает</A></LI>
+
+<LI>
+8.6 <A HREF="Squid-faq.html#8.6">Что такое иерархия кешей? Что такое родительские и братские
+кеши?</A></LI>
+
+<LI>
+8.7 <A HREF="Squid-faq.html#8.7">Каков алгоритм разрешения кеша Squid?</A></LI>
+
+<LI>
+8.8 <A HREF="Squid-faq.html#8.8">Над какими возможностями Squid разработчики сейчас работают?</A></LI>
+
+<LI>
+8.9 <A HREF="Squid-faq.html#8.9">Где найти информацию о загрузке Internet трафика</A></LI>
+
+<LI>
+8.10 <A HREF="Squid-faq.html#8.10">Какие преимущества кеширования совместно с кеширующей
+системой NLANR?</A></LI>
+
+<LI>
+8.11 <A HREF="Squid-faq.html#8.11">Где найти информацию по брандмауэрам?</A></LI>
+</UL>
+</UL>
+
+<H2>
+<A NAME="1"></A>1 О Squid, этот FAQ, и другая информация по Squid</H2>
+
+<H3>
+<A NAME="1.1"></A>1.1 Что такое Squid?</H3>
+Squid это высокопроизводительный кеширующий прокси для web клиентов, поддерживающий
+ftp, gopher, и http. В отличии от традиционных кеширующих программ, Squid
+все запросы выполняет как один, неблокируемый процесс ввода/вывода. Squid
+сохраняет часто запрашиваемые данные в ОЗУ, кеширует DNS запросы, не блокируется
+при выполнении DNS запросов, и не кеширует неудавшиеся запросы. Также поддерживает
+SSL, расширенный контроль доступа и полную регистрацию запросов. Используя
+Internet Cache Protocol (ICP), кеши Squid можно расположить иерархически
+для дополнительного выигрыша в пропускной способности канала.
+
+<P>Squid состоит из - основной программы <I>squid,</I> программы обработки
+DNS запросов <I>dnsserver</I>, программы скачивания ftp данных <I>ftpget</I>,
+а также некоторых инструментов управления. Когда <I>squid</I> запускается,
+он запускает заданное число <I>dnsserver</I>-ов, каждый из которых работает
+самостоятельно, блокируя только DNS запросы. Таким образом уменьшается
+общее время ожидания ответа DNS.
+
+<P>Squid берет свое начало с основанного ARPA проекта Harvest. <A HREF="http://harvest.cs.colorado.edu/">http://harvest.cs.colorado.edu/</A>
+<H3>
+<A NAME="1.2"></A>1.2 Что такое кеширование объектов интернет?</H3>
+Это способ хранения запрошенных из Интернет объектов (например, данных
+доступных по http, ftp и gopher протоколам) на сервере, находящемся ближе
+к запрашивающему компьютеру нежели исходный. Браузеры могут потом использовать
+Squid кеш как http прокси-сервер, уменьшая как время доступа, так и загрузку
+канала.
+<H3>
+<A NAME="1.3"></A>1.3 Почему Squid?</H3>
+Harris' Lament отвечает, "All the good ones are taken." - "Все лучшие названия
+уже расхватали"
+
+<P>Нам нужно было как-то отличаться от кеша Harvest. Squid было кодовое
+название на начальной стадии разработки, а потом оно прилипло.
+<H3>
+<A NAME="1.4"></A>1.4 Какая последняя версия Squid?</H3>
+Squid обновляется часто; о последних изменениях смотрите здесь <A HREF="http://squid.nlanr.net/Squid/">http://squid.nlanr.net/Squid/</A>
+<H3>
+<A NAME="1.5"></A>1.5 Кто автор Squid?</H3>
+Squid это результат усилий нескольких людей из сообщества Internet. Возглавляет
+проект <A HREF="mailto:wessels@nlanr.net">Duane Wessels</A> из National
+Laboratory for Applied Network Research (основанной National Science Foundation).
+<H3>
+<A NAME="1.6"></A>1.6 Где можно взять Squid?</H3>
+Вы можете взять по ftp здесь:
+<DL>
+<DD>
+<A HREF="ftp://squid.nlanr.net/pub/">ftp://squid.nlanr.net/pub/</A>.</DD>
+</DL>
+Также много зеркал по всему миру:
+<DL>
+<DD>
+<A HREF="http://squid.nlanr.net/Squid/mirrors.html">http://squid.nlanr.net/Squid/mirrors.html</A></DD>
+</DL>
+
+<H3>
+<A NAME="1.7"></A>1.7 Где подписаться на список рассылки Squid?</H3>
+
+<UL>
+<LI>
+squid-users@nlanr.net: общая информация о Squid.</LI>
+
+<BR>Подписка через <A HREF="mailto:squid-users-request@nlanr.net">squid-users-request@nlanr.net</A>
+<LI>
+squid-users-digest: дайджест (ежедневный) того же.</LI>
+
+<BR>Подписка через <A HREF="mailto:squid-users-digest-request@nlanr.net">squid-users-digest-request@nlanr.net</A>
+<LI>
+squid-announce@nlanr.net: Анонс новых версий (только получение).</LI>
+
+<BR>Подписка через <A HREF="mailto:squid-announce-request@nlanr.net">squid-announce-request@nlanr.net</A>
+<LI>
+<A HREF="mailto:squid-bugs@nlanr.net">squid-bugs@nlanr.net</A> : Закрытый
+список для сообщения о багах.</LI>
+
+<LI>
+<A HREF="mailto:squid@nlanr.net">squid@nlanr.net</A>: Закрытый список с
+пожеланиями и предложениями.</LI>
+
+<LI>
+<A HREF="mailto:squid-faq@nlanr.net">squid-faq@nlanr.net</A>: Закрытый
+список для обратной связи, обновлений и дополнений в Squid FAQ.</LI>
+</UL>
+Архивы различных списков рассылки доступны на <A HREF="http://squid.nlanr.net/Mail-Archive/squid-users/">http://squid.nlanr.net/Mail-Archive/squid-users/</A>
+<H3>
+<A NAME="1.8"></A>1.8 Web страницы посвященные Squid.</H3>
+Здесь информация по программе Squid <A HREF="http://squid.nlanr.net/Squid/">http://squid.nlanr.net/Squid/</A>,
+а здесь <A HREF="http://www.nlanr.net/Cache/">http://www.nlanr.net/Cache/</A>
+дополнительная информация по кешированию вообще.
+<H3>
+<A NAME="1.9"></A>1.9 Какой официальный статус Squid?</H3>
+Из дистрибутива Squid, файл README:
+<PRE>This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License as
+published by the Free Software Foundation; either version 2 of the
+License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.</PRE>
+
+<H3>
+<A NAME="1.10"></A>1.10 Распространители Squid FAQ</H3>
+<A HREF="http://www.origin-at.co.uk/~jlarmour/">Jonathan Larmour</A> <A HREF="http://www.linux.org.ru/home/win/distrib/texts/mailgo:jlarmour@origin-at.co.uk">&lt;JLarmour@origin-at.co.uk></A>
+<BR><A HREF="http://www.fh-lippe.de/~cord/">Cord Beermann</A> <A HREF="mailto:cord@cc.fh-lippe.de">&lt;cord@cc.fh-lippe.de></A>
+<BR>Tony Sterrett <A HREF="mailto:tony@nlanr.net">&lt;tony@nlanr.net></A>
+<BR><A HREF="http://www.compusult.nf.ca/~ghynes/ghynes.html">Gerard Hynes</A>
+<A HREF="mailto:gnynes@compusult.nf.ca">&lt;ghynes@compusult.nf.ca></A>
+<BR><A HREF="http://www.linux.org.ru/home/win/distrib/texts/Katayama,&#32;Takeo">&lt;tkatayam@pi.titech.ac.jp></A>
+<BR><A HREF="http://www.nlanr.net/~wessels/">Duane Wessels</A> <A HREF="mailto:wessels@nlanr.net">&lt;wessels@nlanr.net></A>
+<BR><A HREF="http://www.nlanr.net/k/">K Claffy</A> <A HREF="mailto:kc@nlanr.net">&lt;kc@nlanr.net></A>
+<BR><A HREF="http://www.etext.org/~pauls/">Paul Southworth</A> <A HREF="mailto:pauls@etext.org">&lt;pauls@etext.org></A>
+
+<P>Пожалуйста шлите исправления, обновления и комментарии на: <A HREF="mailto:squid-faq@nlanr.net">squid-faq@nlanr.net</A>.
+
+<P>
+<HR>
+<H2>
+<A NAME="2"></A>2 Инсталляция</H2>
+
+<H3>
+<A NAME="2.1"></A>2.1 Какие файлы следует брать?</H3>
+Необходимо скачать архив исходников следующего вида squid-x.y.z-src.tar.gz
+(например, squid-1.1.6-src.tar.gz) с <A HREF="http://squid.nlanr.net/Squid/">http://squid.nlanr.net/Squid/</A>.
+Содержание различий между версиями доступно для апгрейда, которые применяются
+программой <I>patch,</I> которую можно взять здесь <A HREF="ftp://prep.ai.mit.edu/pub/gnu/">ftp://prep.ai.mit.edu/pub/gnu/</A>.
+<H3>
+<A NAME="2.2"></A>2.2 Как мне установить Squid?</H3>
+Прежде всего необходимо распаковать исходный архив, следующим образом:
+
+<P><TT>% gzip -dc squid-x.y.z-src.tar.gz | tar xvf -</TT>
+
+<P>Затем нужно отконфигурировать, откомпилировать и установить
+
+<P><TT>% cd squid-x.y.z</TT>
+<BR><TT>% ./configure</TT>
+<BR><TT>% make all</TT>
+<BR><TT>% make install</TT>
+
+<P>Лучше всего использовать GNU C (gcc) компилятор. Последние версии имеют
+формат ANSI C, так что старые компиляторы могут не работать. GNU C компилятор
+доступен на <A HREF="ftp://prep.ai.mit.edu/pub/gnu/">ftp://prep.ai.mit.edu/pub/gnu/</A>.
+Можно задать несколько параметров конфигурационного скрипта. Наиболее полезный
+<TT>--prefix</TT> для установки в другую директорию. По умолчанию это <I>/usr/local/squid</I>.Чтобы
+поменять следует сделать следующее:
+
+<P><TT>% cd squid-x.y.z</TT>
+<BR><TT>% ./configure --prefix=/some/other/directory/squid</TT>
+<H3>
+<A NAME="2.3"></A>2.3 На каких операционных системах работает Squid?</H3>
+Это ПО разрабатывалось для работы на любых современных Unix системах, и
+известно что работает на AIX, FreeBSD, HP-UX, IRIX, Linux, OSF/1, Solaris,
+и SunOS. Если Вы обнаружили специфичные для данной платформы проблемы,
+пожалуйста дайте нам знать по email: <A HREF="mailto:squid-bugs@nlanr.net">squid-bugs@nlanr.net</A>.
+<H3>
+<A NAME="2.4"></A>2.4 Для чего нужен файл <I>squid.conf</I>?</H3>
+Файл<I> squid.conf</I> задает конфигурацию <I>squid</I>. Конфигурация включает
+в себя (но не ограничивается этим) номер порта HTTP , номер порта для ICP
+запросов, приходящие и исходящие запросы, информацию о доступе к брандмауэру,
+и значения различных таймаутов.
+<H3>
+<A NAME="2.5"></A>2.5 А есть ли пример <I>squid.conf</I>?</H3>
+Да, после того как Вы успешно проделали <TT>make install</TT>, пример файла
+<I>squid.conf</I> будет находиться в поддиректории "etc" инсталяционной
+директории Squid. Пример <I>squid.conf</I> содержит комментарии объясняющие
+каждую опцию.
+<H3>
+<A NAME="2.6"></A>2.6 Как мне запустить <I>squid</I>?</H3>
+После редактирования конфигурационного файла, можно запустить <I>squid</I>
+из скрипта <I>RunCache</I>. Если Вы устанавливали в директорию по умолчанию
+то команда для запуска будет следующей:
+
+<P><TT>/usr/local/squid/bin/RunCache &amp;</TT>
+<H3>
+<A NAME="2.7"></A>2.7 Как мне узнать что Squid запущен?</H3>
+Для этого есть программа <I>client</I>:
+
+<P><TT>% client http://www.netscape.com/ > test</TT>
+
+<P>Существуют и другие HTTP программы-клиенты работающие в командной строке.
+Эти две Вы можете найти полезными:<I>url_get</I>, по адресу <A HREF="ftp://ftp.pasteur.fr/pub/Network/url_get/">ftp://ftp.pasteur.fr/pub/Network/url_get/</A>,
+и<I>echoping</I>, по адресу <A HREF="ftp://ftp.pasteur.fr/pub/Network/echoping/">ftp://ftp.pasteur.fr/pub/Network/echoping/</A>.
+Также проверьте наиболее важные файлы <I>access.log</I> и<I>cache.log</I>.
+<H3>
+<A NAME="2.8"></A>2.8 Как использовать патчи?</H3>
+Необходима программа <TT>patch</TT>. Обычно достаточно:
+<PRE>    cd squid-1.1.x
+    patch &lt; /tmp/fixes.patch
+
+Но время от времени могут попадаться патчи созданные из директории 'src', тогда нужно:</PRE>
+
+<PRE>    cd squid-1.1.x/src
+    patch &lt; /tmp/fixes.patch
+
+Если программа <TT>patch</TT> будет чем-то недовольна и будет отказываться работать надо будет взять более новую версию, например здесь <A HREF="ftp://ftp.gnu.ai.mit.edu/pub/gnu/">GNU FTP site.</A> 
+
+
+
+
+
+<HR></PRE>
+
+<H2>
+<A NAME="3"></A>3 Конфигурирование</H2>
+
+<H3>
+<A NAME="3.1"></A>3.1 Как сделать иерархию прокси?</H3>
+Чтобы разместить кеш в иерархии, нужно воспользоваться <TT>cache_host</TT>
+директивой в <I>squid.conf,</I> чтобы указать родительский и братский (или
+сестринский <TT>:)</TT> - т.е. одного уровня) узел.
+
+<P>Например, приведенный ниже<I>squid.conf</I> на <TT>childcache.example.com</TT>
+сконфигурирован так, что его кеш получает данные с одного родительского
+и с двух братских кешей:
+<PRE>        #  squid.conf - On the host: childcache.example.com
+        #
+        #  Format is: hostname  type  http_port  udp_port
+        #
+        cache_host parentcache.example.com   parent  3128 3130
+        cache_host childcache2.example.com   sibling 3128 3130
+        cache_host childcache3.example.com   sibling 3128 3130</PRE>
+Директива <TT>cache_host_domain</TT> позволяет указывать для каждого домена
+как братский, так и родительский кеш:
+<PRE>        #  squid.conf - On the host: sv.cache.nlanr.net
+        #
+        #  Format is: hostname  type  http_port  udp_port
+        #
+
+        cache_host electraglide.geog.unsw.edu.au parent 3128 3130
+        cache_host cache1.nzgate.net.nz          parent 3128 3130
+        cache_host pb.cache.nlanr.net   parent 3128 3130
+        cache_host it.cache.nlanr.net   parent 3128 3130
+        cache_host sd.cache.nlanr.net   parent 3128 3130
+        cache_host uc.cache.nlanr.net   sibling 3128 3130
+        cache_host bo.cache.nlanr.net   sibling 3128 3130
+        cache_host_domain electraglide.geog.unsw.edu.au .au
+        cache_host_domain cache1.nzgate.net.nz   .au .aq .fj .nz
+        cache_host_domain pb.cache.nlanr.net     .uk .de .fr .no .se .it
+        cache_host_domain it.cache.nlanr.net     .uk .de .fr .no .se .it
+        cache_host_domain sd.cache.nlanr.net     .mx .za .mu .zm</PRE>
+Вышеприведенная конфигурация описывает, что кеш будет использовать <TT>pb.cache.nlanr.net</TT>
+и <TT>it.cache.nlanr.net</TT> для доменов uk, de, fr, no, se и it, <TT>sd.cache.nlanr.net</TT>
+для доменов mx, za, mu и zm, и <TT>cache1.nzgate.net.nz</TT> для доменов
+au, aq, fj, и nz.
+<H3>
+<A NAME="3.2"></A>3.2 Как мне подключиться к иерархии NLANR?</H3>
+Существует простой набор <A HREF="http://ircache.nlanr.net/Cache/joining.html">правил
+подключения</A> к иерархии кешей NLANR.
+<H3>
+<A NAME="3.3"></A>3.3 Почему я должен подключаться к иерархии NLANR?</H3>
+Иерархия NLANR может являться начальным источником родительских и братских
+кешей. Подключение к системе глобальных кешей NLANR чаще всего сопровождается
+повышением производительности.
+<H3>
+<A NAME="3.4"></A>3.4 Как мне зарегистрировать свой кеш на NLANR?</H3>
+Просто включите эти опции в своем <I>squid.conf</I> и все:
+<PRE>cache_announce 24
+announce_to sd.cache.nlanr.net:3131
+
+<B><I>Примечание:</I></B> анонсирование кеша <B>это не тоже самое</B> что вступление в иерархию NLANR. Вы можете вступить в иерархию NLANR без регистрации, и можно зарегистрироваться без вступления в иерархию кешей NLANR.</PRE>
+
+<H3>
+<A NAME="3.5"></A>3.5 Как мне найти ближайшие ко мне кеши и организовать
+родительские/дочерние/братские отношения с ними?</H3>
+Посетите NLANR <A HREF="http://www.nlanr.net/Cache/Tracker/">регистрацонную
+БД</A> кешей и поищите ближайший. Да, и помните, что если кеш зарегистрирован
+в базе <B>это еще не значит</B> что он захочет быть Вашим родителем/дочерью/братом.
+Но спросить всегда можно...
+<H3>
+<A NAME="3.6"></A>3.6 Что такое режим httpd-ускорителя?</H3>
+Часто люди испытывают трудности в понимании ускорителей и кеширующих прокси,
+обычно приводящих к путанице в понимании "приходящих" и "исходящих" данных.
+Рассмотрим это в терминах запросов (например, исходящий запрос - это с
+локальной машины в большой плохой Интернет) Данные принимаемые в ответ
+- это приходящий. Обратный смысл получается если его рассматривать как
+"запрос для приходящих данных".
+
+<P>Ускоритель кеширует приходящие запросы для исходящих данных (например,
+тех что Вы опубликовали на своем сервере). Тем самым он забирает загрузку
+с Вашего HTTP сервера и внутренней сети. Вы убираете сервер с 80 порта
+(или какой он у Вас там), и подставляете ускоритель, который пробрасывает
+HTTP данные с "реального" HTTP сервера (только ускоритель должен знать
+где реальный сервер). Внешний мир не видит ни какой разницы (кроме разве
+увеличения скорости доступа).
+
+<P>Кроме разгрузки реального web сервера, ускоритель может находиться снаружи
+брандмауэра или любого другого узкого места в сети и общаться с HTTP серверами
+внутри, уменьшая траффик через узкое место и упрощая конфигурацию. Два
+или более ускорителя соединенные через ICP могут увеличить скорость и устойчивость
+web сервера к любому одиночному сбою.
+
+<P>Редиректор Squid может заставить ускоритель работать как одну связную
+машину для нескольких серверов. Если Вам нужно перенести части Вашей файловой
+системы с одного сервера на другой, или если отдельно администрируемые
+HTTP сервера должны логически появляться под единой URL иерархией, ускоритель
+сделает это.
+
+<P>Если Вы хотите лишь кешировать "остальной мир" для увеличения эффективности
+доступа локальных пользователей в Интернет, то режим ускорителя следует
+отключить. Компании, которые держат свой web-сервер используют ускоритель
+для повышения эффективности доступа к нему. Те же, кому важен эффективный
+доступ локальных пользователей в Интернет используют кеширующий прокси.
+Многие, и мы в том числе пользуются и тем и этим.
+
+<P>Сравнение кеша Squid и его аналога Harvest показывает увеличение на
+порядок производительности первого по сравнению с CERN и другими широко
+распространнеными кеширующими программами. Это преимущество позволяет кешу
+работать как httpd ускорителю, кешу сконфигурированному как главный web-сервер
+(на 80 порту), перенаправляя неправильные ссылки на реальный httpd (на
+81 порт).
+
+<P>В такой конфигурации администратор web узла переносит все не подлежащие
+кешированию URL на 81 порт httpd. Кеш обслуживает ссылки на кешируемые
+объекты, такие как HTML страницы и GIF-ы, а реальный httpd (на 81 порту)
+- все некешируемые, например запросы и cgi-bin программы. Если пользование
+сервером напрямую зависит от кешируемых объектов, то такая конфигурация
+может существенно снизить загрузку web-сервера.
+
+<P>При этом помните, что лучше всего не запускать <I>squid</I> как httpd-ускоритель
+и как кеширующий прокси одновременно, так как они имеют различные рабочие
+режимы. Более высокую производительность Вы получите запуская их на разных
+машинах. Все же Squid может одновременно работать и как httpd-ускоритель
+и как кеширующий прокси, если напротив <TT>httpd_accel_with_proxy</TT>
+Вы поставите <TT>on</TT> в своем <I>squid.conf</I>.
+<H3>
+<A NAME="3.7"></A>3.7 Как мне задать, чтобы Squid работал за брандмауэром?</H3>
+Когда Вы находитесь за брандмауэром Вы не можете напрямую соединяться с
+внешним миром, так что <B><I>необходимо</I></B> использовать родительский
+кеш. Squid не использует ICP запросы если он за брандмауэром, или если
+только один родитель.
+
+<P>Нужно воспользоваться директивой <TT>inside_firewall</TT> в <I>squid.conf</I>
+чтобы задать список внутренних по отношению к брандмауэру доменов. Например:
+
+<P><TT>inside_firewall example.com</TT>
+
+<P>Можно задать несколько:
+
+<P><TT>inside_firewall example.com example.org example.net</TT>
+
+<P>Использование <TT>inside_firewall</TT> приводит к двум путям выбора
+сервера. Объекты не подпадающие ни под один из перечисленных доменов будут
+рассматриваться вне брандмауэра. Для этого же случая:
+<UL>
+<LI>
+Не будет DNS запросов для URL этого хоста.</LI>
+
+<LI>
+Кеш будет всегда забирать объект с одного из родительского или братского
+кеша.</LI>
+</UL>
+В особом случае можно указать в качестве домена <TT>none</TT> чтобы все
+запросы обслуживались братскими или родительскими кешами.
+<H3>
+<A NAME="3.8"></A>3.8 У меня несколько <I>dnsserver</I> процессов, которые
+не используются, могу я уменьшить их число в <I>squid.conf</I>?</H3>
+Процессы <I>dnsserver</I> используются <I>squid</I> из-за того, что процесс
+преобразования имен хостов в IP-адреса (<TT>gethostbyname(3)</TT>) блокируется
+(то есть этот процесс должен дождаться ответа). Так как процесс <I>squid</I>
+один, то каждый, кто к обращается к кешу должен ждать каждый раз время
+необходимое на преобразование. Вот почему <I>dnsserver</I> это отдельный
+процесс, так что он может блокироваться без блокировки самого <I>squid</I>.
+
+<P>Поэтому очень важно чтобы было достаточно <I>dnsserver</I> процессов
+чтобы обработать каждое обращение, в противном случае<I>squid</I> может
+неожиданно повисать. На практике надо определить максимальное число <I>dnsserver-</I>ов,
+которые <B>могут</B> понадобиться <I>squid</I>, и добавить еще два на всякий
+случай. Другими словами, если Вы видели в работе только три <I>dnsserver</I>
+процесса, оставьте как минимум пять. И помните, что<I>dnsserver</I> маленький
+и при простое особо не загружает систему.
+<H3>
+<A NAME="3.9"></A>3.9 Мы бы хотели использовать Squid, но нам нужно использовать
+socks для подключения к внешнему миру. Поддерживает ли Squid Socks?</H3>
+From: carson@lehman.com
+<BR>Date: Sat, 25 Jan 1997 11:50:59 -0500
+<BR>Subject: Re: SOCKS
+
+<P>Чтобы пользоваться socks5, не требуется никак изменений кода Squid.
+Все что надо, это добавить строку <TT>-Dbind=SOCKSbind</TT> etc в строку
+компиляции и <TT>-lsocks</TT> в строку линков.
+<H3>
+<A NAME="3.10"></A>3.10 Как Squid решает когда обновить объект кеша?</H3>
+<A HREF="mailto:bertold@tohotom.vein.hu">Kolics Bertold</A> сделал прекрасную
+<A HREF="http://www.linux.org.ru/books/refresh-flowchart.gif">блок-схему </A>изображающую этот процесс. 
+<HR>
+<H2>
+<A NAME="4"></A>4 Squid и браузеры</H2>
+Большинств доступных web браузеров поддерживают прокси и легко конфигурируются
+для поддержки Squid в качестве прокси. Некоторые из них поддерживают расширенные
+возможности такие как список доменов или URL шаблоны которые не следует
+кешировать, или JavaScript для автоматической настройки.
+<H3>
+<A NAME="4.1"></A>4.1 Ручная настройка Netscape</H3>
+Выберите <B>Network Preferences</B> из меню <B>Options</B>. На закладке
+<B>Proxies</B>, щелкните на <B>Manual Proxy Configuration</B> а затем на
+кнопке <B>View</B>. Для каждого протокола который поддерживает Ваш Squid
+(по умолчанию, HTTP, FTP, и gopher) введите имя или IP адрес Squid и номер
+порта (по умолчанию 3128) в колонке <B>Port</B>. Для тех протоколов, которые
+Ваш Squid не поддерживает оставьте поля пустыми.
+
+<P>Здесь <A HREF="http://www.linux.org.ru/books/navigator.jpg">вид экрана</A> ручной настройки прокси
+Netscape Navigator.
+<H3>
+<A NAME="4.2"></A>4.2 Автоматическая настройка Netscape</H3>
+Настройка прокси Netscape Navigator может быть атоматизирована при помощи
+JavaScript (для версий Navigator 2.0 или выше). Выберите <B>Network Preferences</B>
+из меню <B>Options</B>. На закладке <B>Proxies</B>, щелкните на <B>Automatic
+Proxy Configuration</B> и впишите URL Вашего файла JavaScript конфигурации
+прокси.
+
+<P>Здесь <A HREF="http://www.linux.org.ru/books/navigator-auto.jpg">вид экрана</A> автоматической настройки
+прокси Netscape Navigator. Вы также можете обратиться к документации Netscape
+по системе конфигурации прокси Navigator при помощи JavaScript по адресу
+<A HREF="http://home.netscape.com/eng/mozilla/2.0/relnotes/demo/proxy-live.html">http://home.netscape.com/eng/mozilla/2.0/relnotes/demo/proxy-live.html</A>
+
+<P>Здесь пример автоконфигурации на JavaScript от Oskar Pearson:
+<PRE>//We (www.is.co.za) run a central cache for our customers that they
+//access through a firewall - thus if they want to connect to their intranet
+//system (or anything in their domain at all) they have to connect
+//directly - hence all the "fiddling" to see if they are trying to connect
+//to their local domain.
+
+//Replace each occurrence of company.com with your domain name
+//and if you have some kind of intranet system, make sure
+//that you put it's name in place of "internal" below.
+
+//We also assume that your cache is called "cache.company.com", and
+//that it runs on port 8080. Change it down at the bottom.
+
+//(C) Oskar Pearson and the Internet Solution (http://www.is.co.za)
+    function FindProxyForURL(url, host)
+        {
+            //If they have only specified a hostname, go directly.
+            if (isPlainHostName(host))
+                    return "DIRECT";
+            //These connect directly if the machine they are trying to
+            //connect to starts with "intranet" - ie http://intranet
+            //Connect  directly if it is intranet.*
+            //If you have another machine that you want them to
+            //access directly, replace "internal*" with that
+            //machine's name
+            if (shExpMatch( host, "intranet*")||
+                            shExpMatch(host, "internal*"))
+                return "DIRECT";
+            //Connect directly to our domains (NB for Important News)
+            if (dnsDomainIs( host,"company.com")||
+            //If you have another domain that you wish to connect to
+            //directly, put it in here
+                            dnsDomainIs(host,"sistercompany.com"))
+                return "DIRECT";
+            //So the error message "no such host" will appear through the
+            //normal Netscape box - less support queries :)
+            if (!isResolvable(host))
+                    return "DIRECT";
+            //We only cache http, ftp and gopher
+            if (url.substring(0, 5) == "http:" ||
+                            url.substring(0, 4) == "ftp:"||
+                            url.substring(0, 7) == "gopher:")
+            //Change the ":8080" to the port that your cache
+            //runs on, and "cache.company.com" to the machine that
+            //you run the cache on
+                    return "PROXY cache.company.com:8080; DIRECT";
+            //We don't cache WAIS
+            if (url.substring(0, 5) == "wais:")
+                    return "DIRECT";
+            else
+                    return "DIRECT";
+        }</PRE>
+
+<H3>
+<A NAME="4.3"></A>4.3 Настройка Lynx и Mosaic</H3>
+Для Mosaic и Lynx, надо задать переменные окружения перед запуском. Например
+(для csh или tcsh):
+
+<P><TT>% setenv http_proxy http://mycache.example.com:3128/</TT>
+<BR><TT>% setenv gopher_proxy http://mycache.example.com:3128/</TT>
+<BR><TT>% setenv ftp_proxy http://mycache.example.com:3128/</TT>
+
+<P>Для Lynx настройки прокси можно сделать в файле <I>lynx.cfg</I>. При
+такой настройке все пользователи Lynx смогут пользоваться прокси без дополнительного
+задания окружения для каждого пользователя. Например:
+<PRE>        http_proxy:http://mycache.example.com:3128/
+        ftp_proxy:http://mycache.example.com:3128/
+        gopher_proxy:http://mycache.example.com:3128/</PRE>
+
+<H3>
+<A NAME="4.4"></A>4.4 Настройка Microsoft Internet Explorer</H3>
+Выберите <B>Options</B> из меню <B>View</B>. Щелкните на закладке <B>Connection</B>.
+Выберите <B>Connect through Proxy Server</B> и нажмите кнопку <B>Proxy
+Settings</B>. Для каждого протокола который поддерживает Ваш Squid (по
+умолчанию, HTTP, FTP, и gopher) введите имя или IP адрес Squid и номер
+порта (по умолчанию 3128) в колонке <B>Port</B>. Те протоколы, которые
+Ваш Squid не поддерживает оставьте зти поля пустыми.
+
+<P>Здесь <A HREF="http://www.linux.org.ru/books/msie.jpg">вид экрана</A> настройки прокси Internet Explorer.
+
+<P>Microsoft также собирается поддерживать как у Netscape автоматическую
+настройку прокси через JavaScript. Сейчас, только MSIE версии 3.0a для
+Windows 3.1 и Windows NT 3.51 поддерживает эту возможность (например, в
+версии 3.01 build 1225 для Windows 95 и NT 4.0, ее нет).
+
+<P>Если Ваша версия MSIE поддерживает такую возможность, выберите <B>Options</B>
+из меню <B>View</B>. Щелкните на закладке <B>Advanced</B> и в левом нижнем
+углу щелкните на кнопке <B>Automatic Configuration</B>. Впишите URL Вашего
+файла JavaScript. Потом перезапустите MSIE. MSIE будет пересчитывать файл
+JavaScript каждый раз при запуске.
+<H3>
+<A NAME="4.5"></A>4.5 Настройка Netmanage Internet Chameleon WebSurfer</H3>
+Netmanage WebSurfer поддерживает ручную настройку прокси и список исключений
+хостов или доменов не подлежащих кешированию (информация по версии WebSurfer
+5.0). Выберите <B>Preferences</B> из меню <B>Settings</B>. Щелкните на
+закладке <B>Proxies</B>. Выберите опцию <B>Use Proxy</B> для HTTP, FTP,
+и gopher. Затем для каждого протокола введите имя или IP адрес Squid и
+номер порта (по умолчанию, 3128) в поле <B>Port</B>. Остальные поля оставьте
+пустыми.
+
+<P><A HREF="http://www.linux.org.ru/books/netmanage.jpg">Вид экрана</A> прилагается.
+
+<P>В этом же окне есть кнопка вызывающая окно исключений, где можно задать
+хосты или домены, котрые не надо кешировать. Здесь <A HREF="http://www.linux.org.ru/books/netmanage-exclusion.jpg">вид
+экрана.</A>
+<H3>
+<A NAME="4.6"></A>4.6 Как сделать, чтобы пользователи браузеров пользовались
+кешем без их настройки?</H3>
+Можно сделать прозрачное кеширование на Linux, Solaris, и BSD версиях.
+Смысл в том, что операционная система перенаправляет некоторые IP пакеты
+приложению. Этот документ на данный момент содержит инструкции по настройке
+прозрачного кеширования на Linux и Solaris.
+<H4>
+<A NAME="4.6.1"></A>4.6.1 Прозрачный прокси для Solaris, SunOS, и BSD систем</H4>
+Ищите здесь <A HREF="http://cheops.anu.edu.au/~avalon/ip-filter.html">http://cheops.anu.edu.au/~avalon/ip-filter.html</A>
+<H4>
+<A NAME="4.6.2"></A>4.6.2 Прозрачный прокси для Linux</H4>
+[Contributed by Rodney van den Oever &lt;Rodney.van.den.Oever@tip.nl>]
+
+<P><B><I>Warning:</I></B> this technique has several significant shortcomings!
+<DL>
+<DT>
+<B>В файле <I>access.log</I> не отображаются имена хостов в URL.</B></DT>
+
+<DD>
+Вместо этого печатаются исходные IP адреса. Это из-за того, что адрес назначения
+определяется системным вызовом <TT>getsockname(2)</TT>. Это значит, что
+родительский или братский кеш работают не корректно. Сами эти кеши пишут
+в URL'е имена, а не IP адреса. Эти URL'ы разные и не происходит попадания
+в кеш при повторном запросе. Это значит, что Вы теряете преимущество от
+иерархического прокси, если используете прозрачное кеширование.</DD>
+
+<DT>
+<B>Данный метод поддерживает только HTTP протокол, и не поддерживает gopher
+или FTP</B></DT>
+
+<DD>
+Так как в браузере не установлена поддержка прокси, то он использует FTP
+протокол (с 21 портом назначения), а не требуемый HTTP. Нельзя задать правила
+перенаправления на прокси, так как браузер использует другой протокол.
+Та же ситуация и с gopher. Обычно все запросы к прокси транслируются клиентом
+в HTTP протокол, но раз клиент ничего не знает о перенаправлении, то ничего
+не происходит.</DD>
+</DL>
+Если Вас такая ситуация устраивает, вперед к компиляции ядра с поддержкой
+брандмауэра и перенаправления. Здесь приведены важные параметры из <I>/usr/src/linux/.config</I>:
+<PRE>    #
+    # Code maturity level options
+    #
+    CONFIG_EXPERIMENTAL=y
+    #
+    # Networking options
+    #
+    CONFIG_FIREWALL=y
+    # CONFIG_NET_ALIAS is not set
+    CONFIG_INET=y
+    CONFIG_IP_FORWARD=y
+    # CONFIG_IP_MULTICAST is not set
+    CONFIG_IP_FIREWALL=y
+    # CONFIG_IP_FIREWALL_VERBOSE is not set
+    CONFIG_IP_MASQUERADE=y
+    CONFIG_IP_TRANSPARENT_PROXY=y
+    CONFIG_IP_ALWAYS_DEFRAG=y
+    # CONFIG_IP_ACCT is not set
+    CONFIG_IP_ROUTER=y</PRE>
+Здесь <A HREF="http://www.xos.nl/linux/ipfwadm/">http://www.xos.nl/linux/ipfwadm/</A>
+возьмите исходники <I>ipfwadm</I> и установите его. <I>Ipfwadm</I> понадобится
+для задания правил перенаправления. Я добавил эти правила в скрипт запускаемый
+из <I>/etc/rc.d/rc.inet1</I> (Slackware) который устанавливает интерфейс
+в момент загрузки. Перенаправление должно быть завершено до задания любых
+входных правил. Чтобы убедиться, что это работает я отключил forwarding
+(masquerading).
+
+<P><I>/etc/rc.d/rc.firewall</I>:
+<PRE>#!/bin/sh
+# rc.firewall Linux kernel firewalling rules
+FW=/sbin/ipfwadm
+
+# Flush rules, for testing purposes
+for i in I O F # A # If we enabled accouting too
+do
+${FW} -$i -f
+done
+
+# Default policies:
+${FW} -I -p rej # Incoming policy: reject (quick error)
+${FW} -O -p acc # Output policy: accept
+${FW} -F -p den # Forwarding policy: deny
+
+# Input Rules:
+
+# Loopback-interface (local access, eg, to local nameserver):
+${FW} -I -a acc -S localhost/32 -D localhost/32
+
+# Local Ethernet-interface:
+
+# Redirect to Squid proxy server:
+${FW} -I -a acc -P tcp -D default/0 80 -r 80
+
+# Accept packets from local network:
+${FW} -I -a acc -P all -S localnet/8 -D default/0 -W eth0
+
+# Only required for other types of traffic (FTP, Telnet):
+
+# Forward localnet with masquerading (udp and tcp, no icmp!):
+${FW} -F -a m -P tcp -S localnet/8 -D default/0
+${FW} -F -a m -P udp -S localnet/8 -D default/0
+
+
+Весь траффик локальной сети с любым адресом назначения перенаправляется на локальный 80 порт. Правила можно посмотреть и они будут выглядеть как-то так:</PRE>
+
+<PRE>    IP firewall input rules, default policy: reject
+    type  prot source               destination          ports
+    acc   all  127.0.0.1            127.0.0.1            n/a
+    acc/r tcp  10.0.0.0/8           0.0.0.0/0            * -> 80 => 80
+    acc   all  10.0.0.0/8           0.0.0.0/0            n/a
+    acc   tcp  0.0.0.0/0            0.0.0.0/0            * -> *</PRE>
+Здесь важные установки в <I>squid.conf</I>:
+<PRE>    http_port               80
+    icp_port                3130
+    httpd_accel             virtual 80
+    httpd_accel_with_proxy  on</PRE>
+Внимание, <TT>virtual</TT> это магическое слово здесь!
+
+<P>Я протестировал на Windows 95 как с Microsoft Internet Explorer 3.01
+так и Netscape Communicator и это работает с обоими с отключенными установками
+прокси.
+
+<P>Один раз <I>squid</I> кажется зациклился когда я указал браузеру на
+локальный 80 порт. Но этого можно избежать добавив строку:
+<PRE>    ${FW} -I -a rej -P tcp -S localnet/8 -D dec/32 80
+
+
+    IP firewall input rules, default policy: reject
+    type  prot source               destination          ports
+    acc   all  127.0.0.1            127.0.0.1            n/a
+    rej   tcp  10.0.0.0/8           10.0.0.1             * -> 80
+    acc/r tcp  10.0.0.0/8           0.0.0.0/0            * -> 80 => 80
+    acc   all  10.0.0.0/8           0.0.0.0/0            n/a
+    acc   tcp  0.0.0.0/0            0.0.0.0/0            * -> *</PRE>
+<B><I>Замечание о преобразовании имен</I></B>: Вместо того, чтобы просто
+передать URL прокси, браузер сам преобразовывает их. Удостоверьтесь, что
+на рабочих станциях прописаны локальные DNS сервера.
+
+<P>Если на брандмауэре или прокси сервере работает DNS сервер (что является
+хорошей идеей IMHO) пусть рабочие станции используют его.
+
+<P>
+<HR>
+<H2>
+<A NAME="5"></A>5 Описание работы</H2>
+
+<H3>
+<A NAME="5.1"></A>5.1 Как посмотреть системную статистику работы Squid?</H3>
+В состав дистрибутива Squid входит CGI утилита <I>cachemgr.cgi</I> для
+просмотра статистики squid через браузер. Для большей информации обратитесь
+к разделу, посвященному <I>cachemgr.cgi.</I>
+<H3>
+<A NAME="5.2"></A>5.2 Что я могу узнать из log файлов?</H3>
+Файлы содержат различную информацию о загрузке и производительностиe Squid.
+В log пишутся кроме информации о доступе, еще и системные ошибки и информация
+о потреблении ресурсов, таких, например, как память или дисковое пространство.
+Ниже описан формат log файлов Squid:
+
+<P><I>access.log</I>, общий формат:
+<PRE>    Host Ident - [D/M/Yr:H:M:S TZ] "Method URL" Status Size</PRE>
+<I>access.log</I>, Squid 1.0 родной формат:
+<PRE>    Time Elapsed Host Status/HTTP/Hier_Status Size Method URL</PRE>
+<I>access.log</I>, Squid 1.1 родной формат:
+<PRE>    Time Elapsed Host Status/HTTP Size Method URL Ident Hier_Status/Hier_Host</PRE>
+<I>hierarchy.log</I>, только Squid 1.0:
+<PRE>    [D/M/Yr:H:M:S TZ] URL Hier_Status Hier_Host</PRE>
+Здесь описание формата разных компонентов log:
+<DL>
+<DT>
+<TT>Host</TT></DT>
+
+<DD>
+IP адреса запрашиваемых хостов (в версии v1.1, если задано может быть FQDN).</DD>
+
+<DT>
+<TT>Ident</TT></DT>
+
+<DD>
+Обычно '-'. В версии 1.1 ответ Ident (RFC 931), если задано.</DD>
+
+<DT>
+<TT>Method</TT></DT>
+
+<DD>
+GET, HEAD, POST для TCP запросов или ICP_QUERY для UDP запросов.</DD>
+
+<DT>
+<TT>URL</TT></DT>
+
+<DD>
+Запрашиваемый объект.</DD>
+
+<DT>
+<TT>Status</TT></DT>
+
+<DD>
+Результат запроса (TCP_HIT для ранее кешируемых объектов, TCP_MISS если
+запрашиваемый объект взят не из локального кеша, UDP_HIT и UDP_MISS то
+же для братских запросов).</DD>
+
+<DT>
+<TT>HTTP</TT></DT>
+
+<DD>
+Возвращаемый HTTP код: 200 для удачных, 000 для UDP запросов, 403 для перенаправлений,
+500 для ошибок, и т.д.</DD>
+
+<DT>
+<TT>Size</TT></DT>
+
+<DD>
+Количество байт переданных клиенту.</DD>
+
+<DT>
+<TT>Hier_Status</TT></DT>
+
+<DD>
+Результат запросов к братским/родительским кешам. Может быть PARENT_MISS,
+SIBLING_HIT и т.д.</DD>
+
+<DT>
+<TT>Hier_Host</TT></DT>
+
+<DD>
+Хост, с которого взят объект.</DD>
+
+<DT>
+<TT>Time</TT></DT>
+
+<DD>
+Время с Jan 1, 1970 в миллисекундах.</DD>
+
+<DT>
+<TT>Elapsed</TT></DT>
+
+<DD>
+Затраченное время в миллисекундах.</DD>
+</DL>
+
+<H3>
+<A NAME="5.3"></A>5.3 Какие log файлы я могу удалять?</H3>
+Чтобы сохранить log файлы, лучше послать процессу <I>squid</I> сигнал USR1.
+Это приведет к тому, что текущие log файлы будут закрыты и переименованы.
+После этого можно удалять старые log файлы. Например,если Ваш файл <I>squid.pid</I>
+находится в<I>/usr/local/squid/logs/squid.pid</I> (как задано в <I>squid.conf</I>)
+надо сделать следующее:
+
+<P><TT>kill -USR1 `cat /usr/local/squid/logs/squid.pid`</TT>
+
+<P><B><I>Примечание:</I></B> Строка <TT>logfile_rotate</TT> в <I>squid.conf</I>
+делает необязательным ручное удаление старых log файлов. Просто установите
+значение <TT>logfile_rotate</TT> в желаемую величину. Как только значение
+<TT>logfile_rotate</TT> будет достигнуто, старый log будет удален автоматически.
+Выставите нужное значение <TT>logfile_rotate</TT> и пропишите в crontab
+посылку <I>squid</I> 'у сигнала <TT>SIGUSR1,</TT> например в полночь каждого
+дня:
+
+<P><TT>0 0 * * * /bin/kill -USR1 `cat /usr/local/squid/logs/squid.pid`</TT>
+
+<P>Единственный файл, котрый <B><I>нельзя </I></B>удалять это <TT>log,</TT>
+который обычно находится в первой <TT>cache_dir</TT> директории. Этот файл
+содержиит данные, необходимые для восстановления кеша призапуске Squid.
+<B><I>Удаление этого файла приведет к потере кеша.</I></B>
+<H3>
+<A NAME="5.4"></A>5.4 Как мне найти самый большой объект кеша?</H3>
+
+<PRE>sort -r -n +4 -5 access.log | awk '{print $5, $7}' | head -25</PRE>
+
+<H3>
+<A NAME="5.5"></A>5.5 Я хочу перезапустить Squid с чистым кешем</H3>
+Первый способ, добавить <TT>-z</TT> в командной строке.
+
+<P>Другой, возможно более простой, удалить файл <TT>log</TT> из директории
+<TT>cache_dir</TT>. 
+<HR>
+<H2>
+<A NAME="6"></A>6 Кеш-менеджер</H2>
+[Contributed by Jonathan Larmour &lt;JLarmour@origin-at.co.uk>]
+<H3>
+<A NAME="6.1"></A>6.1 Что такое кеш-менеджер?</H3>
+Кеш-менеджер (<I>cachemgr.cgi</I>) это CGI утилита для просмотра статистики
+работающего процесса <I>squid</I>. Кеш-менеджер это простой способ управления
+кешем и просмотра статистики без захода на сервер.
+<H3>
+<A NAME="6.2"></A>6.2 Как его установить?</H3>
+Прежде всего это зависит от web сервера, который Вы используете. Ниже Вы
+найдете инструкции по настройке CERN и Apache серверов для пользования
+<I>cachemgr.cgi</I>.
+
+<P>После того как Вы изменили конфигурационные файлы сервера, нужно или
+перезапустить web сервер, либо послать ему <TT>SIGHUP</TT>, чтобы он пересчитал
+файлы настройки.
+
+<P>Когда Вы закончите конфигурировать web сервер, то сможете подключиться
+браузером к кеш-менеджеру по URL:
+
+<P><TT>http://www.example.com/Squid/cgi-bin/cachemgr.cgi</TT>
+<H3>
+<A NAME="6.3"></A>6.3 Настройка CERN httpd 3.0 для работы с кеш-менеджером</H3>
+Во-первых, следует убедиться, что только указанные рабочие станции имеют
+доступ к кеш-менеджеру. Их надо задать в CERN <I>httpd.conf</I>, а не в
+<I>squid.conf</I>.
+<PRE>        Protection MGR-PROT {
+                 Mask    @(workstation.example.com)
+        }</PRE>
+Можно задавать шаблонами, IP адресами, в том числе и через запятую. Возможны
+и другие способы защиты. Обратитесь к документации по серверу.
+
+<P>Также следует добавить:
+<PRE>        Protect         /Squid/*        MGR-PROT
+        Exec            /Squid/cgi-bin/*.cgi    /usr/local/squid/bin/*.cgi</PRE>
+чтобы отметить для <TT>MGR-PROT</TT>, что скрипт выполняемый.
+<H3>
+<A NAME="6.4"></A>6.4 Настройка Apache для работы с кеш-менеджером</H3>
+Сначала убедитесь, что директория cgi-bin прописана в <TT>ScriptAlias</TT>
+в файле <I>srm.conf</I> Вашего Apache, как-то так:
+<PRE>ScriptAlias /Squid/cgi-bin/ /usr/local/squid/cgi-bin/</PRE>
+<B>Не советуем</B> делать <TT>ScriptAlias</TT> на всю директорию <I>/usr/local/squid/bin</I>
+где лежат бинарники Squid.
+
+<P>Затем, надо задать рабочие станции имеющие доступ к кеш-менеджеру. Это
+задается в файле <I>access.conf</I> Apache, а не в <I>squid.conf</I>. В
+конце <I>access.conf</I>, вставьте:
+<PRE>        &lt;Location /Squid/cgi-bin/cachemgr.cgi>
+        order deny,allow
+        deny from all
+        allow from workstation.example.com
+        &lt;/Location></PRE>
+Можно вписать несколько строк, можно добавить домены или сети.
+
+<P>Также, <I>cachemgr.cgi</I> может быть защищен паролем. Надо добавить
+следующие строки в <I>access.conf</I>:
+<PRE>        &lt;Location /Squid/cgi-bin/cachemgr.cgi>
+        AuthUserFile /path/to/password/file
+        AuthGroupFile /dev/null
+        AuthName User/Password Required
+        AuthType Basic
+        &lt;Limit GET>
+        require user cachemanager
+        &lt;/Location></PRE>
+В документации Apache Вы найдете информацию об использовании <I>htpasswd</I>
+для задания пароля.
+<H3>
+<A NAME="6.5"></A>6.5 Задание ACL (списка пользователей) для кеш-менеджера
+в <I>squid.conf</I></H3>
+По умолчанию доступ к кеш-менеджеру задан в <I>squid.conf</I> так:
+<PRE>        acl manager proto cache_object
+        acl localhost src 127.0.0.1/255.255.255.255
+        acl all src 0.0.0.0/0.0.0.0</PRE>
+Со следующими правами:
+<PRE>        http_access deny manager !localhost
+        http_access allow all</PRE>
+Первая запись в ACL нужна для кеш-менеджера, так как он для опроса squid
+использует специальный <TT>cache_object</TT> протокол. Можете сами попробовать:
+
+<P><TT>telnet mycache.example.com 3128</TT>
+<BR><TT>GET cache_object://mycache.example.com/info HTTP/1.0</TT>
+
+<P>По умолчанию, если запрос для <TT>cache_object</TT>, и запрос не с локальной
+машины, то доступ будет закрыт, в противном случае - открыт.
+
+<P>Фактически, так как доступ разрешен только с локальной машины, то в
+поле <I>cachemgr.cgi</I> можно указать в качестве кеш хоста <TT>localhost</TT>.
+Мы рекомендуем следующее:
+<PRE>        acl manager proto cache_object
+        acl localhost src 127.0.0.1/255.255.255.255
+        acl example src 123.123.123.123/255.255.255.255
+        acl all src 0.0.0.0/0.0.0.0</PRE>
+Где <TT>123.123.123.123</TT> это IP адрес Вашего web сервера. Затем измените
+правила так:
+<PRE>        http_access deny manager !localhost !example
+        http_access allow all</PRE>
+По умолчанию подразумевается, что web сервер находится на той же машине,
+что и <I>squid</I>. Учтите, что обращение кеш-менеджера к squid происходит
+через web сервер, а не браузер. Так что, если Ваш web сервер находится
+где-то в другом месте, IP адрес web сервера, на котором установлен <I>cachemgr.cgi</I>
+должен быть указан вместо <TT>example</TT> в вышеприведенном примере.
+
+<P>Не забывайте каждый раз после изменения <I>squid.conf </I>посылать <TT>SIGHUP</TT>
+<I>squid'у.</I>
+<H3>
+<A NAME="6.6"></A>6.6 Почему он спрашивает у меня какой-то пароль и URL?</H3>
+Если Вы посмотрите в выпадающем списке, то увидите, что пароль нужен только
+для остановки кеша, а URL нужен для обновления объекта (то есть, повторного
+получения его с исходного сервера). Для получения информации от <I>cachemgr.cgi
+</I>пароль не требуется.
+<H3>
+<A NAME="6.7"></A>6.7 Я хочу удаленно остановить кеш. Какой пароль?</H3>
+В <I>squid.conf </I>есть директива <TT>cachemgr_passwd</TT>.
+<H3>
+<A NAME="6.8"></A>6.8 Как сделать, чтобы в поле cache host по умолчанию
+было имя <I>моего</I> кеша?</H3>
+Найдите в файле Makefile.in следующую строку:
+<PRE>        HOST_OPT        = # -DCACHEMGR_HOSTNAME="getfullhostname()"</PRE>
+Если web сервер с <I>cachemgr.cgi </I>запущен на той же машине, что и Squid
+просто уберите <TT>#</TT>. Если же web сервер какой-то другой, то:
+<PRE>        HOST_OPT        = -DCACHEMGR_HOSTNAME=\"mycache.example.com\"</PRE>
+После этих изменений следует перекомпилировать и переустановить cachemgr.cgi.
+<H3>
+<A NAME="6.9"></A>6.9 Какая разница между TCP и UDP соединениями Squid?</H3>
+Браузеры и кеши используют TCP соединения для получения объектов с web
+серверов или кешей. UDP соединения используются когда другой кеш использует
+Ваш в качестве братского или родительского на предмет наличия нужного объекта.
+UDP соединения это ICP запросы.
+<H3>
+<A NAME="6.10"></A>6.10 Он говорит, что срок хранения кеша истечет в 1970
+году!</H3>
+Не волнуйтесь. Обычное (и в общем-то разумное) поведение <I>squid</I> это
+перезаписывать объекты, срок хранения которых истек.
+<H3>
+<A NAME="6.11"></A>6.11 Что значат записи мета-данных?</H3>
+
+<DL>
+<DT>
+<TT>StoreEntry</TT></DT>
+
+<DD>
+Запись описывает объект кеша.</DD>
+
+<DT>
+<TT>IPCacheEntry</TT></DT>
+
+<DD>
+Запись в кеше DNS.</DD>
+
+<DT>
+<TT>Hash link</TT></DT>
+
+<DD>
+Звено в структуре хэш-таблицы.</DD>
+
+<DT>
+<TT>URL strings</TT></DT>
+
+<DD>
+Сами строки URL, указывающие на номер объекта в кеше, позволяющие обращаться
+к <TT>StoreEntry</TT>.</DD>
+</DL>
+В основном похоже на log файл в директории cache:
+<DL>
+<DT>
+<TT>PoolMemObject structures</TT></DT>
+
+<DD>
+Информация об объектах находящихся в памяти, (например, в процессе передачи).</DD>
+
+<DT>
+<TT>Pool for Request structures</TT></DT>
+
+<DD>
+Информация о каждом запросе.</DD>
+
+<DT>
+<TT>Pool for in-memory object</TT></DT>
+
+<DD>
+Пространство для принятых объектов.</DD>
+</DL>
+
+<H3>
+<A NAME="6.12"></A>6.12 Pool for in-memory object <B>огромен</B> и не становится
+меньше! Это что утечка памяти?</H3>
+Нет. Этот пул только увеличивается. Он равен самому большому объекту когда
+либо кешируемому <I>squid</I> . Если Вы не хотите, чтобы он был такого
+размера, уменьшите значение <TT>cache_mem</TT> и размер объектов для gopher,
+http и ftp в <I>squid.conf</I>.
+<H3>
+<A NAME="6.13"></A>6.13 Значение поля "Total accounted" не совпадает с
+размером занимаемым моим <I>squid</I>!</H3>
+Если это значение близко к упомянотуму, не волнуйтесь. Если <I>squid</I>
+занимает намного больше, возможно это утечка памяти, и все что можно делать
+это ждать новых патчей и время от времени перезапускать <I>squid</I>.
+
+<P>Если <I>squid</I> занимает гораздо меньше, чем в этом поле, будьте осторожны!
+Что-то не так, следует перезапустить <I>squid</I>.
+<H3>
+<A NAME="6.14"></A>6.14 В разделе utilization, что есть <TT>Other</TT>?</H3>
+<TT>Other</TT> это категория, в каторую попадают объекты не попавшие ни
+в какую другую.
+<H3>
+<A NAME="6.15"></A>6.15 В разделе utilization, почему колонка <TT>Transfer
+KB/sec</TT> всегда нулевая?</H3>
+Эта колонка содержит грубое приближение отношения переданных данных к полному
+времени работы кеша. Эти данные ненадежные и практически бесполезные.
+<H3>
+<A NAME="6.16"></A>6.16 В разделе utilization, что значит <TT>Object Count</TT>?</H3>
+Число объектов данного типа, находящихся в данный момент в кеше.
+<H3>
+<A NAME="6.17"></A>6.17 В разделе utilization, что значит <TT>Max/Current/Min
+KB</TT>?</H3>
+Это относится к увеличиваемому/текущему/уменьшаемому размеру всех объектов
+этого типа.
+<H3>
+<A NAME="6.18"></A>6.18 О чем раздел <TT>I/O</TT>?</H3>
+Это гистограммы числа байт взятых из сети вызовом <TT>read(2)</TT>. Довольно
+полезны для определения максимального размера буферов.
+<H3>
+<A NAME="6.19"></A>6.19 Что находится в разделе <TT>Objects</TT>?</H3>
+<B><I>Предупреждение:</I></B> в этом разделе Ваш браузер получит список
+всех URL кеша и статистику о них. Он может быть очень, очень большим. <B><I>Иногда
+он может быть больше, чем доступная Вашему клиенту память!</I></B> Вероятно
+Вам эта информация никогда не понадобится.
+<H3>
+<A NAME="6.20"></A>6.20 Для чего раздел <TT>VM Objects</TT>?</H3>
+<TT>VM Objects</TT> это объекты находящиеся в виртуальной памяти. Эти объекты
+уже скачены и находятся в памяти для быстрого доступа к ним.
+<H3>
+<A NAME="6.21"></A>6.21 Что значит <TT>AVG RTT</TT>?</H3>
+Average Round Trip Time. Показывает среднее время, прошедшее от посылки
+ICP ping до прихода ответа.
+<H3>
+<A NAME="6.22"></A>6.22 В разделе IP cache , какая разница между hit, negative
+hit и miss?</H3>
+HIT значит, что документ найден в кеше. MISS, что не найден. Negative hit
+означает, что он находился в кеше, но не существует.
+<H3>
+<A NAME="6.23"></A>6.23 Что значит содержимое раздела IP cache?</H3>
+Hostname это имя, которое следует преобразовать.
+
+<P>Для колонки <TT>Flags</TT>:
+<DL COMPACT>
+<DT>
+<TT>C</TT></DT>
+
+<DD>
+Кеширован.</DD>
+
+<DT>
+<TT>N</TT></DT>
+
+<DD>
+Не кеширован.</DD>
+
+<DT>
+<TT>P</TT></DT>
+
+<DD>
+Запрос отложен для посылки.</DD>
+
+<DT>
+<TT>D</TT></DT>
+
+<DD>
+Запрос послан и ожидается ответ.</DD>
+
+<DT>
+<TT>L</TT></DT>
+
+<DD>
+Запись блокирована, потому что выступает в роли родителя или брата.</DD>
+</DL>
+В колонке <TT>TTL</TT> представлены "Time To Live" (то есть, как долго
+запись в кеше действительна). (Может быть отрицательным, если срок хранения
+документа истек.)
+
+<P>Колонка <TT>N</TT> это число IP адресов, которые имеет данный hostname.
+
+<P>В конце строки перечислены остальные IP адреса, относящиеся к этой записи
+в IP cache.
+<H3>
+<A NAME="6.24"></A>6.24 Как анализировать использование памяти из данных
+<I>cachemgr.cgi</I>?</H3>
+Взгляните на страницу <TT>Cache Information</TT> Вашего <I>cachemgr.cgi.</I>
+Например:
+<PRE>        Memory usage for squid via mallinfo():
+               Total space in arena:   94687 KB
+               Ordinary blocks:        32019 KB 210034 blks
+               Small blocks:           44364 KB 569500 blks
+               Holding blocks:             0 KB   5695 blks
+               Free Small blocks:       6650 KB
+               Free Ordinary blocks:   11652 KB
+               Total in use:           76384 KB 81%
+               Total free:             18302 KB 19%
+
+
+        Meta Data:
+        StoreEntry                246043 x 64 bytes =  15377 KB
+        IPCacheEntry              971 x   88 bytes  =     83 KB
+        Hash link                 2 x   24 bytes    =      0 KB
+        URL strings                                 =  11422 KB
+        Pool MemObject structures 514 x  144 bytes  =     72 KB (    70 free)
+        Pool for Request structur 516 x 4380 bytes  =   2207 KB (  2121 free)
+        Pool for in-memory object 6200 x 4096 bytes =  24800 KB ( 22888 free)
+        Pool for disk I/O         242 x 8192 bytes =   1936 KB (  1888 free)
+        Miscellaneous                              =   2600 KB
+        total Accounted                            =  58499 KB</PRE>
+В первой строке <TT>mallinfo()</TT> сообщает, что используетсяr 94M. Это
+значение близко к тому, что показывает <I>top</I> (97M).
+
+<P>Из этих 94M, 81% (76M) реально используется в этот момент. Остальное
+высвобождено, или зарезервировано <TT>malloc(3)</TT> и пока не используется.
+
+<P>Из 76M используемых, можно рассчитывать на 58.5M (76%). Остальное отведено
+под вызовы <TT>malloc(3)</TT>.
+
+<P>Список <TT>Meta Data</TT> содержит информацию о том, куда потрачена
+доступная память. 45% ушло на <TT>StoreEntry</TT> и хранение URL строк.
+Другие 42% потрачены на хранение объектов в виртуальной памяти, пока они
+доставляются клиентам (<TT>Pool for in-memory object</TT>).
+
+<P>Размеры пула задаются в <I>squid.conf</I>. В версии 1.0, они несколько
+туповатые: там хранится стек неиспользованных страниц, вместо того чтобы
+освобождать этот блок. В <TT>Pool for in-memory object</TT>, размер этого
+стека составляет 1/2 <TT>cache_mem</TT>. Размер <TT>Pool for disk I/O</TT>
+жестко задан в 200. Для <TT>MemObject</TT> и <TT>Request</TT> это 1/8 величины
+<TT>FD_SETSIZE</TT>.
+
+<P>Если Вам нужно снизить количество памяти процесса, мы рекомендуем уменьшить
+максимальные размеры объектов в строках 'http', 'ftp' и 'gopher' конфигурации.
+Также можно уменьшить <TT>cache_mem</TT>. Но если сделать <TT>cache_mem</TT>
+слишком маленьким, то некоторые объекты могут не сохраняться на диск при
+большой загрузке. Новые версии Squid позволяют задать <TT>memory_pools
+off</TT> отключая таким образом пул свободной памяти.
+<H3>
+<A NAME="6.25"></A>6.25 Что такое fqdncache и чем отличается от ipcache?</H3>
+IPCache содержит данные о преобразовании Hostname в IP-Number, а FQDNCache
+содержит обратные данные.
+
+<P>Например:
+<PRE>==============================================================================
+
+
+
+IP Cache Contents:
+ Hostname                      Flags lstref    TTL  N [IP-Number]
+ gorn.cc.fh-lippe.de               C       0  21581 1 193.16.112.73
+ lagrange.uni-paderborn.de         C       6  21594 1 131.234.128.245
+ www.altavista.digital.com         C      10  21299 4 204.123.2.75  204.74.103.37    204.123.2.66    204.123.2.69
+ 2/ftp.symantec.com                DL   1583 -772855 0  
+
+
+
+Flags:  C --> В кеше
+        D --> Отправлен
+        N --> Не кеширован
+        L --> Блокирован
+
+lstref: Время с момента последнего использования
+   TTL: Time-To-Live (время жизни) пока не истечет срок хранения информации
+     N: Число адресов
+
+
+
+==============================================================================
+
+
+
+FQDN Cache Contents:
+
+ IP-Number                    Flags TTL(?) N Hostname] 
+
+ 130.149.17.15                    C -45570 1 andele.cs.tu-berlin.de
+ 194.77.122.18                    C -58133 1 komet.teuto.de
+ 206.155.117.51                   N -73747 0
+
+ Flags: C --> В кеше
+        D --> Отправлен
+        N --> Не кеширован
+        L --> Блокирован
+   TTL: Time-To-Live
+     N: Число имен</PRE>
+
+<HR>
+<H2>
+<A NAME="7"></A>7 Troubleshooting</H2>
+
+<H3>
+<A NAME="7.1"></A>7.1 Почему у меня нет доступа к прокси: "Proxy Access
+Denied"?</H3>
+Если <I>squid</I> работает в режиме httpd-ускорителя, то все HTTP запросы
+он перенаправляет на HTTP сервер, но не работает как прокси. Если Вы хотите,
+чтобы Ваш кеш также отрабатывал прокси-HTTP запросы, надо сделать следующее:
+
+<P><TT>http_accel_with_proxy on</TT>
+
+<P>Также, возможно Вы неправильно задали ACL. Проверьте файлы <I>access.log</I>
+и <I>squid.conf</I>.
+<H3>
+<A NAME="7.2"></A>7.2 Не работает <TT>local_domain</TT>.</H3>
+<I>Squid кеширует объекты из локального домена.</I>
+
+<P>Директива <TT>local_domain</TT> не запрещает кешировать локальные объекты.
+Она предотвращает использование братских кешей для локальных объектов.
+Если Вам все таки это нужно, то воспользуйтесь опциями <TT>cache_stoplist</TT>
+или <TT>http_stop</TT> (в зависимости от версии).
+<H3>
+<A NAME="7.3"></A>7.3 Когда кеш пытается получить объект с братского кеша,
+получает <TT>Connection Refused,</TT> даже когда тот кеш считает, что объект
+получен успешно.</H3>
+Если ICP порт верный, а HTTP порт-нет, то ICP запросы будут посылаться
+нормально, а ICP ответы заставят кеш думать, что все в порядке, но сами
+объекты будут пропадать. Если братский кеш измениит свой <TT>http_port</TT>,
+то у Вас будут те же проблемы некоторое время до уведомления.
+<H3>
+<A NAME="7.4"></A>7.4 Не хватает файловых дескрипторов</H3>
+Это бывает, когда появляется сообщение <TT>Too many open files</TT>. Возможно
+из-за операционной системы с низким числом файловых дескрипторов. Этот
+предел обычно можно задать в ядре или при помощи других средств. Существует
+два пути исчерпать лимит файловых дескрипторов: первый, это лимит на каждый
+процесс, второй - на общее число дескрипторов на все процессы.
+
+<P>Для Linux, есть патч <A HREF="http://www.linux.org.za/filehandle.patch.linux">filehandle.patch.linux</A>
+от Michael O'Reilly <A HREF="mailto:michael@metal.iinet.net.au">&lt;michael@metal.iinet.net.au></A>.
+
+<P>Для Solaris, добавьте следующее в файл <I>/etc/system</I>:
+
+<P><TT>set rlim_fd_max = 4096</TT>
+<BR><TT>set rlim_fd_cur = 1024</TT>
+
+<P>Также следует задать <TT>#define SQUID_FD_SETSIZE</TT> в <I>include/config.h</I>
+в то же значение, что и <TT>rlim_fd_max</TT>. Не следует задавать меньше
+4096.
+
+<P>Solaris <TT>select(2)</TT> позволяет задать только 1024 дескриптора,
+если надо больше отредактируйте <I>src/Makefile</I> и разрешите <TT>$(USE_POLL_OPT)</TT>.
+Потом пересоберите <I>squid</I>.
+
+<P>Для FreeBSD (от Torsten Sturm &lt;torsten.sturm@axis.de>):
+<DL>
+<DT>
+Как узнать максимальное значение файловых дескрипторов?</DT>
+
+<DD>
+По команде <TT>sysctl -a</TT> значение <TT>kern.maxfilesperproc</TT>.</DD>
+
+<DT>
+Как их увеличить?</DT>
+
+<DD>
+<TT>sysctl -w kern.maxfiles=XXXX</TT></DD>
+
+<BR><TT>sysctl -w kern.maxfilesperproc=XXXX</TT>
+<BR><B><I>Внимание:</I></B> Увеличивая значения, учитывайте соотношение
+<TT>maxfiles > maxfilesperproc</TT>.
+<DT>
+Какой верхний предел?</DT>
+
+<DD>
+Я не думаю, что есть формальное ограничение внутри ядра. Ведь структуры
+под данные выделяются динамически. На практике же, могут возникать непонятные
+явления (например, ядро будет тратить слишком много времени на поиск в
+таблицах).</DD>
+</DL>
+Для большинства BSD-систем (SunOS, 4.4BSD, OpenBSD, FreeBSD, NetBSD, BSD/OS,
+386BSD, Ultrix) можно решить задачу "в лоб" (требуется пересборка ядра):
+<DL>
+<DT>
+Как узнать максимальное значение файловых дескрипторов?</DT>
+
+<DD>
+По команде <TT>pstat -T</TT> значение <TT>files</TT>, обычно отображаемое
+как отношение <TT>current/maximum</TT>.</DD>
+
+<DT>
+Как увеличить это значение?</DT>
+
+<DD>
+Первый метод - увеличить значение переменной <TT>maxusers</TT> в конфигурации
+ядра и пересобрать его. Это очень быстрый и простой метод, но приводит
+к увеличению ряда других переменных, менять которые Вам может и не надо.</DD>
+
+<DT>
+А существует более точный способ?</DT>
+
+<DD>
+Найти файл <TT>param.c</TT> в исходниках ядра и изменить соотношение между
+<TT>maxusers</TT> и максимальным числом открытых файлов по нижеприведенным
+выражениям.</DD>
+</DL>
+Вот несколько примеров:
+<DL>
+<DT>
+SunOS</DT>
+
+<DD>
+Измените значение <TT>nfile</TT> в <TT>/usr/kvm/sys/conf.common/param.c</TT>
+меняя значения в этом выражении:</DD>
+
+<BR><TT>int nfile = 16 * (NPROC + 16 + MAXUSERS) / 10 + 64;</TT>
+<BR>Где <TT>NPROC</TT> определяется как:
+<BR><TT>#define NPROC (10 + 16 * MAXUSERS)</TT>
+<DT>
+FreeBSD (начиная с ядра 2.1.6)</DT>
+
+<DD>
+Очень похоже на SunOS, отредактируйте <TT>/usr/src/sys/conf/param.c</TT>
+вычислив соотношение между переменными <TT>maxusers</TT>, <TT>maxfiles</TT>
+и <TT>maxfilesperproc</TT>:</DD>
+
+<BR><TT>int maxfiles = NPROC*2;</TT>
+<BR><TT>int maxfilesperproc = NPROC*2;</TT>
+<BR>Где <TT>NPROC</TT> задан как:
+<BR><TT>#define NPROC (20 + 16 * MAXUSERS)</TT>
+<BR>Ограничение числа дескрипторов на процесс также может быть задано в
+конфигурации ядра этой директивой:
+<BR><TT>options OPEN_MAX=128</TT>
+<DT>
+BSD/OS (начиная с ядра 2.1)</DT>
+
+<DD>
+Поправьте <TT>/usr/src/sys/conf/param.c</TT> и задайте <TT>maxfiles</TT>
+в соответствии с:</DD>
+
+<BR><TT>int maxfiles = 3 * (NPROC + MAXUSERS) + 80;</TT>
+<BR>Где <TT>NPROC</TT> задан как:
+<BR><TT>#define NPROC (20 + 16 * MAXUSERS)</TT>
+<BR>Также следует задать значение <TT>OPEN_MAX, </TT>чтобы изменить ограничение
+числа дескрипторов на процесс.</DL>
+<B>Замечание:</B> После пересборки ядра необходимо откомпилировать заново
+Squid. Конфигурационный скрипт Squid'а определяет сколько файловых дескрипторов
+доступно, так что надо запустить скрипт заново. Например:
+<PRE>    cd squid-1.1.x
+    make realclean
+    ./configure --prefix=/usr/local/squid
+    make</PRE>
+
+<H3>
+<A NAME="7.5"></A>7.5 Мой <I>squid</I> периодически вываливается с ошибкой,
+что не может <TT>malloc(3)</TT> больше памяти, но у меня достаточно ОЗУ!</H3>
+Кроме ограничения на число файловых дескрипторов, многие системы имеют
+ограничение на количество памяти, выделяемое процессу, в особенности не-root
+процессам. BSD/OS имеет довольно низкий предел, который Вы можете увеличить.
+Измените файл конфигурации ядра, добавив эти строки:
+<PRE>options         DFLDSIZ=67108864        # 64 meg default max data size (was 16)
+options         MAXDSIZ=134217728       # 128 meg max data size (was 64)</PRE>
+Пересоберите ядро и перезагрузите машину. <!-- From:    Ong Beng Hui ongbh@zpoprp.zpo.dec.com -->
+
+<P>В Digital UNIX, отредактируйте файл <TT>/etc/sysconfigtab</TT> и добавьте
+строку...
+<PRE>proc:
+        per-proc-data-size=1073741824</PRE>
+Или, в csh, используя команду <TT>limit</TT> ...
+<BR><TT>zpoprp.zpo.dec.com> limit datasize 1024M</TT>
+
+<P>Редактирование <TT>/etc/sysconfigtab</TT> требует перезагрузки, а команда
+<TT>limit</TT> <TT>- </TT>нет.
+<H3>
+<A NAME="7.6"></A>7.6 Что за странные строки об удалении объектов?</H3>
+Например:
+<PRE>97/01/23 22:31:10| Removed 1 of 9 objects from bucket 3913
+97/01/23 22:33:10| Removed 1 of 5 objects from bucket 4315
+97/01/23 22:35:40| Removed 1 of 14 objects from bucket 6391</PRE>
+Обычные строки log файла, но они не значат, что <I>squid</I> достиг <TT>cache_swap_high</TT>.
+
+<P>На странице cache information в<I>cachemgr.cgi</I> найдите строку типа
+этой:
+<PRE>       Storage LRU Expiration Age:     364.01 days</PRE>
+Объекты, которые не использовались данное количество времени, удаляются
+как результат регулярных работ. Вы можете задать собственное значение <TT>LRU
+Expiration Age</TT> при помощи <TT>reference_age</TT> в конфигурационном
+файле.
+<H3>
+<A NAME="7.7"></A>7.7 Почему я не могу задать <TT>cache_effective_user</TT>
+в <TT>nobody</TT> под Linux?</H3>
+Несколько пользователей сообщали, что они не могут задать <TT>cache_effective_user</TT>
+в <TT>nobody</TT> под Linux и сервер сообщает:
+<PRE>FATAL: Don't run Squid as root, set 'cache_effective_user'!</PRE>
+Однако, если установить <TT>cache_effective_user</TT> не в <TT>nobody,</TT>
+то все ОК. Первое решение, это создать пользователя для Squid и установить
+для него <TT>cache_effective_user</TT>.
+
+<P>Также можно поменять UID <TT>nobody</TT> с 65535 на 65534.
+<H3>
+<A NAME="7.8"></A>7.8 Могу я указать Windows NT FTP серверу выводить директории
+в Unix формате?</H3>
+Почему бы и нет! Выберите следующие пункты меню:
+<UL>
+<LI>
+Start</LI>
+
+<LI>
+Programs</LI>
+
+<LI>
+Microsoft Internet Server (Common)</LI>
+
+<LI>
+Internet Service Manager</LI>
+</UL>
+Дважды щелкните на ftp.
+
+<P>Дальше надо выбрать сервер (должен быть только один), потом выберите
+"Properties" из меню, закладку "directories", будет опция "Directory listing
+style." Выберите "Unix" type, а не "MS-DOS" type.
+<ADDRESS>
+--Oskar Pearson &lt;oskar@is.co.za></ADDRESS>
+
+<H3>
+<A NAME="7.9"></A>7.9 Почему так часто появляются сообщения ERR_NO_CLIENTS_BIG_OBJ?</H3>
+Это значит, что запрашиваемый объект находился в режиме "Удалить позже"
+и пользователь отказался от передачи. Объект попадет в режим "Удалить позже"
+если он:
+<OL>
+<LI>
+больше, чем <I>maximum_object_size</I></LI>
+
+<LI>
+доставлен с соседнего кеша, у которого установлена опция <I>proxy-only</I>.</LI>
+</OL>
+
+<H3>
+<A NAME="7.10"></A>7.10 Почему Squid требует так много памяти!?</H3>
+Squid потому такой быстрый и может обрабатывать одновременно несколько
+запросов, что использует много памяти. Для начала, просмотрите эти разделы
+FAQ:
+<UL>
+<LI>
+6.12 <A HREF="Squid-faq.html#6.12">Pool for in-memory objects <B>огромен</B> и не становится
+меньше! Это что утечка памяти?</A></LI>
+
+<LI>
+6.24 <A HREF="Squid-faq.html#6.24">Как анализировать использование памяти из данных <I>cachemgr.cgi</I>?</A></LI>
+
+<LI>
+7.5 <A HREF="Squid-faq.html#7.5">Мой <I>squid</I> периодически вываливается с ошибкой,
+что не может <TT>malloc(3)</TT> больше памяти, но у меня достаточно ОЗУ!</A></LI>
+</UL>
+Также можно повысить производительность линкуя Squid с внешней malloc библиотекой.
+Мы рекомендуем:
+<UL>
+<LI>
+GNU Malloc, доступной на <A HREF="ftp://ftp.gnu.ai.mit.edu/pub/gnu/malloc.tar.gz">ftp://ftp.gnu.ai.mit.edu/pub/gnu/malloc.tar.gz</A>.
+Проверка на 'libgnumalloc.a' включена в конфигурационный скрипт Squid'а.
+Если libgnumalloc.a найдена, то автоматически подлинковывается.</LI>
+</UL>
+
+<H3>
+<A NAME="7.11"></A>7.11 Почему я получаю "Ignoring MISS from non-peer x.x.x.x"?</H3>
+Вы получаете ICP MISS (через UDP) с родительского или братского кеша, чей
+IP адрес Вашему кешу не известен. Это может быть в двух случаях.
+
+<P>(1) Если на том конце несколько интерфейсов и пакеты идут с того, который
+не прописан в DNS. Вообще-то, это их проблема. Вы можете сказать им или
+прописать IP адрес интерфейса в DNS, или использовать опцию Squid 'udp_outgoing_address'.
+
+<P>Например:
+<PRE># (squid.conf родительского кеша)
+#
+udp_outgoing_address proxy.parent.com
+
+
+# (Ваш squid.conf)
+#
+cache_host proxy.parent.com parent 3128 3130</PRE>
+(2) Также это сообщение будет появляться при посылке ICP запросов на несколько
+адресов. Для обеспечения безопасности, Squid требует задания в конфигурации
+списка других кешей, слушающих группу адресов. Если неизвестный кеш слушает
+этот адрес и шлет ответы, ваш кеш будет писать в log эти сообщения. Чтобы
+исправить надо, либо сказать этому кешу перестать слушать адреса, или,
+если он законный, добавьте его в файл конфигурации. 
+<HR>
+<H2>
+<A NAME="8"></A>8 Как Squid работает?</H2>
+
+<H3>
+<A NAME="8.1"></A>8.1 Какие объекты кешируются?</H3>
+Объекты Internet такие как файл, документ, или ответ на запрос следующих
+сервисов: FTP, HTTP, или gopher. Клиент запрашивает объект Internet с кеширующего
+прокси, прокси сервер получает объект (либо с хоста, указанного в URL,
+либо с родительского или братского кеша), переправляя его клиенту.
+<H3>
+<A NAME="8.2"></A>8.2 Что за протокол ICP?</H3>
+ICP это протокол используемый для общения кешей squid. ICP протокол описан
+в Internet Cache Protocol, 2 проекте документа, находящемся по адресу <A HREF="http://www.nlanr.net/Cache/ICP/ICP-id.txt">http://www.nlanr.net/Cache/ICP/ICP-id.txt</A>.
+
+<P>ICP прежде всего используется в иерархии кешей для поиска определенных
+объектов в братских кешах. Если squid не находит нужного документа, то
+посылает ICP запрос братским кешам, которые в свою очередь отвечают ICP
+ответами "HIT" ("попадание") или "MISS" ("промах"). Затем кеш использует
+ответы для выбора при помощи какого кеша разрешать свои ответы MISS.
+
+<P>ICP также поддерживает сложные передачи множества объектов через одно
+TCP соединение. ICP сейчас работает поверх UDP. Текущие версии Squid также
+поддерживают множественные запросы ICP.
+<H3>
+<A NAME="8.3"></A>8.3 Что такое <I>dnsserver</I>?</H3>
+<I>Dnsserver</I> это процесс инициируемый <I>squid</I> для преобразования
+доменных имен в IP адреса. Необходимость возникает из-за того, что функция
+<TT>gethostbyname(3)</TT> блокирует вызывающий процесс до зазрешения DNS
+запроса.
+
+<P>У Squid не должен блокироваться процесс ввода/вывода, поэтому DNS обращения
+выполнены как внешний к основному процесс. Процессы <I>dnsserver</I> не
+кешируют запросы DNS, это делается самим <I>squid`ом</I>.
+<H3>
+<A NAME="8.4"></A>8.4 Для чего нужна программ<I>ftpget</I>?</H3>
+Программа <I>ftpget</I> это FTP клиент, использующийся для скачивания файлов
+с FTP серверов. Из-за того, что FTP протокол непростой, проще выполнить
+его отдельно от основного кода <I>squid</I>.
+<H3>
+<A NAME="8.5"></A>8.5 FTP PUT не работает</H3>
+<I>Похоже,что FTP put не работает через squid. Можно ли как-нибудь это
+исправить и/или ведется ли какая-нибудь работа в этом направлении.</I>
+
+<P>На данный момент нет, для поддержки этого нужна будет программа <I>ftpput</I>.
+<H3>
+<A NAME="8.6"></A>8.6 Что такое иерархия кешей? Что такое родительские
+и братские кеши?</H3>
+Иерархия кешей это структура кеширующих прокси-серверов расположенных логически
+как родительский/дочерний и братский узлы, таким образом, что кеши ближайшие
+к каналу в Internet являются родителями тем, которые находятся дальше от
+точки входа в Internet. Родительские кеши обрабатывают "промахи" дочерних.
+Иначе говоря, когда кеш запрашивает объект с родителя, и у того в кеше
+его не оказывается, родительский кеш скачивает объект, кеширует его, и
+передает дочернему. Таким образом, при помощи иерархии достигается максимальная
+разгрузка канала, снижается использование внешних серверов Internet и получается
+большее число "попаданий" дочерних кешей, по сравнению с родительскими,
+за счет большего кеша последних.
+
+<P>Кроме родительских/дочерних отношений, squid поддерживает понятие братских
+кешей, то есть находящихся на одном уровне иерархии, призванных распределить
+нагрузку. Каждый кеш в иерархии независимо ни от кого решает откуда брать
+объект, либо с сервера в Internet, либо с родительского или братского кеша,
+используя простой механизм разрешения. Братские кеши не будут забирать
+объект для другого кеша того же уровня, получив от них "промах".
+<H3>
+<A NAME="8.7"></A>8.7 Каков алгоритм разрешения кеша Squid?</H3>
+
+<OL>
+<LI>
+Разослать ICP запросы всем соответствующим братским кешам</LI>
+
+<LI>
+Дождаться всех ответов, пришедших в течение заданного времени (по умолчанию
+две секунды).</LI>
+
+<LI>
+Получив первый ответ HIT начать скачивание объекта , или</LI>
+
+<LI>
+Взять объект с первого родительского кеша, ответившего MISS (зависит от
+весовых коэффициентов), или</LI>
+
+<LI>
+Забрать объект из Internet</LI>
+</OL>
+Алгоритм становится отчасти более сложным при включении в схему брандмауэра.
+
+<P>Директива <TT>single_parent_bypass</TT> предотвращает рассылку ICP запросов,
+в случае когда соответствующий братский кеш это родительский (то есть,
+если больше неоткуда брать объект, зачем напрасно запрашивать?)
+<H3>
+<A NAME="8.8"></A>8.8 Над какими возможностями Squid разработчики сейчас
+работают?</H3>
+Есть несколько открытых проектов касающихся лучшего автоматического выравнивания
+нагрузки, также (динамического и статического) выбора родительских кешей,
+роутинга, множественных кеш-кеш обращений и лучшего распознавания URL,
+которые не надо кешировать.
+
+<P>Текущий список будущих возможностей, доступен здесь <A HREF="http://squid.nlanr.net/Squid/Devel/todo.html">http://squid.nlanr.net/Squid/Devel/todo.html</A>.
+
+<P>Разработчикам будущих версий следует обратиться сюда <A HREF="http://squid.nlanr.net/Squid/Devel/">http://squid.nlanr.net/Squid/Devel/</A>.
+<H3>
+<A NAME="8.9"></A>8.9 Где найти информацию о загрузке Internet трафика</H3>
+Загрузку можно охарактеризовать как тяжесть возлагаемая пользователем или
+группой пользователей на систему. Понимание природы загрузки очень важно
+при управлении производительностью системы. Если Вы интересуетесь загрузкой
+Internet трафика, то для начала сходите сюда <A HREF="http://www.nlanr.net/NA/">http://www.nlanr.net/NA/</A>.
+<H3>
+<A NAME="8.10"></A>8.10 Какие преимущества кеширования совместно с кеширующей
+системой NLANR?</H3>
+Преимущества иерархического кеширования заключаются в снижении загрузки
+канала, уменьшении времени доступа, лучшей устойчивости к сбоям. Кеши верхнего
+уровня обслуживают запросы нижестоящих..Если средний процент попадания
+краевого кеша 50%, половина всех ссылок краевых кешей должна обрабатываться
+через кеш второго уровня, нежели напрямую с исходного хоста. Если этот
+кеш второго уровня содержит большинство запрашиваемых документов, то выигрыш
+достигается, но если кеш верхнего уровня чаще всего не имеет нужный документ,
+или перегружен, то время доступа вместо снижения увеличивается.
+<H3>
+<A NAME="8.11"></A>8.11 Где найти информацию по брандмауэрам?</H3>
+Смотрите список рассылки и FAQ здесь <A HREF="http://www.greatcircle.com/firewalls/">http://www.greatcircle.com/firewalls/</A> 
+<HR>
+<ADDRESS>
+$Id: Squid-faq.html,v 1.1.1.1 2001/06/15 14:14:36 maxcom Exp $</ADDRESS>
+
+</BODY>
+</HTML>

@@ -1,0 +1,38 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE>PPP HOWTO: Закрытие PPP связи</TITLE>
+ <LINK HREF="PPP-HOWTO-18.html" REL=next>
+ <LINK HREF="PPP-HOWTO-16.html" REL=previous>
+ <LINK HREF="PPP-HOWTO.html#toc17" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="PPP-HOWTO-18.html">Next</A>
+<A HREF="PPP-HOWTO-16.html">Previous</A>
+<A HREF="PPP-HOWTO.html#toc17">Contents</A>
+<HR>
+<H2><A NAME="s17">17. Закрытие PPP связи</A></H2>
+
+<P>Для завершения связи PPP используйте стандартную команду ppp-off, чтобы 
+закрыть его (помните - вы должны быть root'ом или членом группы PPP!).
+<P>В вашем системном логе вы увидите что-то вроде:
+<PRE>
+  ______________________________________________________________________
+  Oct 21 16:10:45 hwin pppd[19873]: Interrupt received: terminating link
+  Oct 21 16:10:45 hwin pppd[19873]: ipcp: down
+  Oct 21 16:10:45 hwin pppd[19873]: default route ioctl(SIOCDELRT): Bad address
+  Oct 21 16:10:45 hwin pppd[19873]: fsm_sdata(LCP): Sent code 5, id 2.
+  Oct 21 16:10:46 hwin pppd[19873]: fsm_rtermack(LCP).
+  Oct 21 16:10:46 hwin pppd[19873]: Connection terminated.
+  Oct 21 16:10:46 hwin pppd[19873]: Exit.
+  ______________________________________________________________________
+</PRE>
+<P>Не волнуйтесь о SIOCDELRT - это только замечание pppd о том, что он 
+завершает работу и незачем волноваться.
+<HR>
+<A HREF="PPP-HOWTO-18.html">Next</A>
+<A HREF="PPP-HOWTO-16.html">Previous</A>
+<A HREF="PPP-HOWTO.html#toc17">Contents</A>
+</BODY>
+</HTML>

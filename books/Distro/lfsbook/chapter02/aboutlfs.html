@@ -1,0 +1,231 @@
+<HTML
+><HEAD
+><TITLE
+>About $LFS</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Microsoft FrontPage 4.0"/><LINK
+REL="HOME"
+TITLE="Linux From Scratch"
+HREF="http://www.linuxfromscratch.org/view/4.0/index.html"/><LINK
+REL="UP"
+TITLE="Important information"
+HREF="http://www.linuxfromscratch.org/view/4.0/chapter02/chapter02.html"/><LINK
+REL="PREVIOUS"
+TITLE="Important information"
+HREF="http://www.linuxfromscratch.org/view/4.0/chapter02/chapter02.html"/><LINK
+REL="NEXT"
+TITLE="About SBUs"
+HREF="http://www.linuxfromscratch.org/view/4.0/chapter02/aboutsbus.html"/></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#006000"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Linux From Scratch: Версия 4.0</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="chapter02.html"
+ACCESSKEY="P"
+>Назад</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Глава 2. Важная информация</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="aboutsbus.html"
+ACCESSKEY="N"
+>Вперед</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"/></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="ch02-aboutlfs"
+>Про $LFS</A
+></H1
+><P
+>Убедительная просьба прочесть этот раздел
+  внимательно: переменная LFS будет часто
+  использоваться далее. $LFS всегда
+  необходимо заменять на путь директории,
+  где монтирован раздел LFS. Как создать такой
+  раздел и куда его монтировать, описано в
+  Главе 4. Допустим, например, что раздел LFS
+  монтирован на /mnt/lfs.</P
+><P
+>Когда вас просят выполнить <TT
+CLASS="userinput"
+><B
+>./configure --prefix=$LFS/static</B
+></TT
+>  , на самом деле вам необходимо исполнить <B
+><TT
+CLASS="userinput"
+>./configure --prefix=/mnt/lfs/static</TT
+></B
+>.</P
+><P
+>Необходимо запомнить, что так следует
+  поступать везде, где вы видите переменную
+  $LFS - как в командной строке, так и в
+  создаваемых или редактируемых файлах.</P
+><P
+>Однако можно существенно облегчить задачу.
+  Для того чтобы использовать $LFS, а не
+  прописывать каждый раз путь к директории,
+  создайте переменную среды LFS следующей
+  командой: </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="screen"
+><TT
+CLASS="userinput"
+><B
+>export LFS=/mnt/lfs</B
+></TT
+></PRE
+></TD
+></TR
+></TABLE
+><P
+>Теперь, если вас просят выполнить команду
+<TT
+CLASS="userinput"
+><B
+>./configure --prefix=$LFS/static</B
+></TT
+>, можно печатать как есть, не заменяя $LFS на
+  путь к директории. После нажатия клавишы
+  Enter, оболочка сама подставит вместо $LFS
+  значение этой переменной, как мы ее
+  определили командой <b>export</b>.</P
+><P
+>Если вы собираетесь использовать $LFS,
+  никогда не забывайте задавать переменную
+  LFS. В случае если она не задана, оболочка
+  проигнорирует $LFS и выполнит остаток
+  команды. Например, если выполнить команду
+<TT
+CLASS="userinput"
+><B
+>echo "root:x:0:0:root:/root:/bin/bash" &gt; 
+$LFS/etc/passwd</B
+></TT
+>  , не задав переменную LFS, оболочка заново
+  создаст файл /etc/passwd. Иными словами,
+  уничтожит текущую базу паролей системы.</P
+><P
+>Для того чтобы всегда быть уверенным в том,
+  что переменная LFS задана, добавьте ее в
+  файлы /root/.bash_profile и /root/.bashrc. Теперь каждый
+  раз когда вы входите в систему под учетной
+  записью root, или получаете его права с
+  помощью команды <TT
+CLASS="userinput"
+><B
+>su</B
+></TT
+> , переменная LFS будет задана автоматически.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"/><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="chapter02.html"
+ACCESSKEY="P"
+>Назад</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="../index.html"
+ACCESSKEY="H"
+>Домой</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="aboutsbus.html"
+ACCESSKEY="N"
+>Вперед</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Важная информация</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="chapter02.html"
+ACCESSKEY="U"
+>Наверх</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Про SBU</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

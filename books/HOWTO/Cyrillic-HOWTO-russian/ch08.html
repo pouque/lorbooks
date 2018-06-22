@@ -1,0 +1,259 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=koi8-r"><title>Глава 8. Текстовые процессоры</title><meta name="generator" content="DocBook XSL Stylesheets V1.59.1"><link rel="home" href="index.html" title="The Linux Cyrillic HOWTO (russian)"><link rel="up" href="index.html" title="The Linux Cyrillic HOWTO (russian)"><link rel="previous" href="ch07s04.html" title="joe"><link rel="next" href="ch08s02.html" title="bibtex"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Глава 8. Текстовые процессоры</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch07s04.html">Пред.</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch08s02.html">След.</a></td></tr></table><hr></div><div class="chapter" lang="ru"><div class="titlepage"><div><h2 class="title"><a name="word-processors"></a>Глава 8. Текстовые процессоры</h2></div></div><div class="toc"><p><b>Содержание</b></p><dl><dt><a href="ch08.html#tex">Поддержка кириллицы в TeX/LaTeX</a></dt><dd><dl><dt><a href="ch08.html#LaTeX-T2">Пакет T2</a></dt><dt><a href="ch08.html#LaTeX-teTeX">Кириллизация teTeX</a></dt><dt><a href="ch08.html#LaTeX-Style">Стиль</a></dt><dt><a href="ch08.html#WashingtonCyrillic">Работа с Washington Cyrillic</a></dt></dl></dd><dt><a href="ch08s02.html">bibtex</a></dt><dt><a href="ch08s03.html">OpenOffice</a></dt><dt><a href="ch08s04.html">StarOffice</a></dt><dt><a href="ch08s05.html">nroff </a></dt></dl></div><a class="indexterm" name="id2954914"></a><p>Для публикации документа в печатном виде, как правило,
+используются специальные программы: текстовые процессоры.</p><p>Наиболее мощным для текстовым процессором на текущий момент
+    является LaTeX (раздел <a href="ch08.html#tex" title="Поддержка кириллицы в TeX/LaTeX">&#8220;Поддержка кириллицы в TeX/LaTeX&#8221;</a>). Это, по сути своей,
+    является скорее решением, нежели программой. Сложности при
+    начальном освоении, вызванные относительно высоким порогом
+    вхождения, компенсируются удивительной гибкостью и лёгкостью
+    решения сложных проблем.</p><div class="sect1" lang="ru"><div class="titlepage"><div><h2 class="title" style="clear: both"><a name="tex"></a>Поддержка кириллицы в TeX/LaTeX</h2></div></div><a class="indexterm" name="id2886882"></a><a class="indexterm" name="id2886893"></a><p>В этом разделе я опишу несколько способов набора
+кириллических текстов в <span class="emphasis"><em>TeX</em></span> и
+<span class="emphasis"><em>LaTeX</em></span>.  Есть несколько путей для достижения этой
+цели, которые отличаются в сложности установки и удобстве
+использования. Например, одна из возможностей &#8212; это начать
+работу без всякой предварительной настройки, используя
+<span class="emphasis"><em>Washington AMSTeX Cyrillic fonts</em></span>.  С другой
+стороны, вы можете установить пакет <span class="emphasis"><em>LaTeX</em></span>,
+который легко настраивается на пользование кириллицей.</p><p>Вид набранного документа в значительной степени определяется
+шрифтом, который вы используете. Основные кириллические шрифты,
+которые можно использовать при наборе, описаны в разделе <a href="ch15.html#CyrFontsLaTeX" title="Шрифты для TeX/LaTeX">&#8220;Шрифты для TeX/LaTeX&#8221;</a>.</p><p>Различных русификаций <span class="emphasis"><em>LaTeX</em></span> написано
+  много, многие их них писались в ту пору, когда и Бабеля-то никакого
+  небыло, кроме разве что Исаака.  Следует различать явление
+  <span class="emphasis"><em>интернационализации</em></span> и <span class="emphasis"><em>русификации</em></span>.</p><p> Русификация основанная на результатах работы T2 team,
+  подразумевающая использование пакетов inputenc, babel, и fontenc,
+  это именно <span class="emphasis"><em>интернационализация</em></span>, а <span class="emphasis"><em>не
+  русификация</em></span>. Подробнее об этом пакете написано в разделе
+  <a href="ch08.html#LaTeX-T2" title="Пакет T2">&#8220;Пакет T2&#8221;</a>. В раздел <a href="ch08.html#LaTeX-teTeX" title="Кириллизация teTeX">&#8220;Кириллизация teTeX&#8221;</a>
+  описывается именно этот способ и именно его я и советую для
+  использования.</p><p> Пакет T2 необычайно ценен там, где надо набирать что-то
+  русско-испанское.  Этот пакет даже позволяет работать с
+  <tt>utf-8!</tt> (Раздел <a href="ch03.html#UNICODE" title="Стандарт UNICODE">&#8220;Стандарт UNICODE&#8221;</a>).
+  Практически речь идёт о поддержке юникода.  Такое всеобъемлющее
+  поведение не могло произойти &quot;бесплатно&quot;. Пакеты T2 объективно имеют
+  свои недостатки: русские буквы поражены в правах, их нельзя
+  использовать как часть имён команд, нельзя использовать в метках и
+  аргументах комады cite.  То есть они не являются буквами с точки
+  зрения LaTeX.  Это активные символы. Такое их поведение может
+  доставлять неудобства с точки зрения русскоязычного
+  пользователя. Огромным преимуществом T2 интернационализации является
+  наличие этого пакета фактически во всех более-менее современных<sup>[<a name="id2887053" href="ch08.html#ftn.id2887053">9</a>]</sup>
+  дистрибутивах <span class="emphasis"><em>LaTeX</em></span>.</p><p><a href="http://www.mccme.ru/free-books/" target="_top">Русификация
+  Шеня-Львовского</a> этими недостатками не обладает. Она выглядит
+  несколько старомодно, но она работает. И <tt>.toc</tt>
+  файлы после неё читаемы.  Эта русификация обладает
+  <span class="emphasis"><em>существенным</em></span> недостатком: поставить её это
+  отдельная задача, и использовать Вы после её установки будете шрифты
+  <tt>zcr</tt> а вовсе не <tt>cm-super</tt>
+  (Раздел <a href="ch15s02.html#CyrFontsType1cm-super" title="cm-super">&#8220;cm-super&#8221;</a>).</p><p> Тем не менее, в рамках существующих технологий можно
+  пользоваться <a href="http://www.mccme.ru/free-books/p_cher.htm" target="_top">русификацией
+  Александра Черепанова</a>, которая объединила в себе все
+  преимущества русификации Шеня-Львовского и русификации T2, но это не
+  <span class="emphasis"><em>интернационализация</em></span>, а
+  <span class="emphasis"><em>русификация</em></span>.</p><div class="sect2" lang="ru"><div class="titlepage"><div><h3 class="title"><a name="LaTeX-T2"></a>Пакет T2</h3></div></div><a class="indexterm" name="id2887188"></a><a class="indexterm" name="id2887203"></a><p>Пакет T2 был изначально был создан Werner Lemberg'ом и
+Владимиром Воловичем. Этот пакет развивается по сей день и, надеюсь,
+будет развиваться и дальше. В нем присутствуют некоторые недостатки,
+но в 99% случаев для отображения кириллицы через
+<span class="emphasis"><em>LaTeX</em></span> его возможностей хватает. Современная
+русификация <span class="emphasis"><em>LaTeX</em></span> основана именно на этом
+пакете. Пример русификации через T2 приведён в разделе <a href="ch08.html#LaTeX-teTeX" title="Кириллизация teTeX">&#8220;Кириллизация teTeX&#8221;</a>.</p><p>Пакет `T2' можно найти на любом сайте <a href="ftp://ftp.dante.de/tex-archive/" target="_top">CTAN</a> в директории
+<tt>macros/latex/contrib/supported/t2</tt>, последняя версия
+лежит по адресу <a href="ftp://ftp.vsu.ru/pub/tex/t2-current.tar.gz" target="_top">ftp.vsu.ru</a></p><p>Официально с 1-го декабря 1998 года дистрибутив
+<span class="emphasis"><em>LaTeX2e</em></span> поддерживает шрифты со стандартными
+кириллическими кодировками (T2A, T2B, T2C, X2) и всевозможные входные
+кодовые таблицы (например, koi8-r, cp1251, cp866, iso8859-5)</p><p>BABEL начал поддерживать кодировку T2 с версии 3.6k
+(последнюю версию можно взять на любом сайте <a href="ftp://ftp.dante.de/tex-archive/" target="_top">CTAN</a> в директории
+<tt>CTAN:macros/latex/required/babel</tt>).</p><p>В файле `cyrguide.tex', который является частью
+дистрибутива LaTeX2e, описывается настройка и использование кириллицы
+при работе с LaTeX.  Для полной поддержки кириллицы требуется иметь lh
+шрифты и соответствующую таблицу переносов.</p><p>Шрифты lh начиная с версии 3.20 (они наверняка есть в
+вашем дистрибутиве) поддерживают все нужные кодировки &#8212; смотрите
+раздел <a href="ch15.html#CyrFontsLaTeXlh" title="lh">&#8220;lh&#8221;</a>.</p><p>Русские таблицы переносов, поддерживающие кодировку T2 и
+оформленные как пакет 'ruhyphen' (он наверняка есть в вашем
+дистрибутиве), можно найти на любом <a href="ftp://ftp.dante.de/tex-archive/" target="_top">CTAN</a> архиве в директории
+<tt>language/hyphenation/ruhyphen</tt> или по адресу <a href="ftp://ftp.vsu.ru/pub/tex/ruhyphen.tar.gz" target="_top">ftp.vsu.ru</a></p><p>В пакете T2, кроме непосредственно поддержки T2 кодировок,
+дополнительно присутствуют следующие полезные составляющие.</p><div class="orderedlist"><ol type="1"><li><p> Пакет <span class="emphasis"><em>`mathtext</em></span>',
+который позволяет использовать кириллицу в формулах без дополнительных
+ухищрений. Пакет может быть включён с опцией <span class="emphasis"><em>warn</em></span>
+&#8212; в этом случае он сообщает обо всех случаях использования
+кириллических букв в формулах. Пакет следует загружать до загрузки
+пакета <tt>babel</tt> и/или <tt>fontenc</tt>.
+</p></li><li><p> Пакет <span class="emphasis"><em>`citehack.sty'</em></span>
+переопределяет команды LaTeX таким образом, чтобы можно было
+использовать кириллические символы в качестве аргументов команд
+<tt>\cite</tt> и <tt>\bibitem</tt> &#8212; это
+временный &quot;хак&quot;, и в следующей версии LaTeX нужда в нем отпадёт.
+</p></li><li><p> Скрипт <span class="emphasis"><em>`rubibtex'</em></span> будет
+полезен, если вы используете <tt>bibtex</tt>.
+</p></li><li><p> Скрипт <span class="emphasis"><em>`rumkidx'</em></span> будет
+полезен, если вы используете <tt>makeindex</tt> &#8212; к
+сожалению, невозможно (без напильника) сделать несколько индексов
+одновременно.  </p></li><li><p> Директория <span class="emphasis"><em>`examples'</em></span>
+содержит несколько примеров.  </p></li><li><p> Пакет <span class="emphasis"><em>`cyrplain'</em></span> &#8212;
+на случай, если вы захотите использовать Plain TeX.
+</p></li><li><p> Директория <span class="emphasis"><em>`cyrfinst'</em></span>
+содержит поддержку кириллицы для пакета <tt>fontinst</tt>.
+</p></li><li><p> Директория <span class="emphasis"><em>`enc-maps'</em></span>
+содержит различные входные кодировки, которые можно использовать при
+наборе файла LaTeX.  </p></li></ol></div><p>Одной из раздражающих особенностей T2-кириллизации
+является то, что при &quot;прогонке&quot;  tex-файла через
+<tt>latex</tt> вывод предупреждений и ошибок ведётся на
+внутренней кодировке &#8212; то есть <span class="emphasis"><em>T2</em></span>:</p><p>Артём Чуприн написал программу-фильтр &#8212; она
+перекодирует сообщения об ошибках от &quot;\T2A/&quot;  до конца строки,
+остальное не трогает. Для практических нужд пока хватает.  Программу
+можно найти по адресу <a href="http://kedr.inp.nsk.su/~baldin/misc/Latex.c" target="_top">http://www.inp.nsk.su/~baldin/misc/Latex.c</a></p><p>Так же можно использовать стандартный перекодировщики
+      &#8212; например,
+</p><pre class="screen">
+   latex myfile.tex | t2filter
+</pre><p>
+</p></div><div class="sect2" lang="ru"><div class="titlepage"><div><h3 class="title"><a name="LaTeX-teTeX"></a>Кириллизация teTeX</h3></div></div><a class="indexterm" name="id2887610"></a><a class="indexterm" name="id2887625"></a><p>Если у вас старый дистрибутив teTeXа (версия ниже 1.0), то
+настоятельно рекомендую скачать последнюю версию этого программного
+продукта.</p><p>Для современных версий TeX'а (teTeX, fpTeX, MikTeX, Web2c
+TeX) русификация уже входит в дистрибутив.</p><p>Первое, что нужно сделать &#8212; это подключить русские
+переносы.  Для этого нужно отредактировать файл
+<tt>language.dat</tt>, находящийся в директории
+<tt>$TEXMF/tex/generic/config/language.dat</tt>
+(<tt>$TEXMF</tt> обычно равно
+<tt>/usr/lib/texmf</tt> или
+<tt>/usr/share/texmf</tt>), добавив туда строки:</p><p>
+</p><pre class="screen">
+ruseng ruenhyph
+       =russian
+       =english
+</pre><p>
+</p><p>Остальные строки нужно закомментировать, либо удалить.
+После чего необходимо перегенерировать форматные файлы:</p><p>
+</p><pre class="screen">
+texconfig init
+</pre><p>
+</p><p>Описанное выше можно проделать через стандартную
+конфигурационную программу <tt>texconfig</tt> &#8212;
+выбрать меню <tt>hyphenation</tt>, далее меню
+<tt>latex</tt> и раскомментировать строку со словом
+<tt>russian</tt>. При выходе из программы форматные файлы
+автоматически перегенерируются.</p><p>Теперь можно работать с русским языком.</p><p>Добавьте в преамбулу документа (после слов
+<tt>\documentclass{}</tt>)</p><p>
+</p><pre class="programlisting">
+\usepackage{mathtext}         % если нужны русские буквы в формулах (не обязательно)
+\usepackage[T2A]{fontenc}     % внутренняя T2A кодировка TeX
+\usepackage[koi8-r]{inputenc} % кодировка - можно использовать [cp866] [cp1251]
+\usepackage[russian]{babel}   % включение переносов
+</pre><p>
+</p><p>После этого в документе можно использовать русские
+буквы.</p><p>Подробнее о пакете <span class="emphasis"><em>T2</em></span> смотрите раздел
+<a href="ch08.html#LaTeX-T2" title="Пакет T2">&#8220;Пакет T2&#8221;</a>.</p><p><span class="emphasis"><em>P.S.</em></span> Это только один из вариантов,
+самый простой и универсальный, решения проблемы кириллизации. Есть и
+другие варианты и методы, которые на практике могут оказаться более
+удачными.</p><p>Чтобы добавить форматы из <tt>cyrplain</tt>
+набора в <tt>texconfig</tt>, следует выбрать меню
+<tt>FORMATS</tt> и добавить
+
+</p><pre class="programlisting">
+cyrtxinf      tex             language.dat    cyrtxinf.ini
+</pre><p>
+</p><p>для русского <tt>texinfo</tt>. Аналогично для
+<tt>cyrblue</tt> и <tt>cyramstx</tt>.</p><p>Чтобы добавить формат <tt>cyrtex</tt> (русский
+TeX), проще в каталоге <tt>web2c</tt> выполнить:
+
+</p><pre class="screen">
+initex '\input cyrtex.ini \dump'
+</pre><p>
+</p><p>и бросить символическую ссылку с именем
+<tt>cyrtex</tt> на <tt>tex</tt> (например, в
+<tt>/usr/bin</tt>).</p><p>Чтобы переключится на русский в этих
+<tt>plain</tt> форматах, надо использовать команду
+
+</p><pre class="screen">
+\language N
+</pre><p>
+
+где N &#8212; номер, под которым числится русский язык в получившейся
+раскладке.</p></div><div class="sect2" lang="ru"><div class="titlepage"><div><h3 class="title"><a name="LaTeX-Style"></a>Стиль</h3></div></div><a class="indexterm" name="id2887983"></a><p>В этом разделе даны рецепты, как создать и/или
+модифицировать свой стиль, естественно, это относится к использованию
+кириллицы в <span class="emphasis"><em>LaTeX</em></span>.  Предложенные рецепты в
+основном опираются на пакет русификации <span class="emphasis"><em>T2</em></span>
+(См. раздел <a href="ch08.html#LaTeX-T2" title="Пакет T2">&#8220;Пакет T2&#8221;</a>).</p><div class="sect3" lang="ru"><div class="titlepage"><div><h4 class="title"><a name="LaTeX-T2-cyr-math"></a>Кириллические буквы в формулах</h4></div></div><a class="indexterm" name="id2888035"></a><p>Для того, чтобы использовать кириллицу в формулах
+следует в преамбуле до задания <span class="emphasis"><em>inputenc</em></span>,
+<span class="emphasis"><em>fontenc</em></span>, <span class="emphasis"><em>babel</em></span> добавить
+строчку:</p><pre class="programlisting">
+ \usepackage{mathtext}
+</pre><p>
+</p><p>Что бы сделать кириллические буквы в формулах
+наклонными, то нужно в преамбуле добавить строчку:</p><pre class="programlisting">
+   \DeclareSymbolFont{T2Aletters}{T2A}{cmr}{m}{it}
+</pre><p>
+</p></div><div class="sect3" lang="ru"><div class="titlepage"><div><h4 class="title"><a name="LaTeX-graphics"></a>Подписи в картинках</h4></div></div><a class="indexterm" name="id2888112"></a><a class="indexterm" name="id2888128"></a><a class="indexterm" name="id2888143"></a><p>Для создания кириллических подписей в картинках следует
+воспользоваться пакетом <span class="emphasis"><em>psfrag</em></span>. Подробнее про
+этот пакет описан в разделе <a href="ch10s05.html" title="Пакет psfrag (eps)">&#8220;Пакет psfrag (eps)&#8221;</a>.</p></div><div class="sect3" lang="ru"><div class="titlepage"><div><h4 class="title"><a name="LaTeX-T2-texinfo"></a>Texinfo</h4></div></div><a class="indexterm" name="id2888184"></a><p>Чтобы кириллицу можно было использовать с
+<span class="emphasis"><em>texinfo</em></span> следует воспользоваться пакетом
+<span class="emphasis"><em>cyrplain</em></span> (См. раздел <a href="ch08.html#LaTeX-teTeX" title="Кириллизация teTeX">&#8220;Кириллизация teTeX&#8221;</a>).</p></div><div class="sect3" lang="ru"><div class="titlepage"><div><h4 class="title"><a name="LaTeX-enumerate"></a>Кириллица в списках</h4></div></div><a class="indexterm" name="id2888230"></a><p>Чтобы заставить окружение <tt>enumerate</tt>
+нумеровать списки <tt>\item</tt> по-русски. Следует
+воспользоваться пакетом <span class="emphasis"><em>babel</em></span>:</p><div class="itemizedlist"><ul type="disc"><li><p> Маленькие буквы:
+</p><pre class="programlisting">
+\renewcommand{\theenumi}{\asbuk{enumi}}
+</pre><p>
+</p></li><li><p>   Большие буквы:
+</p><pre class="programlisting">
+\renewcommand{\theenumi}{\Asbuk{enumi}}
+</pre><p>
+</p></li></ul></div><p>Эти команды делают нужную нам нумерацию на верхнем
+уровне вложенности.  На следующем уровне идут
+<span class="emphasis"><em>enumii</em></span>, <span class="emphasis"><em>enumiii</em></span>,
+<span class="emphasis"><em>enumiv</em></span>.</p></div><div class="sect3" lang="ru"><div class="titlepage"><div><h4 class="title"><a name="LaTeX-appendix"></a>Кириллица и нумерация приложений</h4></div></div><a class="indexterm" name="id2888335"></a><p>Для нумерации приложений русскими буквами (некоторые как раз любят
+латинские) следует написать:</p><pre class="programlisting">
+\makeatletter
+\renewcommand\appendix{\par
+  \setcounter{section}{0}%
+  \setcounter{subsection}{0}%
+  \gdef\thesection{\@Asbuk\c@section}}
+\makeatother
+</pre><p>
+</p></div><div class="sect3" lang="ru"><div class="titlepage"><div><h4 class="title"><a name="LaTeX-hyphenation"></a>Перенос</h4></div></div><a class="indexterm" name="id2888430"></a><p>Чтобы правильно писать составные слова, типа,
+&quot;коммерческо-посредническая&quot;.  следует добавить следующие строчки
+(См. <tt>README</tt> от пакета
+<span class="emphasis"><em>ruhyphen</em></span>):</p><pre class="programlisting">
+  \lccode`\-=`\-
+  \defaulthyphenchar=127
+%  ...
+  \usepackage[T2A]{fontenc}
+</pre><p>
+</p><p>Если нужно явно задать правило переноса для какого-то
+составного слова, то вставьте что-то вроде:</p><pre class="programlisting">
+  \begingroup
+    \lccode`\==`\-
+    % Пример: задать правила переноса для `коммерческо-посредническая':
+    \hyphenation{ком-мер-че-ско=-по-сред-ни-че-ская}
+  \endgroup
+</pre><p>
+</p></div><div class="sect3" lang="ru"><div class="titlepage"><div><h4 class="title"><a name="LaTeX-indentfirst"></a>Отступ для первого параграфа раздела</h4></div></div><a class="indexterm" name="id2888512"></a><p>В русской литературе, в отличии от английской, принято,
+чтобы первый параграф раздела имел точно такой же отступ, как и
+везде. Для этого следует воспользоваться пакетом
+<span class="emphasis"><em>indentfirst</em></span>.</p><pre class="programlisting">
+\usepackage{indentfirst}
+</pre><p>
+</p></div></div><div class="sect2" lang="ru"><div class="titlepage"><div><h3 class="title"><a name="WashingtonCyrillic"></a>Работа с Washington Cyrillic</h3></div></div><a class="indexterm" name="id2888566"></a><p>Этот пакет был создан для Американского Математического
+Общества, чтобы дать возможность создавать документы со ссылками на
+первоисточники на русском.  Следовательно, авторы не очень
+&quot;напрягались&quot;  при создании этого пакета, и шрифты в результате
+этого выглядят довольно неуклюже.  Обычно этот пакет упоминается как
+<tt>&quot;по настоящему плохой пакет кириллицы для
+TeX&quot;</tt>.</p><p>Однако мы обсудим его, так как он очень прост в
+использовании и не требует установки &#8212; этот набор содержится в
+большинстве дистрибутивов TeX.</p><p>Конечно, у вас не будете такой роскоши, как автоматическая
+расстановка дефисов, но всё равно...</p><div class="itemizedlist"><ul type="disc"><li><p> Снабдите ваш документ следующими директивами:
+</p><pre class="programlisting">
+\input cyracc.def
+\font\tencyr=wncyr10
+\def\cyr{\tencyr\cyracc}
+</pre><p>
+</p></li><li><p> Теперь, чтобы напечатать символы кириллицы,
+вставьте <tt>\cyr</tt> для печати используйте
+соответствующий латинский символ или команду TeX.  То есть строчные
+буквы русского алфавита соответствуют следующим сочетаниям:
+</p><p>
+</p><pre class="screen">
+a b v g d e \&quot;e zh z i {\u i} k l m n o p r s t u f kh c ch sh shch
+{\cprime} y {\cdprime}  \`e yu ya
+</pre><p>
+</p></li></ul></div><p>Чрезвычайно сложно преобразовывать ваши русские тексты в
+такую кодировку, но вы можете автоматизировать этот процесс.
+Программа translit (раздел <a href="ch09s03.html" title="Символьная перекодировка">&#8220;Символьная перекодировка&#8221;</a>) поддерживает
+опцию вывода TeX.</p></div></div><div class="footnotes"><br><hr width="100" align="left"><div class="footnote"><p><sup>[<a name="ftn.id2887053" href="ch08.html#id2887053">9</a>] </sup>Начиная с 1998 года.</p></div></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch07s04.html">Пред.</a> </td><td width="20%" align="center"><a accesskey="u" href="index.html">Уровень выше</a></td><td width="40%" align="right"> <a accesskey="n" href="ch08s02.html">След.</a></td></tr><tr><td width="40%" align="left" valign="top">joe </td><td width="20%" align="center"><a accesskey="h" href="index.html">Начало</a></td><td width="40%" align="right" valign="top"> bibtex</td></tr></table></div></body></html>

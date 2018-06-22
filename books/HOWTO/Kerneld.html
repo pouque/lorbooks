@@ -1,0 +1,2847 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Мини-HOWTO: Linux kerneld</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.57"></HEAD
+><BODY
+CLASS="ARTICLE"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="ARTICLE"
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="TITLE"
+><A
+NAME="AEN2"
+>Мини-HOWTO: Linux kerneld</A
+></H1
+><DIV
+CLASS="AUTHORGROUP"
+><A
+NAME="AEN4"
+></A
+><H3
+CLASS="AUTHOR"
+><A
+NAME="AEN5"
+>Henrik Storner</A
+></H3
+><DIV
+CLASS="AFFILIATION"
+><DIV
+CLASS="ADDRESS"
+><P
+CLASS="ADDRESS"
+>kerneld-howto@linuxdoc.org</P
+></DIV
+></DIV
+><H3
+CLASS="CORPAUTHOR"
+>      Перевод: <A
+HREF="mailto:sam@asp-linux.com"
+TARGET="_top"
+>Станислав Рогин</A
+>,
+      <A
+HREF="http://www.asplinux.com"
+TARGET="_top"
+>SWSoft Pte Ltd.</A
+>
+    </H3
+></DIV
+><P
+CLASS="COPYRIGHT"
+>Copyright &copy; 2000  Linux Documentation
+      Project</P
+><DIV
+CLASS="REVHISTORY"
+><TABLE
+WIDTH="100%"
+BORDER="0"
+><TR
+><TH
+ALIGN="LEFT"
+VALIGN="TOP"
+COLSPAN="3"
+><B
+>История изменений</B
+></TH
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+>Издание версия 2.0</TD
+><TD
+ALIGN="LEFT"
+>22 мая 2000 года</TD
+><TD
+ALIGN="LEFT"
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+COLSPAN="3"
+>Преобразование из HTML в DocBook SGML.</TD
+></TR
+></TABLE
+></DIV
+><HR></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Содержание</B
+></DT
+><DT
+>1. <A
+HREF="Kerneld.html#AEN22"
+>Об этом документе</A
+></DT
+><DD
+><DL
+><DT
+>1.1. <A
+HREF="Kerneld.html#CREDITS"
+>Благодарности</A
+></DT
+><DT
+>1.2. <A
+HREF="Kerneld.html#AEN46"
+>Copyright</A
+></DT
+><DT
+>1.3. <A
+HREF="Kerneld.html#AEN53"
+>Авторские права</A
+></DT
+></DL
+></DD
+><DT
+>2. <A
+HREF="Kerneld.html#INTRODUCTION"
+>Что такое kerneld?</A
+></DT
+><DD
+><DL
+><DT
+>2.1. <A
+HREF="Kerneld.html#WHY"
+>Зачем это нужно?</A
+></DT
+><DT
+>2.2. <A
+HREF="Kerneld.html#WHERE"
+>Где найти необходимые части?</A
+></DT
+></DL
+></DD
+><DT
+>3. <A
+HREF="Kerneld.html#SETUP"
+>Как это настроить?</A
+></DT
+><DD
+><DL
+><DT
+>3.1. <A
+HREF="Kerneld.html#TESTING"
+>Проверка kerneld</A
+></DT
+></DL
+></DD
+><DT
+>4. <A
+HREF="Kerneld.html#CONFIGURATION"
+>Как kerneld определяет, какой
+    модуль загружать?</A
+></DT
+><DD
+><DL
+><DT
+>4.1. <A
+HREF="Kerneld.html#BLOCKDEV"
+>Блочные устройства</A
+></DT
+><DT
+>4.2. <A
+HREF="Kerneld.html#CHARDEV"
+>Символьные устройства</A
+></DT
+><DT
+>4.3. <A
+HREF="Kerneld.html#ETH0"
+>Сетевые устройства</A
+></DT
+><DT
+>4.4. <A
+HREF="Kerneld.html#BINFMT"
+>Формат кода программы (Binary formats)</A
+></DT
+><DT
+>4.5. <A
+HREF="Kerneld.html#LDISC"
+>Протокол линии (slip, cslip и ppp)</A
+></DT
+><DT
+>4.6. <A
+HREF="Kerneld.html#NET-PF"
+>Семейства сетевых протоколов
+      (IPX, AppleTalk, AX.25)</A
+></DT
+><DT
+>4.7. <A
+HREF="Kerneld.html#FS"
+>Файловые системы</A
+></DT
+></DL
+></DD
+><DT
+>5. <A
+HREF="Kerneld.html#SPECIAL-DEVS"
+>Устройства, требующие специальной
+    настройки</A
+></DT
+><DD
+><DL
+><DT
+>5.1. <A
+HREF="Kerneld.html#MISCDEVS"
+>Символьные устройства с главным номером 10: Мыши, сторожевые
+        псы (watchdogs) и генераторы случайных чисел</A
+></DT
+><DT
+>5.2. <A
+HREF="Kerneld.html#SCSIDEVS"
+>Загрузка драйверов SCSI: Строка
+      <TT
+CLASS="LITERAL"
+>scsi_hostadapter</TT
+></A
+></DT
+><DT
+>5.3. <A
+HREF="Kerneld.html#PRE-POST"
+>Когда недостаточно просто загрузить модуль: Строка
+        <TT
+CLASS="LITERAL"
+>post-install</TT
+></A
+></DT
+></DL
+></DD
+><DT
+>6. <A
+HREF="Kerneld.html#SPYING"
+>Наблюдение за действиями kerneld</A
+></DT
+><DT
+>7. <A
+HREF="Kerneld.html#GOODIES"
+>Специфическое использование kerneld</A
+></DT
+><DT
+>8. <A
+HREF="Kerneld.html#COMMONPROBLEMS"
+>Обычные проблемы и то, чем вы можете заинтересоваться</A
+></DT
+></DL
+></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="AEN22"
+>1. Об этом документе</A
+></H1
+><P
+>В этом документе объясняется, как установить
+      и использовать автоматический загрузчик модулей
+      ядра <SPAN
+CLASS="QUOTE"
+>"kerneld"</SPAN
+>. Самую свежую версию
+      этого документа можно найти в <A
+HREF="http://www.linuxdoc.org"
+TARGET="_top"
+>Linux Documentation
+      Project</A
+></P
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="CREDITS"
+>1.1. Благодарности</A
+></H2
+><P
+>Этот документ основан на исходном HTML-варианте
+      версии 1.7, написанном 19 июля 1997 года Henrik Storner
+      <TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:storner@osiris.ping.dk"
+>storner@osiris.ping.dk</A
+>&#62;</TT
+>, и был отредактирован
+      и преобразован в DocBook DTD Gary Lawrence Murphy
+      <TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:garym@teledyn.com"
+>garym@teledyn.com</A
+>&#62;</TT
+> 20 мая 2000 года.</P
+><P
+>Я хочу выразить свою искреннюю благодарность следующим людям :
+      </P
+><P
+></P
+><UL
+><LI
+><P
+>Bjorn Ekwall bj0rn@blox.se</P
+></LI
+><LI
+><P
+>Ben Galliart bgallia@luc.edu</P
+></LI
+><LI
+><P
+>Cedric Tefft cedric@earthling.net</P
+></LI
+><LI
+><P
+>Brian Miller bmiller@netspace.net.au</P
+></LI
+><LI
+><P
+>James C. Tsiao
+        jtsiao@madoka.jpl.nasa.gov</P
+></LI
+></UL
+><P
+>Если вы обнаружите какие-либо ошибки в этом документе,
+      шлите свои замечания и предложения по адресу 
+      <TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:kerneld-howto@linuxdoc.org"
+>kerneld-howto@linuxdoc.org</A
+>&#62;</TT
+>. Все замечания
+      и предложения от читателей этого мини-HOWTO будут
+      только приветствоваться.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN46"
+>1.2. Copyright</A
+></H2
+><P
+>This document is Copyright by Henrik Storner, 1996, 1997.</P
+><P
+>Unless otherwise stated, Linux HOWTO documents are
+      copyrighted by their respective authors. Linux HOWTO documents
+      may be reproduced and distributed in whole or in part, in any
+      medium physical or electronic, as long as this copyright notice
+      is retained on all copies. Commercial redistribution is allowed
+      and encouraged; however, the author would like to be notified of
+      any such distributions. </P
+><P
+>All translations, derivative works, or aggregate works
+      incorporating any Linux HOWTO documents must be covered under
+      this copyright notice.  That is, you may not produce a
+      derivative work from a HOWTO and impose additional restrictions
+      on its distribution. Exceptions to these rules may be granted
+      under certain conditions; please contact the Linux HOWTO
+      coordinator at the address given below. </P
+><P
+>In short, we wish to promote dissemination of this
+      information through as many channels as possible. However, we do
+      wish to retain copyright on the HOWTO documents, and would like
+      to be notified of any plans to redistribute the HOWTOs. </P
+><P
+>If you have questions, please contact the Linux HOWTO
+      coordinator, at linux-howto@sunsite.unc.edu via email.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN53"
+>1.3. Авторские права</A
+></H2
+><P
+>    Авторские права на русский перевод этого текста принадлежат &copy; 2000 SWSoft Pte Ltd.
+    Все права зарезервированы.
+    </P
+><P
+>    Этот документ является частью проекта Linux HOWTO.
+    </P
+><P
+>    Авторские права на документы Linux HOWTO принадлежат их авторам, если явно
+    не указано иное. Документы Linux HOWTO, а также их переводы, могут
+    быть воспроизведены и распространены полностью или частично на любом
+    носителе физическом или электронном, при условии сохранения этой заметки об
+    авторских правах на всех копиях. Коммерческое распространение разрешается и
+    поощряется; но так или иначе автор текста и автор перевода желали бы знать о
+    таких дистрибутивах.
+    </P
+><P
+>    Все переводы и производные работы, выполненные по документам Linux HOWTO
+    должны сопровождаться этой заметкой об авторских правах. Это делается в
+    целях предотвращения случаев наложения дополнительных ограничений на
+    распространение документов HOWTO. Исключения могут составить случаи
+    получения специального разрешения у координатора Linux HOWTO с которым
+    можно связаться по адресу приведенному ниже.
+    </P
+><P
+>    Мы бы хотели распространить эту информацию по всем возможным каналам. Но
+    при этом сохранить авторские права и быть уведомленными о всех планах
+    распространения HOWTO. Если у вас возникли вопросы, пожалуйста, обратитесь
+    к координатору проекта Linux HOWTO по электронной почте:
+    <TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:linux-howto@metalab.unc.edu"
+>linux-howto@metalab.unc.edu</A
+>&#62;</TT
+>, или к координатору русского
+    перевода Linux HOWTO компании SWSoft Pte Ltd. по адресу
+    <TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:linux-howto@asplinux.ru"
+>linux-howto@asplinux.ru</A
+>&#62;</TT
+>
+    </P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="INTRODUCTION"
+>2. Что такое kerneld?</A
+></H1
+><P
+>kerneld - это демон, впервые представленный в ядрах версии 1.3
+      Bjorn Ekwall. Он позволяет "модулям" ядра (т.е. драйверам устройств,
+      сети, файловым системам и т.п.) загружаться автоматически при первом
+      запросе к ним, вместо ручного вызова их при помощи команд
+      <B
+CLASS="COMMAND"
+>modprobe</B
+> или <B
+CLASS="COMMAND"
+>insmod</B
+>.</P
+><P
+>И для более интересных функций, которые не встроены (все еще?)
+      в стандартное ядро:</P
+><P
+></P
+><UL
+><LI
+><P
+>kerneld можно настроить на вызов программы
+        пользователя, вместо запуска стандартного гашения экрана, что
+        позволяет использовать любую программу как заставку (screen-saver).
+        </P
+></LI
+><LI
+><P
+>        Тем же образом, как и в случае с программой-заставкой, можно изменить
+        стандартный "сигнал (beep)" консоли в нечто совершенно другое ...
+        </P
+></LI
+></UL
+><P
+>kerneld состоит из двух отдельных частей:</P
+><P
+></P
+><UL
+><LI
+><P
+>         Поддержка в ядре Linux-а, для отсылки запросов на использование какого-либо
+         модуля демону (daemon).
+        </P
+></LI
+><LI
+><P
+>         Демон на пользовательском уровне, который сможет выяснить, какие
+         модули надо загрузить для исполнения запроса ядра.
+        </P
+></LI
+></UL
+><P
+>       Для полного функционирования kerneld, должны работать обе части -
+       установки только одной из частей недостаточно.
+      </P
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="WHY"
+>2.1. Зачем это нужно?</A
+></H2
+><P
+>      Существует много причин для использования kerneld. Те, которые я
+      упомяну - мои, другие люди могут использовать kerneld по иным
+      причинам.
+      </P
+><P
+></P
+><UL
+><LI
+><P
+>        Если надо собрать ядра для нескольких систем, которые мало
+        отличаются (например, сетевыми платами) - то можно собрать одно
+        ядро и несколько модулей, вместо сборки отдельных ядер для каждой
+        системы.
+        </P
+></LI
+><LI
+><P
+>        Для разработчиков модули более просты на стадии проверки - нет
+        необходимости каждый раз перезагружать систему для загрузки или
+        выгрузки драйвера. (Это относится ко всем модулям, не только
+        загружаемым kerneld).
+        </P
+></LI
+><LI
+><P
+>        Это экономит память, используемую ядром, то есть, у вас больше
+        памяти для приложений. Память, используемая ядром, <I
+CLASS="EMPHASIS"
+>никогда</I
+> не
+        кладется в раздел подкачки (swap), поэтому, если у вас 100 кб
+        неиспользуемых драйверов внутри ядра, вы просто теряете оперативную
+        память.
+        </P
+></LI
+><LI
+><P
+>        Некоторые драйвера, которые я использую - например, для стриммера
+        ftape или iBCS - могут быть только в модулях. Но мне не приходится
+        мучаться с их загрузкой и выгрузкой, когда бы они мне не
+        понадобились.
+        </P
+></LI
+><LI
+><P
+>        Создатели дистрибутивов Linux-а не должны собирать 284 разных
+        загрузочных образов (boot image) - каждый пользователь загружает
+        драйверы для своего оборудования. В последних версиях некоторых
+        дистрибутивов встроено автоматическое определение оборудования,
+        которое само загружает только необходимые модули.
+        </P
+></LI
+></UL
+><P
+>       Конечно существуют причины, по которым вы не захотите использовать
+       модули - вы можете предпочесть иметь одно ядро со всеми вашими
+       драйверами, встроенными в него. В этом случае, вы читаете не тот
+       документ.
+      </P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="WHERE"
+>2.2. Где найти необходимые части?</A
+></H2
+><P
+>      Поддержка модулей впервые была встроена в ядро версии 1.3.57. Если у
+      вас ядро более ранней версии, и вы хотите установить kerneld, то вы
+      должны перейти на более новое ядро. Исходные тексты ядер можно
+      найти на всех основных Linux ftp-серверах, в том числе и на:
+      </P
+><P
+></P
+><UL
+><LI
+><P
+><A
+HREF="ftp://ftp.kernel.org/pub/linux/kernel/"
+TARGET="_top"
+>Kernel.Org
+          </A
+></P
+></LI
+><LI
+><P
+><A
+HREF="ftp://metalab.unc.edu/pub/Linux/kernel/"
+TARGET="_top"
+>Metalab Linux
+          </A
+></P
+></LI
+><LI
+><P
+><A
+HREF="ftp://tsx-11.mit.edu/pub/linux/sources/system/"
+TARGET="_top"
+>TSX-11
+          в MIT</A
+></P
+></LI
+></UL
+><P
+>      Демон (daemon) входит в пакет <SPAN
+CLASS="PRODUCTNAME"
+>modules</SPAN
+>.
+      Он обычно также доступен по тем же адресам, где
+      находятся исходные тексты ядра.
+      </P
+><DIV
+CLASS="NOTE"
+><P
+></P
+><TABLE
+CLASS="NOTE"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="http://www.linux.org.ru/books/images/note.gif"
+HSPACE="5"
+ALT="Замечание"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>      ВНИМАНИЕ: Если вы хотите использовать загрузку модулей в последних
+      <I
+CLASS="EMPHASIS"
+>тестовых</I
+> ядрах, то вы должны использовать
+      пакет <SPAN
+CLASS="PRODUCTNAME"
+>modutils</SPAN
+> (НЕ <SPAN
+CLASS="PRODUCTNAME"
+>modules</SPAN
+>).
+      Ниже (глава <A
+HREF="Kerneld.html#COMMONPROBLEMS"
+>Общие проблемы</A
+>) приведено
+      несколько замечаний о проблемах использования модулей в
+      ядрах версии 2.1.
+      </P
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="SETUP"
+>3. Как это настроить?</A
+></H1
+><P
+>      Сначала достаньте необходимые части: подходящее ядро и последние
+      утилиты из пакета <SPAN
+CLASS="PRODUCTNAME"
+>modules</SPAN
+>. Затем надо
+      установить утилиты modules. Это делается очень просто - распакуйте
+      исходные тексты и запустите <B
+CLASS="COMMAND"
+>make install</B
+>. Эта
+      команда скомпилирует и установит следующие программы в каталог
+      <TT
+CLASS="FILENAME"
+>/sbin</TT
+>: <B
+CLASS="COMMAND"
+>genksysm</B
+>,
+      <B
+CLASS="COMMAND"
+>insmod</B
+>, <B
+CLASS="COMMAND"
+>lsmod</B
+>,
+      <B
+CLASS="COMMAND"
+>modprobe</B
+>, <B
+CLASS="COMMAND"
+>depmod</B
+> и
+      <B
+CLASS="COMMAND"
+>kerneld</B
+>. Я рекомендую добавить несколько строк в
+      загрузочные скрипты (для проведения некоторых настроек при загрузке
+      Linux). Добавьте следующие строки в файл
+      <TT
+CLASS="FILENAME"
+>/etc/rc.d/rc.S</TT
+> (если у вас Slackware), или в
+      <TT
+CLASS="FILENAME"
+>/etc/rc.d/rc.sysinit</TT
+> (если у вас установлен
+      SysVinit, т.е. Debian, RedHat, Caldera):
+      </P
+><PRE
+CLASS="PROGRAMLISTING"
+>        # Запускаем kerneld, это должно произойти почти сразу
+        # в процессе загрузки, обязательно ДО запуска fsck на файловых системах,
+        # это может быть необходимо для автозагрузки драйверов дисков
+        if [ -x /sbin/kerneld ]
+        then
+                /sbin/kerneld
+        fi
+
+        # Далее следуют стандартные команды fsck
+        # А также команда для монтирования (mount) вашей корневой файловой системы в режиме чтение/запись
+
+        # Обновление файла зависимостей модулей ядра
+        # Ваша корневая файловая система ДОЛЖНА быть подключена в режиме чтение/запись на этот момент
+        if [ -x /sbin/depmod ]
+        then
+                /sbin/depmod -a
+        fi</PRE
+><P
+>      Эти команды могут уже присутствовать в ваших SysV init
+      скриптах. Первая часть запускает собственно kerneld.
+      Вторая часть запускает <B
+CLASS="COMMAND"
+>depmod -a</B
+> в момент загрузки системы.
+      Программа depmod строит список всех доступных модулей и анализирует
+      их взаимосвязи, чтобы знать, в каком случае один модуль
+      предварительно требует загрузки другого перед своей загрузкой.
+      </P
+><DIV
+CLASS="NOTE"
+><P
+></P
+><TABLE
+CLASS="NOTE"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="http://www.linux.org.ru/books/images/note.gif"
+HSPACE="5"
+ALT="Замечание"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>      Последние версии kerneld в качестве опции используют библиотеку GNU
+      dbm, <SPAN
+CLASS="PRODUCTNAME"
+>libgdbm</SPAN
+>. Если вы включите эту опцию
+      при сборке утилит пакета modules, то <I
+CLASS="EMPHASIS"
+>kerneld не запустится,
+      так как библиотека libgdbm недоступна</I
+>. Это может вызвать
+      проблемы. Например, если у вас каталог <TT
+CLASS="FILENAME"
+>/usr</TT
+>
+      находится на отдельном разделе, а kerneld запускается до подключения
+      раздела с каталогом <TT
+CLASS="FILENAME"
+>/usr</TT
+>. Рекомендуемое решение
+      - перенести <TT
+CLASS="FILENAME"
+>libgdbm</TT
+> из каталога
+      <TT
+CLASS="FILENAME"
+>/usr/lib</TT
+> в <TT
+CLASS="FILENAME"
+>/lib</TT
+>, или
+      собрать kerneld со статическими библиотеками.
+      </P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>      Затем, распакуйте исходные тексты ядра, и по своему желанию настройте
+      и соберите ядро. Если вы этого никогда не делали, вам необходимо
+      прочитать файл README в каталоге исходных текстов ядра Linux. Когда
+      вы запустите <B
+CLASS="COMMAND"
+>make config</B
+>, для настройки параметров
+      сборки ядра, вы должны обратить внимание на вопросы, которые задаются
+      вначале:
+      </P
+><PRE
+CLASS="SCREEN"
+>  Enable loadable module support (CONFIG_MODULES) [Y/n/?] Y
+  (Разрешить поддержку загружаемых модулей (CONFIG_MODULES) [Д/н/?] Д)</PRE
+><P
+>      Вам надо выбрать поддержку загружаемых модулей, иначе для kerneld
+      просто не будет работы! Просто ответьте Да (Yes).
+      </P
+><PRE
+CLASS="SCREEN"
+>  Kernel daemon support (CONFIG_KERNELD) [Y/n/?] Y
+  (Поддержка kerneld (CONFIG_KERNELD) [Д/н/?] Д)</PRE
+><P
+>      Это, конечно, также необходимо. Затем, многие части ядра могут быть
+      собраны в виде модулей - вы увидите вопросы типа
+      </P
+><PRE
+CLASS="SCREEN"
+>  Normal floppy disk support (CONFIG_BLK_DEV_FD) [M/n/y/?] 
+  (Поддержка обычного флоппи-диска (CONFIG_BLK_DEV_FD) [M/н/д/?])</PRE
+><P
+>      где вы можете ответить <SPAN
+CLASS="KEYSYM"
+>М</SPAN
+> (<SPAN
+CLASS="QUOTE"
+>"Модуль"</SPAN
+>). В
+      общем случае только драйверы, необходимые для загрузки системы
+      (драйвер жесткого диска, драйвер корневой файловой системы), должны
+      быть встроены в ядро; остальное можно собрать в виде модулей.
+      </P
+><DIV
+CLASS="CAUTION"
+><P
+></P
+><TABLE
+CLASS="CAUTION"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="http://www.linux.org.ru/books/images/caution.gif"
+HSPACE="5"
+ALT="Предостережение"></TD
+><TH
+ALIGN="LEFT"
+VALIGN="CENTER"
+><B
+>Обязательные драйверы</B
+></TH
+></TR
+><TR
+><TD
+>&nbsp;</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>        Обязательные драйверы, то есть те драйверы, которые необходимы
+        для загрузки системы, должны быть встроены в ядро, а не собраны
+        в качестве модулей. Обычно это: драйвер жесткого диска и
+        драйвер корневой файловой системы. Если у вас система
+        с двойной загрузкой, которая зависит от файлов на другом
+        разделе, то вы должны также встроить поддержку файловой системы
+        этого раздела в ядро.
+        </P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>      Когда вы закончите с <B
+CLASS="COMMAND"
+>make config</B
+>, соберите и
+      установите новое ядро командой <B
+CLASS="COMMAND"
+>make dep clean bzlilo modules
+      modules_install</B
+>.
+      </P
+><P
+>Уффф.</P
+><DIV
+CLASS="TIP"
+><P
+></P
+><TABLE
+CLASS="TIP"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="http://www.linux.org.ru/books/images/tip.gif"
+HSPACE="5"
+ALT="Подсказка"></TD
+><TH
+ALIGN="LEFT"
+VALIGN="CENTER"
+><B
+>Compiling a Kernel Image</B
+></TH
+></TR
+><TR
+><TD
+>&nbsp;</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>        Команда <B
+CLASS="COMMAND"
+>make zImage</B
+> помещает новое ядро в файл
+        <TT
+CLASS="FILENAME"
+>arch/i386/boot/zImage</TT
+>. Вам нужно будет
+        скопировать его туда, где находится ваш загрузочный образ
+        (boot-image), или впоследствии установить его в LILO.
+        </P
+><P
+>        За наиболее подробной информацией по настройке, сборке и установке
+        вашего собственного ядра обращайтесь к Kernel-HOWTO (HOWTO по ядру
+        системы), которое постоянно рассылается через группу новостей
+        <TT
+CLASS="FILENAME"
+>comp.os.linux.answers</TT
+>, а также доступно в
+        <A
+HREF="http://www.linuxdoc.org"
+TARGET="_top"
+>Linux Documentation
+        Project</A
+> (и его зеркалах).
+        </P
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="TESTING"
+>3.1. Проверка kerneld</A
+></H2
+><P
+>      Перезагрузитесь с новым ядром. Когда система загрузится, наберите
+      <B
+CLASS="COMMAND"
+>ps ax</B
+>, и вы должны увидеть там строку с kerneld:
+      </P
+><PRE
+CLASS="SCREEN"
+>    PID TTY STAT  TIME COMMAND
+     59  ?  S     0:01 /sbin/kerneld</PRE
+><P
+>      Одно из самых приятных свойств kerneld состоит в том, что после
+      загрузки ядра и загрузки kerneld требуется очень мало дополнительных
+      действий. Для начала попробуйте использовать один из драйверов,
+      который вы собрали в виде модуля - наиболее вероятно, что он
+      заработает без дальнейшей настройки. Я собрал драйвер
+      флоппи-дисковода в виде модуля так, чтобы можно было вставить DOS
+      диск в дисковод и
+      </P
+><PRE
+CLASS="SCREEN"
+>  osiris:~ $ mdir a:
+   Volume in drive A has no label
+   Volume Serial Number is 2E2B-1102
+   Directory for A:/
+
+  binuti~1 gz       1942 02-14-1996  11:35a binutils-2.6.0.6-2.6.0.7.diff.gz
+  libc-5~1 gz      24747 02-14-1996  11:35a libc-5.3.4-5.3.5.diff.gz
+          2 file(s)        26689 bytes</PRE
+><P
+>      Итак, драйвер флоппи-диска работает - он автоматически загрузился
+      kerneld, когда я обратился к флоппи-диску.
+      </P
+><P
+>      Чтобы увидеть, что модуль флоппи на самом деле загружен, запустите
+      <B
+CLASS="COMMAND"
+>/sbin/lsmod</B
+>, который выдает список всех
+      загруженных модулей на данный момент:
+      </P
+><PRE
+CLASS="SCREEN"
+>  osiris:~ $ /sbin/lsmod 
+  Module:        #pages:  Used by:
+  floppy            11    0 (autoclean)</PRE
+><P
+>      Примечание <SPAN
+CLASS="QUOTE"
+>"(autoclean)"</SPAN
+> означает, что модуль будет автоматически
+      выгружен kerneld, если будет неактивен больше одной минуты. Таким
+      образом, 11 страниц памяти (= 44кб, одна страница - это 4 кб) будут
+      использованы,только пока я обращаюсь к флоппи - если пауза в
+      использовании превысит одну минуту, то эта память будет освобождена.
+      Достаточно удобно, если вам не хватает памяти для ваших программ!
+      </P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="CONFIGURATION"
+>4. Как kerneld определяет, какой
+    модуль загружать?</A
+></H1
+><P
+>      Несмотря на то, что kerneld содержит в себе встроенную информацию о
+      наиболее распространенных типах модулей, иногда возникает ситуация
+      когда kerneld не будет знать, как обработать запрос ядра. Это бывает
+      в том случае, когда запрос идет к устройствам типа CD-ROM или сетевых
+      плат, и существует несколько модулей, которые можно загрузить.
+      </P
+><P
+>      Запрос, который kerneld получает от ядра, приходит при обращении к
+      одному из следующих пунктов:
+      </P
+><P
+></P
+><UL
+><LI
+><P
+>к драйверу блочного устройства </P
+></LI
+><LI
+><P
+>к драйверу символьного устройства </P
+></LI
+><LI
+><P
+>к формату кода программы (binary format)</P
+></LI
+><LI
+><P
+>к протоколу tty-линии</P
+></LI
+><LI
+><P
+>к файловой системе </P
+></LI
+><LI
+><P
+>к сетевому устройству </P
+></LI
+><LI
+><P
+>к сетевому сервису (например, rarp) </P
+></LI
+><LI
+><P
+>к сетевому протоколу (например, IPX)
+        </P
+></LI
+></UL
+><P
+>      kerneld определяет, какой модуль должен быть загружен, просматривая
+      файл <TT
+CLASS="FILENAME"
+>/etc/conf.modules</TT
+> <A
+NAME="AEN204"
+HREF="Kerneld.html#FTN.AEN204"
+>[1]</A
+>
+      Существует два вида строк в этом файле: пути
+      (где находятся файлы модулей), и алиасы (aliases) (какие модули
+      для чего предназначены). Если у вас еще нет этого файла, его можно
+      создать при помощи команд
+      </P
+><PRE
+CLASS="SCREEN"
+>  /sbin/modprobe -c | grep -v '^path' /etc/conf.modules</PRE
+><P
+>      Если вы хотите добавить еще один путь к стандартным, вы
+      <I
+CLASS="EMPHASIS"
+>должны также включить все стандартные пути</I
+>, так
+      как директива path в файле <TT
+CLASS="FILENAME"
+>/etc/conf.modules</TT
+>
+      <I
+CLASS="EMPHASIS"
+>заменит</I
+> все известные по умолчанию пути!
+      </P
+><P
+>      Обычно нет необходимости вручную добавлять какие-либо пути, так как
+      встроенного набора путей достаточно для "обычных" настроек (и не
+      совсем обычных...), это точно!
+      </P
+><P
+>      С другой стороны, если же вы хотите просто добавить псевдоним или
+      директиву options (опции), то ваши новые строчки в
+      <TT
+CLASS="FILENAME"
+>/etc/conf.modules</TT
+> будут
+      <I
+CLASS="EMPHASIS"
+>добавлены</I
+> к тому, что уже известно modprobe.
+      Если вы хотите <I
+CLASS="EMPHASIS"
+>переопределить</I
+> псевдоним или
+      опции, ваши новые строки в <TT
+CLASS="FILENAME"
+>/etc/conf.modules</TT
+>,
+      </P
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="BLOCKDEV"
+>4.1. Блочные устройства</A
+></H2
+><P
+>        Если вы запустите <B
+CLASS="COMMAND"
+>/sbin/modprobe -c</B
+>, вам будет выдан список всех
+        модулей, которые известны kerneld, и какие запросы, какому модулю
+        соответствуют. Например, запрос, из-за которого загружается драйвер
+        флоппи-дисковода, направлен к блочному устройству с главным (major)
+        номером 2:
+        </P
+><PRE
+CLASS="SCREEN"
+>  osiris:~ $ /sbin/modprobe -c | grep floppy
+  alias block-major-2 floppy</PRE
+><P
+>        Почему блочное устройство с главным номером 2? Потому что
+        устройства флоппи-дисководов <TT
+CLASS="FILENAME"
+>/dev/fd*</TT
+> имеют
+        главный номер 2 и являются блочными
+        </P
+><PRE
+CLASS="SCREEN"
+>  osiris:~ $ ls -l /dev/fd0 /dev/fd1
+  brw-rw-rw-   1 root     root       2,   0 Mar  3  1995 /dev/fd0
+  brw-r--r--   1 root     root       2,   1 Mar  3  1995 /dev/fd1</PRE
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="CHARDEV"
+>4.2. Символьные устройства</A
+></H2
+><P
+>        Символьные устройства работают тем же образом. Например, драйвер
+        стриммера ftape использует главный номер устройства 27:
+        </P
+><PRE
+CLASS="SCREEN"
+>  osiris:~ $ ls -lL /dev/ftape 
+  crw-rw----   1 root     disk      27,   0 Jul 18  1994 /dev/ftape</PRE
+><P
+>        Но, kerneld по умолчанию не знает о драйвере ftape - его не было в списке
+        по команде <B
+CLASS="COMMAND"
+>/sbin/modprobe -c</B
+>. Поэтому для того, чтобы kerneld загружал
+        драйвер ftape, мне нужно добавить строку к файлу конфигурации kerneld
+        (<TT
+CLASS="FILENAME"
+>/etc/conf.modules</TT
+>):
+        </P
+><PRE
+CLASS="SCREEN"
+>  alias char-major-27 ftape</PRE
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="ETH0"
+>4.3. Сетевые устройства</A
+></H2
+><P
+>        Вы также можете использовать имя устройства вместо
+        <TT
+CLASS="LITERAL"
+>char-major-xxx</TT
+> /
+        <TT
+CLASS="LITERAL"
+>block-major-yyy</TT
+>. Это очень часто используется
+        для драйверов сети. Например, для NE2000-совместимой сетевой карты,
+        работающей под именем <TT
+CLASS="FILENAME"
+>eth0</TT
+>, будет следующая
+        строка:
+        </P
+><PRE
+CLASS="SCREEN"
+>  alias eth0 ne</PRE
+><P
+>        Если нужно передать какие-либо параметры драйверу - например,
+        передать модулю, какое прерывание (IRQ) использует сетевая плата,
+        добавьте строку опций (<SPAN
+CLASS="QUOTE"
+>"options"</SPAN
+>):
+        </P
+><PRE
+CLASS="SCREEN"
+>  options ne irq=5</PRE
+><P
+>        В результате этого kerneld загрузит драйвер платы NE2000 при помощи
+        команды
+        </P
+><PRE
+CLASS="SCREEN"
+>  /sbin/modprobe ne irq=5</PRE
+><P
+>        Конечно, в любом случае, набор возможных опций зависит от
+        конкретного модуля, который вы загружаете.
+        </P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="BINFMT"
+>4.4. Формат кода программы (Binary formats)</A
+></H2
+><P
+>        Форматы кода обрабатываются почти также. Когда бы вы ни пытались
+        запустить программу, формат которой неизвестен ядру, kerneld
+        получает запрос на <TT
+CLASS="LITERAL"
+>binfmt-</TT
+><TT
+CLASS="VARNAME"
+>xxx</TT
+>,
+        где <TT
+CLASS="VARNAME"
+>xxx</TT
+> - это номер вида кода,
+        определенный из нескольких первых байтов кода. Таким образом,
+        строка настройки kerneld, для поддержки загрузки модуля binfmt_aout
+        для формата программ ZMAGIC (a.out), будет следующая:
+        </P
+><PRE
+CLASS="SCREEN"
+>  alias binfmt-267 binfmt_aout</PRE
+><P
+>        так как магическое число (magic number) (см.
+        <TT
+CLASS="FILENAME"
+>/etc/magic</TT
+>) для формата ZMAGIC - 267. (Если вы
+        внимательно рассмотрите /etc/magic, вы увидите число 0413, но числа
+        в <TT
+CLASS="FILENAME"
+>/etc/magic</TT
+> находятся в восьмеричном формате,
+        kerneld использует десятичные, а восьмеричное 0413 = десятичному
+        267). На самом деле существует три слегка отличающихся варианта
+        кода программ a.out (NMAGIC, QMAGIC и ZMAGIC), поэтому для полной
+        поддержки модуля binfmt_aout необходимы три строки:
+        </P
+><PRE
+CLASS="SCREEN"
+>  alias binfmt-264 binfmt_aout  # обычная запускаемая программа (executable)(NMAGIC)
+  alias binfmt-267 binfmt_aout  # запускаемая программа c подгрузкой страниц (demand-paged)(ZMAGIC)
+  alias binfmt-204 binfmt_aout  # запускаемая программа c подгрузкой страниц (demand-paged)(QMAGIC)</PRE
+><P
+>        Форматы кода a.out, Java и iBCS распознаются kerneld автоматически,
+        без какой либо дополнительной настройки.
+        </P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="LDISC"
+>4.5. Протокол линии (slip, cslip и ppp)</A
+></H2
+><P
+>        Протоколы линии запрашиваются через
+        <TT
+CLASS="LITERAL"
+>tty-ldisc-</TT
+><TT
+CLASS="VARNAME"
+>x</TT
+>, где
+        <TT
+CLASS="VARNAME"
+>x</TT
+> обычно 1 (для SLIP) или 3 (для PPP). Оба эти
+        варианта известны kerneld по умолчанию.
+        </P
+><P
+>        Продолжая разговор о PPP, если вы хотите, чтобы kerneld загружал
+        модуль сжатия данных bsd_comp для PPP, то вам необходимо добавить
+        следующие строки к файлу <TT
+CLASS="FILENAME"
+>/etc/conf.modules</TT
+>:
+        </P
+><PRE
+CLASS="SCREEN"
+>  alias tty-ldisc-3 bsd_comp
+  alias ppp0 bsd_comp</PRE
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="NET-PF"
+>4.6. Семейства сетевых протоколов
+      (IPX, AppleTalk, AX.25)</A
+></H2
+><P
+>        Некоторые сетевые протоколы могут быть также загружены в виде
+        модулей. Ядро запрашивает у kerneld загрузку семейства протоколов
+        (напр. IPX) при помощи запроса <TT
+CLASS="LITERAL"
+>net-pf-</TT
+><TT
+CLASS="VARNAME"
+>X</TT
+>,
+        где <TT
+CLASS="VARNAME"
+>X</TT
+> это число,
+        означающее номер необходимого семейства протоколов. Например,
+        <TT
+CLASS="LITERAL"
+>net-pf-3</TT
+> означает AX.25, <TT
+CLASS="LITERAL"
+>net-pf-4</TT
+> - IPX
+        и <TT
+CLASS="LITERAL"
+>net-pf-5</TT
+> - это AppleTalk.
+        (Эти номера определяются константами AF_AX25, AF_IPX и т.п.,
+        заданными в исходных текстах ядра в файле <TT
+CLASS="FILENAME"
+>include/linux/socket.h</TT
+>).
+        Поэтому, для автозагрузки модуля IPX, вам необходимо добавить
+        следующее в файл <TT
+CLASS="FILENAME"
+>/etc/conf.modules</TT
+>:
+        </P
+><PRE
+CLASS="SCREEN"
+>  alias net-pf-4 ipx</PRE
+><P
+>        Смотрите также ниже раздел <A
+HREF="Kerneld.html#COMMONPROBLEMS"
+>Общие проблемы</A
+> для
+        информации о том, как можно избежать некоторых надоедливых
+        сообщений во время загрузки системы, связанных с неопределенным
+        семейством протоколов
+        </P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="FS"
+>4.7. Файловые системы</A
+></H2
+><P
+>        Запросы kerneld, требующие файловую систему, представляют собой
+        простое название типа файловой системы. Наиболее часто это
+        используется для загрузки модуля isofs для файловых систем
+        CD-ROM-ов, например, файловых систем типа "iso9660":
+        </P
+><PRE
+CLASS="SCREEN"
+>  alias iso9660 isofs</PRE
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="SPECIAL-DEVS"
+>5. Устройства, требующие специальной
+    настройки</A
+></H1
+><P
+>     Некоторые устройства требуют небольшой дополнительной настройки помимо
+     обычных псевдонимов вида устройство-модуль.
+     </P
+><P
+></P
+><UL
+><LI
+><P
+>Символьные устройства с главным номером 10:<A
+HREF="Kerneld.html#MISCDEVS"
+>Разнообразные устройства</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="Kerneld.html#SCSIDEVS"
+>SCSI-устройства</A
+>
+        </P
+></LI
+><LI
+><P
+><A
+HREF="Kerneld.html#PRE-POST"
+>Устройства, требующие
+        специальной инициализации</A
+></P
+></LI
+></UL
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="MISCDEVS"
+>5.1. Символьные устройства с главным номером 10: Мыши, сторожевые
+        псы (watchdogs) и генераторы случайных чисел</A
+></H2
+><P
+>        Обычно периферийные устройства определяются при помощи их главных
+        номеров, например ftape имеет главный номер (major) 27. Однако, если
+        вы взглянете в каталог <TT
+CLASS="FILENAME"
+>/dev</TT
+>, и поищете там символьные устройства с
+        главным номером 10, вы увидите там набор абсолютно разных
+        устройств, включая:
+        </P
+><P
+></P
+><UL
+><LI
+><P
+>Мыши, подключенные к различным портам (шинная
+          мышь (busmouse), PS/2-мыши) </P
+></LI
+><LI
+><P
+>Сторожевые псы (watchdog)</P
+></LI
+><LI
+><P
+>Генератор случайных чисел ядра
+          <TT
+CLASS="FILENAME"
+>random</TT
+> </P
+></LI
+><LI
+><P
+>Интерфейс расширенного управления питанием APM
+          (Advanced Power Management)</P
+></LI
+></UL
+><P
+>        Очевидно, что эти устройства контролируются несколькими различными
+        модулями, а не одним. Поэтому, для настройки конфигурации kerneld
+        для этих <I
+CLASS="EMPHASIS"
+>разнообразных</I
+> устройств необходимо указать не только
+        главное, но <I
+CLASS="EMPHASIS"
+>и</I
+> дополнительное (minor) число:
+        </P
+><PRE
+CLASS="SCREEN"
+>        alias char-major-10-1 psaux     # Для мыши PS/2
+        alias char-major-10-130 wdt     # Для сторожевого пса (watchdog) WDT</PRE
+><P
+>        Для этого вам понадобится ядро версии не ранее 1.3.82; более ранние
+        версии не передавали дополнительное число kerneld. Таким образом,
+        kerneld не может выяснить, какому конкретно из подобных устройств
+        понадобился соответствующий модуль.
+        </P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="SCSIDEVS"
+>5.2. Загрузка драйверов SCSI: Строка
+      <TT
+CLASS="LITERAL"
+>scsi_hostadapter</TT
+></A
+></H2
+><P
+>        Драйвера SCSI-устройств состоят из двух частей: драйвера
+        SCSI-адаптера (например, Adaptec 1542) и драйвера конкретного
+        SCSI-устройства, которое вы используете, например, жесткий диск,
+        CD-ROM или стриммер. Все это может быть загружено в виде модулей.
+        Но при этом, если вы хотите обратиться, например, к CD-ROM-у,
+        подключенному к SCSI-адаптеру Adaptec, ядро и kerneld знает лишь
+        то, что необходимо загрузить модуль <TT
+CLASS="FILENAME"
+>sr_mod</TT
+> для поддержки SCSI
+        CD-ROM-ов - ему не известно, к какому SCSI-контроллеру подключен
+        этот CD-ROM, и, соответственно, не известно какой модуль загружать
+        для поддержки SCSI-контроллера.
+        </P
+><P
+>        Для разрешения этой проблемы можно добавить строку в
+        <TT
+CLASS="FILENAME"
+>/etc/conf.modules</TT
+>, в которой будет указано,
+        который из многих доступных модулей драйверов SCSI-контроллеров
+        надо загружать:
+        </P
+><PRE
+CLASS="SCREEN"
+>        alias scd0 sr_mod               # sr_mod для SCSI CD-ROM-а ...
+        alias scsi_hostadapter aha1542  # ... требует драйвер SCSI Adaptec</PRE
+><P
+>        Это работает только с ядрами версии 1.3.82 и выше. 
+        </P
+><P
+>        Кроме того, это работает, если у вас только один SCSI-контроллер.
+        Если у вас их несколько, то все немного усложняется.
+        </P
+><P
+>        В общем случае, нельзя заставить kerneld загрузить драйвер
+        SCSI-адаптера, если драйвер для другого SCSI-адаптера уже загружен
+        - вы должны либо встроить оба драйвера в ядро (не в модули), или
+        загружать модули вручную.
+        </P
+><DIV
+CLASS="TIP"
+><P
+></P
+><TABLE
+CLASS="TIP"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="http://www.linux.org.ru/books/images/tip.gif"
+HSPACE="5"
+ALT="Подсказка"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>        Правда, <I
+CLASS="EMPHASIS"
+>существует</I
+> способ заставить kerneld загружать несколько
+        SCSI-драйверов. James Tsiao подсказал решение
+        </P
+><A
+NAME="AEN332"
+></A
+><BLOCKQUOTE
+CLASS="BLOCKQUOTE"
+><P
+>            Вы можете просто заставить kerneld загружать второй
+            scsi-драйвер, установив зависимости в файле modules.dep
+            вручную.  Туда просто нужно добавить следующее:
+            </P
+><PRE
+CLASS="SCREEN"
+>      /lib/modules/2.0.30/scsi/st.o: /lib/modules/2.0.30/scsi/aha1542.o</PRE
+><P
+>            Чтобы заставить kerneld загружать <TT
+CLASS="FILENAME"
+>aha1542.o</TT
+> до загрузки <TT
+CLASS="FILENAME"
+>st.o</TT
+>.
+            Мой домашний компьютер настроен в точности так, как указано
+            выше, и он прекрасно работает для всех моих дополнительных
+            scsi-устройств, включая стриммер, cd-rom, и стандартные
+            scsi-устройства.  Трудность состоит в том, что команда <B
+CLASS="COMMAND"
+>depmod -a</B
+>
+            не может определить эти зависимости автоматически, поэтому
+            необходимо добавлять их вручную, и при этом не запускать
+            <B
+CLASS="COMMAND"
+>depmod -a</B
+> при загрузке.  Но после настройки kerneld
+            прекрасно будет загружать <TT
+CLASS="FILENAME"
+>aha1542.o</TT
+>.
+            </P
+></BLOCKQUOTE
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>        Нужно помнить, что такой механизм работает, если у вас разные виды
+        SCSI-устройств на разных SCSI-контроллерах, например, жесткие диски
+        на одном, а CD-ROM-ы, стриммеры и прочие на другом.
+        </P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="PRE-POST"
+>5.3. Когда недостаточно просто загрузить модуль: Строка
+        <TT
+CLASS="LITERAL"
+>post-install</TT
+></A
+></H2
+><P
+>        Иногда, простой загрузки модуля недостаточно для того, чтобы все
+        нормально работало. Например, если у вас драйвер звуковой платы
+        собран в виде модуля, то очень часто требуется установить
+        необходимый уровень громкости звука. Только проблема состоит в том,
+        что установки громкости обнуляются при следующей загрузке модуля.
+        Ниже приведен способ решения от Ben Galliart
+        (<TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:bgallia@luc.edu"
+>bgallia@luc.edu</A
+>&#62;</TT
+>):
+        </P
+><A
+NAME="AEN347"
+></A
+><BLOCKQUOTE
+CLASS="BLOCKQUOTE"
+><P
+>          Конечное решение требует установки <A
+HREF="ftp://sunsite.unc.edu/pub/Linux/apps/sound/mixers/"
+TARGET="_top"
+>          пакета <SPAN
+CLASS="PRODUCTNAME"
+>setmix</SPAN
+></A
+>
+          А затем добавим следующую строку к файлу
+          <TT
+CLASS="FILENAME"
+>/etc/conf.modules</TT
+>:
+          </P
+><PRE
+CLASS="PROGRAMLISTING"
+>post-install sound /usr/local/bin/setmix -f /etc/volume.conf</PRE
+></BLOCKQUOTE
+><P
+>        Таким образом, после загрузки модуля звуковой платы, kerneld
+        запускает команду, указанную в строке <TT
+CLASS="LITERAL"
+>post-install
+        sound</TT
+>. В результате звуковой модуль будет настроен
+        командой <B
+CLASS="COMMAND"
+>/usr/local/bin/setmix -f
+        /etc/volume.conf</B
+>.
+        </P
+><P
+>        Этот путь можно использовать и для других модулей, например, модуль
+        <TT
+CLASS="FILENAME"
+>lp</TT
+> можно настроить программой
+        <TT
+CLASS="FILENAME"
+>tunelp</TT
+>, добавив строку
+        </P
+><PRE
+CLASS="PROGRAMLISTING"
+>        post-install lp tunelp options</PRE
+><P
+>        Для того, чтобы kerneld обработал эти опции, вам необходим kerneld
+        версии 1.3.69f или выше.
+        </P
+><DIV
+CLASS="NOTE"
+><P
+></P
+><TABLE
+CLASS="NOTE"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="http://www.linux.org.ru/books/images/note.gif"
+HSPACE="5"
+ALT="Замечание"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>          В более старых версиях этого мини-HOWTO упоминалась опция
+          "pre-remove", которая могла использоваться для запуска команды до
+          выгрузки модуля. Однако, она никогда не работала и ее
+          использование вообще сомнительно - наиболее вероятно, что эта
+          опция исчезнет из следующего релиза kerneld. Вся система
+          "настроек" модулей сейчас претерпевает некоторые изменения, и
+          поэтому могут появиться некоторые различия на момент чтения вами
+          этого документа
+          </P
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="SPYING"
+>6. Наблюдение за действиями kerneld</A
+></H1
+><P
+>      Если вы уже все перепробовали, и так и не выяснили, что же все-таки
+      ядро просит сделать kerneld, существует способ просмотреть запросы,
+      которые получает kerneld, и таким образом выяснить, что написать в
+      <TT
+CLASS="FILENAME"
+>/etc/conf.modules</TT
+>: Это утилита
+      <B
+CLASS="COMMAND"
+>kdstat</B
+>.
+      </P
+><P
+>      Эта маленькая, но очень полезная программа включена в пакет modules,
+      но не собирается и не устанавливается по умолчанию. Чтобы собрать ее,
+      зайдите в каталог исходных текстов kerneld и дайте команду
+      <B
+CLASS="COMMAND"
+>make kdstat</B
+> Затем, чтобы просмотреть информацию о
+      действиях kerneld, запустите <B
+CLASS="COMMAND"
+>kdstat debug</B
+>, и
+      kerneld начнет выдавать информацию о том, что он делает, на консоль.
+      Если вы потом попробуете запустить команду, которую хотите
+      использовать, вы увидите запросы, которые получает kerneld; их затем
+      можно поместить в <TT
+CLASS="FILENAME"
+>/etc/conf.modules</TT
+>, написав
+      соответствующие псевдонимы.
+      </P
+><P
+>      Для отключения вывода отладочной информации, наберите
+      <B
+CLASS="COMMAND"
+>/sbin/kdstat nodebug</B
+>.
+      </P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="GOODIES"
+>7. Специфическое использование kerneld</A
+></H1
+><P
+>      Я знал, что вы спросите о том, как настроить модуль гашения экрана...
+      </P
+><P
+>      Каталог <TT
+CLASS="FILENAME"
+>kerneld/GOODIES</TT
+> в пакете modules содержит пару интересных
+      патчей (patch) к ядру для поддержки в kerneld модуля гашения экрана и
+      звукового сигнала консоли; они пока не являются частью официального
+      ядра. Поэтому вам надо будет установить патчи и пересобрать ядро.
+      </P
+><P
+>Чтобы установить патч, используйте команду "patch":</P
+><PRE
+CLASS="SCREEN"
+>  cd /usr/src/linux
+  patch -s -p1 /usr/src/modules-*/kerneld/GOODIES/blanker_patch</PRE
+><P
+>Затем пересоберите и установите новое ядро.</P
+><P
+>      Когда срабатывает программа гашения экрана (screensaver), kerneld
+      запускает команду <TT
+CLASS="FILENAME"
+>/sbin/screenblanker</TT
+> - это
+      может быть все, что угодно, например скрипт, запускающий вашу любимую
+      программу гашения экрана.
+      </P
+><P
+>      Когда ядру необходимо включить экран, оно посылает сигнал <SPAN
+CLASS="TOKEN"
+>SIGQUIT</SPAN
+>
+      процессу, запущенному из <TT
+CLASS="FILENAME"
+>/sbin/screenblanker</TT
+>. Ваш скрипт или
+      программа гашения экрана должны перехватить его и прекратить работу.
+      </P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="COMMONPROBLEMS"
+>8. Обычные проблемы и то, чем вы можете заинтересоваться</A
+></H1
+><DIV
+CLASS="QANDASET"
+><DL
+><DT
+>8.1. <A
+HREF="Kerneld.html#AEN391"
+>            Почему я получаю сообщение <SPAN
+CLASS="ERRORNAME"
+>Cannot locate module for
+            net-pf-</SPAN
+><TT
+CLASS="VARNAME"
+>X</TT
+> (Не могу найти модуль
+            для net-pf-X), когда я запускаю ifconfig
+            </A
+></DT
+><DT
+>8.2. <A
+HREF="Kerneld.html#AEN407"
+>После запуска kerneld, моя система сильно замедляется
+            при установке ppp-соединения</A
+></DT
+><DT
+>8.3. <A
+HREF="Kerneld.html#AEN419"
+>kerneld не загружает мой SCSI-драйвер!</A
+></DT
+><DT
+>8.4. <A
+HREF="Kerneld.html#AEN427"
+>modprobe выдает сообщение о том, что
+            <SPAN
+CLASS="ERRORNAME"
+>gcc2_compiled</SPAN
+> не определено
+            </A
+></DT
+><DT
+>8.5. <A
+HREF="Kerneld.html#AEN433"
+>            Мой драйвер звуковой карты продолжает забывать настройки
+            громкости и т.п.
+            </A
+></DT
+><DT
+>8.6. <A
+HREF="Kerneld.html#AEN441"
+>            DOSEMU требует модули - как заставить kerneld их загружать?
+            </A
+></DT
+><DT
+>8.7. <A
+HREF="Kerneld.html#AEN446"
+>            Почему я получаю сообщения <SPAN
+CLASS="ERRORNAME"
+>Ouch, kerneld timed out,
+            message failed</SPAN
+> ("Ох, kerneld превысил время ожидания, запрос не
+            выполнен") ?</A
+></DT
+><DT
+>8.8. <A
+HREF="Kerneld.html#AEN458"
+>            Команда mount не ждет, пока kerneld загрузит модуль файловой
+            системы
+            </A
+></DT
+><DT
+>8.9. <A
+HREF="Kerneld.html#AEN464"
+>            kerneld не может загрузить модуль <TT
+CLASS="LITERAL"
+>ncpfs</TT
+>
+            </A
+></DT
+><DT
+>8.10. <A
+HREF="Kerneld.html#AEN473"
+>kerneld не может загрузить модуль <TT
+CLASS="FILENAME"
+>smbfs</TT
+>
+            </A
+></DT
+><DT
+>8.11. <A
+HREF="Kerneld.html#AEN481"
+>Я все построил в виде модулей, и теперь моя система не
+            загружается, или kerneld не может загрузить модуль корневой
+            файловой системы!</A
+></DT
+><DT
+>8.12. <A
+HREF="Kerneld.html#AEN497"
+>kerneld не запускается в момент загрузки системы -
+            жалуется на libgdbm</A
+></DT
+><DT
+>8.13. <A
+HREF="Kerneld.html#AEN507"
+>            Я получаю сообщение "Cannot load module <TT
+CLASS="VARNAME"
+>xxx</TT
+>"
+            ("Не могу загрузить модуль xxx"), но я только что собрал мое
+            ядро без поддержки <TT
+CLASS="VARNAME"
+>xxx</TT
+>!
+            </A
+></DT
+><DT
+>8.14. <A
+HREF="Kerneld.html#AEN516"
+>            Я пересобрал ядро и модули, и до сих пор получаю сообщения о
+            неразрешимых символах (unresolved symbols) в модулях при
+            загрузке
+            </A
+></DT
+><DT
+>8.15. <A
+HREF="Kerneld.html#AEN525"
+>          Я установил Linux с ядром версии 2.1 и теперь не могу загрузить
+          <I
+CLASS="EMPHASIS"
+>НИ ОДИН</I
+> модуль!
+          </A
+></DT
+><DT
+>8.16. <A
+HREF="Kerneld.html#AEN541"
+>Что насчет работы с сетью 'дозвон-по-требованию'
+            (dial-on-demand)?</A
+></DT
+></DL
+><DIV
+CLASS="QANDAENTRY"
+><DIV
+CLASS="QUESTION"
+><P
+><A
+NAME="AEN391"
+></A
+><B
+>8.1. </B
+>            Почему я получаю сообщение <SPAN
+CLASS="ERRORNAME"
+>Cannot locate module for
+            net-pf-</SPAN
+><TT
+CLASS="VARNAME"
+>X</TT
+> (Не могу найти модуль
+            для net-pf-X), когда я запускаю ifconfig
+            </P
+></DIV
+><DIV
+CLASS="ANSWER"
+><P
+><B
+> </B
+>            В районе версии 1.3.80 ядра, код работы с сетью был изменен,
+            чтобы поддерживать загрузку семейств сетевых протоколов
+            (например, IPX, AX.25 и AppleTalk) в виде модулей. Поэтому был
+            введен новый вид запроса ядра к kerneld:
+            <TT
+CLASS="LITERAL"
+>net-pf-</TT
+><TT
+CLASS="VARNAME"
+>X</TT
+>, где
+            <TT
+CLASS="VARNAME"
+>X</TT
+> - это число, определяющее протокол (см.
+            <TT
+CLASS="FILENAME"
+>/usr/src/linux/include/linux/socket.h</TT
+> для
+            конкретных значений различных чисел). К сожалению,
+            <B
+CLASS="COMMAND"
+>ifconfig</B
+> вызывает своими действиями
+            появление этих сообщений, поэтому у многих появляется пара таких
+            сообщений в журнале загрузки системы и затем при запуске
+            <B
+CLASS="COMMAND"
+>ifconfig</B
+> для настройки устройства обратной
+            петли. Эти сообщения безобидны, и вы можете запретить их,
+            добавив соответствующие строки
+            </P
+><PRE
+CLASS="SCREEN"
+>        alias net-pf-3 off      # Забыть AX.25
+        alias net-pf-4 off      # Забыть IPX
+        alias net-pf-5 off      # Забыть AppleTalk</PRE
+><P
+>            в <TT
+CLASS="FILENAME"
+>/etc/conf.modules</TT
+>. Конечно вам не надо
+            добавлять строчку о запрете IPX, если вы используете его в виде
+            модуля.
+            </P
+></DIV
+></DIV
+><DIV
+CLASS="QANDAENTRY"
+><DIV
+CLASS="QUESTION"
+><P
+><A
+NAME="AEN407"
+></A
+><B
+>8.2. </B
+>После запуска kerneld, моя система сильно замедляется
+            при установке ppp-соединения</P
+></DIV
+><DIV
+CLASS="ANSWER"
+><P
+><B
+> </B
+>            На самом деле пару раз были такие вопросы. Скорее всего, это
+            неправильное взаимодействие между kerneld и скриптом
+            <SPAN
+CLASS="PRODUCTNAME"
+>tkPPP</SPAN
+>, который используется на
+            некоторых системах для настройки и мониторинга PPP соединения -
+            скрипт видимо запускает в цикле <B
+CLASS="COMMAND"
+>ifconfig</B
+>.
+            Это, в свою очередь, заставляет kerneld каждый раз искать модули
+            <TT
+CLASS="LITERAL"
+>net-pf-</TT
+><TT
+CLASS="VARNAME"
+>X</TT
+> (см. выше), тем
+            самым загружая систему и, возможно, забрасывая системный журнал
+            потоком сообщений "Cannot locate module for
+            <TT
+CLASS="LITERAL"
+>net-pf-</TT
+><TT
+CLASS="VARNAME"
+>X</TT
+>" ("Не могу найти
+            модуль для net-pf-X") . Пока нет известного решения, кроме
+            того, как не использовать <SPAN
+CLASS="PRODUCTNAME"
+>tkPPP</SPAN
+>, или
+            его изменения для другого способа мониторинга соединения.
+            </P
+></DIV
+></DIV
+><DIV
+CLASS="QANDAENTRY"
+><DIV
+CLASS="QUESTION"
+><P
+><A
+NAME="AEN419"
+></A
+><B
+>8.3. </B
+>kerneld не загружает мой SCSI-драйвер!</P
+></DIV
+><DIV
+CLASS="ANSWER"
+><P
+><B
+> </B
+>            Добавьте строчку SCSI hostadapter в файл
+            <TT
+CLASS="FILENAME"
+>/etc/conf.modules</TT
+>. Смотрите описание
+            строки <A
+HREF="Kerneld.html#SCSIDEVS"
+><TT
+CLASS="LITERAL"
+>scsi_hostadapter</TT
+></A
+>
+            выше.
+            </P
+></DIV
+></DIV
+><DIV
+CLASS="QANDAENTRY"
+><DIV
+CLASS="QUESTION"
+><P
+><A
+NAME="AEN427"
+></A
+><B
+>8.4. </B
+>modprobe выдает сообщение о том, что
+            <SPAN
+CLASS="ERRORNAME"
+>gcc2_compiled</SPAN
+> не определено
+            </P
+></DIV
+><DIV
+CLASS="ANSWER"
+><P
+><B
+> </B
+>            Это ошибка в утилитах modules, она проявляется только с пакетом
+            binutils версии 2.6.0.9 и выше, и описана в примечаниях и
+            дополнениях (releasenotes) binutils. Поэтому их и читайте. Или
+            достаньте новую версию утилит modules, в которой эта ошибка
+            исправлена.
+            </P
+></DIV
+></DIV
+><DIV
+CLASS="QANDAENTRY"
+><DIV
+CLASS="QUESTION"
+><P
+><A
+NAME="AEN433"
+></A
+><B
+>8.5. </B
+>            Мой драйвер звуковой карты продолжает забывать настройки
+            громкости и т.п.
+            </P
+></DIV
+><DIV
+CLASS="ANSWER"
+><P
+><B
+> </B
+>            Настройки модуля находятся внутри самого модуля на момент
+            загрузки. Поэтому, когда kerneld автоматически выгружает
+            модуль, все настройки, которые вы делали, теряются, и при
+            следующей загрузке модуля настройки возвращаются в значения
+            по умолчанию.
+            </P
+><P
+>            Вы можете заставить kerneld настроить модуль путем запуска
+            программы после того, как модуль автоматически загружен.
+            Смотрите раздел <A
+HREF="Kerneld.html#PRE-POST"
+>Pre/Post Install</A
+>, описывающий строки
+            <TT
+CLASS="LITERAL"
+>post-install</TT
+>.
+            </P
+></DIV
+></DIV
+><DIV
+CLASS="QANDAENTRY"
+><DIV
+CLASS="QUESTION"
+><P
+><A
+NAME="AEN441"
+></A
+><B
+>8.6. </B
+>            DOSEMU требует модули - как заставить kerneld их загружать?
+            </P
+></DIV
+><DIV
+CLASS="ANSWER"
+><P
+><B
+> </B
+>            Никак. Ни одна из версий dosemu - официальных или тестовых - не
+            поддерживает загрузку модулей dosemu через kerneld. С другой
+            стороны, если у вас ядро версии 2.0.26 и выше, вам просто не
+            нужны дополнительные специальные модули dosemu - просто
+            обновите свой dosemu до версии 0.66.1.
+            </P
+></DIV
+></DIV
+><DIV
+CLASS="QANDAENTRY"
+><DIV
+CLASS="QUESTION"
+><P
+><A
+NAME="AEN446"
+></A
+><B
+>8.7. </B
+>            Почему я получаю сообщения <SPAN
+CLASS="ERRORNAME"
+>Ouch, kerneld timed out,
+            message failed</SPAN
+> ("Ох, kerneld превысил время ожидания, запрос не
+            выполнен") ?</P
+></DIV
+><DIV
+CLASS="ANSWER"
+><P
+><B
+> </B
+>            Когда ядро посылает запрос kerneld, оно ожидает подтверждения в
+            течение секунды. Если kerneld не посылает это подтверждение,
+            тогда и возникает это сообщение. Запрос посылается заново, и, в
+            конце концов, должен пройти.
+            </P
+><P
+>            Это обычно происходит в системах с большой загрузкой, а так как
+            kerneld - это процесс пользовательского уровня, он работает так
+            же, как и любой другой процесс в системе. В пиковые моменты
+            перегрузки системы ему может просто не хватать времени, чтобы
+            послать подтверждение вовремя.
+            </P
+><P
+>            Если это происходит, а система не перегружена, попробуйте
+            перезапустить kerneld. (Пошлите сигнал "Kill" процессу kerneld,
+            а затем снова запустите его командой
+            <B
+CLASS="COMMAND"
+>/usr/sbin/kerneld</B
+>). Если проблема не
+            исчезла, напишите отчет об ошибке по адресу
+            <TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:linux-kernel@vger.rutgers.edu"
+>linux-kernel@vger.rutgers.edu</A
+>&#62;</TT
+>, но,
+            <I
+CLASS="EMPHASIS"
+>пожалуйста</I
+>, сначала убедитесь в том, что
+            версии вашего ядра и kerneld действительно новые. Проверьте
+            соответствие требованиям файла
+            <TT
+CLASS="FILENAME"
+>linux/Documentation/Changes</TT
+>
+            </P
+></DIV
+></DIV
+><DIV
+CLASS="QANDAENTRY"
+><DIV
+CLASS="QUESTION"
+><P
+><A
+NAME="AEN458"
+></A
+><B
+>8.8. </B
+>            Команда mount не ждет, пока kerneld загрузит модуль файловой
+            системы
+            </P
+></DIV
+><DIV
+CLASS="ANSWER"
+><P
+><B
+> </B
+>            Было несколько сообщений о том, что команда mount(8) не
+            ожидает, пока kerneld загружает модуль файловой системы.
+            Команда <B
+CLASS="COMMAND"
+>lsmod</B
+>, однако, показывает, что
+            kerneld загружает модуль, и если сразу же повторить команду
+            mount, то она выполнится успешно. Это, по-видимому, ошибка в
+            утилитах modules версии 1.3.69f, которая возникает у некоторых
+            пользователей дистрибутива Debian - ее можно исправить,
+            установив последнюю версию утилит modules.
+            </P
+></DIV
+></DIV
+><DIV
+CLASS="QANDAENTRY"
+><DIV
+CLASS="QUESTION"
+><P
+><A
+NAME="AEN464"
+></A
+><B
+>8.9. </B
+>            kerneld не может загрузить модуль <TT
+CLASS="LITERAL"
+>ncpfs</TT
+>
+            </P
+></DIV
+><DIV
+CLASS="ANSWER"
+><P
+><B
+> </B
+>            Утилиты ncpfs необходимо собрать с ключом
+            <SPAN
+CLASS="TOKEN"
+>-DHAVE_KERNELD</SPAN
+>. Смотрите файл сборки
+            (<TT
+CLASS="FILENAME"
+>Makefile</TT
+>) утилит
+            <SPAN
+CLASS="PRODUCTNAME"
+>ncpfs</SPAN
+>.
+            </P
+></DIV
+></DIV
+><DIV
+CLASS="QANDAENTRY"
+><DIV
+CLASS="QUESTION"
+><P
+><A
+NAME="AEN473"
+></A
+><B
+>8.10. </B
+>kerneld не может загрузить модуль <TT
+CLASS="FILENAME"
+>smbfs</TT
+>
+            </P
+></DIV
+><DIV
+CLASS="ANSWER"
+><P
+><B
+> </B
+>            У вас старая версия утилит <SPAN
+CLASS="PRODUCTNAME"
+>smbmount</SPAN
+>. Установите последнюю
+            версию (0.10 или новее), которую можно найти на ftp по адресу:
+            <A
+HREF="ftp://tsx-11.mit.edu/pub/linux/filesystems/smbfs/"
+TARGET="_top"
+>Архив
+            SMBFS на TSX-11</A
+>
+            </P
+></DIV
+></DIV
+><DIV
+CLASS="QANDAENTRY"
+><DIV
+CLASS="QUESTION"
+><P
+><A
+NAME="AEN481"
+></A
+><B
+>8.11. </B
+>Я все построил в виде модулей, и теперь моя система не
+            загружается, или kerneld не может загрузить модуль корневой
+            файловой системы!</P
+></DIV
+><DIV
+CLASS="ANSWER"
+><P
+><B
+> </B
+>            Нельзя же превращать в модули <I
+CLASS="EMPHASIS"
+>все подряд</I
+>:
+            Ядру должно хватать встроенных драйверов, чтобы смонтировать
+            (mount) вашу корневую файловую систему, а также, чтобы
+            запустить все программы, необходимые для запуска kerneld.
+            <A
+NAME="AEN486"
+HREF="Kerneld.html#FTN.AEN486"
+>[2]</A
+>
+            Поэтому нельзя превращать в модули:
+            </P
+><P
+></P
+><UL
+><LI
+><P
+>              драйвер жесткого диска, на котором находится ваша корневая
+              файловая система
+              </P
+></LI
+><LI
+><P
+>собственно драйвер корневой файловой системы 
+              </P
+></LI
+><LI
+><P
+>драйвер формата кода программ init, kerneld
+              и им подобных </P
+></LI
+></UL
+></DIV
+></DIV
+><DIV
+CLASS="QANDAENTRY"
+><DIV
+CLASS="QUESTION"
+><P
+><A
+NAME="AEN497"
+></A
+><B
+>8.12. </B
+>kerneld не запускается в момент загрузки системы -
+            жалуется на libgdbm</P
+></DIV
+><DIV
+CLASS="ANSWER"
+><P
+><B
+> </B
+>            Новые версии kerneld для работы используют библиотеку GNU dbm,
+            <TT
+CLASS="FILENAME"
+>libgdbm.so</TT
+>. Во многих установках этот файл
+            находится в каталоге <TT
+CLASS="FILENAME"
+>/usr/lib</TT
+>, а у вас,
+            по-видимому, kerneld запускается до подключения файловой
+            системы <TT
+CLASS="FILENAME"
+>/usr</TT
+>. Одним из симптомов этого
+            может быть то, что kerneld не запускается в процессе старта
+            системы (из rc-скриптов), но запускается вручную после загрузки
+            системы. Проблема решается либо путем переноса загрузки kerneld так,
+            чтобы он загружался после подключения (mount) файловой системы
+            <TT
+CLASS="FILENAME"
+>/usr</TT
+>, либо путем переноса библиотеки gdbm в
+            корневую файловую систему, т.е. в каталог
+            <TT
+CLASS="FILENAME"
+>/lib</TT
+>.
+            </P
+></DIV
+></DIV
+><DIV
+CLASS="QANDAENTRY"
+><DIV
+CLASS="QUESTION"
+><P
+><A
+NAME="AEN507"
+></A
+><B
+>8.13. </B
+>            Я получаю сообщение "Cannot load module <TT
+CLASS="VARNAME"
+>xxx</TT
+>"
+            ("Не могу загрузить модуль xxx"), но я только что собрал мое
+            ядро без поддержки <TT
+CLASS="VARNAME"
+>xxx</TT
+>!
+            </P
+></DIV
+><DIV
+CLASS="ANSWER"
+><P
+><B
+> </B
+>            Дистрибутив Slackware (и, возможно, некоторые другие) включает в
+            себя стандартный файл
+            <TT
+CLASS="FILENAME"
+>/etc/rc.d/rc.modules</TT
+>, в котором содержатся
+            подробные команды modprobe на некоторые конкретные модули.
+            Конкретный список модулей, для которых запускается команда
+            modprobe, зависит от конфигурации начального ядра. Вы,
+            по-видимому, перенастроили ваше ядро, исключив из него модули,
+            которые используются командой modprobe в rc.modules, поэтому и
+            возникает сообщение об ошибке. Исправьте ваш файл
+            <TT
+CLASS="FILENAME"
+>rc.modules</TT
+>, закоментировав строчки с
+            модулями, которые вы больше не используете, или вообще удалите
+            файл, чтобы kerneld загружал модули только тогда, когда они
+            потребуются.
+            </P
+></DIV
+></DIV
+><DIV
+CLASS="QANDAENTRY"
+><DIV
+CLASS="QUESTION"
+><P
+><A
+NAME="AEN516"
+></A
+><B
+>8.14. </B
+>            Я пересобрал ядро и модули, и до сих пор получаю сообщения о
+            неразрешимых символах (unresolved symbols) в модулях при
+            загрузке
+            </P
+></DIV
+><DIV
+CLASS="ANSWER"
+><P
+><B
+> </B
+>            Вы, видимо, переконфигурировали/пересобрали ваше ядро и
+            исключили несколько модулей. Значит, у вас сохранились старые
+            модули в районе каталога <TT
+CLASS="FILENAME"
+>/lib/modules</TT
+>.
+            Наиболее простое решение - удалить все подкаталоги каталога
+            <TT
+CLASS="FILENAME"
+>/lib/modules/</TT
+><TT
+CLASS="VARNAME"
+>x.y.z</TT
+>, и
+            запустить <B
+CLASS="COMMAND"
+>make modules_install</B
+> из каталога,
+            содержащего исходные тексты ядра. Заметьте, что такая проблема
+            существует, когда вы изменяете конфигурацию ядра без изменения
+            его версии. Если вы получили это сообщение при переходе на
+            новую версию ядра, то у вас, очевидно, другая проблема.
+            </P
+></DIV
+></DIV
+><DIV
+CLASS="QANDAENTRY"
+><DIV
+CLASS="QUESTION"
+><P
+><A
+NAME="AEN525"
+></A
+><B
+>8.15. </B
+>          Я установил Linux с ядром версии 2.1 и теперь не могу загрузить
+          <I
+CLASS="EMPHASIS"
+>НИ ОДИН</I
+> модуль!
+          </P
+></DIV
+><DIV
+CLASS="ANSWER"
+><P
+><B
+> </B
+>            Ядра Linux-а нечетных версий являются тестовым. Поэтому можно
+            ожидать, что такие вещи будут происходить время от времени.
+            Одна из вещей, которая серьезно изменилась - это способ работы
+            с модулями, а также способ и место загрузки модулей ядром в
+            память. Кроме того, Richard Henderson теперь отвечает за
+            разработку модулей ядра.
+            </P
+><P
+>            В двух словах, если вы хотите использовать модули с
+            разрабатываемым ядром, вы должны
+            </P
+><P
+></P
+><UL
+><LI
+><P
+>              прочитать файл <TT
+CLASS="FILENAME"
+>Documentation/Changes</TT
+> и
+              выяснить, какие пакеты требуют обновления в вашей
+              системе</P
+></LI
+><LI
+><P
+>              использовать наиболее новый пакет modutils, доступный по
+              адресу <A
+HREF="ftp://ftp.redhat.com/pub/alphabits/"
+TARGET="_top"
+>AlphaBits на
+              Red Hat</A
+> или на зеркале <A
+HREF="ftp://tsx-11.mit.edu/pub/linux/packages/alphabits/"
+TARGET="_top"
+>TSX-11</A
+></P
+></LI
+></UL
+><P
+>            Если вы хотите использовать модули с ядром версии 2.1, я бы
+            порекомендовал использовать ядро, как минимум, версии 2.1.29.
+            </P
+></DIV
+></DIV
+><DIV
+CLASS="QANDAENTRY"
+><DIV
+CLASS="QUESTION"
+><P
+><A
+NAME="AEN541"
+></A
+><B
+>8.16. </B
+>Что насчет работы с сетью 'дозвон-по-требованию'
+            (dial-on-demand)?</P
+></DIV
+><DIV
+CLASS="ANSWER"
+><P
+><B
+> </B
+>            kerneld ранее поддерживал возможность установления dial-up
+            соединения по требованию системы; попытки посылать пакеты в
+            сеть без соединения должны были заставлять kerneld запускать
+            скрипт <TT
+CLASS="FILENAME"
+>/sbin/request_route</TT
+> для
+            установления PPP или SLIP соединения.
+            </P
+><P
+>            Но это была плохая идея. Alan Cox, один из знаменитых
+            специалистов по сетям в Linux, написал в списке рассылки по ядру
+            Linux, что
+            </P
+><A
+NAME="AEN547"
+></A
+><BLOCKQUOTE
+CLASS="BLOCKQUOTE"
+><P
+>              Утилита request-route устарела, не работает и не нужна [...]
+              Она также убрана из структур 2.1.x.
+              </P
+></BLOCKQUOTE
+><P
+>            Вместо использования скрипта request-route вместе с kerneld, я
+            настоятельно советую вам установить пакет diald (Eric Schenk),
+            доступный по адресу <A
+HREF="http://www.dna.lth.se/~erics/diald.html"
+TARGET="_top"
+>            http://www.dna.lth.se/~erics/diald.html</A
+>.
+            </P
+></DIV
+></DIV
+></DIV
+></DIV
+></DIV
+><H3
+CLASS="FOOTNOTES"
+>Примечания</H3
+><TABLE
+BORDER="0"
+CLASS="FOOTNOTES"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="5%"
+><A
+NAME="FTN.AEN204"
+HREF="Kerneld.html#AEN204"
+>[1]</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="95%"
+><P
+>В
+      некоторых дистрибутивах этот файл называется
+      <TT
+CLASS="FILENAME"
+>modules.conf</TT
+></P
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="5%"
+><A
+NAME="FTN.AEN486"
+HREF="Kerneld.html#AEN486"
+>[2]</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="95%"
+><P
+> (На самом деле, это не совсем так. Поздние
+            версии 1.3.x и все 2.x версии ядер поддерживают режим
+            загрузочного ram-диска, загружаемого LILO или LOADLIN-ом, и также
+            существует возможность загрузить модули с этого "диска"
+            практически в любой момент в процессе загрузки. Как это
+            сделать, описано в файле
+            <TT
+CLASS="FILENAME"
+>linux/Documentation/initrd.txt</TT
+>,
+            поставляемом с исходными текстами ядра.)</P
+></TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

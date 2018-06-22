@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE>SMB HOWTO: Введение</TITLE>
+ <LINK HREF="SMB-HOWTO-3.html" REL=next>
+ <LINK HREF="SMB-HOWTO-1.html" REL=previous>
+ <LINK HREF="SMB-HOWTO.html#toc2" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="SMB-HOWTO-3.html">Следующий</A>
+<A HREF="SMB-HOWTO-1.html">Предыдущий</A>
+<A HREF="SMB-HOWTO.html#toc2">Содержание</A>
+<HR>
+<H2><A NAME="s2">2. Введение</A></H2>
+
+<P>Это SMB HOWTO. Этот документ описывает использование в Linux с помощью
+Samba протокола Server Message Block (SMB), который иногда также называется
+протоколом Session Message Block (SMB), протоколом NetBIOS или протоколом
+LanManager. Хотя этот документ и предназначен для Linux, но Samba может
+работать на большинстве Unix-подобных операционных систем.
+<P>Этот документ сопровождается David Wood (
+<A HREF="mailto:dwood@plugged.net.au">dwood@plugged.net.au</A>).
+Добавления, изменения или исправления могут быть посланы ему для включения
+в следующий выпуск.
+<P>Большое количество документации по Samba доступно на WWW-сервере Samba,
+который находится по адресу 
+<A HREF="http://www.samba.org/">http://www.samba.org/</A>. Там ужасающее количество информации;
+пожалуйста посмотрите ее до того, как будете просить помощи!  Вы также
+можете использовать группу новостей comp.protocols.smb.
+<P>Протокол SMB используется Microsoft Windows 3.11, NT и 95/98 для
+организации доступа к дискам и принтерам. Используя набор утилит Samba от
+Andrew Tridgell (
+<A HREF="mailto:Andrew.Tridgell@anu.edu.au">Andrew.Tridgell@anu.edu.au</A>), UNIX-машины (включая Linux) могут
+организовывать доступ к дискам и принтерам для Windows-машин.  Утилиты
+smbfs написанные Paal-Kr. Engstad (
+<A HREF="mailto:engstad@intermetrics.com">engstad@intermetrics.com</A>) и
+Volker Lendecke (
+<A HREF="mailto:lendecke@namu01.gwdg.de">lendecke@namu01.gwdg.de</A>) дают возможность машинам с Unix
+монтировать SMB-ресурсы доступные на машинах с Windows или Samba.
+<P>
+<P>Четыре основные вещи, которые можно делать с помощью Samba:
+<P>
+<P>
+<OL>
+<LI>давать доступ к дискам Linux Windows-машинам.</LI>
+<LI>получать доступ к SMB-ресурсам с машин под Linux.</LI>
+<LI>давать доступ к принтерам Linux для Windows-машин.</LI>
+<LI>получать доступ к принтерам Windows из Linux-систем.</LI>
+</OL>
+<P>Обо всем этом рассказывается в этом документе, плюс также еще некоторые
+детали.
+<P>Отказ от ответственности: Процедуры и программы либо работают для автора,
+либо было сообщено, что они работают для людей, которые разработали
+их. Различные конфигурации могут не работать с информацией данной
+здесь. Если вы столкнулись с такой ситуацией, вы можете послать сообщение
+автору документа с пожеланиями для его улучшения.
+<P>Заметим, что для доступа к SMB-ресурсам с машин с Windows 3.x, на них
+должен быть установлен стек TCP/IP и библиотеки Win32s. Оба этих компонента
+доступны с сервера фирмы Microsoft (
+<A HREF="http://www.microsoft.com">http://www.microsoft.com</A>). Как нам сообщили во время написания
+данного документа, для того чтобы скачать стэк TCP/IP-32
+для Windows 3.x, Microsoft требует подписки на Microsoft Software
+Developers Network (MSDN). Поскольку это программное обеспечение
+используется свободно, то вы можете найти старые копии этого программного
+обеспечения у своих друзей.
+<P>
+<HR>
+<A HREF="SMB-HOWTO-3.html">Следующий</A>
+<A HREF="SMB-HOWTO-1.html">Предыдущий</A>
+<A HREF="SMB-HOWTO.html#toc2">Содержание</A>
+</BODY>
+</HTML>

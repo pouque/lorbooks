@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE>Из  DOS/Windows в Linux HOWTO : Настройка системы</TITLE>
+ <LINK HREF="DOS-Win-to-Linux-HOWTO-10.html" REL=next>
+ <LINK HREF="DOS-Win-to-Linux-HOWTO-8.html" REL=previous>
+ <LINK HREF="DOS-Win-to-Linux-HOWTO.html#toc9" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="DOS-Win-to-Linux-HOWTO-10.html">Следующий</A>
+<A HREF="DOS-Win-to-Linux-HOWTO-8.html">Предыдущий</A>
+<A HREF="DOS-Win-to-Linux-HOWTO.html#toc9">Содержание</A>
+<HR>
+<H2><A NAME="s9">9. Настройка системы</A></H2>
+
+<H2><A NAME="System Initialisation"></A> <A NAME="ss9.1">9.1 Файлы инициализации системы </A>
+</H2>
+
+<P>В DOS двумя важными файлами являютсяe <CODE>AUTOEXEC.BAT</CODE> и
+<CODE>CONFIG.SYS</CODE>, которые используются во время загрузки для
+инициализации системы, установки некоторых переменных среды, таких как PATH
+и FILES, и, возможно, запуска программ или пакетных файлов. В Linux
+существует большее количество инициализационных файлов, некоторые из которых
+лучше не трогать до тех пор, пока вы не будете знать, что вы делаете. Я
+скажу, что самыми важными являются:
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+ФАЙЛЫ                                  ПРИМЕЧАНИЯ 
+
+/etc/inittab                           не трогайте его сейчас!
+/etc/rc.d/*                            так же
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>Если вы хотите установить переменные среды PATH или другие, или вы хотите
+изменить сообщение при входе в систему или автоматически запустить
+программу после входа в систему, посмотрите следующие файлы:
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+ФАЙЛЫ                             ПРИМЕЧАНИЯ 
+
+/etc/issue                  устанавливает сообщение перед входом
+/etc/motd                   устанавливает сообщение после входа
+/etc/profile                устанавливает переменную $PATH и другие, и т.п.
+/etc/bashrc                 устанавливает алиасы и функции, и т.п.
+/home/your_home/.bashrc     устанавливает ваши алиасы и функции
+/home/your_home/.bash_profile или
+/home/your_home/.profile    устанавливает переменные среды и запускает ваши программы
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>Если последние файлы существуют (заметим, что это скрытые файлы), они будут
+считаны после входа в систему и команды, записанные в них, будут выполнены.
+<P>Пример---посмотрите на этот <CODE>.bash_profile</CODE>:
+<P>
+<HR>
+<PRE>
+# Это комментарий
+echo Environment:
+printenv | less   # эквивалент команде SET в DOS
+alias d='ls -l'   # легко понять, что это алиас
+alias up='cd ..'
+echo "I remind you that the path is "$PATH
+echo "Today is `date`"  # использовать вывод команды
+echo "Have a good day, "$LOGNAME
+# следующая часть является функцией командного процессора
+ctgz() # вывести содержимое архива .tar.gz
+\{
+  for file in $*
+  do
+    gzip -dc $\{file\} | tar tf -
+  done
+\}         
+# конец .profile
+</PRE>
+<HR>
+<P>Вы правильно угадали, что  <CODE>$PATH</CODE> и <CODE>$LOGNAME</CODE>
+являются переменными среды,. Существует много других переменных; например,
+прочитайте справочные страницы для таких приложений, как <CODE>less</CODE> или
+<CODE>bash</CODE>.
+<P>Поместив эту строку в ваш файл /etc/profile вы получите грубый
+эквивалент <CODE>PROMPT $P$G</CODE>:
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+export PS1="\\w\\\\$ "
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>
+<H2><A NAME="ss9.2">9.2 Инициализационные файлы программ</A>
+</H2>
+
+<P>В Linux практически все может быть настроено для ваших требований.
+Большинство программ имеют один или несколько файлов инициализации, которые
+вы можете править, часто это файлы <CODE>.prognamerc</CODE>  в вашем домашнем
+каталоге.  Первыми файлами, которые вы захотите исправить:
+<P>
+<UL>
+<LI> <CODE> .inputrc</CODE>: используется <CODE>bash</CODE> для определения
+сочетаний клавиш;
+</LI>
+<LI> <CODE> .xinitrc</CODE>: используется <CODE>startx</CODE> для инициализации
+X Window System;
+</LI>
+<LI> <CODE> .fvwmrc</CODE>: используется оконным менеджером <CODE>fvwm</CODE>. 
+</LI>
+<LI> <CODE> .joerc, .jstarrc</CODE>: используется редактором <CODE>joe</CODE>;
+</LI>
+<LI> <CODE> .jedrc</CODE>: используется редактором <CODE>jed</CODE>;
+</LI>
+<LI> <CODE> .pinerc</CODE>: используется программой чтения почты
+<CODE>pine</CODE>;
+</LI>
+<LI> <CODE> .Xdefault</CODE>: используется многим программами для X.
+</LI>
+</UL>
+<P>Со всеми этими и другими файлами вы встретитесь раньше или позже, RMP.
+Возможно я должен заинтересовать вас документом "Configuration HOWTO", 
+<A HREF="http://www.linuxdoc.org/HOWTO/Config-HOWTO.html">http://www.linuxdoc.org/HOWTO/Config-HOWTO.html</A>?
+<P>
+<P>
+<HR>
+<A HREF="DOS-Win-to-Linux-HOWTO-10.html">Следующий</A>
+<A HREF="DOS-Win-to-Linux-HOWTO-8.html">Предыдущий</A>
+<A HREF="DOS-Win-to-Linux-HOWTO.html#toc9">Содержание</A>
+</BODY>
+</HTML>

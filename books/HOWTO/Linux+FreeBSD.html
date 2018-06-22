@@ -1,0 +1,1106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Мини-HOWTO: "Linux+FreeBSD" </TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.57"></HEAD
+><BODY
+CLASS="ARTICLE"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="ARTICLE"
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="TITLE"
+><A
+NAME="AEN2"
+>Мини-HOWTO: "Linux+FreeBSD"</A
+></H1
+><DIV
+CLASS="AUTHORGROUP"
+><A
+NAME="AEN4"
+></A
+><H3
+CLASS="AUTHOR"
+><A
+NAME="AEN5"
+>Niels Kristian Bech Jensen</A
+></H3
+><DIV
+CLASS="AFFILIATION"
+><DIV
+CLASS="ADDRESS"
+><P
+CLASS="ADDRESS"
+>&nbsp;&nbsp;&nbsp;&nbsp;     nkbj@image.dk
+    <br>
+&nbsp;&nbsp;&nbsp;</P
+></DIV
+></DIV
+><H3
+CLASS="CORPAUTHOR"
+>  Перевод: <A
+HREF="mailto:sam@asp-linux.com"
+TARGET="_top"
+>Станислав Рогин</A
+>,
+  <A
+HREF="http://www.asplinux.com"
+TARGET="_top"
+>SWSoft Pte Ltd.</A
+>
+ </H3
+></DIV
+><P
+CLASS="PUBDATE"
+>версия 1.11, 30 марта 2000 года<BR></P
+><DIV
+><DIV
+CLASS="ABSTRACT"
+><A
+NAME="AEN15"
+></A
+><P
+></P
+><P
+>Этот документ содержит информацию о том, как использовать Linux и FreeBSD на одной машине.
+Здесь обсуждается, как эти две системы могут разделять некоторые ресурсы,
+например, область подкачки. Я предполагаю, что Вы имеете некоторые навыки в
+работе с Linux или FreeBSD, а так же то, что Вы разбили на разделы свой
+жесткий диск (программой <TT
+CLASS="LITERAL"
+>fdisk</TT
+>), прежде чем приступить к чтению данного
+документа. Советы, данные ниже, были проверены на FreeBSD 2.2.2, но,
+наверняка, все они будут справедливы и для более новых версий. Не
+стесняйтесь писать мне, если у Вас есть вопросы, комментарии или
+предложения относительно данного документа. Я также хотел бы получить
+письма от людей, которые используют Linux вместе с NetBSD или OpenBSD.</P
+><P
+></P
+></DIV
+></DIV
+><HR></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Содержание</B
+></DT
+><DT
+>1. <A
+HREF="Linux+FreeBSD.html#AEN18"
+>Что такое FreeBSD? Двойная загрузка в FreeBSD! FreeBSD - краткий обзор</A
+></DT
+><DT
+>2. <A
+HREF="Linux+FreeBSD.html#AEN29"
+>Разметка жесткого диска</A
+></DT
+><DD
+><DL
+><DT
+>2.1. <A
+HREF="Linux+FreeBSD.html#AEN32"
+>FreeBSD: "slices" и "partitions".</A
+></DT
+><DT
+>2.2. <A
+HREF="Linux+FreeBSD.html#AEN42"
+>Раздел Linux. Сравнение Linux и FreeBSD.</A
+></DT
+></DL
+></DD
+><DT
+>3. <A
+HREF="Linux+FreeBSD.html#AEN74"
+>Совместное использование области подкачки в Linux и FreeBSD.</A
+></DT
+><DD
+><DL
+><DT
+>3.1. <A
+HREF="Linux+FreeBSD.html#INSTALLLINUX"
+>Установка и настройка Linux</A
+></DT
+><DT
+>3.2. <A
+HREF="Linux+FreeBSD.html#AEN88"
+>Установка FreeBSD</A
+></DT
+><DT
+>3.3. <A
+HREF="Linux+FreeBSD.html#AEN93"
+>Настройка области подкачки FreeBSD для использования в Linux</A
+></DT
+></DL
+></DD
+><DT
+>4. <A
+HREF="Linux+FreeBSD.html#AEN120"
+>Загрузка FreeBSD с использованием LILO</A
+></DT
+><DT
+>5. <A
+HREF="Linux+FreeBSD.html#AEN130"
+>Подключение файловых систем</A
+></DT
+><DD
+><DL
+><DT
+>5.1. <A
+HREF="Linux+FreeBSD.html#AEN132"
+>Подключение файловой системы UFS под Linux</A
+></DT
+><DT
+>5.2. <A
+HREF="Linux+FreeBSD.html#EXT2FS"
+>Подключение файловой системы ext2fs под FreeBSD</A
+></DT
+></DL
+></DD
+><DT
+>6. <A
+HREF="Linux+FreeBSD.html#AEN159"
+>Запуск программ</A
+></DT
+><DD
+><DL
+><DT
+>6.1. <A
+HREF="Linux+FreeBSD.html#AEN161"
+>Запуск программ FreeBSD под Linux</A
+></DT
+><DT
+>6.2. <A
+HREF="Linux+FreeBSD.html#AEN165"
+>Запуск программ Linux под FreeBSD</A
+></DT
+></DL
+></DD
+><DT
+>7. <A
+HREF="Linux+FreeBSD.html#AEN188"
+>Ссылки на информационные ресурсы</A
+></DT
+><DT
+>8. <A
+HREF="Linux+FreeBSD.html#AEN199"
+>Благодарности и юридическая информация</A
+></DT
+><DD
+><DL
+><DT
+>8.1. <A
+HREF="Linux+FreeBSD.html#AEN203"
+>Юридическая информация</A
+></DT
+><DT
+>8.2. <A
+HREF="Linux+FreeBSD.html#AEN209"
+>Авторские права</A
+></DT
+></DL
+></DD
+></DL
+></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="AEN18"
+>1. Что такое FreeBSD? Двойная загрузка в FreeBSD! FreeBSD - краткий обзор</A
+></H1
+><P
+><A
+HREF="http://www.freebsd.org/"
+TARGET="_top"
+>FreeBSD</A
+> - это свободно распространяемая Unix-подобная операционная система,
+весьма похожая на Linux. Главное различие состоит в том, что ядро Linux
+было написано с нуля, а ядро FreeBSD было переработано из свободно
+распространяемых частей дистрибутива 4.4BSD (Berkeley Software
+Distribution), известных как 4.4BSD-lite. Этот факт заставляет многих людей
+считать, что FreeBSD более похож на "настоящий" UNIXR, чем Linux. FreeBSD
+работает только на Intel-платформах (i386 и выше); версии для платформ DEC
+Alpha и Sun Sparc в настоящий момент находятся в стадии разработки. Системы
+<A
+HREF="http://www.netbsd.org/"
+TARGET="_top"
+>NetBSD</A
+> и <A
+HREF="http://www.openbsd.org/"
+TARGET="_top"
+>OpenBSD</A
+>, подобны FreeBSD, и работают на нескольких платформах.
+Аппаратные требования для всех этих *BSD систем аналогичны Linux.</P
+><P
+>Развитие FreeBSD происходит несколько другим путем, чем Linux. Основная
+группа разработчиков задает путь развития проекта. Значительные изменения
+обсуждаются заранее через списки рассылок. FreeBSD имеет две версии (как и
+Linux): <I
+CLASS="EMPHASIS"
+>"-ТЕКУЩАЯ"</I
+> и <I
+CLASS="EMPHASIS"
+>"-СТАБИЛЬНАЯ"</I
+>. "-ТЕКУЩАЯ" версия включает в себя
+последние версии программ и усовершенствований. "-СТАБИЛЬНАЯ" версия имеет
+только те усовершенствования, которые уже проверены на наличие серьезных
+ошибок.</P
+><P
+>FreeBSD может бесплатно использоваться и распространяться так же, как и
+Linux. Авторские права на большую часть системы принадлежат BSD; остальное
+распространятся под лицензией GNU GPL или ей <A
+HREF="http://www.opensource.org/"
+TARGET="_top"
+>подобной</A
+>.</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN29"
+>2. Разметка жесткого диска</A
+></H1
+><P
+>В Linux и FreeBSD названия жестких дисков и разделов строятся по двум
+разным схемам. В этой главе описаны главные различия между ними.
+Фактически, в FreeBSD маркировка разделов взята из традиционного BSD; она
+адаптирована для fdisk. Таким образом, она очень похожа на ту, которая
+используется в BSD-подобных системах, таких как NetBSD, OpenBSD, Ultrix,
+Digital Unix, SunOS и Solaris.</P
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN32"
+>2.1. FreeBSD: "slices" и "partitions".</A
+></H2
+><P
+>FreeBSD необходим свой раздел на Вашем жестком диске. В FreeBSD этот
+первичный раздел называется "<I
+CLASS="EMPHASIS"
+>slice</I
+>". На первичном разделе с помощью
+программы  <TT
+CLASS="LITERAL"
+>disklabel</TT
+>, можно создать до восьми подразделов . В FreeBSD эти
+логические разделы называют <I
+CLASS="EMPHASIS"
+>``partitions''</I
+> . Эта концепция подобна Linux (и
+DOS) с разбивкой расширенного раздела на логические. FreeBSD нельзя
+устанавливать в расширенный раздел, сделанный Linux (или DOS). Обратите
+внимание, что Linux-программа  <TT
+CLASS="LITERAL"
+>fdisk</TT
+> не показывает "partition"-разделы из
+основного меню, но она может это делать при помощи команды "b". Это
+выглядит примерно так (<TT
+CLASS="FILENAME"
+>/dev/hda4</TT
+> - это "slice"-раздел  FreeBSD):
+
+<PRE
+CLASS="SCREEN"
+>&#13;bash# fdisk /dev/hda
+
+Command (m for help): p
+
+Disk /dev/hda: 64 heads, 63 sectors, 621 cylinders
+Units = cylinders of 4032 * 512 bytes
+
+   Device Boot   Begin    Start      End   Blocks   Id  System
+/dev/hda1   *        1        1       27    54400+  83  Linux native
+/dev/hda2           28       28       55    56448   83  Linux native
+/dev/hda3           56       56      403   701568   83  Linux native
+/dev/hda4          404      404      621   439488   a5  BSD/386
+
+Command (m for help): b
+Reading disklabel of /dev/hda4 at sector 1624897.
+
+BSD disklabel command (m for help): p
+
+8 partitions:
+#        size   offset    fstype   [fsize bsize   cpg]
+  a:    64512  1624896    4.2BSD        0     0     0   # (Cyl.  404 - 419)
+  b:   104832  1689408      swap                        # (Cyl.  420 - 445)
+  c:   878976  1624896    unused        0     0         # (Cyl.  404 - 621)
+  e:    64512  1794240    4.2BSD        0     0     0   # (Cyl.  446 - 461)
+  f:   645120  1858752    4.2BSD        0     0     0   # (Cyl.  462 - 621)
+
+BSD disklabel command (m for help): q
+bash#</PRE
+></P
+><P
+>Буквы `a'...`f' в первой колонке соответствуют тому, что выводит программа
+disklabel FreeBSD (колонка Id). Первые три раздела - специальные. Буква `a'
+определяет корневой раздел, `b' определяет раздел подкачки в то время, как
+`c' определяет весь  "slice"-раздел. Смотрите документацию к FreeBSD для
+получения большей информации об этих буквах и различных типах разделов.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN42"
+>2.2. Раздел Linux. Сравнение Linux и FreeBSD.</A
+></H2
+><P
+>Названия жестких дисков в Linux и FreeBSD: 
+<PRE
+CLASS="SCREEN"
+>                           Linux           FreeBSD
+Первичный IDE винчестер   /dev/hda        /dev/wd0
+Вторичный IDE винчестер   /dev/hdb        /dev/wd1
+Первичный SCSI винчестер  /dev/sda        /dev/sd0
+Вторичный SCSI винчестер  /dev/sdb        /dev/sd1</PRE
+>&#13;</P
+><P
+>Названия разделов (в FreeBSD "slices"-разделов) на IDE-винчестере (например, <TT
+CLASS="FILENAME"
+>/dev/hda</TT
+>): 
+<PRE
+CLASS="SCREEN"
+>                                Linux           FreeBSD
+Первый первичный раздел         /dev/hda1       /dev/wd0s1
+Второй первичный раздел         /dev/hda2       /dev/wd0s2
+Третий первичный раздел         /dev/hda3       /dev/wd0s3
+Четвертый первичный раздел      /dev/hda4       /dev/wd0s4</PRE
+></P
+><P
+>Названия разделов "partitions" в моей системе FreeBSD. Эти наименования вы получите по умолчанию. Вы можете изменить их, если выберете выборочную установку FreeBSD (<TT
+CLASS="FILENAME"
+>/dev/hda4</TT
+> - это FreeBSD "slice" раздел): 
+<PRE
+CLASS="SCREEN"
+>Linux наимен.   FreeBSD наимен.   FreeBSD точка монтирования 
+/dev/hda5       /dev/wd0s4a       /
+/dev/hda6       /dev/wd0s4b       swap
+/dev/hda7       /dev/wd0s4e       /var
+/dev/hda8       /dev/wd0s4f       /usr</PRE
+></P
+><P
+>Если Вы запустите <TT
+CLASS="LITERAL"
+>dmesg</TT
+> в Linux, то вы увидите примерно следующее (Ядро
+linux должно быть собранно с <I
+CLASS="EMPHASIS"
+>поддержкой файловой системы UFS</I
+>. См. главу
+Установка и настройка Linux):
+<PRE
+CLASS="SCREEN"
+>hda: hda1 hda2 hda3 hda4 &#60; hda5 hda6 hda7 hda8 &#62;</PRE
+></P
+><P
+>Если система FreeBSD у Вас установлена  в раздел <TT
+CLASS="FILENAME"
+>/dev/sd1s3</TT
+> (<TT
+CLASS="FILENAME"
+>/dev/sdb3</TT
+> в Linux), а <TT
+CLASS="FILENAME"
+>/dev/sdb2</TT
+> - это расширенный раздел Linux, содержащий два логических раздела (<TT
+CLASS="FILENAME"
+>/dev/sdb5</TT
+> и <TT
+CLASS="FILENAME"
+>/dev/sdb6</TT
+>), то предыдущий пример будет выглядеть так: 
+<PRE
+CLASS="SCREEN"
+>Linux наимен.   FreeBSD наимен.   FreeBSD точка монтирования 
+/dev/sdb7       /dev/sd1s3a       /
+/dev/sdb8       /dev/sd1s3b       swap
+/dev/sdb9       /dev/sd1s3e       /var
+/dev/sdb10      /dev/sd1s3f       /usr</PRE
+></P
+><P
+>Это будет показано <TT
+CLASS="LITERAL"
+>dmesg</TT
+> как: 
+<PRE
+CLASS="SCREEN"
+>Partition check:
+ sdb: sdb1 sdb2 &#60; sdb5 sdb6 &#62; sdb3 &#60; sdb7 sdb8 sdb9 sdb10 &#62;</PRE
+></P
+><P
+>Если расширенный раздел Linux находится <I
+CLASS="EMPHASIS"
+>после</I
+>  "slice"-раздела FreeBSD, то
+у Вас могут возникнуть некоторые проблемы, т.к. обычно Linux инсталлируется
+без поддержки UFS. В этом случае, он не будет распознавать разделение внутри
+"slice"-раздела FreeBSD. Данная ситуация может выглядеть следующим образом
+(<TT
+CLASS="FILENAME"
+>/dev/hda3</TT
+> "slice"-раздел FreeBSD, а <TT
+CLASS="FILENAME"
+>/dev/hda4</TT
+> - это расширенный раздел
+Linux) с поддержкой UFS:
+
+<PRE
+CLASS="SCREEN"
+>Partition check:
+ hda: hda1 hda2 hda3 &#60; hda5 hda6 hda7 hda8 &#62; hda4 &#60; hda9 hda10 &#62;</PRE
+>
+без нее:
+<PRE
+CLASS="SCREEN"
+>Partition check:
+ hda: hda1 hda2 hda3 hda4 &#60; hda5 hda6 &#62;</PRE
+></P
+><P
+>Из-за этого Вы можете получить неправильные названия устройств и даже
+потерять некоторую информацию. Мой совет: <I
+CLASS="EMPHASIS"
+>всегда располагайте ваш
+"slice"-раздел FreeBSD  после расширенных разделов Linux и не изменяйте
+никакие логические разделы в расширенном разделе Linux, после установки
+FreeBSD!</I
+></P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN74"
+>3. Совместное использование области подкачки в Linux и FreeBSD.</A
+></H1
+><P
+>В этом разделе содержится информация о том, как мне удалось добиться того,
+чтобы Linux и FreeBSD использовали общую область подкачки. Возможно,
+существует и другой путь добиться того же результата. Вы можете установить
+FreeBSD до установки Linux, только обратите внимание на порядок разделов
+внутри "slice"-раздела.</P
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="INSTALLLINUX"
+>3.1. Установка и настройка Linux</A
+></H2
+><P
+>Первый шаг описывает нормальную установку Linux. Вы должны на жестком диске
+оставить место для FreeBSD. Не создавайте в Linux раздел подкачки, но если
+Вы очень хотите сделать его, то разместите его туда, куда затем установите
+FreeBSD. Таким образом, потом Вы сможете удалить этот раздел и использовать
+место для установки FreeBSD.</P
+><P
+>Когда Вы установите Linux, необходимо пересобрать ядро. Прочитайте <I
+CLASS="EMPHASIS"
+>The
+Linux Kernel HOWTO</I
+>, если еще никогда этого не делали. Вы должны ответить
+``y'' на <I
+CLASS="EMPHASIS"
+>UFS filesystem support (read only)</I
+> и <I
+CLASS="EMPHASIS"
+>BSD disklabel (FreeBSD
+partition tables) support</I
+>:
+<PRE
+CLASS="SCREEN"
+>UFS filesystem support (read only) (CONFIG_UFS_FS) [N/y/m/?] y
+BSD disklabel (FreeBSD partition tables) support (CONFIG_BSD_DISKLABEL) [N/y/?]
+(NEW) y</PRE
+>&#13;</P
+><P
+>Установите новое ядро и перезагрузитесь. Уберите все строки, в которых есть
+слово <I
+CLASS="EMPHASIS"
+>swap</I
+> из файла  <TT
+CLASS="FILENAME"
+>/etc/fstab</TT
+>, если у Вас есть раздел подкачки Linux.
+Удостоверьтесь в том, что теперь у Вас система работает с новым ядром.
+Теперь можно устанавливать FreeBSD.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN88"
+>3.2. Установка FreeBSD</A
+></H2
+><P
+>Установите FreeBSD в соответствии с документацией. Удалите раздел подкачки
+Linux, если он у Вас есть (можете использовать для этого FreeBSD <TT
+CLASS="LITERAL"
+>fdisk</TT
+>).
+Обратите внимание на порядок разделения ``slice''-раздела FreeBSD. Если Вы
+используете разбивку по умолчанию, то второй "partition"-раздел(подраздел)
+будет разделом подкачки. Завершите установку и загрузите Linux, <I
+CLASS="EMPHASIS"
+>используя
+загрузочную дискету с новым ядром</I
+>.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN93"
+>3.3. Настройка области подкачки FreeBSD для использования в Linux</A
+></H2
+><P
+>Запустите  <TT
+CLASS="LITERAL"
+>dmesg</TT
+>, когда загрузитесь в Linux. Вы должны увидеть следующее: 
+<PRE
+CLASS="SCREEN"
+>Partition check:
+ hda: hda1 hda2 hda3 hda4 &#60; hda5 hda6 hda7 hda8 &#62;</PRE
+></P
+><P
+>Это значит, что <TT
+CLASS="FILENAME"
+>/dev/hda4</TT
+> - это "slice"-раздел FreeBSD, а <TT
+CLASS="FILENAME"
+>/dev/hda5</TT
+>,
+<TT
+CLASS="FILENAME"
+>/dev/hda6</TT
+>, <TT
+CLASS="FILENAME"
+>/dev/hda7</TT
+> и <TT
+CLASS="FILENAME"
+>/dev/hda8</TT
+> - "partitions"-разделы FreeBSD. Если у Вас
+разделом подкачки является второй "partition"-раздел на "slice"-разделе, то
+это будет <TT
+CLASS="FILENAME"
+>/dev/hda6</TT
+>.</P
+><P
+>В Linux вы должны добавить строку в файл <TT
+CLASS="FILENAME"
+>/etc/fstab</TT
+>, чтобы разрешить
+использование раздела подкачки:
+<PRE
+CLASS="SCREEN"
+>/dev/hda6	none		swap		sw		0	0</PRE
+></P
+><P
+>FreeBSD сразу может использовать этот раздел подкачки,
+Linux же нуждается в специальном указании на него. Оно может быть сделано
+<TT
+CLASS="LITERAL"
+>mkswap</TT
+>. <TT
+CLASS="LITERAL"
+>mkswap</TT
+> необходимо запускать каждый раз при перезагрузке Linux,
+однако, при желании Вы можете автоматизировать эту процедуру. Для этого Вам
+надо найти файл, который запускает  <TT
+CLASS="LITERAL"
+>swapon</TT
+> при загрузке. В Red Hat Linux
+это <TT
+CLASS="FILENAME"
+>/etc/rc.d/rc.sysinit</TT
+>. Добавьте в этот файл до строки <TT
+CLASS="LITERAL"
+>swapon -a</TT
+>
+следующую строку:
+<PRE
+CLASS="SCREEN"
+>awk -- '/swap/ &#38;&#38; ($1 !~ /#/) { system("mkswap "$1"") }' /etc/fstab</PRE
+></P
+><P
+>Это обеспечит запуск, при загрузке системы, команды <TT
+CLASS="LITERAL"
+>mkswap</TT
+> для всех разделов
+подкачки, заданных в файле <TT
+CLASS="FILENAME"
+>/etc/fstab</TT
+>.</P
+><P
+>После перезагрузки запустите <TT
+CLASS="LITERAL"
+>free</TT
+> для проверки размера раздела подкачки.
+Затем загрузитесь в FreeBSD, чтобы быть уверенным, что все работает. Если
+Вы не получили желаемого результата, то, скорее всего, Вы использовали не
+тот раздел. В этом случае, попробуйте переустановить FreeBSD. Повторение -
+мать учения ;-)</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN120"
+>4. Загрузка FreeBSD с использованием LILO</A
+></H1
+><P
+>Вы можете легко загрузить FreeBSD, используя LILO. Не устанавливайте
+загрузчик FreeBSD (<TT
+CLASS="LITERAL"
+>Booteasy</TT
+>), если хотите использовать LILO. Добавьте
+следующие строки в файл <TT
+CLASS="FILENAME"
+>/etc/lilo.conf</TT
+> и запустите <TT
+CLASS="LITERAL"
+>lilo</TT
+> (я предполагаю, что
+"slice"-раздел FreeBSD - это /dev/hda4):
+
+<PRE
+CLASS="SCREEN"
+>other=/dev/hda4
+	table=/dev/hda
+	label=FreeBSD</PRE
+></P
+><P
+>Если Ваш FreeBSD установлен на второе SCSI-устройство, используйте
+что-нибудь типа ("slice"-раздел FreeBSD - это <TT
+CLASS="FILENAME"
+>/dev/sdb2</TT
+>):
+<PRE
+CLASS="SCREEN"
+>other=/dev/sdb2
+	table=/dev/sdb
+	loader=/boot/chain.b
+	label=FreeBSD</PRE
+></P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN130"
+>5. Подключение файловых систем</A
+></H1
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN132"
+>5.1. Подключение файловой системы UFS под Linux</A
+></H2
+><P
+>К сожалению, драйвер UFS не поддерживается ядром Linux 2.0.хх. Если Вы
+попробуете подключить файловую систему FreeBSD, то получите сообщение об
+ошибке (фактически файловая система подключается, но Вы ничего не можете с
+ней делать). Эта проблема решена в более поздних версиях ядра (2.1.87 и
+выше).</P
+><P
+>На <A
+HREF="ftp://metalab.unc.edu/pub/Linux/ALPHA/ufs/"
+TARGET="_top"
+>metalab.unc.edu</A
+> есть другой драйвер UFS для ядра Linux 2.0.xx (xx &#60;= 30)
+. Он называется <I
+CLASS="EMPHASIS"
+>U2FS</I
+>. В настоящее время это файл  <TT
+CLASS="LITERAL"
+>u2fs-0.4.3.tar.gz</TT
+>. Версию
+U2FS (<TT
+CLASS="LITERAL"
+>ufs-0.4.4.tar.gz</TT
+>) для Linux 2.0.31 и выше (2.0.xx; не 2.1.xx) можно
+найти на <A
+HREF="http://www.mathi.uni-heidelberg.de/~flight/projects/u2fs/"
+TARGET="_top"
+>этом сайте</A
+>. Там же есть дополнительная информация по U2FS (и UFS).</P
+><P
+>Теперь вы можете заново собрать ядро с поддержкой файловой системы U2FS.
+См. главу установка и настройка Linux для получения большей информации об
+этом. Также Вы можете убрать <I
+CLASS="EMPHASIS"
+>поддержку</I
+> файловой системы UFS из ядра, т.к.
+теперь будете использовать U2FS.</P
+><P
+>Когда Вы установите новое ядро, подключите файловую систему UFS
+(все "partition"-разделы, кроме раздела подкачки) командой вида:
+<PRE
+CLASS="SCREEN"
+>mount -t u2fs /dev/hda8 /mnt</PRE
+></P
+><P
+>Также можно использовать команду 
+
+<PRE
+CLASS="SCREEN"
+>mount -t ufs /dev/hda8 /mnt</PRE
+>
+
+если у Вас ядро версии 2.1.87 или выше. Начиная с ядра версии 2.1.112 Вы
+можете добавить -o ufstype=44bsd командой типа:
+
+<PRE
+CLASS="SCREEN"
+>mount -t ufs -o ufstype=44bsd /dev/hda8 /mnt</PRE
+></P
+><P
+>UFS (и U2FS) драйвер позволяет подключать файловую систему только для
+чтения. Это значит, что Вы сможет прочитать информацию с подключенной
+файловой системы UFS, но не сможете ничего записать. Экспериментальная
+версия драйвера, поддерживающего чтение и запись UFS, работает с ядром
+2.1.112 и выше; возможность записи в FreeBSD-раздел поддерживается ядром,
+начиная с версии 2.1.127.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="EXT2FS"
+>5.2. Подключение файловой системы ext2fs под FreeBSD</A
+></H2
+><P
+>Чтобы подключить файловую систему ext2fs в FreeBSD, вы должны собрать новое
+ядро с поддержкой ext2fs. Прочитайте <A
+HREF="http://www.freebsd.org/handbook/"
+TARGET="_top"
+>the FreeBSD handbook</A
+>, чтобы узнать, как
+это делается. Вставьте строку
+
+
+<PRE
+CLASS="SCREEN"
+>options		"EXT2FS"</PRE
+>&#13;</P
+><P
+>Затем, когда Вы загрузитесь с только что собранным ядром,
+подключите файловую систему ext2fs командой:
+mount -t ext2fs /dev/wd0s3 /mnt</P
+><P
+>Если Вы используете FreeBSD версии 2.2.8 и ранее, то отключайте
+все файловые системы ext2fs до перезагрузки FreeBSD. Если Вы перезагрузите
+FreeBSD с подключенной файловой системой ext2fs, FreeBSD не сможет
+синхронизировать файловые системы UFS. В результате этого, при последующей
+загрузке автоматически запустится  <TT
+CLASS="LITERAL"
+>fsck</TT
+>. Вы можете работать, не обращая
+внимания на эту ошибку системы, если будете всегда отключать
+ext2fs-разделы. Для автоматического отключения всех файловых систем ext2fs,
+можно вставить строку:
+
+<PRE
+CLASS="SCREEN"
+>umount -a -t ext2fs</PRE
+>
+
+в файл <TT
+CLASS="FILENAME"
+>/etc/rc.shutdown</TT
+>. Данная ошибка была исправлена в ядре FreeBSD версий 3.x. </P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN159"
+>6. Запуск программ</A
+></H1
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN161"
+>6.1. Запуск программ FreeBSD под Linux</A
+></H2
+><P
+>Пакет <TT
+CLASS="LITERAL"
+>iBCS</TT
+> поддерживает запуск программ FreeBSD под Linux, но у меня не
+получилось сделать это. Пожалуйста, сообщите мне, если у Вас получится.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN165"
+>6.2. Запуск программ Linux под FreeBSD</A
+></H2
+><P
+>FreeBSD поддерживает программы Linux. Чтобы работать с ними, необходимо проделать следующее: </P
+><P
+>&#13;<P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>Разрешите совместимость с Linux. Для этого нужно отредактировать файл
+<TT
+CLASS="FILENAME"
+>/etc/rc.conf</TT
+> (в FreeBSD 2.2.2, в других версиях могут быть незначительные
+отличия). Исправьте строку
+<PRE
+CLASS="SCREEN"
+>linux_enable="NO"</PRE
+>
+на
+<PRE
+CLASS="SCREEN"
+>linux_enable="YES"</PRE
+>
+
+и перезагрузитесь. Кроме того, можно разрешить FreeBSD поддержку бинарных
+файлов Linux, запустив <TT
+CLASS="FILENAME"
+>/usr/bin/linux</TT
+>. После этого не надо перезагружаться.
+Этот вариант хорош тем, что позволяет экономить память и запускать
+поддержку бинарных файлов Linux только тогда, когда это необходимо. Если Вы
+решите пересобрать ядро, то не забудьте добавить строку
+
+<PRE
+CLASS="SCREEN"
+>options		COMPAT_LINUX</PRE
+>
+
+в файл конфигурации ядра. &#13;</P
+></LI
+><LI
+><P
+>Если Ваши бинарные файлы Linux связаны динамически, то необходимо
+установить библиотеки, которые включены в FreeBSD 2.2.{2,5,6}  в
+пакете <TT
+CLASS="LITERAL"
+>linux_lib-2.4.tgz</TT
+> (версия может быть новее). Установите пакет
+следующей командой:
+
+<PRE
+CLASS="SCREEN"
+>pkg_add &#60;path_to_package&#62;/linux_lib-2.4.tgz</PRE
+>
+
+&lt;путь_к_пакету&gt; это каталог, где находится данный пакет. Также можно установить его из сети: 
+
+<PRE
+CLASS="SCREEN"
+>pkg_add ftp://ftp.freebsd.org/pub/FreeBSD/packages-stable/All/linux_lib-2.4.tgz</PRE
+>
+
+или запустив <TT
+CLASS="FILENAME"
+>/stand/sysinstall</TT
+>. Войдите в пункт "Configure", затем
+"Packages". Если Ваши бинарные файлы Linux связаны статически , то выполните следующую команду:
+
+<PRE
+CLASS="SCREEN"
+>brandelf -t Linux &#60;name_of_statically_linked_linux_binary&#62;</PRE
+>&#13;</P
+></LI
+><LI
+><P
+>Установите программу Linux, которую Вы хотите запустить. Программа может
+быть установлена на файловую систему UFS или ex2fs. См. раздел "<A
+HREF="Linux+FreeBSD.html#EXT2FS"
+><I
+>Подключение файловой системы ext2fs под FreeBSD</I
+></A
+>" для получения большей информации об
+использовании раздела с файловой системой ext2fs под FreeBSD.&#13;</P
+></LI
+></OL
+>&#13;</P
+><P
+>Я успешно запускал Linux версии Applixware 4.3 и Netscape 3.01 (и то, и
+другое ELF формата) под FreeBSD 2.2.2, используя вышеизложенный метод (да, я
+знаю, что существует Netscape 4 под FreeBSD). Linux версии acroread и
+StarOffice 3 и 4 также хорошо работают под FreeBSD. StarOffice 5 в
+настоящее время не работает под FreeBSD. Читайте документацию по FreeBSD
+для получения большего количества информации по этой теме.</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN188"
+>7. Ссылки на информационные ресурсы</A
+></H1
+><P
+>Последнюю версию этого mini-HOWTO можно найти на <A
+HREF="http://www.image.dk/~nkbj/"
+TARGET="_top"
+>этом сайте</A
+> в нескольких
+форматах (включая sgml и PostScript). Документ был перведен на японский Mr.
+Teruyoshi Fujiwara в рамках <A
+HREF="ftp://jf.linux.or.jp/pub/JF/other-formats/"
+TARGET="_top"
+>проекта JF</A
+>.
+&#13;</P
+><P
+><A
+HREF="http://www.futuresouth.com/~fullermd/freebsd/bsdvlin.html"
+TARGET="_top"
+>Здесь</A
+> вы можете найти несколько статей о различиях между Linux и FreeBSD.</P
+><P
+>Вы можете найти достаточно информации по системе FreeBSD (включая и ее саму) на
+<A
+HREF="http://www.freebsd.org/"
+TARGET="_top"
+>этом сайте</A
+>. Также можно купить компакт-диски на Walnut Creek CDROM (их
+сервера работают под FreeBSD).</P
+><P
+>Linux Kernel HOWTO и этот mini-HOWTO реализованы в рамках проекта <A
+HREF="http://www.linuxdoc.org/"
+TARGET="_top"
+>The Linux Documentation Project</A
+>.</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN199"
+>8. Благодарности и юридическая информация</A
+></H1
+><P
+>Спасибо членам команды <A
+HREF="http://www.bsd-dk.dk/"
+TARGET="_top"
+>*BSD user group in Denmark</A
+> за ответы на вопросы по
+FreeBSD, Mr. Takeshi Okazaki за то, что обратил мое внимание на U2FS, и Mr.
+David O'Brien за ценные предложения.</P
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN203"
+>8.1. Юридическая информация</A
+></H2
+><P
+>Все торговые знаки являются собственностью их владельцев.</P
+><P
+>Хотя, как мне кажется, информация в данном документе абсолютно правильна,
+автор не берет на себя ответственности за ошибки, возникшие в результате
+использования данного mini-HOWTO. Используйте его на свой собственный страх
+и риск.</P
+><P
+>Copyright &copy; 1997-2000 by Niels Kristian Bech Jensen. This document
+may be distributed only subject to the terms and conditions set forth in the
+LDP License at <A
+HREF="http://www.linuxdoc.org/COPYRIGHT.html"
+TARGET="_top"
+>http://www.linuxdoc.org/COPYRIGHT.html</A
+>.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN209"
+>8.2. Авторские права</A
+></H2
+><P
+>Авторские права на русский перевод этого текста принадлежат &copy; 2000 SWSoft Pte Ltd.
+Все права зарезервированы.</P
+><P
+>Этот документ является частью проекта Linux HOWTO.</P
+><P
+>Авторские права на документы Linux HOWTO принадлежат их авторам, если явно
+не указано иное. Документы Linux HOWTO, а также их переводы, могут
+быть воспроизведены и распространены полностью или частично на любом
+носителе, физическом или электронном, при условии сохранения этой заметки об
+авторских правах на всех копиях. Коммерческое распространение разрешается и
+поощряется; но, так или иначе, автор текста и автор перевода желали бы знать о
+таких дистрибутивах.</P
+><P
+>Все переводы и производные работы, выполненные по документам Linux HOWTO,
+должны сопровождаться этой заметкой об авторских правах. Это делается в
+целях предотвращения случаев наложения дополнительных ограничений на
+распространение документов HOWTO. Исключения могут составить случаи
+получения специального разрешения у координатора Linux HOWTO, с которым
+можно связаться по адресу приведенному ниже.</P
+><P
+>Мы бы хотели распространить эту информацию по всем возможным каналам. Но
+при этом сохранить авторские права и быть уведомленными о всех планах
+распространения HOWTO. Если у вас возникли вопросы, пожалуйста, обратитесь
+к координатору проекта Linux HOWTO по электронной почте:
+<TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:linux-howto@metalab.unc.edu"
+>linux-howto@metalab.unc.edu</A
+>&#62;</TT
+> или к координатору русского
+перевода Linux HOWTO компании SWSoft Pte Ltd. по адресу
+<TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:linux-howto@asplinux.ru"
+>linux-howto@asplinux.ru</A
+>&#62;</TT
+></P
+></DIV
+></DIV
+></DIV
+></BODY
+></HTML
+>

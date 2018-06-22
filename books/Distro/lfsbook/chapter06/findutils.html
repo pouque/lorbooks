@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>Installing Findutils-4.1</title><meta name="GENERATOR" content="Microsoft FrontPage 4.0" /=""><link rel="HOME" title="Linux From Scratch" href="http://www.linuxfromscratch.org/view/4.0/index.html" /=""><link rel="UP" title="Installing basic system software" href="http://www.linuxfromscratch.org/view/4.0/chapter06/chapter06.html" /=""><link rel="PREVIOUS" title="Installing Zlib-1.1.4" href="http://www.linuxfromscratch.org/view/4.0/chapter06/zlib.html" /=""><link rel="NEXT" title="Installing Gawk-3.1.1" href="http://www.linuxfromscratch.org/view/4.0/chapter06/gawk.html" /=""></head><body class="sect1" bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#840084" alink="#006000"><div class="NAVHEADER"><table summary="Header navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><th colspan="3" align="Center">Linux From Scratch: Версия 4.0</th></tr><tr><td width="10%" align="Left" valign="Bottom"><a href="zlib.html" accesskey="P">Назад</a></td><td width="80%" align="Center" valign="Bottom">Chapter 6. Installing basic system software</td><td width="10%" align="Right" valign="Bottom"><a href="gawk.html" accesskey="N">Вперед</a></td></tr></tbody></table><hr align="Left" width="100%" /=""></div><div class="sect1"><h1 class="sect1"><a name="ch06-findutils">Установка Findutils-4.1</a></h1><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen">Приблизительное время компиляции:           0.10 SBU<br>Необходимое место на диске:  3 MB</pre></td></tr></tbody></table><div class="sect2"><h2 class="sect2"><a name="AEN2758">Инсталляция Findutils</a></h2><p>Перед установкой пакета примените патч.
+    Удостоверьтесь, что патч и пакет
+    распакованы перед инсталляцией.</p><p>Для инсталляции Findutils выполните:</p><p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>patch -Np1 -i ../findutils-4.1.patch &amp;&amp;<br>./configure --prefix=/usr &amp;&amp;<br>make libexecdir=/usr/bin &amp;&amp;<br>make libexecdir=/usr/bin install</b></tt></pre></td></tr></tbody></table></p></div><div class="sect2"><h2 class="sect2">Замечания по соответствию <a name="AEN2765">FHS</a></h2><p>По умолчанию, база данных updatedb находится /usr/var.
+    Если вы хотите полного соответствия со
+    стандартом FHS, установите ее в другом
+    месте. Приведенные ниже команды
+    используют совместимый с FHS файл базы
+    данных 
+<tt class="filename">/var/lib/misc/locatedb</tt>.</p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>patch -Np1 -i ../findutils-4.1.patch &amp;&amp;<br>./configure --prefix=/usr &amp;&amp;<br>make localstatedir=/var/lib/misc libexecdir=/usr/bin &amp;&amp;<br>make localstatedir=/var/lib/misc libexecdir=/usr/bin install</b></tt></pre></td></tr></tbody></table></div><div class="sect2"><h2 class="sect2"><a name="AEN2772">Пояснения команд</a></h2><p><tt class="userinput"><b>patch -Np1 -i ../findutils-4.1.patch</b></tt>: Этот патч исправляет некоторые ошибки при
+    компиляции, избегая конфликта переменных
+    и поправляя синтаксис.</p></div><div class="sect2">
+<div class="sect2"><h2 class="sect2"><a name="AEN6686">Содержимое Findutils</a></h2><p>Последняя проверка: версия 4.1.</p><div class="sect3"><h3 class="sect3"><a name="AEN6689">Программы</a></h3><p>bigram, code, find, frcode, locate, updatedb и xargs</p></div><div class="sect3"><h3 class="sect3"><a name="AEN6692">Описания</a></h3><div class="sect4"><h4 class="sect4"><a name="AEN6694">bigram</a></h4><p>bigram используется вместе с code для создания поисковых баз старого типа.
+Больше информации об этих программах приведено на locatedb.5  man page.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6697">code</a></h4><p>code - предшественник frcode. Он использовался в старых поисковых базах.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6700">find</a></h4><p>find ищет файлы, отвечающие заданному критерию. Если критерий не задан,
+выводится список файлов в текущем каталоге и каталогах нижнего уровня.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6703">frcode</a></h4><p>frcode вызывается updatedb для сжатия списка файлов, используя front-compression 
+и уменьшая размер базы данных в 4-5 раз.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6706">locate</a></h4><p>locate просматривает базу данных, содержащую сведения обо всех файлах и
+каталогах на файловой системе. Программа выводит имена файлов и каталогов 
+в базе, совпадающие с заданным критерием. Если пользователь ищет файлы, программа 
+просмотрит базу и сообщит, где находятся запрошенные файлы. Поиск даст результаты,
+только если база часто обновляется, иначе будет выдана устаревшая информация.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6709">updatedb</a></h4><p>updatedb обновляет поисковую базу. Просматривается вся файловая система 
+(включая все смонтированные, если не указано обратное), каждый найденный файл
+и каталог записывается в базу, используемую locate. Неплохо обновлять базу
+хотя бы раз в день, чтобы избежать ее устаревания.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6712">xargs</a></h4><p>xargs выполняет команду относительно списка файлов. Список должен содержать
+одно имя в строке.</p></div></div></div>
+<div class="sect2"><h2 class="sect2"><a name="AEN6715">Зависимости Findutils</a></h2><p>Последняя проверка: версия 4.1.</p><p class="literallayout">Bash: sh<br>
+  Binutils: ar, as, ld, ranlib<br>
+  Diffutils: cmp<br>
+  Fileutils: chmod, cp, install, mv, rm<br>
+  Grep: egrep, grep<br>
+  Gcc: cc1, collect2, cpp0, gcc<br>
+  Make: make<br>
+  Patch: patch<br>
+  Sed: sed<br>
+  Sh-utils: basename, date, echo, hostname<br>
+  Textutils: cat, tr</p></div>
+<h2 class="sect2"></h2></div></div><div class="NAVFOOTER"><hr align="Left" width="100%" /=""><table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="33%" align="Left" valign="Top"><a href="zlib.html" accesskey="P">Назад</a></td><td width="34%" align="Center" valign="Top"><a href="../index.html" accesskey="H">Домой</a></td><td width="33%" align="Right" valign="Top"><a href="gawk.html" accesskey="N">Вперед</a></td></tr><tr><td width="33%" align="Left" valign="Top">Установка Zlib-1.1.4</td><td width="34%" align="Center" valign="Top"><a href="chapter06.html" accesskey="U">Наверх</a></td><td width="33%" align="Right" valign="Top">Установка Gawk-3.1.1</td></tr></tbody></table></div></body></html>

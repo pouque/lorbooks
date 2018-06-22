@@ -1,0 +1,144 @@
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=koi8-r">
+   <TITLE> Configuration HOWTO</TITLE>
+<LINK HREF="Config-HOWTO-1.html" REL=next>
+</HEAD>
+<BODY>
+<?php include("/home/maxcom/linux_html/books/head.php3") ?>
+<A HREF="Config-HOWTO-1.html">Next</A> Previous Contents&nbsp;&nbsp;&nbsp;
+<HR>
+<H1>
+Configuration HOWTO</H1>
+
+<H2>
+By Guido Gonzato, <TT><A HREF="mailto:guido@ibogfs.cineca.it">guido@ibogfs.cineca.it<BR>
+</A></TT>перевод Shepelevich Konstantin <TT><A HREF="mailto:sh_ki@hotmail.com">sh_ki@hotmail.com</A></TT>
+, Киев, Украина</H2>
+
+<H4>
+v1.2.2, 10 April 1998</H4>
+
+<HR>
+<BR><I>Этот HOWTO&nbsp; помогает сделать хорошую настройку вашего&nbsp;
+только-что инсталированного Linux&nbsp; быстрее и легче.&nbsp; Здесь вы
+найдете&nbsp; набор&nbsp; настроек для наиболее общих приложений, таким
+образом вы сможете начать работать с хорошо&nbsp; подготовленной системой.</I>&nbsp;
+<HR>
+<H2>
+<A NAME="toc1"></A>1. <A HREF="Config-HOWTO-1.html">Введение</A></H2>
+
+<UL>
+<LI>
+<A HREF="Config-HOWTO-1.html#ss1.1">1.1 Почему этот HOWTO</A></LI>
+
+<LI>
+<A HREF="Config-HOWTO-1.html#ss1.2">1.2 Что мы будем настраивать</A></LI>
+</UL>
+
+<H2>
+<A NAME="toc2"></A>2. <A HREF="Config-HOWTO-2.html">Общая настройка системы</A></H2>
+
+<UL>
+<LI>
+<A HREF="Config-HOWTO-2.html#ss2.1">2.1 Клавиатура</A></LI>
+
+<LI>
+<A HREF="Config-HOWTO-2.html#ss2.2">2.2 Ядро</A></LI>
+
+<LI>
+<A HREF="Config-HOWTO-2.html#ss2.3">2.3 Подвисание <TT>sendmail</TT></A></LI>
+
+<LI>
+<A HREF="Config-HOWTO-2.html#ss2.4">2.4 Производительность жесткого диска</A></LI>
+
+<LI>
+<A HREF="Config-HOWTO-2.html#ss2.5">2.5 Zip-диск на паралельном порте</A></LI>
+
+<LI>
+<A HREF="Config-HOWTO-2.html#ss2.6">2.6 Драйверы устройств</A></LI>
+
+<LI>
+<A HREF="Config-HOWTO-2.html#ss2.7">2.7 Приветствие при загрузке</A></LI>
+
+<LI>
+<A HREF="Config-HOWTO-2.html#ss2.8">2.8 Имя машины</A></LI>
+
+<LI>
+<A HREF="Config-HOWTO-2.html#ss2.9">2.9 Мышь</A></LI>
+
+<LI>
+<A HREF="Config-HOWTO-2.html#ss2.10">2.10 Точки монтирования</A></LI>
+
+<LI>
+<A HREF="Config-HOWTO-2.html#ss2.11">2.11 <TT>lilo</TT>(8) и <TT>LOADLIN</TT></A></LI>
+
+<LI>
+<A HREF="Config-HOWTO-2.html#ss2.12">2.12 Настройка принтера</A></LI>
+</UL>
+
+<H2>
+<A NAME="toc3"></A>3. <A HREF="Config-HOWTO-3.html">Настройка приложений</A></H2>
+
+<UL>
+<LI>
+<A HREF="Config-HOWTO-3.html#ss3.1">3.1 <TT>bash</TT>(1)</A></LI>
+
+<LI>
+<A HREF="Config-HOWTO-3.html#ss3.2">3.2 <TT>ls</TT>(1)</A></LI>
+
+<LI>
+<A HREF="Config-HOWTO-3.html#ss3.3">3.3 <TT>less</TT>(1)</A></LI>
+
+<LI>
+<A HREF="Config-HOWTO-3.html#ss3.4">3.4 <TT>emacs</TT>(1)</A></LI>
+
+<LI>
+<A HREF="Config-HOWTO-3.html#ss3.5">3.5 <TT>joe</TT>(1)</A></LI>
+
+<LI>
+<A HREF="Config-HOWTO-3.html#ss3.6">3.6 <TT>jed</TT>(1)</A></LI>
+
+<LI>
+<A HREF="Config-HOWTO-3.html#ss3.7">3.7 <TT>efax</TT>(1)</A></LI>
+
+<LI>
+<A HREF="Config-HOWTO-3.html#ss3.8">3.8 TeX и аналоги</A></LI>
+
+<LI>
+<A HREF="Config-HOWTO-3.html#ss3.9">3.9 PPP</A></LI>
+
+<LI>
+<A HREF="Config-HOWTO-3.html#ss3.10">3.10 POP клиент</A></LI>
+
+<LI>
+<A HREF="Config-HOWTO-3.html#ss3.11">3.11 Система X Window</A></LI>
+
+<LI>
+<A HREF="Config-HOWTO-3.html#ss3.12">3.12 Фортран</A></LI>
+
+<LI>
+<A HREF="Config-HOWTO-3.html#ss3.13">3.13 Настройки пользователей</A></LI>
+
+<LI>
+<A HREF="Config-HOWTO-3.html#ss3.14">3.14 Модернизация</A></LI>
+</UL>
+
+<H2>
+<A NAME="toc4"></A>4. <A HREF="Config-HOWTO-4.html">Окончание</A></H2>
+
+<UL>
+<LI>
+<A HREF="Config-HOWTO-4.html#ss4.1">4.1 Авторские права</A></LI>
+
+<LI>
+<A HREF="Config-HOWTO-4.html#ss4.2">4.2 Обратная связь</A></LI>
+
+<LI>
+<A HREF="Config-HOWTO-4.html#ss4.3">4.3 Отречения</A></LI>
+</UL>
+
+<HR>
+<BR><A HREF="Config-HOWTO-1.html">Next</A> Previous Contents
+</BODY>
+</HTML>

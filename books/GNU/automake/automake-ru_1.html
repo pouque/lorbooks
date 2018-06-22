@@ -1,0 +1,117 @@
+<HTML>
+<HEAD>
+<!-- Created by texi2html 1.56k from automake-ru.texi on 11 July 2000 -->
+
+<TITLE>automake - Введение</TITLE>
+</HEAD>
+<BODY>
+Go to the first, previous, <A HREF="automake-ru_2.html">next</A>, <A HREF="automake-ru_25.html">last</A> section, <A HREF="automake-ru_toc.html">table of contents</A>.
+<P><HR><P>
+
+<P>
+@dircategory GNU admin
+* automake: (automake.ru).	Использование Automake. Создание Makefile.in
+
+
+<P>
+@dircategory Отдельные утилиты
+* aclocal: (automake.ru)	Использование aclocal. Создание aclocal.m4
+
+
+<P>
+Авторские права (C) 1995, 96 Free Software Foundation, Inc.
+Это первая редакция документации по GNU Automake, <BR>
+и она согласована с GNU Automake 1.4.<BR>
+Published by the Free Software Foundation <BR>
+59 Temple Place - Suite 330, <BR>
+Boston, MA 02111-1307 USA <BR>
+
+
+<P>
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+
+<P>
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+
+<P>
+Permission is granted to copy and distribute translations of this manual
+into another language, under the above conditions for modified versions,
+except that this permission notice may be stated in a translation
+approved by the Free Software Foundation.
+
+
+
+
+<H1><A NAME="SEC1" HREF="automake-ru_toc.html#TOC1">Введение</A></H1>
+
+<P>
+Automake --- это утилита для автоматического создания файлов
+<TT>`Makefile.in'</TT> из файлов <TT>`Makefile.am'</TT>. Каждый файл
+<TT>`Makefile.am'</TT> фактически является набором макросов для программы <CODE>make</CODE>
+(иногда с несколькими правилами). Полученные таким образом файлы
+<TT>`Makefile.in'</TT> соответствуют стандартам GNU Makefile.
+
+
+<P>
+<A NAME="IDX1"></A>
+
+
+<P>
+Стандарт GNU Makefile (see section `Makefile Conventions' in <CITE>The GNU Coding Standards</CITE>) --- это длинный, запутанный документ, и его
+содержание может в будущем измениться. Automake разработан для того,
+чтобы убрать бремя сопровождения Makefile с плеч человека,
+ведущего проект GNU (и взвалить его на человека, сопровождающего
+Automake).
+
+
+<P>
+Типичный входной файл Automake является просто набором макроопределений.
+Каждый такой файл обрабатывается, и из него создается файл
+<TT>`Makefile.in'</TT>. В каталоге проекта должен быть только один файл
+<TT>`Makefile.am'</TT>.
+
+
+<P>
+<A NAME="IDX2"></A>
+<A NAME="IDX3"></A>
+
+
+<P>
+Automake накладывает на проект некоторые ограничения; например, он
+предполагает, что проект использует программу Autoconf (see section `Введение' in <CITE>Руководство Autoconf</CITE>), а также налагает некоторые
+ограничения на содержимое файла <TT>`configure.in'</TT>.
+
+
+<P>
+<A NAME="IDX4"></A>
+<A NAME="IDX5"></A>
+
+
+<P>
+Automake требует наличия программы <CODE>perl</CODE> для генерации файлов
+<TT>`Makefile.in'</TT>.  Однако дистрибутив, созданный Automake, является
+полностью соответствующим стандартам GNU и не требует наличия
+<CODE>perl</CODE> для компиляции.
+
+
+<P>
+<A NAME="IDX6"></A>
+<A NAME="IDX7"></A>
+
+
+<P>
+Вы можете посылать пожелания по доработке и сообщения об ошибках
+Automake по адресу <A HREF="mailto:bug-automake@gnu.org">bug-automake@gnu.org</A>.
+
+
+<P><HR><P>
+Go to the first, previous, <A HREF="automake-ru_2.html">next</A>, <A HREF="automake-ru_25.html">last</A> section, <A HREF="automake-ru_toc.html">table of contents</A>.
+</BODY>
+</HTML>

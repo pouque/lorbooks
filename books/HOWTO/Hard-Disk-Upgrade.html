@@ -1,0 +1,1768 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Мини-HOWTO: Переход на новый жесткий диск</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.57"></HEAD
+><BODY
+CLASS="ARTICLE"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="ARTICLE"
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="TITLE"
+><A
+NAME="AEN2"
+>Мини-HOWTO: Переход на новый жесткий диск</A
+></H1
+><DIV
+CLASS="AUTHORGROUP"
+><A
+NAME="AEN4"
+></A
+><H3
+CLASS="AUTHOR"
+><A
+NAME="AEN5"
+>Yves Bellefeuille</A
+></H3
+><DIV
+CLASS="AFFILIATION"
+><DIV
+CLASS="ADDRESS"
+><P
+CLASS="ADDRESS"
+>yan@storm.ca</P
+></DIV
+></DIV
+><H3
+CLASS="AUTHOR"
+><A
+NAME="AEN11"
+>Konrad Hinsen</A
+></H3
+><DIV
+CLASS="AFFILIATION"
+><DIV
+CLASS="ADDRESS"
+><P
+CLASS="ADDRESS"
+>hinsen@cnrs-orleans.fr</P
+></DIV
+></DIV
+><H3
+CLASS="CORPAUTHOR"
+>     Перевод: <A
+HREF="mailto:sam@asp-linux.com"
+TARGET="_top"
+>Станислав Рогин</A
+>,
+     <A
+HREF="http://www.asplinux.com"
+TARGET="_top"
+>SWSoft Pte Ltd.</A
+>
+    </H3
+></DIV
+><P
+CLASS="PUBDATE"
+>Версия 2.11, 13 апреля 2000<BR></P
+><DIV
+><DIV
+CLASS="ABSTRACT"
+><A
+NAME="AEN21"
+></A
+><P
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>Как скопировать систему с Linux с одного диска на другой</I
+></P
+><P
+></P
+></DIV
+></DIV
+><HR></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Содержание</B
+></DT
+><DT
+>1. <A
+HREF="Hard-Disk-Upgrade.html#INTRODUCTION"
+>Введение</A
+></DT
+><DT
+>2. <A
+HREF="Hard-Disk-Upgrade.html#INSTALL"
+>Установите оба диска в вашу систему</A
+></DT
+><DT
+>3. <A
+HREF="Hard-Disk-Upgrade.html#UNMOUNT"
+>Отключите не-Linux разделы и сетевые диски</A
+></DT
+><DT
+>4. <A
+HREF="Hard-Disk-Upgrade.html#PARTITION"
+>Разбейте новый диск на разделы</A
+></DT
+><DT
+>5. <A
+HREF="Hard-Disk-Upgrade.html#FORMAT"
+>Отформатируйте новый диск</A
+></DT
+><DT
+>6. <A
+HREF="Hard-Disk-Upgrade.html#MOUNT"
+>Подключите новый диск</A
+></DT
+><DT
+>7. <A
+HREF="Hard-Disk-Upgrade.html#COPY"
+>Скопируйте файлы со старого диска на новый</A
+></DT
+><DT
+>8. <A
+HREF="Hard-Disk-Upgrade.html#MODIFY"
+>Исправьте необходимым образом файл <TT
+CLASS="FILENAME"
+>/new-disk/etc/fstab</TT
+></A
+></DT
+><DT
+>9. <A
+HREF="Hard-Disk-Upgrade.html#PREPARE"
+>Приготовьте <SPAN
+CLASS="ACRONYM"
+>LILO</SPAN
+> для загрузки с нового диска</A
+></DT
+><DT
+>10. <A
+HREF="Hard-Disk-Upgrade.html#BOOTDISK"
+>Создайте загрузочную дискету (необязательно)</A
+></DT
+><DT
+>11. <A
+HREF="Hard-Disk-Upgrade.html#REMOVE"
+>Уберите старый диск</A
+></DT
+><DT
+>12. <A
+HREF="Hard-Disk-Upgrade.html#REBOOT"
+>Перезагрузите систему, исправьте файл конфигурации <SPAN
+CLASS="ACRONYM"
+>LILO</SPAN
+></A
+></DT
+><DT
+>13. <A
+HREF="Hard-Disk-Upgrade.html#ACKNOWLEDGEMENTS"
+>Благодарности:</A
+></DT
+><DT
+>14. <A
+HREF="Hard-Disk-Upgrade.html#AEN466"
+>Авторские права</A
+></DT
+></DL
+></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="INTRODUCTION"
+>1. Введение</A
+></H1
+><P
+>В этом документе описывается перенос (или миграция) целой системы Linux с одного диска на другой. </P
+><P
+>В дальнейшем мы будем придерживаться следующего: <TT
+CLASS="FILENAME"
+>"/dev/hda"</TT
+> (первый жесткий диск <SPAN
+CLASS="ACRONYM"
+>IDE</SPAN
+>) означает <I
+CLASS="EMPHASIS"
+>"старый"</I
+>
+      диск, и <TT
+CLASS="FILENAME"
+>"/dev/hdb"</TT
+> (второй жесткий диск <SPAN
+CLASS="ACRONYM"
+>IDE</SPAN
+>
+      ) означает <I
+CLASS="EMPHASIS"
+>"новый"</I
+> диск.</P
+><P
+>Конкретные разделы <I
+CLASS="EMPHASIS"
+>старого</I
+> диска будут называться <TT
+CLASS="FILENAME"
+>/dev/hda1</TT
+>, <TT
+CLASS="FILENAME"
+>/dev/hda2</TT
+>
+      Конкретные разделы <I
+CLASS="EMPHASIS"
+>нового</I
+> диска будут называться <TT
+CLASS="FILENAME"
+>/dev/hdb1</TT
+>, <TT
+CLASS="FILENAME"
+>/dev/hdb2</TT
+>
+      и так далее.</P
+><P
+>Все примеры в документе испытывались на дистрибутиве Red Hat 6.0. Также они были проверены в Debian 2.1, Slackware 3.5 и SuSE 6.2; мы будем указывать на различия в дистрибутивах. </P
+><P
+>Если какие-то из команд не сработают в вашей системе, пожалуйста, дайте нам знать; не забудьте упомянуть дистрибутив и его версию.</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="INSTALL"
+>2. Установите оба диска в вашу систему</A
+></H1
+><P
+>Современные системы поддерживают четыре "<SPAN
+CLASS="ACRONYM"
+>EIDE</SPAN
+>"-устройства на одном
+контроллере жестких дисков, поэтому, в идеале, не должно возникнуть проблем
+с установкой обоих дисков в систему, даже если у вас есть еще
+"<SPAN
+CLASS="ACRONYM"
+>EIDE</SPAN
+>"-устройства. Жесткие диски и <SPAN
+CLASS="ACRONYM"
+>CD-ROM</SPAN
+> - типичные примеры
+<SPAN
+CLASS="ACRONYM"
+>EIDE</SPAN
+>-устройств. Флоппи-дисководы и стримеры обычно подключаются к
+контроллеру флоппи, очень редко к контроллеру жестких дисков.</P
+><P
+>&#13;<SPAN
+CLASS="ACRONYM"
+>SCSI</SPAN
+>-адаптеры значительно более гибки и поддерживают до семи устройств.
+Если вы являетесь счастливым (и богатым) обладателем <SPAN
+CLASS="ACRONYM"
+>SCSI</SPAN
+>-адаптера, то уже
+наверно про это знаете, и вы, возможно, знаете, какие из устройств
+являются <SPAN
+CLASS="ACRONYM"
+>SCSI</SPAN
+>! За более подробной информацией обращайтесь к HOWTO: SCSI .
+  </P
+><P
+>Даже очень старые системы поддерживают два устройства на контроллере
+жесткого диска, поэтому вы все равно сможете установить два диска
+одновременно. Однако, если у вас, в дополнение к старому диску, подключено
+еще одно дополнительное устройство (например, если у вас есть жесткий диск
+и <SPAN
+CLASS="ACRONYM"
+>CD-ROM</SPAN
+>), то придется его убрать, чтобы вместо него установить новый
+диск.</P
+><P
+>Вы также должны правильно настроить диски "главными" или "зависимыми"
+("<I
+CLASS="EMPHASIS"
+>master</I
+>" или "<I
+CLASS="EMPHASIS"
+>slave</I
+>"), соответствующим образом выставив переключатели
+("jumpers") на дисках. Обычно информация об этих настройках бывает написана
+на самих дисках; если ее нет - читайте документацию или обратитесь к
+производителю.
+
+  </P
+><P
+>Вы также обязаны проинформировать <SPAN
+CLASS="ACRONYM"
+>BIOS</SPAN
+> о наличии дисков и их "<I
+CLASS="EMPHASIS"
+>геометрии</I
+>".
+Обычно программа настройки <SPAN
+CLASS="ACRONYM"
+>BIOS</SPAN
+> запускается при запуске системы нажатием
+клавиши. Ниже приведены варианты этих клавиш для наиболее распространенных
+версий <SPAN
+CLASS="ACRONYM"
+>BIOS</SPAN
+>:
+
+      <P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>Notebook-и фирмы Acer:</DT
+><DD
+><P
+>Клавиша <B
+CLASS="KEYCAP"
+>F2</B
+> в процессе Теста-При-Включении (Power-On Self-Test (POST)) </P
+></DD
+><DT
+>American Megatrends (AMI):</DT
+><DD
+><P
+>Клавиша <B
+CLASS="KEYCAP"
+>Del</B
+> в процессе Теста-При-Включении (Power-On Self-Test (POST)) </P
+></DD
+><DT
+>Award:</DT
+><DD
+><P
+><B
+CLASS="KEYCAP"
+>Del</B
+>, или  
+	      <B
+CLASS="KEYCAP"
+>Ctrl</B
+>-<B
+CLASS="KEYCAP"
+>Alt</B
+>-<B
+CLASS="KEYCAP"
+>Esc</B
+></P
+></DD
+><DT
+>Compaq:</DT
+><DD
+><P
+>Клавиша <B
+CLASS="KEYCAP"
+>F10</B
+>после того, как в верхнем правом углу экрана появится небольшой квадрат (при включении системы) </P
+></DD
+><DT
+>Dell:</DT
+><DD
+><P
+><B
+CLASS="KEYCAP"
+>Ctrl</B
+>-<B
+CLASS="KEYCAP"
+>Alt</B
+>-<B
+CLASS="KEYCAP"
+>Enter</B
+>
+	    </P
+></DD
+><DT
+>DTK:</DT
+><DD
+><P
+>Клавиша <B
+CLASS="KEYCAP"
+>Esc</B
+> в процессе Теста-При-Включении (Power-On Self-Test (POST)) </P
+></DD
+><DT
+>Hewlett-Packard Pavilion:</DT
+><DD
+><P
+>Клавиша <B
+CLASS="KEYCAP"
+>F1</B
+> в момент появления синей заставки HP </P
+></DD
+><DT
+>IBM Aptiva 535:</DT
+><DD
+><P
+>Клавиша <B
+CLASS="KEYCAP"
+>F1</B
+>, когда квадратик с волнистыми линиями появляется в правом верхнем углу экрана
+	      <A
+NAME="AEN112"
+HREF="Hard-Disk-Upgrade.html#FTN.AEN112"
+>[1]</A
+>
+	    </P
+></DD
+><DT
+>IBM PS/2:</DT
+><DD
+><P
+><B
+CLASS="KEYCAP"
+>Ctrl</B
+>-<B
+CLASS="KEYCAP"
+>Alt</B
+>-<B
+CLASS="KEYCAP"
+>Del</B
+>, или <B
+CLASS="KEYCAP"
+>Ctrl</B
+>-<B
+CLASS="KEYCAP"
+>Alt</B
+>-<B
+CLASS="KEYCAP"
+>Ins</B
+>, когда курсор находится в правом верхнем углу 
+	    </P
+></DD
+><DT
+>Mr. BIOS:</DT
+><DD
+><P
+><B
+CLASS="KEYCAP"
+>Ctrl</B
+>-<B
+CLASS="KEYCAP"
+>Alt</B
+>-<B
+CLASS="KEYCAP"
+>S</B
+> в процессе Теста-При-Включении (Power-On Self-Test (POST)) 
+	    </P
+></DD
+><DT
+>Packard Bell:</DT
+><DD
+><P
+>В некоторых моделях клавиши <B
+CLASS="KEYCAP"
+>F1</B
+> или
+	  <B
+CLASS="KEYCAP"
+>F2</B
+> в процессе Теста-При-Включении (Power-On Self-Test (POST)) 
+	    </P
+></DD
+><DT
+>Phoenix:</DT
+><DD
+><P
+><B
+CLASS="KEYCAP"
+>Ctrl</B
+>-<B
+CLASS="KEYCAP"
+>Alt</B
+>-<B
+CLASS="KEYCAP"
+>Esc</B
+>, <B
+CLASS="KEYCAP"
+>Ctrl</B
+>-<B
+CLASS="KEYCAP"
+>Alt</B
+>-<B
+CLASS="KEYCAP"
+>S</B
+>, или <B
+CLASS="KEYCAP"
+>Ctrl</B
+>-<B
+CLASS="KEYCAP"
+>Alt</B
+>-<B
+CLASS="KEYCAP"
+>Enter</B
+>
+	    </P
+></DD
+><DT
+></DT
+><DD
+><P
+>На многих старых системах требуется диск с надписью "Installation" или "Reference". </P
+></DD
+></DL
+></DIV
+>
+      
+      <I
+CLASS="EMPHASIS"
+>(Мы будем не против, если кто-нибудь дополнит этот список, послав нам информацию о других BIOS-ах) </I
+></P
+><P
+>Перезагрузите систему и войдите в нее как root. Если вы используете команду "
+      <B
+CLASS="COMMAND"
+>su</B
+>" , чтобы стать root-ом, используйте "<B
+CLASS="COMMAND"
+>	su -</B
+>"(с параметром "-").</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="UNMOUNT"
+>3. Отключите не-Linux разделы и сетевые диски</A
+></H1
+><P
+>Некоторые пользователи подключают разделы других операционных систем (DOS, Windows, OS/2, и т.п.), чтобы использовать их в Linux. Эти разделы должны создаваться и копироваться в их родных операционных системах, и их необходимо отключить (unmount) до начала копирования Linux-разделов. Например, если у вас к каталогу 
+      <TT
+CLASS="FILENAME"
+>/dos</TT
+>
+      подключен DOS-раздел, его необходимо отключить командой: 
+      <PRE
+CLASS="PROGRAMLISTING"
+>umount /dos</PRE
+>
+    </P
+><P
+>Обратите внимание на синтаксис команды <B
+CLASS="COMMAND"
+>umount</B
+>,
+    он отличается от английского слова
+    <I
+CLASS="WORDASWORD"
+>unmount</I
+>
+    отсутствием первой буквы <I
+CLASS="WORDASWORD"
+>n</I
+>.</P
+><P
+>Вам также придется подобным образом отключить все сетевые диски.</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="PARTITION"
+>4. Разбейте новый диск на разделы</A
+></H1
+><P
+>Для разбития нового диска на разделы используйте команду: 
+      <PRE
+CLASS="PROGRAMLISTING"
+>fdisk /dev/hdb</PRE
+></P
+><P
+><SPAN
+CLASS="ACRONYM"
+>EIDE</SPAN
+> -устройства именуются, как 
+      <TT
+CLASS="FILENAME"
+>hda</TT
+>,  
+      <TT
+CLASS="FILENAME"
+>hdb</TT
+>, 
+      <TT
+CLASS="FILENAME"
+>hdc</TT
+>, и 
+      <TT
+CLASS="FILENAME"
+>hdd</TT
+> в каталоге  <TT
+CLASS="FILENAME"
+>/dev</TT
+>.
+      Разделы на этих дисках могут принимать номера от 1 до16 и также находятся в каталоге 
+      <TT
+CLASS="FILENAME"
+>/dev</TT
+>. Например: 
+      <TT
+CLASS="FILENAME"
+>/dev/hda4</TT
+> - это 4-ый раздел на диске a (первом <SPAN
+CLASS="ACRONYM"
+>EIDE</SPAN
+>-диске). &#13;</P
+><P
+><SPAN
+CLASS="ACRONYM"
+>SCSI</SPAN
+> -устройства именуются, как 
+      <TT
+CLASS="FILENAME"
+>sda</TT
+>, 
+      <TT
+CLASS="FILENAME"
+>sdb</TT
+>, 
+      <TT
+CLASS="FILENAME"
+>sdc</TT
+>, 
+      <TT
+CLASS="FILENAME"
+>sdd</TT
+>, 
+      <TT
+CLASS="FILENAME"
+>sde</TT
+>, 
+      <TT
+CLASS="FILENAME"
+>sdf</TT
+>, и
+      <TT
+CLASS="FILENAME"
+>sdg</TT
+> в каталоге 
+      <TT
+CLASS="FILENAME"
+>/dev</TT
+>.Разделы на них, аналогично EIDE-дискам, могут принимать номера от 1 до 16 и находятся в каталоге  
+      <TT
+CLASS="FILENAME"
+>/dev</TT
+>. Например:  
+      <TT
+CLASS="FILENAME"
+>/dev/sda3</TT
+>
+      - это 3-ий раздел на <SPAN
+CLASS="ACRONYM"
+>SCSI</SPAN
+>-диске a (первом <SPAN
+CLASS="ACRONYM"
+>SCSI</SPAN
+>-диске).</P
+><P
+>(Примечание переводчика: на деле SCSI-диски могут не ограничиваться /dev/sdg - очевидно, что если у вас несколько SCSI-контроллеров, то SCSI-дисков может быть значительно больше - но это, однако, достаточно редкое явление.) </P
+><P
+>Для Linux-разделов с файловой системой ext2, используйте идентификатор файловой системы 83. Для разделов подкачки (swap), используйте 82. </P
+><P
+>Если на вашем новом диске более 1024 цилиндров, смотрите "Мини-HOWTO: Большие диски". Вкратце, вы должны все файлы, необходимые для загрузки Linux, поместить в пределах первых 1024 цилиндров. Один из вариантов - создать небольшой раздел (5 Мб или что-то около того) исключительно для каталога 
+      <TT
+CLASS="FILENAME"
+>/boot</TT
+>в начале диска. (Внимание, пользователи Slackware: Ядро находится в файле 
+      <TT
+CLASS="FILENAME"
+>/vmlinuz</TT
+>вместо /boot/vmlinuz, поэтому вам придется поместить ядро одновременно в каталог  <TT
+CLASS="FILENAME"
+>/boot/vmlinuz</TT
+><TT
+CLASS="FILENAME"
+>/</TT
+> и в каталог  
+      <TT
+CLASS="FILENAME"
+>/boot</TT
+>
+      в этот небольшой раздел.) </P
+><P
+>Разделы для других систем (не для Linux) должны быть созданы в родных
+системах, с использованием родного <B
+CLASS="COMMAND"
+>fdisk</B
+> или чего-то подобного, а не при
+помощи <B
+CLASS="COMMAND"
+>fdisk</B
+> из Linux.&#13;</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="FORMAT"
+>5. Отформатируйте новый диск</A
+></H1
+><P
+>Для форматирования ext2fs-разделов на новом диске используйте команду: 
+      <PRE
+CLASS="PROGRAMLISTING"
+>mkfs.ext2 /dev/hdb1</PRE
+></P
+><P
+>Чтобы программа форматирования произвела также и поиск плохих блоков (физических дефектов) в форматируемом разделе, добавьте опцию 
+      <TT
+CLASS="OPTION"
+>-c</TT
+> перед
+      <TT
+CLASS="FILENAME"
+>/dev/hdb1</TT
+>.</P
+><P
+>В случае, если на новом диске будет больше одного Linux-раздела,
+отформатируйте их все командами "<B
+CLASS="COMMAND"
+>mkfs.ext2 /dev/hdb2</B
+>", "<B
+CLASS="COMMAND"
+>mkfs.ext2 /dev/hdb3</B
+>" соответственно. Добавьте опцию <TT
+CLASS="OPTION"
+>-c</TT
+>, если это необходимо.&#13;</P
+><DIV
+CLASS="NOTE"
+><P
+></P
+><TABLE
+CLASS="NOTE"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="http://www.linux.org.ru/books/images/note.gif"
+HSPACE="5"
+ALT="Замечание"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>(Замечание: в старых дистрибутивах команда "<B
+CLASS="COMMAND"
+>mkfs -t ext2 -c /dev/hdb1</B
+>" не
+проверяла наличие плохих блоков в Red Hat, Debian и Slackware, что должна
+была делать в соответствии с man. Сейчас это исправлено.)</P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>Чтобы отформатировать раздел подкачки, используйте команду: 
+      <PRE
+CLASS="PROGRAMLISTING"
+>mkswap /dev/hdb1</PRE
+></P
+><P
+>К этой команде вы также можете добавить опцию <TT
+CLASS="OPTION"
+>-c</TT
+> для проверки плохих блоков на разделе "<TT
+CLASS="FILENAME"
+>/dev/hdb1</TT
+>".</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="MOUNT"
+>6. Подключите новый диск</A
+></H1
+><P
+>Создайте каталог для нового диска, например <TT
+CLASS="FILENAME"
+>/new-disk</TT
+>, и подключите его туда: 
+      <PRE
+CLASS="PROGRAMLISTING"
+>mkdir /new-disk
+mount -t ext2 /dev/hdb1 /new-disk</PRE
+></P
+><P
+>&#13;Если на новом диске имеется больше одного раздела - подключите их все в
+каталоге <TT
+CLASS="FILENAME"
+>/new-disk</TT
+> с той же организацией, что они будут иметь позже.&#13;</P
+><DIV
+CLASS="FORMALPARA"
+><P
+><B
+>Пример: . </B
+>На новом диске будет 4 Linux-раздела, соответственно: 
+      <PRE
+CLASS="PROGRAMLISTING"
+>/dev/hdb1:    /
+/dev/hdb2:    /home
+/dev/hdb3:    /var
+/dev/hdb4:    /var/spool</PRE
+></P
+></DIV
+><P
+>Подключите их в каталоге 
+      <TT
+CLASS="FILENAME"
+>/new-disk</TT
+> соответственно, как: 
+      <PRE
+CLASS="PROGRAMLISTING"
+>/dev/hdb1:    /new-disk
+/dev/hdb2:    /new-disk/home
+/dev/hdb3:    /new-disk/var
+/dev/hdb4:    /new-disk/var/spool</PRE
+></P
+><P
+>До подключения разделов вам придется создать точки подключения на
+соответствующих "<I
+CLASS="EMPHASIS"
+>уровнях</I
+>", например:</P
+><DIV
+CLASS="FORMALPARA"
+><P
+><B
+>Пример: . </B
+>	<PRE
+CLASS="PROGRAMLISTING"
+>mkdir /new-disk                                 [1st level]
+mount -t ext2 /dev/hdb1 /new-disk
+
+mkdir /new-disk/home                            [2nd level]
+mount -t ext2 /dev/hdb2 /new-disk/home
+
+mkdir /new-disk/var                             [2nd level also]
+mount -t ext2 /dev/hdb3 /new-disk/var
+
+mkdir /new-disk/var/spool                       [3rd level]
+mount -t ext2 /dev/hdb4 /new-disk/var/spool</PRE
+></P
+></DIV
+><P
+>Если вы создаете новую точку подключения к каталогу <TT
+CLASS="FILENAME"
+>/new-disk/tmp</TT
+>, вам
+будет необходимо исправить разрешения на этот каталог для того, чтобы
+все имели к нему доступ:
+      <PRE
+CLASS="PROGRAMLISTING"
+>chmod 1777 /new-disk/tmp</PRE
+></P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="COPY"
+>7. Скопируйте файлы со старого диска на новый</A
+></H1
+><P
+>Вам, наверное, будет необходимо перейти в однопользовательский режим перед началом копирования диска - это необходимо для отключения системных демонов, остановки журналов и прекращения входа других пользователей в систему: 
+
+
+      <PRE
+CLASS="PROGRAMLISTING"
+>/sbin/telinit 1</PRE
+></P
+><P
+>При копировании жесткого диска вам надо скопировать все каталоги и файлы, включая ссылки. </P
+><P
+>Однако, вам не нужно копировать каталог <TT
+CLASS="FILENAME"
+>/new-disk</TT
+>, потому что это и есть
+новый диск!</P
+><P
+>Более того, вам надо создать на новом диске каталог <TT
+CLASS="FILENAME"
+>/proc</TT
+>, но содержимое
+этого каталога копировать не нужно: <TT
+CLASS="FILENAME"
+>/proc</TT
+> - это <I
+CLASS="EMPHASIS"
+>виртуальная</I
+> файловая
+система, и в ней нет настоящих файлов, а есть лишь информация о системе и
+процессах, в ней работающих.</P
+><P
+>Существуют 3 разных способа копирования старого диска на новый. Это может занять значительное время, особенно если у вас большой диск или мало оперативной памяти. Минимум скорости копирования - примерно 10 Мб в минуту, а, скорее всего, это будет происходить значительно быстрее. </P
+><P
+>Вы можете следить за копированием командой "<B
+CLASS="COMMAND"
+>df</B
+>", запущенной с другого
+терминала. Используйте "<B
+CLASS="COMMAND"
+>watch df</B
+>" или "<B
+CLASS="COMMAND"
+>watch ls -l /new-disk</B
+>", чтобы видеть
+отчет, обновляемый раз в две секунды; нажмите клавиши <B
+CLASS="KEYCAP"
+>Ctrl</B
+>-<B
+CLASS="KEYCAP"
+>C</B
+> для
+прекращения просмотра. Помните, однако, что сам запуск команды "<B
+CLASS="COMMAND"
+>watch</B
+>"
+может замедлить процесс копирования.     </P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+><B
+CLASS="COMMAND"
+>cp -ax / /new-disk</B
+></DT
+><DD
+><P
+>Это наиболее простой способ, но он подходит, только если ваша исходная система находилась на одном разделе. </P
+><P
+>Опция <TT
+CLASS="OPTION"
+>-a</TT
+> сохраняет исходную файловую систему настолько, насколько возможно.
+Опция <TT
+CLASS="OPTION"
+>-x</TT
+> ограничивает работу команды cp одной файловой системой - поэтому
+не нужно беспокоиться о каталогах <TT
+CLASS="FILENAME"
+>/new-disk</TT
+> и <TT
+CLASS="FILENAME"
+>/proc</TT
+>.</P
+><DIV
+CLASS="FORMALPARA"
+><P
+><B
+>Для пользователей SuSE: . </B
+>Используя этот метод, вы должны также создать каталог <TT
+CLASS="FILENAME"
+>/dev/pts</TT
+> на новом
+диске. Используйте команду "<B
+CLASS="COMMAND"
+>mkdir /new-disk/dev/pts</B
+>".</P
+></DIV
+><DIV
+CLASS="NOTE"
+><P
+></P
+><TABLE
+CLASS="NOTE"
+WIDTH="90%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="http://www.linux.org.ru/books/images/note.gif"
+HSPACE="5"
+ALT="Замечание"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>(Замечание: Новые версии <B
+CLASS="COMMAND"
+>cp</B
+>, при использовании опции <TT
+CLASS="OPTION"
+>-x</TT
+>, создадут
+пустые каталоги <TT
+CLASS="FILENAME"
+>/new-disk/new-disk</TT
+> и 
+	      <TT
+CLASS="FILENAME"
+>/new-disk/proc</TT
+>. В этом случае
+необходимо удалить каталог <TT
+CLASS="FILENAME"
+>/new-disk/new-disk</TT
+>, и оставить <TT
+CLASS="FILENAME"
+>/new-disk/proc.</TT
+>.)
+	    </P
+></TD
+></TR
+></TABLE
+></DIV
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>cd / &#38;&#38; echo cp -a `/bin/ls -1Ab | egrep -v "^new-disk$|^proc$"` /new-disk | sh
+	    </B
+></DT
+><DD
+><P
+><I
+CLASS="EMPHASIS"
+>(напишите все это в одной строке) </I
+></P
+><P
+>Эта команда перейдет в корневой каталог и затем скопирует все файлы и каталоги, кроме 
+	    <TT
+CLASS="FILENAME"
+>/new-disk</TT
+> и 
+	    <TT
+CLASS="FILENAME"
+>/proc</TT
+> в 
+	    <TT
+CLASS="FILENAME"
+>/new-disk</TT
+>. Заметьте, что первый символ после ls - это цифра 1, а не буква L! </P
+><P
+>Эта команда должна работать в любом случае.</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>cp -a /bin /boot /dev /etc /home /lib /lost+found /mnt /root /sbin /tmp /usr /var /new-disk 
+	  </B
+></DT
+><DD
+><P
+><I
+CLASS="EMPHASIS"
+>(напишите все это в одной строке) </I
+></P
+><P
+>Последний каталог - <TT
+CLASS="FILENAME"
+>/new-disk</TT
+> - это назначение команды <B
+CLASS="COMMAND"
+>cp</B
+>. Все остальные
+каталоги - источники. Таким образом, мы копируем все каталоги из списка в
+<TT
+CLASS="FILENAME"
+>/new-disk</TT
+>.</P
+><P
+>При применении этого метода вы просто перечисляете каталоги, которые хотите
+скопировать. Здесь мы указали все каталоги, кроме <TT
+CLASS="FILENAME"
+>/new-disk</TT
+> и <TT
+CLASS="FILENAME"
+>/proc</TT
+>. Если вы
+не можете использовать первые два метода по каким-либо причинам, то всегда
+можете вручную указать каталоги, которые необходимо скопировать.</P
+><P
+>Также надо учесть, что если в корневом каталоге есть файлы, то их тоже надо скопировать отдельной командой. В частности, это касается Debian и Slackware, так как эти дистрибутивы помещают файлы в корневой каталог: 
+	    <PRE
+CLASS="PROGRAMLISTING"
+>cp -dp /* /.* /new-disk</PRE
+></P
+></DD
+></DL
+></DIV
+><P
+>В предыдущих версиях этого Мини-HOWTO упоминалось, что вы
+    можете использовать "<B
+CLASS="COMMAND"
+>tar</B
+>" для копирования диска, но в этом методе была
+    обнаружена ошибка. Конечно, существуют и другие методы скопировать
+    диск, но эти три являются наиболее простыми, быстрыми и надежными.
+    </P
+><P
+>После использования любого из этих методов вам также надо создать каталог <TT
+CLASS="FILENAME"
+>/proc</TT
+> на новом диске, если его еще нет: 
+
+     <PRE
+CLASS="PROGRAMLISTING"
+>mkdir /new-disk/proc</PRE
+></P
+><P
+>Затем вы можете проверить файловую систему нового диска, если хотите: 
+      <PRE
+CLASS="PROGRAMLISTING"
+>umount /new-disk
+fsck.ext2 -f /dev/hdb1
+mount -t ext2 /dev/hdb1 /new-disk</PRE
+>
+    </P
+><P
+>Если на новом диске существует больше одного раздела, то вам придется
+отключить их все "<I
+CLASS="EMPHASIS"
+>снизу вверх</I
+>" до запуска <B
+CLASS="COMMAND"
+>fsck.ext2</B
+>: в соответствии с
+примером, приведенном выше, вам надо сначала отключить разделы 3-го уровня,
+затем 2-го и, только в конце, первого.</P
+><P
+>Можно сравнить два диска, чтобы убедиться, что все скопировано верно: 
+      <PRE
+CLASS="PROGRAMLISTING"
+>find / -path /proc -prune -o -path /new-disk -prune -o -xtype f -exec cmp {} /new-disk{} \;</PRE
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>(напишите все это в одной строке)</I
+></P
+><DIV
+CLASS="FORMALPARA"
+><P
+><B
+>Для пользователей Slackware:. </B
+>
+
+стандартная "базовая" установка Slackware (только файлы серии "A") не
+включает команду "<B
+CLASS="COMMAND"
+>cmp</B
+>", поэтому это сравнение не запустится, если у вас
+установлены только базовые файлы. Команда "<B
+CLASS="COMMAND"
+>cmp</B
+>" находится в файлах серии
+"AP1".</P
+></DIV
+><P
+>Здесь мы сравниваем только обычные файлы, символьные же и блочные
+устройства (из каталога <TT
+CLASS="FILENAME"
+>/dev</TT
+>), гнезда (sockets), и т.п. здесь не
+учитываются, так как команда "<B
+CLASS="COMMAND"
+>cmp</B
+>" работает с ними не совсем корректно. Мы
+будем не против, если кто-нибудь подскажет нам, как сравнить эти
+"специальные" файлы.</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="MODIFY"
+>8. Исправьте необходимым образом файл <TT
+CLASS="FILENAME"
+>/new-disk/etc/fstab</TT
+></A
+></H1
+><P
+>Если разделы или их организация на новом диске отличается от того, что было
+на старом диске, исправьте необходимым образом на новом диске файл
+<TT
+CLASS="FILENAME"
+>/new-disk/etc/fstab</TT
+>.</P
+><P
+>Убедитесь в том, что названия разделов дисков (первая колонка)
+соответствуют организации разделов, которую вы создали на новом диске, что
+разделы старого диска убраны, и что вы подключаете только один раздел в
+качестве корневого "<TT
+CLASS="FILENAME"
+>/</TT
+>" (это написано во второй колонке).</P
+><P
+>Чтобы подробнее узнать о формате файла <TT
+CLASS="FILENAME"
+>/etc/fstab</TT
+>, см Руководство
+системного администратора Linux , глава 4 "Подключение и отключение
+разделов".</P
+><P
+>Для разделов подкачки используйте примерно следующее: 
+      <PRE
+CLASS="PROGRAMLISTING"
+>/dev/hda1   swap    swap    defaults    0  0</PRE
+>
+    </P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="PREPARE"
+>9. Приготовьте <SPAN
+CLASS="ACRONYM"
+>LILO</SPAN
+> для загрузки с нового диска</A
+></H1
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CELLSPACING="0"
+CELLPADDING="0"
+CLASS="EPIGRAPH"
+><TR
+><TD
+WIDTH="45%"
+>&nbsp;</TD
+><TD
+WIDTH="45%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><I
+><P
+><I
+>(Спасибо Rick Masters за помощь в создании этой главы.)</I
+></P
+></I
+></TD
+></TR
+></TABLE
+><P
+>Мы предполагаем, что вы собираетесь установить <SPAN
+CLASS="ACRONYM"
+>LILO</SPAN
+> в Главную Загрузочную
+Запись (Master Boot Record (<SPAN
+CLASS="ACRONYM"
+>MBR</SPAN
+>) - это делается в большинстве случаев. Вы
+хотите установить <SPAN
+CLASS="ACRONYM"
+>LILO</SPAN
+> на второй диск, который станет первым.</P
+><P
+>Отредактируйте файл <TT
+CLASS="FILENAME"
+>/new-disk/etc/lilo.conf</TT
+> примерно так: 
+    
+
+      <PRE
+CLASS="PROGRAMLISTING"
+>&#13;
+        disk=/dev/hdb bios=0x80       # Указываем LILO воспринимать второй
+                                      # диск так, как будто он первый
+                                      # диск (BIOS ID 0x80).
+        boot=/dev/hdb                 # Устанавливаем LILO на второй жесткий
+                                      # диск.
+        map=/new-disk/boot/map        # Местонахождение файла карты ("map file").
+        install=/new-disk/boot/boot.b # Файл, которые надо записать в
+                                      # загрузочный сектор жесткого диска.
+        prompt                        # LILO должно вывести приглашение
+                                      #  "LILO boot:".
+        timeout=50                    # Загрузить систему по умолчанию после 5
+                                      # секунд ожидания. (Значение задается в
+                                      # десятых долях секунды.)
+        image=/new-disk/boot/vmlinuz  # Местонахождение ядра Linux. Настоящее
+                                      # имя может включать в себя номер
+                                      # версии, например,
+                                      # "vmlinuz-2.0.35".
+            label=linux               # Название Linux-системы.
+            root=/dev/hda1            # Местонахождение корневого раздела
+                                      # нового жесткого диска. Исправьте
+                                      # его в соответствии с новой системой.
+                                      # Заметьте, что вы должны использовать
+                                      # название будущего местоположения, на
+                                      # момент физического отключения старого диска.
+            read-only                 # Сначала подключаем разделы в режиме
+                                      # "только для чтения", для запуска fsck.</PRE
+>
+    </P
+><DIV
+CLASS="FORMALPARA"
+><P
+><B
+>Для пользователей Slackware:. </B
+>Используйте <B
+CLASS="COMMAND"
+>image=/new-disk/vmlinuz</B
+>.</P
+></DIV
+><P
+>Если вы используете <SPAN
+CLASS="ACRONYM"
+>SCSI</SPAN
+>-диск, то вам, возможно, придется добавить строку с
+"<B
+CLASS="COMMAND"
+>initrd</B
+>". Смотрите ваш текущий файл <TT
+CLASS="FILENAME"
+>/etc/lilo.conf</TT
+>.</P
+><P
+>Установите <SPAN
+CLASS="ACRONYM"
+>LILO</SPAN
+> на новый диск: 
+      <PRE
+CLASS="PROGRAMLISTING"
+>/sbin/lilo -C /new-disk/etc/lilo.conf</PRE
+>
+    </P
+><P
+>Опция <TT
+CLASS="OPTION"
+>-C</TT
+> указывает <SPAN
+CLASS="ACRONYM"
+>LILO</SPAN
+>, какой конфигурационный файл использовать.</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="BOOTDISK"
+>10. Создайте загрузочную дискету (необязательно)</A
+></H1
+><P
+>Вы можете, если захотите, создать загрузочную дискету, чтобы избежать проблем с загрузкой, если они возникнут при загрузке с нового диска. </P
+><P
+>Вставьте чистую дискету, отформатируйте ее, создайте на ней файловую систему и подключите ее: 
+      <PRE
+CLASS="PROGRAMLISTING"
+>fdformat /dev/fd0H1440
+mkfs.ext2 /dev/fd0
+mount -t ext2 /dev/fd0 /mnt</PRE
+></P
+><DIV
+CLASS="FORMALPARA"
+><P
+><B
+>Для пользователей Debian: . </B
+>В Debian 2.x версии используйте <TT
+CLASS="FILENAME"
+>/dev/fd0u1440</TT
+> вместо
+	<TT
+CLASS="FILENAME"
+>/dev/fd0H1440</TT
+>. В Debian версии 1.x, используйте 
+	<TT
+CLASS="FILENAME"
+>/dev/fd0h1440</TT
+>, со строчной буквой 
+	<I
+CLASS="WORDASWORD"
+>h</I
+>.</P
+></DIV
+><DIV
+CLASS="FORMALPARA"
+><P
+><B
+>Для пользователей Debian:. </B
+>В Debian версий 2.x, используйте <B
+CLASS="COMMAND"
+>superformat</B
+> вместо 
+      <B
+CLASS="COMMAND"
+>fdformat</B
+>.
+	Вы можете не обращать внимания на ошибку 
+	<TT
+CLASS="COMPUTEROUTPUT"
+>mformat: command not found</TT
+>.  
+	В Debian версий 1.x, в случае если у вас нет команды 
+        <B
+CLASS="COMMAND"
+>fdformat</B
+>вы можете пропустить ее, если диск уже
+        отформатирован. Вы можете просто проверить дискету на наличие
+        плохих блоков, добавив опцию <TT
+CLASS="OPTION"
+>-c</TT
+> к команде
+	<B
+CLASS="COMMAND"
+>mkfs.ext2</B
+>.</P
+></DIV
+><DIV
+CLASS="FORMALPARA"
+><P
+><B
+>Для пользователей Slackware:. </B
+>Используйте <TT
+CLASS="FILENAME"
+>/dev/fd0u1440</TT
+> вместо
+	<TT
+CLASS="FILENAME"
+>/dev/fd0H1440</TT
+>. В очень старых версиях попытайтесь использовать
+	<TT
+CLASS="FILENAME"
+>/dev/fd0h1440</TT
+>, со строчной буквой 
+	<I
+CLASS="WORDASWORD"
+>h</I
+>.</P
+></DIV
+><DIV
+CLASS="FORMALPARA"
+><P
+><B
+>Для пользователей SuSE:. </B
+>Используйте <TT
+CLASS="FILENAME"
+>/dev/fd0u1440</TT
+> вместо 
+	<TT
+CLASS="FILENAME"
+>/dev/fd0H1440</TT
+>.</P
+></DIV
+><P
+>Скопируйте все файлы из каталога <TT
+CLASS="FILENAME"
+>/boot</TT
+> на дискету: 
+      <PRE
+CLASS="PROGRAMLISTING"
+>cp -dp /boot/* /mnt</PRE
+>
+    </P
+><DIV
+CLASS="FORMALPARA"
+><P
+><B
+>Для пользователей Red Hat: . </B
+>Если в каталоге <TT
+CLASS="FILENAME"
+>/boot</TT
+> есть файлы <TT
+CLASS="FILENAME"
+>vmlinux</TT
+> и <TT
+CLASS="FILENAME"
+>vmlinuz</TT
+>  (обратите внимание на
+различие в последних буквах), тогда вам надо скопировать только файл
+<TT
+CLASS="FILENAME"
+>vmlinuz</TT
+>. Он ничем не отличается от файла vmlinux, просто он сжат для
+экономии места.)</P
+></DIV
+><DIV
+CLASS="FORMALPARA"
+><P
+><B
+>Для пользователей Slackware:. </B
+>Скопируйте также на дискету файл <TT
+CLASS="FILENAME"
+>/vmlinuz</TT
+>,
+	используйте команду  <B
+CLASS="COMMAND"
+>cp /vmlinuz /mnt</B
+>.</P
+></DIV
+><P
+>Создайте новый файл <TT
+CLASS="FILENAME"
+>/mnt/lilo.conf</TT
+> в соответствии с тем, что написано ниже: 
+      <PRE
+CLASS="PROGRAMLISTING"
+>boot=/dev/fd0                 # Установить LILO на флоппи-диск.
+        map=/mnt/map                  # Местонахождение файла карты ("map file").
+        install=/mnt/boot.b           # Файл, который надо записать в
+                                      # загрузочный сектор диска.
+        prompt                        # LILO должно вывести приглашение
+                                      # "LILO boot:"
+        timeout=50                    # Загрузить систему по умолчанию после 5
+                                      # секунд ожидания. (Значение задается в
+                                      # десятых долях секунды.)
+        image=/mnt/vmlinuz            # Местонахождение ядра Linux на дискете.
+                                      # Настоящее имя может включать в себя номер
+                                      # версии, например,
+                                      # "vmlinuz-2.0.35".
+            label=linux               # Название Linux-системы.
+            root=/dev/hda1            # Местонахождение корневого раздела
+                                      # нового жесткого диска. Исправьте
+                                      # его в соответствии с новой системой.
+                                      # Заметьте, что вы должны использовать
+                                      # название будущего местоположения, на
+                                      # момент физического отключения старого диска.
+            read-only                 # Сначала подключаем разделы в режиме
+                                      # "только для чтения", для запуска fsck.</PRE
+>
+    </P
+><P
+>Установите <SPAN
+CLASS="ACRONYM"
+>LILO</SPAN
+> на загрузочную дискету: 
+      <PRE
+CLASS="PROGRAMLISTING"
+>/sbin/lilo -C /mnt/lilo.conf</PRE
+>
+    </P
+><P
+>Опция <TT
+CLASS="OPTION"
+>-C</TT
+> указывает <SPAN
+CLASS="ACRONYM"
+>LILO</SPAN
+> на загрузочную дискету: </P
+><P
+>Отключите дискету: 
+      <PRE
+CLASS="PROGRAMLISTING"
+>umount /mnt</PRE
+></P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="REMOVE"
+>11. Уберите старый диск</A
+></H1
+><P
+>Выключите систему и уберите старый диск. Не забудьте изменить настройки нового диска и информацию в <SPAN
+CLASS="ACRONYM"
+>BIOS</SPAN
+>.</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="REBOOT"
+>12. Перезагрузите систему, исправьте файл конфигурации <SPAN
+CLASS="ACRONYM"
+>LILO</SPAN
+></A
+></H1
+><P
+>Перезагрузите систему. Если возникнут какие-нибудь проблемы,
+    используйте загрузочную дискету, которую вы только что сделали. Чтобы
+    загрузиться с нее, просто измените порядок загрузки системы в <SPAN
+CLASS="ACRONYM"
+>BIOS</SPAN
+> на
+      <TT
+CLASS="COMPUTEROUTPUT"
+>A:, C:</TT
+>.</P
+><P
+>Вам также придется исправить 
+      <TT
+CLASS="FILENAME"
+>/etc/lilo.conf</TT
+> на тот случай, если вы захотите еще раз запустить 
+      <SPAN
+CLASS="ACRONYM"
+>LILO</SPAN
+>. Ниже приведен пример: 
+
+        
+
+      <PRE
+CLASS="PROGRAMLISTING"
+>boot=/dev/hda                 # Устанавливаем LILO на первый жесткий
+                                      # диск.
+        map=/boot/map                 # Местонахождение файла карты ("map file").
+        install=/boot/boot.b          # Файл, которые надо записать в
+                                      # загрузочный сектор жесткого диска.
+        prompt                        # LILO должно вывести приглашение
+                                      #  "LILO boot:".
+        timeout=50                    # Загрузить систему по умолчанию после 5
+                                      # секунд ожидания. (Значение задается в
+                                      # десятых долях секунды.)
+        image=/boot/vmlinuz           # Местонахождение ядра Linux. Настоящее
+                                      # имя может включать в себя номер
+                                      # версии, например,
+                                      # "vmlinuz-2.0.35".
+            label=linux               # Название Linux-системы.
+            root=/dev/hda1            # Местонахождение корневого раздела
+                                      # нового жесткого диска. Исправьте
+                                      # его в соответствии с новой системой.
+            read-only                 # Сначала подключаем разделы в режиме
+                                      # "только для чтения", для запуска fsck.</PRE
+>
+    </P
+><DIV
+CLASS="FORMALPARA"
+><P
+><B
+>Для пользователей Slackware: . </B
+>Используйте <B
+CLASS="COMMAND"
+>image=/vmlinuz</B
+>.</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="ACKNOWLEDGEMENTS"
+>13. Благодарности:</A
+></H1
+><P
+>Большое спасибо Scott Christensen, Frank Damgaard, Alexandre Fornieles, David
+      Fullerton, Igor Furlan, Jerry Gaines, Chris Gillespie, Nicola Girardi,
+      Per Gunnar Hansoe, Richard Hawes, Ralph Heimueller, Gerald Hermant, Andy
+      Heynderickx, Paul Koning, Hannu Liljemark, Claes Maansson, Rick Masters,
+      Jason Priebe, Josh Rabinowitz, Douglas Rhodes, Valentijn Sessink, Kragen
+      Sitaker, Stephen Thomas, и Gerald Willman.</P
+><P
+>Этот документ можно переводить на любой язык. Если вы это сделаете, отправьте копию перевода Konrad Hinsen 
+      <TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:hinsen@cnrs-orleans.fr"
+>hinsen@cnrs-orleans.fr</A
+>&#62;</TT
+>.</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN466"
+>14. Авторские права</A
+></H1
+><P
+>    Авторские права на русский перевод этого текста принадлежат &copy; 2000 SWSoft Pte Ltd.
+    Все права зарезервированы.
+    </P
+><P
+>    Этот документ является частью проекта Linux HOWTO.
+    </P
+><P
+>    Авторские права на документы Linux HOWTO принадлежат их авторам, если явно
+    не указано иное. Документы Linux HOWTO, а также их переводы, могут
+    быть воспроизведены и распространены полностью или частично на любом
+    носителе, физическом или электронном, при условии сохранения этой заметки об
+    авторских правах на всех копиях. Коммерческое распространение разрешается и
+    поощряется; но, так или иначе, автор текста и автор перевода желали бы знать о
+    таких дистрибутивах.
+    </P
+><P
+>    Все переводы и производные работы, выполненные по документам Linux HOWTO,
+    должны сопровождаться этой заметкой об авторских правах. Это делается в
+    целях предотвращения случаев наложения дополнительных ограничений на
+    распространение документов HOWTO. Исключения могут составить случаи
+    получения специального разрешения у координатора Linux HOWTO, с которым
+    можно связаться по адресу приведенному ниже.
+    </P
+><P
+>    Мы бы хотели распространить эту информацию по всем возможным каналам. Но
+    при этом сохранить авторские права и быть уведомленными о всех планах
+    распространения HOWTO. Если у вас возникли вопросы, пожалуйста, обратитесь
+    к координатору проекта Linux HOWTO по электронной почте:
+    <TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:linux-howto@metalab.unc.edu"
+>linux-howto@metalab.unc.edu</A
+>&#62;</TT
+> или к координатору русского
+    перевода Linux HOWTO компании SWSoft Pte Ltd. по адресу
+    <TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:linux-howto@asplinux.ru"
+>linux-howto@asplinux.ru</A
+>&#62;</TT
+>
+    </P
+></DIV
+></DIV
+><H3
+CLASS="FOOTNOTES"
+>Примечания</H3
+><TABLE
+BORDER="0"
+CLASS="FOOTNOTES"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="5%"
+><A
+NAME="FTN.AEN112"
+HREF="Hard-Disk-Upgrade.html#AEN112"
+>[1]</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="95%"
+><P
+>Интересно: а это относится к другим моделям Aptiva?
+		</P
+></TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

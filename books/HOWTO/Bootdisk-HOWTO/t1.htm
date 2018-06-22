@@ -1,0 +1,300 @@
+<HTML
+><HEAD
+><TITLE
+>The Linux Bootdisk HOWTO</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="NEXT"
+TITLE="Введение."
+HREF="x71.htm"></HEAD
+><BODY
+CLASS="ARTICLE"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="ARTICLE"
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="TITLE"
+><A
+NAME="AEN2">The Linux Bootdisk HOWTO</H1
+><H3
+CLASS="AUTHOR"
+><A
+NAME="AEN5"
+>Tom Fawcett</A
+></H3
+><DIV
+CLASS="AFFILIATION"
+><DIV
+CLASS="ADDRESS"
+><P
+CLASS="ADDRESS"
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bootdisk-HOWTO@linuxdoc.org<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</P
+></DIV
+></DIV
+><H3
+CLASS="AUTHOR"
+><A
+NAME="AEN11"
+>Maxim Dzumanenko</A
+></H3
+><DIV
+CLASS="AFFILIATION"
+><DIV
+CLASS="ADDRESS"
+><P
+CLASS="ADDRESS"
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;max@april.kiev.ua<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</P
+></DIV
+></DIV
+><P
+CLASS="COPYRIGHT"
+>Copyright &copy; 1995,1996,1997,1998,1999,2000  Tom Fawcett</P
+><P
+CLASS="PUBDATE"
+>v4.3, Май 2001<BR></P
+><DIV
+><DIV
+CLASS="ABSTRACT"
+><A
+NAME="AEN24"><P
+></P
+><P
+> Этот документ описывает создание загрузочных дисков Linux. Эти 
+диски могут использоваться как спасательные или для проверки новых компонент 
+системы. Перед тем как пытаться создать загрузочный диск, Вы должны быть в 
+достаточной степени знакомы с задачами системного администрирования. Если Вам  
+нужны только лишь спасательные диски, на случай крайней необходимости, смотрите 
+<A
+HREF="a1338.htm#PREMADE"
+>Appendix A.1</A
+>.
+      </P
+><P
+></P
+></DIV
+></DIV
+><HR></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="AEN27">Предисловие.</H1
+><DIV
+CLASS="IMPORTANT"
+><BLOCKQUOTE
+CLASS="IMPORTANT"
+><P
+><B
+>&#1042;&#1072;&#1078;&#1085;&#1086;: </B
+> Этот документ возможно устарел. Если дата на титульном листе 
+больше чем шесть месяцев назад, проверьте, существует ли более свежая 
+версия на <A
+HREF="http://www.croftj.net/~fawcett/Bootdisk-HOWTO/index.html"
+TARGET="_top"
+>Bootdisk-HOWTO homepage</A
+>.
+      </P
+><P
+>Домашняя страница перевода - <A
+HREF="http://dmv.webjump.com/HOWTOs/"
+TARGET="_top"
+>http://dmv.webjump.com/HOWTOs/</A
+></P
+></BLOCKQUOTE
+></DIV
+><P
+>Хотя этот документ должен быть разборчив в этой текстовой форме, он 
+выглядит намного лучше в Postscript, PDF или HTML благодаря используемым 
+типографическим соглашениям.
+    </P
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN35">Заметки о версии.</H2
+><P
+>Graham Chapman написал оригинал Bootdisk-HOWTO, и поддерживал до 
+версии 3.1. Tom Fawcett начинал как соавтор приблизительно в то время, когда 
+было представлено ядро версии 2, и, на данный момент, он поддерживает этот 
+документ. Chapman исчез из Linux сообщества и его местонахождение в данный 
+момент неизвестно.
+      </P
+><P
+> Приведенная информация касается Linux на платформе      
+<SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Intel</I
+></SPAN
+>. Большая часть ее также применима к Linux на других 
+процессорах, но у меня нет такого опыта работы или информации "из первых рук".
+Если у Вас есть опыт работы с загрузочными дисками на других платформах - 
+свяжитесь со мной.
+     </P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN43">Что еще предстоит сделать</H2
+><P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>Описать создание загрузочных дисков для LS110.</P
+></LI
+><LI
+><P
+>Описать, что делать с большими <TT
+CLASS="FILENAME"
+>libc.so</TT
+> 
+библиотеками. Базовые варианты - взять старые, маленькие библиотеки или 
+обрезать существующие.</P
+></LI
+><LI
+><P
+>Проанализировать загрузочные диски дистрибутивов. Обновить секцию "Как это делают профессионалы".</P
+></LI
+><LI
+><P
+>Удалить секцию, которая описывает, как обновить существующие 
+загрузочные диски дистрибутивов. Это обычно создает больше проблем, чем имеет 
+достоинств.</P
+></LI
+></OL
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN55">Отзывы и благодарности.</H2
+><P
+> Я приветствую любые отзывы по содержанию этого документа, хорошие или плохие. Я пытался обеспечить точность и достоверность приведенной информации. Если Вы найдете ошибки или упущения, пожалуйста, сообщите мне. Когда будете писать, не забудьте указать номер версии документа, на который Вы ссылаетесь.</P
+><P
+> Мы благодарим многих людей, которые помогали поправками и предложениями. Их вклад сделал документ гораздо лучше, чем мы смогли бы когда-либо сделать сами.</P
+><P
+> Присылайте замечания, исправления и вопросы автору по указанному выше email адресу. <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Перед тем, как задавать вопросы, пожалуйста, прочтите <A
+HREF="x844.htm"
+>&#1056;&#1072;&#1079;&#1076;. <I
+>Поиск неисправностей, или Агония Поражения</I
+></A
+></I
+></SPAN
+>. <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Не присылайте</I
+></SPAN
+> мне образы дисков.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN63">Правила распространения.</H2
+><P
+> Copyright &copy; 1995,1996,1997,1998,1999,2000 by Tom Fawcett      and Graham Chapman.  Этот документ может быть распределен под условиями, изложенными в лицензии на <A
+HREF="http://linuxdoc.org/copyright.html"
+TARGET="_top"
+>Linux Documentation Project License</A
+>. Если Вы не можете получить лицензию, пожалуйста, свяжитесь с авторами.</P
+><P
+> Это - бесплатная документация. Она распространяется в надежде, что будет полезна, но <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>без всякой гарантии</I
+></SPAN
+>; даже без подразумеваемой гарантии <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>пригодности</I
+></SPAN
+> или <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>соответствия некоторым целям</I
+></SPAN
+>.</P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x71.htm"
+ACCESSKEY="N"
+>&#1057;&#1083;&#1077;&#1076;.</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Введение.</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

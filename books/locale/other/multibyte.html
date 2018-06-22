@@ -1,0 +1,369 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=koi8-r">
+<meta http-equiv="Content-Language" content="ru">
+<title>Multibyte chars</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1>Многобайтные символы (mutibyte chars).</h1>
+
+<ul>
+  <li><a href="multibyte.html#intro">Введение</a></li>
+  <li><a href="multibyte.html#sch">Схемы</a></li>
+  <li><a href="multibyte.html#iso">ISO-2022</a></li>
+  <li><a href="multibyte.html#ctext">CTEXT</a></li>
+  <li><a href="multibyte.html#utf">UTF-8</a></li>
+</ul>
+
+<hr>
+<h2><a name="intro"></a>Введение</h2>
+
+<p>&nbsp;&nbsp;&nbsp; Для того, чтобы понять, что такое &quot;<strong>многобайтные
+символы</strong>&quot; необходимо прежде всего
+определиться с термином &quot;<strong>байт</strong>&quot;.</p>
+
+<p>&nbsp;&nbsp;&nbsp; Принято считать, что <strong>байт</strong> - это порция
+информации, состоящая из <font color="#FF0080"><strong>восьми</strong></font>
+<strong>бит</strong>. Но существует и намного более
+точное определение - <font color="#FF0080"><strong>октет</strong></font>.
+То есть, в принципе, мы можем группировать
+информацию порциями <font color="#FF0080">любого</font>
+другого размера. Например, в телеграфии до сих
+пор применяются <strong><font color="#FF0080">пяти</font>-битные</strong>
+порции информации (байты).</p>
+
+<p>&nbsp;&nbsp;&nbsp; Максимальное количество разных
+значений, которые мы можем закодировать в
+восьми-битном байте - <strong>256=2<sup>8</sup></strong>&nbsp; (от 0 до 255) а
+в пяти-битном - <strong>32=2<sup>5</sup></strong>.</p>
+
+<p>&nbsp;&nbsp;&nbsp; Теперь предположим, что нам
+необходимо закодировать некую информацию,
+например символы алфавита (буквы) в двоичных
+числах. Подробно об операциях кодирования см. <a
+href="../locale_c.html">Языки, символы и кодировки</a>.</p>
+
+<p>&nbsp;&nbsp;&nbsp; Рассмотрим, например, тот же
+телеграфный код. Оказывается, закодировать 26
+английских букв и 10 цифр в 32 разные комбинации не
+удается. Для этого применяют специальный символ :
+<font color="#FF0080"><strong>переключение регистра</strong></font>.
+А если сюда добавить еще и русские буквы,
+регистров становится целых три : <strong>ЛАТ</strong>, <strong>РУС</strong>,
+<strong>ЦИФ</strong>. Именно так образуется
+Международный Телеграфный
+трех-регистровый Код <a href="mtk-2.html">MTK-2</a>, принятый в
+CCCP в 1963 году.</p>
+
+<p>&nbsp;&nbsp;&nbsp; Если кто-нибудь еще помнит такую
+технику, как ДВК (Диалоговый Вычислительный
+Комплекс), то там применялся <strong>КОИ-7</strong> (Код
+Обмена Информацией, 7-ми битный). Однако этот код
+содержал все символы ASCII, (маленькие и большие
+латинские буквы) и все символы кириллицы, также
+маленькие и большие. Что в результате давало
+более чем <strong>128=2<sup>7</sup></strong> кодовых позиций. А для
+переключения между латинской <strong>КОИ-7Н0</strong>
+(набор N0) и русской <strong>КОИ7-Н1</strong> (набор N1)
+половинами использовались коды <font color="#FF0080"><strong>SO</strong></font>
+(Shift Out, 014) и <font color="#FF0080"><strong>SI</strong></font> (Shift In, 015).</p>
+
+<p>&nbsp;&nbsp;&nbsp; Например для того, чтобы отобразить
+на терминале фразу : &quot;Мир, Peace&quot; необходимо
+послать следующие символы :</p>
+
+<center>
+<table border="1">
+  <tr>
+    <td> <strong><font color="#FF0080">SO</font></strong>
+    </td>
+    <td>0155</td>
+    <td>0111</td>
+    <td>0122</td>
+    <td>054</td>
+    <td>040</td>
+    <td><strong><font color="#FF0080">SI</font></strong> </td>
+    <td>0120</td>
+    <td>0145</td>
+    <td>0141</td>
+    <td>0143</td>
+    <td>0145</td>
+  </tr>
+</table>
+</center>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;После переключения в другую кодовую
+страницу (русский регистр) его состояние
+сохраняется до переключения в латинский регистр.</p>
+
+<p>&nbsp;&nbsp;&nbsp; Таким образом мы приходим к
+важнейшему понятию в технологии
+многобайтных
+символов : <font color="#FF0080"><strong>Shift State</strong></font> (можно
+перевести как <font color="#FF0080"><strong>Регистр</strong></font>
+или <strong>Состояние Регистра</strong>). На самом деле,
+таких состояний (регистров) может быть несколько,
+они могут быть взаимоисключающими, или же
+действовать одновременно и независимо.</p>
+
+<p>&nbsp;&nbsp;&nbsp; Отсюда несколько важных выводов : при
+обработку многобайтовых символов необходимо
+сохранять текущее состояние <strong>Shift State</strong>.
+Длина байтовой последовательности более не
+соответствует количеству печатных символов в
+строке. То есть, взяв символ по смещению НАЧАЛО+8
+мы не можем достоверно сказать, что это именно 8-й
+отображаемый символ. Точно также, мы не можем
+сказать, в каком кодовом наборе необходимо будет
+отобразить этот символ. То есть, строка имеет <strong>историю</strong>.
+И получить полную информацию мы можем только
+просмотрев строку <strong>с начала</strong> (считается,
+что имеется некое &quot;начальное состояние&quot;
+регистров).</p>
+
+<p>&nbsp;&nbsp;&nbsp; Другая проблема связана со
+свойством &quot;длина строки&quot;. Для строк,
+состоящих из многобайтовых символов, длина
+строки &quot;в символах&quot; не равна длине
+строки &quot;в байтах&quot;. Например функция <i>strlen()</i>
+может работать некорректно. Поэтому, многие
+системы с поддержкой многобайтовых
+символов часто имеют две различных функции,
+например : <i>char_len()</i> и <i>octet_len()</i>.</p>
+
+<hr>
+
+<h2><a name="sch"></a>Схемы.</h2>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp; Существует несколько схем
+организации (кодирования) многобайтовых
+последовательностей. Самые распространенные :</p>
+
+<ul>
+  <li> <strong>ISO-2022</strong></li>
+  <li><strong>UTF-8</strong></li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp; Менее распространенные : <strong>EUC</strong>,
+<strong>Shift-JIS</strong> (<strong>DBCS</strong>). С некоторой натяжкой
+к <strong>Multibyte</strong> можно отнести <strong>UUENCODE</strong>, <strong>BASE-64</strong>
+(вместе с <strong>QP</strong>) и <strong>NCR</strong>.</p>
+
+<hr>
+
+<h2><a name="iso"></a>ISO-2022</h2>
+
+<p>&nbsp;&nbsp;&nbsp; Самое большое влияние на <strong>Multibyte
+chars</strong> оказал стандарт <strong>ISO-2022</strong>. Его текст
+к сожалению доступен только за деньги, но
+существует его полный бесплатный аналог <a href="http://www.ecma-international.org/publications/standards/ECMA-035.HTM"><strong>ECMA-35</strong></a>.</p>
+
+<p>&nbsp;&nbsp;&nbsp; Согласно стандарту <strong>ISO-2022</strong>
+вводится понятия &quot;управляющий символ&quot;
+и &quot;графический символ&quot;,
+напрмер C<span lang="en-us">R</span>, LF или ESC - это управляющие символы.
+Соответственно, все пространство из <strong>2<sup>8</sup>=256</strong>
+символов разбивается на четыре части :</p>
+
+<p align="center"><img src="http://www.linux.org.ru/books/images/iso.gif" alt="ISO-2022" width="287" height="282">
+</p>
+
+<ul>
+  <li>C0 (Control Left) -- 0x00-0x1F</li>
+  <li>GL (Graphic Left) -- 0x20-0x7F</li>
+  <li>C1 (Control Rigth) -- 0x80-0x9F</li>
+  <li>GR (Graphic Right) -- 0xA0-0xFF</li>
+</ul>
+
+<p>&nbsp;&nbsp;&nbsp; Таким образом под
+&quot;отображаемые&quot; символы (Graphic) отводится
+только <strong>256-2*32=192</strong> позиции, <strong>96 GL</strong> и <strong>96
+GR</strong> (иногда <strong>94</strong>, без первой и последней
+позиций).</p>
+
+<p>&nbsp;&nbsp;&nbsp; Одной из функций &quot;управляющих&quot;
+символов является переключение наборов символов
+в <strong>GR</strong> и <strong>GL</strong>. То есть, вся &quot;пляска&quot;
+происходит внутри 8-ми битного пространства. Для
+этого применяется управляющие <strong>ESC</strong>-последовательности,
+&quot;старший&quot; <strong>ESC</strong> - <strong>CSI</strong> и коды <font
+color="#FF0080"><strong>SI</strong></font> и <font color="#FF0080"><strong>SO</strong></font>.
+Например, уже упоминавшийся <strong>КОИ-7</strong> сделан
+в точном соответствии со стандартом <strong>ISO-2022</strong>,
+путем переключения <strong>GL</strong> кодами <font color="#FF0080"><strong>SI</strong></font>
+и <font color="#FF0080"><strong>SO</strong></font> (Удивительно ?).<span lang="en-us">
+</span></p>
+
+<p>&nbsp;&nbsp;&nbsp; Например, большинство принтеров
+используют для переключения кодовых наборов
+именно различные ESC-последовательности. И при вывод на печать постоянно 
+происходит переключение <span lang="en-us">&quot;</span>наборов символов<span lang="en-us">&quot;</span> 
+с помощью управляющих кодов. Точно такая же картина с терминалами, например 
+терминалы <span lang="en-us">DEC VT-XXX </span>или <span lang="en-us">Wyse
+</span>имеют множество национальных наборов символов, вшитых<span lang="en-us">
+</span>в микрокод.<span lang="en-us"> </span>Даже код
+переключения кодовых наборов у консоли <strong>Linux</strong>&nbsp; (echo -ne
+&quot;\033(K&quot; ) -- это тоже разновидность
+последовательности <strong>ISO-2022</strong>.
+( man console_codes )</p>
+
+<p>&nbsp;&nbsp;&nbsp; Каждой половине, <strong>GR</strong> и <strong>GL</strong>,
+может быть <font color="#FF0080"> назначен</font> определенный набор символов
+(Charset). Существуют четыре набора графических
+символов <strong>G0</strong>/<strong>G1</strong>/<strong>G2</strong>/<strong>G3</strong>,
+каждый из которых может быть подключен на место <strong>GL</strong>
+или <strong>GR</strong>. Как правило, в 8-ми битных системах
+для <strong>GL</strong> назначается обычный <strong>ASCII</strong>,
+а <strong>GR</strong> переключают.</p>
+
+<pre>Control code  7-bit form  8-bit form  Notes
+    LS0          0x0F        0x0F     ^O; also called shift-in, SI
+    LS1          0x0E        0x0E     ^N; also called shift-out, SO
+    LS2         0x1B6E      0x1B6E    ESC n
+    LS3         0x1B6F      0x1B6F    ESC o
+    SS2         0x1B4E       0x8E     ESC N
+    SS3         0x1B4F       0x8F     ESC O
+    LS1R          n/a       0x1B7E    ESC ~
+    LS2R          n/a       0x1B7D    ESC }
+    LS3R          n/a       0x1B7C    ESC |</pre>
+
+<p>&nbsp;&nbsp;&nbsp; Вдобавок, каждый из Charset-ов <strong>G0</strong>/<strong>G1</strong>/<strong>G2</strong>/<strong>G3</strong>
+тоже можно сменить с помощью &quot;назначателей&quot;
+(designators). Получается довольно сложная и
+громоздкая система. А все из-за 8-ми битного байта
+!</p>
+
+<p>&nbsp;&nbsp;&nbsp; См. <a href="http://www.itscj.ipsj.or.jp/ISO-IR/">ISO 2375
+International Register of Coded Character Sets</a> - описывает различные
+&quot;назначатели&quot; (designators).</p>
+
+<p>&nbsp;&nbsp;&nbsp; См. <a href="http://www.ecma-international.org/publications/standards/ECMA-035.HTM">ECMA-35</a> -
+полный аналог <strong>ISO-2022</strong>.</p>
+
+<p>&nbsp;&nbsp;&nbsp; Международные стандарты <span lang="en-us"><b>ISO-8859-x</b> 
+(</span>например <span lang="en-us"><b>ISO-8859-1</b> : <b>Latin1</b>) </span>
+сконструированы с учетом требований <span lang="en-us">I<b>SO-2022 </b>.</span></p>
+
+<p>&nbsp;&nbsp;&nbsp; Одним из недостатков <b>ISO-2022</b>
+является запрет на использование позиций
+&quot;старших&quot; управляющих символов <b>C1</b> (0x80-0x9F)
+для кодирования букв. Например, кодировка <b>CP-866</b>
+не соответствует стандарту <b>ISO-2022</b>,
+поскольку код буквы &quot;Ы&quot; (0x9B) совпадает
+со старшим ESC (CSI).</p>
+<hr>
+
+<h2><a name="ctext"></a>CTEXT</h2>
+
+<p>&nbsp;&nbsp;&nbsp; Система <a href="http://www.x.org/">X Window</a>
+проектировалась в 1970-х годах и в качестве
+&quot;внутренней&quot; кодировки международных
+символов в ней была применена схема <b>CTEXT</b> (<i>Compound
+Text<span lang="en-us"> Encoding</span></i>). В кодировке <b>CTEXT</b> сохраняются свойств
+окон <b>X</b> (window propirties) и ресурсов внутри X сервера.</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp; Эта схема идеологически
+довольно близка к <strong>ISO-2022. </strong>Только &quot;назначатели&quot;
+в ней применяются другие.</p>
+
+<ul>
+  <li><a
+href="ftp://ftp.x.org/pub/R6.4/xc/doc/hardcopy/CTEXT/ctext.PS.gz">CTEXT</a> (<em>Compound
+Text</em>)</li>
+  <li><a
+href="ftp://ftp.x.org/pub/R6.4/xc/doc/hardcopy/ICCCM/icccm.PS.gz">ICСCM</a> (<em>Inter-Client
+Communication Conventions Manual</em>)</li>
+</ul>
+
+<p>&nbsp;&nbsp;&nbsp; Стандарт на кодировку <b>CTEXT</b> свободен и имеется в 
+комплекте документации на систему <span lang="en-us"><b>X</b> (</span>например
+<span lang="en-us"><a href="http://www.xfree.org">XFree</a>).</span></p>
+
+<p><span lang="en-us">&nbsp;&nbsp;&nbsp; </span>Для преобразования строк в
+<span lang="en-us">&quot;</span>свойства<span lang="en-us">&quot;</span> существуют 
+функции <strong style="font-weight: 400"><i>XmbTextListToTextProperty()</i><span lang="en-us"> 
+/ </span><i>XwcTextListToTextProperty()</i><span lang="en-us"> </span>и обратные
+<i>XmbTextPropertyToTextList()</i><span lang="en-us"> /</span> <i>
+XwcTextPropertyToTextList</i><span lang="en-us"><i>()</i> .</span></strong></p>
+
+<p>&nbsp;&nbsp;&nbsp; Самые последние версии<span lang="en-us"> </span>
+спецификации <span lang="en-us"><b>CTEXT</b> (&gt;1.1) </span>имеют расширение для 
+интеграции с кодировкой <span lang="en-us"><b>UTF-8</b> (</span>имеют 
+стандартизованный <span lang="en-us">&quot;</span>назначатель<span lang="en-us">&quot;</span> 
+для <span lang="en-us"><b>UTF-8</b>).</span></p>
+
+<hr>
+
+<h2><a name="utf"></a>UTF-8</h2>
+
+<p>&nbsp;&nbsp;&nbsp; <strong>UTF-8</strong> применяет совершенно
+другую схему образования многобайтных кодов.</p>
+
+<p>&nbsp;&nbsp;&nbsp; Символы из набора <strong>UNICODE</strong> и <strong>ISO-10646</strong>
+изначально закодированы не байтами (<strong>8</strong>
+бит), а <strong>16</strong>- или <strong>32</strong>-битными числами (<span lang="en-us">wc 
+- wide characters</span>).
+Для кодирования 32-битного числа <strong>ISO10646</strong>
+применяется следующая схема (<a
+href="http://www.cis.ohio-state.edu/htbin/rfc/rfc2279.html">RFC-2279</a>)</p>
+<div align="center"><center>
+
+<table border="1">
+<TBODY>
+  <tr>
+    <td>U-00000000 - U-0000007F: </td>
+    <td>0<i>xxxxxxx</i> </td>
+  </tr>
+  <tr>
+    <td>U-00000080 - U-000007FF: </td>
+    <td>110<i>xxxxx</i> 10<i>xxxxxx</i> </td>
+  </tr>
+  <tr>
+    <td>U-00000800 - U-0000FFFF: </td>
+    <td>1110<i>xxxx</i> 10<i>xxxxxx</i> 10<i>xxxxxx</i> </td>
+  </tr>
+  <tr>
+    <td>U-00010000 - U-001FFFFF: </td>
+    <td>11110<i>xxx</i> 10<i>xxxxxx</i> 10<i>xxxxxx</i> 10<i>xxxxxx</i> </td>
+  </tr>
+  <tr>
+    <td>U-00200000 - U-03FFFFFF: </td>
+    <td>111110<i>xx</i> 10<i>xxxxxx</i> 10<i>xxxxxx</i> 10<i>xxxxxx</i> 10<i>xxxxxx</i> </td>
+  </tr>
+  <tr>
+    <td>U-04000000 - U-7FFFFFFF: </td>
+    <td>1111110<i>x</i> 10<i>xxxxxx</i> 10<i>xxxxxx</i> 10<i>xxxxxx</i> 10<i>xxxxxx</i> 10<i>xxxxxx</i>
+    </td>
+  </tr>
+</TBODY>
+</table>
+</center></div>
+
+<p>&nbsp;&nbsp;&nbsp; Таки образом, 7-ми битные <strong>US-ASCII</strong>
+символы<span lang="en-us"> (GL)</span> остаются неизменными, а все остальные 
+символы кодируются <font color="#FF0080">переменным</font> количеством байт. Максимальное
+число байт для <strong>UTF-8</strong> составляет <strong>6</strong>.
+Символы кириллицы кодируются двумя байтами.</p>
+
+<p>&nbsp;&nbsp;&nbsp; В файле <strong>UTF-8</strong> никогда не
+бывает нулевых байтов и управляющих
+последовательностей (ESC). </p>
+
+<hr>
+
+<p><img src="http://www.linux.org.ru/books/images/at_work.gif"
+alt="at_work.gif (252 bytes)" width="40" height="40"></p>
+
+<p>Как работать с многобайтными символами ? (<b>API</b>)</p>
+
+<p>В стандарт <b>POSIX</b> включено целое семейство
+функций для работы с многобайтными
+символами. mb* в том числе и для
+преобразования многобайтных символов в &quot;широкие&quot;
+wc*</p>
+
+<p><a href="http://www.cl.cam.ac.uk/~mgk25/unicode.html">http://www.cl.cam.ac.uk/~mgk25/unicode.html</a></p>
+</body>
+</html>

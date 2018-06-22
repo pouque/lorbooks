@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Установка, русификация и настройка</TITLE>
+<META NAME="description" CONTENT="Установка, русификация и настройка">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<!-- Meta http equivalent was here                               -->
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="IntroToLinux.css">
+
+<LINK REL="next" HREF="node16.html">
+<LINK REL="previous" HREF="node14.html">
+<LINK REL="up" HREF="node14.html">
+<LINK REL="next" HREF="node16.html">
+</HEAD>
+
+<BODY background="backgr.jpg" vlink="#000099" bgcolor="#E6E6FA">
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A NAME="tex2html330"
+  HREF="node16.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html326"
+  HREF="node14.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html320"
+  HREF="node14.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html328"
+  HREF="IntroToLinux.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A>  
+<BR>
+<B> След.:</B> <A NAME="tex2html331"
+  HREF="node16.html">Пояснение по работе с</A>
+<B> Вверх:</B> <A NAME="tex2html327"
+  HREF="node14.html">Настройка X</A>
+<B> Пред.:</B> <A NAME="tex2html321"
+  HREF="node14.html">Настройка X</A>
+ &nbsp; <B>  <A NAME="tex2html329"
+  HREF="IntroToLinux.html">Содержание</A></B> 
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION00025100000000000000">
+Установка, русификация и настройка</A>
+</H3>
+
+<P>
+Начиная с четвертой версии, X-сервер XFree86 комплектуется набором драйверов под различные видеокарты.
+Ранее вам пришлось бы искать отдельный X-сервер под вашу видеокарту<A NAME="tex2html12"
+  HREF="node15.html#foot813"><SUP><SPAN CLASS="arabic">12</SPAN></SUP></A>, либо использовать <SPAN  CLASS="textit">xserver-svga</SPAN><A NAME="tex2html13"
+  HREF="node15.html#foot197"><SUP><SPAN CLASS="arabic">13</SPAN></SUP></A>.
+Теперь же первым делом загрузите пакет <SPAN  CLASS="textit">xserver-xfree86</SPAN> версии, желательно, не ниже 4.2.
+
+<P>
+При установке, у вас будет спрошено многое (перед каждым вопросом вас подробно проинструктируют о вариантах ответа), из чего особо отмечу опцию <TT>XkbLayout</TT>, которую нужно установить естественно в <TT>ru</TT>, <TT>XkbVariant</TT>, что у меня является <TT>winkeys</TT> и <TT>XkbOptions</TT>, что у меня в данный момент <TT>grp:caps_toggle,grp_led:scroll</TT>, что означает привычное переключение на русский путем нажатия <TT>&lt;CapsLock&gt;</TT>, но при этом еще и загорается <TT>ScrollLock</TT> для индикации активного языка (Временное переключение осуществляется нажатием правого <TT>&lt;Alt&gt;</TT>).
+
+<P>
+Если вы никак не можете запустить иксы, а в документации нет ничего определенного про вашу видеокарту&nbsp;-- попробуйте указать в ее качестве <TT>vesa</TT>.
+Все это можно править в любое время, редактируя файл <SPAN  CLASS="textbf">/etc/X11/XF86Config-4</SPAN>.
+
+<P>
+Естественно следует также загрузить шрифты.
+Наберите <TT>apt-get install xfonts-&lt;TAB&gt;</TT> и выбирайте что по нраву.
+Рекомендую установить все шрифты с префиксом bolkhov.
+
+<P>
+Для русификации многих приложений оказывается достаточным добавить в ваш <TT>~/.Xresources</TT> файл строку <TT>имя_приложения*font: -*-*-*-*-*-*-*-*-*-*-*-*-koi8-r</TT>.
+
+<P>
+Если вам пришлись не по душе установленная по умолчанию частота обновления экрана и вы желаете получить от монитора и видеокарты максимум, то воспользуйтесь программой <SPAN  CLASS="textbf">xvidtune</SPAN>, что входит в пакет <SPAN  CLASS="textbf">xbase-clients</SPAN>. Полученную в результате работы которого ModeLine следует прописать последней в файл <SPAN  CLASS="textbf">/etc/X11/XF86Config-4</SPAN>...
+
+<P>
+<BR><HR><H4>Сноски</H4>
+<DL>
+<DT><A NAME="foot813">... видеокарту</A><A
+ HREF="node15.html#tex2html12"><SUP><SPAN CLASS="arabic">12</SPAN></SUP></A></DT>
+<DD>Так для видеокарты S3 Xserver называется <SPAN  CLASS="textit">xserver-s3</SPAN>.
+
+</DD>
+<DT><A NAME="foot197">...xserver-svga</A><A
+ HREF="node15.html#tex2html13"><SUP><SPAN CLASS="arabic">13</SPAN></SUP></A></DT>
+<DD>Для большинства тех, кому не досталось отдельного сервера.
+
+</DD>
+</DL>
+<DIV CLASS="navigation"><HR>
+<!--Navigation Panel-->
+<A NAME="tex2html330"
+  HREF="node16.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html326"
+  HREF="node14.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html320"
+  HREF="node14.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html328"
+  HREF="IntroToLinux.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A>  
+<BR>
+<B> След.:</B> <A NAME="tex2html331"
+  HREF="node16.html">Пояснение по работе с</A>
+<B> Вверх:</B> <A NAME="tex2html327"
+  HREF="node14.html">Настройка X</A>
+<B> Пред.:</B> <A NAME="tex2html321"
+  HREF="node14.html">Настройка X</A>
+ &nbsp; <B>  <A NAME="tex2html329"
+  HREF="IntroToLinux.html">Содержание</A></B> </DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<TABLE border="0" cellpadding="0" cellspacing="0" width="100%"><TR bgcolor="#336699"><TD bgcolor="#8080c0"><P align="center"><FONT color="#FFFFFF" size="1"><A href="http://www.gnu.org/copyleft/fdl.html"><FONT color="#FFFFFF" size="1">Copyleft</FONT></A> © 2002-2003 г. &nbsp; Nikolay A. Panov, <A href="http://www.uic.nnov.ru/~nik/articles/IntroToLinux/"><FONT color="#FFFFFF">"Intro To Linux" (orig)</FONT></A>, &nbsp;<a href="mailto:&#110;&#105;&#107;&#115;&#105;&#116;&#101;&#64;&#109;&#97;&#105;&#108;&#46;&#114;&#117;"><FONT color="#FFFFFF">&#110;&#105;&#107;&#115;&#105;&#116;&#101;&#64;&#109;&#97;&#105;&#108;&#46;&#114;&#117;</FONT></A>, &nbsp;ICQ: 122-40-8888</FONT></P></TD></TR></TABLE>
+</ADDRESS>
+</BODY>
+</HTML>

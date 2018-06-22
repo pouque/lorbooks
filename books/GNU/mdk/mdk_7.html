@@ -1,0 +1,173 @@
+<HTML>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- Created on June, 9  2003 by texi2html 1.64 -->
+<!-- 
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Olaf Bachmann <obachman@mathematik.uni-kl.de>
+Send bugs and suggestions to <texi2html@mathematik.uni-kl.de>
+ 
+-->
+<HEAD>
+<TITLE>GNU MIX Development Kit (mdk): mixasm</TITLE>
+
+<META NAME="description" CONTENT="GNU MIX Development Kit (mdk): mixasm">
+<META NAME="keywords" CONTENT="GNU MIX Development Kit (mdk): mixasm">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="texi2html 1.64">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+
+<A NAME="SEC50"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_6.html#SEC49"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_7.html#SEC51"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_6.html#SEC49"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_8.html#SEC52"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H1> 5. <CODE>mixasm</CODE>, ассемблер MIXAL </H1>
+<!--docid::SEC50::-->
+<P>
+
+Программы MIX, выполняемые <CODE>mixvm</CODE>, состоят из двоичных инструкций,
+загружаемых в память виртуальной машины в виде слов MIX.  Хотя можете
+писать программы MIX непосредственно в виде последовательностей
+слов в двоичном формате, в вашем распоряжении есть более дружественный
+язык ассемблера, MIXAL (see section <A HREF="mdk_4.html#SEC26">2.2 MIXAL</A>), программы на котором
+компилируются в двоичный вид включенным в MDK ассемблером MIXAL
+<CODE>mixasm</CODE>.  В этой главе вы найдёте полное описание параметров
+запуска <CODE>mixasm</CODE>.
+</P><P>
+
+<BLOCKQUOTE><TABLE BORDER=0 CELLSPACING=0> 
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="mdk_7.html#SEC51">5.1 Вызов <CODE>mixasm</CODE></A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"><CODE>mixasm</CODE> options</TD></TR>
+</TABLE></BLOCKQUOTE>
+<P>
+
+<A NAME="Вызов <CODE>mixasm</CODE>"></A>
+<HR SIZE="6">
+<A NAME="SEC51"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_7.html#SEC50"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_8.html#SEC52"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_7.html#SEC50"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_7.html#SEC50"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_8.html#SEC52"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 5.1 Вызов <CODE>mixasm</CODE> </H2>
+<!--docid::SEC51::-->
+<P>
+
+В наиболее простом виде <CODE>mixasm</CODE> вызывается с единственным
+аргументом -- именем компилируемого файла на MIXAL. Например,
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>mixasm hello
+</pre></td></tr></table></P><P>
+
+скомпилирует либо файл <TT>`hello'</TT>, либо <TT>`hello.mixal'</TT>, создавая,
+если не будет обнаружено ошибок, двоичный файл <TT>`hello.mix'</TT>.
+</P><P>
+
+Кроме того, <CODE>mixasm</CODE> может вызываться со следующими параметрами
+командной строки (заметьте, что в соответствии с соглашениями GNU, у
+каждого однобуквенного параметра есть соответствующее длинное имя):
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>mixasm [-vhulg] [-o ВЫХ_ФАЙЛ] [--version] [--help] [--usage]
+       [--debug] [--output=ВЫХ_ФАЙЛ] [--list[=ФАЙЛ_ЛИСТ]] файл
+</pre></td></tr></table></P><P>
+
+Значение этих параметров таково:
+</P><P>
+
+<A NAME="IDX197"></A>
+<DL>
+<DT><U>User Option:</U> <B>-v</B>
+<DD><A NAME="IDX198"></A>
+<DT><U>User Option:</U> <B>--version</B>
+<DD>Вывести версию и информацию об авторских левах и завершить работу.
+</DL>
+</P><P>
+
+<A NAME="IDX199"></A>
+<DL>
+<DT><U>User Option:</U> <B>-h</B>
+<DD><A NAME="IDX200"></A>
+<DT><U>User Option:</U> <B>--help</B>
+<DD><A NAME="IDX201"></A>
+<DT><U>User Option:</U> <B>-u</B>
+<DD><A NAME="IDX202"></A>
+<DT><U>User Option:</U> <B>--usage</B>
+<DD>Вывести краткий перечень доступных параметров и завершить работу.
+</DL>
+</P><P>
+
+<A NAME="IDX203"></A>
+<DL>
+<DT><U>User Option:</U> <B>-g</B>
+<DD><A NAME="IDX204"></A>
+<DT><U>User Option:</U> <B>--debug</B>
+<DD>Включить в компилируемый файл отладочную информацию, допускающую установку
+точек останова на уровне исходного кода и просмотр таблицы символов
+под <CODE>mixvm</CODE>.
+</DL>
+</P><P>
+
+<A NAME="IDX205"></A>
+<DL>
+<DT><U>User Option:</U> <B>-o</B> <I>вых_файл</I>
+<DD><A NAME="IDX206"></A>
+<DT><U>User Option:</U> <B>--output=вых_файл</B>
+<DD>По умолчанию исходный файл <VAR>файл.mixal</VAR> компилируется в
+<VAR>файл.mix</VAR>. Этим параметром вы можете задать другое имя выходного
+файла.
+</DL>
+</P><P>
+
+<A NAME="IDX207"></A>
+<DL>
+<DT><U>User Option:</U> <B>-l</B>
+<DD><A NAME="IDX208"></A>
+<DT><U>User Option:</U> <B>--list[=файл_лист]</B>
+<DD>Этот параметр заставляет <CODE>mixasm</CODE> создавать, кроме файла <TT>`.mix'</TT>,
+ASCII-файл, содержащий краткую информацию о результатах компиляции.
+Если не задано аргументов, название файла получается заменой расширения
+имени исходного файла на <TT>`.mls'</TT>, в противном случае файл листинга
+называется в соответствии с аргументом.
+</DL>
+</P><P>
+
+<A NAME="mixvm"></A>
+<HR SIZE="6">
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_7.html#SEC50"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_8.html#SEC52"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<BR>  
+<FONT SIZE="-1">
+This document was generated
+on <I>June, 9  2003</I>
+using <A HREF="http://www.mathematik.uni-kl.de/~obachman/Texi2html
+"><I>texi2html</I></A>
+
+</BODY>
+</HTML>

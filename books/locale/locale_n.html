@@ -1,0 +1,190 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=koi8-r">
+<meta name="GENERATOR" content="Microsoft FrontPage 3.0">
+<title> Locale &quot;AS IT IS&quot; - NLS </title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1>NLS. Сообщения на родном языке.</h1>
+
+<p>&nbsp;&nbsp;&nbsp; Ранее уже упоминалась возможность
+получения сообщений и работы с программой на
+родном языке. Такая возможность существует, и
+даннное средство называется <strong>NLS (National (или Native)
+Language Support)</strong>. </p>
+
+<p><strong>&quot;Национализация&quot;</strong> в
+действительности включает в себя несколько
+аспектов : 
+
+<ul>
+  <li>Перевод сообщений программы на национальный
+    язык. </li>
+  <li>Присвоение значения категории локализации <strong>LC_MESSAGES</strong>
+    и/или переменной <strong>LANG</strong>. </li>
+  <li>Перевод описания программы для <strong>man</strong>. </li>
+</ul>
+
+<hr>
+
+<p>&nbsp;&nbsp;&nbsp; Чтобы организовать работу с
+сообщениями программы и дать возможность
+переводить их на другие языки, было введено такое
+понятие, как <strong>message catalog</strong> ( каталог
+сообщений ). Каталог сообщений хранится отдельно
+от программы. Естественно, каждая программа
+может ( и должна ! ) вести свой <strong>собственный</strong>
+каталог сообщений, а система<strong> NLS</strong>
+предоставляет средства для поддержки корректной
+работы. Большинство программ, а также системные
+библиотеки (libc и т.д.) используют<strong> NLS</strong> и их
+сообщения могу быть переключены на другой язык. </p>
+
+<p><strong>Message catalog</strong> - это фактически <strong>база
+данных</strong>, выборка из которой происходит по
+ключам : 
+
+<ul>
+  <li>выбранный пользователем язык сообщений, </li>
+  <li>имя исполняемой программы, </li>
+  <li>конкретное сообщение в программе. </li>
+</ul>
+
+<p>&nbsp;&nbsp;&nbsp; В результате, на выходе, мы получаем <strong>строку</strong>
+конкретного сообщения конкретной программы на
+нужном нам языке. </p>
+
+<p>&nbsp;&nbsp;&nbsp; Система NLS предоставляет набор
+стандартных библиотечных <strong>вызовов</strong> для
+работы с каталогами сообщений и набор <strong>утилит</strong>
+для создания и поддержания этих каталогов (базы). </p>
+
+<p>В настоящее время существут две основных
+реализации <strong>NLS</strong> : 
+
+<ul>
+  <li><strong>X/Open XPG3/XPG4</strong> (с функцииями <a href="http://www.linux.org.ru/books/man/man3/catopen.html"><em>catopen()</em></a>,<a href="http://www.linux.org.ru/books/man/man3/catgets.html"><em>catgets()</em></a>,<a href="http://www.linux.org.ru/books/man/man3/catclose.html"><em>catclose()</em></a> и утилитой <a href="http://www.linux.org.ru/books/man/man1/gencat.html"><em>gencat</em></a> ) </li>
+  <li><strong>SUN XView</strong> (с функциями <em>gettext()</em>, <em>textdomain()</em>
+    ) См. <a href="http://i44www.info.uni-karlsruhe.de/~drepper/conf96/paper-6.html">статью
+    </a>и пример реализации <a href="other/about-nls.html">GNU gettext</a>.</li>
+</ul>
+
+<p>&nbsp;&nbsp;&nbsp; В наиболее широко распространенной
+реализации <strong>XPG4</strong> всем сообщениям
+программы присваивается определенный <strong>номер</strong>,
+который служит <strong>индексом</strong> для поиска
+текстовой строки в <strong>message catalog-е</strong>. Кроме
+того может существовать <strong>несколько</strong>
+наборов (sets) сообщений внутри одного каталога.</p>
+
+<p>&nbsp;&nbsp;&nbsp; Для поиска самих <strong>message catalog-ов</strong>
+от данной программы используется переменная
+окружения <strong><a href="http://www.linux.org.ru/books/man/man_e/nlspath.html">NLSPATH</a></strong> . </p>
+
+<hr>
+
+<h2>Пример (XPG4):</h2>
+
+<p>Данный пример демонстрирует три этапа
+получения сообщения из каталога: 
+
+<ol>
+  <li><a href="locale_n.html#1">Исходный текст message catalog-a</a></li>
+  <li><a href="locale_n.html#2">Компиляция message catalog-а</a></li>
+  <li><a href="locale_n.html#3">Использование message catalog-a</a></li>
+</ol>
+
+<h3><a name="1"></a>1. Исходный текст message catalog-a:</h3>
+
+<pre><strong>example.msg</strong> file:</pre>
+<div align="left">
+
+<table border="1">
+  <tr>
+    <td><pre>$quote &quot;
+$ every message catalog should have a beginning set number.
+$set 1 This is the set 1 of messages
+1 &quot;Hello world\n&quot;
+2 &quot;Good Morning\n&quot;
+3 &quot;example: 1000.220 Read permission is denied for the file %s.\n&quot;
+$set 2
+1 &quot;Howdy\n&quot;</pre>
+    </td>
+  </tr>
+</table>
+</div>
+
+<p>&nbsp;</p>
+
+<h3><a name="2"></a>2. Компиляция message catalog-а :</h3>
+
+<p>Полученный файл обрабатывается утилитой <a href="http://www.linux.org.ru/books/man/man1/gencat.html"><em>gencat</em></a> для получения файла
+каталога <strong>.msg</strong> .</p>
+
+<p><strong>ПРИМЕЧАНИЕ:</strong> Здесь рассматривается
+исходная <strong>XPG4</strong> версия, однако входящая в
+состав Linux libc (libc5) <a href="other/readme-nls.html">Linux gencat</a>
+отличается ключами командной строки и имеет
+дополнительные возможности (не <strong>XPG</strong>). В
+частности, используя символ # можно определять
+костанты для генерации *.h файлов. (см. <a href="other/tutorial.html">tutorial</a> ). Однако в GNU libc (libc6) все
+приведено в соответствие с <strong>XPG</strong> (см. <a href="http://sourceware.cygnus.com/glibc/glibc-faq.html#s-2.10">glibc FAQ</a>).</p>
+
+<pre><strong>$ gencat example.cat example.msg</strong></pre>
+
+<h3><a name="3"></a>3. Пример использования message catalog-a :</h3>
+
+<table border="1">
+  <tr>
+    <td><pre>/* X/Open XPG4 message catalog test */
+#include <a href="http://www.linux.org.ru/books/man/man_h/locale.html">&lt;locale.h&gt;</a>
+#include <a href="http://www.linux.org.ru/books/man/man_h/nl_types.html">&lt;nl_types.h&gt;</a>
+char *MF_EXAMPLE = &quot;example.cat&quot;;
+
+main()
+{
+  nl_catd catd;
+  int error;
+
+  (void)setlocale(LC_ALL, &quot;&quot;);
+
+  catd = catopen(MF_EXAMPLE, 0);
+
+  /* Get the message number 1 from the first set.*/
+  printf( catgets(catd,1,1,&quot;Hello world\n&quot;) );
+
+  /* Get the message number 1 from the second set.*/
+  printf( catgets(catd, 2, 1,&quot;Howdy\n&quot;) );
+
+  /* Display an error message. No message 4 in set 1.*/
+  printf( catgets(catd, 1, 4,
+          &quot;example: 100.220 Permission is denied to read the file %s.\n&quot;),
+          MF_EXAMPLE);
+
+   catclose(catd);
+
+}</pre>
+    </td>
+  </tr>
+</table>
+
+<h3>&nbsp;&nbsp;&nbsp; Запуск:</h3>
+
+<pre><strong>$ cc -o example example.c
+$ export <a href="http://www.linux.org.ru/books/man/man_e/nlspath.html">NLSPATH</a>=%N</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;-- (не забыть поменять назад)<strong>
+$ ./example</strong></pre>
+
+<hr>
+
+<p>Содержание <a href="http://www.sensi.org/~alec/locale/index.html#toc">&quot;Locale
+AS IT IS&quot;</a> </p>
+
+<hr>
+
+<h6><em>Last change : <!--webbot bot="Timestamp" S-Type="EDITED" S-Format="%d-%m-%Y" startspan -->01-10-2000<!--webbot bot="Timestamp" endspan i-checksum="12414" --></em></h6>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE>MINI HOW-TO ON SETTING UP IP ALIASING ON A LINUX MACHINE: Вопрос: Как мне сохранить установки?</TITLE>
+ <LINK HREF="IP-Alias-4.html" REL=next>
+ <LINK HREF="IP-Alias-2.html" REL=previous>
+ <LINK HREF="IP-Alias.html#toc3" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="IP-Alias-4.html">Next</A>
+<A HREF="IP-Alias-2.html">Previous</A>
+<A HREF="IP-Alias.html#toc3">Contents</A>
+<HR>
+<H2><A NAME="s3">3. Вопрос: Как мне сохранить установки?</A></H2>
+
+<P>Ответ: Если вы используете запуск в стиле BSD или SysV (Redhat
+например), то вы всегда можете включить их в /etc/rc.d/rc.local.
+Вот что находится в моей системе загрузки в стиле SysV (Redhat
+3.0.3 и 4.0):
+<P>Мой /etc/rc.d/rc.local: (оставлены только интересующие нас
+куски)
+<BLOCKQUOTE><CODE>
+<PRE>
+ #setting up IP alias interfaces
+ echo "Setting 172.16.3.1, 172.16.3.10, 172.16.3.100 IP Aliases /sbin/ifconfig lo 127.0.0.1
+ /sbin/ifconfig eth0 up
+ /sbin/ifconfig eth0 172.16.3.1
+ /sbin/ifconfig eth0:0 172.16.3.10
+ /sbin/ifconfig eth0:1 172.16.3.100
+ #setting up the routes
+ echo "Setting IP routes ..."
+ /sbin/route add -net 127.0.0.0
+ /sbin/route add -net 172.16.3.0 dev eth0
+ /sbin/route add -host 172.16.3.1 eth0
+ /sbin/route add -host 172.16.3.10 eth0:0
+ /sbin/route add -host 172.16.3.100 eth0:1
+ /sbin/route add default gw 172.16.3.200
+ #
+</PRE>
+</CODE></BLOCKQUOTE>
+<HR>
+<A HREF="IP-Alias-4.html">Next</A>
+<A HREF="IP-Alias-2.html">Previous</A>
+<A HREF="IP-Alias.html#toc3">Contents</A>
+</BODY>
+</HTML>

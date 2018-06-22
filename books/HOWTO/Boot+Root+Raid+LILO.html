@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE>Мини HOWTO:Boot + Root + Raid + Lilo : Программный Raid</TITLE>
+ <LINK HREF="Boot+Root+Raid+LILO-1.html" REL=next>
+
+
+</HEAD>
+<BODY>
+<A HREF="Boot+Root+Raid+LILO-1.html">Next</A>
+Previous
+Contents
+<HR>
+<H1>Мини HOWTO:Boot + Root + Raid + Lilo : Программный Raid</H1>
+
+<H2>Michael Robinton, 
+<A HREF="mailto:michael@bizsystems.com">Michael@BizSystems.com</A></H2>
+<H3>Перевод: 
+<A HREF="mailto:sam@asp-linux.com">Станислав Рогин</A>,
+<A HREF="http://www.asplinux.com">SWSoft Pte Ltd.</A>,</H3>
+версия 1.03, 4 мая 2000
+<P><HR>
+<EM>Этот документ содержит указания, как настроить raid, используя утилиты raidtools версии 0.90 для загрузки с массива raid, подключенного в качестве корневой файловой системы, используя стандартный LILO.
+Также здесь приведена процедура преобразования обычного диска в зеркальный набор (mirror set) raid1 или raid5  без потерь данных на исходном диске.</EM>
+<HR>
+<P>
+<H2><A NAME="toc1">1.</A> <A HREF="Boot+Root+Raid+LILO-1.html">Введение</A></H2>
+
+<UL>
+<LI><A HREF="Boot+Root+Raid+LILO-1.html#ss1.1">1.1 Благодарности</A>
+<LI><A HREF="Boot+Root+Raid+LILO-1.html#ss1.2">1.2 Ошибки</A>
+<LI><A HREF="Boot+Root+Raid+LILO-1.html#ss1.3">1.3 Copyright Notice</A>
+<LI><A HREF="Boot+Root+Raid+LILO-1.html#ss1.4">1.4 Авторские права</A>
+</UL>
+<P>
+<H2><A NAME="toc2">2.</A> <A HREF="Boot+Root+Raid+LILO-2.html">Что вам потребуется до НАЧАЛА РАБОТЫ</A></H2>
+
+<UL>
+<LI><A HREF="Boot+Root+Raid+LILO-2.html#ss2.1">2.1 Необходимые пакеты</A>
+<LI><A HREF="Boot+Root+Raid+LILO-2.html#ss2.2">2.2 Где найти новые версии этого документа.</A>
+<LI><A HREF="Boot+Root+Raid+LILO-2.html#ss2.3">2.3 Документация рекомендуемая для прочтения</A>
+<LI><A HREF="Boot+Root+Raid+LILO-2.html#ss2.4">2.4 Информационные ресурсы по RAID</A>
+</UL>
+<P>
+<H2><A NAME="toc3">3.</A> <A HREF="Boot+Root+Raid+LILO-3.html">Загружаемый Raid</A></H2>
+
+<UL>
+<LI><A HREF="Boot+Root+Raid+LILO-3.html#ss3.1">3.1 Загрузка RAID 1 при помощи стандартного LILO</A>
+<LI><A HREF="Boot+Root+Raid+LILO-3.html#ss3.2">3.2 Подробный разбор lilo.conf для загружаемого raid</A>
+</UL>
+<P>
+<H2><A NAME="toc4">4.</A> <A HREF="Boot+Root+Raid+LILO-4.html">Переход с не-raid на RAID1/4/5</A></H2>
+
+<UL>
+<LI><A HREF="Boot+Root+Raid+LILO-4.html#ss4.1">4.1 Шаг 1 - готовим новое ядро</A>
+<LI><A HREF="Boot+Root+Raid+LILO-4.html#ss4.2">4.2 Шаг 2 - настраиваем raidtab для вашего нового raid-а.</A>
+<LI><A HREF="Boot+Root+Raid+LILO-4.html#ss4.3">4.3 Создаем, форматируем и настраиваем RAID</A>
+<LI><A HREF="Boot+Root+Raid+LILO-4.html#ss4.4">4.4 Копируем текущую ОС на новое raid-устройство</A>
+<LI><A HREF="Boot+Root+Raid+LILO-4.html#ss4.5">4.5 Проверяем ваш новый RAID</A>
+<LI><A HREF="Boot+Root+Raid+LILO-4.html#ss4.6">4.6 Интегрируем старый диск в raid-массив</A>
+</UL>
+<P>
+<H2><A NAME="toc5">5.</A> <A HREF="Boot+Root+Raid+LILO-5.html">Приложение 1. - Пример raidtab</A></H2>
+
+<P>
+<H2><A NAME="toc6">6.</A> <A HREF="Boot+Root+Raid+LILO-6.html">Приложение 2. - Пример реализации RAID5 на SCSI</A></H2>
+
+<P>
+<H2><A NAME="toc7">7.</A> <A HREF="Boot+Root+Raid+LILO-7.html">Приложение 3. - IDE RAID10 с initrd</A></H2>
+
+<P>
+<H2><A NAME="toc8">8.</A> <A HREF="Boot+Root+Raid+LILO-8.html">Приложение 4. - IDE RAID1-10 с initrd</A></H2>
+
+<HR>
+<A HREF="Boot+Root+Raid+LILO-1.html">Next</A>
+Previous
+Contents
+</BODY>
+</HTML>

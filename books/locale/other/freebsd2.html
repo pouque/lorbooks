@@ -1,0 +1,119 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=koi8-r">
+<title>POSIX locale FreeBSD 2.x</title>
+</head>
+
+<body>
+
+<h2>POSIX locale FreeBSD 2.x</h2>
+
+<p>-----Original Message-----<br>
+From: Alexander Voropay &lt;<a href="mailto:a.voropay@globalone.ru">a.voropay@globalone.ru</a>&gt;<br>
+To: <a href="mailto:locale@sensi.org">locale@sensi.org</a> &lt;<a
+href="mailto:locale@sensi.org">locale@sensi.org</a>&gt;<br>
+Date: 17 августа 1999 г. 15:47<br>
+Subject: Re: locale во FreeBSD</p>
+
+<p>&gt;&nbsp; расскажите, пожалуйста, как
+скомпилировать локаль во<br>
+&gt;FreeBSD, мне нужна ru_RU.ISO-8859-5.&nbsp; что для этого
+потребуется:<br>
+&gt;файлы, программы, права рута?&nbsp; спасибо.<br>
+&gt;<br>
+&gt;система FreeBSD 2.2.8-RELEASE.<br>
+<br>
+С locale во FreeBSD не очень хорошо. Вернее, все вызовы<br>
+типа setlocale(3) работают отлично. Но нету POSIX *утилит*<br>
+localedef(1) и locale(1). Поэтому скомпилировать
+&quot;объекты<br>
+локализации&quot; - задача не тривиальная.<br>
+<br>
+Да, нужны права root.<br>
+<br>
+Необходимо поставить исходники FreeBSD : sshare и subin<br>
+<br>
+$ cd /home/ftp/pub/FreeBSD/2.2.8-RELEASE/src<br>
+$./install.sh share<br>
+$./install.sh ubin<br>
+<br>
+Скрипт install.sh положит все куда надо : в /usr/src<br>
+<br>
+Далее смотри программушки : mklocale(1) - она
+генерирует<br>
+LC_CTYPE и colldef(1) - генерирует LC_COLLATE. Живут<br>
+они соответственно в :<br>
+/usr/src/usr.bin/mklocale<br>
+/usr/src/usr.bin/colldef<br>
+<br>
+Там же в ./data/* лежат файлы примеров - исходников<br>
+*.src . Они совсем не похожи на POSIX, но очень простые.<br>
+Собственно их-то и надо поправить и
+скомпилировать.<br>
+Как - смотри Makefile. Для компиляции LC_COLLATE еще<br>
+будет нужен файлик описания CHARSET-а. Примеры<br>
+опять же есть в ./data .<br>
+<br>
+Категория LC_TIME собирается по другому. В каталоге<br>
+/usr/src/share/timedef в ./data лежат исходники *.src .<br>
+Имена месяцев там идут просто открытым текстом,<br>
+поэтому этот файл можно просто перекодировать в
+ISO.<br>
+А дальше - смотри как в Makefile.<br>
+<br>
+Полученные файлики LC_TIME, LC_CTYPE и LC_COLLATE<br>
+нужно положить в каталог /usr/share/locale/ru_RU.ISO_8859-5<br>
+сделать export LANG=ru_RU.ISO_8859-5 и наслаждаться.<br>
+Во FreeBSD принято писать название CHARSET-а с &quot;_&quot;<br>
+а не через &quot;-&quot;, то есть вот так : &quot;ISO_8859-5&quot;.<br>
+<br>
+Как сделать LC_NUMERIC и LC_MONETARY я не нашел.<br>
+<br>
+Если будут трудности - пиши.<br>
+<br>
+P.S. Результаты работы и *.src файлы нужно положить
+на ftp<br>
+и сообщить URL людям. :-)<br>
+<br>
+P.P.S. После этого все то же самое проделать для CP1251
+и<br>
+MAC-CYRILLIC&nbsp; ;-)</p>
+
+<hr>
+
+<p>From: Ivan Pascal &lt;<a href="mailto:pascal@info.tsu.ru">pascal@info.tsu.ru</a>&gt;<br>
+To: <a href="mailto:locale@sensi.org">locale@sensi.org</a> &lt;<a
+href="mailto:locale@sensi.org">locale@sensi.org</a>&gt;<br>
+Date: 18 августа 1999 г. 4:07<br>
+Subject: Re: locale во FreeBSD</p>
+
+<p>&gt; <br>
+&gt;&nbsp; Как сделать LC_NUMERIC и LC_MONETARY я не нашел.<br>
+&gt; <br>
+----------<br>
+SETLOCALE(3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FreeBSD Library Functions
+Manual&nbsp;&nbsp; SETLOCALE(3)<br>
+.......<br>
+<br>
+BUGS<br>
+&nbsp;&nbsp;&nbsp;&nbsp; The current implementation supports only the &quot;C&quot; and
+&quot;POSIX&quot; locales for<br>
+&nbsp;&nbsp;&nbsp;&nbsp; all but the LC_COLLATE, LC_CTYPE, and LC_TIME categories.<br>
+.....<br>
+BSD June 9, 1993&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3<br>
+-------<br>
+&nbsp; То есть - NUMERIC и MONETARY одни на все &quot;локали&quot; :<br>
+- сделать можно LC_CTYPE, LC_COLLATE, LC_TIME<br>
+- остальные категории для всех одинаковые и такие
+как в &quot;C&quot;<br>
+<br>
+<br>
+-- <br>
+Ivan U. Pascal&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp; e-mail: <a
+href="mailto:pascal@tsu.ru">pascal@tsu.ru</a><br>
+&nbsp;&nbsp; Administrator of&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp; Tomsk State University<br>
+&nbsp;&nbsp;&nbsp;&nbsp; University Network | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Tomsk,
+Russia</p>
+</body>
+</html>

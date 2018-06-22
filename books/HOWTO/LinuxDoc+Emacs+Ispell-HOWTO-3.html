@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE>LinuxDoc+Emacs+Ispell-HOWTO: Ваш первый документ</TITLE>
+ <LINK HREF="LinuxDoc+Emacs+Ispell-HOWTO-4.html" REL=next>
+ <LINK HREF="LinuxDoc+Emacs+Ispell-HOWTO-2.html" REL=previous>
+ <LINK HREF="LinuxDoc+Emacs+Ispell-HOWTO.html#toc3" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="LinuxDoc+Emacs+Ispell-HOWTO-4.html">Следующий</A>
+<A HREF="LinuxDoc+Emacs+Ispell-HOWTO-2.html">Предыдущий</A>
+<A HREF="LinuxDoc+Emacs+Ispell-HOWTO.html#toc3">Содержание</A>
+<HR>
+<H2><A NAME="s3">3. Ваш первый документ</A></H2>
+
+<H2><A NAME="ss3.1">3.1 From a text document</A>
+ </H2>
+
+<P>Если вы хотите превратить текстовый документ в SGML для переноса
+его в другие форматы, то вот как это делается:
+<P>
+<OL>
+<LI>Добавте следующие строки в самое начало документа:
+<PRE>
+  &lt;!doctype linuxdoc system>
+  &lt;article>
+  &lt;title>Title Goes Here&lt;/title>
+  &lt;author>
+    name of author, author's e-mail, etc.
+  &lt;/author>
+  &lt;date>
+   version and date 
+  &lt;/date>
+ 
+</PRE>
+
+       </LI>
+<LI>Если вы кратко описываете содержание документа в самом начале
+документа, то окружите этот параграф тагами <CODE>&lt;abstract&gt;</CODE>
+и <CODE>&lt;/abstract&gt;</CODE>. 
+       </LI>
+<LI>Затем вставьте таг <CODE>&lt;toc&gt;</CODE>, который обозначает <EM>Содержание</EM>. 
+</LI>
+<LI>В начале каждой главы замените каждую строку дающую номер и
+заголовок главы на:
+  
+<PRE>
+ &lt;sect>Заголовок Главы
+ 
+</PRE>
+
+и добавьте таг <CODE>&lt;/sect&gt;</CODE> в конец главы.<BR>
+<P><B>Замечание&nbsp;:</B> Вам не надо помещать номер главы, это
+сделается автоматически.
+<P>
+</LI>
+<LI>Сделайте то же самое для разделов. Вам необходимо удалить их
+номера и отметить их тагами <CODE>&lt;sect1&gt;</CODE> в начале раздела 
+и тагами <CODE>&lt;/sect1&gt;</CODE> в конце раздела.
+</LI>
+<LI>Вы можете также определить 4 уровня вложенности в разделах,
+используя <CODE>&lt;sectN&gt;</CODE> и <CODE>&lt;/sectN&gt;</CODE>, где
+<CODE>N=</CODE> 2, 3, или 4 также как и в предыдущем случае.
+</LI>
+<LI>В начале каждого параграфа вставьте таг <CODE>&lt;p&gt;</CODE>.
+</LI>
+<LI>Если вам необходимо выделить некоторые части, то обозначьте их
+тагами <CODE>&lt;it&gt;</CODE> и <CODE>&lt;/it&gt;</CODE>
+(<I>курсив</I>), <CODE>&lt;bf&gt;</CODE> и <CODE>&lt;/bf&gt;</CODE>
+(<B>жирный шрифт</B>), или <CODE>&lt;tt&gt;</CODE> и
+<CODE>&lt;/tt&gt;</CODE> (<CODE>стиль пишущей машинки</CODE>). 
+</LI>
+<LI>Для вставки примерно такого списка: 
+<PRE>
+        Это четырехстрочный список:
+
+         - здесь первая строка
+         - затем вторая строка
+         - и еще одна
+         - это все
+       
+</PRE>
+
+       
+вы должны заменить его на:
+       
+<PRE>
+        Это четырехстрочный список:
+       &lt;itemize>
+       &lt;item>здесь первая строка
+       &lt;item>затем вторая строка
+       &lt;item>и еще одна
+       &lt;item>это все
+       &lt;/itemize>
+        
+</PRE>
+
+</LI>
+<LI>Когда весь блок является частью программы, или чего-нибудь
+другого, что нуждается в неизменной передаче, используйте:
+
+<PRE>
+       &lt;verb>
+        10 REM Oh my God what's this?
+        20 REM I thought this had long disappeared!
+        30 PRINT "I am back to";
+        40 PRINT "save the world."
+        50 INPUT "From whom, do you reckon? ",M$
+        60 IF M$="Bill" THEN PRINT "Thou art wise.":GOTO PARADISE
+        70 ELSE PRINT "You ain't got a clue...":GOTO RICHMOND
+        &lt;/verb>
+       
+</PRE>
+
+</LI>
+<LI>Таким образом, ваше мастерство форматирования SGML будет
+довольно приличным. Если вы хотите усовершенствовать ваш документ,
+вы можете заглянуть в руководство пользователя <B>SGML-Tools</B>,
+которое дает более детальную информацию о типе документа
+<B>LinuxDoc</B>. </LI>
+</OL>
+<HR>
+<A HREF="LinuxDoc+Emacs+Ispell-HOWTO-4.html">Следующий</A>
+<A HREF="LinuxDoc+Emacs+Ispell-HOWTO-2.html">Предыдущий</A>
+<A HREF="LinuxDoc+Emacs+Ispell-HOWTO.html#toc3">Содержание</A>
+</BODY>
+</HTML>

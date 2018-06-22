@@ -1,0 +1,122 @@
+<HTML>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- Created on June, 9  2003 by texi2html 1.64 -->
+<!-- 
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Olaf Bachmann <obachman@mathematik.uni-kl.de>
+Send bugs and suggestions to <texi2html@mathematik.uni-kl.de>
+ 
+-->
+<HEAD>
+<TITLE>GNU MIX Development Kit (mdk): Введение</TITLE>
+
+<META NAME="description" CONTENT="GNU MIX Development Kit (mdk): Введение">
+<META NAME="keywords" CONTENT="GNU MIX Development Kit (mdk): Введение">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="texi2html 1.64">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+
+<A NAME="SEC1"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk.html#SEC_Top"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_2.html#SEC2"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk.html#SEC_Top"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_2.html#SEC2"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<A NAME="Введение"></A>
+<H1> Введение </H1>
+<!--docid::SEC1::-->
+<P>
+
+В серии книг <CITE>The Art of Computer Programming</CITE> (опубликована
+издательством Addison Wesley)<A NAME="DOCF2" HREF="mdk_fot.html#FOOT2">(2)</A> Д. Кнут
+для иллюстрации приводимых понятий и алгоритмов использует воображаемый
+компьютер MIX и соответствующие машинный код и языки ассемблера.
+ 
+Архитектура MIX -- упрощённый вариант архитектуры реальных CISC-процессоров,
+а язык ассемблера MIX (MIX assembly language, MIXAL) предоставляет набор
+примитивов, очень знакомых любому человеку с минимальным опытом
+программирования на ассемблере.  Определение MIX/MIXAL достаточно мощно
+и полно, чтобы создать виртуальную платформу для написания достаточно
+сложных программ, и достаточно близко к реальным компьютерам, чтобы их
+стоило использовать при обучении технике программирования.  В любом случае,
+хотите ли вы изучать программирование или совершенствовать программистские
+навыки, среда разработки MIX может в этом пригодиться.
+</P><P>
+
+Пакет MDK имеет целью предоставление такой виртуальной среды
+разработки на системе GNU.  MDK предлагает вам набор утилит
+для эмуляции компьютера MIX, для написания, компиляции, выполнения и
+отладки программ на MIXAL.  Версия 1.0 MDK включает
+следующие программы:
+</P><P>
+
+<DL COMPACT>
+<DT><CODE>mixasm</CODE>
+<DD>Ассемблер MIXAL.  Ассемблер, транслирующий исходные файлы на MIXAL в
+программы, которые могут выполняться (и отлаживаться) программами
+<CODE>mixvm</CODE>, <CODE>mixguile</CODE> и <CODE>gmixvm</CODE>.
+<DT><CODE>mixvm</CODE>
+<DD>Виртуальная машины MIX.  Эмуляция компьютера MIX с консольным интерфейсом
+(<FONT SIZE="-1">CLI</FONT>).
+<DT><CODE>gmixvm</CODE>
+<DD>Графический интерфейс GTK+ для виртуальной машины MIX.  Предоставляет
+все возможности <CODE>mixvm</CODE> через графический интерфейс.
+<DT><CODE>mixguile</CODE>
+<DD>Оболочка Guile со встроенными виртуальной машиной MIX и командами для
+управления ей с использованием Scheme.
+<DT><CODE>mixvm.el</CODE>
+<DD>Это программа на elisp позволяет запускать <CODE>mixvm</CODE> из буфера GUD
+Emacs, позволяя параллельно редактировать и отлаживать программы
+на MIXAL.
+</DL>
+<P>
+
+<CODE>mixvm</CODE> и <CODE>gmixvm</CODE> реализуют эмулятор компьютера MIX, дают
+виртуальную машину для выполнения и отладки программ на MIX.  Эти
+двоичные программы могут быть написаны вручную, но проще создать их,
+компилируя исходные файлы на MIXAL ассемблером MIXAL <CODE>mixasm</CODE>.
+С другой стороны, <CODE>mixguile</CODE> предлагает вам возможность управления
+виртуальной машиной MIX с помощью набора функций Scheme, так что вы
+можете использовать этот язык программирования для взаимодействия с
+виртуальной машиной.  Кроме того, <CODE>mixvm</CODE> и <CODE>gmixvm</CODE> могут
+также интерпретировать скрипты Scheme (используя встроенный интерпретатор
+Guile), то есть вы можете использовать Scheme как расширение языка
+для добавления к этим программам новых возможностей.
+</P><P>
+
+Это руководство содержит учебник MIX и MIXAL и подробное описание
+использования утилит MDK.
+</P><P>
+
+<A NAME="Благодарности"></A>
+<HR SIZE="6">
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk.html#SEC_Top"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_2.html#SEC2"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<BR>  
+<FONT SIZE="-1">
+This document was generated
+on <I>June, 9  2003</I>
+using <A HREF="http://www.mathematik.uni-kl.de/~obachman/Texi2html
+"><I>texi2html</I></A>
+
+</BODY>
+</HTML>

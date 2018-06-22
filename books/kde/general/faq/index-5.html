@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<TITLE>Часто задаваемые вопросы по KDE: Панель</TITLE>
+<META HTTP-EQUIV="content-type" CONTENT="text/html; charset=koi8-r">
+<META NAME="keywords" CONTENT="KDE FAQ Russian translation Dmitry Mozzherin Часто задаваемые вопросы перевод русский Дмитрий Мозжерин">
+<META NAME="description" CONTENT="KDE FAQ , Russian translation made by Dmitry Mozzherin">
+</HEAD>
+<BODY BGCOLOR="#ffffff" LINK="#aa0000" TEXT="#000000" > 
+<?php include("/home/maxcom/linux_html/books/head.php3") ?>
+<FONT FACE="Helvetica">
+<A HREF="http://www.kde.org/"><IMG SRC="http://books.gnu.technology/books/kde/general/faq/logotp3.gif" BORDER="0" ALT="The K Desktop Environment"></A>
+<HR WIDTH="100%" SIZE=2 ALIGN="CENTER" NOSHADE>
+
+ 
+<P ALIGN="RIGHT">
+
+<A HREF="index-6.html"> Вперед </A>
+<A HREF="index-4.html"> Назад </A>
+<A HREF="index.html#toc5"> Содержание </A>
+</P>
+<H3><A NAME="s5">5. Панель</A></H3>
+
+<H3><A NAME="ss5.1">5.1 Как добавить приложение на панель?</A>
+</H3>
+
+<P>Существует несколько способов добавления приложения на панель:
+<P><B>С использованием меню панели</B>
+<P>Возможно, наипростейший способ -- использовать пункт "Панель -> Добавить
+приложение" в меню панели (то есть в меню, которое появляется при нажатии
+K-кнопки на панели). Меню показывает все установленные приложения KDE. Для
+того, чтобы добавить кнопку на панель, просто щелкните на приложение.
+<P><B>Использование файл-менеджера</B>
+<P>Вы также можете перетащить kdelink-файл из окна файл-менеджера на
+панель.
+<P>
+<H3><A NAME="ss5.2">5.2 Когда я пытаюсь добавить приложение на панель, панель "ругается"!  Почему?</A>
+</H3>
+
+<P>Если вы пытаетесь добавить приложение на панель, но она выдает 
+"Cannot put this as button onto the panel" ("Невозможно поместить эту кнопку
+на панель"), вы попытались переместить на панель не kdelnk-файл (ссылку в
+KDE-формате), а исполняемый файл. Для того, чтобы поместить исполняемый файл
+на панель, вы сначала должны создать kdelink-файл с помощью "Новый ->
+Приложение" из меню <CODE>Файл</CODE> в файл-менеджере. Однако, более новая панель 
+(поставляется с KDE 1.1 альфа) создает свой собственный kde-link файл, если 
+вы помещаете исполняемый файл на панель.
+<P>
+<H3><A NAME="ss5.3">5.3 Как мне заключить приложение в панели?</A>
+</H3>
+
+<P>Панель может поглотить маленькие приложения, как <CODE>xload</CODE> или <CODE>xbiff</CODE>. Для этого
+вам нужно добавить следующие строки: 
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+SwallowExec=...
+SwallowTitle=...
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>в файл kdelnk. Строка <CODE>SwallowExec</CODE> -- это команда, которая исполняется
+для запуска поглощенного приложения. <CODE>SwallowTitle</CODE> -- это точное
+название окна приложения. Эта строка должна <EM>в точности</EM> соответствовать
+заголовку окна приложения, так как она используется для идентификации окна
+при показе его на панели.
+<P>Например, kdelnk-файл для поглощения <CODE>xload</CODE> должен иметь:
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+# KDE Config File
+[KDE Desktop Entry]
+SwallowExec=xload -nolabel -geometry 50x50+10000+10000
+SwallowTitle=xload 
+Comment=System load
+Type=Application
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>Вы все еще можете использовать строку <CODE>Exec</CODE> для указания приложения,
+которое будет запускаться щелчком по кнопке панели. Например, вы можете
+запустить <CODE>top</CODE>.
+<P>
+<H3><A NAME="ss5.4">5.4 Почему часы на панели показывают неправильное время?</A>
+</H3>
+
+<P>В некоторых системах при использовании RedHat, часы на панели всегда показывают время в GMT.
+Это ошибка в настройке RedHat.
+<P>Решение этой проблемы описывается на сайте 
+<A HREF="http://www.redhat.com/support/docs/rhl/intel/rh50-errata-intel.html">"ошибки в RedHat"</A>.
+<P>Там просто сказано создать символьную ссылку:
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+ln -s /usr/share/zoneinfo /usr/lib/zoneinfo
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>
+<H3><A NAME="ss5.5">5.5 Можно ли иметь kpanel при использовании менеджера окон не принадлежащего KDE?</A>
+</H3>
+
+<P>Да, попытайтесь запустить его чем-то вроде:
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+kpanel -no-KDE-compliant-window-manager
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>
+<H3><A NAME="ss5.6">5.6 Можно ли заменить изображение на K-кнопке панели?</A>
+</H3>
+
+<P>Найдите <CODE>$HOME/.kde/share/apps/kpanel/pics/go.xpm</CODE> и
+<CODE>$HOME/.kde/share/apps/kpanel/pics/mini/go.xpm</CODE> и замените их.
+Создайте эти каталоги, если они еще не существуют. Затем перезапустите
+kpanel. 
+<P>
+<P ALIGN="RIGHT">
+
+<A HREF="index-6.html"> Вперед </A>
+<A HREF="index-4.html"> Назад </A>
+<A HREF="index.html#toc5"> Содержание </A>
+</P>
+<CENTER>
+<HR WIDTH="100%" SIZE=3 ALIGN=CENTER NOSHADE>
+</CENTER>    
+</FONT>
+
+ 
+</BODY>
+</HTML>

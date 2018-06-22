@@ -1,0 +1,590 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Мини-HOWTO: "XFree-Xinside в Linux"</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.57"></HEAD
+><BODY
+CLASS="ARTICLE"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="ARTICLE"
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="TITLE"
+><A
+NAME="AEN2"
+>Мини-HOWTO: "XFree-Xinside в Linux"</A
+></H1
+><DIV
+CLASS="AUTHORGROUP"
+><A
+NAME="AEN4"
+></A
+><H3
+CLASS="AUTHOR"
+><A
+NAME="AEN5"
+>Marco Melgazzi</A
+></H3
+><DIV
+CLASS="AFFILIATION"
+><DIV
+CLASS="ADDRESS"
+><P
+CLASS="ADDRESS"
+>marco@techie.com</P
+></DIV
+></DIV
+><H3
+CLASS="CORPAUTHOR"
+>Перевод: <A
+HREF="mailto:sam@asp-linux.com"
+TARGET="_top"
+>Станислав Рогин</A
+>,
+<A
+HREF="http://www.asplinux.com"
+TARGET="_top"
+>SWSoft Pte Ltd.</A
+></H3
+></DIV
+><P
+CLASS="PUBDATE"
+>версия 1.3, сентября 1997<BR></P
+><DIV
+><DIV
+CLASS="ABSTRACT"
+><A
+NAME="AEN15"
+></A
+><P
+></P
+><P
+>Как преобразовать строку ModeLine XFree86 в формат XInside/XiGraphics</P
+><P
+></P
+></DIV
+></DIV
+><HR></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Содержание</B
+></DT
+><DT
+>1. <A
+HREF="XFree86-XInside.html#AEN17"
+>Введение</A
+></DT
+><DT
+>2. <A
+HREF="XFree86-XInside.html#AEN26"
+>Зачем мне это нужно?</A
+></DT
+><DT
+>3. <A
+HREF="XFree86-XInside.html#AEN30"
+>Приступаем</A
+></DT
+><DT
+>4. <A
+HREF="XFree86-XInside.html#AEN44"
+>Подправляем</A
+></DT
+><DT
+>5. <A
+HREF="XFree86-XInside.html#AEN61"
+>И все...</A
+></DT
+><DT
+>6. <A
+HREF="XFree86-XInside.html#AEN65"
+>Автоматизация</A
+></DT
+><DT
+>7. <A
+HREF="XFree86-XInside.html#AEN71"
+>Благодарности</A
+></DT
+><DT
+>8. <A
+HREF="XFree86-XInside.html#AEN81"
+>Copyright/legalese</A
+></DT
+><DT
+>9. <A
+HREF="XFree86-XInside.html#AEN85"
+>Авторские права</A
+></DT
+></DL
+></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="AEN17"
+>1. Введение</A
+></H1
+><P
+>Весной 1996 года конференция comp.os.linux.x наводнилась вопросами типа: "Как преобразовать формат задания видеорежимов XFree86 для одной из его коммерческих альтернатив: XInside (сейчас эта система называется XiGraphics, однако в этом тексте я буду использовать название старой версии этого продукта, на которую буду опираться в процессе описания).</P
+><P
+>Я оценивал эту программу и раньше, и эта оценочная версия осталась на моем диске. Я люблю, чтобы у каждой проблемы было решение - по этой причине я провел пару часов в раздумьях над калькулятором, и в результате родилась эта статья, которая и попала в конференцию.</P
+><P
+>Дискуссия о преобразовании форматов сразу прекратилась, и я получил одно (1) письмо с благодарностью, поэтому решил преобразовать эту статью в мини-HOWTO, которое вы читаете.</P
+><P
+>Давайте сразу кое-что уточним: я НЕ работаю на XInside, и у меня была только оценочная версия 1.2 для Linux. Я знаю, что в настоящее время (Май 1997) AccelX достиг версии 3.1, но я полагаю, что советы, приведенные в этом документе, может быть и не совсем точны, но все еще актуальны.</P
+><P
+>Этот документ опирается на достаточно старую версию Xinside, и может случиться так, что часть приведенной здесь информации не совсем точна: позднее вы узнаете, что благодаря выходу в свет XFree версии 3.2, я не купил этот коммерческий сервер. Если вы это сделали и заметите некоторые неточности в моем документе - дайте мне знать.</P
+><P
+>В любом случае, я обязан напомнить, что изменение времен задержки видеосигнала для монитора может привести к печальным последствиям, и я за это не несу никакой ответственности. Если у вас все сработает - прекрасно; если ваш компьютер взорвется - я за это не отвечаю.</P
+><P
+>Как вы наверно уже поняли, английский - не мой родной язык, поэтому если вы обнаружите ошибки там и тут, простите меня и я прошу вас не наводнять мой почтовый ящик письмами с претензиями по этому поводу. Заранее спасибо!</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN26"
+>2. Зачем мне это нужно?</A
+></H1
+><P
+>Я абсолютно не понимаю политики Xinside, заключающейся в полном отсутствии возможности настройки видеорежимов (типа xvidtune) и/или импортирования существующих настроек XFree (и подобных ей коммерческих систем). Я потратил около трех часов, чтобы их соединить (подсказка: Я сравнивал в обоих форматах строки, относящиеся к видеорежиму VESA 1024x768@70Hz  (а я ведь почти инженер-электронщик;-)) в то время как программисту Xinside понадобилось бы, наверно, несколько минут, чтобы написать нечто подобное...</P
+><P
+>Я не загружал XInside версии 1.3 и позже - я искренне надеюсь, что в новых версиях они устранили это недоразумение. Конечно, если они это сделали, то данный текст можно считать бесполезным, но вы все-таки можете прочитать его, чтобы понять, как все работает...</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN30"
+>3. Приступаем</A
+></H1
+><P
+>Предположим, что у вас имеется любимый видеорежим XFree86, и вы хотите перенести его в Xinside: для этого следуйте приведенным ниже инструкциям, у вас все должно получиться; в примере я использую мой любимый режим и объясню, как преобразовал его для XInside.</P
+><P
+>Строка Xfree86 выглядит примерно так:</P
+><P
+>&#13;<PRE
+CLASS="SCREEN"
+>Modeline "blahblah" DOTCLK  A B C D  a b c d</PRE
+>&#13;</P
+><P
+>Каждое из чисел A-D и a-d имеет конкретное значение: если хотите, можете взглянуть в 'Руководство по настройке видеорежимов X386/XFree86' (/usr/lib/X11/doc/VideoModes.doc), но для преобразования одного формата в другой эта теория вам абсолютно не нужна...</P
+><P
+>Моя строка видеорежима в /usr/lib/X11/XF86Config выглядит так:</P
+><P
+>&#13;<PRE
+CLASS="SCREEN"
+>Modeline "1168x876" 105  1168 1256 1544 1640  876 877 891 900
+                     |     |    |    |    |    |   |   |   |
+                  DOT_CLK  A    B    C    D    a   b   c   d</PRE
+>&#13;</P
+><P
+>В Xinside, вам надо добавить секцию в файл Xtimings, который находится в etc/ (с этого момента я предполагаю, что вы находитесь в каталоге Xaccel, предположим /usr/X11/lib/X11/AcceleratedX)</P
+><P
+>&#13;<PRE
+CLASS="SCREEN"
+>!    Где-то в файле. Поместите здесь необходимое название режима
+
+[PREADJUSTED_TIMING]
+    PreadjustedTimingName = "1168x876 @ 72Hz";
+
+!
+!    Эти четыре значения очевидны
+!
+    HorPixel          = 1168;         // точек
+    VerPixel          = 876;          // строк
+    PixelWidthRatio   = 4;
+    PixelHeightRatio  = 3;
+
+!
+!   hsync: DOT_CLK / D * 1000 [кГц]
+!
+!   hsync = 105 / 1640 * 1000 = 64.024 кГц
+!
+!   vsync: ( 1 / (( D / DOT_CLK ) * d) ) * 1,000,000 [Гц]
+!
+!   vsync: ( 1 / (( 1640 / 105 ) * 900) ) * 1,000,000
+!           ( 1 / 14057.1428571 ) * 1,000,000 = 71.138 Гц
+!
+
+    HorFrequency      = 64.180;        // кГц
+    VerFrequency      = 71.138;        // Гц
+
+!   Очевидное значение
+
+    ScanType          = NONINTERLACED;
+
+!
+!   Здесь проставьте значения соответственно параметрам +/-hsync и +/-vsync из настроек XFree86
+!
+    HorSyncPolarity   = POSITIVE;
+    VerSyncPolarity   = POSITIVE;
+
+!   Не изменяйте
+
+    CharacterWidth    = 8;             // pixels
+
+!   Здесь укажите значение DOT_CLK
+
+    PixelClock        = 105.000;       // MHz
+!
+!
+!   интервалы горизонтальной развертки: [мкс]
+!
+    HorTotalTime  = D / DOT_CLK                  = 15.619;
+    HorAddrTime   = A / DOT_CLK                  = 11.124;
+    HorBlankStart = A / DOT_CLK                  = 11.124;
+    HorBlankTime  = HorTotalTime - HorBlankStart =  4.495;
+    HorSyncStart  = B / DOT_CLK                  = 11.962;
+    HorSyncTime   = C / DOT_CLK - HorSyncStart   =  2.743;
+
+ !
+ !  интервалы вертикальной развертки: [мс]
+ !
+
+    VerTotalTime  = ( HorTotalTime * d ) / 1000  = 14.057;
+    VerAddrTime   = ( HorTotalTime * a ) / 1000  = 13.682;
+    VerBlankStart = ( HorTotalTime * a ) / 1000  = 13.682;
+    VerBlankTime  = VerTotalTime - VerBlankStart =  0.375;
+    VerSyncStart  = ( HorTotalTime * b ) / 1000  = 13.698;
+    VerSyncTime   = ( HorTotalTime * ( c - b ) ) / 1000
+                                                 = 0.219
+
+ ! И все!</PRE
+>&#13;</P
+><P
+>Этот вновь созданный видеорежим необходимо поместить в соответствующее место в файлах, которые я перечислю ниже.</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN44"
+>4. Подправляем</A
+></H1
+><P
+>В приведенных ниже выдержках файлов знак -&gt; указывает на то, что надо добавить. НЕ добавляйте этот знак в свои файлы!</P
+><P
+>Строка для монитора (у меня это файл monitors/mfreq/mfreq64.vda)</P
+><P
+>&#13;<PRE
+CLASS="SCREEN"
+>    [ESTABLISHED_TIMINGS]
+        "640x480 @ 60Hz",
+        "640x480 @ 72Hz",
+        "640x480 @ 75Hz",
+        "800x600 @ 56Hz",
+        "800x600 @ 60Hz",
+        "800x600 @ 72Hz",
+        "800x600 @ 75Hz",
+        "1024x768 Interlaced",
+        "1024x768 @ 60Hz",
+        "1024x768 @ 70Hz",
+        "1024x768 @ 75Hz",
+    "1152x900 Interlaced",
+        "1152x900 @ 60Hz",
+        "1152x900 @ 67Hz",
+-&#62;      "1168x876 @ 72Hz",
+        "1280x1024 Interlaced",
+        "1280x1024 @ 60Hz",
+    "1600x1200 Interlaced";</PRE
+>&#13;</P
+><P
+>Файл конфигурации видеокарты (у меня это boards/s3/764-2.xqa , Мне очень интересно, почему в их в файле есть почти все карты Hercules, кроме МОЕЙ: Terminator 64/Dram )</P
+><P
+>&#13;<PRE
+CLASS="SCREEN"
+>[VISUAL]
+    BitsPerPixel   = 8;
+    MemoryModel    = Packed;
+    ColorModel     = Indexed;
+    BitsRGB        = 6;
+    NumberOfColors = 256;
+
+    [RESOLUTIONS]
+    640x480,
+    800x600,
+    1024x768,
+-&#62;  1168x876,
+    1152x900,
+    1280x1024
+
+    [DESKTOPS]
+    640x480,
+    800x600,
+    1024x768,
+    1152x900,
+-&#62;  1168x876,
+    1280x1024,
+    1600x1200</PRE
+>&#13;</P
+><P
+>Если частота вывода точек достаточно мала (так НЕ было в моем случае), то вы можете поместить эти строки и в секции 16-битных и 32-битных видеорежимов.</P
+><P
+>Файл /etc/Xaccel.ini будет выглядет примерно так</P
+><P
+>&#13;<PRE
+CLASS="SCREEN"
+>--------------------------------------------------------------
+    Board   = "s3/764-2.xqa";
+    Monitor = "mfreq/mfreq64.vda";
+    Depth   = 8;
+-&#62;  Desktop = 1168x876;
+
+    [RESOLUTIONS]
+-&#62;      1168x876,
+        1024x768;</PRE
+>&#13;</P
+><P
+>Настоящий раздел определения видеорежима в файле etc/Xtimings</P
+><P
+>&#13;<PRE
+CLASS="SCREEN"
+>--------------------------------------------------------------
+[PREADJUSTED_TIMING]
+    PreadjustedTimingName = "1168x876 @ 72Hz";
+
+    HorPixel          = 1168;          // pixels
+    VerPixel          = 876;           // lines
+    PixelWidthRatio   = 4;
+    PixelHeightRatio  = 3;
+    HorFrequency      = 64.024;        // kHz
+    VerFrequency      = 71.138;        // Hz
+    ScanType          = NONINTERLACED;
+    HorSyncPolarity   = POSITIVE;
+    VerSyncPolarity   = POSITIVE;
+    CharacterWidth    = 8;             // pixels
+    PixelClock        = 105.000;       // MHz
+    HorTotalTime      = 15.619;        // (usec) =  205 chars
+    HorAddrTime       = 11.124;        // (usec) =  146 chars
+    HorBlankStart     = 11.124;        // (usec) =  146 chars
+    HorBlankTime      =  4.495;        // (usec) =   59 chars
+    HorSyncStart      = 11.962;        // (usec) =  157 chars
+    HorSyncTime       =  2.743;        // (usec) =   36 chars
+    VerTotalTime      = 14.057;        // (msec) =  900 lines
+    VerAddrTime       = 13.682;        // (msec) =  876 lines
+    VerBlankStart     = 13.682;        // (msec) =  876 lines
+    VerBlankTime      =  0.375;        // (msec) =   24 lines
+    VerSyncStart      = 13.698;        // (msec) =  877 lines
+    VerSyncTime       =  0.219;        // (msec) =   14 lines</PRE
+>&#13;</P
+><P
+>Вы можете проверить качество преобразования формата следующим образом: запустите в сервере XInside программу vgaset: вы увидите строку, похожую на формат XFree, и, если все нормально, должны получить строку, почти аналогичную исходной (я так и не смог добиться равенства изначально совпадавших b и c, лучший вариант оказался следующим: c=b+1 ).</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN61"
+>5. И все...</A
+></H1
+><P
+>И все! Я надеюсь, вам помогут эти советы. Я не думаю, что в ближайшем будущем куплю сервер XiGraphics - XFree86 версии 3.2 избавился от проблем с текстом, которые возникали на моей скромной видеокарте Trio 64 ;)</P
+><P
+>Однако, по-видимому, сервер XiGraphics поддерживает значительно больший спектр чипсетов и видеокарт, и, может так случиться, что у вас просто не будет другого выбора. Если так случится, и вы купите сервер XiGraphics, я буду очень рад узнать, пригодилась ли эта информация, или это все очень сложно, или вообще что-нибудь.</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN65"
+>6. Автоматизация</A
+></H1
+><P
+>Этот небольшой скрипт делает практически все за вас. Будьте очень осторожны со строками ScanType и Polarity: скрипт их не исправляет, и если вы поленитесь исправить их вручную, то шанс взорвать монитор немного увеличивается.</P
+><P
+>Заметьте также, что я не знаю, имеет ли значение в XInside флаг 'Doublescan': если вы будете пытаться конвертировать удвоенный режим с низким разрешением - будьте ОСТОРОЖНЫ - вы можете легко сломать свой монитор, если частота развертки удвоится (у меня 400x300@72Hz стал 400x300@144Hz!).</P
+><P
+>&#13;<PRE
+CLASS="SCREEN"
+>#!/bin/sh
+##########################################################################
+# XF2XInside
+#
+# Этот скрипт преобразует строки определения видеорежимов XF86Config в
+# формат XInside, необходимый для файла etc/Xtiming.
+#
+# Этот скрипт набросан в спешке, поэтому здесь нет жесткого контроля
+# ошибок в значениях (не говоря уже о дружественности интерфейса).
+#
+# Если вы запустите его без параметров, то он напишет вам, что надо делать.
+#
+#                               ( Июль 1996, hcz@tazlwurm.bb.bawue.de)
+#
+# Кстати: новые видеорежимы, созданные при помощи этого HOWTO работают,
+# но не появляются в меню Xsetup. Кто-нибудь знает причину?
+#
+##########################################################################
+#----------------------------------------------- Итак:
+# Измените эту строку, если ваш файл с видеорежимами находится в другом месте:
+XF=/usr/X11/lib/X11/XF86Config
+if [ $# -ne 1 ] ; then
+  echo "использование: ${0##*/} &#60;mode&#62;"
+  echo "пример: ${0##*/} 1024x764"
+  echo -e "Конвертирование строки видеорежима из $XF в формат Xinside"
+  exit 1
+fi
+egrep -i "^[\t ]*modeline.+\"$1\""  /usr/X11/lib/X11/XF86Config |
+gawk '
+NF &#60; 11  { print "! неверная строка Modeline:\n! " $0 "\n!"; next }
+{
+  print "//", $0  ":"
+  name = $2
+  DOT_CLK = $3;
+  A = $4;
+  B = $5;
+  C = $6;
+  D = $7;
+  a = $8;
+  b = $9;
+  c = $10;
+  d = $11;
+  VerFrequency =  1000000 / ((D / DOT_CLK) * d)
+  print "[PREADJUSTED_TIMING]"
+  printf "  PreadjustedTimingName = \"%dx%d @ %.0dHz\";\n", A, a, VerFrequency
+  print "  HorPixel\t\t= " A ";"
+  print "  VerPixel\t\t= " a ";"
+  print "  PixelWidthRatio\t= 4;\n  PixelHeightRatio\t= 3;"
+  print "  HorFrequency\t\t= " DOT_CLK / D * 1000 ";\t// kHz"
+  print "  VerFrequency\t\t= " VerFrequency  ";\t// Hz"
+  print "  ScanType\t\t= NONINTERLACED;\t\t// *CHECK*"
+  print "  HorSyncPolarity\t= NEGATIVE;\t\t\t// *CHECK*"
+  print "  VerSyncPolarity\t= NEGATIVE;\t\t\t// *CHECK*"
+  print "  CharacterWidth\t= 8;"
+  print "  PixelClock\t\t= " DOT_CLK ";"
+  HorTotalTime = D / DOT_CLK
+  print "  HorTotalTime\t\t= " HorTotalTime ";"
+  print "  HorAddrTime \t\t= " A / DOT_CLK ";"
+  print "  HorBlankStart\t\t= " A / DOT_CLK ";"
+  print "  HorBlankTime\t\t= " D / DOT_CLK - A / DOT_CLK ";"
+  print "  HorSyncStart\t\t= " B / DOT_CLK ";"
+  print "  HorSyncTime\t\t= " C / DOT_CLK - B / DOT_CLK ";"
+  VerTotalTime  = ( HorTotalTime * d ) / 1000
+  print "  VerTotalTime\t\t= " VerTotalTime ";"
+  print "  VerAddrTime\t\t= " ( HorTotalTime * a ) / 1000 ";"
+  VerBlankStart = ( HorTotalTime * a ) / 1000
+  print "  VerBlankStart\t\t= " VerBlankStart ";"
+  print "  VerBlankTime\t\t= " VerTotalTime - VerBlankStart ";"
+  print "  VerSyncStart\t\t= " ( HorTotalTime * b ) / 1000 ";"
+  print "  VerSyncTime\t\t= " ( HorTotalTime * ( c - b ) ) / 1000
+  print ""
+}'</PRE
+>&#13;</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN71"
+>7. Благодарности</A
+></H1
+><P
+>&#13;<P
+></P
+><UL
+><LI
+><P
+>Heike Claudia Zimmerer <A
+HREF="mailto:hcz@tazlwurm.bb.bawue.de"
+TARGET="_top"
+>hcz@tazlwurm.bb.bawue.de</A
+> за то, что указала мне на пару неточностей и послала мне скрипт, автоматизирующий почти все.</P
+></LI
+><LI
+><P
+>Bartosz Maruszewski <A
+HREF="mailto:B.Maruszewski@zsmeie.torun.pl"
+TARGET="_top"
+>B.Maruszewski@zsmeie.torun.pl</A
+> за то, что перевел этот мини-HOWTO на польский, и указал мне на небольшую опечатку.</P
+></LI
+></UL
+>&#13;</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN81"
+>8. Copyright/legalese</A
+></H1
+><P
+>(c)opyright 1996-7 by Marco Melgazzi (marco@techie.com) -
+the GPL (Gnu Public License) applies. To obtain a copy of the GPL
+write to the Free Software Foundation, Inc., 675 Mass Ave, Cambridge,
+MA 02139, USA.</P
+><P
+>Торговые марки являются собственностью их владельцев. Нет никакой гарантии на точность и/или полноценность информации, данной в этом документе.</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN85"
+>9. Авторские права</A
+></H1
+><P
+>Авторские права на русский перевод этого текста принадлежат &copy; 2000 SWSoft Pte Ltd.
+Все права зарезервированы.</P
+><P
+>Этот документ является частью проекта Linux HOWTO.</P
+><P
+>Авторские права на документы Linux HOWTO принадлежат их авторам, если явно
+не указано иное. Документы Linux HOWTO, а также их переводы, могут
+быть воспроизведены и распространены полностью или частично на любом
+носителе, физическом или электронном, при условии сохранения этой заметки об
+авторских правах на всех копиях. Коммерческое распространение разрешается и
+поощряется; но, так или иначе, автор текста и автор перевода желали бы знать о
+таких дистрибутивах.</P
+><P
+>Все переводы и производные работы, выполненные по документам Linux HOWTO,
+должны сопровождаться этой заметкой об авторских правах. Это делается в
+целях предотвращения случаев наложения дополнительных ограничений на
+распространение документов HOWTO. Исключения могут составить случаи
+получения специального разрешения у координатора Linux HOWTO, с которым
+можно связаться по адресу приведенному ниже.</P
+><P
+>Мы бы хотели распространить эту информацию по всем возможным каналам. Но
+при этом сохранить авторские права и быть уведомленными о всех планах
+распространения HOWTO. Если у вас возникли вопросы, пожалуйста, обратитесь
+к координатору проекта Linux HOWTO по электронной почте:
+<TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:linux-howto@metalab.unc.edu"
+>linux-howto@metalab.unc.edu</A
+>&#62;</TT
+> или к координатору русского
+перевода Linux HOWTO компании SWSoft Pte Ltd. по адресу
+<TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:linux-howto@asplinux.ru"
+>linux-howto@asplinux.ru</A
+>&#62;</TT
+></P
+></DIV
+></DIV
+></BODY
+></HTML
+>

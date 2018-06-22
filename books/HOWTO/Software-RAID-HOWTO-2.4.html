@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE>The Software-RAID HOWTO</TITLE>
+ <LINK HREF="Software-RAID-HOWTO-2.4-1.html" REL=next>
+
+
+</HEAD>
+<BODY>
+<A HREF="Software-RAID-HOWTO-2.4-1.html">Next</A>
+Previous
+Contents
+<HR>
+<H1>The Software-RAID HOWTO</H1>
+
+<H2>Jakob &Oslash;stergaard
+        (
+<A HREF="mailto:jakob@ostenfeld.dk">jakob@ostenfeld.dk</A>)
+        Переводчик: Максим Дзюманенко   (
+<A HREF="mailto:max@april.kiev.ua">max@april.kiev.ua</A>
+        ) </H2>Версия 0.90.7 19 Января 2000 г.
+Дата перевода: 11 Октября 2000 г.
+<P><HR>
+<EM>Этот HOWTO описывает, как использовать программный RAID под Linux. Он
+связан с определенной версией уровня программного RAID, а именно
+уровнем 0.90 RAID, сделанным Ingo Molnar и другими. Этот уровень RAID будет стандартным в Linux-2.4, и эта версия также используется
+в ядрах Linux-2.2, поставляемых некоторыми поставщиками. Поддержка RAID 0.90
+доступна в виде патчей к Linux-2.0 и Linux-2.2, и, как многие считают,
+намного более стабильна, чем старый RAID код в тех же ядрах.</EM>
+<HR>
+<P>
+<H2><A NAME="toc1">1.</A> <A HREF="Software-RAID-HOWTO-2.4-1.html">Введение</A></H2>
+
+<UL>
+<LI><A HREF="Software-RAID-HOWTO-2.4-1.html#ss1.1">1.1 Отречение</A>
+<LI><A HREF="Software-RAID-HOWTO-2.4-1.html#ss1.2">1.2 Требования</A>
+</UL>
+<P>
+<H2><A NAME="toc2">2.</A> <A HREF="Software-RAID-HOWTO-2.4-2.html">Почему RAID ?</A></H2>
+
+<UL>
+<LI><A HREF="Software-RAID-HOWTO-2.4-2.html#ss2.1">2.1 Технические детали </A>
+<LI><A HREF="Software-RAID-HOWTO-2.4-2.html#ss2.2">2.2 Термины</A>
+<LI><A HREF="Software-RAID-HOWTO-2.4-2.html#ss2.3">2.3 Уровни RAID</A>
+<LI><A HREF="Software-RAID-HOWTO-2.4-2.html#ss2.4">2.4 Виртуальная память на RAID</A>
+</UL>
+<P>
+<H2><A NAME="toc3">3.</A> <A HREF="Software-RAID-HOWTO-2.4-3.html">Аппаратные решения</A></H2>
+
+<UL>
+<LI><A HREF="Software-RAID-HOWTO-2.4-3.html#ss3.1">3.1 Конфигурирование IDE </A>
+<LI><A HREF="Software-RAID-HOWTO-2.4-3.html#ss3.2">3.2 Горячая замена</A>
+</UL>
+<P>
+<H2><A NAME="toc4">4.</A> <A HREF="Software-RAID-HOWTO-2.4-4.html">Установка RAID</A></H2>
+
+<UL>
+<LI><A HREF="Software-RAID-HOWTO-2.4-4.html#ss4.1">4.1 Общие установки</A>
+<LI><A HREF="Software-RAID-HOWTO-2.4-4.html#ss4.2">4.2 Линейный режим</A>
+<LI><A HREF="Software-RAID-HOWTO-2.4-4.html#ss4.3">4.3 RAID-0</A>
+<LI><A HREF="Software-RAID-HOWTO-2.4-4.html#ss4.4">4.4 RAID-1</A>
+<LI><A HREF="Software-RAID-HOWTO-2.4-4.html#ss4.5">4.5 RAID-4</A>
+<LI><A HREF="Software-RAID-HOWTO-2.4-4.html#ss4.6">4.6 RAID-5</A>
+<LI><A HREF="Software-RAID-HOWTO-2.4-4.html#ss4.7">4.7 Отдельный суперблок</A>
+<LI><A HREF="Software-RAID-HOWTO-2.4-4.html#ss4.8">4.8 Размер кусков</A>
+<LI><A HREF="Software-RAID-HOWTO-2.4-4.html#ss4.9">4.9 Опции mke2fs</A>
+<LI><A HREF="Software-RAID-HOWTO-2.4-4.html#ss4.10">4.10 Авто-детектирование</A>
+<LI><A HREF="Software-RAID-HOWTO-2.4-4.html#ss4.11">4.11 Загрузка с RAID</A>
+<LI><A HREF="Software-RAID-HOWTO-2.4-4.html#ss4.12">4.12 Корневая файловая система на RAID</A>
+<LI><A HREF="Software-RAID-HOWTO-2.4-4.html#ss4.13">4.13 Выполнение загрузки ситемы с RAID</A>
+<LI><A HREF="Software-RAID-HOWTO-2.4-4.html#ss4.14">4.14 Ловушки</A>
+</UL>
+<P>
+<H2><A NAME="toc5">5.</A> <A HREF="Software-RAID-HOWTO-2.4-5.html">Тестирование</A></H2>
+
+<UL>
+<LI><A HREF="Software-RAID-HOWTO-2.4-5.html#ss5.1">5.1 Имитация отказа диска</A>
+<LI><A HREF="Software-RAID-HOWTO-2.4-5.html#ss5.2">5.2 Имитация повреждения данных</A>
+</UL>
+<P>
+<H2><A NAME="toc6">6.</A> <A HREF="Software-RAID-HOWTO-2.4-6.html">Реконструкция</A></H2>
+
+<UL>
+<LI><A HREF="Software-RAID-HOWTO-2.4-6.html#ss6.1">6.1 Восстановление при множественных отказах диска</A>
+</UL>
+<P>
+<H2><A NAME="toc7">7.</A> <A HREF="Software-RAID-HOWTO-2.4-7.html">Производительность</A></H2>
+
+<UL>
+<LI><A HREF="Software-RAID-HOWTO-2.4-7.html#ss7.1">7.1 RAID-0</A>
+<LI><A HREF="Software-RAID-HOWTO-2.4-7.html#ss7.2">7.2 RAID-0 с TCQ</A>
+<LI><A HREF="Software-RAID-HOWTO-2.4-7.html#ss7.3">7.3 RAID-5</A>
+<LI><A HREF="Software-RAID-HOWTO-2.4-7.html#ss7.4">7.4 RAID-10</A>
+</UL>
+<P>
+<H2><A NAME="toc8">8.</A> <A HREF="Software-RAID-HOWTO-2.4-8.html">Благодарности</A></H2>
+
+<HR>
+<A HREF="Software-RAID-HOWTO-2.4-1.html">Next</A>
+Previous
+Contents
+</BODY>
+</HTML>

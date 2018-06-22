@@ -1,0 +1,176 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Файловая система</TITLE>
+<META NAME="description" CONTENT="Файловая система">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<!-- Meta http equivalent was here                               -->
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="IntroToLinux.css">
+
+<LINK REL="next" HREF="node13.html">
+<LINK REL="previous" HREF="node11.html">
+<LINK REL="up" HREF="node10.html">
+<LINK REL="next" HREF="node13.html">
+</HEAD>
+
+<BODY background="backgr.jpg" vlink="#000099" bgcolor="#E6E6FA">
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A NAME="tex2html294"
+  HREF="node13.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html290"
+  HREF="node10.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html284"
+  HREF="node11.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html292"
+  HREF="IntroToLinux.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A>  
+<BR>
+<B> След.:</B> <A NAME="tex2html295"
+  HREF="node13.html">Поиск файлов</A>
+<B> Вверх:</B> <A NAME="tex2html291"
+  HREF="node10.html">Поддержка устройств.</A>
+<B> Пред.:</B> <A NAME="tex2html285"
+  HREF="node11.html">Работа с DVD/CD-RW</A>
+ &nbsp; <B>  <A NAME="tex2html293"
+  HREF="IntroToLinux.html">Содержание</A></B> 
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION00024200000000000000">
+Файловая система</A>
+</H3>
+
+<P>
+Сильно облегчает работу знание что где находится у вас на диске.
+Попробую вкратце описать это<A NAME="tex2html10"
+  HREF="node12.html#foot163"><SUP><SPAN CLASS="arabic">10</SPAN></SUP></A>:
+<DL>
+<DT><STRONG>/bin</STRONG></DT>
+<DD>&nbsp;-- каталог с минимально необходимым софтом (например, используемым еще до этапа монтирования отличных от корневой файловых систем).
+</DD>
+<DT><STRONG>/boot</STRONG></DT>
+<DD>&nbsp;-- ``ядерный'' каталог (здесь лежит ваше ядро).
+</DD>
+<DT><STRONG>/dev</STRONG></DT>
+<DD>&nbsp;-- устройства.
+</DD>
+<DT><STRONG>/etc</STRONG></DT>
+<DD>&nbsp;-- каталог настроечных файлов. Обычные программы содержат свои настройки в каталоге <TT>/etc/имя_программы</TT>, необычные - просто в <TT>/etc</TT>. Менеджеры окон кладут конфиги в <TT>/etc/X11/имя_менеджера</TT> и т.д....
+</DD>
+<DT><STRONG>/etc/init.d</STRONG></DT>
+<DD>&nbsp;-- а здесь находятся стартовые скрипты, часть которых обрабатывается при загрузке.
+</DD>
+<DT><STRONG>/lib</STRONG></DT>
+<DD>&nbsp;-- в частности здесь лежат все ядерные модули и системные библиотеки...
+</DD>
+<DT><STRONG>/home</STRONG></DT>
+<DD>&nbsp;- пользовательский каталог.
+</DD>
+<DT><STRONG>/sbin</STRONG></DT>
+<DD>&nbsp;-- аналогичен <TT>/bin</TT>, но для запуска программ обычно требуются привилегии суперпользователя.
+</DD>
+<DT><STRONG>/usr</STRONG></DT>
+<DD>&nbsp;-- статичные программные файлы.
+</DD>
+<DT><STRONG>/usr/bin</STRONG></DT>
+<DD>&nbsp;-- исполняемые файлы установленных пакетов.
+</DD>
+<DT><STRONG>/usr/doc</STRONG></DT>
+<DD>&nbsp;-- документация, поставляемая с пакетами.
+</DD>
+<DT><STRONG>/usr/share</STRONG></DT>
+<DD>&nbsp;-- статичные (но не исполняемые) файлы, установленных пакетов.
+</DD>
+<DT><STRONG>/var</STRONG></DT>
+<DD>&nbsp;-- не статичные файлы.
+</DD>
+<DT><STRONG>/var/lib</STRONG></DT>
+<DD>&nbsp;-- базы данных.
+</DD>
+<DT><STRONG>/var/cache</STRONG></DT>
+<DD>&nbsp;-- кэши. В частности APT качает новые модули именно сюда (в <TT>/var/cache/apt/archives</TT>, если точнее).
+</DD>
+<DT><STRONG>/var/log</STRONG></DT>
+<DD>&nbsp;-- логи.
+</DD>
+<DT><STRONG>/var/tmp</STRONG></DT>
+<DD>&nbsp;-- каталог для временных файлов.
+</DD>
+<DT><STRONG>/tmp</STRONG></DT>
+<DD>&nbsp;-- очищаемый при каждой загрузке каталог временных файлов.
+</DD>
+</DL>
+
+<P>
+В вашем домашнем каталоге могут присутствовать следующие файлы:
+<DL>
+<DT><STRONG>.Xresources</STRONG></DT>
+<DD>- файл ресурсов программ. Так, если вы желаете включить прозрачность во всех программах, которые ее поддерживают (например, ATerm) - добавьте в <TT>.Xresources</TT> строку <TT>*transparent: true</TT>.
+</DD>
+<DT><STRONG>.xsession</STRONG></DT>
+<DD>- файл, стартующий при запуске X-сервера. Так, если вы желаете автозапуска xbindkeys - ваш <TT>.xsession</TT> может выглядеть следующим образом: 
+<BR><TT>#!/bin/sh
+<BR>
+xbindkeys&amp;
+<BR>
+exec icewm</TT>...
+</DD>
+<DT><STRONG>.xsession-errors</STRONG></DT>
+<DD>- файл, в который перенаправляется <TT>stderr</TT> запускаемых X-сервером программ.
+</DD>
+</DL>
+
+<P>
+<BR><HR><H4>Сноски</H4>
+<DL>
+<DT><A NAME="foot163">... это</A><A
+ HREF="node12.html#tex2html10"><SUP><SPAN CLASS="arabic">10</SPAN></SUP></A></DT>
+<DD>Данное расположение данных характерно для Debian GNU/Linux . В других системах возможны отклонения. Вероятно вам придется смириться с ними...
+
+</DD>
+</DL>
+<DIV CLASS="navigation"><HR>
+<!--Navigation Panel-->
+<A NAME="tex2html294"
+  HREF="node13.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html290"
+  HREF="node10.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html284"
+  HREF="node11.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html292"
+  HREF="IntroToLinux.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A>  
+<BR>
+<B> След.:</B> <A NAME="tex2html295"
+  HREF="node13.html">Поиск файлов</A>
+<B> Вверх:</B> <A NAME="tex2html291"
+  HREF="node10.html">Поддержка устройств.</A>
+<B> Пред.:</B> <A NAME="tex2html285"
+  HREF="node11.html">Работа с DVD/CD-RW</A>
+ &nbsp; <B>  <A NAME="tex2html293"
+  HREF="IntroToLinux.html">Содержание</A></B> </DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<TABLE border="0" cellpadding="0" cellspacing="0" width="100%"><TR bgcolor="#336699"><TD bgcolor="#8080c0"><P align="center"><FONT color="#FFFFFF" size="1"><A href="http://www.gnu.org/copyleft/fdl.html"><FONT color="#FFFFFF" size="1">Copyleft</FONT></A> © 2002-2003 г. &nbsp; Nikolay A. Panov, <A href="http://www.uic.nnov.ru/~nik/articles/IntroToLinux/"><FONT color="#FFFFFF">"Intro To Linux" (orig)</FONT></A>, &nbsp;<a href="mailto:&#110;&#105;&#107;&#115;&#105;&#116;&#101;&#64;&#109;&#97;&#105;&#108;&#46;&#114;&#117;"><FONT color="#FFFFFF">&#110;&#105;&#107;&#115;&#105;&#116;&#101;&#64;&#109;&#97;&#105;&#108;&#46;&#114;&#117;</FONT></A>, &nbsp;ICQ: 122-40-8888</FONT></P></TD></TR></TABLE>
+</ADDRESS>
+</BODY>
+</HTML>

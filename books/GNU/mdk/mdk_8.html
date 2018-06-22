@@ -1,0 +1,1111 @@
+<HTML>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- Created on June, 9  2003 by texi2html 1.64 -->
+<!-- 
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Olaf Bachmann <obachman@mathematik.uni-kl.de>
+Send bugs and suggestions to <texi2html@mathematik.uni-kl.de>
+ 
+-->
+<HEAD>
+<TITLE>GNU MIX Development Kit (mdk): mixvm</TITLE>
+
+<META NAME="description" CONTENT="GNU MIX Development Kit (mdk): mixvm">
+<META NAME="keywords" CONTENT="GNU MIX Development Kit (mdk): mixvm">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="texi2html 1.64">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+
+<A NAME="SEC52"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_7.html#SEC51"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_8.html#SEC53"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_7.html#SEC50"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_9.html#SEC61"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H1> 6. <CODE>mixvm</CODE>, эмулятор компьютера MIX </H1>
+<!--docid::SEC52::-->
+<P>
+
+<A NAME="IDX209"></A>
+</P><P>
+
+В этой главе описывается <CODE>mixvm</CODE>, эмулятор компьютера MIX.
+<CODE>mixvm</CODE> -- программа с интерфейсом командной строки, эмулирующая
+компьютер MIX (see section <A HREF="mdk_4.html#SEC11">2.1 Компьютер MIX</A>).  Она может выполнять программы
+на MIXAL (see section <A HREF="mdk_4.html#SEC26">2.2 MIXAL</A>), предварительно скомпилированные ассемблером
+MIX (see section <A HREF="mdk_7.html#SEC50">5. <CODE>mixasm</CODE>, ассемблер MIXAL</A>).  Эмулятор позволяет просматривать компоненты
+компьютера MIX (регистры, ячейки памяти, флаг сравнения и триггер
+переполнения), выполнять программы MIX по шагам и устанавливать точки
+останова чтобы облегчить отладку кода.  Учебное описание использования
+<CODE>mixvm</CODE> см. в <A HREF="mdk_5.html#SEC36">3.3 Запуск программы</A>.
+</P><P>
+
+<BLOCKQUOTE><TABLE BORDER=0 CELLSPACING=0> 
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="mdk_8.html#SEC53">6.1 Вызов <CODE>mixvm</CODE></A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="mdk_8.html#SEC54">6.2 Интерактивные команды</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="mdk_8.html#SEC60">6.3 Блочные устройства MIX</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+</TABLE></BLOCKQUOTE>
+<P>
+
+<A NAME="Вызов"></A>
+<HR SIZE="6">
+<A NAME="SEC53"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_8.html#SEC52"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_8.html#SEC54"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_8.html#SEC52"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_8.html#SEC52"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_9.html#SEC61"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 6.1 Вызов <CODE>mixvm</CODE> </H2>
+<!--docid::SEC53::-->
+<P>
+
+<CODE>mixvm</CODE> может вызываться со следующими параметрами командной
+строки (заметьте, что в соответствии с соглашениями GNU, у каждого
+однобуквенного параметра есть соответствующее длинное имя):
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>mixvm [-vhurdtq] [--version] [--help] [--usage] [--run] [--dump]
+      [--time] [--noinit]  [ФАЙЛ[.mix]]
+</pre></td></tr></table></P><P>
+
+Значение этих параметров таково:
+</P><P>
+
+<A NAME="IDX210"></A>
+<DL>
+<DT><U>User Option:</U> <B>-v</B>
+<DD><A NAME="IDX211"></A>
+<DT><U>User Option:</U> <B>--version</B>
+<DD>Вывести версию и информацию об авторских левах и завершить работу.
+</DL>
+</P><P>
+
+<A NAME="IDX212"></A>
+<DL>
+<DT><U>User Option:</U> <B>-h</B>
+<DD><A NAME="IDX213"></A>
+<DT><U>User Option:</U> <B>--help</B>
+<DD><A NAME="IDX214"></A>
+<DT><U>User Option:</U> <B>-u</B>
+<DD><A NAME="IDX215"></A>
+<DT><U>User Option:</U> <B>--usage</B>
+<DD>Вывести краткий перечень доступных параметров и завершить работу.
+</DL>
+</P><P>
+
+<A NAME="IDX216"></A>
+<DL>
+<DT><U>User Option:</U> <B>-r</B>
+<DD><A NAME="IDX217"></A>
+<DT><U>User Option:</U> <B>--run</B>
+<DD>Загрузить указанный <VAR>ФАЙЛ</VAR> и выполнить его. После выполнения
+программы <CODE>mixvm</CODE> завершит работу. <VAR>ФАЙЛ</VAR> должен быть именем
+двоичной программы <TT>`.mix'</TT>, скомпилированной <CODE>mixasm</CODE>. Если
+ваша программа ничего не выводит, используйте флаг <CODE>-d</CODE> (см. ниже)
+чтобы просмотреть состояние виртуальной машины после завершения работы
+программы.
+</DL>
+</P><P>
+
+<A NAME="IDX218"></A>
+<DL>
+<DT><U>User Option:</U> <B>-d</B>
+<DD><A NAME="IDX219"></A>
+<DT><U>User Option:</U> <B>--dump</B>
+<DD>Этот параметр должен использоваться в сочетании с <CODE>-r</CODE>. Он
+указывает <CODE>mixvm</CODE> вывести значение регистров виртуальной машины,
+флага сравнения и триггера переполнения после выполнения программы
+<VAR>ФАЙЛ</VAR>. См. пример использования в <A HREF="mdk_5.html#SEC37">3.3.1 Неинтерактивный режим</A>.
+</DL>
+</P><P>
+
+<A NAME="IDX220"></A>
+<DL>
+<DT><U>User Option:</U> <B>-t</B>
+<DD><A NAME="IDX221"></A>
+<DT><U>User Option:</U> <B>--time</B>
+<DD>Этот параметр должен использоваться в сочетании с <CODE>-r</CODE> и указывает
+<CODE>mixvm</CODE> вывести статистику виртуального времени выполнения
+программы.
+</DL>
+</P><P>
+
+При запуске без флага <CODE>-r</CODE> <CODE>mixvm</CODE> входит в интерактивный
+режим, выводя приглашение:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>MIX &#62;
+</pre></td></tr></table></P><P>
+
+и ожидая команд (see section <A HREF="mdk_8.html#SEC54">6.2 Интерактивные команды</A>).  Если задан необязательный аргумент
+<VAR>ФАЙЛ</VAR>, перед переходом в интерактивный режим файл <TT>`ФАЙЛ.mix'</TT>
+будет загружен в память виртуальной машины.
+</P><P>
+
+При первом запуске <CODE>mixvm</CODE> в вашем домашнем каталоге создаётся
+каталог <TT>`.mdk'</TT>. Она содержит файл конфигурации <CODE>mixvm</CODE>, файл
+истории команд и (по умолчанию) файл блочных устройств (see section <A HREF="mdk_8.html#SEC60">6.3 Блочные устройства MIX</A>).
+Перед тем, как вывести командное приглашение, <CODE>mixvm</CODE> проверяет
+наличие в каталоге <TT>`~/.mdk'</TT> файла <CODE>mixguile.scm</CODE>, и если он
+существует, передаёт для чтения и выполнения встроенному интерпретатору
+Guile (see section <A HREF="mdk_5.html#SEC43">3.4.3 Определение новых функций</A>). Чтобы пропустить загрузку
+этого файла, вы можете использовать параметр командной строки <CODE>-q</CODE>:
+</P><P>
+
+<A NAME="IDX222"></A>
+<DL>
+<DT><U>User Option:</U> <B>-q</B>
+<DD><A NAME="IDX223"></A>
+<DT><U>User Option:</U> <B>--noinit</B>
+<DD>Не загружать при запуске файл инициализации Guile
+<CODE>~/.mdk/mixguile.scm</CODE>.
+</DL>
+</P><P>
+
+<A NAME="Команды"></A>
+<HR SIZE="6">
+<A NAME="SEC54"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_8.html#SEC53"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_8.html#SEC55"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_8.html#SEC52"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_8.html#SEC52"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_8.html#SEC60"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 6.2 Интерактивные команды </H2>
+<!--docid::SEC54::-->
+<P>
+
+Вы можете войти в интерактивный режим виртуальной машины MIX, просто
+вызвав <CODE>mixvm</CODE> без аргументов. Тогда вы окажетесь в приглашении
+оболочки<A NAME="DOCF17" HREF="mdk_fot.html#FOOT17">(17)</A>
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>MIX &#62;
+</pre></td></tr></table></P><P>
+
+которое показывает, что новая виртуальная машина была проинициализирована
+и готова выполнять команды.  Как мы уже упоминали, это командное
+приглашение даёт вам все возможности редактирования командной строки,
+описанные в руководстве пользователя Readline (скорее всего, вы уже
+хорошо знакомы с этими возможностями, поскольку они присутствуют во
+многих утилитах GNU, например, оболочке <CODE>bash</CODE>)<A NAME="DOCF18" HREF="mdk_fot.html#FOOT18">(18)</A>. В двух словах, readline
+даёт возможности дополнения команд клавишей <KBD>TAB</KBD> и работы с историей
+команд клавишами курсора. Файл истории команд, содержащий последние команды,
+введённые в предыдущих сеансах, находится в каталоге конфигурации MDK
+(<TT>`~/.mdk'</TT>).
+</P><P>
+
+Пока вы новичок, вашим лучшим помощником будет команда <CODE>help</CODE>,
+выводящая обзор всех доступных команд MIX и способов их использования.
+Её синтаксис таков:
+</P><P>
+
+<A NAME="IDX224"></A>
+<DL>
+<DT><U>команда <CODE>mixvm</CODE>:</U> <B>help</B> <I>[команда]</I>
+<DD>Вывести краткое описание заданной <VAR>команды</VAR> и её использования. Если
+<VAR>команда</VAR> не указана, <CODE>help</CODE> выведет краткое описание всех
+доступных команд.
+</DL>
+</P><P>
+
+<BLOCKQUOTE><TABLE BORDER=0 CELLSPACING=0> 
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="mdk_8.html#SEC55">6.2.1 Файловые команды</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="mdk_8.html#SEC56">6.2.2 Команды отладки</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="mdk_8.html#SEC57">6.2.3 Команды состояния</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="mdk_8.html#SEC58">6.2.4 Команды конфигурирования</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP">Изменение и сохранение настроек mixvm.</TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="mdk_8.html#SEC59">6.2.5 Команды Scheme</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+</TABLE></BLOCKQUOTE>
+<P>
+
+<A NAME="Файловые команды"></A>
+<HR SIZE="6">
+<A NAME="SEC55"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_8.html#SEC54"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_8.html#SEC56"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_8.html#SEC53"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_8.html#SEC54"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_8.html#SEC60"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 6.2.1 Файловые команды </H3>
+<!--docid::SEC55::-->
+<P>
+
+В вашем распоряжении находится набор команд, позволяющий загружать и
+выполнять исполняемые файлы MIX, а также работать с исходными файлами
+на MIXAL:
+</P><P>
+
+<A NAME="IDX225"></A>
+<DL>
+<DT><U>файловая команда:</U> <B>load</B> <I>file[.mix]</I>
+<DD>Эта команда загружает двоичный файл <VAR>file.mix</VAR> в память виртуальной
+машины, и устанавливает счётчик программы на начало загруженной
+программы. Этот адрес задаётся операндом псевдоинструкции <CODE>END</CODE>
+в исходном файле на MIXAL.  Так, если исходный файл <TT>`sample.mixal'</TT>
+содержит строку:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>     END 3000
+</pre></td></tr></table></P><P>
+
+и вы, скомпилировав её <CODE>mixasm</CODE> получили двоичный файл
+<TT>`sample.mix'</TT>, загрузка его в виртуальную машину будет выглядеть так:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>MIX &#62; load sample
+Program loaded. Start address: 3000
+MIX &#62;
+</pre></td></tr></table></P><P>
+
+</DL>
+</P><P>
+
+<A NAME="IDX226"></A>
+<DL>
+<DT><U>файловая команда:</U> <B>run</B> <I>[file[.mix]]</I>
+<DD>При выполнении без аргумента эта команда начинает или возобновляет
+выполнение инструкций начиная с адреса, соответствующего текущему значению
+счётчика программы.  Поэтому применение этой команды после успешного
+выполнения <CODE>load</CODE> выполнит загруженную программу до обнаружения
+инструкции <CODE>HLT</CODE> или до точки останова. Если вы зададите в качестве
+аргумента имя файла MIX, этот файл будет загружен (как в случае
+<CODE>load</CODE> <CODE>file</CODE>) и выполнен.  Если <CODE>run</CODE> вызывается вновь
+после завершения выполнения программы (т.е., после того, как при прошлом
+запуске обнаружена инструкция <CODE>HLT</CODE>), счётчик программы
+переустанавливается и выполнение начинается с начала (собственно говоря,
+команда <CODE>load</CODE> перед продолжением выполнения программы сохраняет
+текущий набор установленных точек останова).
+</DL>
+</P><P>
+
+<A NAME="IDX227"></A>
+<DL>
+<DT><U>файловая команда:</U> <B>edit</B> <I>[file[.mixal]]</I>
+<DD>Вызывается определённый в переменной среды <VAR>MDK_EDITOR</VAR> редактор
+для редактирования исходного файла <VAR>file.mixal</VAR>. Если значение этой
+переменной не установлено, проверяются другие в следующем порядке:
+<VAR>X_EDITOR</VAR>, <VAR>EDITOR</VAR> и <VAR>VISUAL</VAR>.  При вызове без аргумента
+редактирует исходный файл загруженного в данный момент файла MIX. Команда,
+используемая для редактирования исходных файлов, может также быть определена
+командой <CODE>sedit</CODE> (see section <A HREF="mdk_8.html#SEC58">6.2.4 Команды конфигурирования</A>).
+</DL>
+</P><P>
+
+<A NAME="IDX228"></A>
+<DL>
+<DT><U>файловая команда:</U> <B>compile</B> <I>file[.mixal]</I>
+<DD>Исходный файл <VAR>file.mixal</VAR> компилируется (с отладочной информацией)
+<CODE>mixasm</CODE>. При вызове без аргументов перекомпилируется исходный
+файл загруженного в данный момент файла MIX. Команда компиляции может
+быть определена командой <CODE>sasm</CODE> (see section <A HREF="mdk_8.html#SEC58">6.2.4 Команды конфигурирования</A>).
+</DL>
+</P><P>
+
+<A NAME="IDX229"></A>
+<DL>
+<DT><U>файловая команда:</U> <B>pprog</B>
+<DD><A NAME="IDX230"></A>
+<DT><U>файловая команда:</U> <B>psrc</B>
+<DD>Вывести путь к загруженной в данный момент программе MIX и её исходному
+файлу:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>MIX &#62; load ../samples/primes
+Program loaded. Start address: 3000
+MIX &#62; pprog 
+../samples/primes.mix
+MIX &#62; psrc
+/home/jao/projects/mdk/gnu/samples/primes.mixal
+MIx&#62;
+</pre></td></tr></table></DL>
+</P><P>
+
+Наконец, для выхода их <CODE>mixvm</CODE> можно использовать команду <CODE>quit</CODE>:
+</P><P>
+
+<A NAME="IDX231"></A>
+<DL>
+<DT><U>файловая команда:</U> <B>quit</B>
+<DD>Выход из <CODE>mixvm</CODE>, текущие параметры конфигурации сохраняются в
+<TT>`~/.mdk/mixvm.config'</TT>.
+</DL>
+</P><P>
+
+<A NAME="Команды отладки"></A>
+<HR SIZE="6">
+<A NAME="SEC56"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_8.html#SEC55"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_8.html#SEC57"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_8.html#SEC53"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_8.html#SEC54"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_8.html#SEC60"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 6.2.2 Команды отладки </H3>
+<!--docid::SEC56::-->
+<P>
+
+Последовательное выполнение загруженных программ может быть нарушено
+следующими командами отладки:
+</P><P>
+
+<A NAME="IDX232"></A>
+<DL>
+<DT><U>команда отладки:</U> <B>next</B> <I>[ins_number]</I>
+<DD>Эта команда указывает виртуальной машине разобрать и выполнить до
+<VAR>ins_number</VAR> инструкций, начиная с текущего положения счётчика
+программы.  Выполнение прерывается либо при разборе указанного числа
+инструкций, либо при обнаружении точки останова.  При запуске без
+аргументов выполняется одна инструкция. Если <CODE>next</CODE> вызывается
+после завершения выполнения программы (т.е. после обнаружения инструкции
+<CODE>HLT</CODE> при предыдущем запуске), счётчик программы переустанавливается
+и выполнение начинается с начала (собственно говоря, команда <CODE>load</CODE>
+перед продолжением выполнения программы сохраняет текущий набор
+установленных точек останова).
+</DL>
+</P><P>
+
+<A NAME="IDX233"></A>
+<DL>
+<DT><U>команда отладки:</U> <B>sbp</B> <I>line_number</I>
+<DD><A NAME="IDX234"></A>
+<DT><U>команда отладки:</U> <B>cbp</B> <I>line_no</I>
+<DD>Установить точку останова на указанной строке исходного файла. Если
+заданная строка соответсвует команде или псевдоинструкции MIXAL,
+не создающей инструкции MIX в двоичном файле (такие как <CODE>ORIG</CODE>
+или <CODE>EQU</CODE>), точка останова устанавливается на первой строке
+исходного файла, создающей инструкцию MIX, после заданной. Так, для
+нашего примера <TT>`hello.mixal'</TT>:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>*                                                        (1)
+* hello.mixal: сказать 'hello world' на MIXAL            (2)
+*                                                        (3)
+* label ins    operand     comment                       (4)
+TERM    EQU    19          номер устройства консоли MIX  (5)
+        ORIG   1000        начальный адрес               (6)
+START   OUT    MSG(TERM)   вывести данные с адреса MSG   (7)
+...
+</pre></td></tr></table></P><P>
+
+попытка установить точку останова на строке 5 даст следующий результат:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>MIX &#62; sbp 5
+Breakpoint set at line 7
+MIX &#62; 
+</pre></td></tr></table></P><P>
+
+поскольку строка 7 -- первая, компилируемая в инструкцию MIX (по
+адресу 3000). Для того, чтобы команда <CODE>sbp</CODE> работала, исходный
+файл должен быть скомпилирован с флагом <CODE>-g</CODE>, указывающим
+<CODE>mixasm</CODE> включить отладочную информацию в двоичный файл <TT>`.mix'</TT>.
+</P><P>
+
+Команда <CODE>cbp</CODE> снимает ранее установленную точку останова на
+указанной строке исходного файла.
+</DL>
+</P><P>
+
+<A NAME="IDX235"></A>
+<DL>
+<DT><U>команда отладки:</U> <B>spba</B> <I>address</I>
+<DD><A NAME="IDX236"></A>
+<DT><U>команда отладки:</U> <B>cbpa</B> <I>address</I>
+<DD>Устанавливает точку останова по адресу <VAR>address</VAR>. Аргумент должен
+быть правильным адресом памяти MIX, т.е. находиться в диапазоне
+[0-3999]. Имейте в виду, что не проверяется, доступен ли указанный
+адрес во время выполнения программы.  Для установки точки останова по
+адресу командой <CODE>sbpa</CODE> отладочная информация не нужна.  Команда
+</P><P>
+
+<CODE>cbpa</CODE> снимает ранее установленную точку останова по указанному
+адресу.
+</DL>
+</P><P>
+
+<A NAME="IDX237"></A>
+<DL>
+<DT><U>команда отладки:</U> <B>sbpr</B> <I>A | X | J | Ii</I>
+<DD><A NAME="IDX238"></A>
+<DT><U>команда отладки:</U> <B>cbpr</B> <I>A | X | J | Ii</I>
+<DD>Устанавливает условную точку останова на изменение указанного
+регистра. Например,
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>sbpr I1
+</pre></td></tr></table></P><P>
+
+вызовет прерывание выполнения программы при изменении содержимого
+регистра <CODE>I1</CODE>. Ранее установленная точка останова снимается
+командой <CODE>cbpr</CODE>.
+</DL>
+</P><P>
+
+<A NAME="IDX239"></A>
+<DL>
+<DT><U>команда отладки:</U> <B>sbpm</B> <I>address</I>
+<DD><A NAME="IDX240"></A>
+<DT><U>команда отладки:</U> <B>cbpm</B> <I>address</I>
+<DD>Устанавливает условную точку останова на изменение содержимого
+указанной ячейки памяти. Аргумент должен быть правильным адресом MIX,
+т.е. находиться в диапазоне [0-3999]. Например,
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>sbpm 1000
+</pre></td></tr></table></P><P>
+
+вызовет прерывание выполнения программы при изменении содержимого
+ячейки памяти 1000.  Ранее установленная точка останова снимается
+командой <CODE>cbpm</CODE>.
+</DL>
+</P><P>
+
+<A NAME="IDX241"></A>
+<DL>
+<DT><U>команда отладки:</U> <B>sbpo</B>
+<DD><A NAME="IDX242"></A>
+<DT><U>команда отладки:</U> <B>cbpo</B>
+<DD>Устанавливает/снимает условную точку останова на изменение значения
+триггера переполнения.
+</DL>
+</P><P>
+
+<A NAME="IDX243"></A>
+<DL>
+<DT><U>команда отладки:</U> <B>sbpc</B>
+<DD><A NAME="IDX244"></A>
+<DT><U>команда отладки:</U> <B>cbpc</B>
+<DD>Устанавливает/снимает условную точку останова на изменение значения
+флага сравнений.
+</DL>
+</P><P>
+
+<A NAME="IDX245"></A>
+<DL>
+<DT><U>команда отладки:</U> <B>cabp</B>
+<DD>Снять все установленные точки останова.
+</DL>
+</P><P>
+
+<A NAME="IDX246"></A>
+<DL>
+<DT><U>команда отладки:</U> <B>psym</B> <I>[symbol_name]</I>
+<DD>Программы на MIXAL могут определять символические константы, либо
+псевдоинструкцией <CODE>EQU</CODE>, либо как метку в начале строки. Так,
+в отрывке программы:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>VAR     EQU  2168
+        ORIG 4000
+START   LDA  VAR
+</pre></td></tr></table></P><P>
+
+символ <CODE>VAR</CODE> соответствует значению 2168, а <CODE>START</CODE> -- 4000.
+При компиляции программ на MIXAL с флагом <CODE>-g</CODE> (указывающий
+<CODE>mixasm</CODE> включить отладочную информацию в двоичный файл <TT>`.mix'</TT>)
+из командной строки <CODE>mixvm</CODE> можно просматривать таблицу символов
+командой <CODE>psym</CODE>, за которой следует имя искомого символа.  При
+запуске без аргументов <CODE>psym</CODE> выводит все определённые символы
+и их значения.
+</DL>
+</P><P>
+
+Виртуальная машина может также показывать вам выполняемые инструкции
+при помощи следующих команд:
+</P><P>
+
+<A NAME="IDX247"></A>
+<DL>
+<DT><U>команда отладки:</U> <B>strace</B> <I>[on|off]</I>
+<DD><CODE>strace on</CODE> включает отслеживание инструкций. Если отслеживание
+включено, при выполнении виртуальной машиной каждой инструкции (после
+применения команд <CODE>run</CODE> и <CODE>next</CODE>), она выводится в её
+канонической форме (т.е. все выражение вычисляются и выводятся их
+числовые значения) и, если программы скомпилирована с отладочной
+информацией, также в виде, в котором они присутствовали в исходном
+файле на MIXAL. Отслеживание инструкцию отключается командой
+<CODE>strace off</CODE>. Типичный сеанс отслеживания выглядит так:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>MIX &#62; strace on
+MIX &#62; next
+3000: [OUT	3002,0(2:3)]	START	OUT	MSG(TERM)
+MIXAL HELLO WORLD                                                     
+Elapsed time: 1 /Total program time: 1 (Total uptime: 1)
+MIX &#62; next
+3001: [HLT	0,0]		HLT
+End of program reached at address 3002
+Elapsed time: 10 /Total program time: 11 (Total uptime: 11)
+MIX &#62; strace off
+MIX &#62; 
+</pre></td></tr></table>После адреса памяти в квадратных скобках показывается выполненная
+инструкция так, как она оттранслирована, а за ней вы можете увидеть
+реальный код MIXAL, который скомпилирован в эту инструкцию.
+Поведение в части отслеживания сохраняется как параметр конфигурации
+в <TT>`~/.mdk'</TT>.
+</DL>
+</P><P>
+
+<A NAME="IDX248"></A>
+<DL>
+<DT><U>команда отладки:</U> <B>pline</B> <I>[LINE_NUMBER]</I>
+<DD>Выводит запрошенную строку исходного текста (или текущую, если
+<VAR>line_number</VAR> опущен):
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>MIX &#62; load ../samples/hello
+Program loaded. Start address: 3000
+MIX &#62; pline
+Line 5: START       OUT   MSG(TERM)
+MIX &#62; pline 6
+Line 6:             HLT   
+MIX &#62;
+</pre></td></tr></table></DL>
+</P><P>
+
+<A NAME="IDX249"></A>
+<DL>
+<DT><U>команда отладки:</U> <B>pbt</B> <I>[INS_NUMBER]</I>
+<DD>Эта команда выводит след выполненных инструкций. Необязательный аргумент
+<VAR>ins_number</VAR> -- количество выводимых инструкций. Если он опущен или
+равен нулю, выводятся все выполненные инструкции. Например, если вы
+скомпилировали и загрузили следующую программу (<TT>`bt.mixal'</TT>):
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>    ORIG 0
+BEG JMP *+1
+    JMP *+1
+FOO JMP BAR
+BAR HLT
+    END BEG
+</pre></td></tr></table></P><P>
+
+вы получите такие следы:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>MIX &#62; load bt
+Program loaded. Start address: 0
+MIX &#62; next
+MIX &#62; pbt 
+#0      BEG     in bt.mixal:2
+MIX &#62; next
+MIX &#62; pbt
+#0      1       in bt.mixal:3
+#1      BEG     in bt.mixal:2
+MIX &#62; run
+Running ...
+... done
+MIX &#62; pbt 3
+#0      BAR     in bt.mixal:5
+#1      FOO     in bt.mixal:4
+#2      1       in bt.mixal:3
+MIX &#62; pbt
+#0      BAR     in bt.mixal:5
+#1      FOO     in bt.mixal:4
+#2      1       in bt.mixal:3
+#3      BEG     in bt.mixal:2
+MIX &#62;
+</pre></td></tr></table></P><P>
+
+Заметьте, что след выполненных инструкций даёт вам метку выполненной
+строки, или, если у неё нет метки, её адрес.
+</DL>
+</P><P>
+
+Как вы, вероятно, заметили, <CODE>mixvm</CODE> выводит при выполнении программы
+статистику времени. Это поведение может управляться командой <CODE>stime</CODE>
+(see section <A HREF="mdk_8.html#SEC58">6.2.4 Команды конфигурирования</A>).
+</P><P>
+
+<CODE>mixvm</CODE> может также вычислять w-выражения (see section <A HREF="mdk_4.html#SEC30">2.2.4 W-выражения</A>)
+с помощью следующей команды:
+</P><P>
+
+<A NAME="IDX250"></A>
+<DL>
+<DT><U>команда отладки:</U> <B>weval</B> <I>WEXP</I>
+<DD>Вычисляет заданное w-выражение <VAR>WEXP</VAR>. W-выражение может содержать
+любые определённые в данный момент символы. Например,
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>MIX &#62; psym START
++ 00 00 00 46 56 (0000003000)
+MIX &#62; weval START(0:1),START(3:4)
++ 56 00 46 56 00 (0939716096)
+MIX &#62;
+</pre></td></tr></table></DL>
+</P><P>
+
+Новые символы можно определять командой <CODE>ssym</CODE>:
+</P><P>
+
+<A NAME="IDX251"></A>
+<DL>
+<DT><U>команда отладки:</U> <B>ssym</B> <I>SYM WEXP</I>
+<DD>Определяет символ <VAR>SYM</VAR>, значение которого получается вычислением
+w-выражения <VAR>WEXP</VAR>. Вновь определённый символ может использоваться
+в последующих командах <CODE>weval</CODE> в вычисляемых выражениях. Например,
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>MIX &#62; ssym S 2+23*START
++ 00 00 18 19 56 (0000075000)
+MIX &#62; psym S
++ 00 00 18 19 56 (0000075000)
+MIX &#62; weval S(3:4)
++ 00 00 19 56 00 (0000081408)
+MIX &#62; 
+</pre></td></tr></table></DL>
+</P><P>
+
+Наконец, если вы хотите узнать, каково десятичное значение выраженного
+пятью байтами и знаком слова MIX, вы можете использовать:
+</P><P>
+
+<A NAME="IDX252"></A>
+<DL>
+<DT><U>команда отладки:</U> <B>w2d</B> <I>WORD</I>
+<DD>Вычисляет десятичное значение заданного слова. <VAR>WORD</VAR> должно быть
+задано в виде: знак (+/-), затем пять разделённых пробелами двузначных
+десятичных значений, представляющих пять байтов, составляющих слово.
+Обратная операция (представление десятичного значения словом) может
+быть выполнена командой <CODE>weval</CODE>. Например,
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>MIX &#62; w2d - 01 00 00 02 02
+-16777346
+MIX &#62; weval -16777346
+- 01 00 00 02 02 (0016777346)
+MIX &#62; 
+</pre></td></tr></table></DL>
+</P><P>
+
+<A NAME="Команды состояния"></A>
+<HR SIZE="6">
+<A NAME="SEC57"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_8.html#SEC56"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_8.html#SEC58"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_8.html#SEC53"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_8.html#SEC54"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_8.html#SEC60"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 6.2.3 Команды состояния </H3>
+<!--docid::SEC57::-->
+<P>
+
+Просмотр и изменение состояния виртуальной машины (содержимое памяти,
+регистров, триггера переполнения и флага сравнения) осуществляются
+следующими командами:
+</P><P>
+
+<A NAME="IDX253"></A>
+<DL>
+<DT><U>команда состояния:</U> <B>pstat</B>
+<DD>Эта команда выводит текущее состояние машины, одно из следующих:
+<UL>
+<LI>
+No program loaded
+<LI>
+Program successfully loaded
+<LI>
+Execution stopped (<CODE>next</CODE> executed)
+<LI>
+Execution stopped: breakpoint encountered
+<LI>
+Execution stopped: conditional breakpoint encountered
+<LI>
+Program successfully terminated
+</UL>
+</DL>
+<P>
+
+<A NAME="IDX254"></A>
+<DL>
+<DT><U>команда состояния:</U> <B>pc</B>
+<DD>Выводит текущее значение счётчика программы, который в программе, не
+завершившей работу, хранит адрес следующей выполняемой инструкции.
+</DL>
+</P><P>
+
+<A NAME="IDX255"></A>
+<DL>
+<DT><U>команда состояния:</U> <B>sreg</B> <I>A | X | J | I[1-6] value</I>
+<DD><A NAME="IDX256"></A>
+<DT><U>команда состояния:</U> <B>preg</B> <I>[A | X | J | I[1-6]]</I>
+<DD><A NAME="IDX257"></A>
+<DT><U>команда состояния:</U> <B>pall</B>
+<DD><CODE>preg</CODE> выводит содержимое указанного регистра MIX. Например,
+<CODE>preg</CODE> <VAR>A</VAR> выведет содержимое регистра A. При вызове без
+аргументов будут выведены все регистры:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>MIX &#62; preg
+rA: - 00 00 00 00 35 (0000000035)
+rX: + 00 00 00 15 40 (0000001000)
+rJ: + 00 00 (0000)
+rI1: + 00 00 (0000)	rI2: + 00 00 (0000)	
+rI3: + 00 00 (0000)	rI4: + 00 00 (0000)	
+rI5: + 00 00 (0000)	rI6: + 00 00 (0000)	
+MIX &#62; 
+</pre></td></tr></table></P><P>
+
+Как можно видеть из этого примера, содержимое регистра выводится в виде:
+знак, значения байтов регистра и, в скобках, десятичное представление его
+абсолютной величины.
+</P><P>
+
+<CODE>pall</CODE> выводит содержимое всех регистров, флага сравнения и триггера
+переполнения.
+</P><P>
+
+Наконец, <CODE>sreg</CODE> устанавливает содержимое указанного регистра равным
+<VAR>value</VAR>, заданному десятичной константой. Если <VAR>value</VAR> больше
+максимального хранимаого в заданном регистре значения, туда помещается
+<CODE>VALUE mod MAXIMUM_VALUE</CODE>:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>MIX &#62; sreg I1 1000
+MIX &#62; preg I1
+rI1: + 15 40 (1000)	
+MIX &#62; sreg I1 1000000
+MIX &#62; preg I1
+rI1: + 09 00 (0576)	
+MIX &#62; 
+</pre></td></tr></table></P><P>
+
+</DL>
+</P><P>
+
+<A NAME="IDX258"></A>
+<DL>
+<DT><U>команда состояния:</U> <B>pflags</B>
+<DD><A NAME="IDX259"></A>
+<DT><U>команда состояния:</U> <B>scmp</B> <I>E | G | L</I>
+<DD><A NAME="IDX260"></A>
+<DT><U>команда состояния:</U> <B>sover</B> <I>F | T</I>
+<DD><CODE>pflags</CODE> выводит значение флага сравнения и триггера переполнения
+виртуальной машины:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>MIX &#62; pflags
+Overflow: F
+Cmp: E
+MIX &#62; 
+</pre></td></tr></table></P><P>
+
+Значение триггера переполнения составляет или <VAR>F</VAR> n(false/ложь) или
+<VAR>T</VAR> (true/истина), а флага сравнения <VAR>E</VAR>, <VAR>G</VAR> или <VAR>L</VAR>
+(equal/равно, greater/больше, lesser/меньше). <CODE>scmp</CODE> и <CODE>sover</CODE>
+устанавливают значения флага сравнения и триггера переполнения.
+</DL>
+</P><P>
+
+<A NAME="IDX261"></A>
+<DL>
+<DT><U>команда состояния:</U> <B>pmem</B> <I>from[-to]</I>
+<DD><A NAME="IDX262"></A>
+<DT><U>команда состояния:</U> <B>smem</B> <I>address value</I>
+<DD><CODE>pmem</CODE> выводит содержимое ячеек памяти в диапазоне
+[<VAR>FROM</VAR>-<VAR>TO</VAR>]. Если верхняя граница <VAR>to</VAR> опущена,
+выводится только содержимое ячейки с адресом <VAR>FROM</VAR>:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>MIX &#62; pmem 3000
+3000: + 46 58 00 19 37 (0786957541)
+MIX &#62;
+</pre></td></tr></table></P><P>
+
+Содержимое памяти выводится и как пять байтов MIX со знаком, составляющие
+слово MIX, и, в скобках, как десятичное значение абсолютной величины
+хранимого числа.
+</P><P>
+
+<CODE>smem</CODE> устанавливает содержимое ячейки памяти с адресом
+<VAR>address</VAR> равным <VAR>value</VAR>, выраженному десятичной константой.
+</P><P>
+
+</DL>
+</P><P>
+
+<A NAME="Команды конфигурирования"></A>
+<HR SIZE="6">
+<A NAME="SEC58"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_8.html#SEC57"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_8.html#SEC59"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_8.html#SEC53"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_8.html#SEC54"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_8.html#SEC60"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 6.2.4 Команды конфигурирования </H3>
+<!--docid::SEC58::-->
+<P>
+
+Этот раздел описывает команды, позволяющие изменять поведение виртуальной
+машины. Эта конфигурация хранится в каталоге MDK <TT>`~/.mdk'</TT>.
+</P><P>
+
+Как можно видеть из описания, некоторые команды в качестве побочного
+эффекта выводят на стандартный вывод информационные сообщения
+(например, <CODE>load</CODE> выводит сообщение, информирующее о начальном
+адресе загруженной программы).  Эти сообщения могут быть включены и
+отключены командой <CODE>slog</CODE>:
+</P><P>
+
+<A NAME="IDX263"></A>
+<DL>
+<DT><U>команда конфигурирования:</U> <B>slog</B> <I>on|off</I>
+<DD>Включает/выключает ведение лога информационных сообщений. Имейте в виду,
+что сообщения об ошибках, а также сообщения о состоянии, требующие
+использования команд, предварённых <CODE>p</CODE> (<CODE>preg</CODE>, <CODE>pmem</CODE>
+и т.п.) выводятся всегда.
+</DL>
+</P><P>
+
+<A NAME="IDX264"></A>
+<DL>
+<DT><U>команда конфигурирования:</U> <B>stime</B> <I>on|off</I>
+<DD><A NAME="IDX265"></A>
+<DT><U>команда конфигурирования:</U> <B>ptime</B>
+<DD>Команда <CODE>stime</CODE> включает/выключает вывод статистики времени выполнения,
+а <CODE>ptime</CODE> выводит текущую статистику:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>MIX &#62; ptime
+Elapsed time: 10 /Total program time: 11 (Total uptime: 11)
+MIX &#62;
+</pre></td></tr></table></DL>
+</P><P>
+
+<A NAME="IDX266"></A>
+<DL>
+<DT><U>команда конфигурирования:</U> <B>sedit</B> <I>TEMPLATE</I>
+<DD><A NAME="IDX267"></A>
+<DT><U>команда конфигурирования:</U> <B>pedit</B>
+<DD><CODE>sedit</CODE> указывает команду, используемую для редактирования исходных
+файлов на MIXAL командой <CODE>edit</CODE>. <VAR>TEMPLATE</VAR> должен содержать
+управляющие литеры <CODE>%s</CODE>, отмечающие место, куда вставляется имя
+исходного файла. Например, если вы введёте:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>MIX &#62; sedit emacsclient %s
+MIX &#62;
+</pre></td></tr></table></P><P>
+
+при выполнении в <CODE>mixvm</CODE> команды <CODE>edit foo.mixal</CODE> будет
+вызываться команда операционной системы <CODE>emacsclient foo.mixal</CODE>.
+</P><P>
+
+<CODE>pedit</CODE> выводит текущее значение шаблона команды редактирования.
+</P><P>
+
+</DL>
+</P><P>
+
+<A NAME="IDX268"></A>
+<DL>
+<DT><U>команда конфигурирования:</U> <B>sasm</B> <I>TEMPLATE</I>
+<DD><A NAME="IDX269"></A>
+<DT><U>команда конфигурирования:</U> <B>pasm</B>
+<DD><CODE>sasm</CODE> указывает команду, используемую для компиляции исходных
+файлов на MIXAL командой <CODE>compile</CODE>.  <VAR>template</VAR> должен содержать
+управляющие литеры <CODE>%s</CODE>, отмечающие место, куда вставляется имя
+исходного файла. Например, если вы введёте:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>MIX &#62; sasm mixasm -g -l %s
+MIX &#62;
+</pre></td></tr></table></P><P>
+
+при выполнении в <CODE>mixvm</CODE> команды <CODE>compile foo.mixal</CODE> будет
+вызываться команда операционной системы <CODE>mixasm -g -l foo.mixal</CODE>.
+</P><P>
+
+<CODE>pasm</CODE> выводит текущее значение шаблона команды компиляции.
+</P><P>
+
+</DL>
+</P><P>
+
+<A NAME="IDX270"></A>
+<DL>
+<DT><U>команда конфигурирования:</U> <B>sddir</B> <I>DIRNAME</I>
+<DD><A NAME="IDX271"></A>
+<DT><U>команда конфигурирования:</U> <B>pddir</B>
+<DD>Устройства MIX (see section <A HREF="mdk_8.html#SEC60">6.3 Блочные устройства MIX</A>) реализованы в виде обычных файлов,
+находящися по умолчанию в каталоге <TT>`~/.mdk'</TT>. Команда <CODE>sddir</CODE>
+позволяет указать иное расположение этих файлов, а <CODE>pddir</CODE>
+выводит текущий каталог устройств.
+</DL>
+</P><P>
+
+Наконец, вы можете изменить командное приглашение по умолчанию
+(<SAMP>`MIX &#62; '</SAMP>) командой <CODE>prompt</CODE>:
+</P><P>
+
+<A NAME="IDX272"></A>
+<DL>
+<DT><U>команда конфигурирования:</U> <B>prompt</B> <I>PROMPT</I>
+<DD>Изменяет командное приглашение на <VAR>prompt</VAR>.  Если вы хотите поместить
+в конце приглашения пробел(ы), заключите <VAR>prompt</VAR> в двойные кавычки
+(например, <CODE>prompt "&#62;&#62; "</CODE>).
+</DL>
+</P><P>
+
+<A NAME="Команды Scheme"></A>
+<HR SIZE="6">
+<A NAME="SEC59"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_8.html#SEC58"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_8.html#SEC60"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_8.html#SEC53"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_8.html#SEC54"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_8.html#SEC60"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 6.2.5 Команды Scheme </H3>
+<!--docid::SEC59::-->
+<P>
+
+Если вы скомпилировали MDK с поддержкой <CODE>libguile</CODE>
+(see section <A HREF="mdk_3.html#SEC8">1.5 Специальные флаги конфигурации</A>), <CODE>mixvm</CODE> при вызове
+запустит и проинициализирует встроенный интерпретатор Scheme Guile.
+Это означает, что в вашем распоряжении (в командной строке <CODE>mixvm</CODE>)
+имеются все примитивы Scheme, описанные в <A HREF="mdk_5.html#SEC40">3.4 Использование <CODE>mixguile</CODE></A>
+и <A HREF="mdk_10.html#SEC68">8. <CODE>mixguile</CODE>, виртуальная машина на основе Scheme</A>, а равно все остальные функции или ловушки, которые
+вы определили в файле инициализации <TT>`~/.mdk/mixguile.scm'</TT>. Чтобы
+вычислить функцию Scheme, просто введите её в командном приглашении
+<CODE>mixvm</CODE> (см. примеры в <A HREF="mdk_5.html#SEC48">3.5 Использование Scheme в <CODE>mixvm</CODE> и <CODE>gmixvm</CODE></A>).
+По сравнению с программой <CODE>mixguile</CODE> есть только одно ограничение:
+вычисляемые в <CODE>mixvm</CODE> выражения не могут занимать более одной
+строки. Вы можете преодолеть это неудобство, записав многострочное
+выражение Scheme в файл и загружая его командой <CODE>scmf</CODE>:
+</P><P>
+
+<A NAME="IDX273"></A>
+<DL>
+<DT><U>команда scheme:</U> <B>scmf</B> <I>FILE_NAME</I>
+<DD>Загружает указанный файл Scheme и выполняет его, используя встроенный
+интерпретатор Guile.
+</DL>
+</P><P>
+
+<A NAME="Устройства"></A>
+<HR SIZE="6">
+<A NAME="SEC60"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_8.html#SEC59"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_9.html#SEC61"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_8.html#SEC54"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_8.html#SEC52"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_9.html#SEC61"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 6.3 Блочные устройства MIX </H2>
+<!--docid::SEC60::-->
+<P>
+
+Компьютер MIX оборудован набором блочных устройств для операций
+ввода/вывода (see section <A HREF="mdk_4.html#SEC21">2.1.2.8 Команды ввода/вывода</A>). <CODE>mixvm</CODE> реализует
+эти блочные устройства как дисковые файлы, за исключением блочного
+устройства 19 (текстовый терминал), которое перенаправлено на
+стандартный вывод. При выполнении операции вывода на любом другом
+устройстве (устройстве вывода), создаётся файл, название которого
+соответствует нижеприведённой таблице, и в него записываются указанные
+слова MIX в двоичном (для двоичных устройств) или ASCII (для символьных
+устройств) виде. Файлы, соответствующие устройствам ввода, должны быть
+созданы и заполнены до запуска виртуальной машины MIX (для устройств
+ввода/вывода файлы могут быть созданы при записи программой на MIXAL
+требуемых данных на это устройство, или же, если вам так больше нравится,
+записаны вашим любимым текстовым редактором). Файлы устройств по
+умолчанию находятся в каталоге <TT>`~/.mdk'</TT>, это расположение может
+быть изменено командой <CODE>mixvm</CODE> <CODE>devdir</CODE> (see section <A HREF="mdk_8.html#SEC58">6.2.4 Команды конфигурирования</A>).
+</P><P>
+
+<TABLE>
+<TR><TD><EM>Устройство</EM> </TD><TD> <EM>номер</EM> </TD><TD> <EM>имя_файла</EM> </TD><TD> <EM>тип</EM></TD>
+</TR>
+<TR><TD>Лента </TD><TD> 0-7 </TD><TD> <TT>`tape[0-7].dev'</TT> </TD><TD> bin i/o</TD>
+</TR>
+<TR><TD>Диски </TD><TD> 8-15 </TD><TD> <TT>`disk[0-7].dev'</TT> </TD><TD> bin i/o</TD>
+</TR>
+<TR><TD>Чтение перфокарт </TD><TD> 16 </TD><TD> <TT>`cardrd.dev'</TT> </TD><TD> char in</TD>
+</TR>
+<TR><TD>Запись перфокарт </TD><TD> 17 </TD><TD> <TT>`cardwr.dev'</TT> </TD><TD> char out</TD>
+</TR>
+<TR><TD>Строчный принтер </TD><TD> 18 </TD><TD> <TT>`printer.dev'</TT> </TD><TD> char out</TD>
+</TR>
+<TR><TD>Терминал </TD><TD> 19 </TD><TD> <CODE>stdout</CODE> </TD><TD> char out</TD>
+</TR>
+<TR><TD>Перфолента </TD><TD> 20 </TD><TD> <TT>`paper.dev'</TT> </TD><TD> char out</TD>
+</TR></TABLE>
+<P>
+
+<A NAME="gmixvm"></A>
+<HR SIZE="6">
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_8.html#SEC54"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_9.html#SEC61"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<BR>  
+<FONT SIZE="-1">
+This document was generated
+on <I>June, 9  2003</I>
+using <A HREF="http://www.mathematik.uni-kl.de/~obachman/Texi2html
+"><I>texi2html</I></A>
+
+</BODY>
+</HTML>

@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Мультизагрузка.</TITLE>
+<META NAME="description" CONTENT="Мультизагрузка.">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<!-- Meta http equivalent was here                               -->
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="IntroToLinux.css">
+
+<LINK REL="next" HREF="node8.html">
+<LINK REL="previous" HREF="node6.html">
+<LINK REL="up" HREF="node6.html">
+<LINK REL="next" HREF="node8.html">
+</HEAD>
+
+<BODY background="backgr.jpg" vlink="#000099" bgcolor="#E6E6FA">
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A NAME="tex2html233"
+  HREF="node8.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html229"
+  HREF="node6.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html223"
+  HREF="node6.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html231"
+  HREF="IntroToLinux.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A>  
+<BR>
+<B> След.:</B> <A NAME="tex2html234"
+  HREF="node8.html">SysV-init.</A>
+<B> Вверх:</B> <A NAME="tex2html230"
+  HREF="node6.html">Загрузка.</A>
+<B> Пред.:</B> <A NAME="tex2html224"
+  HREF="node6.html">Загрузка.</A>
+ &nbsp; <B>  <A NAME="tex2html232"
+  HREF="IntroToLinux.html">Содержание</A></B> 
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION00022100000000000000">
+Мультизагрузка.</A>
+</H3>
+
+<P>
+Не секрет, что большинство пользователей Linux перешли на него с WindowsOS.
+Если подобный переход осуществляете и вы, не желая при этом сносить с диска старую-добрую-лицензионную OS, то следует убедиться в возможности их взаимосуществования.
+
+<P>
+Во первых не забывайте, что Linux, как менее наглую OS, можно поставить практически куда угодно, в отличии от.
+Соответственно и ставьте его только тогда, когда все остальные уже поставились и прекрасно загружаются.
+
+<P>
+Теперь решайте&nbsp;-- будете ли вы грузить Linux из <SPAN  CLASS="textit">NTLoader</SPAN>`а (и тогда читайте <SPAN  CLASS="textbf">Linux+NT-loader</SPAN> mini-HOWTO), либо пойдете более простым путем и будете грузить и Linux и <SPAN  CLASS="textit">NTLoader</SPAN> из <SPAN  CLASS="textit">lilo</SPAN>.
+
+<P>
+В первом случае вам придется после каждого перезапуска lilo набирать <TT>dd if=/dev/hdxy of=/mnt/c/linux.bin count=1 bs=512</TT> (где <SPAN  CLASS="textbf">/dev/hdxy</SPAN>&nbsp;-- тот раздел, куда прописывается <SPAN  CLASS="textit">lilo</SPAN>, а <SPAN  CLASS="textbf">/mnt/c/</SPAN>&nbsp;-- подмонтированный диск C: в нотации WindowsOS), а также прописать в <SPAN  CLASS="textbf">C:/boot.ini</SPAN> строку <TT>C:/linux.bin="Linux"</TT>.
+Во втором же, достаточно добавить ваш WindowsOS-раздел в файл <SPAN  CLASS="textbf">/etc/lilo.conf</SPAN>, который у меня, например, имеет почти следующий вид:
+<PRE>
+lba32
+boot=/dev/hda
+root=/dev/hda7
+install=/boot/boot-menu.b
+map=/boot/map
+delay=0
+vga=normal
+menu-title=" Nikolay`s home computer"
+default=Linux
+image=/boot/vmlinuz-2.4.20-686my
+        label=Linux
+        read-only
+        optional
+other=/dev/hda1
+        label="Windows`s"
+</PRE>
+
+<P>
+И набрать <TT>lilo</TT>.
+
+<P>
+
+<DIV CLASS="navigation"><HR>
+<!--Navigation Panel-->
+<A NAME="tex2html233"
+  HREF="node8.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html229"
+  HREF="node6.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html223"
+  HREF="node6.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html231"
+  HREF="IntroToLinux.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A>  
+<BR>
+<B> След.:</B> <A NAME="tex2html234"
+  HREF="node8.html">SysV-init.</A>
+<B> Вверх:</B> <A NAME="tex2html230"
+  HREF="node6.html">Загрузка.</A>
+<B> Пред.:</B> <A NAME="tex2html224"
+  HREF="node6.html">Загрузка.</A>
+ &nbsp; <B>  <A NAME="tex2html232"
+  HREF="IntroToLinux.html">Содержание</A></B> </DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<TABLE border="0" cellpadding="0" cellspacing="0" width="100%"><TR bgcolor="#336699"><TD bgcolor="#8080c0"><P align="center"><FONT color="#FFFFFF" size="1"><A href="http://www.gnu.org/copyleft/fdl.html"><FONT color="#FFFFFF" size="1">Copyleft</FONT></A> © 2002-2003 г. &nbsp; Nikolay A. Panov, <A href="http://www.uic.nnov.ru/~nik/articles/IntroToLinux/"><FONT color="#FFFFFF">"Intro To Linux" (orig)</FONT></A>, &nbsp;<a href="mailto:&#110;&#105;&#107;&#115;&#105;&#116;&#101;&#64;&#109;&#97;&#105;&#108;&#46;&#114;&#117;"><FONT color="#FFFFFF">&#110;&#105;&#107;&#115;&#105;&#116;&#101;&#64;&#109;&#97;&#105;&#108;&#46;&#114;&#117;</FONT></A>, &nbsp;ICQ: 122-40-8888</FONT></P></TD></TR></TABLE>
+</ADDRESS>
+</BODY>
+</HTML>

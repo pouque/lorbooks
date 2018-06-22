@@ -1,0 +1,304 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=koi8-r">
+<meta http-equiv="Content-Language" content="ru">
+<title> Locale &quot;AS IT IS&quot; - Programming</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1>Что значит &quot;программа правильно написана&quot;
+?</h1>
+
+<p>&nbsp;&nbsp;&nbsp; Давайте рассмотрим теперь, как
+писать &quot;правильные&quot; с точки зрения
+локализации программы. Основное внимание уделим <strong>стандартам</strong>.
+</p>
+
+<p>&nbsp;&nbsp;&nbsp; (Но и у стандартов есть свои проблемы.
+Поэтому - немного <a href="locale_p.html#critique">критики</a>).</p>
+
+<hr>
+
+<p>&nbsp;&nbsp;&nbsp; &quot;Правильно&quot; написанная
+программа с использованием <strong>POSIX locale</strong> не
+должна зависить от способа кодирования (&quot;<a href="locale_c.html">кодировки</a>&quot;) символов. Такая
+программа не должна быть привязана к 7-ми
+битности <strong>ASCII</strong> символов, и должна
+пользоваться стандартными библиотечными (<strong>API</strong>)
+функциями <strong>locale</strong> :&nbsp; <a href="http://www.linux.org.ru/books/man/man3/isalpha.html"><em>isalpha()</em></a>,
+<a href="http://www.linux.org.ru/books/man/man3/isupper.html"><em>isupper()</em></a>,<em> isxxx()</em> и <a href="http://www.linux.org.ru/books/man/man3/tolower.html"><em>tolower()</em></a><strong>/</strong><a href="http://www.linux.org.ru/books/man/man3/toupper.html"><em>toupper()</em></a> не полагаясь, что <code>Upper=Lower+0x20</code>
+и т.д.&nbsp; Конструкции, подобные этой также <font color="#FF0080">недопустимы :</font></p>
+
+<pre>      <font color="#FF0080">if (c &gt;= 'A' &amp;&amp; c &lt;= 'Z') { ...</font></pre>
+
+<p>Пользуйтесь :</p>
+
+<pre>      <font color="#008000">if (isalpha(c) &amp;&amp; isupper(c)) { ...</font> или<font color="#008000">
+      if (isascii(c) &amp;&amp; isupper(c))</font></pre>
+
+<p>&nbsp;&nbsp;&nbsp; Как правило, национальные алфавиты
+расположены начиная с кода (codepoint) <strong>0x80</strong>,
+поэтому для совместимости со старыми
+реализациями <strong>locale</strong> можно объявить все
+символы как <strong>unsigned char</strong>, например ключом
+компилятора (для gcc -funsigned-char) или явно.</p>
+
+<p>&nbsp;&nbsp;&nbsp; Хорошо написанная программа должна
+быть польностью 8-бит прозрачна. Например
+отметка&nbsp;удаленного файла в MS-DOS кодом <code>0x0E5</code>
+- не очень хорошее решение. Еще примеры плохих
+решений :&nbsp; знаменитая русская буква &quot;Н&quot; в
+редакторе GoldEd или русская буква &quot;р&quot; в Norton
+Commander...</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;&nbsp;&nbsp; Во-вторых, программа должна <font color="#FF0080">явно</font> начинаться с вызова <a href="http://www.linux.org.ru/books/man/man3/setlocale.html"><em>setlocale(<strong>LC_ALL</strong>,&quot;&quot;)</em></a>
+(такая форма вызова означает, что всем категориям
+локализации <strong>одновременно</strong> будет
+присвоено значение переменной окружения <a href="http://www.linux.org.ru/books/man/man_e/lang.html"><strong>LANG</strong></a>). До вызова этой
+функции (или совсем без него) программа не
+обращает внимания на <strong>LANG=</strong> и фунции <em>isalpha()...</em>
+работают в локализации <strong>POSIX</strong> (<strong>С</strong>) и
+с набором символов <strong>ASCII</strong>. То есть, не
+бывает &quot;никакой&quot; локализации.</p>
+
+<table border="1">
+  <tr>
+    <td>ПРИМЕЧАHИЕ: Во <strong>FreeBSD</strong> можно вылечить
+    некоторые программы, в которых забыт вызов <strong><em>setlocale()</em></strong>
+    путем задания строки окружения :<br>
+    <strong>$ export ENABLE_STARTUP_LOCALE=&quot;&quot; <br>
+    </strong>тогда <em><strong>setlocale(LC_ALL,&quot;&quot;)</strong></em> будет
+    вызываться <strong>автоматически</strong> при старте
+    программ (без их перекомпиляции).<p>&nbsp;&nbsp; В <strong>Linux
+    libc</strong> такого нет (пока?) и по умолчанию всегда
+    включено <strong>LANG=&quot;C</strong>&quot; или &quot;<strong>POSIX</strong>&quot;.
+    Однако можно пересобрать Linux libc, указав другое
+    значение по умолчанию. Но следует отметить, что
+    такое решение будет противоречить стандарту, по
+    которому программа стартует в <strong>POSIX</strong> (до
+    первого вызова <em>setlocale()</em>).</td>
+  </tr>
+</table>
+
+<p>&nbsp;&nbsp;&nbsp; Для получения <strong>locale</strong>-зависимой
+информации следует пользоватся данными
+структуры <em>lconv</em>, которые можно получить
+вызовом функции <a href="http://www.linux.org.ru/books/man/man3/localeconv.html"><em>localeconv()</em></a>
+. Для получения детальной информации по
+категориям локализации (описанным в файле <a href="http://www.linux.org.ru/books/man/man_h/langinfo.html"><em>&lt;langinfo.h&gt;</em></a> ) можно
+пользовться функцией <a href="http://www.linux.org.ru/books/man/man3/nl_langinfo.html"><em>nl_langinfo()</em></a>.
+(Эта функция не входит в <strong>POSIX</strong>, но входит в <strong>XPG</strong>,
+и большинство систем ее имеют).</p>
+
+<p>&nbsp;&nbsp;&nbsp; Для сравнения строк символов следует
+пользоваться функциями <a href="http://www.linux.org.ru/books/man/man3/strcoll.html"><em>strcoll()</em></a>
+и <a href="http://www.linux.org.ru/books/man/man3/strxfrm.html"><em>strxfrm()</em></a> вместо <a href="http://www.linux.org.ru/books/man/man3/strcmp.html"><em>strcmp()</em></a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;&nbsp;&nbsp; Для полной поддержки сообщений на
+родном языке (<a href="locale_n.html">NLS</a>) весь вывод
+сообщений пользователю должен происходить c
+использованием функций <strong>NLS</strong> и должен быть
+создан <strong>каталог сообщений (message catalog)</strong> для
+данной программы (и данного языка). </p>
+
+<p>&nbsp;&nbsp;&nbsp; А в заключение, неплохо бы иметь <strong><em>man</em></strong>
+на разных языках. :-)</p>
+
+<hr>
+
+<h2>Функция <em>setlocale()</em> .</h2>
+
+<p>&nbsp;&nbsp;&nbsp; Основной функцией <strong>POSIX</strong> <strong>locale</strong>
+<strong>API</strong> является функция <a href="http://www.linux.org.ru/books/man/man3/setlocale.html"><em>selocale()</em></a>.
+Данная функция определена в #include файле <em><a href="http://www.linux.org.ru/books/man/man_h/locale.html">locale.h</a></em> как :</p>
+
+<blockquote>
+  <pre>char *setlocale(int category, const char * locale);</pre>
+</blockquote>
+
+<p>&nbsp;&nbsp;&nbsp; Существует три основных формы вызова
+этой функции : 
+
+<ol>
+  <li>setlocale(LC_XXX,&quot;language_TERRITORY.Codeset&quot;);</li>
+  <li>setlocale(LC_XXX,&quot;&quot;);</li>
+  <li>char * str; str=setlocale(LC_XXX,NULL);</li>
+</ol>
+
+<p>&nbsp;&nbsp;&nbsp; Первая форма применяется для
+установки конкретной категории локализации в
+конкретное значение.</p>
+
+<p>&nbsp;&nbsp;&nbsp; Вторая форма применяется для
+установки категории локализации &quot;по
+умолчанию&quot;. В этом случае значение категории
+локализации берется из переменных окружения LANG,
+LC_CTYPE, e.t.c..</p>
+
+<p>&nbsp;&nbsp;&nbsp; Третья форма - это скорее форма GET -
+позволяет получить текущее значение категории
+локализации.</p>
+
+<hr>
+
+<h2><a name="critique">Локализация и POSIX.</a></h2>
+
+<p>&nbsp;&nbsp;&nbsp; Если мы говорим о <strong>файле</strong>, то в
+идеологии <strong>POSIX</strong>, <a href="locale_io.html#file">файл</a> -
+это просто плоская последовательность байтов.
+Внутреннее содержимое <font color="#FF0080">не
+стандартизовано</font><font color="#000000"> никак</font>.
+Поэтому невозможно определить, какую информацию
+содержит файл, а если он содержит текстовую
+информацию -- в какой она кодировке. То же самое
+можно сказать о <strong>потоках</strong> : <strong>stdin/stdout</strong>
+-- это потоки <font color="#FF0080">байтов</font> (кодов).
+Кодировка (т.е. соответствие символ-код (<strong>CES</strong>))
+полностью потеряна и нигде не указывается. И <strong>POSIX</strong>
+вовсе не гарантирует, что <strong>CES</strong> (кодировка) <strong>stdin</strong>
+будет совпадать с текущей локализацией, заданной
+через <strong>LANG=.</strong></p>
+
+<p>&nbsp;&nbsp;&nbsp; Точно тактая же ситуация с
+терминальным <a href="locale_io.html#dev">вводом/выводом</a> :
+кодировка терминала совершенно неизвестна
+приложению.</p>
+
+<p>&nbsp;&nbsp; К сожалению, в стандарте <strong>POSIX</strong>
+поддержка <strong>Charset</strong> не имеет полностью
+идеологически стройной и ясной концепции.
+Понятие <strong>Charset</strong> существует только для <strong>locale
+API</strong> и тех функций, которые зависят от <strong>locale</strong>.</p>
+
+<p>&nbsp;&nbsp;&nbsp; Более того, в &quot;чистом&quot; <strong>POSIX</strong>
+вообще <font color="#FF0080"><strong>невозможно</strong></font>
+узнать (получить) имя <strong>Charset</strong> после вызова <a href="http://www.linux.org.ru/books/man/man3/setlocale.html"><em>setlocale()</em></a>. Единственный
+способ, узнать <strong>Charset</strong> текущей <strong>locale</strong>
+- это воспользоваться не-<strong>POSIX</strong> функцией <strong>XPG</strong>
+(но<strong> </strong>определенной в <strong>Single UNIX</strong>,&nbsp; <strong>SVID</strong>
+и <strong>Unix98</strong>) : <a href="http://www.linux.org.ru/books/man/man3/nl_langinfo.html"><em>nl_langinfo(CODESET</em>)</a>
+(определена в файле <a href="http://www.linux.org.ru/books/man/man_h/langinfo.html">&lt;langinfo.h&gt;</a>
+). Тогда текущий <strong>Сharset</strong> можно получить так
+:</p>
+
+<table border="1">
+  <tr>
+    <td><pre>#include &lt;locale.h&gt;
+#include &lt;langinfo.h&gt;
+
+...
+setlocale(LC_ALL,&quot;&quot;);
+printf (&quot;Current charset = %s\n&quot;,nl_langinfo(CODESET));</pre>
+    </td>
+  </tr>
+</table>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp; Надо ли говорить, что некоторые <strong>UNIX</strong>
+(например <a href="http://www.freebsd.org">FreeBSD</a>) не имеют этих <strong>XPG</strong>-extensions
+и не имеют функции <a href="http://www.linux.org.ru/books/man/man3/nl_langinfo.html"><em>nl_langinfo()</em></a>
+как таковой вообще. (Что очень странно, поскольку
+в том же <strong>POSIX</strong> определена утилита <a href="http://www.linux.org.ru/books/man/man1/locale.html"><em>locale</em></a> c keyword-ом codeset которая
+&quot;как-то&quot; это имя определяет...) Например,
+популярная система <a href="http://www.freebsd.org">FreeBSD</a> до
+сих пор не имеет функции <a href="http://www.linux.org.ru/books/man/man3/nl_langinfo.html"><em>nl_langinfo()</em></a>
+(как впрочем не имеет и утилиты <a href="http://www.linux.org.ru/books/man/man1/locale.html"><em>locale</em></a>,
+увы !). </p>
+
+<p>&nbsp;&nbsp;&nbsp; Еще один способ определения текущего
+<strong>Charset</strong>-а - это <font color="#FF0080">разбор</font>
+переменной окружения <a href="http://www.linux.org.ru/books/man/man_e/lang.html"><strong>LANG=</strong></a>
+. По стандарту <strong>POSIX</strong> переменная <strong>LANG=</strong>
+задается в форме <font color="#FF0080"><strong>LANG=language_TERRITORY.Codeset</strong></font>.
+Например, переменная <strong><a href="http://www.linux.org.ru/books/man/man_e/nlspath.html">NLSPATH=</a></strong>
+(управляющая поведением подсистемы <a href="locale_n.html">NLS</a>
+)может иметь &quot;подстановки&quot; :</p>
+
+<blockquote>
+  <dl compact>
+    <dt>%L</dt>
+    <dd>The value of the LC_MESSAGES category. </dd>
+    <dt>%l</dt>
+    <dd>The <i>language</i> element from the LC_MESSAGES category. </dd>
+    <dt>%t</dt>
+    <dd>The <i>territory</i> element from the LC_MESSAGES category. </dd>
+    <dt>%c</dt>
+    <dd>The <i>codeset</i> element from the LC_MESSAGES category. </dd>
+  </dl>
+</blockquote>
+
+<p>&nbsp;&nbsp;&nbsp; Таким образом, если задать <strong>LANG=&quot;ru_RU.KOI8-R&quot;</strong>,
+то мы получим :</p>
+
+<blockquote>
+  <dl compact>
+    <dt>%L</dt>
+    <dd>= &quot;ru_RU.KOI8-R&quot;</dd>
+    <dt>%l</dt>
+    <dd>= &quot;ru&quot;</dd>
+    <dt>%t</dt>
+    <dd>= &quot;RU&quot;</dd>
+    <dt>%c</dt>
+    <dd>= &quot;KOI8-R&quot;</dd>
+  </dl>
+</blockquote>
+
+<p>&nbsp;&nbsp;&nbsp; Исходные тексты этих функций открыты
+и широко доступны.</p>
+
+<p>&nbsp;&nbsp;&nbsp; Таким образом, установив <strong>LANG=ru_RU.KOI8-R</strong>
+мы получим сообщения на русском языке в
+кодировке <strong>KOI8-R</strong>, а установив <strong>LANG=ru_RU.ISO_8859-5</strong>
+- в кодировке <strong>ISO</strong>. На некоторых системах
+точно так же работает переменная <strong>MANPATH=</strong>.</p>
+
+<p>&nbsp;&nbsp;&nbsp; К сожалению, поле <strong>Charset</strong> -
+опционально и по стандарту можно использовать
+сокращенную форму : <strong>LANG=ru_RU</strong> или даже <strong>LANG=ru</strong>.
+(См. <a href="http://www.linux.org.ru/books/man/man1/localedef.html"><em>localedef</em></a> ключ <em>-f </em>).
+Поэтому, если ваша система это поддерживает,
+задавайте максимально длинное имя для <strong>LANG=</strong>
+, указывая <strong>Charset</strong>. (получить список можно
+по <a href="http://www.linux.org.ru/books/man/man1/locale.html"><em>locale -a</em></a>). К сожалению,
+само <a href="other/charsets.html">имя <strong>Charset</strong>-а</a> тоже
+может различаться.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;&nbsp;&nbsp; Довольно значительное число ошибок
+происходит из за того, что в языке <strong>С</strong>
+определен тип переменных <strong>char</strong> (хотя
+точнее было бы назвать его : <strong>byte</strong>). Это
+во-первых, жестко привязывает нас к 8-ми битным
+кодировкам. А во-вторых, кодировка <font color="#FF0080">не
+определена</font>. Поэтому, если мы задаем строку
+(массив <strong>char</strong>), в которой употребляются
+символы не ASCII (с кодами &gt;128) : <font color="#FF0080"><code>char
+string[]=&quot;Проверка&quot;;</code></font> -- результат <font color="#FF0080"><strong>совершенно</strong></font> непредсказуем и
+непереносим. Еще больше проблем вызывает идея <a href="other/multibyte.html">multibyte chars</a>.</p>
+
+<p>&nbsp;&nbsp;&nbsp; Также вызывает удивление
+существование (и синтаксическая корректность)
+типов <strong>signed / unsigned char</strong> (что такое
+&quot;отрицательный&quot; символ? Вот <strong>unsigned short int</strong>
+-- понятно)... Если вы планируете работу вашей
+программы в многоязычном окружении, неплохо бы
+предусмотреть атрибут <strong>Сharset</strong> у любой
+строки символов <strong>char *</strong>. Или полностью
+переходить на <strong>UNICODE</strong> (<strong>wchar_t</strong>) в
+качестве внутренней кодировки.</p>
+
+<hr>
+
+<p>Содержание &quot;<a href="index.html#toc">Locale AS IT IS</a>&quot;</p>
+
+<hr>
+
+<h6><em>Last change : <!--webbot bot="Timestamp" S-Type="EDITED" S-Format="%d-%m-%Y" startspan -->01-10-2000<!--webbot bot="Timestamp" endspan i-checksum="12414" --></em></h6>
+</body>
+</html>

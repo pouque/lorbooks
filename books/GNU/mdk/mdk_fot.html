@@ -1,0 +1,128 @@
+<HTML>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- Created on June, 9  2003 by texi2html 1.64 -->
+<!-- 
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Olaf Bachmann <obachman@mathematik.uni-kl.de>
+Send bugs and suggestions to <texi2html@mathematik.uni-kl.de>
+ 
+-->
+<HEAD>
+<TITLE>GNU MIX Development Kit (mdk): Footnotes</TITLE>
+
+<META NAME="description" CONTENT="GNU MIX Development Kit (mdk): Footnotes">
+<META NAME="keywords" CONTENT="GNU MIX Development Kit (mdk): Footnotes">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="texi2html 1.64">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+
+<A NAME="mdk_fot.html"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H1>Footnotes</H1>
+<H3><A NAME="FOOT1" HREF="mdk.html#DOCF1">(1)</A></H3>
+<P>Русский перевод:
+<CITE>Искусство программирования</CITE> -- М.: Издательский дом "Вильямс", 2001.
+<H3><A NAME="FOOT2" HREF="mdk_1.html#DOCF2">(2)</A></H3>
+<P>Русский перевод <CITE>Искусство
+программирования</CITE> опубликован Издательским домом "Вильямс"
+<H3><A NAME="FOOT3" HREF="mdk_3.html#DOCF3">(3)</A></H3>
+<P>Примечание: на этой платформе Кристоф тестировал только
+<CODE>mixvm</CODE> и <CODE>mixasm</CODE>, с использованием <CODE>gcc</CODE> 2.95.3-2,
+<CODE>GLIB</CODE> 1.2.10 и <CODE>GNUreadline</CODE> 4.1-2. Он сообщил о том, что
+при первой попытке история команд не работала. Если вы обнаружите
+проблемы с функционированием history/readline, попробуйте использовать
+более новую или установленную вручную версию readline.
+<H3><A NAME="FOOT4" HREF="mdk_4.html#DOCF4">(4)</A></H3>
+<P>Реальный адрес памяти, на который ссылается инструкция,
+получается добавлением к ADDRESS значения регистра <SAMP>`rI'</SAMP>, на
+который ссылается INDEX.
+<H3><A NAME="FOOT5" HREF="mdk_4.html#DOCF5">(5)</A></H3>
+<P>В общем случае, <SAMP>`[X]'</SAMP>
+будет обозначать содержимое сущности <SAMP>`X'</SAMP>. Так, по определению,
+<SAMP>`V = [M](MOD)'</SAMP>.
+<H3><A NAME="FOOT6" HREF="mdk_4.html#DOCF6">(6)</A></H3>
+<P>В оригинальном определении Кнута доступны и другие
+управляющие операции, но при реализации блочных устройств дисковыми
+файлами, как это сделано в эмуляторе MDK, они не имеют смысла.
+По тем же причинам устройства MDK всегда готовы к работе, поскольку
+все операции ввода/вывода производятся посредством синхронных
+системных вызовов.
+<H3><A NAME="FOOT7" HREF="mdk_4.html#DOCF7">(7)</A></H3>
+<P>Вы будем называть их
+вместе инструкциями MIXAL.
+<H3><A NAME="FOOT8" HREF="mdk_4.html#DOCF8">(8)</A></H3>
+<P>На самом деле определение MIXAL Кнута устанавливает
+номер колонки, в которой должна начинаться каждая часть инструкции.
+Ассемблер MIXAL в составе MDK, <CODE>mixasm</CODE>, не накладывает
+такого ограничения.
+<H3><A NAME="FOOT9" HREF="mdk_4.html#DOCF9">(9)</A></H3>
+<P>Автор благодарит Филиппа Э. Кинга
+за то, что тот указал на два специальных способа использования
+локальных символов
+<H3><A NAME="FOOT10" HREF="mdk_5.html#DOCF10">(10)</A></H3>
+<P>Если директива <CODE>ORIG</CODE> не используется, программа
+будет загружена виртуальной машиной по адресу 0. <CODE>ORIG</CODE>
+позволяет расположить исполняемый код по вашему усмотрению.
+<H3><A NAME="FOOT11" HREF="mdk_5.html#DOCF11">(11)</A></H3>
+<P>В определении Кнута операнд всегда начинается
+с фиксированной колонки, и поэтому использование кавычек необязательно.
+Поскольку <CODE>mixasm</CODE> не содержит этого ограничения, для устранения
+неоднозначности разбора этого операнда в случаях, когда он содержит
+пробелы, используются кавычки. Имейте в виду, что двойные кавычки не
+входят в набор литер MIX, и поэтому экранировать литеры внутри
+операндов <CODE>ALF</CODE> не нужно.
+<H3><A NAME="FOOT12" HREF="mdk_5.html#DOCF12">(12)</A></H3>
+<P>Файлы устройств по
+умолчанию помещаются в каталог <TT>`.mdk'</TT>, создаваемый в вашем
+домашнем каталоге при первом запуске <CODE>mixvm</CODE>.  Вы можете задать
+другой каталог, используя команду <CODE>devdir</CODE> при запуске <CODE>mixvm</CODE>
+в интерактивном режиме (see section <A HREF="mdk_8.html#SEC58">6.2.4 Команды конфигурирования</A>)
+<H3><A NAME="FOOT13" HREF="mdk_5.html#DOCF13">(13)</A></H3>
+<P>Программа <CODE>mixguile</CODE> позволяет выполнять любое
+сочетание команд <CODE>mixvm</CODE> (используя Scheme) неинтерактивно.
+See section <A HREF="mdk_5.html#SEC47">3.4.5 Скрипты Scheme</A>.
+<H3><A NAME="FOOT14" HREF="mdk_5.html#DOCF14">(14)</A></H3>
+<P>Вывод
+статистики времени может быть отключен командой <CODE>timing</CODE>
+(see section <A HREF="mdk_8.html#SEC58">6.2.4 Команды конфигурирования</A>).
+<H3><A NAME="FOOT15" HREF="mdk_5.html#DOCF15">(15)</A></H3>
+<P>Можно заметить, что
+ловушки останова могут быть реализованы ловушками, связанными с командами
+<CODE>mix-run</CODE> и <CODE>mix-next</CODE>. Собственно говоря, они <EM>действительно</EM>
+реализованы таким образом, если вы любопытны, взгляните на файл
+<TT>`<EM>каталог_установки</EM>/share/mdk/mix-vm-stat.scm'</TT>.
+<H3><A NAME="FOOT16" HREF="mdk_6.html#DOCF16">(16)</A></H3>
+<P><TT>`mixvm.el'</TT> -- вклад в создание MDK
+Филиппа Э. Кинга. <TT>`mixvm.el'</TT> основана на изучении gdb, perldb
+и pdb, как указано в <TT>`gud.el'</TT> и <TT>`rubydb3x.el'</TT>, распространяемых
+с исходным кодом языка Ruby.
+<H3><A NAME="FOOT17" HREF="mdk_8.html#DOCF17">(17)</A></H3>
+<P>Командное приглашение по умолчанию, <SAMP>`MIX &#62;'</SAMP> может
+быть изменено командой <CODE>prompt</CODE> (see section <A HREF="mdk_8.html#SEC58">6.2.4 Команды конфигурирования</A>)
+<H3><A NAME="FOOT18" HREF="mdk_8.html#DOCF18">(18)</A></H3>
+<P>Возможности
+readline будут доступны, если вы скомпилировали MDK с поддержкой
+readline, т.е. если GNU readline установлена в вашей системе. Как
+правило, в системах GNU/Linux и BSD это так.
+<HR SIZE=1>
+<BR>  
+<FONT SIZE="-1">
+This document was generated
+on <I>June, 9  2003</I>
+using <A HREF="http://www.mathematik.uni-kl.de/~obachman/Texi2html
+"><I>texi2html</I></A>
+
+</BODY>
+</HTML>

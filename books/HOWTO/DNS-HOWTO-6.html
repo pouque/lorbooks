@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE>DNS HOWTO: Сопровождение</TITLE>
+ <LINK HREF="DNS-HOWTO-7.html" REL=next>
+ <LINK HREF="DNS-HOWTO-5.html" REL=previous>
+ <LINK HREF="DNS-HOWTO.html#toc6" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="DNS-HOWTO-7.html">Следующий</A>
+<A HREF="DNS-HOWTO-5.html">Предыдущий</A>
+<A HREF="DNS-HOWTO.html#toc6">Содержание</A>
+<HR>
+<H2><A NAME="maint"></A> <A NAME="s6">6. Сопровождение</A></H2>
+
+<P><B>Содержание в рабочем состоянии</B>.
+<P>Существует только одна задача по сопровождению named, кроме содержания
+его запущенным на машине. Это регулярное обновление файла
+<CODE>root.hints</CODE>. Наиболее легкий путь&nbsp;-- это использование программы
+dig. Сначала запустите dig без аргументов и вы получите файл
+<CODE>root.hints</CODE>, соответствующтй вашим данным.  Затем запросите один из
+перечисленных корневых серверов, выполнив команду <CODE>dig @rootserver</CODE>. Вы
+заметите, что вывод этой команды выглядит ужасно похоже на файл
+<CODE>root.hints</CODE>. Сохраните выводимые данные в файл (с помощью команды
+<CODE>dig @e.root-servers.net . ns &gt;root.hints.new</CODE>) и замените этим
+файлом старый файл <CODE>root.hints</CODE>.
+<P>Помните, что необходимо перезапустить named после замены файла.
+<P>Al Longyear послал мне этот скрипт, который может быть автоматически
+запущен для того, чтобы обновлять файл <CODE>root.hints</CODE>, создайте запись в
+crontab для запуска его раз в месяц и забудьте про него. В скрипте
+предполагается, что почтовая система работает и что определен почтовый
+алиас `hostmaster'. Вы должны подправить этот скрипт для соответствия вашим 
+настройкам.
+
+<HR>
+<PRE>
+#!/bin/sh
+#
+# Обновляет информацию кеша сервера имен раз в месяц.
+# Он автоматически запускается раз в месяц с помощью cron.
+#
+# Original by Al Longyear
+# Updated for bind 8 by Nicolai Langfeldt
+# Miscelanious error-conditions reported by David A. Ranch
+# Ping test suggested by Martin Foster
+#
+
+(
+ echo "To: hostmaster &lt;hostmaster>"
+ echo "From: system &lt;root>"
+ echo "Subject: Automatic update of the named.conf file"
+ echo
+
+ PATH=/sbin:/usr/sbin:/bin:/usr/bin:
+ export PATH
+ cd /var/named
+
+ # Мы подключены? проверка подключения к серверу вашего ISP
+ case `ping -qnc some.machine.net` in
+   *'100% packet loss'*)
+        echo "The network is DOWN. root.hints NOT updated"
+        echo
+        exit 0
+        ;;
+ esac
+
+ dig @rs.internic.net . ns >root.hints.new 2>&amp;1
+
+ case `cat root.hints.new` in
+   *NOERROR*)
+        # It worked
+        :;;
+   *)
+        echo "The root.hints file update has FAILED."
+        echo "This is the dig output reported:"
+        echo
+        cat root.hints.new
+        exit 0
+        ;;
+ esac
+
+ echo "The named.conf file has been updated to contain the following information:"
+ echo
+ cat root.hints.new
+
+ chown root.root root.hints.new
+ chmod 444 root.hints.new
+ rm -f root.hints.old
+ mv root.hints root.hints.old
+ mv root.hints.new root.hints
+ ndc restart
+ echo
+ echo "The nameserver has been restarted to ensure that the update is complete."
+ echo "The previous root.hints file is now called   
+/var/named/root.hints.old."
+) 2>&amp;1 | /usr/lib/sendmail -t
+exit 0
+</PRE>
+<HR>
+
+<P>Некоторые из вас заметили, что файл <CODE>root.hints</CODE> также доступен
+по ftp с сервера Internic. Пожалуйста <EM>не</EM> используйте ftp для
+обновления файла <CODE>root.hints</CODE>, вышеприведенный метод более
+дружелюбен по отношению к сети.
+<HR>
+<A HREF="DNS-HOWTO-7.html">Следующий</A>
+<A HREF="DNS-HOWTO-5.html">Предыдущий</A>
+<A HREF="DNS-HOWTO.html#toc6">Содержание</A>
+</BODY>
+</HTML>

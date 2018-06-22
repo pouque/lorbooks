@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
+  <meta http-equiv="Content-Type" content="text/html; charset=windows-1251"><title>Installing Linux-2.4.19</title>
+<meta name="GENERATOR" content="Modular DocBook HTML Stylesheet Version 1.73"><link rel="HOME" title="Linux From Scratch" href="http://www.linux.org.ru/books/Distro/lfsbook/chapter06/index.html"><link rel="UP" title="Installing basic system software" href="chapter06.html"><link rel="PREVIOUS" title="Creating devices (Makedev-1.7)" href="makedev.html"><link rel="NEXT" title="Installing Man-pages-1.52" href="man-pages.html"></head><body class="sect1" bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#840084" alink="#006000"><div class="NAVHEADER"><table summary="Header navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><th colspan="3" align="Center">Linux From Scratch: Версия 4.0</th></tr><tr><td width="10%" align="Left" valign="Bottom"><a href="makedev.html" accesskey="P">Назад</a></td><td width="80%" align="Center" valign="Bottom">Глава 6. Установка основных компонентов системы</td><td width="10%" align="Right" valign="Bottom"><a href="man-pages.html" accesskey="N">Вперед</a></td></tr></tbody></table><hr align="Left" width="100%"></div><div class="sect1"><h1 class="sect1"><a name="ch06-kernel">Установка Linux-2.4.19</a></h1><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen">Приблизительное время компиляции:           0.02<br>Необходимое место на диске:  142 MB</pre></td></tr></tbody></table><div class="sect2"><h2 class="sect2"><a name="AEN2352">Установка заголовочных файлов ядра</a></h2><p>На
+данном этапе мы не будем компилировать ядро -- мы сделаем это после установки
+всех пакетов. Однако, в связи с тем, что некоторые пакеты требуют заголовочных
+файлов ядра, мы распакуем ядро, настроим его и скопируем заголовки туда,
+где их будут искать пакеты при компиляции.</p><p>Скопируем заголовки ядра, выполнив следующие команды:</p><p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>ln -s /static/bin/pwd /bin/pwd &amp;&amp;<br>make mrproper &amp;&amp;<br>make include/linux/version.h &amp;&amp;<br>make symlinks &amp;&amp;<br>mkdir /usr/include/asm &amp;&amp;<br>cp include/asm/* /usr/include/asm &amp;&amp;<br>cp -R include/asm-generic /usr/include &amp;&amp;<br>cp -R include/linux /usr/include &amp;&amp;<br>touch /usr/include/linux/autoconf.h &amp;&amp;<br>rm /bin/pwd</b></tt></pre></td></tr></tbody></table></p></div><div class="sect2"><h2 class="sect2"><a name="AEN2359">Пояснения команд</a></h2><p><tt class="userinput"><b>ln -s /static/bin/pwd /bin/pwd</b></tt>: В исходных кодах ядра путь к программе pwd прописан как
+<tt class="filename">/bin/pwd</tt>, поэтому создадим временную символическую ссылку, а в конце удалим ее.</p><p><tt class="userinput"><b>make mrproper</b></tt>:
+Выполнение данной команды обеспечивает чистое дерево исходников ядра. Команда
+разработчиков ядра рекомендует выполнять эту команду перед каждой компиляцией
+ядра, даже если вы только что распаковали исходные коды из tar-архива.<em></em></p><p><tt class="userinput"><b>make include/linux/version.h</b></tt> и
+<tt class="userinput"><b>make symlinks</b></tt>: Создадим файл
+<tt class="filename">include/linux/version.h</tt> file и символическую ссылку
+<tt class="filename">include/asm</tt> для конкретной платформы.</p><p><tt class="userinput"><b>mkdir /usr/include/asm</b></tt>
+, <tt class="userinput"><b>cp include/asm/* /usr/include/asm</b></tt> и
+<tt class="userinput"><b>cp -R include/asm-generic /usr/include</b></tt>:
+Эти команды копируют заголовочные файлы ядра ассемблера для конкретной платформы в
+<tt class="filename">/usr/include/asm</tt> и <tt class="filename">/usr/include/asm-generic</tt>.</p><p><tt class="userinput"><b>cp -R include/linux /usr/include</b></tt>:
+Эта команда копирует кросс-платформенные файлы заголовков в
+<tt class="filename">/usr/include</tt>.</p><p><tt class="userinput"><b>touch /usr/include/linux/autoconf.h</b></tt>: Создаем пустой файл <tt class="filename">autoconf.h</tt>.
+ Так как на данном этапе мы не конфигурируем ядро, необходимо вручную создать
+этот файл для некоторых заголовочных файлов ядра, использующих его, чтобы
+избежать ошибок при компиляции.</p></div><div class="sect2"><h2 class="sect2"><a name="AEN2385">Почему мы копируем заголовки ядра, а не создаем для них символические ссылки?</a></h2><p>Раньше было принято создавать символические ссылки
+<tt class="filename">директорий /usr/include/{linux,asm}</tt> на <tt class="filename">/usr/src/linux/include/{linux,asm}</tt>.
+Однако, это была плохая идея, как объясняет Линус Торвальдс в списке рассылки ядра Linux (Linux Kernel Mailing List, отрывок):<em></em></p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen">Тем, кто компилирует новые ядра, настоятельно рекомендую: <br><br> - не создавать символических ссылок (кроме той, которую создает <br>   само ядро, "linux/include/asm", символическая ссылка, которая <br>   используется при внутренней компиляции ядра.) <br><br>Да, именно так делаю я. В моем каталоге /usr/src/linux есть заголовки<br>старого ядра 2.2.13, несмотря на то, что я не использовал ядро 2.2.13 <br>уже очень давно. Однако именно с этими заголовками компилировался <br>пакет glibc, соответственно именно эти заголовки соответствуют<br>файлам объектов библиотеки. <br><br>Также именно такое положение вещей являлось рекомендуемым<br>на протяжении последних пяти лет. Я не могу понять, почему вся эта<br>заморочка с символическими ссылками все еще существует, как зомби. <br>Практически во всех дистрибутивах есть эта неработающая символическая<br>ссылка, и люди до сих пор помнят, что исходники ядра Linux должны<br>находится в "/usr/src/linux", несмотря на то, что это уже давно не так.</pre></td></tr></tbody></table><p>Наиболее важная часть сообщения Линуса заключается в том, что файлы заголовков должны быть именно теми, <i>с которыми компилировался пакет glibc</i>. <em></em>Это
+те заголовки, которые следует использовать в будущем при компиляции других
+пакетов, т.к. именно они соответствуют файлам библиотек объектного кода.
+Копируя заголовки, мы удостоверяемся, что они останутся доступными, если
+позже мы решим обновить ядро.</p><p>Заметьте, что нет ничего страшного в том, что исходные коды ядра находятся в директории <tt class="filename">/usr/src/linux</tt>. Главное, чтобы у вас не было символических ссылок <tt class="filename">/usr/include/{linux,asm}</tt>.</p></div><div class="sect2">
+<div class="sect2"><h2 class="sect2"><a name="AEN7590">Содержимое Linux</a></h2><p>Последняя проверка: версия  2.4.18.</p><div class="sect3"><h3 class="sect3"><a name="AEN7593">Файлы поддержки</a></h3><p>Ядро Linuxи и его заголовочные файлы</p></div><div class="sect3"><h3 class="sect3"><a name="AEN7596">Описания</a></h3><div class="sect4"><h4 class="sect4"><a name="AEN7598">Ядро Linux</a></h4><p>Ядро - основа любой системы Linux. Когда компьютер включается и
+загружает Linux, первое, что загружается - ядро. Ядро инициализирует
+аппаратные компоненты системы: последовательные и параллельные порты,
+звуковые и сетевые карты, контроллеры IDE и SCSI и многое другое. In a
+nutshell the kernel makes the hardware available so that the software
+can run.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7601">linux kernel headers</a></h4><p>Это файлы, которые мы копируем в <tt class="filename">/usr/include/{linux,asm}</tt>
+в 5-й главе. Они должны соответствовать тем, с которым был скомпилирован
+glibc, и поэтому <em>не</em> должны быть заменены при смене ядра. Они
+имеют ключевое значение для компиляции многих программ.</p></div></div></div>
+<div class="sect2"><h2 class="sect2"><a name="AEN7606">Зависимости Linux</a></h2><p>Последняя проверка: версия 2.4.17.</p><p class="literallayout">Bash: sh<br>
+Binutils: ar, as, ld, nm, objcopy<br>
+Fileutils: cp, ln, mkdir, mv, rm, touch<br>
+Findutils: find, xargs<br>
+Gcc: cc1, collect2, cpp0, gcc<br>
+Grep: grep<br>
+Gzip: gzip<br>
+Make: make<br>
+Gawk: awk<br>
+Modutils: depmod, genksyms<br>
+Net-tools: dnsdomainname, hostname<br>
+Sed: sed<br>
+Sh-utils: basename, date, expr, pwd, stty, uname, whoami, yes<br>
+Textutils: cat, md5sum, sort, tail</p></div>
+<h2 class="sect2"></h2></div></div><div class="NAVFOOTER"><hr align="Left" width="100%"><table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="33%" align="Left" valign="Top"><a href="makedev.html" accesskey="P">Назад</a></td><td width="34%" align="Center" valign="Top"><a href="../index.html" accesskey="H">Домой</a></td><td width="33%" align="Right" valign="Top"><a href="man-pages.html" accesskey="N">Вперед</a></td></tr><tr><td width="33%" align="Left" valign="Top">Создание устройств (Makedev-1.7)</td><td width="34%" align="Center" valign="Top"><a href="chapter06.html" accesskey="U">Наверх</a></td><td width="33%" align="Right" valign="Top">Установка Man-pages-1.52</td></tr></tbody></table></div><br>
+</body></html>

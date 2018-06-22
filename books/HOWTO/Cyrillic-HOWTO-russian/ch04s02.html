@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=koi8-r"><title>Cyrillic console tools</title><meta name="generator" content="DocBook XSL Stylesheets V1.59.1"><link rel="home" href="index.html" title="The Linux Cyrillic HOWTO (russian)"><link rel="up" href="ch04.html" title="Глава 4. Консоль"><link rel="previous" href="ch04.html" title="Глава 4. Консоль"><link rel="next" href="ch04s03.html" title="kbd"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Cyrillic console tools</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch04.html">Пред.</a> </td><th width="60%" align="center">Глава 4. Консоль</th><td width="20%" align="right"> <a accesskey="n" href="ch04s03.html">След.</a></td></tr></table><hr></div><div class="sect1" lang="ru"><div class="titlepage"><div><h2 class="title" style="clear: both"><a name="linux-console-cyrillic-consoletools"></a>Cyrillic console tools</h2></div></div><a class="indexterm" name="id2879540"></a><a class="indexterm" name="id2879560"></a><p>Этот пакет содержит кириллические консольные шрифты и
+таблицы перекодировки для Linux, а также раскладки клавиатуры и прочие
+полезные вещи. Последнюю версию этого пакета можно обнаружить по
+адресу <a href="ftp://ftp.ice.ru/pub/fonts/linux/" target="_top">ftp://ftp.ice.ru/pub/fonts/linux/</a>. Этот
+пакет активно развивается Виктором Вагнером (<a href="mailto:vitus@ice.ru" target="_top">vitus@ice.ru</a>).</p><p>Для настройки следует первым делом следует прочитать файл
+<tt>README</tt>, который идёт в поставке. Для работы с
+пакетом необходимы утилиты <span class="emphasis"><em>consoletools</em></span>
+(См. раздел <a href="ch04.html#linux-console-consoletools" title="consoletools">&#8220;consoletools&#8221;</a>), впрочем,
+экранные шрифты можно использовать и с последними
+<span class="emphasis"><em>kbd</em></span>.</p><p>Все шрифты сделаны на базе альтернативной кодировки
+(<span class="emphasis"><em>CP866</em></span>). Почему?  Потому что использование любой
+другой кодировки русских букв в качестве физической в текстовом режиме
+VGA приводит к тому, что горизонтальная псевдографика получается с
+разрывами. Это аппаратное свойство VGA, которое никак не
+лечится. Единственный выход &#8212; использовать шрифты, в которых
+псевдографика расположена на тех же позициях, что и в
+<span class="emphasis"><em>СР437</em></span>.</p><p>В пакет входят семь комплектов шрифтов различной степени
+пригодности и функциональности.  Все шрифты содержат в себе таблицу
+отображения в <span class="emphasis"><em>unicode</em></span>.</p><p>В дистрибутив пакета включены кириллические таблицы
+перекодировки из распространённых кодировок русского, белорусского,
+болгарского, сербского и украинского языков в
+<span class="emphasis"><em>unicode</em></span>.  Использование этих таблиц перекодировок
+совместно со шрифтами, включёнными в этот пакет, позволяет вам
+настроить консоль в любую требуемую кодировку кириллицы.</p><p>В пакет включена комплект для генерации клавиатуры,
+основанный на идеях, предложенных Кириллом Злобиным (<a href="mailto:slobin@ice.ru" target="_top">slobin@ice.ru</a>).  Раскладки
+клавиатуры получаются с помощью обработки препроцессором
+<span class="emphasis"><em>C</em></span> (<tt>/usr/bin/cpp</tt>) файла
+кодировки и собственно файла раскладки.  Использование макросов для
+описаний клавиш позволяет существенно полнее чем в большинстве
+распространённых раскладок определить комбинации Alt-клавиша,
+Ctrl-клавиша и т.д., как в русском, так и в латинском режимах.</p><p>Для настройки консоли воспользуйтесь командой:</p><pre class="programlisting">
+consolechars -f UniCyr_8x16.psf -m koi8-r.acm
+loadkeys console_russian.map
+</pre><p>Для создания клавиатурной раскладки
+<tt>console_russian.map</tt> выполните команду:</p><pre class="screen">
+cpp -DWINONLY -DBACKSPACE cyr-russian-ms.cpp &gt; console_russian.map
+</pre><p>Это microsoft раскладка, переключение осуществляется с
+помощью дополнительной клавиши Windows &quot;клавиши системного
+меню&quot;.</p><p><span class="emphasis"><em>P.S.</em></span> Для украинизации вместо
+<tt>koi8-r.acm</tt> надо подставить
+<span class="emphasis"><em>koi8-u.acm</em></span></p></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch04.html">Пред.</a> </td><td width="20%" align="center"><a accesskey="u" href="ch04.html">Уровень выше</a></td><td width="40%" align="right"> <a accesskey="n" href="ch04s03.html">След.</a></td></tr><tr><td width="40%" align="left" valign="top">Глава 4. Консоль </td><td width="20%" align="center"><a accesskey="h" href="index.html">Начало</a></td><td width="40%" align="right" valign="top"> kbd</td></tr></table></div></body></html>

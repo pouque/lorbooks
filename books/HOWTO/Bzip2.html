@@ -1,0 +1,1242 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Bzip2 mini-HOWTO</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.57"></HEAD
+><BODY
+CLASS="ARTICLE"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="ARTICLE"
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="TITLE"
+><A
+NAME="AEN2"
+>Bzip2 mini-HOWTO</A
+></H1
+><DIV
+CLASS="AUTHORGROUP"
+><A
+NAME="AEN4"
+></A
+><H3
+CLASS="AUTHOR"
+><A
+NAME="AEN5"
+>David Fetter</A
+></H3
+><DIV
+CLASS="AFFILIATION"
+><DIV
+CLASS="ADDRESS"
+><P
+CLASS="ADDRESS"
+>david@fetter.org</P
+></DIV
+></DIV
+><H3
+CLASS="CORPAUTHOR"
+> Перевод: <A
+HREF="mailto:kmic@asp-linux.com"
+TARGET="_top"
+>Михаил Корепанов</A
+>,
+ <A
+HREF="http://www.asplinux.com"
+TARGET="_top"
+>SWSoft Pte Ltd.</A
+>
+ </H3
+></DIV
+><P
+CLASS="PUBDATE"
+>версия 2.00, 22 августа 1999<BR></P
+><DIV
+><DIV
+CLASS="ABSTRACT"
+><A
+NAME="AEN15"
+></A
+><P
+></P
+><P
+>В этом документе содержится информация о том, как пользоваться новым
+архиватором bzip2. Копию этого документа в формате sgml можно найти <A
+HREF="http://www.linux.org.ru/books/HOWTO/Bzip2-HOWTO.sgml"
+TARGET="_top"
+>здесь</A
+> и <A
+HREF="http://fetter.org/Bzip2-HOWTO/"
+TARGET="_top"
+>здесь</A
+>.</P
+><P
+></P
+></DIV
+></DIV
+><HR></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Содержание</B
+></DT
+><DT
+>1. <A
+HREF="Bzip2.html#AEN19"
+>Введение</A
+></DT
+><DD
+><DL
+><DT
+>1.1. <A
+HREF="Bzip2.html#AEN27"
+><I
+CLASS="EMPHASIS"
+>История изменений</I
+></A
+></DT
+><DD
+><DL
+><DT
+>1.1.1. <A
+HREF="Bzip2.html#AEN30"
+>Версия 2.00</A
+></DT
+><DT
+>1.1.2. <A
+HREF="Bzip2.html#AEN37"
+>Версия 1.92</A
+></DT
+><DT
+>1.1.3. <A
+HREF="Bzip2.html#AEN41"
+>версия 1.91</A
+></DT
+><DT
+>1.1.4. <A
+HREF="Bzip2.html#AEN47"
+>Версия 1.9</A
+></DT
+><DT
+>1.1.5. <A
+HREF="Bzip2.html#AEN54"
+>Версия 1.8</A
+></DT
+><DT
+>1.1.6. <A
+HREF="Bzip2.html#AEN59"
+>Версия 1.7</A
+></DT
+><DT
+>1.1.7. <A
+HREF="Bzip2.html#AEN62"
+>Версия 1.6</A
+></DT
+><DT
+>1.1.8. <A
+HREF="Bzip2.html#AEN66"
+>Версия 1.5</A
+></DT
+><DT
+>1.1.9. <A
+HREF="Bzip2.html#AEN69"
+>Версия 1.4</A
+></DT
+><DT
+>1.1.10. <A
+HREF="Bzip2.html#AEN72"
+>Версия 1.3</A
+></DT
+><DT
+>1.1.11. <A
+HREF="Bzip2.html#AEN76"
+>Версия 1.2</A
+></DT
+><DT
+>1.1.12. <A
+HREF="Bzip2.html#AEN79"
+>Версия 1.1</A
+></DT
+><DT
+>1.1.13. <A
+HREF="Bzip2.html#AEN82"
+>Версия 1.0</A
+></DT
+></DL
+></DD
+></DL
+></DD
+><DT
+>2. <A
+HREF="Bzip2.html#GET-BZIP2"
+>Как получить bzip2</A
+></DT
+><DD
+><DL
+><DT
+>2.1. <A
+HREF="Bzip2.html#AEN90"
+>Где получить руководство Bzip2-HOWTO на родном языке</A
+></DT
+><DT
+>2.2. <A
+HREF="Bzip2.html#BZIP2-BINARIES"
+>Где  получить скомпилированный bzip2</A
+></DT
+><DT
+>2.3. <A
+HREF="Bzip2.html#AEN106"
+>Где взять исходники bzip2</A
+></DT
+><DT
+>2.4. <A
+HREF="Bzip2.html#AEN110"
+>Компилирование bzip2 для вашей машины</A
+></DT
+></DL
+></DD
+><DT
+>3. <A
+HREF="Bzip2.html#AEN121"
+>Использование bzip2</A
+></DT
+><DT
+>4. <A
+HREF="Bzip2.html#BZIP2-WITH-TAR"
+>Использование bzip2 совместно с tar</A
+></DT
+><DD
+><DL
+><DT
+>4.1. <A
+HREF="Bzip2.html#AEN127"
+>Наиболее простой в установке:</A
+></DT
+><DT
+>4.2. <A
+HREF="Bzip2.html#AEN132"
+>Простой в установке, прост в использовании , нет необходимости в root-правах:</A
+></DT
+><DT
+>4.3. <A
+HREF="Bzip2.html#AEN141"
+>Так же прост в использовании, но требует наличия root-прав.</A
+></DT
+></DL
+></DD
+><DT
+>5. <A
+HREF="Bzip2.html#BZIP2-WITH-LESS"
+>Использование bzip2 совместно с less</A
+></DT
+><DT
+>6. <A
+HREF="Bzip2.html#AEN149"
+>Использование bzip2 совместно с emacs</A
+></DT
+><DD
+><DL
+><DT
+>6.1. <A
+HREF="Bzip2.html#AEN151"
+>Настройка emacs для всех:</A
+></DT
+><DT
+>6.2. <A
+HREF="Bzip2.html#AEN178"
+>Настройка emacs для одного пользователя:</A
+></DT
+></DL
+></DD
+><DT
+>7. <A
+HREF="Bzip2.html#AEN184"
+>Использование bzip2 совместно wu-ftpd</A
+></DT
+><DT
+>8. <A
+HREF="Bzip2.html#AEN188"
+>Использование bzip2 совместно с grep</A
+></DT
+><DT
+>9. <A
+HREF="Bzip2.html#AEN192"
+>Использование bzip2 совместно с Netscape под X.</A
+></DT
+><DT
+>10. <A
+HREF="Bzip2.html#AEN198"
+>Использование bzip2 для преобразования из других форматов</A
+></DT
+><DT
+>11. <A
+HREF="Bzip2.html#AEN202"
+>Авторские права</A
+></DT
+></DL
+></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="AEN19"
+>1. Введение</A
+></H1
+><P
+>Bzip2 - это принципиально новый, мощный алгоритм сжатия данных. Его файлы обычно
+составляют 60-70% размера своих gzip-собратьев.</P
+><P
+>Этот документ содержит описание некоторых способов применения bzip2.</P
+><P
+>Будущие версии этого документа будут включать в себя
+описание возможностей libbzip2, C-библиотеки bzip2, которую
+написал автор bzip2
+<A
+HREF="mailto:Julian_Seward@muraroa.demon.co.uk"
+TARGET="_top"
+>Julian Seward</A
+>.
+Руководство по bzip2, включающее в себя подробную информацию
+о библиотеке, можно найти <A
+HREF="http://www.bzip2.org/bzip2/docs/manual_toc.html"
+TARGET="_top"
+>здесь</A
+>.</P
+><P
+>В будущие версии этого документа может войти сокращенная версия
+обсуждения, посвященного тому, куда и как внести bzip2 в ядро Linux.</P
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN27"
+>1.1. <I
+CLASS="EMPHASIS"
+>История изменений</I
+></A
+></H2
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="AEN30"
+>1.1.1. Версия 2.00</A
+></H3
+><P
+>Изменен раздел "<A
+HREF="Bzip2.html#BZIP2-WITH-LESS"
+><I
+>Использование bzip2 совместно с less</I
+></A
+>", чтобы была
+возможность чтения файлов .tar.bzip2.  Спасибо <A
+HREF="mailto:mc8644@mclink.it"
+TARGET="_top"
+>Nicola Fabiano</A
+>
+за исправления.</P
+><P
+>Обновлена утилита buzzit.</P
+><P
+>Обновлена информация о tar.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN37"
+>1.1.2. Версия 1.92</A
+></H3
+><P
+>Обновлен раздел "<A
+HREF="Bzip2.html#BZIP2-BINARIES"
+><I
+>Где  получить скомпилированный bzip2</I
+></A
+>", в том числе добавлена
+информация о S.u.S.E.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN41"
+>1.1.3. версия 1.91</A
+></H3
+><P
+>Исправлена опечатка и подправлены некоторые идиомы shell в разделе "<A
+HREF="Bzip2.html#BZIP2-WITH-TAR"
+><I
+>Использование bzip2 совместно с tar</I
+></A
+>".  Спасибо
+Alessandro Rubini за это.</P
+><P
+>Обновлена утилита buzzit - теперь она не изменяет исходный bzip2-архив.</P
+><P
+> Добавлена утилита bgrep, аналог zgrep.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN47"
+>1.1.4. Версия 1.9</A
+></H3
+><P
+>Устранена проблема с gcc 2.7.*.  Спасибо Ulrik Dickow за то, что
+указал на это.</P
+><P
+> Добавлен "элегантный" путь работы с tar, предложенный Leonard Jean-Marc. </P
+><P
+> Добавлена ссылка на шведский перевод Linus &Atilde;kerlund.</P
+><P
+> По предложению Arnaud Launay, исправлен раздел, касающийся wu-ftpd.</P
+><P
+> Переводы помещены в отдельный раздел.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN54"
+>1.1.5. Версия 1.8</A
+></H3
+><P
+>buzzit и tar.diff помещены в sgml, где им и место. Исправлены
+ошибки в пунктуации и форматировании. Спасибо Arnaud Launay, за помощь
+в исправлении моей копии. :-)</P
+><P
+> Отказ на время от проекта xv, из-за отсутствия интереса.</P
+><P
+> Добавлены заметки о том, что надо сделать в следующих
+ версиях документа.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN59"
+>1.1.6. Версия 1.7</A
+></H3
+><P
+> Добавлена утилита buzzit. Добавлен патч для gnu tar.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN62"
+>1.1.7. Версия 1.6</A
+></H3
+><P
+> Добавлена заметка о Netscape.</P
+><P
+>Подправлен скрипт lesspipe.sh. Теперь он должен работать лучше.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN66"
+>1.1.8. Версия 1.5</A
+></H3
+><P
+> Добавлен французский перевод Arnaud Launay, а также его файл wu-ftpd.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN69"
+>1.1.9. Версия 1.4</A
+></H3
+><P
+> Добавлен японский перевод Tetsu Isaji.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN72"
+>1.1.10. Версия 1.3</A
+></H3
+><P
+> Добавлен файл .emacs для версий 19.30 или выше от Ulrik Dickow.</P
+><P
+>(Также исправлен патч jka-compr.el для emacs. Упс!
+В Bzip2 до сих пор нет флага "append"!)</P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN76"
+>1.1.11. Версия 1.2</A
+></H3
+><P
+>Изменен патч для emacs - теперь он автоматически распознает
+файлы .bz2.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN79"
+>1.1.12. Версия 1.1</A
+></H3
+><P
+> Добавлен патч для emacs.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN82"
+>1.1.13. Версия 1.0</A
+></H3
+><P
+> 1-ый раунд.</P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="GET-BZIP2"
+>2. Как получить bzip2</A
+></H1
+><P
+>Домашняя страничка Bzip2 находится в <A
+HREF="http://www.bzip2.org/"
+TARGET="_top"
+>Великобритании</A
+>. Зеркало для США находится <A
+HREF="http://www.digistar.com/bzip2/index.html"
+TARGET="_top"
+>здесь</A
+>.</P
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN90"
+>2.1. Где получить руководство Bzip2-HOWTO на родном языке</A
+></H2
+><P
+>Франкоязычные пользователи возможно захотят воспользоваться документацией, переведенной Arnaud Launay. Веб-версия находится <A
+HREF="http://www.freenix.fr/linux/HOWTO/mini/Bzip2.html"
+TARGET="_top"
+>здесь</A
+>, а ftp <A
+HREF="ftp://ftp.lip6.fr/pub/linux/french/docs/HOWTO/mini/Bzip2.gz"
+TARGET="_top"
+>здесь</A
+>.
+Почту для Arnaud можно посылать по <A
+HREF="mailto:zoro@mygale.org"
+TARGET="_top"
+>этому адресу</A
+>.</P
+><P
+>Есть перевод, выполненный Tetsu Isaji, на
+<A
+HREF="http://jf.gee.kyoto-u.ac.jp/JF/JF.html"
+TARGET="_top"
+>японский</A
+>. Домашняя страничка Isaji находится по <A
+HREF="http://www2s.biglobe.ne.jp/~kaien/"
+TARGET="_top"
+>этому адресу</A
+>, а письма ему можно посылать на <A
+HREF="mailto:isaji@mxu.meshnet.or.jp"
+TARGET="_top"
+>этот адрес.</A
+></P
+><P
+>Также существует
+<A
+HREF="http://user.tninet.se/~uxm165t/linux_doc.html"
+TARGET="_top"
+>шведский</A
+> перевод, выполненный  Linus &Atilde;kerlund. Контактный адрес Linus находится <A
+HREF="mailto:uxm165t@tninet.se"
+TARGET="_top"
+>здесь</A
+>.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="BZIP2-BINARIES"
+>2.2. Где  получить скомпилированный bzip2</A
+></H2
+><P
+>Просмотрите домашние странички.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN106"
+>2.3. Где взять исходники bzip2</A
+></H2
+><P
+>Они размещены на официальных сайтах (смотрите главу "<A
+HREF="Bzip2.html#GET-BZIP2"
+><I
+>Как получить bzip2</I
+></A
+>").</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN110"
+>2.4. Компилирование bzip2 для вашей машины</A
+></H2
+><P
+><I
+CLASS="EMPHASIS"
+>Если у вас gcc 2.7.*</I
+>, исправьте следующую строку:
+
+<PRE
+CLASS="SCREEN"
+>CFLAGS = -O3 -fomit-frame-pointer -funroll-loops</PRE
+>&#13;</P
+><P
+>на
+
+<PRE
+CLASS="SCREEN"
+>CFLAGS = -O2 -fomit-frame-pointer</PRE
+>&#13;</P
+><P
+>Это заменяет  -O3 на -O2 и опускает ключ -funroll-loops. Вы, возможно, захотите добавить еще флаги -m*  (например -m486).</P
+><P
+>Неупотребление ключа -funroll-loops, является обязательным условием. Иначе gcc 2.7 соберет неправильную программу, или, в лучшем случае, большую и медленную. Для других компиляторов (lcc, egcs, gcc 2.8.x) установки по умолчанию стоят правильно.</P
+><P
+>После всего, выполните команду <TT
+CLASS="LITERAL"
+>make</TT
+> и установите, как описано в README.</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN121"
+>3. Использование bzip2</A
+></H1
+><P
+>Читайте документацию (RTFM) :)</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="BZIP2-WITH-TAR"
+>4. Использование bzip2 совместно с tar</A
+></H1
+><P
+>Ниже приводятся три способа использования bzip2 с архиватором tar.</P
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN127"
+>4.1. Наиболее простой в установке:</A
+></H2
+><P
+>Этот способ не предусматривает никакой дополнительной  установки. Чтобы разархивировать tar-архив foo.tar.bz2, запакованый  bzip2,  находящийся в текущем каталоге, надо
+
+<PRE
+CLASS="SCREEN"
+>/path/to/bzip2 -cd foo.tar.bz2 | tar xf -</PRE
+>
+
+или 
+
+<PRE
+CLASS="SCREEN"
+>tar --use-compress-prog=bzip2 xf foo.tar.bz2</PRE
+>&#13;</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN132"
+>4.2. Простой в установке, прост в использовании , нет необходимости в root-правах:</A
+></H2
+><P
+>Благодарим <A
+HREF="mailto:leonard@sct1.is.belgacom.be"
+TARGET="_top"
+>Leonard Jean-Marc</A
+> за подсказки. Также спасибо <A
+HREF="mailto:rubini@morgana.systemy.it"
+TARGET="_top"
+>Alessandro Rubini</A
+> за разграничение bash и csh.</P
+><P
+>В файле .bashrc вы можете поместить строчку типа:
+
+<PRE
+CLASS="SCREEN"
+>alias btar='tar --use-compress-program /usr/local/bin/bzip2 '</PRE
+>&#13;</P
+><P
+>В файле .tcshrc, или файле .cshrc, аналогичная строка выглядит следующим образом:
+
+<PRE
+CLASS="SCREEN"
+>alias btar 'tar --use-compress-program /usr/local/bin/bzip2'</PRE
+>&#13;</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN141"
+>4.3. Так же прост в использовании, но требует наличия root-прав.</A
+></H2
+><P
+>Обновите tar в соответствии с последней версией GNU, на данный момент это 1.13.10. Вы можете это сделать на <A
+HREF="ftp://alpha.gnu.org/gnu/tar/"
+TARGET="_top"
+>GNU's ftp site</A
+> или каком-либо зеркале.</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="BZIP2-WITH-LESS"
+>5. Использование bzip2 совместно с less</A
+></H1
+><P
+>Для разархивирования  на лету файлов, сжатых bzip2, например, для
+использования "less", до того, как их разархивировать bunzip2,  вы можете
+сделать файл lesspipe.sh (man less) следующим образом:
+<PRE
+CLASS="PROGRAMLISTING"
+>&#13;#!/bin/sh
+# Это процессор для 'less'.  Это используется когда установлена переменная окружения
+
+# variable is set:   LESSOPEN="|lesspipe.sh %s"
+
+  case "$1" in
+  *.tar) tar tvvf $1 2&#62;/dev/null ;; # Просмотр списка различных файлов архивированных tar
+  *.tgz) tar tzvvf $1 2&#62;/dev/null ;;
+# Эта строка работает со старой версией tar:
+  *.tar.bz2) bzip2 -cd $1 $1 2&#62;/dev/null | tar tvvf - ;;
+# Эта строка работает с обновленной версией tar:
+# *.tar.bz2) tyvvf $1 2&#62;/dev/null ;;
+  *.tar.gz) tar tzvvf $1 2&#62;/dev/null ;;
+  *.tar.Z) tar tzvvf $1 2&#62;/dev/null ;;
+  *.tar.z) tar tzvvf $1 2&#62;/dev/null ;;
+  *.bz2) bzip2 -dc $1  2&#62;/dev/null ;; # Корректный просмотр файлов
+  *.Z) gzip -dc $1  2&#62;/dev/null ;;
+  *.z) gzip -dc $1  2&#62;/dev/null ;;
+  *.gz) gzip -dc $1  2&#62;/dev/null ;;
+  *.zip) unzip -l $1 2&#62;/dev/null ;;
+  *.1|*.2|*.3|*.4|*.5|*.6|*.7|*.8|*.9|*.n|*.man) FILE=`file -L $1` ; # groff src
+    FILE=`echo $FILE | cut -d ' ' -f 2`
+    if [ "$FILE" = "troff" ]; then
+      groff -s -p -t -e -Tascii -mandoc $1
+    fi ;;
+  *) cat $1 2&#62;/dev/null ;;
+#  *) FILE=`file -L $1` ; # Проверяет файл на двоичный формат , если так -- просматривает при помощи 'strings'
+#    FILE1=`echo $FILE | cut -d ' ' -f 2`
+#    FILE2=`echo $FILE | cut -d ' ' -f 3`
+#    if [ "$FILE1" = "Linux/i386" -o "$FILE2" = "Linux/i386" \
+#         -o "$FILE1" = "ELF" -o "$FILE2" = "ELF" ]; then
+#      strings $1
+#    fi ;;
+  esac</PRE
+></P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN149"
+>6. Использование bzip2 совместно с emacs</A
+></H1
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN151"
+>6.1. Настройка emacs для всех:</A
+></H2
+><P
+>Я написал следующий патч на jka-compr.el, который переводит bzip2 в режим авто-архивирования.</P
+><DIV
+CLASS="CAUTION"
+><P
+></P
+><TABLE
+CLASS="CAUTION"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="http://www.linux.org.ru/books/images/caution.gif"
+HSPACE="5"
+ALT="Предостережение"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+><I
+CLASS="EMPHASIS"
+>Предупреждение:</I
+> Я проверил это только с emacs-20.2, но думаю, что проблем не будет и с другими версиями.</P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>Как это сделать,
+
+<P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>Зайдите в каталог исходников emacs-20.2/lisp (после того, как разархивируете его)</P
+></LI
+><LI
+><P
+>Разместите патч  в файл jka-compr.el.diff (он должен быть один в этом файле ;).</P
+></LI
+><LI
+><P
+>Выполните
+
+<PRE
+CLASS="SCREEN"
+> patch &#60; jka-compr.el.diff</PRE
+>&#13;</P
+></LI
+><LI
+><P
+>Запустите  emacs и выполните
+
+<PRE
+CLASS="SCREEN"
+> M-x byte-compile-file jka-compr.el</PRE
+>&#13;</P
+></LI
+><LI
+><P
+>Выйдите из emacs.</P
+></LI
+><LI
+><P
+>перенесите исходный файл jka-compr.elc в безопасное место для защиты от глюков.</P
+></LI
+><LI
+><P
+>Замените его новым jka-compr.elc.</P
+></LI
+><LI
+><P
+>Возрадуйтесь!</P
+></LI
+></OL
+>
+
+<PRE
+CLASS="PROGRAMLISTING"
+>--- jka-compr.el        Sat Jul 26 17:02:39 1997
++++ jka-compr.el.new    Thu Feb  5 17:44:35 1998
+@@ -44,7 +44,7 @@
+ ;; The variable, jka-compr-compression-info-list can be used to
+ ;; customize jka-compr to work with other compression programs.
+ ;; The default value of this variable allows jka-compr to work with
+-;; Unix compress and gzip.
++;; Unix compress and gzip.  David Fetter added bzip2 support :)
+ ;;
+ ;; If you are concerned about the stderr output of gzip and other
+ ;; compression/decompression programs showing up in your buffers, you
+@@ -121,7 +121,9 @@
+ 
+ 
+ ;;; I have this defined so that .Z files are assumed to be in unix
+-;;; compress format; and .gz files, in gzip format.
++;;; compress format; and .gz files, in gzip format, and .bz2 files,
++;;; in the snappy new bzip2 format from http://www.muraroa.demon.co.uk.
++;;; Keep up the good work, people!
+ (defcustom jka-compr-compression-info-list
+   ;;[regexp
+   ;; compr-message  compr-prog  compr-args
+@@ -131,6 +133,10 @@
+      "compressing"    "compress"     ("-c")
+      "uncompressing"  "uncompress"   ("-c")
+      nil t]
++    ["\\.bz2\\'"
++     "bzip2ing"        "bzip2"         ("")
++     "bunzip2ing"      "bzip2"         ("-d")
++     nil t]
+     ["\\.tgz\\'"
+      "zipping"        "gzip"         ("-c" "-q")
+      "unzipping"      "gzip"         ("-c" "-q" "-d")&#13;</PRE
+></P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN178"
+>6.2. Настройка emacs для одного пользователя:</A
+></H2
+><P
+>Благодарим Ulrik Dickow, <A
+HREF="mailto:ukdATkampsax.dk"
+TARGET="_top"
+>ukd@kampsax.dk</A
+>, системного программиста Kampsax Technology:</P
+><P
+>Если вы не являетесь системным администратором и хотите, чтобы bzip2 работал автоматически, просто добавьте следующее в файл .emacs.</P
+><PRE
+CLASS="PROGRAMLISTING"
+>;; Automatic (un)compression on loading/saving files (gzip(1) and similar)
+;; We start it in the off state, so that bzip2(1) support can be added.
+;; Code thrown together by Ulrik Dickow for ~/.emacs with Emacs 19.34.
+;; Should work with many older and newer Emacsen too.  No warranty though.
+;;
+(if (fboundp 'auto-compression-mode) ; Emacs 19.30+
+    (auto-compression-mode 0)
+  (require 'jka-compr)
+  (toggle-auto-compression 0))
+;; Now add bzip2 support and turn auto compression back on.
+(add-to-list 'jka-compr-compression-info-list
+             ["\\.bz2\\(~\\|\\.~[0-9]+~\\)?\\'"
+              "zipping"        "bzip2"         ()
+              "unzipping"      "bzip2"         ("-d")
+              nil t])
+(toggle-auto-compression 1 t)&#13;</PRE
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN184"
+>7. Использование bzip2 совместно wu-ftpd</A
+></H1
+><P
+>Спасибо Arnaud Launay, за идею, позволяющую снизить траффик. Следующее должно
+входить в /etc/ftpconversions для того, чтобы была возможность выполнять
+архивирование и разархивирование на лету, при помощи bzip2. Удостоверьтесь,
+что путь (like /bin/compress) правильный.</P
+><PRE
+CLASS="PROGRAMLISTING"
+> :.Z:  :  :/bin/compress -d -c %s:T_REG|T_ASCII:O_UNCOMPRESS:UNCOMPRESS
+ :   : :.Z:/bin/compress -c %s:T_REG:O_COMPRESS:COMPRESS
+ :.gz: :  :/bin/gzip -cd %s:T_REG|T_ASCII:O_UNCOMPRESS:GUNZIP
+ :   : :.gz:/bin/gzip -9 -c %s:T_REG:O_COMPRESS:GZIP
+ :.bz2: :  :/bin/bzip2 -cd %s:T_REG|T_ASCII:O_UNCOMPRESS:BUNZIP2
+ :   : :.bz2:/bin/bzip2 -9 -c %s:T_REG:O_COMPRESS:BZIP2
+ :   : :.tar:/bin/tar -c -f - %s:T_REG|T_DIR:O_TAR:TAR
+ :   : :.tar.Z:/bin/tar -c -Z -f - %s:T_REG|T_DIR:O_COMPRESS|O_TAR:TAR+COMPRESS
+ :   : :.tar.gz:/bin/tar -c -z -f - %s:T_REG|T_DIR:O_COMPRESS|O_TAR:TAR+GZIP
+ :   : :.tar.bz2:/bin/tar -c -y -f - %s:T_REG|T_DIR:O_COMPRESS|O_TAR:TAR+BZIP2</PRE
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN188"
+>8. Использование bzip2 совместно с grep</A
+></H1
+><P
+>Следующая утилита, которую я называю bgrep, является небольшой модификацией
+zgrep, поставляемой вместе с  Linux. Вы можете использовать grep без
+предварительной распаковки файлов.</P
+><PRE
+CLASS="PROGRAMLISTING"
+>#!/bin/sh
+
+# bgrep -- программа которая позволяет пользоваться grep без предварительной распаковки файлов
+PATH="/usr/bin:$PATH"; export PATH
+
+prog=`echo $0 | sed 's|.*/||'`
+case "$prog" in
+        *egrep) grep=${EGREP-egrep}     ;;
+        *fgrep) grep=${FGREP-fgrep}     ;;
+        *)      grep=${GREP-grep}       ;;
+esac
+pat=""
+while test $# -ne 0; do
+  case "$1" in
+  -e | -f) opt="$opt $1"; shift; pat="$1"
+           if test "$grep" = grep; then  # grep is buggy with -e on SVR4
+             grep=egrep
+           fi;;
+  -*)      opt="$opt $1";;
+   *)      if test -z "$pat"; then
+             pat="$1"
+           else
+             break;
+           fi;;
+  esac
+  shift
+done
+
+if test -z "$pat"; then
+  echo "grep through bzip2 files"
+  echo "usage: $prog [grep_options] pattern [files]"
+  exit 1
+fi
+
+list=0
+silent=0
+op=`echo "$opt" | sed -e 's/ //g' -e 's/-//g'`
+case "$op" in
+  *l*) list=1
+esac
+case "$op" in
+  *h*) silent=1
+esac
+
+if test $# -eq 0; then
+  bzip2 -cd | $grep $opt "$pat"
+  exit $?
+fi
+
+res=0
+for i do
+  if test $list -eq 1; then
+    bzip2 -cdfq "$i" | $grep $opt "$pat" &#62; /dev/null &#38;&#38; echo $i
+    r=$?
+  elif test $# -eq 1 -o $silent -eq 1; then
+    bzip2 -cd "$i" | $grep $opt "$pat"
+    r=$?
+  else
+    bzip2 -cd "$i" | $grep $opt "$pat" | sed "s|^|${i}:|"
+    r=$?
+  fi
+  test "$r" -ne 0 &#38;&#38; res="$r"
+done
+exit $res</PRE
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN192"
+>9. Использование bzip2 совместно с Netscape под X.</A
+></H1
+><P
+>tenthumbs@cybernex.net утверждает:</P
+><P
+>Я также нашел способ заставить Linux Netscape использовал bzip2 для
+Content-Encoding так, как он использует gzip. Добавьте нижеследующее в
+$HOME/.Xdefaults или $HOME/.Xresources</P
+><P
+>Я использую опцию -s потому, что я бы лучше уменьшил скорость распаковки,
+ослабив загрузку оперативной памяти. Но вы можете этим не
+воспользоваться.</P
+><PRE
+CLASS="PROGRAMLISTING"
+>Netscape*encodingFilters:      \
+        x-compress :  : .Z     : uncompress -c  \n\
+        compress   :  : .Z     : uncompress -c  \n\
+        x-gzip     :  : .z,.gz : gzip -cdq      \n\
+        gzip       :  : .z,.gz : gzip -cdq      \n\
+        x-bzip2    :  : .bz2   : bzip2 -ds \n</PRE
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN198"
+>10. Использование bzip2 для преобразования из других форматов</A
+></H1
+><P
+>Нижеследующая программа, написанная на языке perl, берет файлы, запакованные в
+других форматах (.tar.gz, .tgz. .tar.Z, and .Z в данном случае), и
+переархивирует их для повышения степени сжатия. Исходный текст программы на
+языке perl имеет все виды документации по тому, что она делает, и как она
+делает то, что она делает. Последняя версия берет на входе файлы, указанные в
+командной строке. Если аргументы не указаны в командной строке, программа
+переупаковывает файлы в текущем каталоге.</P
+><PRE
+CLASS="PROGRAMLISTING"
+>#!/usr/bin/perl -w
+
+#######################################################
+#                                                     #
+# Программа берет сжатые файлы в текущем каталоге     #
+# и преобразует в файлы bzip2. Она поддерживает .tgz  #
+# расширения преобразуя их в .tar.bz2                 #
+#                                                     #
+#######################################################
+$counter = 0;
+$saved_bytes = 0;
+$totals_file = '/tmp/machine_bzip2_total';
+$machine_bzip2_total = 0;
+
+@raw = (defined @ARGV)?@ARGV:&#60;*&#62;;
+
+foreach(@raw) {
+    next if /^bzip/;
+    next unless /\.(tgz|gz|Z)$/;
+    push @files, $_;
+}
+$total = scalar(@files);
+
+foreach (@files) {
+    if (/tgz$/) {
+        ($new=$_) =~ s/tgz$/tar.bz2/;
+    } else {
+        ($new=$_) =~ s/\.g?z$/.bz2/i;
+    }
+    $orig_size = (stat $_)[7];
+    ++$counter;
+    print "Repacking $_ ($counter/$total)...\n";
+    if ((system "gzip -cd $_ |bzip2 &#62;$new") == 0) {
+        $new_size = (stat $new)[7];
+        $factor = int(100*$new_size/$orig_size+.5);
+        $saved_bytes += $orig_size-$new_size;
+        print "$new is about $factor% of the size of $_. :",($factor&#60;100)?')':'(',"\n";
+        unlink $_;
+    } else {
+        print "Arrgghh!  Something happened to $_: $!\n";
+    }
+}
+print "You've "
+    , ($saved_bytes&#62;=0)?"saved ":"lost "
+    , abs($saved_bytes)
+    , " bytes of storage space :"
+    , ($saved_bytes&#62;=0)?")":"("
+    , "\n"
+    ;
+
+unless (-e '/tmp/machine_bzip2_total') {
+    system ('echo "0" &#62;/tmp/machine_bzip2_total');
+    system ('chmod', '0666', '/tmp/machine_bzip2_total');
+}
+
+
+chomp($machine_bzip2_total = `cat $totals_file`);
+open TOTAL, "&#62;$totals_file"
+     or die "Can't open system-wide total: $!";
+$machine_bzip2_total += $saved_bytes;
+print TOTAL $machine_bzip2_total;
+close TOTAL;
+
+print "That's a machine-wide total of ",`cat $totals_file`," bytes saved.\n";</PRE
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN202"
+>11. Авторские права</A
+></H1
+><P
+>Авторские права на русский перевод этого текста принадлежат &copy; 2000 SWSoft Pte Ltd.
+Все права зарезервированы.</P
+><P
+>Этот документ является частью проекта Linux HOWTO.</P
+><P
+>Авторские права на документы Linux HOWTO принадлежат их авторам, если явно
+не указано иное. Документы Linux HOWTO, а также их переводы, могут
+быть воспроизведены и распространены полностью или частично на любом
+носителе, физическом или электронном, при условии сохранения этой заметки об
+авторских правах на всех копиях. Коммерческое распространение разрешается и
+поощряется; но, так или иначе, автор текста и автор перевода желали бы знать о
+таких дистрибутивах.</P
+><P
+>Все переводы и производные работы, выполненные по документам Linux HOWTO,
+должны сопровождаться этой заметкой об авторских правах. Это делается в
+целях предотвращения случаев наложения дополнительных ограничений на
+распространение документов HOWTO. Исключения могут составить случаи
+получения специального разрешения у координатора Linux HOWTO, с которым
+можно связаться по адресу приведенному ниже.</P
+><P
+>Мы бы хотели распространить эту информацию по всем возможным каналам. Но
+при этом сохранить авторские права и быть уведомленными о всех планах
+распространения HOWTO. Если у вас возникли вопросы, пожалуйста, обратитесь
+к координатору проекта Linux HOWTO по электронной почте:
+<TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:linux-howto@metalab.unc.edu"
+>linux-howto@metalab.unc.edu</A
+>&#62;</TT
+> или к координатору русского
+перевода Linux HOWTO компании SWSoft Pte Ltd. по адресу
+<TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:linux-howto@asplinux.ru"
+>linux-howto@asplinux.ru</A
+>&#62;</TT
+></P
+></DIV
+></DIV
+></BODY
+></HTML
+>

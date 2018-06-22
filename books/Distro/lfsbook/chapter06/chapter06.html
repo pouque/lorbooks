@@ -1,0 +1,464 @@
+<HTML
+><HEAD
+><TITLE
+>Installing basic system software</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Microsoft FrontPage 4.0"/><LINK
+REL="HOME"
+TITLE="Linux From Scratch"
+HREF="http://www.linuxfromscratch.org/view/4.0/index.html"/><LINK
+REL="UP"
+TITLE="Part II - Installing the LFS system"
+HREF="http://www.linuxfromscratch.org/view/4.0/part2.html"/><LINK
+REL="PREVIOUS"
+TITLE="Installing Util-linux-2.11u"
+HREF="http://www.linuxfromscratch.org/view/4.0/chapter05/util-linux.html"/><LINK
+REL="NEXT"
+TITLE="Introduction"
+HREF="http://www.linuxfromscratch.org/view/4.0/chapter06/introduction.html"/></HEAD
+><BODY
+CLASS="chapter"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#006000"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Linux From Scratch: Версия 4.0</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="../chapter05/util-linux.html"
+ACCESSKEY="P"
+>Назад</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="introduction.html"
+ACCESSKEY="N"
+>Вперед</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"/></DIV
+><DIV
+CLASS="chapter"
+><H1
+><A
+NAME="chapter06"
+>Глава 6. Установка основных компонентов системы</A
+></H1
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><b>Оглавление</b></DT
+><DT
+><A
+HREF="introduction.html"
+>Вступление</A
+></DT
+><DT
+><A
+HREF="aboutdebug.html"
+>Отладочные символы</A
+></DT
+><DT
+><A
+HREF="chroot.html"
+>Вход в среду chroot</A
+></DT
+><DT
+><A
+HREF="changingowner.html"
+>Изменение права</A
+></DT
+><DT
+><A
+HREF="creatingdirs.html"
+>Создание директорий</A
+></DT
+><DT
+><A
+HREF="proc.html"
+>Монтирование файловой системы proc</A
+></DT
+><DT
+><A
+HREF="mtablink.html"
+>Создание символической ссылки mtab</A
+></DT
+><DT
+><A
+HREF="createfiles.html"
+>Создание символических ссылок bash и sh</A
+></DT
+><DT
+><A
+HREF="pwdgroup.html"
+>Создание файлов passwd и group</A
+></DT
+><DT
+><A
+HREF="makedev.html"
+>Создание устройств (Makedev-1.7)</A
+></DT
+><DT
+><A
+HREF="kernel.html"
+>Установка Linux-2.4.19</A
+></DT
+><DT
+><A
+HREF="man-pages.html"
+>Установка Man-pages-1.52</A
+></DT
+><DT
+><A
+HREF="glibc.html"
+>Установка Glibc-2.2.5</A
+></DT
+><DT
+><A
+HREF="gcc.html"
+>Установка GCC-3.2</A
+></DT
+><DT
+><A
+HREF="zlib.html"
+>Установка Zlib-1.1.4</A
+></DT
+><DT
+><A
+HREF="findutils.html"
+>Установка Findutils-4.1</A
+></DT
+><DT
+><A
+HREF="gawk.html"
+>Установка Gawk-3.1.1</A
+></DT
+><DT
+><A
+HREF="ncurses.html"
+>Установка Ncurses-5.2</A
+></DT
+><DT
+><A
+HREF="vim.html"
+>Установка Vim-6.1</A
+></DT
+><DT
+><A
+HREF="bison.html"
+>Установка Bison-1.35</A
+></DT
+><DT
+><A
+HREF="less.html"
+>Установка Less-374</A
+></DT
+><DT
+><A
+HREF="groff.html"
+>Установка Groff-1.18</A
+></DT
+><DT
+><A
+HREF="textutils.html"
+>Установка Textutils-2.1</A
+></DT
+><DT
+><A
+HREF="sed.html"
+>Установка Sed-3.02</A
+></DT
+><DT
+><A
+HREF="flex.html"
+>Установка Flex-2.5.4a</A
+></DT
+><DT
+><A
+HREF="binutils.html"
+>Установка Binutils-2.13</A
+></DT
+><DT
+><A
+HREF="fileutils.html"
+>Установка Fileutils-4.1</A
+></DT
+><DT
+><A
+HREF="sh-utils.html"
+>Установка Sh-utils-2.0</A
+></DT
+><DT
+><A
+HREF="gettext.html"
+>Установка Gettext-0.11.5</A
+></DT
+><DT
+><A
+HREF="net-tools.html"
+>Установка Net-tools-1.60</A
+></DT
+><DT
+><A
+HREF="perl.html"
+>Установка Perl-5.8.0</A
+></DT
+><DT
+><A
+HREF="linuxthreadsmanpages.html"
+>Установка Linux threads-2.2.5 man pages</A
+></DT
+><DT
+><A
+HREF="m4.html"
+>Установка M4-1.4</A
+></DT
+><DT
+><A
+HREF="texinfo.html"
+>Установка Texinfo-4.2</A
+></DT
+><DT
+><A
+HREF="autoconf.html"
+>Установка Autoconf-2.53</A
+></DT
+><DT
+><A
+HREF="automake.html"
+>Установка Automake-1.6.3</A
+></DT
+><DT
+><A
+HREF="bash.html"
+>Установка Bash-2.05a</A
+></DT
+><DT
+><A
+HREF="file.html"
+>Установка File-3.39</A
+></DT
+><DT
+><A
+HREF="libtool.html"
+>Установка Libtool-1.4.2</A
+></DT
+><DT
+><A
+HREF="bin86.html"
+>Установка Bin86-0.16.3</A
+></DT
+><DT
+><A
+HREF="bzip2.html"
+>Установка Bzip2-1.0.2</A
+></DT
+><DT
+><A
+HREF="ed.html"
+>Установка Ed-0.2</A
+></DT
+><DT
+><A
+HREF="kbd.html"
+>Установка Kbd-1.06</A
+></DT
+><DT
+><A
+HREF="diffutils.html"
+>Установка Diffutils-2.8.1</A
+></DT
+><DT
+><A
+HREF="e2fsprogs.html"
+>Установка E2fsprogs-1.27</A
+></DT
+><DT
+><A
+HREF="grep.html"
+>Установка Grep-2.5</A
+></DT
+><DT
+><A
+HREF="gzip.html"
+>Установка Gzip-1.2.4a</A
+></DT
+><DT
+><A
+HREF="man.html"
+>Установка Man-1.5k</A
+></DT
+><DT
+><A
+HREF="lilo.html"
+>Установка Lilo-22.2</A
+></DT
+><DT
+><A
+HREF="make.html"
+>Установка Make-3.79.1</A
+></DT
+><DT
+><A
+HREF="modutils.html"
+>Установка Modutils-2.4.19</A
+></DT
+><DT
+><A
+HREF="netkit-base.html"
+>Установка Netkit-base-0.17</A
+></DT
+><DT
+><A
+HREF="patch.html"
+>Установка Patch-2.5.4</A
+></DT
+><DT
+><A
+HREF="procinfo.html"
+>Установка Procinfo-18</A
+></DT
+><DT
+><A
+HREF="procps.html"
+>Установка Procps-2.0.7</A
+></DT
+><DT
+><A
+HREF="psmisc.html"
+>Установка Psmisc-21</A
+></DT
+><DT
+><A
+HREF="shadow.html"
+>Установка Shadow-4.0.3</A
+></DT
+><DT
+><A
+HREF="sysklogd.html"
+>Установка Sysklogd-1.4.1</A
+></DT
+><DT
+><A
+HREF="sysvinit.html"
+>Установка Sysvinit-2.84</A
+></DT
+><DT
+><A
+HREF="tar.html"
+>Установка Tar-1.13</A
+></DT
+><DT
+><A
+HREF="util-linux.html"
+>Установка Util-linux-2.11u</A
+></DT
+><DT
+><A
+HREF="bootscripts.html"
+>Установка LFS-Bootscripts-1.10</A
+></DT
+><DT
+><A
+HREF="configure.html"
+>Конфигурация основных программ</A
+></DT
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"/><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="../chapter05/util-linux.html"
+ACCESSKEY="P"
+>Назад</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="../index.html"
+ACCESSKEY="H"
+>Домой</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="introduction.html"
+ACCESSKEY="N"
+>Вперед</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Установка Util-linux-2.11u</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="../part2.html"
+ACCESSKEY="U"
+>Наверх</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Вступление</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

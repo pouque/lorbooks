@@ -1,0 +1,1029 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>HOWTO: VPN</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.57"></HEAD
+><BODY
+CLASS="ARTICLE"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="ARTICLE"
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="TITLE"
+><A
+NAME="AEN2"
+>HOWTO: VPN</A
+></H1
+><DIV
+CLASS="AUTHORGROUP"
+><A
+NAME="AEN4"
+></A
+><H3
+CLASS="AUTHOR"
+><A
+NAME="AEN5"
+>Arpad Magosanyi</A
+></H3
+><DIV
+CLASS="AFFILIATION"
+><DIV
+CLASS="ADDRESS"
+><P
+CLASS="ADDRESS"
+>mag@bunuel.tii.matav.hu</P
+></DIV
+></DIV
+><H3
+CLASS="CORPAUTHOR"
+>Перевод: <A
+HREF="mailto:sam@asp-linux.com"
+TARGET="_top"
+>Станислав Рогин</A
+>,
+<A
+HREF="http://www.asplinux.com"
+TARGET="_top"
+>SWSoft Pte Ltd.</A
+></H3
+></DIV
+><P
+CLASS="PUBDATE"
+>версия 0.2, 7 августа 1997<BR></P
+><HR></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Содержание</B
+></DT
+><DT
+>1. <A
+HREF="VPN.html#AEN15"
+>Что нового?</A
+></DT
+><DT
+>2. <A
+HREF="VPN.html#AEN19"
+>Разное</A
+></DT
+><DD
+><DL
+><DT
+>2.1. <A
+HREF="VPN.html#AEN22"
+>Copyright</A
+></DT
+><DT
+>2.2. <A
+HREF="VPN.html#AEN25"
+>Авторские права</A
+></DT
+><DT
+>2.3. <A
+HREF="VPN.html#AEN34"
+>Моя ответственность</A
+></DT
+><DT
+>2.4. <A
+HREF="VPN.html#AEN37"
+>Ваша ответственность</A
+></DT
+><DT
+>2.5. <A
+HREF="VPN.html#AEN40"
+>Благодарности</A
+></DT
+><DT
+>2.6. <A
+HREF="VPN.html#AEN44"
+>Состояние этого документа</A
+></DT
+><DT
+>2.7. <A
+HREF="VPN.html#AEN47"
+>Сопутствующая документация</A
+></DT
+></DL
+></DD
+><DT
+>3. <A
+HREF="VPN.html#AEN63"
+>Введение</A
+></DT
+><DD
+><DL
+><DT
+>3.1. <A
+HREF="VPN.html#AEN66"
+>Термины</A
+></DT
+></DL
+></DD
+><DT
+>4. <A
+HREF="VPN.html#AEN69"
+>Процедура</A
+></DT
+><DD
+><DL
+><DT
+>4.1. <A
+HREF="VPN.html#AEN71"
+>Планирование</A
+></DT
+><DT
+>4.2. <A
+HREF="VPN.html#AEN96"
+>Что вам понадобится</A
+></DT
+><DT
+>4.3. <A
+HREF="VPN.html#AEN138"
+>Сборка и установка</A
+></DT
+><DT
+>4.4. <A
+HREF="VPN.html#AEN141"
+>Настройка других подсистем</A
+></DT
+><DT
+>4.5. <A
+HREF="VPN.html#AEN144"
+>Заводим псевдо-пользователя для VPN</A
+></DT
+><DT
+>4.6. <A
+HREF="VPN.html#AEN147"
+>Создаем ключ ssh для вызывающей стороны</A
+></DT
+><DT
+>4.7. <A
+HREF="VPN.html#AEN150"
+>Настраиваем автоматическую авторизацию на отвечающей стороне</A
+></DT
+><DT
+>4.8. <A
+HREF="VPN.html#AEN155"
+>Усиляем меры безопасности ssh на обеих сторонах.</A
+></DT
+><DT
+>4.9. <A
+HREF="VPN.html#AEN160"
+>Разрешаем запуск ppp и route для обеих сторон.</A
+></DT
+><DT
+>4.10. <A
+HREF="VPN.html#AEN165"
+>Пишем скрипты</A
+></DT
+></DL
+></DD
+><DT
+>5. <A
+HREF="VPN.html#AEN173"
+>Что же на самом деле происходит?</A
+></DT
+><DT
+>6. <A
+HREF="VPN.html#AEN188"
+>Делаем это вручную</A
+></DT
+><DD
+><DL
+><DT
+>6.1. <A
+HREF="VPN.html#AEN190"
+>Заходим в систему</A
+></DT
+><DT
+>6.2. <A
+HREF="VPN.html#AEN193"
+>Запускаем ppp</A
+></DT
+><DT
+>6.3. <A
+HREF="VPN.html#AEN199"
+>И второй тоже</A
+></DT
+><DT
+>6.4. <A
+HREF="VPN.html#AEN204"
+>Переназначаем Pty</A
+></DT
+><DT
+>6.5. <A
+HREF="VPN.html#AEN210"
+>Как дела на устройстве?</A
+></DT
+><DT
+>6.6. <A
+HREF="VPN.html#AEN215"
+>Настройка таблицы маршрутов</A
+></DT
+></DL
+></DD
+><DT
+>7. <A
+HREF="VPN.html#AEN218"
+>Подстройка</A
+></DT
+><DD
+><DL
+><DT
+>7.1. <A
+HREF="VPN.html#AEN220"
+>Подстройка конфигурации</A
+></DT
+><DT
+>7.2. <A
+HREF="VPN.html#AEN224"
+>Пропускная способность и загруженность систем</A
+></DT
+></DL
+></DD
+><DT
+>8. <A
+HREF="VPN.html#AEN227"
+>Анализ уязвимости</A
+></DT
+></DL
+></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="AEN15"
+>1. Что нового?</A
+></H1
+><P
+>Проблема с "отсутствует контролирующий tty" ('no controlling tty problem') -&gt; флаг -o 'BatchMode yes' - указал Zot O'Connor &lt;zot@crl.com&gt;</P
+><P
+>Предупреждение о ядре 2.0.30 - указал mag</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN19"
+>2. Разное</A
+></H1
+><P
+>"HOWTO: VPN" - это подборка информации о настройке Виртуальной Частной Сети (Virtual Protected Network) в Linux (и, частично, в других Uni*-ах). </P
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN22"
+>2.1. Copyright</A
+></H2
+><P
+>This document is part of the Linux HOWTO project. The copyright notice is the following: Unless otherwise stated, Linux HOWTO documents are copyrighted by their respective authors. Linux HOWTO documents may be reproduced and distributed in whole or in part, in any medium physical or electronic, as long as this copyright notice is retained on all copies. Commercial redistribution is allowed and encouraged; however, the author would like to be notified of any such distributions. All translations, derivative works, or aggregate works incorporating any Linux HOWTO documents must be covered under this copyright notice. That is, you may not produce a derivative work from a HOWTO and impose additional restrictions on its distribution. Exceptions to these rules may be granted under certain conditions; please contact the Linux HOWTO coordinator at the address given below. In short, we wish to promote dissemination of this information through as many channels as possible. However, we do wish to retain copyright on the HOWTO documents, and would like to be notified of any plans to redistribute the HOWTOs. If you have questions, please contact Tim Bynum, the Linux HOWTO coordinator, at linux-howto@sunsite.unc.edu via email. </P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN25"
+>2.2. Авторские права</A
+></H2
+><P
+>Авторские права на русский перевод этого текста принадлежат &copy; 2000 SWSoft Pte Ltd.
+Все права зарезервированы.</P
+><P
+>Этот документ является частью проекта Linux HOWTO.</P
+><P
+>Авторские права на документы Linux HOWTO принадлежат их авторам, если явно
+не указано иное. Документы Linux HOWTO, а также их переводы, могут
+быть воспроизведены и распространены полностью или частично на любом
+носителе, физическом или электронном, при условии сохранения этой заметки об
+авторских правах на всех копиях. Коммерческое распространение разрешается и
+поощряется; но, так или иначе, автор текста и автор перевода желали бы знать о
+таких дистрибутивах.</P
+><P
+>Все переводы и производные работы, выполненные по документам Linux HOWTO,
+должны сопровождаться этой заметкой об авторских правах. Это делается в
+целях предотвращения случаев наложения дополнительных ограничений на
+распространение документов HOWTO. Исключения могут составить случаи
+получения специального разрешения у координатора Linux HOWTO, с которым
+можно связаться по адресу приведенному ниже.</P
+><P
+>Мы бы хотели распространить эту информацию по всем возможным каналам. Но
+при этом сохранить авторские права и быть уведомленными о всех планах
+распространения HOWTO. Если у вас возникли вопросы, пожалуйста, обратитесь
+к координатору проекта Linux HOWTO по электронной почте:
+<TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:linux-howto@metalab.unc.edu"
+>linux-howto@metalab.unc.edu</A
+>&#62;</TT
+> или к координатору русского
+перевода Linux HOWTO компании SWSoft Pte Ltd. по адресу
+<TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:linux-howto@asplinux.ru"
+>linux-howto@asplinux.ru</A
+>&#62;</TT
+></P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN34"
+>2.3. Моя ответственность</A
+></H2
+><P
+>Как всегда: автор не несет никакой ответственности за ущерб любого рода. Более подробно описано в соответствующей главе GNU GPL 0.1.1</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN37"
+>2.4. Ваша ответственность</A
+></H2
+><P
+>Здесь мы имеем дело с системой безопасности: вы не будете защищены, если у вас плохо настроена система безопасности, и подобные ей вещи.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN40"
+>2.5. Благодарности</A
+></H2
+><P
+>Спасибо всем, кто писал утилиты, использованные здесь.</P
+><P
+>Спасибо &lt;zot@crl.com&gt; за то, что указал на проблему с "отсутствием контролирующего tty", и предоставил ее решение.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN44"
+>2.6. Состояние этого документа</A
+></H2
+><P
+>Этот документ находится в стадии начальной разработки. Вам потребуется знание администрирования IP - как минимум, знание firewall, ppp и ssh. Это вам понадобится при настройке VPN в любом случае. Я просто решил записать мои мысли, чтобы просто не забыть их. Возможно в моей системе есть дырки. Если честно - я настраивал все это на стандартных машинах-маршрутизаторах, а не на firewall - так проще.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN47"
+>2.7. Сопутствующая документация</A
+></H2
+><P
+>&#13;<P
+></P
+><UL
+><LI
+><P
+>The Linux Firewall-HOWTO /usr/doc/HOWTO/Firewall-HOWTO </P
+></LI
+><LI
+><P
+>The Linux PPP-HOWTO /usr/doc/HOWTO/PPP-HOWTO.gz  </P
+></LI
+><LI
+><P
+>Документация к ssh (/usr/doc/ssh/*)</P
+></LI
+><LI
+><P
+>Руководство Сетевого Администратора Linux</P
+></LI
+><LI
+><P
+>Специальные Публикации "Компьютеры и Безопасность" NIST http://csrc.ncsl.nist.gov/nistpubs/</P
+></LI
+><LI
+><P
+>Список рассылки "Firewall" (majordomo@greatcircle.com)</P
+></LI
+></UL
+>&#13;</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN63"
+>3. Введение</A
+></H1
+><P
+>В наше время firewall все чаще и чаще используется в Интернете и частных сетях. В связи с этим построение надежных Виртуальных Частных Сетей VPN очень важно. Здесь сосредоточил весь свой опыт в этой области. Я приветствую любые отзывы/критику/предложения по этому поводу.</P
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN66"
+>3.1. Термины</A
+></H2
+><P
+>Я использую здесь термины "вызывающая сторона" и "отвечающая сторона", хотя VPN никоим образом не имеет отношения к соединениям по телефонным линиям. Я просто использую их для разделения активной и пассивной стороны при установлении соединения. Машина, устанавливающая соединение, называется "вызывающая", а та, которая отвечает, называется "отвечающей".</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN69"
+>4. Процедура</A
+></H1
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN71"
+>4.1. Планирование</A
+></H2
+><P
+>Перед тем, как вы начнете настраивать свою систему, вы должны уточнить детали, касающиеся сети. Я предполагаю, что у вас имеются две интрасети, каждая из которых защищена от внешней сети своим firewall. Соответственно, у вас имеются, как минимум, два сетевых интерфейса на каждом firewall. Возьмите листок бумаги и карандаш, и запишите их IP-адреса и маски. Вам потребуется также еще один IP-адрес на каждый firewall из сетевого пространства, создаваемого вами в VPN. Эти адреса не должны входить в пространство ни одной из существующих сетей. Я предлагаю вам использовать "частные" адреса. Вот их список:
+
+<P
+></P
+><UL
+><LI
+><P
+>10.0.0.0 - 10.255.255.255  </P
+></LI
+><LI
+><P
+>172.16.0.0 - 172.31.255.255  </P
+></LI
+><LI
+><P
+>192.168.0.0 - 192.168.255.255  </P
+></LI
+></UL
+>&#13;</P
+><P
+>Например, у вас может быть такая конфигурация: Две крепости firewall называются fellini и polanski. На каждом из них имеется интернет-интерфейс (-out), интранет-интерфейс (-in), и vpn-интерфейс (-vpn). Адреса и маски:
+
+<P
+></P
+><UL
+><LI
+><P
+>fellini-out: 193.6.34.12 255.255.255.0  </P
+></LI
+><LI
+><P
+>fellini-in: 193.6.35.12 255.255.255.0  </P
+></LI
+><LI
+><P
+>fellini-vpn: 192.168.0.1 point-to-point </P
+></LI
+><LI
+><P
+>polanski-out: 193.6.36.12 255.255.255.0  </P
+></LI
+><LI
+><P
+>polanski-in: 193.6.37.12 255.255.255.0  </P
+></LI
+><LI
+><P
+>polanski-vpn: 192.168.0.2 point-to-point  </P
+></LI
+></UL
+>&#13;</P
+><P
+>Итак, план у нас есть. </P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN96"
+>4.2. Что вам понадобится</A
+></H2
+><P
+>Вам понадобится
+
+<P
+></P
+><UL
+><LI
+><P
+>Linux firewall  </P
+></LI
+><LI
+><P
+>ядро</P
+></LI
+><LI
+><P
+>самая минимальная конфигурация</P
+></LI
+><LI
+><P
+>ipfwadm</P
+></LI
+><LI
+><P
+>fwtk</P
+></LI
+><LI
+><P
+>Утилиты VPN</P
+></LI
+><LI
+><P
+>ssh  </P
+></LI
+><LI
+><P
+>pppd  </P
+></LI
+><LI
+><P
+>sudo  </P
+></LI
+><LI
+><P
+>pty-redir   </P
+></LI
+></UL
+>&#13;</P
+><P
+>Текущие версии:
+
+<P
+></P
+><UL
+><LI
+><P
+>ядро: 2.0.29 Используйте стабильное ядро, оно должно быть новее 2.0.20, в более ранних была ошибка ping'o'death. В настоящий момент существует ядро 2.0.30, но в нем есть пара ошибок. Если вы хотите, чтобы у вас работал новый более быстрый код работы с сетью, используйте препатч. 3-ий работает прекрасно.</P
+></LI
+><LI
+><P
+>базовая система: Я предпочитаю Debian. Но, каждому свое. Вы совсем не хотите использовать большие пакеты, и конечно никогда не думали о sendmail. Вам абсолютно не нужен telnet, ftp, и 'r'-команды (это необходимо только другим unix-ам).</P
+></LI
+><LI
+><P
+>ipfwadm: У меня версия 2.3.0</P
+></LI
+><LI
+><P
+>fwtk: У меня версия 1.3</P
+></LI
+><LI
+><P
+>ssh: 1.2.20 или новее. С более ранними версиями были проблемы с суб-протоколом.</P
+></LI
+><LI
+><P
+>pppd: Я использовал 2.2.0f для испытания, но я не уверен в его безопасности, поэтому я убрал у него флаг seteuid, и использовал для его запуска sudo.</P
+></LI
+><LI
+><P
+>sudo: 1.5.2 - самая новая из известных мне версий</P
+></LI
+><LI
+><P
+>pty-redir: Написан мной. Возьмите его по адресу ftp://ftp.vein.hu/ssa/contrib/mag/pty-redir-0.1.tar.gz. Номер версии - 0.1. Если с ним возникли проблемы - пишите мне.</P
+></LI
+></UL
+>&#13;</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN138"
+>4.3. Сборка и установка</A
+></H2
+><P
+>Соберите или установите уже собранные утилиты. Прочитайте документацию к каждой из них. Прочитайте "Howto: Firewall". Теперь у нас есть утилиты.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN141"
+>4.4. Настройка других подсистем</A
+></H2
+><P
+>Настройте необходимые вам правила firewall, и т.п.. Вам надо будет разрешить трафик ssh между двумя машинами. Это означает, что вам надо разрешить вызывающей машине соединение с портом 22 на отвечающей. Запустите sshd на отвечающей машине, и проверьте, можете ли вы соединиться с ней с вызывающей. Этот шаг я не проверял - если возникнут проблемы, пишите.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN144"
+>4.5. Заводим псевдо-пользователя для VPN</A
+></H2
+><P
+>Создайте на отвечающей машине псевдо-пользователя для VPN, используя свою любимую утилиту (vi, mkdir, chown, chmod). Вы можете создать его и на вызывающей машине, но, я думаю, вы будете устанавливать соединение при загрузке системы, поэтому хватит и root-а. Кто-нибудь сможет указать мне на проблемы с использованием root на вызывающей машине?</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN147"
+>4.6. Создаем ключ ssh для вызывающей стороны</A
+></H2
+><P
+>Используйте программу ssh-keygen. Установите пустой пароль, если вы хотите автоматически устанавливать соединение с VPN.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN150"
+>4.7. Настраиваем автоматическую авторизацию на отвечающей стороне</A
+></H2
+><P
+>Скопируйте только что созданный ключ на отвечающую машину в каталог .ssh/authorized_keys и установите следующие разрешения:
+<PRE
+CLASS="SCREEN"
+>drwx------ 2 slave slave 1024 Apr 7 23:49 ./  
+drwx------ 4 slave slave 1024 Apr 24 14:05 ../  
+-rwx------ 1 slave slave 328 Apr 7 03:04 authorized_keys  
+-rw------- 1 slave slave 660 Apr 14 15:23 known_hosts  
+-rw------- 1 slave slave 512 Apr 21 10:03 random_seed  </PRE
+></P
+><P
+>Первая строка - это каталог ~slave/.ssh, вторая - ~slave.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN155"
+>4.8. Усиляем меры безопасности ssh на обеих сторонах.</A
+></H2
+><P
+>Усилить - значит указать в sshd_conf следующее:  
+<PRE
+CLASS="PROGRAMLISTING"
+>PermitRootLogin no  
+IgnoreRhosts yes  
+StrictModes yes  
+QuietMode no  
+FascistLogging yes  
+KeepAlive yes  
+RhostsAuthentication no  
+RhostsRSAAuthentication no  
+RSAAuthentication yes  
+PasswordAuthentication no  
+PermitEmptyPasswords no </PRE
+></P
+><P
+>Парольная авторизация выключена, поэтому вход возможен только при использовании авторизованных ключей. (Вы, конечно, выключили telnet и 'r'-команды).</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN160"
+>4.9. Разрешаем запуск ppp и route для обеих сторон.</A
+></H2
+><P
+>В моем случае на вызывающей стороне работает root - ничего делать не надо. На отвечающей добавьте следующие строки в файл /etc/sudoers:
+<PRE
+CLASS="PROGRAMLISTING"
+>Cmnd_Alias VPN=/usr/sbin/pppd,/usr/local/vpn/route  
+slave ALL=NOPASSWD: VPN  </PRE
+></P
+><P
+>Как вы видите, я использую скрипты для запуска ppp и настройки таблицы маршрутов на отвечающей машине.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN165"
+>4.10. Пишем скрипты</A
+></H2
+><P
+>На вызывающей стороне я написал настоящий init-скрипт:
+<PRE
+CLASS="PROGRAMLISTING"
+>&#13;#! /bin/sh
+
+
+PATH=/usr/local/sbin:/sbin:/bin:/usr/sbin:/usr/bin:/usr/bin/X11/:
+PPPAPP=/home/slave/ppp
+ROUTEAPP=/home/slave/route
+PPPD=/usr/sbin/pppd
+NAME=VPN
+REDIR=/usr/local/bin/pty-redir
+SSH=/usr/bin/ssh
+MYPPPIP=192.168.0.1
+TARGETIP=192.168.0.2
+TARGETNET=193.6.37.0
+MYNET=193.6.35.0
+SLAVEWALL=polanski-out
+SLAVEACC=slave
+
+test -f $PPPD || exit 0
+
+set -e
+
+case "$1" in
+  start)
+	echo setting up vpn
+	echo Установка связи с VPN
+        $REDIR $SSH -o 'Batchmode yes' -t -l $SLAVEACC $SLAVEWALL sudo $PPPAPP &#62;/tmp/device
+	TTYNAME=`cat /tmp/device`
+echo tty is $TTYNAME
+	sleep 10s
+	if [ ! -z $TTYNAME ]
+	then
+	$PPPD $TTYNAME ${MYPPPIP}:${TARGETIP}
+	else
+		echo ОШИБКА!
+		logger "Соединение VPN установить не удалось"
+	fi
+	sleep 5s
+	route add -net $TARGETNET gw $TARGETIP
+	$SSH -o 'Batchmode yes' -l $SLAVEACC $SLAVEWALL sudo $ROUTEAPP
+    ;;
+  stop)
+	ps -ax | grep "ssh -t -l $SLAVEACC " | grep -v grep | awk '{print $1}' | xargs kill
+    ;;
+  *)
+    # echo "Usage: /etc/init.d/$NAME {start|stop|reload}"
+    echo "Usage: /etc/init.d/$NAME {start|stop}"
+    echo "Использование: /etc/init.d/$NAME {start|stop}"
+    exit 1
+    ;;
+esac
+
+exit 0</PRE
+>
+ </P
+><P
+>На отвечающей потребовался только скрипт, добаляющий строку в таблицу маршрутизации (/usr/local/vpn/route):
+<PRE
+CLASS="PROGRAMLISTING"
+>#!/bin/bash  
+/sbin/route add -net 193.6.35.0 gw 192.168.0.1  </PRE
+></P
+><P
+>а в файл .ppprc я записал следующее:
+<PRE
+CLASS="PROGRAMLISTING"
+>passive  </PRE
+></P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN173"
+>5. Что же на самом деле происходит?</A
+></H1
+><P
+>Вызывающая сторона заходит в отвечающую, запускает pppd и переназначает все на локальный pty. Для этого он проделывает следующее:
+<P
+></P
+><UL
+><LI
+><P
+>создает новое pty</P
+></LI
+><LI
+><P
+>соединяется с отвечающей машиной при помощи ssh</P
+></LI
+><LI
+><P
+>запускает на отвечающей машине pppd</P
+></LI
+><LI
+><P
+>запускает pppd на этом новом локальном pty</P
+></LI
+><LI
+><P
+>настраивает таблицу маршрутов на обеих машинах.</P
+></LI
+></UL
+>&#13;</P
+><P
+>Существуют небольшие задержки, поэтому используется 'sleep 10s'.</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN188"
+>6. Делаем это вручную</A
+></H1
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN190"
+>6.1. Заходим в систему</A
+></H2
+><P
+>Вы ведь уже попробовали, работает ли ssh? Если отвечающая машина не позволяет вам войти в систему, читайте системные журналы. Возможно проблема состоит в неправильных правах на файлы, или неправильно настроен sshd.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN193"
+>6.2. Запускаем ppp</A
+></H2
+><P
+>Зайдите в отвечающую машину и выполните команду:
+sudo /usr/sbin/pppd passive  
+ </P
+><P
+>Вы должны увидеть на экране мусор. Если это так - это хорошо. Если нет - значит возникла проблема с sudo, или с pppd. Посмотрите на текст ошибки, просмотрите журналы, файлы <I
+CLASS="EMPHASIS"
+>/etc/ppp/options</I
+> и <I
+CLASS="EMPHASIS"
+>.ppprc </I
+>. Если все нормально - запишите слово 'passive' в файл .ppprc, и попытайтесь снова. Чтобы избавиться от мусора, нажмите Enter,'~' и '&circ;Z'. После этого вы получите приглашение командной строки вызывающей машины - дайте команду kill %1. Читайте главу "Подстройка", если хотите подробнее узнать о специальных символах.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN199"
+>6.3. И второй тоже</A
+></H2
+><P
+>Теперь команда
+<B
+CLASS="COMMAND"
+>ssh -l slave polanski sudo /usr/sbin/pppd </B
+>
+ </P
+><P
+>должна работать, и вы снова увидите тот же самый мусор.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN204"
+>6.4. Переназначаем Pty</A
+></H2
+><P
+>Попробуйте переназначить сразу все командой
+<B
+CLASS="COMMAND"
+>/usr/local/bin/pty-redir /usr/bin/ssh -l slave polanski sudo /usr/sbin/pppd</B
+>
+ </P
+><P
+>Красивая длинная команда, не так ли? Вы должны использовать полный путь к программе ssh, так как программа переназначения pty позволяет только такую форму - это сделано из соображений безопасности. Теперь у вас есть имя устройства - его вам сказала программа. Предположим, что это <I
+CLASS="EMPHASIS"
+>/dev/ttyp0</I
+>. Вы можете использовать команду ps, чтобы узнать, что же случилось. Ищите 'p0'</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN210"
+>6.5. Как дела на устройстве?</A
+></H2
+><P
+>Попробуйте дать команду  
+<B
+CLASS="COMMAND"
+>/usr/sbin/pppd /dev/ttyp0 local 192.168.0.1:192.168.0.2  </B
+>
+ </P
+><P
+>чтобы установить соединение. Проверьте наличие интерфейса при помощи команды ifconfig. Проверьте сеть при помощи ping.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN215"
+>6.6. Настройка таблицы маршрутов</A
+></H2
+><P
+>Настройте таблицу маршрутов на вызывающей и отвечающей машине. После этого у вас должна работать команда ping с любой машины в одной сети на любую машину в другой. Задайте дополнительные правила firewall. Теперь у вас есть VPN, и вы можете настроить все правила, учитывая связь двух интрасетей.</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN218"
+>7. Подстройка</A
+></H1
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN220"
+>7.1. Подстройка конфигурации</A
+></H2
+><P
+>Как я уже говорил, это HOWTO - набор записок на тему "Как я настраивал VPN". В этой конфигурации есть вещи, с которыми я не экспериментировал. Все встанет на свое место, когда я все испытаю, или кто-то скажет мне "это должно работать так-то". Самое главное - соединение, которое использует ppp, до сих пор не является 8-битным. Я думаю, что надо что-то сделать с конфигурацией ssh или pty. На данный момент ssh использует символ "тильда" (~) в качестве служебного. Это может привести к замедлению или разрыву соединения - каждое сочетание символов Enter-~ будет вызывать системное приглашение ssh. В документации к ssh сказано:  &lt;В большинстве случаев отключение служебного символа даст полностью прозрачное соединение, как будто используется tty.&gt; Соответствующий флаг ssh - '<I
+CLASS="EMPHASIS"
+>-e</I
+>', вы можете устанавливать его в конфигурационном файле.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN224"
+>7.2. Пропускная способность и загруженность систем</A
+></H2
+><P
+>Все виртуальное всегда использует реальные ресурсы. VPN требует пропускной способности канала и вычислительных ресурсов. Цель- установить баланс между ними. Вы можете достичь его, подобрав настройку флага '-C' или опции 'CompressionLevel'. Вы даже можете использовать другой компрессор-шифрователь, но я бы этого не рекомендовал. Заметьте, что время прохождения может уменьшиться при увеличении степени компрессирования. Творите, выдумывайте, пробуйте.</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN227"
+>8. Анализ уязвимости</A
+></H1
+><P
+>Я попытаюсь описать незащищенные места этой настройки, и VPN вообще. Все комментарии горячо приветствуются.
+
+<P
+></P
+><UL
+><LI
+><P
+>sudo: Да, я использую sudo. Но я все же считаю, что это надежнее, чем устанавливать биты setuid. Эти биты до сих пор являются спорной вещью в Linux. Ждем совместимости с рекомендациями POSIX.6 &lt;http://www.xarius.demon.co.uk/software/posix6/&gt;. Что может быть хуже запуска скриптов при помощи sudo? Брррр. Есть какие-нибудь идеи?</P
+></LI
+><LI
+><P
+>pppd: У него тоже есть флаг suid root. Его можно настроить при помощи пользовательского файла .ppprc. Он может вызвать переполнения буферов. Результат: защитите псевдо-пользовательский вход на  отвечающей машине настолько, насколько возможно.</P
+></LI
+><LI
+><P
+>ssh: Знайте, что у ssh версий ранее 1.2.20 есть проблемы с системой защиты. Что может быть хуже - пользователи на обеих машинах открыты, две программы используют sudo. Это все потому, что я отказался от пароля на секретном ключе вызывающей машины в пользу автоматического установления связи с VPN.</P
+></LI
+><LI
+><P
+>firewall: Если неправильно настроить правила firewall на одной из машин, вы откроете снаружи доступ к обеим сетям. Я рекомендую использовать IP-маскарадинг (неправильная настройка маршрутов встречается реже), и хорошо следить за VPN-интерфейсами.</P
+></LI
+></UL
+>&#13;</P
+></DIV
+></DIV
+></BODY
+></HTML
+>

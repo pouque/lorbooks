@@ -1,0 +1,627 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<HTML
+><HEAD
+><TITLE
+>XFree86-Second-Mouse mini-HOWTO (Использование второй мыши в системе X)</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML StylesDone.
+ersion 1.73
+"><META
+NAME="KEYWORD"
+CONTENT="  XFree
+ "><META
+NAME="KEYWORD"
+CONTENT="  mouse
+ "></HEAD
+><BODY
+CLASS="ARTICLE"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="ARTICLE"
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="TITLE"
+><A
+NAME="AEN2"
+>XFree86-Second-Mouse mini-HOWTO (Использование второй мыши в системе X)</A
+></H1
+><DIV
+CLASS="AUTHORGROUP"
+><A
+NAME="AEN4"
+></A
+><H4
+CLASS="AUTHOR"
+><A
+NAME="AEN5"
+>Greg Wierzchowski</A
+></H4
+><DIV
+CLASS="AFFILIATION"
+><DIV
+CLASS="ADDRESS"
+><DIV
+CLASS="EMAIL"
+>greg.wierzchowski@usa.net</DIV
+></DIV
+></DIV
+><H3
+CLASS="CORPAUTHOR"
+> Перевод: <A
+HREF="mailto:svo@asplinux.ru"
+TARGET="_top"
+>Сергей Воложанин</A
+>,
+ <A
+HREF="http://www.asplinux.ru/"
+TARGET="_top"
+>ASPLinux</A
+>
+ </H3
+></DIV
+><DIV
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="50%"
+CELLSPACING="0"
+CELLPADDING="0"
+ALIGN="CENTER"
+><TR
+><TD
+VALIGN="TOP"
+><B
+>Аннотация</B
+></TD
+></TR
+><TR
+><TD
+VALIGN="TOP"
+><P
+>Краткие инструкции об использовании второй мыши в системе X Window.</P
+></TD
+></TR
+></TABLE
+></DIV
+><HR
+WIDTH="75%"
+ALIGN="CENTER"
+COLOR="#000000"
+SIZE="1"></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>&#1057;&#1086;&#1076;&#1077;&#1088;&#1078;&#1072;&#1085;&#1080;&#1077;</B
+></DT
+><DT
+><A
+HREF="XFree86-Second-Mouse.html#INTRO"
+>Введение</A
+></DT
+><DT
+><A
+HREF="XFree86-Second-Mouse.html#COPYRIGHT"
+>Авторское право и Лицензия</A
+></DT
+><DT
+><A
+HREF="XFree86-Second-Mouse.html#PROTOCOL"
+>Протоколы мыши</A
+></DT
+><DT
+><A
+HREF="XFree86-Second-Mouse.html#XFREE3"
+>XFree 3.x</A
+></DT
+><DT
+><A
+HREF="XFree86-Second-Mouse.html#XFREE4"
+>XFree 4.x</A
+></DT
+><DT
+><A
+HREF="XFree86-Second-Mouse.html#ALTERNATIVES"
+>Альтернативные способы</A
+></DT
+><DT
+><A
+HREF="XFree86-Second-Mouse.html#CREDITS"
+>Благодарности</A
+></DT
+></DL
+></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="INTRO"
+>Введение</A
+></H1
+><P
+>Данный mini-HOWTO был создан на основе доступной информации из интернет,
+телеконференций и других HOWTO. Я добивался одновременной работы USB мыши
+и встроенного трэкпойнта на моей портативной ЭВМ Thinkpad. </P
+><P
+>Примеры, приведенные в данном mini-HOWTO, соответствуют моей аппаратной конфигурации:
+первичное устройство - PS/2 мышь, дополнительное - USB мышь с колесом прокрутки.
+Конечно, возможны и другие варианты, например и PS/2 и последовательная мышь.
+Будут изменяться два параметра - <I
+CLASS="EMPHASIS"
+>протокол мыши</I
+> и <I
+CLASS="EMPHASIS"
+>тип мыши</I
+>.
+Везде, где это будет возможно, я постараюсь приводить примеры. </P
+><P
+>Команды для системы X разделены на два раздела: один для XFree версии 3, другой
+для XFree версии 4. Формат файла XF86Config в разных версиях имеет значительные различия.
+В XFree 3.x вторая мышь определяется в секции <I
+CLASS="EMPHASIS"
+>Xinput</I
+>,
+имеющей синтаксис, слегка отличающийся от синтаксиса обычной секции <I
+CLASS="EMPHASIS"
+>Pointer</I
+>.
+В XFree 4.x вторая мышь определяется еще одним указателем.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><HR><H1
+CLASS="SECTION"
+><A
+NAME="COPYRIGHT"
+>Авторское право и Лицензия</A
+></H1
+><P
+>Авторские права на данный документ принадлежат Greg Wierzchowski.
+      Он выпущен в соответствии с лицензией GNU Free Documentation License.
+      Связь с автором:
+      <A
+HREF="mailto:greg.wierzchowski@usa.net"
+TARGET="_top"
+><I
+CLASS="CITETITLE"
+>greg.wierzchowski@usa.net</I
+></A
+>.
+      </P
+><P
+>Авторские права на русский перевод этого текста принадлежат ╘ 2001 ASPLinux
+Все права зарезервированы.</P
+><P
+>Этот документ является частью проекта Linux HOWTO.</P
+><P
+>Авторские права на документы Linux HOWTO принадлежат их авторам, если явно
+не указано иное. Документы Linux HOWTO, а также их переводы, могут
+быть воспроизведены и распространены полностью или частично на любом
+носителе физическом или электронном, при условии сохранения этой заметки об
+авторских правах на всех копиях. Коммерческое распространение разрешается и
+поощряется; но так или иначе автор текста и автор перевода желали бы знать о
+таких дистрибутивах.</P
+><P
+>Все переводы и производные работы, выполненные по документам Linux HOWTO
+должны сопровождаться этой заметкой об авторских правах. Это делается в
+целях предотвращения случаев наложения дополнительных ограничений на
+распространение документов HOWTO. Исключения могут составить случаи
+получения специального разрешения у координатора Linux HOWTO с которым
+можно связаться по адресу приведенному ниже.</P
+><P
+>Мы бы хотели распространить эту информацию по всем возможным каналам. Но
+при этом сохранить авторские права и быть уведомленными о всех планах
+распространения HOWTO. Если у вас возникли вопросы, пожалуйста, обратитесь
+к координатору проекта Linux HOWTO по электронной почте:
+<TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:linux-howto@metalab.unc.edu"
+>linux-howto@metalab.unc.edu</A
+>&#62;</TT
+>, или к координатору русского
+перевода Linux HOWTO компании ASPLinux по адресу
+<TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:linux-howto@asplinux.ru"
+>linux-howto@asplinux.ru</A
+>&#62;</TT
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><HR><H1
+CLASS="SECTION"
+><A
+NAME="PROTOCOL"
+>Протоколы мыши</A
+></H1
+><P
+>Два очень важных параметра, отвечающих за корректную работу мыши, содержатся в файле
+<TT
+CLASS="FILENAME"
+>XF86Config</TT
+>. Это параметр <I
+CLASS="EMPHASIS"
+>Protocol</I
+>
+и параметр <I
+CLASS="EMPHASIS"
+>Device</I
+>.</P
+><P
+>Относительно содержания параметра <I
+CLASS="EMPHASIS"
+>Protocol</I
+>: очевидно, это имя протокола,
+поддерживаемого <I
+CLASS="EMPHASIS"
+>gpm</I
+>. Далее приводится выдержка из справочной страницы по gpm. 
+(Наиболее распространенные типы):
+<DIV
+CLASS="TABLE"
+><A
+NAME="AEN66"
+></A
+><P
+><B
+>&#1058;&#1072;&#1073;&#1083;&#1080;&#1094;&#1072; 1. Most Common Mouse Protocols in X</B
+></P
+><TABLE
+BORDER="1"
+BGCOLOR="#E0E0E0"
+CELLSPACING="0"
+CELLPADDING="4"
+CLASS="CALSTABLE"
+><THEAD
+><TR
+><TH
+WIDTH="50%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>Имя протокола</TH
+><TH
+WIDTH="50%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>Описание</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+WIDTH="50%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>Microsoft</TD
+><TD
+WIDTH="50%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>Стандартная мышь Microsoft.</TD
+></TR
+><TR
+><TD
+WIDTH="50%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>MouseSystems</TD
+><TD
+WIDTH="50%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>Стандартный протокол для трехкнопочных последовательных устройств.</TD
+></TR
+><TR
+><TD
+WIDTH="50%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>MMSeries</TD
+><TD
+WIDTH="50%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>Название говорит само за себя. Это декодер для мыши, в любом случае
+      принимающий стандартные последовательные команды.</TD
+></TR
+><TR
+><TD
+WIDTH="50%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>Logitech</TD
+><TD
+WIDTH="50%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>Протокол, используемый старыми версиями последовательных мышей Logitech.</TD
+></TR
+><TR
+><TD
+WIDTH="50%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>BusMouse</TD
+><TD
+WIDTH="50%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>Некоторые шинные устройства используют этот протокол, включая устройства от Logitech.</TD
+></TR
+><TR
+><TD
+WIDTH="50%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>PS/2</TD
+><TD
+WIDTH="50%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>Протокол, используемый большинством мышей для шинного контроллера.</TD
+></TR
+><TR
+><TD
+WIDTH="50%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>IMPS/2</TD
+><TD
+WIDTH="50%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>"IntelliMouse" для порта ps/2. <I
+CLASS="EMPHASIS"
+>Аналогично для USB мыши</I
+></TD
+></TR
+></TBODY
+></TABLE
+></DIV
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><HR><H1
+CLASS="SECTION"
+><A
+NAME="XFREE3"
+>XFree 3.x</A
+></H1
+><P
+>В системе XFree 3.x дополнительные указательные устройства типа мыши или планшетного указателя
+определены в секции <I
+CLASS="EMPHASIS"
+>Xinput</I
+>. Первичная мышь обычно определена так:
+<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>Section "Pointer"
+    Protocol    "PS/2"
+    Device      "/dev/mouse"
+EndSection</PRE
+></TD
+></TR
+></TABLE
+>
+В данном случае это обычная, хорошо себя зарекомендовавшая трехкнопочная мышь PS/2.
+Теперь, для USB мыши:
+<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>    Section "Xinput"
+  SubSection "Mouse"
+    DeviceName "USB Mice"
+    Protocol "IMPS/2"
+    ZAxisMapping 4 5
+    Port "/dev/input/mice"
+    Alwayscore
+  EndSubSection
+EndSection</PRE
+></TD
+></TR
+></TABLE
+>
+Моя мышь с колесом прокрутки, таким образом, протокол - <I
+CLASS="EMPHASIS"
+>IMPS/2</I
+>.
+Строка ZAxisMapping необходима для работы колеса прокрутки.
+Так же я желаю, чтобы данная мышь работала совместно с другими указательными устройствами.
+Это обеспечивает опция <I
+CLASS="EMPHASIS"
+>AlwaysCore</I
+>. Если бы это была
+последовательная мышь, то <I
+CLASS="EMPHASIS"
+>Port</I
+> считывал бы
+<B
+CLASS="COMMAND"
+>"/dev/ttyS0"</B
+> для <B
+CLASS="COMMAND"
+>COM1</B
+>. </P
+></DIV
+><DIV
+CLASS="SECTION"
+><HR><H1
+CLASS="SECTION"
+><A
+NAME="XFREE4"
+>XFree 4.x</A
+></H1
+><P
+>В системе XFree 4.x еще проще. Первая мышь обычно уже прописана в файле конфигурации:
+<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>Section "InputDevice"
+        Identifier  "Mouse0"
+        Driver      "mouse"
+        Option      "Device" "/dev/mouse"
+        Option      "Protocol" "PS/2"
+        Option      "Emulate3Buttons" "off"
+        Option      "ZAxisMapping" "4 5"
+EndSection</PRE
+></TD
+></TR
+></TABLE
+>
+Для добавления еще одной мыши просто скопируйте данную секцию и измените данные примерно так, как указано ниже:
+<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>Section "InputDevice"
+        Identifier  "Mouse1"
+        Driver      "mouse"
+        Option      "Device" "/dev/input/mice"
+        Option      "Protocol" "IMPS/2"
+        Option      "Emulate3Buttons" "off"
+        Option      "ZAxisMapping" "4 5"
+EndSection</PRE
+></TD
+></TR
+></TABLE
+>
+Таким образом Вы можете определить разные дополнительные указательные устройства,
+то же самое применимо к джойстикам и планшетным указателям.</P
+><P
+>Для того, чтобы заставить работать мыши совместно,
+в конфигурационном файле <TT
+CLASS="FILENAME"
+>XF86Config</TT
+> необходимо сделать
+еще одно изменение в секции <I
+CLASS="EMPHASIS"
+>ServerLayout</I
+>,
+где определены все компоненты. Так выглядит содержимое секции
+<I
+CLASS="EMPHASIS"
+> перед тем, как</I
+> мы решили добавить вторую мышь:
+<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>Section "ServerLayout"
+        Identifier "XFree86 Configured"
+        Screen      0  "Screen0" 0 0
+        InputDevice    "Mouse0" "CorePointer"
+        InputDevice    "Keyboard0" "CoreKeyboard"
+EndSection</PRE
+></TD
+></TR
+></TABLE
+>
+И так она выглядит <I
+CLASS="EMPHASIS"
+>после</I
+> добавления второй мыши:
+<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>Section "ServerLayout"
+        Identifier "XFree86 Configured"
+        Screen      0  "Screen0" 0 0
+        InputDevice    "Mouse0" "CorePointer"
+        InputDevice    "Mouse1" "AlwaysCore"
+        InputDevice    "Keyboard0" "CoreKeyboard"
+EndSection</PRE
+></TD
+></TR
+></TABLE
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><HR><H1
+CLASS="SECTION"
+><A
+NAME="ALTERNATIVES"
+>Альтернативные способы</A
+></H1
+><P
+>Другой метод одновременного использования двух (или более) мышей состоит
+в использовании программы <I
+CLASS="EMPHASIS"
+>MultiMouse</I
+>, созданной Takashi Manabe.
+Это демон, осуществляющий мультиплексирование мышей, и делающий их доступными
+как MouseSystems-совместимык мыши через особое устройство <TT
+CLASS="FILENAME"
+>/dev/mumse</TT
+>.</P
+><P
+> От автора: <SPAN
+CLASS="QUOTE"
+>"Данная программа позволяет использовать несколько мышей одновременно.
+Она разрабатывалась для пользователей, желающих пользоваться подключенными устройствами совместно с 
+внешней мышью, присоединенной к последовательному порту."</SPAN
+></P
+><P
+>Я не уверен, будет ли программа поддерживать мышь, присоединенную не к
+последовательному порту, <B
+CLASS="COMMAND"
+>MultiMouse</B
+> можно найти на сайте Sun
+(sunsite.unc.edu /pub/Linux/system/Misc) и Tucows (www.tucows.com Linux Console -&#62; Utilities).</P
+></DIV
+><DIV
+CLASS="SECTION"
+><HR><H1
+CLASS="SECTION"
+><A
+NAME="CREDITS"
+>Благодарности</A
+></H1
+><P
+>Большое спасибо всем, кто внес свой вклад в развитие Linux и сделал возможным создание данного HOWTO.</P
+></DIV
+></DIV
+></BODY
+></HTML
+>

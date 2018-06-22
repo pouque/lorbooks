@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE>MINI HOW-TO ON SETTING UP IP ALIASING ON A LINUX MACHINE: Вопрос: Как мне принимать электронную почту на различные aliased IP адреса (на машине с sendmail)?</TITLE>
+ <LINK HREF="IP-Alias-3.html" REL=previous>
+ <LINK HREF="IP-Alias.html#toc4" REL=contents>
+</HEAD>
+<BODY>
+Next
+<A HREF="IP-Alias-3.html">Previous</A>
+<A HREF="IP-Alias.html#toc4">Contents</A>
+<HR>
+<H2><A NAME="s4">4. Вопрос: Как мне принимать электронную почту на различные aliased IP адреса (на машине с sendmail)?</A></H2>
+
+<P>Ответ:
+<UL>
+<LI>      Создать (если до сих пор нет) файл, который назовите, к примеру,
+/etc/mynames.cw. Он не должен совпадать с именем какого-нибудь
+файла в каталоге /etc.</LI>
+<LI>В этом файле разместите официальные доменные имена aliased IP
+адресов. Если эти aliased IP адреса не имеют доменных имен, то
+разместите их самих.
+
+/etc/mynames.cw:
+
+<BLOCKQUOTE><CODE>
+<PRE>
+ # /etc/mynames.cw - include all aliases for your machine here; # is a comment.
+ domain.one.net
+ domain.two.com
+ domain.three.org
+ 4.5.6.7
+</PRE>
+</CODE></BLOCKQUOTE>
+ 
+В вашем файле sendmail.cf там, где он определяет макрос классов
+файлов Fw, добавьте следующее:
+<BLOCKQUOTE><CODE>
+<PRE>
+ .
+ .
+ .
+ ##################
+ #   local info   #
+ ##################
+ .
+ .
+ # file containing names of hosts for which we receive email
+ Fw/etc/mynames.cw
+ .
+ .
+ .
+</PRE>
+</CODE></BLOCKQUOTE>
+
+Что должно быть. Проверьте настройку, переведя sendmail в
+тестирующий режим, для примера:
+<BLOCKQUOTE><CODE>
+<PRE>
+ganymede$ /usr/lib/sendmail -bt
+ADDRESS TEST MODE (ruleset 3 NOT automatically invoked)
+Enter &lt; ruleset> &lt; address>
+> 0 me@4.5.6.7
+rewrite: ruleset  0   input: me @ 4 . 5 . 6 . 7
+rewrite: ruleset 98   input: me @ 4 . 5 . 6 . 7
+rewrite: ruleset 98 returns: me @ 4 . 5 . 6 . 7
+rewrite: ruleset 97   input: me @ 4 . 5 . 6 . 7
+rewrite: ruleset  3   input: me @ 4 . 5 . 6 . 7
+rewrite: ruleset 96   input: me
+rewrite: ruleset 96 returns: me
+rewrite: ruleset  3 returns: me
+rewrite: ruleset  0   input: me
+rewrite: ruleset 98   input: me
+rewrite: ruleset 98 returns: me
+rewrite: ruleset  0 returns: $# local $: me
+rewrite: ruleset 97 returns: $# local $: me
+rewrite: ruleset  0 returns: $# local $: me
+> 0 me@4.5.6.8
+rewrite: ruleset  0   input: me @ 4 . 5 . 6 . 8
+rewrite: ruleset 98   input: me @ 4 . 5 . 6 . 8
+rewrite: ruleset 98 returns: me @ 4 . 5 . 6 . 8
+rewrite: ruleset 97   input: me @ 4 . 5 . 6 . 8
+rewrite: ruleset  3   input: me @ 4 . 5 . 6 . 8
+rewrite: ruleset 96   input: me
+rewrite: ruleset 96 returns: me
+rewrite: ruleset  3 returns: me
+rewrite: ruleset  0   input: me
+rewrite: ruleset 98   input: me
+rewrite: ruleset 98 returns: me
+rewrite: ruleset 95   input:  me
+rewrite: ruleset 95 returns: me
+rewrite: ruleset  0 returns: $# smtp $@ 4 . 5 . 6 . 8 $: me
+rewrite: ruleset 97 returns: $# smtp $@ 4 . 5 . 6 . 8 $: me
+rewrite: ruleset  0 returns: $# smtp $@ 4 . 5 . 6 . 8 $: me
+>
+</PRE>
+</CODE></BLOCKQUOTE>
+       Заметьте, когда я тестировал 
+<A HREF="mailto:me@4.5.6.7">me@4.5.6.7</A>, он отправлял почту на
+локальную машину, в то время как 
+<A HREF="mailto:me@4.5.6.8">me@4.5.6.8</A> был обработан smtp
+мейлером. Это корректный ответ.</LI>
+</UL>
+<P>Сейчас все установлено.
+<P>Надеюсь, что был кому-то полезен.
+<P>Благодарю всех тех, кто проделал эту большую работу по Linux и IP
+Aliasing. И особенно Juan Jose Ciarlante за освещение моих вопросов.
+<P>Слава классным программистам!
+<P>Если документ оказался вам полезен или вы хотите что-то добавить,
+отправьте мне письмо.
+<P>Наслаждайтесь.
+<P>Вопросы?
+<P>Go back to Harish's Home Page
+<P>
+<HR>
+Next
+<A HREF="IP-Alias-3.html">Previous</A>
+<A HREF="IP-Alias.html#toc4">Contents</A>
+</BODY>
+</HTML>

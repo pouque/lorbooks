@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>Installing Glibc-2.2.5</title><meta name="GENERATOR" content="Microsoft FrontPage 4.0" /=""><link rel="HOME" title="Linux From Scratch" href="http://www.linuxfromscratch.org/view/4.0/index.html" /=""><link rel="UP" title="Installing basic system software" href="http://www.linuxfromscratch.org/view/4.0/chapter06/chapter06.html" /=""><link rel="PREVIOUS" title="Installing Man-pages-1.52" href="http://www.linuxfromscratch.org/view/4.0/chapter06/man-pages.html" /=""><link rel="NEXT" title="Installing GCC-3.2" href="http://www.linuxfromscratch.org/view/4.0/chapter06/gcc.html" /=""></head><body class="sect1" bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#840084" alink="#006000"><div class="NAVHEADER"><table summary="Header navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><th colspan="3" align="Center">Linux From Scratch: Версия 4.0</th></tr><tr><td width="10%" align="Left" valign="Bottom"><a href="man-pages.html" accesskey="P">Назад</a></td><td width="80%" align="Center" valign="Bottom">Глава 6. Установка основных компонентов
+        системы</td><td width="10%" align="Right" valign="Bottom"><a href="gcc.html" accesskey="N">Вперед</a></td></tr></tbody></table><hr align="Left" width="100%" /=""></div><div class="sect1"><h1 class="sect1"><a name="ch06-glibc">Установка Glibc-2.2.5</a></h1><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen">Приблизительное время компиляции:           14.71 SBU<br>Необходимое дисковое пространство:  369 MB</pre></td></tr></tbody></table><div class="sect2"><h2 class="sect2"><a name="AEN2444">Инсталляция Glibc</a></h2><p>Перед установкой пакета примените патч.
+    Удостоверьтесь, что патч и пакет
+    распакованы перед инсталляцией.</p><p>Перед выполнением инсталляционных
+    инструкций войдите в каталог glibc-2.2.5 и
+    распакуйте архив glibc-linuxthreads в каталоге glibc-2.2.5,
+    а не в /usr/src.</p><p>Этот пакет известен своим нестабильным
+    поведением при компиляции с измененными
+    опциями оптимизации (включая опции -march и -mcpu).
+    Glibc рекомендуется компилировать с
+    настройками по умолчанию. Следовательно,
+    если вы задали переменные такие как CFLAGS
+    или CXXFLAGS, изменяющие уровень оптимизации
+    по умолчанию, рекомендуется убрать их при
+    сборке пакета Glibc. Изменяя оптимизации
+    для Glibc, вы действуете на свой страх и риск.</p><p>Также не стоит запускать скрипт configure с
+    опцией --enable-kernel. Это может вызвать ошибки
+    сегментации при ссылке на него пакетов
+    вроде
+fileutils, make и tar.</p><p>Вообщем, чтобы не рисковать, рекомендуем
+    компилировать Glibc в точности как указано
+    в этом разделе.</p><p>Для инсталляции Glibc выполните:</p><p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>patch -Np1 -i ../glibc-2.2.5-2.patch &amp;&amp;<br>touch /etc/ld.so.conf &amp;&amp;<br>mkdir ../glibc-build &amp;&amp;<br>cd ../glibc-build &amp;&amp;<br>../glibc-2.2.5/configure --prefix=/usr --disable-profile \<br>    --enable-add-ons --libexecdir=/usr/bin &amp;&amp;<br>echo "cross-compiling = no" &gt; configparms &amp;&amp;<br>make &amp;&amp;<br>make install &amp;&amp;<br>make localedata/install-locales &amp;&amp;<br>exec /static/bin/bash --login</b></tt></pre></td></tr></tbody></table></p><p>Вместо выполнения <tt class="userinput"><b>make
+localedata/install-locales</b></tt>  можно установить только те локали,
+    которые вам необходимы с помощью команды localedef.
+    Более подробную информацию можно найти в
+    файле INSTALL в директории glibc-2.2.5. Не
+    забудьте создать директорию <tt class="filename">/usr/lib/local</tt>, т.к. <b>localedef</b> предполагает ее наличие.</p><p>На данном этапе мы не будем инсталлировать
+    страницы руководства потоков (The Linux Threads man
+    pages), т.к. они требуют функционирующего
+    пакета Perl. Мы вернемся к их инсталляции
+    после установки Perl.</p><p>Во время стадии configure на экран будет
+    выведено следующее предупреждение:</p><a name="AEN2461"></a><blockquote class="BLOCKQUOTE"><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen">configure: warning:<br>*** These auxiliary programs are missing or too old: msgfmt<br>*** some features will be disabled.<br>*** Check the INSTALL file for required versions.</pre></td></tr></tbody></table></blockquote><p>Отсутствие файла msgfmt (из пакета gettext,
+    который мы установим позже в данной главе)
+    не вызовет никаких проблем. Файл msgfmt
+    используется для генерирования бинарных
+    файлов перевода, которые позволяют
+    системе общаться на другом языке. Так как
+    эти файлы перевода уже сгенерированы, в
+    использовании msgfmt нет необходимости. Нам
+    понадобился бы msgfmt лишь в том случае, если
+    мы изменили исходники файлов перевода 
+    (файлы <tt class="filename">*.po</tt>
+    в подкаталоге <tt class="filename">po</tt>), т.к. нам пришлось бы заново генерировать
+    бинарные файлы.</p></div><div class="sect2"><h2 class="sect2"><a name="AEN2466">Пояснения команд</a></h2><p><tt class="userinput"><b>patch -Np1 -i ../glibc-2.2.5-2.patch:</b></tt>
+    Этот патч переводит все упоминания о <tt class="filename">$(PERL)</tt> на <tt class="filename">/usr/bin/perl</tt>  в файле
+<tt class="filename">malloc/Makefile</tt>. Это необходимо, т.к. Glibc не может
+    определить местонахождение программ Perl,
+    так как пакет Perl еще не был установлен.
+    Данный патч также заменяет все
+    упоминания о <em>root</em>  на
+<em>0</em>  в файле <tt class="filename">login/Makefile</tt>. Это необходимо, потому что сам пакет Glibc
+    еще не установлен, и выявление
+    идентификационного номера пользователя
+    &lt;userid&gt; из имени пользователя невозможно.
+    К примеру, команда <b><tt class="userinput">chown root
+file</tt> </b> не будет работать, в то время как при
+    замене имени пользователя на userid,
+    программа будет выполнена.</p><p>Данный патч также устраняет некоторые
+    другие ошибки, например, "errlist", "dns resolver", "xdr_array", "calloc",
+"thread exit", "udivdi3", "math test", "restrict_arr" и "divbyzero". Для
+    получения более подробной информации, см.
+    <a href="http://www.zipworld.com.au/%7Egschafer/lfs-tweaks.html" target="_top">http://www.zipworld.com.au/~gschafer/lfs-tweaks.html</a>.</p><p><tt class="userinput"><b>touch /etc/ld.so.conf:</b></tt>  Один из заключительных шагов установки Glibc installation
+    - выполнение команды ldconfig для обновления
+    динамического кэша загрузки. Если этот
+    файл не существует, инсталляция
+    завершится с ошибкой, что не может
+    прочесть файл. Для избежания подобной
+    ошибки, мы просто создаем пустой файл (в
+    случае пустого файла, Glibc будет по
+    умолчанию использовать каталоги /lib и /usr/lib).</p><p><tt class="userinput"><b>--disable-profile:</b></tt>  Отменяет компиляцию библиотек с
+    профильной информацией. Если вы
+    собираетесь использовать профили,
+    пропустите эту опцию.</p><p><tt class="userinput"><b>--enable-add-ons:</b></tt>  Включает дополнительные модули, в нашем
+    случае linuxthreads.</p><p><tt class="userinput"><b>--libexecdir=/usr/bin:</b></tt>  Инсталлирует программу
+pt_chown в каталог /usr/bin.</p><p><tt class="userinput"><b>echo "cross-compiling = no" &gt; configparms:</b></tt>
+    Этой командой мы даем понять, что
+    компилируем пакет только для нашей
+    системы. Кросс-компиляция используется,
+    например, для того, чтобы скомпилировать
+    пакет для системы Apple Power PC на
+Intel-совместимом компьютере. Glibc по умолчанию
+    полагает, что мы кросс-компилируем,
+    потому что не может скомпилировать
+    тестовую программу для проверки, т.к. сам
+    пакет Glibc еще не установлен.</p><p><tt class="userinput"><b>exec /static/bin/bash --login:</b></tt>  Данная программа запустит новый сеанс
+    оболочки bash вместо текущего. Мы, таким
+    образом, избавимся от приглашения "I have no
+    name!" командной строки, которое было
+    вызвано невозможностью bash получить имя
+    пользователя из userid (из-за отстутствия Glibc).</p></div><div class="sect2">
+  <div class="sect2"><h2 class="sect2"><a name="AEN6976">Содержимое Glibc</a></h2><p>Последняя проверка: версия 2.2.5.</p><div class="sect3"><h3 class="sect3"><a name="AEN6979">Программы</a></h3><p>catchsegv, gencat, getconf, getent, glibcbug, iconv, iconvconfig,
+ldconfig, ldd, lddlibc4, locale, localedef, mtrace, nscd, nscd_nischeck,
+pcprofiledump, pt_chown, rpcgen, rpcinfo, sln, sprof, tzselect, xtrace,
+zdump и zic</p></div><div class="sect3"><h3 class="sect3"><a name="AEN6982">Описания</a></h3><div class="sect4"><h4 class="sect4"><a name="AEN6984">catchsegv</a></h4><p>catchsegv может быть использования для слежения за состоянием стека,
+когда выполнение программы прерывается из-за ошибки распределения памяти.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6987">gencat</a></h4><p>gencat генерирует каталоги сообщений.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6990">getconf</a></h4><p>getconf отображает значения переменных, зависящих от системной
+конфигурации.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6993">getent</a></h4><p>getent позволяет получить записи административной базы данных.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6996">glibcbug</a></h4><p>glibcbug создает сообщение об ошибке в glibc и отправляет по
+указанному адресу сообщения об ошибках.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6999">iconv</a></h4><p>iconv осуществляет преобразование наборов символов.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7002">iconvconfig</a></h4><p>iconvconfig создает конфигурационные файлы для модулей iconv.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7005">ldconfig</a></h4><p>ldconfig настраивает привязки времени исполнения динамического
+линкера.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7008">ldd</a></h4><p>ldd выводит список разделяемых библиотек, необходимых заданным
+программам.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7011">lddlibc4</a></h4><p>lddlibc4 используется ldd при работе с объектными файлами.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7014">locale</a></h4><p>locale - скрипт на Perl, разрешающий (или запрещающий) компилятору
+использование локалей POSIX для встроенных операций.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7017">localedef</a></h4><p>localedef компилирует спецификации локалей.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7020">mtrace</a></h4><p>mtrace выводит путь multicast от источника к получателю (запрос IP
+trace).</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7023">nscd</a></h4><p>nscd - демон, предоставляющий кэш для большинства запросов DNS.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7026">nscd_nischeck</a></h4><p>nscd_nischeck проверяет нужен или нет защищенный режим для запроса
+NIS+.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7029">pcprofiledump</a></h4><p>pcprofiledump выводит информацию, полученной из профиля PC.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7032">pt_chown</a></h4><p>pt_chown устанавливает влдельца, группу и права доступа подчиненного
+псеводотерминала в соответствии с основным псевдотерминалом, переданном
+в описании `3'. Это вспомогательная программа для функции `grantpt'. Не
+предназначается для прямого запуска из командной строки.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7035">rpcgen</a></h4><p>rpcgen генерирует код C для реализации протокола RPC.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7038">rpcinfo</a></h4><p>rpcinfo делает запрос RPC к серверу.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7041">sln</a></h4><p>sln символически связывает dest и source. Программа собрана
+статически. Использование sln полезно для создания символических ссылок
+на динамические библиотеки, если система динамического связывания по
+какой-то причине нефункциональна.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7044">sprof</a></h4><p>sprof выводит информацию о разделяемом объекте.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7047">tzselect</a></h4><p>tzselect получает от пользователя информацию от его местоположении и
+выводит на стандартный вывод значение текущей временной зоны.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7050">xtrace</a></h4><p>xtrace отслеживает исполнение программы, выводя исполняемые в данный
+момент функции.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7053">zdump</a></h4><p>zdump - сохраняет значение временной зоны.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7056">zic</a></h4><p>zic - компилятор временных зон.</p></div></div><div class="sect3"><h3 class="sect3"><a name="AEN7059">Библиотеки</a></h3><p>ld.so, libBrokenLocale.[a,so], libBrokenLocale_p.a, libSegFault.so,
+libanl.[a,so], libanl_p.a, libbsd-compat.a, libc.[a,so],
+libc_nonshared.a, libc_p.a, libcrypt.[a,so], libcrypt_p.a, libdl.[a,so],
+libdl_p.a, libg.a, libieee.a, libm.[a,so], libm_p.a, libmcheck.a,
+libmemusage.so, libnsl.a, libnsl_p.a, libnss_compat.so, libnss_dns.so,
+libnss_files.so, libnss_hesiod.so, libnss_nis.so, libnss_nisplus.so,
+libpcprofile.so, libpthread.[a,so], libpthread_p.a, libresolv.[a,so],
+libresolv_p.a, librpcsvc.a, librpcsvc_p.a, librt.[a,so], librt_p.a,
+libthread_db.so, libutil.[a,so] и libutil_p.a</p></div><div class="sect3"><h3 class="sect3"><a name="AEN7062">Описания</a></h3><div class="sect4"><h4 class="sect4"><a name="AEN7064">ld.so</a></h4><p>ld.so - вспомогательная программа для исполняемых файлов разделяемых
+библиотек.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7067">libBrokenLocale, libBrokenLocale_p</a></h4><p>Используется многими программами, например Mozilla, для
+использования поврежденных локалей.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7070">libSegFault</a></h4><p>libSegFault управляет сигналами ошибок распределения памяти, также
+пытается их перехватить.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7073">libanl, libanl_p</a></h4><p>libanl - библиотека асинхронных запросов DNS.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7076">libbsd-compat</a></h4><p>libbsd-compat предоставляет переносимость, необходимую для запуска
+некоторых программ в Linux.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7079">libc, libc_nonshared, libc_p</a></h4><p>Эти файлы образуют основную библиотеку C. Библиотека C - набор набор
+часто используемых в программах функций. Таким образом, программисту не
+нужно писать свои функции для каждой задачи. Большинство стандартных
+операций вроде вывода строки на экран уже готовы к использованию.</p><p>Библиотека C (в общем случае, любая библиотека) существует как в
+динамическом, так и статическом виде. Вкратце, когда программа
+использует статическую библиотеку, код из библиотеки копируется в
+исполняемый файл. При использовании динамической библиотеки, код из
+библиотеки не добавляется в исполняемый файл, а загружается только во
+время исполнения программы. Это позволяет уменьшить размер программ. За
+подробностями обращайтесь к документации библиотеки C.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7083">libcrypt, libcrypt_p</a></h4><p>libcrypt - криптографическая библиотека.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7086">libdl, libdl_p</a></h4><p>libdl - библиотека интерфейсов динамической линковки.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7089">libg</a></h4><p>libg - библиотека времени исполнения g++.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7092">libieee</a></h4><p>libieee - IEEE библиотека операций с числами с плавающей запятой.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7095">libm, libm_p</a></h4><p>libm - математическая библиотека.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7098">libmcheck</a></h4><p>libmcheck - содержит код, выполняемый при загрузке.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7101">libmemusage</a></h4><p>libmemusage - используется memusage для сбора информации о памяти,
+используемой программой.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7104">libnsl, libnsl_p</a></h4><p>libnsl - библиотека сетевых сервисов.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7107">libnss_compat, libnss_dns,
+libnss_files, libnss_hesiod, libnss_nis, libnss_nisplus</a></h4><p>Основная идея - поместить реализацию различных сервисов доступа к
+базам данных в отдельные модули. Преимущества:</p><ul><li><p>поставщики могут добавлять новые сервисы, не включая их в C
+библиотеку GNU,</p></li><li><p>модули могут быть независимо обновлены,</p></li><li><p>Библиотека C имеет меньший размер.</p></li></ul></div><div class="sect4"><h4 class="sect4"><a name="AEN7117">libpcprofile</a></h4><p>Код, используемый ядром для отслеживания времени, затрачиваемого
+процессором на исполнение функций, отдельных строк кода и инструкций.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7120">libpthread, libpthread_p</a></h4><p>POSIX библиотека потоков.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7123">libresolv, libresolv_p</a></h4><p>Библиотека позволяет DNS-серверам создавать, посылать и
+интерпретировать пакеты.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7126">librpcsvc, librpcsvc_p</a></h4><p>Библиотека предоставляет различные сервисы RPC.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7129">librt, librt_p</a></h4><p>Библиотека предоставляет большинство интерфейсов, описанных POSIX.1b
+Realtime Extension.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7132">libthread_db</a></h4><p>Библиотека полезна для создания отладчиков для многопотоковых
+приложений.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN7135">libutil, libutil_p</a></h4><p>Содержит код "стандартных" функций, используемых многими утилитами
+Unix.</p></div></div></div>
+  <div class="sect2"><h2 class="sect2"><a name="AEN7138">Зависимости Glibc</a></h2><p>Последняя проверка: версия 2.2.5.</p><p class="literallayout">Bash: sh<br>
+Binutils: ar, as, ld, ranlib, readelf<br>
+Diffutils: cmp<br>
+Fileutils: chmod, cp, install, ln, mknod, mv, mkdir, rm, touch<br>
+Gcc: cc, cc1, collect2, cpp, gcc<br>
+Grep: egrep, grep<br>
+Gzip: gzip<br>
+Make: make<br>
+Gawk: gawk<br>
+Sed: sed<br>
+Sh-utils: date, expr, hostname, pwd, uname<br>
+Texinfo: install-info, makeinfo<br>
+Textutils: cat, cut, sort, tr</p></div>
+<h2 class="sect2"></h2></div></div><div class="NAVFOOTER"><hr align="Left" width="100%" /=""><table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="33%" align="Left" valign="Top"><a href="man-pages.html" accesskey="P">Назад</a></td><td width="34%" align="Center" valign="Top"><a href="../index.html" accesskey="H">Домой</a></td><td width="33%" align="Right" valign="Top"><a href="gcc.html" accesskey="N">Вперед</a></td></tr><tr><td width="33%" align="Left" valign="Top">Установка Man-pages-1.52</td><td width="34%" align="Center" valign="Top"><a href="chapter06.html" accesskey="U">Наверх</a></td><td width="33%" align="Right" valign="Top">Установка GCC-3.2</td></tr></tbody></table></div></body></html>

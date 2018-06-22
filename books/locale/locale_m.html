@@ -1,0 +1,191 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=koi8-r">
+<meta name="GENERATOR" content="Microsoft FrontPage 3.0">
+<title>Locale &quot;AS IT IS&quot; - MIME</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><font size="6">Локализация и почта. MIME.</font></h1>
+
+<p>&nbsp;&nbsp;&nbsp; Вместо введения - кусок перевода <a href="http://www.cis.ohio-state.edu/text/faq/usenet/mail/mime-faq/top.html">comp.mail.mime
+FAQ</a> :</p>
+
+<hr>
+
+<p>&nbsp;&nbsp;&nbsp; <strong>MIME - </strong>Multi-purpose Internet Mail Extensions.
+Свободно-доступный набор спецификаций,
+предлагающий способ обмена текстами с различным
+набором символов и multimedia e-mail среди множества
+различных компьютерных систем, которые
+используют стандарты Internet для обмена почтой.</p>
+
+<p>&nbsp;&nbsp;&nbsp; Если Вы уже имели дело с обычной
+текстовой электронной почтой, теперь, благодаря <strong>MIME</strong>
+Вы можете создавать и читать сообщения, имеющие
+следующие дополнительные возможности : 
+
+<ul>
+  <li>Символы, отличные от US-ASCII</li>
+  <li>Форматированный (enriched) текст</li>
+  <li>Изображения</li>
+  <li>Звуки</li>
+  <li>Другие сообщения (включенные одно в другое)</li>
+  <li>Архивные файлы</li>
+  <li>PostScript файлы</li>
+  <li>Указатели на местоположение файлов</li>
+  <li>другие возможности</li>
+</ul>
+
+<p>&nbsp;&nbsp;&nbsp; <strong>MIME</strong> поддерживает не только
+некоторые, раз и навсегда заданные типы
+нетекстовой информации, например&nbsp; 8-bit 8000Hz-sampled
+mu-LAW audio, или GIF images, или PostScript-программы, но и
+позволяет Вам также определять Ваши собственные
+типы данных.</p>
+
+<p>&nbsp;&nbsp;&nbsp; Перед тем, как стандарт <strong>MIME</strong>
+стал широко распространенным, у Вас также была
+возможность создавать сообщения, содержащие,
+скажем, PostScript документы и звуковое
+сопровождение, но чаще всего сообщение было
+закодировано в собственном, не переносимом
+формате. Это означало, что Вы не могли прочитать
+это сообщение на системе от другого поставщика,
+даже если оно прошло неповрежденным через
+почтовый шлюз. Теперь же, в зависимости от
+совершенства Вашей <strong>MIME</strong> почтовой системы,
+есть неплохой шанс, что это будет &quot;просто
+работать&quot;.</p>
+
+<p>&nbsp;&nbsp;&nbsp; Самое ценное в <strong>MIME</strong> то, что это
+&quot;четырехколесный протокол&quot;. Протокол <strong>MIME</strong>
+был аккуратно разработан для выживания в среде
+самых разнообразных SMTP, UUCP и других Procrustean
+протоколов передачи почты, которые любят
+перемешивать, перепутывать и перекодировать
+заголовки и текст почтового сообщения.</p>
+
+<p>&nbsp;&nbsp;&nbsp; . . .</p>
+
+<hr>
+
+<p>&nbsp;&nbsp;&nbsp; Стандарт <strong>MIME</strong> определен в :</p>
+
+<blockquote>
+  <table border="0">
+    <tr vAlign="top">
+      <td><strong><a href="http://www.oac.uci.edu/indiv/ehood/MIME/2045/rfc2045.html">RFC 2045</a></strong>:
+      </td>
+      <td>MIME Part One: Format of Internet Message Bodies </td>
+    </tr>
+    <tr vAlign="top">
+      <td><strong><a href="http://www.oac.uci.edu/indiv/ehood/MIME/2046/rfc2046.html">RFC 2046</a></strong>:
+      </td>
+      <td>MIME Part Two: Media Types </td>
+    </tr>
+    <tr vAlign="top">
+      <td><strong><a href="http://www.oac.uci.edu/indiv/ehood/MIME/2047/rfc2047.html">RFC 2047</a></strong>:
+      </td>
+      <td>MIME Part Three: Message Header Extensions for Non-ASCII Text </td>
+    </tr>
+    <tr vAlign="top">
+      <td><strong><a href="http://www.oac.uci.edu/indiv/ehood/MIME/2048/rfc2048.html">RFC 2048</a></strong>:
+      </td>
+      <td>MIME Part Four: Registration Procedures </td>
+    </tr>
+    <tr vAlign="top">
+      <td><strong><a href="http://www.oac.uci.edu/indiv/ehood/MIME/2049/rfc2049.html">RFC 2049</a></strong>:
+      </td>
+      <td>MIME Part Five: Conformance Criteria and Examples </td>
+    </tr>
+</tbody>
+  </table>
+</blockquote>
+
+<p>&nbsp;&nbsp;&nbsp; Или см. напрмер на Yahoo!<strong> :<br>
+</strong><a href="http://www.yahoo.com/Computers_and_Internet/Standards/RFCs/">http://www.yahoo.com/Computers_and_Internet/Standards/RFCs/</a></p>
+
+<hr>
+
+<p>&nbsp;&nbsp;&nbsp; Для пользователя здесь выигрыш в том,
+что у сообщения (или части сообщения) типа <strong><code>text/plain</code></strong>,<code>
+<strong>text/html</strong></code> появился параметр <strong><code>charset=Xxxxx</code></strong>
+, однозначно задающий кодировку сообщения. Если <strong>charset</strong>=
+не проставлен, кодировка предполагается <strong>ISO_8859-1</strong>
+(набор символов <strong>Latin-1</strong>).</p>
+
+<p>&nbsp;&nbsp;&nbsp; Другое полезное свойство <strong>MIME</strong>
+- закодированные заголовки. Дело в том, что
+стандартный RFC-822 предполагал, что заголоки писем
+From: , To: и т.д. 7-ми битные. Для обхода этой проблемы
+была предложена схема <strong>MIME</strong>. И теперь
+заголовки могут иметь вид :<br>
+<code>Subject: Re: =?KOI8-R?Q?=C1?=</code></p>
+
+<p>&nbsp;&nbsp;&nbsp; Предположим теперь, что наша
+операционная система - <strong>UNIX</strong> (<strong>POSIX</strong>).
+Здесь мы имеем дело с 3-мя различными объектами: 
+
+<ol>
+  <li>Установленное значение <strong>locale </strong>(<strong>LANG=</strong>&quot;...&quot;).</li>
+  <li>Текущие фонты и раскладка клавиатуры терминала
+    (аппаратные).</li>
+  <li>Кодировка почтового сообщения<strong> charset</strong>=xxxxx <strong>MIME.</strong></li>
+</ol>
+
+<p>&nbsp;&nbsp;&nbsp; Само по себе, текущее значение <strong>locale</strong>
+( установленное через <strong>LANG</strong>=)<strong> </strong>( а
+точнее значение категорий <strong>LC_CTYPE</strong> и <strong>LC_COLLATE</strong>
+) оказывает влияние только на <strong>обработку</strong>
+символов, но никак не на<strong> ввод/вывод</strong>.</p>
+
+<p>&nbsp;&nbsp;&nbsp; Как мы уже знаем, средствами <strong>locale</strong>
+и стандартного <strong>UNIX</strong> <a href="locale_io.html#dev">ввода/вывода</a>
+никак нельзя ни <strong>повлиять</strong>, ни даже <strong>спросить</strong>
+текущее значение <strong>аппаратной</strong>
+конфигурации (кодировки). </p>
+
+<p>&nbsp;&nbsp; С другой стороны, почтовые сообщения в <strong>MIME
+</strong>могут содержать различные <a href="locale_c.html">charset</a>
+даже в пределах одного сообщения.</p>
+
+<p>&nbsp;&nbsp;&nbsp; Задача почтовой программы (<strong>MUA</strong>
+- Mail User Agent)-- правильно отобразить различные <strong>charset
+</strong>для <strong>text/plain</strong> и <strong>text/html</strong>. Это
+легко сделать в оконных системах (Windows, X-Windows, e.t.c.)
+где доступна информация о шрифтах, но <strong>невозможно</strong>
+для стандартного UNIX <strong>терминального</strong> <a href="locale_io.html#dev">ввода/вывода</a>.</p>
+
+<p>&nbsp;&nbsp;&nbsp; В наиболее старой и известной
+программе для работы с <strong>MIME - </strong><a href="http://www.linux.org.ru/books/man/man1/metamail.html"><em>metamail</em></a> (взять можно <a href="ftp://ftp.funet.fi/pub/unix/mail/metamail/">здесь</a>) впервые
+столкнулись с данной проблемой. Именно для <a href="http://www.linux.org.ru/books/man/man1/metamail.html"><em>metamail</em></a> была впервые
+введена переменная окружения <strong>MM_CHARSET</strong>
+которая задавала &quot;текущий&quot; <strong>charset</strong>
+(набор символов) на консоли. Предполагалось, что
+пользователь его <strong>знает</strong> (или сам
+установил). Но постепенно эта переменная стала
+трактоваться как <strong>значение</strong> текущей
+кодировки аппаратного окружения (фонтов, e.t.c.) и
+современные почтовые программы (<strong>mh</strong>, <strong>elm</strong>)
+активно используют эту переменную.</p>
+
+<p>&nbsp;&nbsp;&nbsp; Любая современная почтовая
+программа должна обязательно поддерживать <strong>UNICODE</strong>
+и <strong>UTF-8</strong>. См. : Internet Mail Consortium / <a href="http://www.imc.org/imc-intl/">Internationalization</a>.</p>
+
+<p>&nbsp;&nbsp;&nbsp; <a href="locale_i.html">Дополнительная
+информация.</a></p>
+
+<hr>
+
+<p>Содержание &quot;<a href="index.html#toc">Locale AS IT IS</a>&quot;</p>
+
+<hr>
+
+<h6><em>Last change : <!--webbot bot="Timestamp" S-Type="EDITED" S-Format="%d-%m-%Y" startspan -->01-10-2000<!--webbot bot="Timestamp" endspan i-checksum="12414" --></em></h6>
+</body>
+</html>

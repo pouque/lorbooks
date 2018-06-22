@@ -1,0 +1,152 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE>The 3 Button Serial Mouse mini-HOWTO: Дополнительная информация</TITLE>
+ <LINK HREF="3-Button-Mouse-HOWTO-5.html" REL=previous>
+ <LINK HREF="3-Button-Mouse-HOWTO.html#toc6" REL=contents>
+</HEAD>
+<BODY>
+Next
+<A HREF="3-Button-Mouse-HOWTO-5.html">Previous</A>
+<A HREF="3-Button-Mouse-HOWTO.html#toc6">Contents</A>
+<HR>
+<H2><A NAME="s6">6. Дополнительная информация</A></H2>
+
+<H2><A NAME="ss6.1">6.1 Протестированные модели</A>
+ </H2>
+
+<P> 
+Существует огромное количество различных моделей мышей и я не стал бы рекомендовать одну из них в ущерб другой. Ниже приведен список мышей которые
+после определенных настроек (или вовсе без них) могут работать в Линуксе с использованием всех 3х кнопок. 
+<P>
+<UL>
+<LI><P><B>Mouse Systems оптическая мышь , версия для последовательного порта</B>
+<P>Отлично работает (что видно даже по названию !) без ClearDTR или
+ClearRTS в X*onfig.
+<P>
+</LI>
+<LI><P><B>WiN mouse.</B>
+<P>Стандартная двух - режимная  Microsoft/MouseSystems мышь.
+<P> 
+</LI>
+<LI><P><B> 
+Agiler Mouse 2900</B>
+<P>Стандартная MS\MSS мышь на SYSGRATION SYS2005 чипсете (см. Секцию   настройки)
+<P>
+</LI>
+<LI><P><B>Sicos mouse</B>
+<P>Работает хорошо при установленных ClearDTR &amp; Clear RTS в X*onfig.
+<P> 
+</LI>
+<LI><P> <B>Artec mouse</B>
+<P>Использует два протокола , требует `ClearDTR' в  X*onfig, НЕ
+`ClearRTS'
+<P> 
+</LI>
+<LI><B>DynaPoint 3 кнопочная последовательная мышь.</B><P>Использует два протокола, требует `ClearDTR' И `ClearRTS' в X*onfig.
+<P> 
+</LI>
+<LI><B>Genius Easymouse трех-кнопочная мышь.</B><P>Отлично работает с проколом Mouseman без параметра ChordMiddle
+<P>
+</LI>
+<LI><B>Truemouse</B><P>Хорошо работает при включенном `ClearDTR' в  X*config
+<P>
+</LI>
+<LI><B>Champ brand mouse</B><P>Имеет переключатель MS/PC
+<P>
+</LI>
+<LI><B>MicroSpeed mouse</B><P>Обычная двух-протокольная мышь.
+<P>
+</LI>
+<LI><B>Venus brand </B><P>Оснащена джамперов переключающим протоколы.
+<P> 
+</LI>
+<LI><B>Saturn</B><P>Оснащена переключателем 2/3
+<P>
+</LI>
+<LI><B> Manhattan mouse.</B><P>Отлично работает с gpm -R
+<P> 
+</LI>
+<LI><B>Inland mouse.</B><P>Имеет переключатель MS/PC
+<P>
+</LI>
+<LI><B> qMouse (3-button), FCC ID E6qmouse X31.</B><P>В консоли работает с `gpm -t msc -r 20' в X'ах признаков жизни не подает .
+<P> 
+</LI>
+<LI><B>PC Accessories mouse.</B><P>Имеет переключатель MS/PC
+<P> 
+</LI>
+<LI><B>First Mouse
+Dual Microsoft/MouseSystems.</B><P>Режим устанавливается by button depress при подаче питания.
+<P> 
+</LI>
+<LI><B> Trust трех-кнопочная мышь</B><P>Работает отлично в режиме PC
+<P>
+</LI>
+<LI><B> Chic 410</B><P>Хорошо работает в режиме MS c gpm -R
+<P> 
+</LI>
+<LI><B>KeyMouse трех-кнопочная мышь</B><P>Работает с ClearDTR и ClearRTS в X*onfig; `-o dtr' нужно для корректной
+работы gpm. 
+<P> 
+</LI>
+<LI><B>Anubis mouse</B><P>Работает отлично но требует нажатой левой клавиши при запуске X 
+<P>
+</LI>
+<LI><B> Yakumo No.1900 mouse</B><P>Работает с  gpm -R
+<P>
+</LI>
+<LI><B>Logitech CA</B><P>Работает в X используя протокол MMseries.
+(Также работает с моделями CC, CE, C7 &amp; C9).  
+<P>
+</LI>
+<LI><B> A4-Tech mouse</B><P>Работает нормально при установленном DTR.
+<P>
+</LI>
+<LI><B> Boeder M-7 </B><P>Работает в режиме MSS , при условии нажатия левой клавиши при включении 
+<P>
+</LI>
+<LI><B> Radio Shack 3х кнопочная последовательная мышь</B><P>Работает как MSS с ClearDTR
+<P>
+</LI>
+<LI><B> Dexxa последовательная мышь</B><P>100% совместима с MS и поддерживает в этом режиме все 3 клавиши
+<P>
+</LI>
+<LI><B> Belkin 3х кнопочная мышь</B><P>Нуждается в gpm -o rts и СlearRTS в Х (в режиме PC)
+</LI>
+</UL>
+<H2><A NAME="ss6.2">6.2 Кабели и адаптеры</A>
+</H2>
+
+<P>Распайка кабеля мыши. TxD , RxD используются для передачи 
+данных , RTS и/или DTR для питания и земли.
+<P>
+<PRE>
+                   9-контактный порт   25-контактный порт
+               TxD     3                2
+               RxD     2                3
+               RTS     7                4
+               DTR     4               20
+               Gnd     5                7
+</PRE>
+<H2><A NAME="ss6.3">6.3 Ссылки</A>
+  </H2>
+
+<P>Сайт Mouse Systems 
+<A HREF="http://www.mousesystems.com/">http://www.mousesystems.com/</A>  У них есть также драйвер
+для M$Windows.
+<P>Linux Serial HOWTO также может оказаться вам полезным,особенно если у вас 
+проблемы с последовательным портом. 
+<P>Отличное описание принципов функционирования мыши вы можете найти по адресу
+<A HREF="http://www.4QD.co.uk/faq/meece.html">http://www.4QD.co.uk/faq/meece.html</A> 
+<P>Полное описание настроек X*onfig вы можете найти в соответсвуюших man    страницах и/или Xfree86 HOWTO (FAQ)
+<P>Описание gpm можно найти в его man странице а также по адресу   
+<A HREF="http://www.castle.net/X-notebook/mouse.txt">http://www.castle.net/X-notebook/mouse.txt</A><P>Большое кол-во информации о аппаратной и программной настройке мыши
+можно найти на : 
+<A HREF="http://www.hut.fi/Misc/Electronics/pc/interface.html#mouse">http://www.hut.fi/Misc/Electronics/pc/interface.html#mouse</A><HR>
+Next
+<A HREF="3-Button-Mouse-HOWTO-5.html">Previous</A>
+<A HREF="3-Button-Mouse-HOWTO.html#toc6">Contents</A>
+</BODY>
+</HTML>

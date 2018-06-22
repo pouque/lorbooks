@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>Creating a file system on the new partition</title>
+  
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+
+  <meta name="GENERATOR" content="Modular DocBook HTML Stylesheet Version 1.73">
+  <link rel="HOME" title="Linux From Scratch" href="http://www.linux.org.ru/books/Distro/lfsbook/chapter04/index.html">
+  <link rel="UP" title="Preparing a new partition" href="chapter04.html">
+  <link rel="PREVIOUS" title="Creating a new partition" href="creatingpart.html">
+  <link rel="NEXT" title="Mounting the new partition" href="mounting.html"></head><body class="sect1" bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#840084" alink="#006000">
+<div class="NAVHEADER"><table summary="Header navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><th colspan="3" align="Center">Linux
+From Scratch: Версия 4.0</th></tr><tr><td width="10%" align="Left" valign="Bottom"><a href="creatingpart.html" accesskey="P">Назад</a></td><td width="80%" align="Center" valign="Bottom">Глава 4. Создаем новый раздел</td><td width="10%" align="Right" valign="Bottom"><a href="mounting.html" accesskey="N">Вперед</a></td></tr></tbody></table><hr align="Left" width="100%"></div>
+<div class="sect1"><h1 class="sect1"><a name="ch04-creatingfs">Создаем файловую систему на новом разделе</a></h1><p>После
+того как новый раздел создан, создадим на нем файловую систему. На данный
+момент стандартная файловая система - ext2, однако так называемые журналируемые
+файловые системы становятся очень популярными. Мы будем подразумевать, что
+вы собираетесь использовать ext2. Инструкции по созданию других файловых
+систем см. на <a href="http://beyond.linuxfromscratch.org/view/cvs/postlfs/filesystems.html" target="_top">http://beyond.linuxfromscratch.org/view/cvs/postlfs/filesystems.html</a>.</p><p>Для
+создания файловой системы ext2, используйте команду mke2fs. Наименование
+раздела LFS - единственная опция к команде, и файловая система создана.</p><p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>mke2fs /dev/xxx</b></tt></pre></td></tr></tbody></table></p><p>Замените "xxx" на наименование раздела LFS (например
+hda11).</p></div>
+<div class="NAVFOOTER"><hr align="Left" width="100%"><table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="33%" align="Left" valign="Top"><a href="creatingpart.html" accesskey="P">Назад</a></td><td width="34%" align="Center" valign="Top"><a href="../index.html" accesskey="H">Домой</a></td><td width="33%" align="Right" valign="Top"><a href="mounting.html" accesskey="N">Вперед</a></td></tr><tr><td width="33%" align="Left" valign="Top">Создаем новый раздел<br>
+</td><td width="34%" align="Center" valign="Top"><a href="chapter04.html" accesskey="U">Наверх</a></td><td width="33%" align="Right" valign="Top">Монтируем новый раздел<br>
+</td></tr></tbody></table></div>
+<br>
+
+</body></html>

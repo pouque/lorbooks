@@ -1,0 +1,18 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=koi8-r"><title>Глава 14. Кириллизация библиотек</title><meta name="generator" content="DocBook XSL Stylesheets V1.59.1"><link rel="home" href="index.html" title="The Linux Cyrillic HOWTO (russian)"><link rel="up" href="index.html" title="The Linux Cyrillic HOWTO (russian)"><link rel="previous" href="ch13s04.html" title="Поддержка кириллицы в DOS эмуляторе"><link rel="next" href="ch14s02.html" title="Поддержка кириллицы в программах gtk"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Глава 14. Кириллизация библиотек</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch13s04.html">Пред.</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch14s02.html">След.</a></td></tr></table><hr></div><div class="chapter" lang="ru"><div class="titlepage"><div><h2 class="title"><a name="cyrlib"></a>Глава 14. Кириллизация библиотек</h2></div></div><div class="toc"><p><b>Содержание</b></p><dl><dt><a href="ch14.html#readline">GNU readline</a></dt><dt><a href="ch14s02.html">Поддержка кириллицы в программах gtk</a></dt></dl></div><a class="indexterm" name="id2947633"></a><p>В этом разделе описаны методы кириллизации программных
+    библиотек.</p><div class="sect1" lang="ru"><div class="titlepage"><div><h2 class="title" style="clear: both"><a name="readline"></a>GNU readline</h2></div></div><a class="indexterm" name="id2947666"></a><p>В <tt>&#732;/.inputrc</tt>
+поместить</p><pre class="programlisting">
+set meta-flag on
+set convert-meta off
+set output-meta on
+</pre><p>
+</p><p>Во многих дистрибутивах версии <span class="emphasis"><em>GNU
+readline</em></span> кроме файла <tt>&#732;/.inputrc</tt>
+используют также и общесистемный конфигурационный файл
+<tt>/etc/inputrc</tt> или <tt>/etc/Inputrc</tt>.
+Это даёт возможность системному администратору сделать общесистемную
+&quot;кириллизацию&quot;  сразу для всех пользователей.  Если ваша система
+не использует общесистемный конфигурационный файл, то вы можете
+научить её это делать.  Создайте файл <tt>/etc/inputrc</tt>,
+а затем установите переменную окружения <tt>INPUTRC</tt>
+равную <tt>/etc/inputrc</tt>.</p></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch13s04.html">Пред.</a> </td><td width="20%" align="center"><a accesskey="u" href="index.html">Уровень выше</a></td><td width="40%" align="right"> <a accesskey="n" href="ch14s02.html">След.</a></td></tr><tr><td width="40%" align="left" valign="top">Поддержка кириллицы в DOS эмуляторе </td><td width="20%" align="center"><a accesskey="h" href="index.html">Начало</a></td><td width="40%" align="right" valign="top"> Поддержка кириллицы в программах gtk</td></tr></table></div></body></html>

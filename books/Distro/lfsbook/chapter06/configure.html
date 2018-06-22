@@ -1,0 +1,642 @@
+<HTML
+><HEAD
+><TITLE
+>Configuring essential software</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Microsoft FrontPage 4.0"/><LINK
+REL="HOME"
+TITLE="Linux From Scratch"
+HREF="http://www.linuxfromscratch.org/view/4.0/index.html"/><LINK
+REL="UP"
+TITLE="Installing basic system software"
+HREF="http://www.linuxfromscratch.org/view/4.0/chapter06/chapter06.html"/><LINK
+REL="PREVIOUS"
+TITLE="Installing LFS-Bootscripts-1.10"
+HREF="http://www.linuxfromscratch.org/view/4.0/chapter06/bootscripts.html"/><LINK
+REL="NEXT"
+TITLE="Setting up system boot scripts"
+HREF="http://www.linuxfromscratch.org/view/4.0/chapter07/chapter07.html"/></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#006000"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Linux From Scratch: Версия 4.0</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="bootscripts.html"
+ACCESSKEY="P"
+>Назад</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Глава 6. Установка основных компонентов
+        системы</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="../chapter07/chapter07.html"
+ACCESSKEY="N"
+>Вперед</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"/></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+>Конфигурация основных программ</H1
+><P
+>Теперь, когда все установлено, надо
+  сконфигурировать программы для их
+  корректного запуска.</P
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+>Конфигурация VIM</H2
+><P
+>По умолчанию vim запускается в режиме
+    совместимости с vi. Некоторым это
+    нравиться, но нам надо запускать vim в
+    режиме vim (иначе мы бы не включили vim в
+    описание, а оставили бы vi). Создайте /root/.vimrc
+    запустив следующее:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="screen"
+><TT
+CLASS="userinput"
+><B
+>cat &gt; /root/.vimrc &lt;&lt; &quot;EOF&quot;</B
+></TT
+>
+&quot; Begin /root/.vimrc
+
+set nocompatible
+set bs=2
+
+&quot; End /root/.vimrc
+<TT
+CLASS="userinput"
+><B
+>EOF</B
+></TT
+></PRE
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+>Конфигурация Glibc</H2
+>
+    <p>Нам надо создать новый файл /etc/nsswitch.conf
+    запустив следующее:</p>
+    <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="screen"
+><TT
+CLASS="userinput"
+><B
+>cat &gt; /etc/nsswitch.conf &lt;&lt; &quot;EOF&quot;</B
+></TT
+>
+# Begin /etc/nsswitch.conf
+
+passwd: files
+group: files
+shadow: files
+
+publickey: files
+
+hosts: files dns
+networks: files
+
+protocols: db files
+services: db files
+ethers: db files
+rpc: db files
+
+netgroup: db files
+
+# End /etc/nsswitch.conf
+<TT
+CLASS="userinput"
+><B
+>EOF</B
+></TT
+></PRE
+></TD
+></TR
+></TABLE
+>
+    <p>Скрипт <tt class="userinput"><b>tzselect</b></tt> должен
+    быть запущен, и вы должны ответить на
+    вопрос о вашей временной зоне. Когда
+    ответите, скрипт возьмет значение вашего
+    местоположения из файла.</p>
+    <p>Создайте <tt class="filename">/etc/localtime</tt> симлинк
+    на:</p>
+    <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="screen"
+><TT
+CLASS="userinput"
+><B
+>ln -sf ../usr/share/zoneinfo/&lt;tzselect's output&gt; /etc/localtime</B
+></TT
+></PRE
+></TD
+></TR
+></TABLE
+>
+    <p>tzselect's должно иметь значение, типа <em>EST5EDT</em>
+    or <em>Canada/Eastern</em>.</p>
+    <p>Комманда на создание симлинка должна
+    быть типа такой:</p>
+    <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="screen"
+><TT
+CLASS="userinput"
+><B
+>ln -sf ../usr/share/zoneinfo/EST5EDT /etc/localtime</B
+></TT
+></PRE
+></TD
+></TR
+></TABLE
+><P
+>Или:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="screen"
+><TT
+CLASS="userinput"
+><B
+>ln -sf ../usr/share/zoneinfo/Canada/Eastern /etc/localtime </B
+></TT
+></PRE
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+>Конфигурация Dinamic Loader</H2
+>
+    <p>По умолчанию Dinamic Loader (/lib/ld-linux.so.2)
+    производит поиск в /lib и /usr/lib на предмет
+    наличия dinamic libraries для программ, которые в
+    них нуждаются. Однако, если dinamic libraries
+    находятся в других директориях, вы должны
+    добавить их в файл /etc/ld.so.conf, что-бы Dinamic
+    Loader смог их найти. Две директории
+    общеизвестны для дополнительных
+    библиотек: /usr/local/lib и /opt/lib поэтому мы
+    добавим эти директории в пути поиска Dinamic
+    Loader:<br>
+    Создайте новый файл /etc/ld.so.conf следующей
+    командой:</p>
+    <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="screen"
+><TT
+CLASS="userinput"
+><B
+>cat &gt; /etc/ld.so.conf &lt;&lt; &quot;EOF&quot;</B
+></TT
+>
+# Begin /etc/ld.so.conf
+
+/usr/local/lib
+/opt/lib
+
+# End /etc/ld.so.conf
+<TT
+CLASS="userinput"
+><B
+>EOF</B
+></TT
+></PRE
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+>Конфигурация Sysklogd</H2
+><P
+>Создайте новый файл /etc/syslog.conf используя
+    следующее:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="screen"
+><TT
+CLASS="userinput"
+><B
+>cat &gt; /etc/syslog.conf &lt;&lt; &quot;EOF&quot;</B
+></TT
+>
+# Begin /etc/syslog.conf
+
+auth,authpriv.* -/var/log/auth.log
+*.*;auth,authpriv.none -/var/log/sys.log
+daemon.* -/var/log/daemon.log
+kern.* -/var/log/kern.log
+mail.* -/var/log/mail.log
+user.* -/var/log/user.log
+*.emerg *
+
+# End /etc/syslog.conf
+<TT
+CLASS="userinput"
+><B
+>EOF</B
+></TT
+></PRE
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+>Конфигурация теневых паролей (Shadow Password Suite)</H2
+>
+    <p>Этот пакет содержит утилиты для
+    изменения пользовательских паролей,
+    добавления или удаления пользователей и
+    групп и все в этом духе. Мы не хотим
+    разъяснять вам, что есть теневые пароли.
+    Полное разъяснение вы получите прочитав
+    соответствующий HOWTO поставляемый вместе
+    с Shadow Password Suite Надо запомнить только одну
+    вещь: если вы хотите использовать теневые
+    пароли, то убедитесь, что ваши программы (например
+    xdm, ftp daemons, pop3 daemons) способны работать с
+    ними (являются ли программы shadow-compliant). Это
+    все, что нам надо знать.<br>
+    Для включения механизма теневых паролей
+    запустите следующую комманду:</p>
+    <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="screen"
+><TT
+CLASS="userinput"
+><B
+>/usr/sbin/pwconv</B
+></TT
+></PRE
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+>Конфигурация Sysvinit</H2
+><P
+>Создайте новый файл /etc/inittab запустив
+    следующее:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="screen"
+><TT
+CLASS="userinput"
+><B
+>cat &gt; /etc/inittab &lt;&lt; &quot;EOF&quot;</B
+></TT
+>
+# Begin /etc/inittab
+
+id:3:initdefault:
+
+si::sysinit:/etc/rc.d/init.d/rc sysinit
+
+l0:0:wait:/etc/rc.d/init.d/rc 0
+l1:S1:wait:/etc/rc.d/init.d/rc 1
+l2:2:wait:/etc/rc.d/init.d/rc 2
+l3:3:wait:/etc/rc.d/init.d/rc 3
+l4:4:wait:/etc/rc.d/init.d/rc 4
+l5:5:wait:/etc/rc.d/init.d/rc 5
+l6:6:wait:/etc/rc.d/init.d/rc 6
+
+ca:12345:ctrlaltdel:/sbin/shutdown -t1 -a -r now
+
+su:S016:once:/sbin/sulogin
+
+1:2345:respawn:/sbin/agetty tty1 9600
+2:2345:respawn:/sbin/agetty tty2 9600
+3:2345:respawn:/sbin/agetty tty3 9600
+4:2345:respawn:/sbin/agetty tty4 9600
+5:2345:respawn:/sbin/agetty tty5 9600
+6:2345:respawn:/sbin/agetty tty6 9600
+
+# End /etc/inittab
+<TT
+CLASS="userinput"
+><B
+>EOF</B
+></TT
+></PRE
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+>Конфигурируем клавиатуру</H2
+>
+    <p>Ничего не раздражает в LINUX так, как
+    неправильно настроеная клавиатура (раскладка,
+    keymap). Если вы хотите использовать
+    раскладку по умолчанию (US keyboard) вы можете
+    пропустить эту часть. US keymap используется
+    по умолчанию.<br>
+    Для установки keymap нужной раскладки,
+    создайте симлинк /usr/share/kbd/keymaps/defkeymap.map.gz
+    используя следующую комманду:</p>
+    <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="screen"
+><TT
+CLASS="userinput"
+><B
+>ln -s &lt;path/to/keymap&gt; /usr/share/kbd/keymaps/defkeymap.map.gz</B
+></TT
+></PRE
+></TD
+></TR
+></TABLE
+>
+    <p>Замените <PATH keymap to>
+    путем к вашему map файлу. Для примера, если
+    у вас немецкая раскладка запустите
+    следующее:</p>
+    <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="screen"
+><TT
+CLASS="userinput"
+><B
+>ln -s i386/qwerty/nl.map.gz /usr/share/kbd/keymaps/defkeymap.map.gz</B
+></TT
+></PRE
+></TD
+></TR
+></TABLE
+><P
+>Вторая часть конфигурации раскладки
+    заключается в компиляции раскладки прямо
+    в ядро. В этом случае раскладка
+    клавиатуры будет работать корректно даже
+    в режиме maintenance (когда ядро плучает
+    команду init=/bin/sh), для которого сценарии
+    загрузки не выполняются.</P
+><P
+>Запутите следующую команду для того, что бы
+    пропатчить ядро на предмет правильной
+    раскладки. Вы должны выполнить эту
+    комманду до того как вы распакуете новое
+    ядро.</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="screen"
+><TT
+CLASS="userinput"
+><B
+>loadkeys -m /usr/share/kbd/keymaps/defkeymap.map.gz &gt; \
+&nbsp;&nbsp;&nbsp;&nbsp;/usr/src/linux/drivers/char/defkeymap.c</B
+></TT
+></PRE
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+>Создание файлов /var/run/utmp, /var/log/wtmp and /var/log/btmp</H2
+><P
+>Таким программам как login, shutdown, uptime и другие
+    требуется читать и записывать данные в /var/run/utmp,
+    /var/log/btmp и /var/log/wtmp. Эти файлы содержат
+    информацию о том, кто в текущий момент
+    залогинен в системе. Они так же содержат
+    информацию о моменте последней загрузки
+    и shutdown, и записи о неудачных попытках
+    входа в систему.</P
+><P
+>Создайте эти файлы и установите на них
+    следующие права доступа:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="screen"
+><TT
+CLASS="userinput"
+><B
+>touch /var/run/utmp /var/log/{btmp,lastlog,wtmp} &amp;&amp;
+chmod 644 /var/run/utmp /var/log/{btmp,lastlog,wtmp}</B
+></TT
+></PRE
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+>Установка пароля пользователя root</H2
+><P
+>Придумайте пароль для пользователя root и
+    установите его следующей командой:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="screen"
+><TT
+CLASS="userinput"
+><B
+>passwd root</B
+></TT
+></PRE
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"/><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="bootscripts.html"
+ACCESSKEY="P"
+>Назад</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="../index.html"
+ACCESSKEY="H"
+>Домой</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="../chapter07/chapter07.html"
+ACCESSKEY="N"
+>Вперед</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Установка LFS-Bootscripts-1.10</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="chapter06.html"
+ACCESSKEY="U"
+>Наверх</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Setting up system boot scripts</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

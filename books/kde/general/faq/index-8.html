@@ -1,0 +1,243 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<TITLE>Часто задаваемые вопросы по KDE: Файл-менеджер</TITLE>
+<META HTTP-EQUIV="content-type" CONTENT="text/html; charset=koi8-r">
+<META NAME="keywords" CONTENT="KDE FAQ Russian translation Dmitry Mozzherin Часто задаваемые вопросы перевод русский Дмитрий Мозжерин">
+<META NAME="description" CONTENT="KDE FAQ , Russian translation made by Dmitry Mozzherin">
+</HEAD>
+<BODY BGCOLOR="#ffffff" LINK="#aa0000" TEXT="#000000" > 
+<?php include("/home/maxcom/linux_html/books/head.php3") ?>
+<FONT FACE="Helvetica">
+<A HREF="http://www.kde.org/"><IMG SRC="http://books.gnu.technology/books/kde/general/faq/logotp3.gif" BORDER="0" ALT="The K Desktop Environment"></A>
+<HR WIDTH="100%" SIZE=2 ALIGN="CENTER" NOSHADE>
+
+ 
+<P ALIGN="RIGHT">
+
+<A HREF="index-9.html"> Вперед </A>
+<A HREF="index-7.html"> Назад </A>
+<A HREF="index.html#toc8"> Содержание </A>
+</P>
+<H3><A NAME="s8">8. Файл-менеджер</A></H3>
+
+<H3><A NAME="ss8.1">8.1 Как использовать KFM в качестве web-навигатора с прокси?</A>
+</H3>
+
+<P>KFM может быть использован как через HTTP-, так и FTP-прокси. Вы можете
+настроить прокси-сервер с помощью пункта меню 
+KFM <CODE>Настройки->Настроить Броузер->Прокси</CODE>.
+<P>Убедитесь, что вы сохранили сделанные настройки прокси-сервера с помощью 
+<CODE>Настройки->Записать установки</CODE>.
+<P>
+<P>
+<H3><A NAME="ss8.2">8.2 Как мне изменить способ отображения того или иного каталога в KFM?</A>
+</H3>
+
+<P>Перед выводом содержимого каталога на экран KFM ищет спрятанный файл
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+.directory
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>внутри каталога. Вы можете создать такой файл для модификации способа
+отображения каталога. Этот файл, на самом деле -- просто
+kdelink-файл. Например:
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+# KDE Config File
+[KDE Desktop Entry]
+Name=Settings
+Name[de]=Einstellungen
+Name[pl]=Ustawienia
+MiniIcon=kcontrol.xpm
+SortOrder=Desktop,Input_Devices,KWM,Network,Information,Sound
+Icon=kcontrol.xpm
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>Этот файл используется для описания каталога "Settings". Он меняет
+пиктограмму для данного каталога, он устанавливает (показываемое) имя
+каталога согласно национальному языку и определяет порядок, в котором будут
+показываться подкаталоги.
+<P>Для  для изменения внешнего вида каталогов, которые формируют K-меню, вы
+также можете использовать <CODE>kmenuedit</CODE>.
+<P>
+<H3><A NAME="ss8.3">8.3 Как мне делать не-анонимную FTP-транспортировку файлов в  KFM?</A>
+</H3>
+
+<P>Обычным способом, так как это делается при указании URL. Например, с
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+ftp://ftp.somehost.com
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>KFM пытается осуществить анонимную регистрацию на FTP-сервере. Если вы
+хотите зарегистрироваться как определенный пользователь, введите URL типа:
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+ftp://username@ftp.somehost.com
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>KFM тогда спросит ваш пароль и затем соединит вас с сервером.
+<P>
+<H3><A NAME="loopback-device"></A> <A NAME="ss8.4">8.4 KFM не может подсоединиться к 'localhost'. В чем проблема? </A>
+</H3>
+
+<P>В большинстве случаев это происходит из-за неправильно настроенного
+loopback-маршрута в вашей системе. 
+<P><B>Как проверить в чем проблемы</B>
+<P>Проверьте, возвращает ли следующая команда выходную информацию, аналогичную  
+указанной ниже:
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+# ping localhost
+
+PING localhost (127.0.0.1): 56 data bytes
+64 bytes from 127.0.0.1: icmp_seq=0 ttl=64 time=0.3 ms
+64 bytes from 127.0.0.1: icmp_seq=1 ttl=64 time=0.2 ms
+64 bytes from 127.0.0.1: icmp_seq=2 ttl=64 time=0.2 ms 
+...
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>Если нет, ваш loopback-интерфейс или маршрут настроены неправильно.
+<P>
+<P>
+<P>Выходной сигнал команды
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+/sbin/route 
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>должен содержать строки вроде:
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+Destination     Gateway         Genmask         Flags MSS    Window Use Ifac
+loopback        *               255.0.0.0       U     3584   0       13 lo
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>Важные поля в этом случае -- Destination, Gateway, Genmask и Iface. Это
+означает, что система правильно настроена на маршрутизацию всего
+loopback-транспорта через loopback-интерфейс (lo).
+<P>Выходной сигнал от команды
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+/sbin/ifconfig
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>должен содержать следующие строки:
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+lo        Link encap:Local Loopback
+          inet addr:127.0.0.1  Bcast:127.255.255.255  Mask:255.0.0.0
+          UP BROADCAST LOOPBACK RUNNING  MTU:3584  Metric:1
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>Это означает, что loopback-интерфейс включен и работает.
+<P>Ваш <CODE>/etc/hosts</CODE> файл должен содержать следующую строку:
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+127.0.0.1       localhost
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>Она определяет, что имя системы "localhost" ассоциировано с системным адресом
+для loopback (127.0.0.1).
+<P>
+<P><B>Как поправить положение</B>
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+/sbin/ifconfig lo 127.0.0.1
+/sbin/route add -net 127.0.0.0
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>Обе эти команды на правильно настроенной системе должны выполняться при 
+загрузке компьютера. Если этого не происходит, проверьте ваши файлы
+инициализации сети в <CODE>/etc/rc.d</CODE>. 
+<P><B>Если это ВСЕ ЕЩЕ не работает</B>
+<P>Если вам так и не удалось ничего сделать -- пошлите подробное сообщение в 
+<A HREF="http://buglist.kde.org">базу данных ошибок KDE.</A>
+Не забудьте отметить в письме, что вы проверили все перечисленное выше:
+<P>
+<H3><A NAME="ss8.5">8.5 Что означают %i и %m в строке <CODE>Выполнить</CODE>?</A>
+</H3>
+
+<P>Они используются всеми приложениями KDE (так как они включены в 
+KApplication и все корректные KDE-приложения создают объект KApplication
+до обработки аргументов командой строки).
+<P>Стандартная строка для приложения KDE выглядит следующим образом:
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+foo .....    %i %m -caption \"%c\"
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>Непонятно, да? Она была спроектирована таким образом, чтобы иметь
+возможность интегрировать не-KDE приложения настолько хорошо, насколько это
+возможно. 
+<P>KFM, выполняя  строку указанную выше, расширит команду до
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+foo -icon something.xpm -miniicon something_mini.xpm -caption \"The Foo\"
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>Как пиктограмма, так и мини-пиктограмма, равно как и "The Foo" -- это
+параметры, определенные в файле kdelink. Если пиктограммы не определены, они
+просто задаются по умолчанию для имени "foo".
+<P>Таким образом, пользователь может изменить все эти вещи в редакторе меню для
+своих приложений. "-caption" -- важен, так как никому не понравится, если 
+пункт меню с именем " Редактор" будет запускать что-то называющееся 
+"kedit-0.9pl4-build47". Вместо этого пользователь ожидает увидеть окно,
+называемое "Редактор". Кроме того, эти имена локализуются, то-есть,
+американец запускает "CD-Player" и получает окно, называющееся "CD-Player" 
+в то время как русский запускает "CD проигрыватель" и получает окно, называющееся
+"CD-проигрыватель".
+<P>
+<H3><A NAME="ss8.6">8.6 Как мне задать начальный каталог для KFM?</A>
+</H3>
+
+<P>Щелкните правой кнопкой по пиктограмме KFM и выберите <CODE>Настройки</CODE>. В разделе 
+<CODE>Выполнить</CODE>, вы, возможно, найдете что-то вроде 'kfmclient folder %u
+file:/root'; просто измените 'root' на имя каталога, которое вам
+хочется видеть при запуске KFM.
+<P>
+<H3><A NAME="nsbookmark"></A> <A NAME="ss8.7">8.7 Как мне импортировать закладки из  Netscape?</A>
+</H3>
+
+<P>Посмотрите на "полный" список приложений KDE (не только тот, который
+поставляется в дистрибутиве) на web-странице
+<A HREF="http://www.kde.org/applications.html">http://www.kde.org/applications.html</A>.
+В разделе  "network", вы найдете knsbookmark, инструмент, который вы
+разыскивали.
+<P>
+<H3><A NAME="ss8.8">8.8 Есть ли в KFM функция  "Сохранить как..."?</A>
+</H3>
+
+<P>Есть что-то похожее. Меню <CODE>Вид -> Посмотреть текст документа</CODE> открывает KEdit 
+с исходным текстом, который, затем, вы можете сохранить. Это работает для 
+text/html файлов, но не для графики.
+<P>
+<P ALIGN="RIGHT">
+
+<A HREF="index-9.html"> Вперед </A>
+<A HREF="index-7.html"> Назад </A>
+<A HREF="index.html#toc8"> Содержание </A>
+</P>
+<CENTER>
+<HR WIDTH="100%" SIZE=3 ALIGN=CENTER NOSHADE>
+</CENTER>    
+</FONT>
+
+ 
+</BODY>
+</HTML>

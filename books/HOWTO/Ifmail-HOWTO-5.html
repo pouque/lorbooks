@@ -1,0 +1,356 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE> IFMAIL-HOWTO: Настройка INN</TITLE>
+ <LINK HREF="Ifmail-HOWTO-6.html" REL=next>
+ <LINK HREF="Ifmail-HOWTO-4.html" REL=previous>
+ <LINK HREF="Ifmail-HOWTO.html#toc5" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="Ifmail-HOWTO-6.html">Next</A>
+<A HREF="Ifmail-HOWTO-4.html">Previous</A>
+<A HREF="Ifmail-HOWTO.html#toc5">Contents</A>
+<HR>
+<H2><A NAME="s5">5. Настройка INN</A></H2>
+
+<P> 
+Во-первых, надо установить INN. Slackware приходит с INN и устанавливает его
+в /usr/lib/news. Вдобавок, я рекомендую вам заглянуть в (только для Slackware) 
+каталог /usr/lib/news/tools.linux и почитать про особенности установки, 
+скрипты и faq. Также вы можете использовать либо уже собранные исполняемые 
+файлы, либо скомпилированные вами. Я предпочитаю скомпилированные мною и 
+находящиеся в исходниках example-config.data для linux. Я правлю его так, чтобы
+пути соответствовали установкам моей Slackware (по умолчанию было 
+/use/local/...ick). Советую указать пути в соответствии с вашей системой, 
+или сделайте как я и установите INN в каталог /usr/lib/news.
+<P> 
+INN запускается как демон, так что вам не нужен nntp service, определенный в
+файле inetd.conf . Закомментируйте строку и не забудьте после этого 
+перезапустить inetd выполнив kill -HUP inetd-PID. 
+<P> 
+Если вы установили INN в первый раз или из исходников, как я, то сделайте 
+несколько изменений в /usr/lib/news и его подкаталогах.
+Я буду последовательно объяснять настpойку каждого файла:
+<P> 
+Во-первых, некоторые маленькие файлы /usr/lib/news/passwd.nntp и 
+/usr/lib/news/nntpsend.ctl должны содержать только  комментарии и ничего больше.
+Вам также нужно создать файлы историй, выполнив скрипт
+/usr/lib/news/bin/makehistory от пользователя news. 
+<P> 
+/usr/lib/news/hosts.nntp содержит только следующие строки:
+<BLOCKQUOTE><CODE>
+<PRE>
+ 
+ ##  hosts.nntp - names и addresses that feed us news
+ ##  Format
+ ##      &lt;host>:
+ ##      &lt;host>:&lt;password>
+ ##  &lt;host> can be a name или IP address; no wildcards.  Any hosts not
+ ##  listed here are handed off to nnrpd.
+ localhost:
+ f710.n125.z1.fidonet.org:
+</PRE>
+</CODE></BLOCKQUOTE>
+ 
+Так только моему компьютеру позволен доступ к моему NNTP-серверу.
+<P> 
+/usr/lib/news/nnrp.access должен выглядеть приблизительно так:
+<BLOCKQUOTE><CODE>
+<PRE>
+ 
+ ##  nnrp.access - access file for on-campus NNTP sites
+ ##  Format:
+ ##      &lt;host>:&lt;perm>:&lt;user>:&lt;pass>:&lt;groups>
+ ##  Connecting host must be found in this file; the last match found is
+ ##  used, so put defaults first.
+ ##      &lt;host>          Wildcard name или IP address
+ ##      &lt;perm>          R to read; P to post
+ ##      &lt;user>          Username for authentication before posting
+ ##      &lt;pass>          Password, for same reason
+ ##      &lt;groups>        группы новостей patterns that can be read или not read
+ ##  To disable posting put a space in the &lt;user> и &lt;pass> fields, since
+ ##  there is no way for client to enter one.
+ ##
+ ## Default is no access, no way to authentication, и no groups.
+ *:: -no- : -no- :!*
+ ##  Foo, Incorporated, hosts have no password, can read anything.
+ *:Read Post:::local.*
+ localhost:Read Post:::*
+ f710.n125.z1.fidonet.org:Read Post:::*
+</PRE>
+</CODE></BLOCKQUOTE>
+ 
+Так каждый может читать и писать через NNRP (это протокол, по которому
+каждая читалка новостей общается с сервером новостей) в группы новостей, чьи
+имена начинаются с local.*. Им не позволено читать и писать в другие группы 
+новостей. На моем компьютере каждый имеет права на чтение и запись в каждую
+группу новостей.
+<P> 
+Далее настраиваем /usr/lib/news/inn.conf примерно так:
+<BLOCKQUOTE><CODE>
+<PRE>
+ 
+ ##  inn.conf -- inn configuration data
+ ##  Format:
+ ##      &lt;parameter>:&lt;whitespace>&lt;value>
+ ##  Used by various programs и libinn.  The following parameters are defined:
+ ##      domain          Local domain, without leading period.
+ ##      fromhost        What to put in the From line; default is FQDN
+ ##                      of the local host.
+ ##      moderatormailer Where to mail moderated postings, if not found
+ ##                      in the moderators file; see moderators(5).
+ ##      pathhost        What to put in the Path и Xref headers; default
+ ##                      is FQDN of the local host.
+ ##      organization    If $ORGANIZATION doesn't exist.  What to put in
+ ##                      the Organization header if blank.
+ ##      server          If $NNTPSERVER doesn't exist.  Local NNTP server
+ ##                      host to connect to.
+ ##
+ ## orginization line will be substituted for your origin line in echomail
+ organization:-={OCEAN BEACH BBS....San Francisco, CA}=-
+ server:localhost
+ fromhost:f710.n125.z1.fidonet.org
+</PRE>
+</CODE></BLOCKQUOTE>
+ 
+Наиболее важный файл конфигурации INN - это /usr/lib/news/newsfeeds, который
+определяет, какие группы новостей куда отправлять.
+<BLOCKQUOTE><CODE>
+<PRE>
+ 
+ ##  newsfeeds - determine where Usenet articles get sent
+ ##  Format:
+ ##     site[/exclude,exclude...]\
+ ##             :pattern,pattern...[/distrib,distrib...]\
+ ##             :flag,flag...\
+ ##             :param
+ ##  Summary of flags:
+ ##     &lt;size                Article must be less then size bytes.
+ ##     Aitems          Article checks -- d (must have Distribution header)
+ ##                     p (don't check for site in Path header).
+ ##     Bhigh/low       Internal buffer size before writing to output.
+ ##     H[count]        Article must have less then count hops; default is 1.
+ ##     Isize           Internal buffer size (if a file feed)
+ ##     Nm              Only moderated groups that match the patterns.
+ ##     Nu              Only unmoderated groups that match the patterns.
+ ##     Ssize           Start spooling if more than size bytes get queued.
+ ##     Ttype           Feed types -- f (file) m (funnel; param names the
+ ##                     real entry) p (pipe to program) c (send to stdin
+ ##                     channel of param's sub-process); x (like c, but
+ ##                     handles commands on stdin).
+ ##     Witems          What to write -- b (article bytesize) f (full path)
+ ##                     g (first newsgroup) m (Message-ID) n (relative
+ ##                     path) s (site that fed article) t (time received)
+ ##                     * (names of funnel feed-in's или all sites that get
+ ##                     the article) N (Newsgroups header) D (Distribution
+ ##                     header) H (all headers) O (overview data) R
+ ##                     (replication data).
+ ##  Param field depends on T flag.  For Tf, relative paths are from the
+ ##  out.going directory.  For Tp и Tc, it is a shell command to execute.
+ ##  If a Tm refers to this entry (which will have its own T param) then "*"
+ ##  is expanded to all the funnel sites that triggered this one.  Useful
+ ##  for spawning one mail process, e.g.
+ ##
+ ##  This file is complicated -- see newsfeeds.5!
+ 
+ # ME указывает, к каким группам новостей должен быть доступ
+ 
+ ME\
+        :*,!control,!&lt;local>.*\
+        ::
+ 
+ overview\
+        :*:Tc.WO:/usr/lib/news/bin/overchan
+ #
+ # Моя фидошная подписка
+ #
+ f33.n125.z1.fidonet.org/f33.n125\
+        :fido.*,!fido.NET_125,!control*,!junk*,!local*\
+        :Tf,Wfb,B16384/1024:
+ #
+ # My nets admin hub
+ #
+ f5109.n125.z1.fidonet.org/f5109.n125\
+        :fido.NET_125,!fido.*,!local*,!junk*,!control\
+        :Tf,Wfb,B16384/1024:
+ #
+ # Мои подписки в других сетях
+ #
+ f1.n211.z21.prognet.ftn/f1.n211\
+        :prog.*,!fido.*,!local*,!junk*,!control\
+        :Tf,Wfb,B16384/1024: 
+ 
+ f60.n9991.z96.surfnet.ftn/f60.n9991\
+        :surfnet.*,!prog.*,!fido.*,!local*,!junk*,!control\
+        :Tf,Wfb,B16384/1024: 
+</PRE>
+</CODE></BLOCKQUOTE>
+ 
+<P>Затем правим /usr/lib/news/expire.ctl, который определяет, когда содержимое 
+групп новостей устаревает.
+<BLOCKQUOTE><CODE>
+<PRE>
+ 
+ ##  expire.ctl - expire control file
+ ##  Format:
+ ##     /remember/:&lt;keep>
+ ##     &lt;patterns>:&lt;modflag>:&lt;keep>:&lt;default>:&lt;purge>
+ ##  First line gives history retention; other lines specify expiration
+ ##  for newsgroups.  Must have a "*:A:..." line which is the default.
+ ##     &lt;patterns>   wildmat-style patterns for the newsgroups
+ ##     &lt;modflag>    Pick one of M U A -- modifies pattern to be only
+ ##                     moderated, unmoderated, или all groups
+ ##     &lt;keep>               Mininum number of days to keep article
+ ##     &lt;default>    Default number of days to keep the article
+ ##     &lt;purge>              Flush article after this many days
+ ##  &lt;keep>, &lt;default>, и &lt;purge> can be floating-point numbers или the
+ ##  word "never."  Times are based on when received unless -p is used;
+ ##  see expire.8
+ 
+ ##  If article expires before 14 days, we still remember it for 14 days in
+ ##  case we get offered it again.  Depending on what you use for the innd
+ ##  -c flag и how paranoid you are about old news, you might want to
+ ##  make this 28, 30, etc.
+ /remember/:30
+ 
+ # Хранить все группы новостей минимум 3, максимум 90 и обычно 5 дней 
+ # (с момента прибытия) 
+ *:A:3:5:90
+ *:U:3:5:90
+ # Хранить модерируемые группы новостей дольше
+ *:M:5:9:90
+ 
+ # Хранить модерируемые c.o.l.* 1 месяц
+ comp.os.linux.*:M:5:30:30
+ 
+ # Хранить fido дольше, чем по умолчанию.
+ fido*:A:3:9:90
+ 
+ # Удалять junk очень быстро.
+ fido.junk:A:3:4:90
+</PRE>
+</CODE></BLOCKQUOTE>
+ 
+Конечно, вы можете установить все так, как нужно вам. Но вы не должны сокращать
+время хранения (особенно для Fido) до минимума, так как сообщения идут до
+вашей системы довольно долго и могут устаpевать немедленно.
+<P> 
+Сейчас вам нужно добавить некоторые Fido конференции в ваш файл active. Вы 
+можете сделать это двумя путями, запустить скрипт /usr/lib/news/bin/newgroup 
+или вручную отредактировать файл /usr/lib/news/active. Я растолкую потом. 
+Формат новой группы новостей записи в файле active : 
+<BLOCKQUOTE><CODE>
+<PRE>
+ 
+ &lt;Areas tag> &lt;10 0's> &lt;9 0's &amp; 1> &lt;y>
+ fido.LINUX 0000000000 0000000001 y
+ fido.PASCAL 0000000000 0000000001 y
+</PRE>
+</CODE></BLOCKQUOTE>
+ 
+Сейчас копируем файл etc/ifmail/misc/inn/send-ifmail в /usr/lib/news и 
+изменяем владельца на news.news. send-ifmail вызывается периодически из 
+crontab как пользователь news, чтобы поместить отправляемые статьи из
+/var/spool/news/out.going в /var/spool/ifmail/outb для отправки через ifcico.
+<P> 
+Чтобы получить пересылаемые новости, для нее должен быть заведен каталог,
+который называется /var/spool/news/out.going, с владельцем news.news и правами
+доступа 775. В отличие от cnews в этом каталоге не должно быть никаких 
+подкаталогов для newsfeeds, так как INN использует только один файл для 
+подписки, который он создает сам. Если вы "апгрейдитесь" с cnews до INN, вы 
+должны удалить существующие каталоги.
+<P> 
+Поскольку INN работает с демоном, который всегда запущен, он должен стартовать 
+при загрузке. Добавьте следующее в конце /etc/rc.d/rc.M перед вызовом rc.local:
+<BLOCKQUOTE><CODE>
+<PRE>
+ 
+   /usr/lib/news/etc/rc.news &amp;
+</PRE>
+</CODE></BLOCKQUOTE>
+ 
+Для первого испытания INN этот скрипт может быть запущен вручную (как 
+пользователь news). Но помните, что только один innd работает в это время, не
+запускайте другие программы INN, пока вы работаете под пользователем news.
+<P> 
+В некоторых дистрибутивах другой NNTP-демон (nntpd) определен для cnews в 
+/etc/inetd.conf. Тогда innd не может стартовать, так как TCP-порт уже занят.
+Тогда закомментируйте эту строку и перезапустите inetd командой
+kill -HUP inetd.PID.
+<P> 
+Чтобы заставить INN работать правильно добавьте в crontab пользователя news :
+<BLOCKQUOTE><CODE>
+<PRE>
+ 
+ SHELL=/bin/sh
+ MAILTO=news
+ #=========================================================================
+ # INN crontab:
+ #=========================================================================
+ #
+ # Offer spooled news batches to ifnews of outgoing echomail
+ #
+ 30 */3 * * *           /usr/lib/news/send-ifmail f33.n125.z1.fidonet.org
+ 
+ # Send spooled news to uucp uplink
+ #
+ #35 */3 * * *          /usr/lib/news/send-uucp "uucp-feed-name"
+ 
+ # Run news.daily every morning at 6am
+ #
+ 0 6 * * *              /usr/lib/news/bin/news.daily &lt; dev/null
+ 
+ # offer spooled news (that was spooled into /news/in.coming directory when the
+ # innd server wasn't available) again to the innd server.
+ #
+ 13,33,53 * * * *       /usr/lib/news/rnews -U
+</PRE>
+</CODE></BLOCKQUOTE>
+ 
+Каждые три часа пакеты для всех Fido-систем и UUCP-систем пакуются (конечно,
+без UUCP-соединения вы можете пропустить посленюю часть). Далее производится 
+ежедневная очистка, о чем сообщается через почту. Затем будут обработаны все
+не отправленные статьи.
+<P> 
+Следующая вещь, которую мы сделаем - создание групп новостей. Для этого и
+для большинства других изменений в системе новостей используется команда
+ctlinnd. Она вызывается только пользователем news и вы можете найти ее в
+каталоге /usr/lib/news/bin.
+<P> 
+Новые группы новостей создаются командой ctlinnd newgroup fido.LINUX (где
+fido.LINUX взято в качестве примера). Вы можете использовать различные опции,
+которые объяснены в мане по ctlinnd(8). вы должны создать группы новостей
+control, junk и fido.junk, которые содержат сообщения управления (например,
+cancel), статьи для неизвестных групп новостей и статьи для областей, не
+определенных в /etc/ifmail/areas.
+<P> 
+Чтобы иметь описания групп новостей в читалке новостей, ва вероятно захотите
+создать файл /usr/lib/news/newsgroups, который содержит имя группы новостей 
+и ее описание (разделенные табуляцией) в каждой строке. Порядок групп не важен,
+из повторяющихся строк будет отображена только первая.
+<P> 
+Так как INN посылает свои log-сообщения через syslog, нам надо сделать такие
+изменения в /etc/syslog.conf:
+<BLOCKQUOTE><CODE>
+<PRE>
+ 
+ news.crit                               /var/log/news/news.crit
+ news.err                                /var/log/news/news.err
+ news.notice                             /var/log/news/news.notice
+</PRE>
+</CODE></BLOCKQUOTE>
+ 
+Теперь создайте каталог /var/log/news, и перезапустите ваш syslogd.
+<P> 
+Для прочей информации по INN, переходе с cnews на INN, проблемами пр. прочтите
+весьма информативный INN-FAQ и маны.
+<P>
+<P>
+<P>
+<HR>
+<A HREF="Ifmail-HOWTO-6.html">Next</A>
+<A HREF="Ifmail-HOWTO-4.html">Previous</A>
+<A HREF="Ifmail-HOWTO.html#toc5">Contents</A>
+</BODY>
+</HTML>

@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE>Linux Hardware Compatibility HOWTO: Контролеры (жесткие диски)</TITLE>
+ <LINK HREF="Hardware-HOWTO-8.html" REL=next>
+ <LINK HREF="Hardware-HOWTO-6.html" REL=previous>
+ <LINK HREF="Hardware-HOWTO.html#toc7" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="Hardware-HOWTO-8.html">Next</A>
+<A HREF="Hardware-HOWTO-6.html">Previous</A>
+<A HREF="Hardware-HOWTO.html#toc7">Contents</A>
+<HR>
+<H2><A NAME="s7">7. Контролеры (жесткие диски)</A></H2>
+
+<P>Линукс поддерживает стандартные IDE,MFM и RLL контролеры. 
+Нужно отметить , что при использовании MFM\RLL контроллеров очень важно
+использовать ext2fs и устанавливать проверку на плохие блоки при форматировании диска.
+<P>Расширения IDE (EIDE) также поддерживаются.
+До двух IDE интерфейсов и четырёх дисков . Линукс автоматически распознает cледующии EIDE контроллеры:
+<P>
+<P>
+<UL>
+<LI>CMD-640 (Поддержка для "глючных интерфейсов" включена в серию ядер 2.2)</LI>
+<LI>DTC 2278D</LI>
+<LI>FGI/Holtek HT-6560B VLB (Поддержка для второго интерфейса в серии ядер 2.2)</LI>
+<LI>RZ1000 (Поддержка для "глючных интерфейсов" в ядрах серии 2.2)</LI>
+<LI>Triton I (82371FB) (с busmaster DMA)</LI>
+<LI>Triton II (82371SB) (с busmaster DMA)</LI>
+</UL>
+<P>
+<P>ESDI контроллеры с эмуляцией ST-506 (MFM/RLL/IDE) интерфейса также 
+поддерживаются. (Комментарий о проверки плохих блоков также относиться к этим интерфейсам.)
+<P>Cстандартные 8ми битные XT контроллеры также работают.
+<P>Поддержка IDE/ATARI включена начиная с пре-патча pre-patch-2.0.31-3 
+<P>
+<H2><A NAME="ss7.1">7.1 Альфа , Бета драйвера</A>
+</H2>
+
+<P>
+<UL>
+<LI>UMC 8672 интерфейсы (экспериментальная в ядрах серии 2.2)</LI>
+<LI>Promise DC4030VL кэширующая интерфейсная карта (эксперементальная
+поддержка в серии 2.2)</LI>
+</UL>
+<HR>
+<A HREF="Hardware-HOWTO-8.html">Next</A>
+<A HREF="Hardware-HOWTO-6.html">Previous</A>
+<A HREF="Hardware-HOWTO.html#toc7">Contents</A>
+</BODY>
+</HTML>

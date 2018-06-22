@@ -1,0 +1,215 @@
+<HTML
+><HEAD
+><TITLE
+>Entering the chroot environment</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Microsoft FrontPage 4.0"/><LINK
+REL="HOME"
+TITLE="Linux From Scratch"
+HREF="http://www.linuxfromscratch.org/view/4.0/index.html"/><LINK
+REL="UP"
+TITLE="Installing basic system software"
+HREF="http://www.linuxfromscratch.org/view/4.0/chapter06/chapter06.html"/><LINK
+REL="PREVIOUS"
+TITLE="About debugging symbols"
+HREF="http://www.linuxfromscratch.org/view/4.0/chapter06/aboutdebug.html"/><LINK
+REL="NEXT"
+TITLE="Changing ownership"
+HREF="http://www.linuxfromscratch.org/view/4.0/chapter06/changingowner.html"/></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#006000"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Linux From Scratch: Версия 4.0</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="aboutdebug.html"
+ACCESSKEY="P"
+>Назад</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Глава 6. Установка основных компонентов
+        системы</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="changingowner.html"
+ACCESSKEY="N"
+>Вперед</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"/></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="ch06-chroot"
+>Вход в среду chroot</A
+></H1
+><P
+>Для последующей инсталляции пакетов
+  необходимо войти в среду chroot. Для этого
+  войдите в систему в режиме пользователя root,
+  т.к. только root он имеет право выполнять
+  команду <TT
+CLASS="userinput"
+><B
+>chroot</B
+></TT
+>.</P
+><P
+>После перехода в режим пользователя root,
+  выполните следующую команду для входа в
+  среду chroot:</P
+><P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="screen"
+><TT
+CLASS="userinput"
+><B
+>chroot $LFS /static/bin/env -i \
+&nbsp;&nbsp;&nbsp;&nbsp;HOME=/root TERM=$TERM PS1='\u:\w\$ ' \
+&nbsp;&nbsp;&nbsp;&nbsp;PATH=/bin:/usr/bin:/sbin:/usr/sbin:/static/bin \
+&nbsp;&nbsp;&nbsp;&nbsp;/static/bin/bash --login</B
+></TT
+></PRE
+></TD
+></TR
+></TABLE
+>
+  <P
+>Команда <b>env</b> с опцией <TT
+CLASS="userinput"
+><B
+>-i</B
+></TT
+>  очистит значения всех переменных среды chroot.
+  Затем только переменные HOME, TERM, PS1 и PATH
+  будут заданы. Конструкция TERM=$TERM
+  устанавливает значение TERM для среды chroot
+  равным значению TERM вне этой среды; эта
+  переменная необходима для корректной
+  работы программ типа vim и less. Если вы
+  нуждаетесь в других переменных, например CFLAGS
+  или CXXFLAGS, самое время задать их снова.</P
+><P
+>Отныне нет необходимости использовать
+  переменную LFS, т.к. все действия
+  выполняются в файловой системе LFS (то, что
+  оболочка считает / , на самом деле является
+  /mnt/lfs).</P
+><P
+>Обратите внимание, что все команды, начиная
+  с данной главы, следует выполнять из среды
+  chroot. Если по какой-то причине (например,
+  перезагрузка системы) вы вышли из этой
+  среды, прежде чем возобновить инсталляцию,
+  заново войдите в нее и монтируйте файловую
+  систему proc (см. далее).</P
+><P
+>Заметьте, что приглашение bash выглядит
+  следующим образом: "I have no name!&quot; Это
+  нормально, т.к. пакет Glibc еще не был
+  установлен.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"/><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="aboutdebug.html"
+ACCESSKEY="P"
+>Назад</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="../index.html"
+ACCESSKEY="H"
+>Домой</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="changingowner.html"
+ACCESSKEY="N"
+>Вперед</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Отладочные символы</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="chapter06.html"
+ACCESSKEY="U"
+>Наверх</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Изменение прав</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

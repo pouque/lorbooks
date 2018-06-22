@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
+  <meta http-equiv="Content-Type" content="text/html; charset=windows-1251"><title>Installing Fileutils-4.1</title>
+<meta name="GENERATOR" content="Modular DocBook HTML Stylesheet Version 1.73"><link rel="HOME" title="Linux From Scratch" href="http://www.linux.org.ru/books/Distro/lfsbook/chapter05/index.html"><link rel="UP" title="Preparing the LFS system" href="chapter05.html"><link rel="PREVIOUS" title="Installing Diffutils-2.8.1" href="diffutils.html"><link rel="NEXT" title="Installing Findutils-4.1" href="findutils.html"></head><body class="sect1" bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#840084" alink="#006000"><div class="NAVHEADER"><table summary="Header navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><th colspan="3" align="Center">Linux From Scratch: Версия 4.0</th></tr><tr><td width="10%" align="Left" valign="Bottom"><a href="diffutils.html" accesskey="P">Назад</a></td><td width="80%" align="Center" valign="Bottom">Глава 5. Подготовка системы LFS</td><td width="10%" align="Right" valign="Bottom"><a href="findutils.html" accesskey="N">Вперед</a></td></tr></tbody></table><hr align="Left" width="100%"></div><div class="sect1"><h1 class="sect1"><a name="ch05-fileutils">Установка Fileutils-4.1</a></h1><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen">Приблизительное время компиляции:           0.94 SBU<br>Необходимое дисковое пространство:  40 MB</pre></td></tr></tbody></table><div class="sect2"><h2 class="sect2"><a name="AEN1422">Инсталляция Fileutils</a></h2><p>Некоторые
+программы из статически слинкованного пакета Fileutils могут вызвать ошибку
+сегментации на системах, где используется Glibc-2.2.3. Чаще всего эта проблема
+встречается на системах с процессорами AMD, однако было зафиксировано несколько
+случаев на Intel-системах. Если ваша система попадает под данную категорию,
+примените патч.</p><p>В некоторых случаях после применения патча компиляция
+пакета будет невозможна, даже если у вас процессор AMD и библиотеки Glibc-2.2.3
+(или новее). В таком случае удалите директорию fileutils-4.1 и заново распакуйте
+tar-архив. Предполагается, что это связано с тем, что ваш базовый дистрибутив
+каким-то образом изменил библиотеки Glibc-2.2.3, однако на данный момент
+подробности недоступны.</p><p>Для того чтобы данный пакет корректно компилировался
+на системах с процессорами AMD и библиотеками Glibc-2.2.3, выполните следующую
+команду. Не делайте этго, если у вас не установлена<em></em> Glibc-2.2.3. Более чем вероятно, это вызовет различные сбои при компиляции.</p><p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>patch -Np1 -i ../fileutils-4.1.patch</b></tt></pre></td></tr></tbody></table></p><p>Для инсталляции Fileutils выполните:</p><p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>LDFLAGS=-static \<br>	./configure --disable-nls --prefix=$LFS/static &amp;&amp;<br>make &amp;&amp;<br>make install</b></tt></pre></td></tr></tbody></table></p><p>Теперь можно проверить, удалось ли избежать проблемы с ошибкой сегментации. Выполните
+<tt class="userinput"><b>$LFS/static/bin/ls</b></tt>. Если программа работает,
+все в порядке. Если нет, повторите инсталляцию с применением патча, если
+вы инсталлировали пакет без него, или без применения патча, если до этого
+вы инсталлировали пакет с его применением.</p></div><div class="sect2"><h2 class="sect2"><a name="AEN1437">Пояснения команд</a></h2><p><tt class="userinput"><b>patch -Np1 -i ../fileutils-4.1.patch:</b></tt>
+Эта команда решает проблему компиляции fileutils с использованием статических
+ссылок на системах с библиотеками glibc 2.2.3. Если этого не сделать, то
+впоследствии вы вероятно столкнетесь с ошибками сегментации при выполнении
+программ из пакета fileutils, когда войдете в систему LFS с помощью chroot
+в Главе 6.</p></div><div class="sect2">
+<div class="sect2"><h2 class="sect2"><a name="AEN6605">Содержимое Fileutils</a></h2><p>Последняя проверка: версия 4.1.</p><div class="sect3"><h3 class="sect3"><a name="AEN6608">Программы</a></h3><p>chgrp, chmod, chown, cp, dd, df, dir, dircolors, du, install, ln,  ls,
+ mkdir, mkfifo, mknod, mv, rm, rmdir, shred, sync, touch и vdir</p></div><div class="sect3"><h3 class="sect3"><a name="AEN6611">Описания</a></h3><div class="sect4"><h4 class="sect4"><a name="AEN6613">chgrp</a></h4><p>chgrp группу владельца указанных файлов, возможно указание как имени группы,
+так и ее номера.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6616">chmod</a></h4><p>chmod изменяет права доступа к указанному файлу, в соответствии с параметрами, 
+заданными символьно или в восьмеричном представлении двоичного выражения новых
+прав.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6619">chown</a></h4><p>chown изменяет владельца и/или группу указанных файлов.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6622">cp</a></h4><p>cp копирует файлы.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6625">dd</a></h4><p>dd копирует файл (по умолчанию, со стандартного ввода на стандартный вывод) 
+с указанным размером блока и опциональными преобразованиями.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6628">df</a></h4><p>df показывает количество свободного места на файловых системах, содержащих
+указанные файлы. Если файлы не заданы, показывется свободное место на всех
+смонтированных файловых системах.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6631">dir, ls and vdir</a></h4><p>dir и vdir - версии ls с разными форматами вывода по умолчанию. Эти программы 
+выводят список заданных файлов и каталогов. Содержимое каталога сортируется 
+по алфавиту. ls, по умолчанию, перечисляет файлы в столбцах если стандартный
+вывод - терминал, иначе идет перечисление по одному в строке. dir, по умолчанию,
+перечисляет файлы в столбцах. vdir, по умолчанию перечисляет файлы в полном
+формате.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6634">dircolors</a></h4><p>dircolors выводит значение LS_COLOR. Переменная  LS_COLOR используется
+для установки цветовой схемы, используемой ls и прочими утилитами.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6637">du</a></h4><p>du выводит количество дискового пространства, занятого указанными файлами 
+и каталогами (включая подкаталоги).</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6640">install</a></h4><p>install копипует файлы, устанавливает права доступа и, если возможно, владельца
+и группу.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6643">ln</a></h4><p>ln создаетжесткие или мягкие (символические) ссылки на файлы.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6646">mkdir</a></h4><p>mkdir создает каталог с заданным именем.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6649">mkfifo</a></h4><p>mkfifo создает FIFO с заданным именем.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6652">mknod</a></h4><p>mknod создает FIFO, символьный или блочный файл с заданным именем.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6655">mv</a></h4><p>mv перемещает файлы из одного каталога в другой или переименовывает их, 
+в зависимости от заданных параметров.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6658">rm</a></h4><p>rm удаляет файлы или каталоги.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6661">rmdir</a></h4><p>rmdir удаляет пустые каталоги.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6664">shred</a></h4><p>shred безопасно удаляет файл, перезаписывая занимаемые им блоки, так что 
+содержимое невозможно восстановить.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6667">sync</a></h4><p>sync принудительно записывает изменившиеся блоки на диск и обновляет  superblock.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6670">touch</a></h4><p>touch изменяет время доступа и изменения каждого заданного файла на текущее 
+время. Если файл не существует, то создается пустой файл.</p></div></div></div>
+<div class="sect2"><h2 class="sect2"><a name="AEN6673">Зависимости Fileutils</a></h2><p>Последняя проверка: версия 4.1.</p><p class="literallayout">Bash: sh<br>
+   Binutils: ar, as, ld, ranlib<br>
+   Diffutils: cmp<br>
+   Fileutils: chmod, cp, install, ln, ls, mkdir, mv, rm, rmdir<br>
+   Gettext: msgfmt, xgettext<br>
+   Gcc: cc, cc1, collect2, cpp0, gcc<br>
+   Grep: egrep, fgrep, grep<br>
+   Make: make<br>
+   Perl: perl<br>
+   Sed: sed<br>
+   Sh-utils: basename, echo, expr, hostname, sleep, uname<br>
+   Texinfo: install-info<br>
+   Textutils: cat, tr</p></div>
+<h2 class="sect2"></h2></div></div><div class="NAVFOOTER"><hr align="Left" width="100%"><table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="33%" align="Left" valign="Top"><a href="diffutils.html" accesskey="P">Prev</a></td><td width="34%" align="Center" valign="Top"><a href="../index.html" accesskey="H">Home</a></td><td width="33%" align="Right" valign="Top"><a href="findutils.html" accesskey="N">Next</a></td></tr><tr><td width="33%" align="Left" valign="Top">Installing Diffutils-2.8.1</td><td width="34%" align="Center" valign="Top"><a href="chapter05.html" accesskey="U">Up</a></td><td width="33%" align="Right" valign="Top">Installing Findutils-4.1</td></tr></tbody></table></div><br>
+</body></html>

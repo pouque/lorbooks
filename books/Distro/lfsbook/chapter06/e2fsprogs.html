@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>Installing E2fsprogs-1.27</title><meta name="GENERATOR" content="Microsoft FrontPage 4.0" /=""><link rel="HOME" title="Linux From Scratch" href="http://www.linuxfromscratch.org/view/4.0/index.html" /=""><link rel="UP" title="Installing basic system software" href="http://www.linuxfromscratch.org/view/4.0/chapter06/chapter06.html" /=""><link rel="PREVIOUS" title="Installing Diffutils-2.8.1" href="http://www.linuxfromscratch.org/view/4.0/chapter06/diffutils.html" /=""><link rel="NEXT" title="Installing Grep-2.5" href="http://www.linuxfromscratch.org/view/4.0/chapter06/grep.html" /=""></head><body class="sect1" bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#840084" alink="#006000"><div class="NAVHEADER"><table summary="Header navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><th colspan="3" align="Center">Linux From Scratch: Версия 4.0</th></tr><tr><td width="10%" align="Left" valign="Bottom"><a href="diffutils.html" accesskey="P">Назад</a></td><td width="80%" align="Center" valign="Bottom">Глава 6. Установка основных компонентов
+        системы</td><td width="10%" align="Right" valign="Bottom"><a href="grep.html" accesskey="N">Вперед</a></td></tr></tbody></table><hr align="Left" width="100%" /=""></div><div class="sect1"><h1 class="sect1"><a name="ch06-e2fsprogs">Установка E2fsprogs-1.27</a></h1><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen">Приблизительное время компиляции:           0.80 SBU<br>Необходимое дисковое пространство:  13 MB</pre></td></tr></tbody></table><div class="sect2"><h2 class="sect2"><a name="AEN4586">Инсталляция E2fsprogs</a></h2><p>Для инсталляции E2fsprogs выполните:</p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>mkdir ../e2fsprogs-build &amp;&amp;<br>cd ../e2fsprogs-build &amp;&amp;<br>../e2fsprogs-1.27/configure --prefix=/usr --with-root-prefix="" \<br>    --enable-elf-shlibs &amp;&amp;<br>make &amp;&amp;<br>make install &amp;&amp;<br>make install-libs &amp;&amp;<br>install-info /usr/share/info/libext2fs.info /usr/share/info/dir</b></tt></pre></td></tr></tbody></table></div><div class="sect2"><h2 class="sect2"><a name="AEN4592">Пояснения команд</a></h2><p><tt class="userinput"><b>--with-root-prefix="":</b></tt>  Причина использования данной опции -
+    настройка файла Makefile. Выполнение
+    некоторых программ, когда к примеру, /usr
+    еще не монтирован, жизненно важно. (например
+    выполнение программы e2fsck).
+    Соответственно, такие программы и
+    библиотеки должны находиться в каталогах
+    /lib и /sbin. Если не использовать данную
+    опцию, эти программы по умолчанию
+    помещаются в каталог /usr, что нас не
+    устраивает.</p><p><tt class="userinput"><b>--enable-elf-shlibs:</b></tt>  Создает shared-библиотеки для некоторых
+    программ пакета</p><p><tt class="userinput"><b>make install-libs:</b></tt>  Инсталлирует скомпилированные
+    библиотеки.</p></div><div class="sect2">
+<div class="sect2"><h2 class="sect2"><a name="AEN6461">Содержимое E2fsprogs</a></h2><p>Последняя проверка: версия 1.27.</p><div class="sect3"><h3 class="sect3"><a name="AEN6464">Программы</a></h3><p>badblocks, chattr, compile_et, debugfs, dumpe2fs, e2fsck,  e2image, e2label,
+fsck, fsck.ext2, fsck.ext3, lsattr, mk_cmds, mke2fs,  mkfs.ext2, mkfs.ext3,
+mklost+found, resize2fs, tune2fs и uuidgen</p></div><div class="sect3"><h3 class="sect3"><a name="AEN6467">Описания</a></h3><div class="sect4"><h4 class="sect4"><a name="AEN6469">badblocks</a></h4><p>badblocks используется для поиска сбойных блоков на устройстве (обычно,
+дисковом разделе).</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6472">chattr</a></h4><p>chattr изменяет атрибуты файлов в файловых системах Linux second extended.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6475">compile_et</a></h4><p>compile_et используется для преобразования таблицы, листинга кодов ошибок
+и связанных сообщений в исходный код C, что удобно для использования с библиотекой
+com_err.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6478">debugfs</a></h4><p>debugfs - файловый отладчик. Используется для исследования и и изменения
+состояния файловой системы ext2.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6481">dumpe2fs</a></h4><p>dumpe2fs выводит superblock и информацию о группе блоков для файловой
+системы, присутствующей на указанном устройстве.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6484">e2fsck and fsck.ext2</a></h4><p>e2fsck и fsck.ext2 используются для проверки и исправления файловых систем
+Linux second extended.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6487">e2image</a></h4><p>e2image используется для сохранения критичных данных файловой системы
+ext2в файл.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6490">e2label</a></h4><p>e2label выводит и изменяет метку файловой системы ext2  filesystem, расположенной
+на указанном устройстве.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6493">fsck</a></h4><p>fsck используется для проверки и исправления файловых систем Linux.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6496">fsck.ext3</a></h4><p>fsck.ext3 используется для проверки и исправления файловых систем Linux
+ext3.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6499">lsattr</a></h4><p>lsattr выводит атрибуты файла на second extended  file system.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6502">mk_cmds</a></h4><p>mk_cmd, получая таблицу команд на входе, выводит исходный код C, который
+задается для использования с подсистемной библиотекой, libss.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6505">mke2fs and mkfs.ext2</a></h4><p>mke2fs используется для создания Linux second extended file system на
+устройстве (обычно, разделе диска). mkfs.ext2 выполняет те же функции, что
+и mke2fs.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6508">mkfs.ext3</a></h4><p>mkfs.ext3 используется для создания файловой системы ext3.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6511">mklost+found</a></h4><p>mklost+found создает каталог lost+found в текущем рабочем каталогу в Linux
+second extended file system. mklost+found заранее выделяет блоки диска для
+этого каталога, делая его доступным для e2fsck.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6514">resize2fs</a></h4><p>resize2fs используется для изменения размеров файловой системы ext2.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6517">tune2fs</a></h4><p>tune2fs изменяет настраиваемые параметры Linux second extended  filesystem.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6520">uuidgen</a></h4><p>uuidgen создает новый универсальный уникальный идентификатор (UUID), используя
+библиотеку libuuid. Новый UUID будет уникален среди всех созданных  UUID
+на любой системе и в любое время.</p></div></div><div class="sect3"><h3 class="sect3"><a name="AEN6523">Библиотеки</a></h3><p>libcom_err.[a,so], libe2p.[a,so], libext2fs.[a,so], libss.[a,so], libuuid.[a,so]</p></div><div class="sect3"><h3 class="sect3"><a name="AEN6526">Описания</a></h3><div class="sect4"><h4 class="sect4"><a name="AEN6528">libcom_err</a></h4><p>Вывод стандартных ошибок.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6531">libe2p</a></h4><p>libe2p используется dumpe2fs, chattr и lsattr.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6534">libext2fs</a></h4><p>Библиотека ext2fs создана для работы пользовательских программ с файловыми
+системами ext2.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6537">libss</a></h4><p>libss используется debugfs.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6540">libuuid</a></h4><p>Библиотека libuuid используется для генерации уникальных идентификаторов
+для объектов, которые могут быть доступны извне.</p></div></div></div>
+<div class="sect2"><h2 class="sect2"><a name="AEN6543">Зависимости E2fsprogs</a></h2><p>Последняя проверка: версия 1.25.</p><p class="literallayout">Bash: sh<br>
+ Binutils: ar, as, ld, ranlib, strip<br>
+ Diffutils: cmp<br>
+ Fileutils: chmod, cp, install, ln, mkdir, mv, rm, sync<br>
+ Gcc: cc, cc1, collect2, cpp0<br>
+ Glibc: ldconfig<br>
+ Grep: egrep, grep<br>
+ Gzip: gzip<br>
+ Make: make<br>
+ Gawk: awk<br>
+ Sed: sed<br>
+ Sh-utils: basename, echo, expr, hostname, uname<br>
+ Texinfo: makeinfo<br>
+ Textutils: cat, tr</p></div>
+<h2 class="sect2"></h2></div></div><div class="NAVFOOTER"><hr align="Left" width="100%" /=""><table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="33%" align="Left" valign="Top"><a href="diffutils.html" accesskey="P">Назад</a></td><td width="34%" align="Center" valign="Top"><a href="../index.html" accesskey="H">Домой</a></td><td width="33%" align="Right" valign="Top"><a href="grep.html" accesskey="N">Вперед</a></td></tr><tr><td width="33%" align="Left" valign="Top">Установка Diffutils-2.8.1</td><td width="34%" align="Center" valign="Top"><a href="chapter06.html" accesskey="U">Наверх</a></td><td width="33%" align="Right" valign="Top">Установка Grep-2.5</td></tr></tbody></table></div></body></html>

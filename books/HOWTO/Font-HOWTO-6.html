@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE>Font HOWTO: True Type to Type1 Conversion</TITLE>
+ <LINK HREF="Font-HOWTO-7.html" REL=next>
+ <LINK HREF="Font-HOWTO-5.html" REL=previous>
+ <LINK HREF="Font-HOWTO.html#toc6" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="Font-HOWTO-7.html">Далее</A>
+<A HREF="Font-HOWTO-5.html">Назад</A>
+<A HREF="Font-HOWTO.html#toc6">Оглавление</A>
+<HR>
+<H2><A NAME="s6">6. Преобразование фонтов True Type в Type1</A></H2>
+
+<H2><A NAME="ss6.1">6.1 Зачем ?</A>
+</H2>
+
+<P>Хотя, возможно, правильнее было бы спросить ``а почему нет ?'' Типичный 
+пользователь Linux является мигрантом с Windows, и, скорее всего, 
+имеет огромную коллекцию фонтов TrueType. Многие из них (например, те, 
+которые поставляются с MS Word и продуктами  Corel) имеют очень неплохое 
+качество. Однако некоторые из приложений для Linux, такие как Star Office 
+и LaTeX, не поддерживают фонтов TrueType, но поддерживают фонты 
+Type1.  <EM>Дополнение: кажется Star Office может работать с фонтами TrueType, 
+но я еще не разобрался с деталями. В лучшем случае для этого требуется 
+изучить тонкости работы программы.</EM>
+Надо выразить большое сожаление по этому поводу, поскольку Линукс, с его 
+поддержкой TrueType в ghostscript и наличием фонт-сервера для TrueType, 
+имеет всю необходимую инфраструктуру для обеспечения возможности 
+работы с TrueType - фонтами.
+
+<H2><A NAME="ss6.2">6.2 Как ?</A></H2>
+
+<P>Для того, чтобы иметь возможность конвертировать свои фонты TrueType в фонты Type1, 
+загляните на <A HREF="http://quadrant.netspace.net.au/ttf2pt1/">http://quadrant.netspace.net.au/ttf2pt1/</A> 
+и скачайте ttf2pt1. 
+<P>Для того, чтобы преобразовать фонт TrueType в фонт Type1, воспользуйтесь 
+командой следующего вида:
+<PRE>
+        ttf2pt1 -b file.ttf name
+        
+</PRE>
+
+где <CODE>name</CODE> - это имя файла нового фонта Type1 (то есть 
+произвольное имя; хотя неплохо будет, если Вы используете то же самое имя, 
+какое имел ttf-файл. Например:  <br> <CODE>ttf2pt1 -b foo.ttf foo</CODE>.
+
+<P>Ладно, это прекрасно работает для одного фонта. Если же требуется 
+преобразовать множество фонтов, нужен более удобный способ. Можно 
+просто организовать цикл:
+<PRE>
+        for X in *.ttf; do ttf2pt1 -b $X ${X%%.ttf}; done
+        
+</PRE>
+
+В качестве альтернативы можете скачать пакет 
+<A HREF="http://pegasus.rutgers.edu/~elflord/font_howto/ttfutils-0.2.tar.gz">ttfutils</A>
+и использовать для преобразования <CODE>ttf2type1</CODE>:
+<PRE>
+        ttf2type1 *.ttf
+        
+</PRE>
+<HR>
+<A HREF="Font-HOWTO-7.html">Далее</A>
+<A HREF="Font-HOWTO-5.html">Назад</A>
+<A HREF="Font-HOWTO.html#toc6">Оглавление</A>
+</BODY>
+</HTML>

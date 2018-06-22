@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>Installing Sysvinit-2.84</title><meta name="GENERATOR" content="Microsoft FrontPage 4.0" /=""><link rel="HOME" title="Linux From Scratch" href="http://www.linuxfromscratch.org/view/4.0/index.html" /=""><link rel="UP" title="Installing basic system software" href="http://www.linuxfromscratch.org/view/4.0/chapter06/chapter06.html" /=""><link rel="PREVIOUS" title="Installing Sysklogd-1.4.1" href="http://www.linuxfromscratch.org/view/4.0/chapter06/sysklogd.html" /=""><link rel="NEXT" title="Installing Tar-1.13" href="http://www.linuxfromscratch.org/view/4.0/chapter06/tar.html" /=""></head><body class="sect1" bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#840084" alink="#006000"><div class="NAVHEADER"><table summary="Header navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><th colspan="3" align="Center">Linux From Scratch: Версия 4.0</th></tr><tr><td width="10%" align="Left" valign="Bottom"><a href="sysklogd.html" accesskey="P">Назад</a></td><td width="80%" align="Center" valign="Bottom">Глава 6. Установка основных компонентов
+        системы</td><td width="10%" align="Right" valign="Bottom"><a href="tar.html" accesskey="N">Вперед</a></td></tr></tbody></table><hr align="Left" width="100%" /=""></div><div class="sect1"><h1 class="sect1"><a name="ch06-sysvinit">Установка Sysvinit-2.84</a></h1><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen">Приблизительное время компиляции:           0.06 SBU<br>Необходимое дисковое пространство:  1 MB</pre></td></tr></tbody></table><div class="sect2"><h2 class="sect2"><a name="AEN5327">Инсталляция Sysvinit</a></h2><p>Когда изменяется уровень (runlevel) системы (например,
+    при остановке работы системы), init
+    посылает сигналы TERM и KILL процессам,
+    которые он запустил. На экран init выдает
+    сообщение "Sending processes the TERM signal".
+    Создается впечатление, что init посылает
+    данные сигналы всем запущенным процессам.
+    Во избежание недоразумений, изменим файл init.c,
+    что вывод на экране выглядел следующим
+    образом: "Sending processes started by init the TERM signal".
+    Для этого выполните нижеприведенные
+    команды:</p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>cp src/init.c{,.backup} &amp;&amp;<br>sed 's/Sending processes/Sending processes started by init/g' \<br>    src/init.c.backup &gt; src/init.c</b></tt></pre></td></tr></tbody></table><p>Для инсталляции Sysvinit выполните:</p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>make -C src &amp;&amp;<br>make -C src install</b></tt></pre></td></tr></tbody></table></div><div class="sect2">
+<div class="sect2"><h2 class="sect2"><a name="AEN8532">Содержимое Sysvinit</a></h2><p>Последняя проверка: версия 2.84.</p><div class="sect3"><h3 class="sect3"><a name="AEN8535">Программы</a></h3><p>halt, init, killall5, last, lastb (ссылка на last), mesg, pidof
+(ссылка на killall5), poweroff (ссылка на halt), reboot (ссылка на
+halt), runlevel, shutdown, sulogin, telinit (ссылка на init), utmpdump и
+wall</p></div><div class="sect3"><h3 class="sect3"><a name="AEN8538">Описания</a></h3><div class="sect4"><h4 class="sect4"><a name="AEN8540">halt</a></h4><p>halt отмечает в /var/log/wtmp завершение работы системы и сообщает
+ядру о необходимости остановить, перезагрузить или отключить систему.
+Если halt или reboot вызваны, когда система не на уровнях выполнения  0
+или 6, вместо них запускается (с флагами -h и -r соответственно).</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8543">init</a></h4><p>init - предок всех процессов. Его основная роль - создание процессов
+из скрипта /etc/inittab. Этот файл содержит записи для создания getty, к
+которым подключаются пользователи. initt также контролирует различные
+автономные процессы.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8546">killall5</a></h4><p>killall5 - команда killall из SystemV. Посылается сигнал всем
+процессам вне собственной сессии, так что интерпретатор, выполняющий
+скрипт, из которого была вызвана эта команда, не будет завершен.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8549">last</a></h4><p>last просматривает /var/log/wtmp (или файл, указанный флагом -f) и
+выводит список всех пользователей, зарегистрировавшихся и завершивших
+сеанс с момента создания файла.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8552">lastb</a></h4><p>lastb действует аналогично last, но по умолчанию выводится журнал
+/var/log/btmp, содержащий записи о неудачных попытках регистрации.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8555">mesg</a></h4><p>mesg контролирует внешний доступ к терминалу пользователя. Обычно
+используется для разрешения записи на данный терминал прочим
+пользователям.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8558">pidof</a></h4><p>pidof выводит идентификаторы процессов (PIDs) указанных программ.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8561">poweroff</a></h4><p>poweroff действует аналогично shutdown -h -p. Выполняется останов
+системы и ее физическое отключение (необходим APM совместимый BIOS и
+поддержка APM в ядре).</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8564">reboot</a></h4><p>reboot действует аналогично shutdown -r. Выполняется перезагрузка
+системы.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8567">runlevel</a></h4><p>runlevel читает файл utmp (обычно /var/run/utmp), ищет записи об
+уровне выполнение, и выводит предыдущий и текущий уровни выполнения на
+стандартный вывод, разделенные пробелом.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8570">shutdown</a></h4><p>shutdown безопасно останавливает систему. Все зарегистрированные
+пользователи уведомляются об останове, регистрация в системе запрещается.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8573">sulogin</a></h4><p>sulogin вызывается init, когда система переходит в
+однопользовательский режим (указывается записью в in /etc/inittab). Init
+также выполняет sulogin, когда получает флаг -b от загрузчика
+(например, LILO).</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8576">telinit</a></h4><p>telinit посылает сигналы init, сообщающие о необходимости смены
+уровня выполнения.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8579">utmpdump</a></h4><p>utmpdump выводит содержимое файла (обычно /var/run/utmp) на
+стандартный вывод в удобном пользователю формате.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8582">wall</a></h4><p>wall посылает сообщение всем зарегистрированным пользователям, но
+лишь в случае, если mesg установлено yes.</p></div></div></div>
+<div class="sect2"><h2 class="sect2"><a name="AEN8585">Зависимости Sysvinit</a></h2><p>Последняя проверка: версия 2.84.</p><p class="literallayout">Bash: sh<br>
+Binutils: as, ld<br>
+Fileutils: chown, cp, install, ln, mknod, rm<br>
+Gcc: cc, cc1, collect2, cpp0<br>
+Make: make<br>
+Sed: sed</p></div>
+<h2 class="sect2"></h2></div></div><div class="NAVFOOTER"><hr align="Left" width="100%" /=""><table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="33%" align="Left" valign="Top"><a href="sysklogd.html" accesskey="P">Назад</a></td><td width="34%" align="Center" valign="Top"><a href="../index.html" accesskey="H">Домой</a></td><td width="33%" align="Right" valign="Top"><a href="tar.html" accesskey="N">Вперед</a></td></tr><tr><td width="33%" align="Left" valign="Top">Установка Sysklogd-1.4.1</td><td width="34%" align="Center" valign="Top"><a href="chapter06.html" accesskey="U">Наверх</a></td><td width="33%" align="Right" valign="Top">Установка Tar-1.13</td></tr></tbody></table></div></body></html>

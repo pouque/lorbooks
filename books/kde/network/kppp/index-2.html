@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<TITLE>Руководство по kppp : Установка</TITLE>
+<META HTTP-EQUIV="content-type" CONTENT="text/html; charset=koi8-r">
+<META NAME="keywords" CONTENT="kppp russian Russian translation KDE Mozzherin Dmitry перевод русский Мозжерин Дмитрий документация documentation">
+<META NAME="description" CONTENT="Russian translation of KDE kppp documentation, translator Dmitry Mozzherin">
+</HEAD>
+<BODY BGCOLOR="#ffffff" LINK="#aa0000" TEXT="#000000" > 
+<?php include("/home/maxcom/linux_html/books/head.php3") ?>
+<FONT FACE="Helvetica">
+<A HREF="http://www.kde.org/"><IMG SRC="http://books.gnu.technology/books/kde/network/kppp/logotp3.gif" BORDER="0" ALT="The K Desktop Environment"></A>
+<HR WIDTH="100%" SIZE=2 ALIGN="CENTER" NOSHADE>
+
+ 
+<P ALIGN="RIGHT">
+
+<A HREF="index-3.html"> Вперед </A>
+<A HREF="index-1.html"> Назад </A>
+<A HREF="index.html#toc2"> Содержание </A>
+</P>
+<H3><A NAME="s2">2. Установка</A></H3>
+
+<P>
+<P> <CODE> ПОЖАЛУЙСТА, НА ЗАБУДЬТЕ ПРОЧИТАТЬ ЧАСТО ЗАДАВАЕМЫЕ ВОПРОСЫ! СПАСИБО! </CODE>
+<P>    
+<H3><A NAME="ss2.1">2.1 Где найти <EM>kppp</EM> </A>
+</H3>
+
+<P><EM>kppp</EM> -- это приложение, написанное для проекта KDE  
+<A HREF="http://www.kde.org">http://www.kde.org</A>.
+Kppp можно найти на 
+<A HREF="ftp://ftp.kde.org/pub/kde/">ftp://ftp.kde.org/pub/kde/</A>, главном ftp-сайте 
+проекта KDE.
+<P>
+<H3><A NAME="ss2.2">2.2 Требования</A>
+</H3>
+
+<P>Для того, чтобы успешно скомпилировать <EM>kppp</EM>, вам 
+будут нужны последние версии <CODE>libkdecore</CODE>
+и <CODE>libkdeui</CODE>. Все требуемые библиотеки, равно как и сам <EM>kppp</EM> 
+можно найти на 
+<A HREF="ftp://ftp.kde.org/pub/kde/">ftp://ftp.kde.org/pub/kde/</A>. 
+<P>
+<H3><A NAME="ss2.3">2.3 Компилирование и установка</A>
+</H3>
+
+<P>
+<P> <CODE>  ПОЖАЛУЙСТА, НА ЗАБУДЬТЕ ПРОЧИТАТЬ ЧАСТО ЗАДАВАЕМЫЕ ВОПРОСЫ! СПАСИБО! </CODE>
+<P>
+<P>У меня не было возможности проверить работу <EM>kppp</EM> на чем-либо еще кроме
+Linux, но вы можете использовать pppd под различными операционными платформами,
+включая, но не ограничиваясь SVR4, Solaris 2, Linux, FreeBSD, NetBSD, SunOS 4,
+AIX 4, OSF/1, если только pppd установлен под этими системами.
+<P>
+<P>Если вы хотите компилировать <EM>kppp</EM> для платформы отличной от Linux, 
+пожалуйста, проверьте первую пару строк в pppstats.cpp и убедитесь, что 
+defines и includes совпадают с вашей системой.
+Скорее всего, все должно быть в порядке. Пожалуйста, напишите мне о 
+любых необходимых изменениях.
+<P>
+<P>Для того, чтобы скомпилировать и установить <EM>kppp</EM> на вашу систему, 
+наберите следующее в базовой директории дистрибутива <EM>kppp</EM>:
+<BLOCKQUOTE><CODE>
+<PRE>
+% ./configure
+% make
+% make install
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>В результате <EM>kppp</EM> будет установлен с 
+<A HREF="index-7.html#setuid">setuid</A>
+ битом в 
+положении "on".
+<P>
+<P>
+<P>Убедитесь, что файл настройки pppd, который обычно находится в 
+<CODE>/etc/ppp/</CODE>, существует, но не содержит ничего.  pppd требует чтобы 
+этот файл существовал, но для того, чтобы pppd мог загружать настроечные
+параметры из <EM>kppp</EM>, файл настройки pppd должен быть пуст.
+<P>
+<P>
+<P><B>Снова:</B> Если у вас возникли проблемы -- пожалуйста сообщите их мне. 
+<P>
+<P>
+<H3><A NAME="ss2.4">2.4 Подготовка вашей Linux системы к подсоединению с помощью PPP.</A>
+</H3>
+
+<P>
+<P> <CODE> ПОЖАЛУЙСТА, НА ЗАБУДЬТЕ ПРОЧИТАТЬ ЧАСТО ЗАДАВАЕМЫЕ ВОПРОСЫ! СПАСИБО!</CODE>
+<P>Для того, чтобы <EM>kppp</EM>/pppd мог работать, ядро должно быть 
+скомпилировано с поддержкой ppp. Если в вашем случае это не так -- 
+возьмите последнюю версию
+<A HREF="ftp://sunsite.unc.edu/pub/Linux/system/Network/serial/ppp/">pppd</A>
+с какого-нибудь популярного архива Linux и перекомпилируйте ядро с поддержкой ppp. Не пугайтесь -- это звучит страшнее, чем это есть на самом деле.
+Не забудьте установить pppd после этого. Если вы не уверены, поддерживает ли
+ваше ядро ppp, наберите <CODE>dmesg</CODE> в командной строке и посмотрите, 
+есть ли что-нибудь похожее на это:
+<P>
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+PPP: version 2.3.0 (demand dialling)
+TCP compression code copyright 1989 Regents of the University of California
+PPP Dynamic channel allocation code copyright 1995 Caldera, Inc.
+PPP line discipline registered
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>
+<P>Изменения в поддрежке PPP в ядрах Linux версий 1.2.x до 2.0.x
+заставили написать новый демон pppd. В большинстве дистрибутивов демон pppd 
+может быть найден в <CODE>/usr/sbin</CODE>. Для версий ядра 1.2.x, правильная 
+версия демона pppd -- 2.1; для версий ядра 2.0.x, правильная версия -- 2.2. 
+или более новая. Если вы не знаете какая версия демона установлена на вашем 
+компьютере -- наберите:
+<P>
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+% pppd --version
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>
+<P>На самом деле ни один pppd демон не имеет параметра --version, но
+указание этого параметра вызывает сообщение об ошибке, что указан неизвестный
+параметр. Это сообщение также включает номер версии демона pppd. 
+<P>
+<P>
+<H3><A NAME="ss2.5">2.5 Дальнейшая информация о ppp/pppd</A>
+</H3>
+
+<P>Следующая web-страница содержит дальнейшую информацию про протокол ppp и про
+pppd 
+<A HREF="http://www.thoughtport.com:8080/PPP/index.html">http://www.thoughtport.com:8080/PPP/index.html</A><P>
+<P>
+<P>
+<P>
+<P ALIGN="RIGHT">
+
+<A HREF="index-3.html"> Вперед </A>
+<A HREF="index-1.html"> Назад </A>
+<A HREF="index.html#toc2"> Содержание </A>
+</P>
+<CENTER>
+<HR WIDTH="100%" SIZE=3 ALIGN=CENTER NOSHADE>
+</CENTER>    
+</FONT>
+
+ 
+</BODY>
+</HTML>

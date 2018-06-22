@@ -1,0 +1,364 @@
+<html>
+
+<head>
+<title>koi8-r</title>
+</head>
+
+<body>
+
+<pre>
+&lt;code_set_name&gt; KOI8-R
+&lt;comment_char&gt; %
+&lt;escape_char&gt; /
+% version: 1.0
+% repertoiremap: mnemonic,ds
+%  source: RFC1489 via Gabor Kiss &lt;<a
+href="mailto:kissg@sztaki.hu">kissg@sztaki.hu</a>&gt;
+
+%  and Andrey A. Chernov &lt;<a
+href="mailto:ache@astral.msk.su">ache@astral.msk.su</a>&gt;
+
+CHARMAP
+&lt;NU&gt;                   /x00   &lt;U0000&gt; NULL (NUL)
+&lt;SH&gt;                   /x01   &lt;U0001&gt; START OF HEADING (SOH)
+&lt;SX&gt;                   /x02   &lt;U0002&gt; START OF TEXT (STX)
+&lt;EX&gt;                   /x03   &lt;U0003&gt; END OF TEXT (ETX)
+&lt;ET&gt;                   /x04   &lt;U0004&gt; END OF TRANSMISSION (EOT)
+&lt;EQ&gt;                   /x05   &lt;U0005&gt; ENQUIRY (ENQ)
+&lt;AK&gt;                   /x06   &lt;U0006&gt; ACKNOWLEDGE (ACK)
+&lt;BL&gt;                   /x07   &lt;U0007&gt; BELL (BEL)
+&lt;BS&gt;                   /x08   &lt;U0008&gt; BACKSPACE (BS)
+&lt;HT&gt;                   /x09   &lt;U0009&gt; CHARACTER TABULATION (HT)
+&lt;LF&gt;                   /x0A   &lt;U000A&gt; LINE FEED (LF)
+&lt;VT&gt;                   /x0B   &lt;U000B&gt; LINE TABULATION (VT)
+&lt;FF&gt;                   /x0C   &lt;U000C&gt; FORM FEED (FF)
+&lt;CR&gt;                   /x0D   &lt;U000D&gt; CARRIAGE RETURN (CR)
+&lt;SO&gt;                   /x0E   &lt;U000E&gt; SHIFT OUT (SO)
+&lt;SI&gt;                   /x0F   &lt;U000F&gt; SHIFT IN (SI)
+&lt;DL&gt;                   /x10   &lt;U0010&gt; DATALINK ESCAPE (DLE)
+&lt;D1&gt;                   /x11   &lt;U0011&gt; DEVICE CONTROL ONE (DC1)
+&lt;D2&gt;                   /x12   &lt;U0012&gt; DEVICE CONTROL TWO (DC2)
+&lt;D3&gt;                   /x13   &lt;U0013&gt; DEVICE CONTROL THREE (DC3)
+&lt;D4&gt;                   /x14   &lt;U0014&gt; DEVICE CONTROL FOUR (DC4)
+&lt;NK&gt;                   /x15   &lt;U0015&gt; NEGATIVE ACKNOWLEDGE (NAK)
+&lt;SY&gt;                   /x16   &lt;U0016&gt; SYNCHRONOUS IDLE (SYN)
+&lt;EB&gt;                   /x17   &lt;U0017&gt; END OF TRANSMISSION BLOCK (ETB)
+&lt;CN&gt;                   /x18   &lt;U0018&gt; CANCEL (CAN)
+&lt;EM&gt;                   /x19   &lt;U0019&gt; END OF MEDIUM (EM)
+&lt;SB&gt;                   /x1A   &lt;U001A&gt; SUBSTITUTE (SUB)
+&lt;EC&gt;                   /x1B   &lt;U001B&gt; ESCAPE (ESC)
+&lt;FS&gt;                   /x1C   &lt;U001C&gt; FILE SEPARATOR (IS4)
+&lt;GS&gt;                   /x1D   &lt;U001D&gt; GROUP SEPARATOR (IS3)
+&lt;RS&gt;                   /x1E   &lt;U001E&gt; RECORD SEPARATOR (IS2)
+&lt;US&gt;                   /x1F   &lt;U001F&gt; UNIT SEPARATOR (IS1)
+&lt;SP&gt;                   /x20   &lt;U0020&gt; SPACE
+&lt;!&gt;                    /x21   &lt;U0021&gt; EXCLAMATION MARK
+&lt;&quot;&gt;                    /x22   &lt;U0022&gt; QUOTATION MARK
+&lt;Nb&gt;                   /x23   &lt;U0023&gt; NUMBER SIGN
+&lt;DO&gt;                   /x24   &lt;U0024&gt; DOLLAR SIGN
+&lt;%&gt;                    /x25   &lt;U0025&gt; PERCENT SIGN
+&lt;&amp;&gt;                    /x26   &lt;U0026&gt; AMPERSAND
+&lt;'&gt;                    /x27   &lt;U0027&gt; APOSTROPHE
+&lt;(&gt;                    /x28   &lt;U0028&gt; LEFT PARENTHESIS
+&lt;)&gt;                    /x29   &lt;U0029&gt; RIGHT PARENTHESIS
+&lt;*&gt;                    /x2A   &lt;U002A&gt; ASTERISK
+&lt;+&gt;                    /x2B   &lt;U002B&gt; PLUS SIGN
+&lt;,&gt;                    /x2C   &lt;U002C&gt; COMMA
+&lt;-&gt;                    /x2D   &lt;U002D&gt; HYPHEN-MINUS
+&lt;.&gt;                    /x2E   &lt;U002E&gt; FULL STOP
+&lt;//&gt;                   /x2F   &lt;U002F&gt; SOLIDUS
+&lt;0&gt;                    /x30   &lt;U0030&gt; DIGIT ZERO
+&lt;1&gt;                    /x31   &lt;U0031&gt; DIGIT ONE
+&lt;2&gt;                    /x32   &lt;U0032&gt; DIGIT TWO
+&lt;3&gt;                    /x33   &lt;U0033&gt; DIGIT THREE
+&lt;4&gt;                    /x34   &lt;U0034&gt; DIGIT FOUR
+&lt;5&gt;                    /x35   &lt;U0035&gt; DIGIT FIVE
+&lt;6&gt;                    /x36   &lt;U0036&gt; DIGIT SIX
+&lt;7&gt;                    /x37   &lt;U0037&gt; DIGIT SEVEN
+&lt;8&gt;                    /x38   &lt;U0038&gt; DIGIT EIGHT
+&lt;9&gt;                    /x39   &lt;U0039&gt; DIGIT NINE
+&lt;:&gt;                    /x3A   &lt;U003A&gt; COLON
+&lt;;&gt;                    /x3B   &lt;U003B&gt; SEMICOLON
+&lt;&lt;&gt;                    /x3C   &lt;U003C&gt; LESS-THAN SIGN
+&lt;=&gt;                    /x3D   &lt;U003D&gt; EQUALS SIGN
+&lt;/&gt;&gt;                   /x3E   &lt;U003E&gt; GREATER-THAN SIGN
+&lt;?&gt;                    /x3F   &lt;U003F&gt; QUESTION MARK
+&lt;At&gt;                   /x40   &lt;U0040&gt; COMMERCIAL AT
+&lt;A&gt;                    /x41   &lt;U0041&gt; LATIN CAPITAL LETTER A
+&lt;B&gt;                    /x42   &lt;U0042&gt; LATIN CAPITAL LETTER B
+&lt;C&gt;                    /x43   &lt;U0043&gt; LATIN CAPITAL LETTER C
+&lt;D&gt;                    /x44   &lt;U0044&gt; LATIN CAPITAL LETTER D
+&lt;E&gt;                    /x45   &lt;U0045&gt; LATIN CAPITAL LETTER E
+&lt;F&gt;                    /x46   &lt;U0046&gt; LATIN CAPITAL LETTER F
+&lt;G&gt;                    /x47   &lt;U0047&gt; LATIN CAPITAL LETTER G
+&lt;H&gt;                    /x48   &lt;U0048&gt; LATIN CAPITAL LETTER H
+&lt;I&gt;                    /x49   &lt;U0049&gt; LATIN CAPITAL LETTER I
+&lt;J&gt;                    /x4A   &lt;U004A&gt; LATIN CAPITAL LETTER J
+&lt;K&gt;                    /x4B   &lt;U004B&gt; LATIN CAPITAL LETTER K
+&lt;L&gt;                    /x4C   &lt;U004C&gt; LATIN CAPITAL LETTER L
+&lt;M&gt;                    /x4D   &lt;U004D&gt; LATIN CAPITAL LETTER M
+&lt;N&gt;                    /x4E   &lt;U004E&gt; LATIN CAPITAL LETTER N
+&lt;O&gt;                    /x4F   &lt;U004F&gt; LATIN CAPITAL LETTER O
+&lt;P&gt;                    /x50   &lt;U0050&gt; LATIN CAPITAL LETTER P
+&lt;Q&gt;                    /x51   &lt;U0051&gt; LATIN CAPITAL LETTER Q
+&lt;R&gt;                    /x52   &lt;U0052&gt; LATIN CAPITAL LETTER R
+&lt;S&gt;                    /x53   &lt;U0053&gt; LATIN CAPITAL LETTER S
+&lt;T&gt;                    /x54   &lt;U0054&gt; LATIN CAPITAL LETTER T
+&lt;U&gt;                    /x55   &lt;U0055&gt; LATIN CAPITAL LETTER U
+&lt;V&gt;                    /x56   &lt;U0056&gt; LATIN CAPITAL LETTER V
+&lt;W&gt;                    /x57   &lt;U0057&gt; LATIN CAPITAL LETTER W
+&lt;X&gt;                    /x58   &lt;U0058&gt; LATIN CAPITAL LETTER X
+&lt;Y&gt;                    /x59   &lt;U0059&gt; LATIN CAPITAL LETTER Y
+&lt;Z&gt;                    /x5A   &lt;U005A&gt; LATIN CAPITAL LETTER Z
+&lt;&lt;(&gt;                   /x5B   &lt;U005B&gt; LEFT SQUARE BRACKET
+&lt;////&gt;                 /x5C   &lt;U005C&gt; REVERSE SOLIDUS
+&lt;)/&gt;&gt;                  /x5D   &lt;U005D&gt; RIGHT SQUARE BRACKET
+&lt;'/&gt;&gt;                  /x5E   &lt;U005E&gt; CIRCUMFLEX ACCENT
+&lt;_&gt;                    /x5F   &lt;U005F&gt; LOW LINE
+&lt;'!&gt;                   /x60   &lt;U0060&gt; GRAVE ACCENT
+&lt;a&gt;                    /x61   &lt;U0061&gt; LATIN SMALL LETTER A
+&lt;b&gt;                    /x62   &lt;U0062&gt; LATIN SMALL LETTER B
+&lt;c&gt;                    /x63   &lt;U0063&gt; LATIN SMALL LETTER C
+&lt;d&gt;                    /x64   &lt;U0064&gt; LATIN SMALL LETTER D
+&lt;e&gt;                    /x65   &lt;U0065&gt; LATIN SMALL LETTER E
+&lt;f&gt;                    /x66   &lt;U0066&gt; LATIN SMALL LETTER F
+&lt;g&gt;                    /x67   &lt;U0067&gt; LATIN SMALL LETTER G
+&lt;h&gt;                    /x68   &lt;U0068&gt; LATIN SMALL LETTER H
+&lt;i&gt;                    /x69   &lt;U0069&gt; LATIN SMALL LETTER I
+&lt;j&gt;                    /x6A   &lt;U006A&gt; LATIN SMALL LETTER J
+&lt;k&gt;                    /x6B   &lt;U006B&gt; LATIN SMALL LETTER K
+&lt;l&gt;                    /x6C   &lt;U006C&gt; LATIN SMALL LETTER L
+&lt;m&gt;                    /x6D   &lt;U006D&gt; LATIN SMALL LETTER M
+&lt;n&gt;                    /x6E   &lt;U006E&gt; LATIN SMALL LETTER N
+&lt;o&gt;                    /x6F   &lt;U006F&gt; LATIN SMALL LETTER O
+&lt;p&gt;                    /x70   &lt;U0070&gt; LATIN SMALL LETTER P
+&lt;q&gt;                    /x71   &lt;U0071&gt; LATIN SMALL LETTER Q
+&lt;r&gt;                    /x72   &lt;U0072&gt; LATIN SMALL LETTER R
+&lt;s&gt;                    /x73   &lt;U0073&gt; LATIN SMALL LETTER S
+&lt;t&gt;                    /x74   &lt;U0074&gt; LATIN SMALL LETTER T
+&lt;u&gt;                    /x75   &lt;U0075&gt; LATIN SMALL LETTER U
+&lt;v&gt;                    /x76   &lt;U0076&gt; LATIN SMALL LETTER V
+&lt;w&gt;                    /x77   &lt;U0077&gt; LATIN SMALL LETTER W
+&lt;x&gt;                    /x78   &lt;U0078&gt; LATIN SMALL LETTER X
+&lt;y&gt;                    /x79   &lt;U0079&gt; LATIN SMALL LETTER Y
+&lt;z&gt;                    /x7A   &lt;U007A&gt; LATIN SMALL LETTER Z
+&lt;(!&gt;                   /x7B   &lt;U007B&gt; LEFT CURLY BRACKET
+&lt;!!&gt;                   /x7C   &lt;U007C&gt; VERTICAL LINE
+&lt;!)&gt;                   /x7D   &lt;U007D&gt; RIGHT CURLY BRACKET
+&lt;'?&gt;                   /x7E   &lt;U007E&gt; TILDE
+&lt;DT&gt;                   /x7F   &lt;U007F&gt; DELETE (DEL)
+&lt;hh&gt;                   /x80   &lt;U2500&gt; BOX DRAWINGS LIGHT HORIZONTAL
+&lt;vv&gt;                   /x81   &lt;U2502&gt; BOX DRAWINGS LIGHT VERTICAL
+&lt;dr&gt;                   /x82   &lt;U250C&gt; BOX DRAWINGS LIGHT DOWN AND RIGHT
+&lt;dl&gt;                   /x83   &lt;U2510&gt; BOX DRAWINGS LIGHT DOWN AND LEFT
+&lt;ur&gt;                   /x84   &lt;U2514&gt; BOX DRAWINGS LIGHT UP AND RIGHT
+&lt;ul&gt;                   /x85   &lt;U2518&gt; BOX DRAWINGS LIGHT UP AND LEFT
+&lt;vr&gt;                   /x86   &lt;U251C&gt; BOX DRAWINGS LIGHT VERTICAL AND RIGHT
+&lt;vl&gt;                   /x87   &lt;U2524&gt; BOX DRAWINGS LIGHT VERTICAL AND LEFT
+&lt;dh&gt;                   /x88   &lt;U252C&gt; BOX DRAWINGS LIGHT DOWN AND HORIZONTAL
+&lt;uh&gt;                   /x89   &lt;U2534&gt; BOX DRAWINGS LIGHT UP AND HORIZONTAL
+&lt;vh&gt;                   /x8A   &lt;U253C&gt; BOX DRAWINGS LIGHT VERTICAL AND HORIZONTAL
+&lt;TB&gt;                   /x8B   &lt;U2580&gt; UPPER HALF BLOCK
+&lt;LB&gt;                   /x8C   &lt;U2584&gt; LOWER HALF BLOCK
+&lt;FB&gt;                   /x8D   &lt;U2588&gt; FULL BLOCK
+&lt;lB&gt;                   /x8E   &lt;U258C&gt; LEFT HALF BLOCK
+&lt;RB&gt;                   /x8F   &lt;U2590&gt; RIGHT HALF BLOCK
+&lt;.S&gt;                   /x90   &lt;U2591&gt; LIGHT SHADE
+&lt;:S&gt;                   /x91   &lt;U2592&gt; MEDIUM SHADE
+&lt;?S&gt;                   /x92   &lt;U2593&gt; DARK SHADE
+&lt;Iu&gt;                   /x93   &lt;U2320&gt; TOP HALF INTEGRAL
+&lt;fS&gt;                   /x94   &lt;U25A0&gt; BLACK SQUARE
+&lt;sb&gt;                   /x95   &lt;U2022&gt; BULLET
+&lt;RT&gt;                   /x96   &lt;U221A&gt; SQUARE ROOT
+&lt;?2&gt;                   /x97   &lt;U2248&gt; ALMOST EQUAL TO
+&lt;=&lt;&gt;                   /x98   &lt;U2264&gt; LESS-THAN OR EQUAL TO
+&lt;/&gt;=&gt;                  /x99   &lt;U2265&gt; GREATER-THAN OR EQUAL TO
+&lt;NS&gt;                   /x9A   &lt;U00A0&gt; NO-BREAK SPACE
+&lt;Il&gt;                   /x9B   &lt;U2321&gt; BOTTOM HALF INTEGRAL
+&lt;DG&gt;                   /x9C   &lt;U00B0&gt; DEGREE SIGN
+&lt;2S&gt;                   /x9D   &lt;U00B2&gt; SUPERSCRIPT TWO
+&lt;.M&gt;                   /x9E   &lt;U00B7&gt; MIDDLE DOT
+&lt;-:&gt;                   /x9F   &lt;U00F7&gt; DIVISION SIGN
+&lt;HH&gt;                   /xA0   &lt;U2550&gt; BOX DRAWINGS DOUBLE HORIZONTAL
+&lt;VV&gt;                   /xA1   &lt;U2551&gt; BOX DRAWINGS DOUBLE VERTICAL
+&lt;dR&gt;                   /xA2   &lt;U2552&gt; BOX DRAWINGS DOWN SINGLE AND RIGHT DOUBLE
+&lt;io&gt;                   /xA3   &lt;U0451&gt; CYRILLIC SMALL LETTER IO
+&lt;Dr&gt;                   /xA4   &lt;U2553&gt; BOX DRAWINGS DOWN DOUBLE AND RIGHT SINGLE
+&lt;DR&gt;                   /xA5   &lt;U2554&gt; BOX DRAWINGS DOUBLE DOWN AND RIGHT
+&lt;dL&gt;                   /xA6   &lt;U2555&gt; BOX DRAWINGS DOWN SINGLE AND LEFT DOUBLE
+&lt;Dl&gt;                   /xA7   &lt;U2556&gt; BOX DRAWINGS DOWN DOUBLE AND LEFT SINGLE
+&lt;LD&gt;                   /xA8   &lt;U2557&gt; BOX DRAWINGS DOUBLE DOWN AND LEFT
+&lt;uR&gt;                   /xA9   &lt;U2558&gt; BOX DRAWINGS UP SINGLE AND RIGHT DOUBLE
+&lt;Ur&gt;                   /xAA   &lt;U2559&gt; BOX DRAWINGS UP DOUBLE AND RIGHT SINGLE
+&lt;UR&gt;                   /xAB   &lt;U255A&gt; BOX DRAWINGS DOUBLE UP AND RIGHT
+&lt;uL&gt;                   /xAC   &lt;U255B&gt; BOX DRAWINGS UP SINGLE AND LEFT DOUBLE
+&lt;Ul&gt;                   /xAD   &lt;U255C&gt; BOX DRAWINGS UP DOUBLE AND LEFT SINGLE
+&lt;UL&gt;                   /xAE   &lt;U255D&gt; BOX DRAWINGS DOUBLE UP AND LEFT
+&lt;vR&gt;                   /xAF   &lt;U255E&gt; BOX DRAWINGS VERTICAL SINGLE AND RIGHT DOUBLE
+&lt;Vr&gt;                   /xB0   &lt;U255F&gt; BOX DRAWINGS VERTICAL DOUBLE AND RIGHT SINGLE
+&lt;VR&gt;                   /xB1   &lt;U2560&gt; BOX DRAWINGS DOUBLE VERTICAL AND RIGHT
+&lt;vL&gt;                   /xB2   &lt;U2561&gt; BOX DRAWINGS VERTICAL SINGLE AND LEFT DOUBLE
+&lt;IO&gt;                   /xB3   &lt;U0401&gt; CYRILLIC CAPITAL LETTER IO
+&lt;Vl&gt;                   /xB4   &lt;U2562&gt; BOX DRAWINGS VERTICAL DOUBLE AND LEFT SINGLE
+&lt;VL&gt;                   /xB5   &lt;U2563&gt; BOX DRAWINGS DOUBLE VERTICAL AND LEFT
+&lt;dH&gt;                   /xB6   &lt;U2564&gt; BOX DRAWINGS DOWN SINGLE AND HORIZONTAL DOUBLE
+&lt;Dh&gt;                   /xB7   &lt;U2565&gt; BOX DRAWINGS DOWN DOUBLE AND HORIZONTAL SINGLE
+&lt;DH&gt;                   /xB8   &lt;U2566&gt; BOX DRAWINGS DOUBLE DOWN AND HORIZONTAL
+&lt;uH&gt;                   /xB9   &lt;U2567&gt; BOX DRAWINGS UP SINGLE AND HORIZONTAL DOUBLE
+&lt;Uh&gt;                   /xBA   &lt;U2568&gt; BOX DRAWINGS UP DOUBLE AND HORIZONTAL SINGLE
+&lt;UH&gt;                   /xBB   &lt;U2569&gt; BOX DRAWINGS DOUBLE UP AND HORIZONTAL
+&lt;vH&gt;                   /xBC   &lt;U256A&gt; BOX DRAWINGS VERTICAL SINGLE AND HORIZONTAL DOUBLE
+&lt;Vh&gt;                   /xBD   &lt;U256B&gt; BOX DRAWINGS VERTICAL DOUBLE AND HORIZONTAL SINGLE
+&lt;VH&gt;                   /xBE   &lt;U256C&gt; BOX DRAWINGS DOUBLE VERTICAL AND HORIZONTAL
+&lt;Co&gt;                   /xBF   &lt;U00A9&gt; COPYRIGHT SIGN
+&lt;ju&gt;                   /xC0   &lt;U044E&gt; CYRILLIC SMALL LETTER YU
+&lt;a=&gt;                   /xC1   &lt;U0430&gt; CYRILLIC SMALL LETTER A
+&lt;b=&gt;                   /xC2   &lt;U0431&gt; CYRILLIC SMALL LETTER BE
+&lt;c=&gt;                   /xC3   &lt;U0446&gt; CYRILLIC SMALL LETTER TSE
+&lt;d=&gt;                   /xC4   &lt;U0434&gt; CYRILLIC SMALL LETTER DE
+&lt;e=&gt;                   /xC5   &lt;U0435&gt; CYRILLIC SMALL LETTER IE
+&lt;f=&gt;                   /xC6   &lt;U0444&gt; CYRILLIC SMALL LETTER EF
+&lt;g=&gt;                   /xC7   &lt;U0433&gt; CYRILLIC SMALL LETTER GHE
+&lt;h=&gt;                   /xC8   &lt;U0445&gt; CYRILLIC SMALL LETTER HA
+&lt;i=&gt;                   /xC9   &lt;U0438&gt; CYRILLIC SMALL LETTER I
+&lt;j=&gt;                   /xCA   &lt;U0439&gt; CYRILLIC SMALL LETTER SHORT I
+&lt;k=&gt;                   /xCB   &lt;U043A&gt; CYRILLIC SMALL LETTER KA
+&lt;l=&gt;                   /xCC   &lt;U043B&gt; CYRILLIC SMALL LETTER EL
+&lt;m=&gt;                   /xCD   &lt;U043C&gt; CYRILLIC SMALL LETTER EM
+&lt;n=&gt;                   /xCE   &lt;U043D&gt; CYRILLIC SMALL LETTER EN
+&lt;o=&gt;                   /xCF   &lt;U043E&gt; CYRILLIC SMALL LETTER O
+&lt;p=&gt;                   /xD0   &lt;U043F&gt; CYRILLIC SMALL LETTER PE
+&lt;ja&gt;                   /xD1   &lt;U044F&gt; CYRILLIC SMALL LETTER YA
+&lt;r=&gt;                   /xD2   &lt;U0440&gt; CYRILLIC SMALL LETTER ER
+&lt;s=&gt;                   /xD3   &lt;U0441&gt; CYRILLIC SMALL LETTER ES
+&lt;t=&gt;                   /xD4   &lt;U0442&gt; CYRILLIC SMALL LETTER TE
+&lt;u=&gt;                   /xD5   &lt;U0443&gt; CYRILLIC SMALL LETTER U
+&lt;z%&gt;                   /xD6   &lt;U0436&gt; CYRILLIC SMALL LETTER ZHE
+&lt;v=&gt;                   /xD7   &lt;U0432&gt; CYRILLIC SMALL LETTER VE
+&lt;%'&gt;                   /xD8   &lt;U044C&gt; CYRILLIC SMALL LETTER SOFT SIGN
+&lt;y=&gt;                   /xD9   &lt;U044B&gt; CYRILLIC SMALL LETTER YERU
+&lt;z=&gt;                   /xDA   &lt;U0437&gt; CYRILLIC SMALL LETTER ZE
+&lt;s%&gt;                   /xDB   &lt;U0448&gt; CYRILLIC SMALL LETTER SHA
+&lt;je&gt;                   /xDC   &lt;U044D&gt; CYRILLIC SMALL LETTER E
+&lt;sc&gt;                   /xDD   &lt;U0449&gt; CYRILLIC SMALL LETTER SHCHA
+&lt;c%&gt;                   /xDE   &lt;U0447&gt; CYRILLIC SMALL LETTER CHE
+&lt;='&gt;                   /xDF   &lt;U044A&gt; CYRILLIC SMALL LETTER HARD SIGN
+&lt;JU&gt;                   /xE0   &lt;U042E&gt; CYRILLIC CAPITAL LETTER YU
+&lt;A=&gt;                   /xE1   &lt;U0410&gt; CYRILLIC CAPITAL LETTER A
+&lt;B=&gt;                   /xE2   &lt;U0411&gt; CYRILLIC CAPITAL LETTER BE
+&lt;C=&gt;                   /xE3   &lt;U0426&gt; CYRILLIC CAPITAL LETTER TSE
+&lt;D=&gt;                   /xE4   &lt;U0414&gt; CYRILLIC CAPITAL LETTER DE
+&lt;E=&gt;                   /xE5   &lt;U0415&gt; CYRILLIC CAPITAL LETTER IE
+&lt;F=&gt;                   /xE6   &lt;U0424&gt; CYRILLIC CAPITAL LETTER EF
+&lt;G=&gt;                   /xE7   &lt;U0413&gt; CYRILLIC CAPITAL LETTER GHE
+&lt;H=&gt;                   /xE8   &lt;U0425&gt; CYRILLIC CAPITAL LETTER HA
+&lt;I=&gt;                   /xE9   &lt;U0418&gt; CYRILLIC CAPITAL LETTER I
+&lt;J=&gt;                   /xEA   &lt;U0419&gt; CYRILLIC CAPITAL LETTER SHORT I
+&lt;K=&gt;                   /xEB   &lt;U041A&gt; CYRILLIC CAPITAL LETTER KA
+&lt;L=&gt;                   /xEC   &lt;U041B&gt; CYRILLIC CAPITAL LETTER EL
+&lt;M=&gt;                   /xED   &lt;U041C&gt; CYRILLIC CAPITAL LETTER EM
+&lt;N=&gt;                   /xEE   &lt;U041D&gt; CYRILLIC CAPITAL LETTER EN
+&lt;O=&gt;                   /xEF   &lt;U041E&gt; CYRILLIC CAPITAL LETTER O
+&lt;P=&gt;                   /xF0   &lt;U041F&gt; CYRILLIC CAPITAL LETTER PE
+&lt;JA&gt;                   /xF1   &lt;U042F&gt; CYRILLIC CAPITAL LETTER YA
+&lt;R=&gt;                   /xF2   &lt;U0420&gt; CYRILLIC CAPITAL LETTER ER
+&lt;S=&gt;                   /xF3   &lt;U0421&gt; CYRILLIC CAPITAL LETTER ES
+&lt;T=&gt;                   /xF4   &lt;U0422&gt; CYRILLIC CAPITAL LETTER TE
+&lt;U=&gt;                   /xF5   &lt;U0423&gt; CYRILLIC CAPITAL LETTER U
+&lt;Z%&gt;                   /xF6   &lt;U0416&gt; CYRILLIC CAPITAL LETTER ZHE
+&lt;V=&gt;                   /xF7   &lt;U0412&gt; CYRILLIC CAPITAL LETTER VE
+&lt;%&quot;&gt;                   /xF8   &lt;U042C&gt; CYRILLIC CAPITAL LETTER SOFT SIGN
+&lt;Y=&gt;                   /xF9   &lt;U042B&gt; CYRILLIC CAPITAL LETTER YERU
+&lt;Z=&gt;                   /xFA   &lt;U0417&gt; CYRILLIC CAPITAL LETTER ZE
+&lt;S%&gt;                   /xFB   &lt;U0428&gt; CYRILLIC CAPITAL LETTER SHA
+&lt;JE&gt;                   /xFC   &lt;U042D&gt; CYRILLIC CAPITAL LETTER E
+&lt;Sc&gt;                   /xFD   &lt;U0429&gt; CYRILLIC CAPITAL LETTER SHCHA
+&lt;C%&gt;                   /xFE   &lt;U0427&gt; CYRILLIC CAPITAL LETTER CHE
+&lt;=&quot;&gt;                   /xFF   &lt;U042A&gt; CYRILLIC CAPITAL LETTER HARD SIGN
+&lt;NUL&gt;                  /x00   &lt;U0000&gt; NUL
+&lt;SOH&gt;                  /x01   &lt;U0001&gt; START OF HEADING (SOH)
+&lt;STX&gt;                  /x02   &lt;U0002&gt; START OF TEXT (STX)
+&lt;ETX&gt;                  /x03   &lt;U0003&gt; END OF TEXT (ETX)
+&lt;EOT&gt;                  /x04   &lt;U0004&gt; END OF TRANSMISSION (EOT)
+&lt;ENQ&gt;                  /x05   &lt;U0005&gt; ENQUIRY (ENQ)
+&lt;ACK&gt;                  /x06   &lt;U0006&gt; ACKNOWLEDGE (ACK)
+&lt;alert&gt;                /x07   &lt;U0007&gt; BELL (BEL)
+&lt;BEL&gt;                  /x07   &lt;U0007&gt; BELL (BEL)
+&lt;backspace&gt;            /x08   &lt;U0008&gt; BACKSPACE (BS)
+&lt;tab&gt;                  /x09   &lt;U0009&gt; CHARACTER TABULATION (HT)
+&lt;newline&gt;              /x0A   &lt;U000A&gt; LINE FEED (LF)
+&lt;vertical-tab&gt;         /x0B   &lt;U000B&gt; LINE TABULATION (VT)
+&lt;form-feed&gt;            /x0C   &lt;U000C&gt; FORM FEED (FF)
+&lt;carriage-return&gt;      /x0D   &lt;U000D&gt; CARRIAGE RETURN (CR)
+&lt;DLE&gt;                  /x10   &lt;U0010&gt; DATALINK ESCAPE (DLE)
+&lt;DC1&gt;                  /x11   &lt;U0011&gt; DEVICE CONTROL ONE (DC1)
+&lt;DC2&gt;                  /x12   &lt;U0012&gt; DEVICE CONTROL TWO (DC2)
+&lt;DC3&gt;                  /x13   &lt;U0013&gt; DEVICE CONTROL THREE (DC3)
+&lt;DC4&gt;                  /x14   &lt;U0014&gt; DEVICE CONTROL FOUR (DC4)
+&lt;NAK&gt;                  /x15   &lt;U0015&gt; NEGATIVE ACKNOWLEDGE (NAK)
+&lt;SYN&gt;                  /x16   &lt;U0016&gt; SYNCHRONOUS IDLE (SYN)
+&lt;ETB&gt;                  /x17   &lt;U0017&gt; END OF TRANSMISSION BLOCK (ETB)
+&lt;CAN&gt;                  /x18   &lt;U0018&gt; CANCEL (CAN)
+&lt;SUB&gt;                  /x1A   &lt;U001A&gt; SUBSTITUTE (SUB)
+&lt;ESC&gt;                  /x1B   &lt;U001B&gt; ESCAPE (ESC)
+&lt;IS4&gt;                  /x1C   &lt;U001C&gt; FILE SEPARATOR (IS4)
+&lt;IS3&gt;                  /x1D   &lt;U001D&gt; GROUP SEPARATOR (IS3)
+&lt;intro&gt;                /x1D   &lt;U001D&gt; GROUP SEPARATOR (IS3)
+&lt;IS2&gt;                  /x1E   &lt;U001E&gt; RECORD SEPARATOR (IS2)
+&lt;IS1&gt;                  /x1F   &lt;U001F&gt; UNIT SEPARATOR (IS1)
+&lt;DEL&gt;                  /x7F   &lt;U007F&gt; DELETE (DEL)
+&lt;space&gt;                /x20   &lt;U0020&gt; SPACE
+&lt;exclamation-mark&gt;     /x21   &lt;U0021&gt; EXCLAMATION MARK
+&lt;quotation-mark&gt;       /x22   &lt;U0022&gt; QUOTATION MARK
+&lt;number-sign&gt;          /x23   &lt;U0023&gt; NUMBER SIGN
+&lt;dollar-sign&gt;          /x24   &lt;U0024&gt; DOLLAR SIGN
+&lt;percent-sign&gt;         /x25   &lt;U0025&gt; PERCENT SIGN
+&lt;ampersand&gt;            /x26   &lt;U0026&gt; AMPERSAND
+&lt;apostrophe&gt;           /x27   &lt;U0027&gt; APOSTROPHE
+&lt;left-parenthesis&gt;     /x28   &lt;U0028&gt; LEFT PARENTHESIS
+&lt;right-parenthesis&gt;    /x29   &lt;U0029&gt; RIGHT PARENTHESIS
+&lt;asterisk&gt;             /x2A   &lt;U002A&gt; ASTERISK
+&lt;plus-sign&gt;            /x2B   &lt;U002B&gt; PLUS SIGN
+&lt;comma&gt;                /x2C   &lt;U002C&gt; COMMA
+&lt;hyphen&gt;               /x2D   &lt;U002D&gt; HYPHEN-MINUS
+&lt;hyphen-minus&gt;         /x2D   &lt;U002D&gt; HYPHEN-MINUS
+&lt;period&gt;               /x2E   &lt;U002E&gt; FULL STOP
+&lt;full-stop&gt;            /x2E   &lt;U002E&gt; FULL STOP
+&lt;slash&gt;                /x2F   &lt;U002F&gt; SOLIDUS
+&lt;solidus&gt;              /x2F   &lt;U002F&gt; SOLIDUS
+&lt;zero&gt;                 /x30   &lt;U0030&gt; DIGIT ZERO
+&lt;one&gt;                  /x31   &lt;U0031&gt; DIGIT ONE
+&lt;two&gt;                  /x32   &lt;U0032&gt; DIGIT TWO
+&lt;three&gt;                /x33   &lt;U0033&gt; DIGIT THREE
+&lt;four&gt;                 /x34   &lt;U0034&gt; DIGIT FOUR
+&lt;five&gt;                 /x35   &lt;U0035&gt; DIGIT FIVE
+&lt;six&gt;                  /x36   &lt;U0036&gt; DIGIT SIX
+&lt;seven&gt;                /x37   &lt;U0037&gt; DIGIT SEVEN
+&lt;eight&gt;                /x38   &lt;U0038&gt; DIGIT EIGHT
+&lt;nine&gt;                 /x39   &lt;U0039&gt; DIGIT NINE
+&lt;colon&gt;                /x3A   &lt;U003A&gt; COLON
+&lt;semicolon&gt;            /x3B   &lt;U003B&gt; SEMICOLON
+&lt;less-than-sign&gt;       /x3C   &lt;U003C&gt; LESS-THAN SIGN
+&lt;equals-sign&gt;          /x3D   &lt;U003D&gt; EQUALS SIGN
+&lt;greater-than-sign&gt;    /x3E   &lt;U003E&gt; GREATER-THAN SIGN
+&lt;question-mark&gt;        /x3F   &lt;U003F&gt; QUESTION MARK
+&lt;commercial-at&gt;        /x40   &lt;U0040&gt; COMMERCIAL AT
+&lt;left-square-bracket&gt;  /x5B   &lt;U005B&gt; LEFT SQUARE BRACKET
+&lt;backslash&gt;            /x5C   &lt;U005C&gt; REVERSE SOLIDUS
+&lt;reverse-solidus&gt;      /x5C   &lt;U005C&gt; REVERSE SOLIDUS
+&lt;right-square-bracket&gt; /x5D   &lt;U005D&gt; RIGHT SQUARE BRACKET
+&lt;circumflex&gt;           /x5E   &lt;U005E&gt; CIRCUMFLEX ACCENT
+&lt;circumflex-accent&gt;    /x5E   &lt;U005E&gt; CIRCUMFLEX ACCENT
+&lt;underscore&gt;           /x5F   &lt;U005F&gt; LOW LINE
+&lt;low-line&gt;             /x5F   &lt;U005F&gt; LOW LINE
+&lt;grave-accent&gt;         /x60   &lt;U0060&gt; GRAVE ACCENT
+&lt;left-brace&gt;           /x7B   &lt;U007B&gt; LEFT CURLY BRACKET
+&lt;left-curly-bracket&gt;   /x7B   &lt;U007B&gt; LEFT CURLY BRACKET
+&lt;vertical-line&gt;        /x7C   &lt;U007C&gt; VERTICAL LINE
+&lt;right-brace&gt;          /x7D   &lt;U007D&gt; RIGHT CURLY BRACKET
+&lt;right-curly-bracket&gt;  /x7D   &lt;U007D&gt; RIGHT CURLY BRACKET
+&lt;tilde&gt;                /x7E   &lt;U007E&gt; TILDE
+END CHARMAP
+</pre>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE> Large-Disk-HOWTO </TITLE>
+ <LINK HREF="Large-Disk-HOWTO-1.html" REL=next>
+
+
+</HEAD>
+<BODY>
+<A HREF="Large-Disk-HOWTO-1.html">Next</A>
+Previous
+Contents
+<HR>
+<H1> Large-Disk-HOWTO </H1>
+
+<H2>Andries Brouwer,
+  <CODE>
+<A HREF="mailto:aeb@cwi.nl">mailto:aeb@cwi.nl</A></CODE><BR>
+Перевод: Russian Linux Documentation Project </H2>v2.2j, 5 февраля  2000
+<P><HR>
+<EM>Все о геометрии диска и лимите в 1024 цилиндра.</EM>
+<HR>
+<P>
+<H2><A NAME="toc1">1.</A> <A HREF="Large-Disk-HOWTO-1.html">Введение</A></H2>
+
+<UL>
+<LI><A HREF="Large-Disk-HOWTO-1.html#ss1.1">1.1 Авторские права</A>
+<LI><A HREF="Large-Disk-HOWTO-1.html#ss1.2">1.2 О RLDP</A>
+</UL>
+<P>
+<H2><A NAME="toc2">2.</A> <A HREF="Large-Disk-HOWTO-2.html">Проблема</A></H2>
+
+<P>
+<H2><A NAME="toc3">3.</A> <A HREF="Large-Disk-HOWTO-3.html">Основное</A></H2>
+
+<P>
+<H2><A NAME="toc4">4.</A> <A HREF="Large-Disk-HOWTO-4.html">Единицы и размерности</A></H2>
+
+<UL>
+<LI><A HREF="Large-Disk-HOWTO-4.html#ss4.1">4.1 Размер Сектора</A>
+<LI><A HREF="Large-Disk-HOWTO-4.html#ss4.2">4.2 Размер Диска</A>
+</UL>
+<P>
+<H2><A NAME="toc5">5.</A> <A HREF="Large-Disk-HOWTO-5.html">Доступ к Диску</A></H2>
+
+<UL>
+<LI><A HREF="Large-Disk-HOWTO-5.html#ss5.1">5.1 Доступ к диску через BIOS и ограничение в 1024 цилиндра</A>
+<LI><A HREF="Large-Disk-HOWTO-5.html#ss5.2">5.2 История ограничений для  BIOS и IDE </A>
+</UL>
+<P>
+<H2><A NAME="toc6">6.</A> <A HREF="Large-Disk-HOWTO-6.html">Загрузка</A></H2>
+
+<UL>
+<LI><A HREF="Large-Disk-HOWTO-6.html#ss6.1">6.1 LILO и опция `linear' o</A>
+<LI><A HREF="Large-Disk-HOWTO-6.html#ss6.2">6.2 1024 цилиндра это не  1024 цилиндра</A>
+</UL>
+<P>
+<H2><A NAME="toc7">7.</A> <A HREF="Large-Disk-HOWTO-7.html">Геометрия диска , разделы и `overlap'</A></H2>
+
+<P>
+<H2><A NAME="toc8">8.</A> <A HREF="Large-Disk-HOWTO-8.html">Преобразование и программы-загрузчики.</A></H2>
+
+<P>
+<H2><A NAME="toc9">9.</A> <A HREF="Large-Disk-HOWTO-9.html">Преобразования выполняемые ядром, для IDE дисков.</A></H2>
+
+<UL>
+<LI><A HREF="Large-Disk-HOWTO-9.html#ss9.1">9.1 EZD</A>
+<LI><A HREF="Large-Disk-HOWTO-9.html#ss9.2">9.2 DM6:DDO</A>
+<LI><A HREF="Large-Disk-HOWTO-9.html#ss9.3">9.3 DM6:AUX</A>
+<LI><A HREF="Large-Disk-HOWTO-9.html#ss9.4">9.4 DM6:MBR</A>
+<LI><A HREF="Large-Disk-HOWTO-9.html#ss9.5">9.5 PTBL</A>
+</UL>
+<P>
+<H2><A NAME="toc10">10.</A> <A HREF="Large-Disk-HOWTO-10.html">Выводы</A></H2>
+
+<UL>
+<LI><A HREF="Large-Disk-HOWTO-10.html#ss10.1">10.1 Вычисление параметров LILO.</A>
+</UL>
+<P>
+<H2><A NAME="toc11">11.</A> <A HREF="Large-Disk-HOWTO-11.html">Детали</A></H2>
+
+<UL>
+<LI><A HREF="Large-Disk-HOWTO-11.html#ss11.1">11.1 Детали IDE  - семь геометрий</A>
+<LI><A HREF="Large-Disk-HOWTO-11.html#ss11.2">11.2 SCSI детали</A>
+</UL>
+<P>
+<H2><A NAME="toc12">12.</A> <A HREF="Large-Disk-HOWTO-12.html">IDE лимит в 8 ГиБ </A></H2>
+
+<UL>
+<LI><A HREF="Large-Disk-HOWTO-12.html#ss12.1">12.1 Сложности BIOS</A>
+<LI><A HREF="Large-Disk-HOWTO-12.html#ss12.2">12.2 Джамперы указывающие количество головок.</A>
+<LI><A HREF="Large-Disk-HOWTO-12.html#ss12.3">12.3 Джамперы которые урезают полную емкость.</A>
+</UL>
+<P>
+<H2><A NAME="toc13">13.</A> <A HREF="Large-Disk-HOWTO-13.html">Лимит в 65535 цилиндров</A></H2>
+
+<UL>
+<LI><A HREF="Large-Disk-HOWTO-13.html#ss13.1">13.1 Проблемы IDE с 34+ ГБ-ми дисками</A>
+</UL>
+<P>
+<H2><A NAME="toc14">14.</A> <A HREF="Large-Disk-HOWTO-14.html">Расширенные и логические разделы</A></H2>
+
+<P>
+<H2><A NAME="toc15">15.</A> <A HREF="Large-Disk-HOWTO-15.html">Решение проблемы</A></H2>
+
+<UL>
+<LI><A HREF="Large-Disk-HOWTO-15.html#ss15.1">15.1 Проблема: Мой IDE диск получает неправильную геометрию, когда я загружаюсь с SCSI..</A>
+<LI><A HREF="Large-Disk-HOWTO-15.html#ss15.2">15.2 Не проблема: Идентичные диски имеют различную геометрию?</A>
+<LI><A HREF="Large-Disk-HOWTO-15.html#ss15.3">15.3 Не проблема: fdisk видит гораздо больше места,чем df?</A>
+</UL>
+<HR>
+<A HREF="Large-Disk-HOWTO-1.html">Next</A>
+Previous
+Contents
+</BODY>
+</HTML>

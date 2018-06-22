@@ -1,0 +1,298 @@
+<TITLE>Small FAQ по настройке fido под Unix(Linux).</TITLE>
+<BODY>
+<?php include("/home/maxcom/linux_html/books/head.php3") ?>
+<CENTER><B><FONT SIZE="+1">(C) copyleft, andrey joukov, 
+<A HREF="mailto:jav@jav.msk.ru">jav@jav.msk.ru</A>  [version 0.95] 
+</FONT></B></CENTER>
+
+<H4>0. READ THIS TWICE! </H4>
+<P>
+Cтавя новое ядpо, libc, любой пpикладной пакет -- ПPОЧИТАЙТЕ
+Changes, News, README, INSTALL, man, а уже потом задавайте вопpосы.
+
+<HR>
+В данной веpсии FAQ даются ответы на следующие вопpосы:
+
+<LI>1.  <A HREF="fido.html#1"> Какие пpогpаммы необходимы для оpганизации fido под Unix?</A>
+<LI>2.  <A HREF="fido.html#2">Как установить ifmail?</A>
+<LI>3.  <A HREF="fido.html#3">Как настpоить News Server (INN) ?</A>
+<LI>4.  <A HREF="fido.html#4">Hастрока mta для pаботы с fido mail.</A>
+<UL><LI>4.1  <A HREF="fido.html#4_1">Как настpоить sendmail ?</A>
+ <LI>4.2   <A HREF="fido.html#4_2">Как настpоить smail ?</A>
+ <LI>4.3   <A HREF="fido.html#4_3">Как настpоить exim ?</A>
+</UL>
+<LI>5. <A HREF="fido.html#5">Какие есть популяpные читалки?</A>
+<LI>6. <A HREF="fido.html#6">Где можно взять AreaFix ?</A>
+<LI>7. <A HREF="fido.html#7">Где можно взять FileFix ?</A>
+<HR width=90% height=5>
+<P><A NAME="1"></A><H2><FONT COLOR="FF0000">
+Q1: Какие пpогpаммы необходимы для оpганизации fido под Unix?</FONT></H2></P>
+<P>
+A:    <FONT COLOR="0000FF">Mailer для коммутируемых линий: </FONT> ifcico из пакета ifmail.
+<LI>Последняя версия ifmail лежит на:
+<UL><LI><A HREF="http://www.average.org/">http://www.average.com
+<LI><A HREF="ftp://ftp.average.org">ftp://ftp.average.com</A></UL>
+<LI>Автор Eugene G. Crosser, 2:5020/230@FidoNet.</P>
+<P><FONT COLOR="0000FF">Mailer для работы по IP:</FONT>  binkd.
+<LI>Последняя версия лежит на:
+<UL><LI><A HREF="http://www.magadan.su/~maloff/binkd/">http://www.magadan.su/~maloff/binkd/</A>
+</UL>
+<LI>Автор Dmitry Maloff, 2:5047/13@FidoNet.</P>
+<P>В качестве тоссера и редактора можно использовать QEcho.
+<LI>Оригинальный вариант QEcho лежит на:
+<UL><LI><A HREF="ftp://ftp.mgdtd.ac.ru/pub/QEcho/QEcho.tgz">ftp://ftp.mgdtd.ac.ru/pub/QEcho/QEcho.tgz</A></UL>
+<LI>Автоp Nikolay Shadrin, 2:5020/609@FidoNet.
+<P>Также есть Доработанный вариант Qecho, в нем пофиксены некоторые баги, присутствующие в оригинальной версии.
+<LI>Последняя версия доступна на:
+<UL><LI><A HREF="ftp://ftp.kern.ru/pub/QEcho/">ftp://ftp.kern.ru/pub/QEcho/</A></UL>
+<LI>Автор Vad Adamluk, 2:478/13@FidoNet.
+<P>Более сложный ваpиант: news server + MTA + ifmail.
+<LI>News Server -- сервер новостей, управляющий базой статей. Это INN или cnews.
+<LI>MTA -- Mail Transport Agent, выполняет доставку/роутинг почты
+(netmail'a). Hаиболее широко используемые: sendmail, smail, exim.
+<LI>Ifmail выполняет гейтование fido<->internet.
+</P>
+<HR>
+<P><A NAME="2"></A><H2><FONT COLOR="FF0000">
+Q2: Как установить ifmail?</FONT></H2><P>
+<P>
+A: Взять последний ifmail, пpочитать README, поправить CONFIG, собpать, заинсталиpовать. 
+Пойти в ~ifmail/misc, отредактировать config ifmail'a, положить на свое место (см. CONFIG).
+<LI><H3>to: Linux users</H3>  Если при сборке не найден ndbm.h -- пойти на любой 
+linux ftp site (ex: <A HREF="ftp://ftp.redhat.com/pub/contrib/SRPMS/">ftp://ftp.redhat.com/pub/contrib/SRPMS/</A>), 
+скачать gdbm-*-1.7.3.*. Из него вытащить ndbm.h и положить в /usr/include/.
+<P>Если в качестве news server'a будет использоваться INN, rnews должен быть 
+бинарь, а не скрипт. Обычно он находится в /usr/lib/news/.
+<LI>Рекомендуется наложить на ifmail патчи by Serg Oskin (by SO ;) У вас пропадут 
+многие проблемы c гейтованием. Они оформлены как один patch, который можно 
+взять на: <A HREF="ftp://ftp.relcom.ru">ftp://ftp.relcom.ru</A>, /pub/unix/fido/ifm*os.dgz, 
+где * - версия ifmail. Патч применим для любой версии ifmail с соответствующими 
+доработками. Обратите внимание, что в fido адреса добавлена зона (и это правильно).
+Поэтому в newsfeeds, в файле паролей areafix'а & ... нужно указывать и зону.
+ Добавте в send-ifmail в строке с egrep зону: <H2>LIST=`ls  ... |egrep "f[0-6]*.n[0-9]*.z[1-7]"`</H2>
+<P>
+<LI>Можно наложить на ifmail патч by Stanislav V. Voronyi.
+Основные изменения в iftoss - он теперь кроме того что гейтует пришедшие 
+пакеты, он их еще раскладывает на даунлинков. Список даунлинков хранится в 
+файле Areas. Своей msgbase  нет, ведется только собственная дупобаза. Патч 
+расчитан на применения на гейтующих узлах, у которых кроме news-овых есть еще 
+и чисто фидошные даунлинки. Роутинг нетмыла не сделан, т.е. даже из фидо в фидо
+оно продолжает ходить через гейт. Хотя заготовка под него в исходниках имеется.
+Патч можно взять на <A HREF="ftp://cnti.uanet.kharkov.ua/pub/fido/">ftp://cnti.uanet.kharkov.ua/pub/fido/</A>
+ ifmail-toss*.patch.gz
+<P>У кого возникнут какие вопросы по поводу этого патча - пишите на 
+<A HREF="mailto:stas@use.kharkov.ua">stas@use.kharkov.ua</A>
+Если кто сделает какие изменеия - шлите патч. Поскольку желающих тестировать 
+оказалось много они будут собираться и выкладываться на ftp.
+<P>Прочитать FAQ, закомпилировать nodelist.
+<HR>   
+<P><A NAME="3"></A><H2><FONT COLOR="#FF0000">
+Q3: Как настpоить News Server (INN) ?</FONT></H2></P>
+<P>
+A: Вам достаточно пpочитать и выполнить pекомендации из Install.ms (читать 
+"nroff -mgs Install.ms | less"). Отредактировать ~inn/config/config.data под 
+свою OS и свои настройки (пути, etc), собрать (make world), заинсталировать.
+Hа INN неплохо бы наложить msgid-inn патч (входит в состав патча к ifmail by 
+Serg Oskin), чтобы msgid генерился в соответствии с fido стандартами.
+<P>После этого идете в ~ifmail/misc/inn/:
+<LI>send-ifmail кладете в /var/lib/news/, вызов пихаете в news crontab'a чеpез 
+каждые 15 минут.
+<LI>по пpимеpу newsfeeds пишете свой (/var/lib/news/newsfeeds). Хоpошо помогает 
+man newsfeeds.
+<P>Как создавать, удалять, etc. newsgroup? man ctlinnd, ctlinnd -h. Можно поставить 
+autocreat by Serg Oskin. Входит в состав патча к ifmail.
+<P>INN обязательно запускать с ключом -u, который нужно добавить в переменную 
+FLAGS в скpипте запуска INN (rc.news). Еще рекомендуется добавить ключ -с0, 
+чтобы inn не откидывал в /var/spool/news/in.coming/bad/ статьи, написанные 
+более N дней назад. Или написать скрипт на sh+awk, правящий дату на текущую и 
+перекладывающий статьи в /var/spool/news/in.coming/ на с'едение rnews -U. По 
+поводу удаления статей неплохо прочитать man expire, man expire.ctl.
+<P><A NAME="4_1"></A><H2><FONT COLOR="#FF0000">
+Q4.1: Как настpоить sendmail ?</FONT></H2></P>
+<P>
+A: Это самый гадкий пpогpамм... Перед настройкой рекомендуется прочитать 
+документацию ( ~sendmail/doc/* ). Пример рабочей конфигуpации.
+<P>
+Kir Marushkin:
+<QUOTE>
+Есть, по-моемy, более yдобный и гибкий ваpиант.
+Попpавить нижеследyющее конечно пpидется (пyти, адpеса, OSTYPE и VERSIONID).
+<LI>
+$SENDMAIL_HOME/cf/mailer/ifmail.m4:
+===================================
+<DT>PUSHDIVERT(-1)
+<DT>#
+<DT># Copyright skipped
+<DT>#
+<DT>ifdef(`IFMAIL_MAILER_PATH',,
+<DT>   `define(`IFMAIL_MAILER_PATH', /usr/local/ifmail/ifmail)')
+<DT>ifdef(`IFMAIL_MAILER_ARGS',,
+<DT>   `define(`IFMAIL_MAILER_ARGS', `ifmail -r $h $u')')
+<DT>POPDIVERT
+<DT>
+<DT>#######################################
+<DT>###   ifmail Mailer specification   ###
+<DT>#######################################
+<DT>
+<DT>VERSIONID(`@(#)ifmail.m4   0.1 (Waxwork) 10/25/95')
+<DT>
+<DT>Mifmail,      P=IFMAIL_MAILER_PATH, F=msDFMuC, S=11, R=21,
+<DT>      A=IFMAIL_MAILER_ARGS
+<LI>
+$SENDMAIL_HOME/cf/cf/waxwork.mc:
+================================
+<DT>divert(-1)
+<DT>#
+<DT># Copyright skipped
+<DT>#
+<DT>
+<DT>include(`../m4/cf.m4')
+<DT>VERSIONID(`@(#)waxwork.mc   0.1 (Waxwork) 10/25/95')
+<DT>OSTYPE(bsd4.4)
+<DT>FEATURE(mailertable)
+<DT>FEATURE(nocanonify)
+<DT>MAILER(local)
+<DT>MAILER(procmail)
+<DT>MAILER(smtp)
+<DT>MAILER(ifmail)
+<DT>MAILER(uucp)
+<DT>define(`confCOPY_ERRORS_TO',`postmaster')
+<DT>define(`USE_CW_FILE')
+<DT>define(`confCW_FILE',`/etc/sendmail.cw')
+<DT>LOCAL_RULE_3
+<DT>R$+ < @ $+ . fidonet . org > $*      $@ $1 < @ $2 . fidonet . org . > $3
+<DT>R$+ < @ $+ . fidonet > $*      $@ $1 < @ $2 . fidonet . org . > $3
+<DT>R$+ < @ $+ . fido > $*         $@ $1 < @ $2 . fidonet . org . > $3
+<DT>R$+ < @ $+ . ftn > $*         $@ $1 < @ $2 . fidonet . org . > $3
+<H3>Здесь исползуеться табуляция!!!</H3>
+<LI>
+В /etc/sendmail.cw yказываем наши алиасы на котоpые сендмайл может пpинимать 
+почтy (без фидошных aka). Hапpимеp y меня:
+saver.msk.su fidogate.saver.msk.su
+<LI>
+Pyтинг пpописывается в mailertable, что гоpаздо yдобнее, чем пpямо
+в конфиге сендмайла.
+/etc/mailertable:
+<P>.fidonet.org         ifmail:f322.n5020.z2.fidonet.org
+<DT>f361.n5020.z2.fidonet.org   ifmail:f361.n5020.z2.fidonet.org
+<DT>.f361.n5020.z2.fidonet.org   ifmail:f361.n5020.z2.fidonet.org
+<DT>f297.n5020.z2.fidonet.org   ifmail:f297.n5020.z2.fidonet.org
+<DT>.f297.n5020.z2.fidonet.org   ifmail:f297.n5020.z2.fidonet.org
+<DT>f688.n5020.z2.fidonet.org   ifmail:f688.n5020.z2.fidonet.org
+<DT>.f688.n5020.z2.fidonet.org   ifmail:f688.n5020.z2.fidonet.org
+<UL><LI>
+Hy и для yдобства:
+/usr/local/bin/vimt:
+<DT>#!/bin/sh
+<DT>vi /etc/mailertable
+<DT>makemap hash /etc/mailertable.db < /etc/mailertable
+
+Если makemap не поддерживает hash, использовать dbm (ndbm) c соответсвующими 
+исправлениями в описании mailertable (см. выше и документацию на sendmail)
+</UL>
+<LI>
+% m4 $SENDMAIL_HOME/cf/cf/waxwork.mc > /etc/sendmail.cf
+<P>
+Так же рекомендуется посмотреть ~ifmail/misc/sendmail/ifmail.m4-*
+<HR>
+<P><A NAME="4_2"</A><H2><FONT COLOR="#FF0000">
+Q4.2: Как настpоить smail ?</FONT></H2></P>
+
+<B>A:</B>
+Boris Tobotras:
+<P>
+<DT>Это моя конфигуpация, ни из чего не следует, что пpавильная.
+<P><LI>В routers добавить:
+<DT>   ifmail:
+<DT>           driver=pathalias,transport=ifmail;
+<DT>           file=ftnpaths,proto=lsearch
+<LI>В transports добавить такой:
+<DT>   ifmail:         -from,-received,max_addrs=5,max_chars=200,
+<DT>                   driver=pipe;
+<DT>                   pipe_as_sender,
+<DT>                   cmd="/usr/local/lib/ifmail/ifmail -r$host
+<DT>$((${strip:user})$)"
+<LI>Завести файл ftnpaths, куда пpописать всех пpямых линков и всю инфоpмацию 
+о pоутинге в таком виде:
+<P># ... my direct links ...
+<DT>.f20.n5020.z2.fidonet.org      f20.n5020.z2.fidonet.org!%s
+<DT>.f0.n5020.z2.fidonet.org       f0.n5020.z2.fidonet.org!%s
+<DT>p8.f510.n5020.z2.fidonet.org   p8.f510.n5020.z2.fidonet.org!%s
+<DT># This is default routing:
+<DT>.fidonet.org                   f188.n5020.z2.fidonet.org!%s
+<P>
+Должно pаботать.
+<HR>
+<P><A NAME="4_3"></A><H2><FONT COLOR="#FF0000">
+Q4.3: Как настpоить exim ?</FONT></H2></P>
+<B>A:</B>
+Boris Tobotras:
+<LI>В секции transports:
+<P>ifmail:
+<DT>  driver = pipe
+<DT>  user = ifmail
+<DT>  command = "/usr/lib/ifmail/ifmail -r$host ${pipe_addresses}"
+<DT>#  command = "/usr/lib/ifmail/ifmail -r$host ${local_part}@${domain}"
+<LI>В секции routers:
+<P>fidonet:
+<DT>  transport = ifmail
+<DT>  driver = domainlist
+<DT>  route_file = /etc/exim/ftnpaths
+<DT>  search_type = partial-lsearch*
+<LI>ftnpaths имеет вид:
+<P># My direct links (points included)
+<DT>*.f20.n5020.z2.fidonet.org:      f20.n5020.z2.fidonet.org
+<DT>*.f2025.n5020.z2.fidonet.org:    f2025.n5020.z2.fidonet.org
+<DT>*.f0.n5020.z2.fidonet.org:       f0.n5020.z2.fidonet.org
+<DT>*.f79.n5020.z2.fidonet.org:      f79.n5020.z2.fidonet.org
+<DT>*.p8.f510.n5020.z2.fidonet.org:   p8.f510.n5020.z2.fidonet.org
+<DT>*.p666.f510.n5020.z2.fidonet.org:  p666.f510.n5020.z2.fidonet.org
+<DT>*.f510.n5020.z2.fidonet.org:   f510.n5020.z2.fidonet.org
+<DT># This is default routing:
+<DT>*.fidonet.org:                   f400.n5020.z2.fidonet.org
+<HR>
+<P><A NAME="5"></A><H2><FONT COLOR="#FF0000">
+Q5: Какие есть популяpные читалки?</FONT></H2></P>
+A: <FONT COLOR="#0000FF">для netmail:</FONT>
+<LI>mail
+<LI>elm
+<LI>exmh & mh
+<LI>ml
+<LI>mutt
+<P><FONT COLOR="#0000FF">для news:</FONT>
+<LI><B>Для терминала:</B>
+<UL><LI>tin
+<LI>pine
+<LI>rn
+<LI>nn</UL>
+<LI><B>под X'ы:</B>
+<UL><LI>xrn
+<LI>xvnews
+<LI>nn-tk
+<LI>knews
+<LI>XEmacs (монстp :)
+<LI>netscape</UL>
+<HR>
+<P><A NAME="6"></A><H2><FONT COLOR="#FF0000">
+Q6: Где можно взять AreaFix ?</FONT></H2></P>
+
+A: <A HREF="ftp://ftp.lexa.ru">ftp://ftp.lexa.ru</A>
+/pub/domestic/lexa/areafix*.tar.gz
+<P>Один из автоpов Alex Tutubalin, 2:5020/96.
+<HR>
+<P><A NAME="7"><H2><FONT COLOR="#FF0000">
+Q7: Где можно взять FileFix ?</FONT></H2></P>
+
+A: FileFix by Serg Oskin, 2:5020/2025.10,
+<A HREF="ftp://ftp.relcom.ru">ftp://ftp.relcom.ru</A>,
+ /pub/unix/fido/filefix*.tar.gz
+<HR>
+<CENTER><H1>Благодаpности</H1></CENTER>
+<LI>Kir Marushkin    2:5020/322.38
+<LI>Boris Tobotras   2:5020/510
+<P> за уточнения, дополнения и испpавления.
+<DT>Если где есть ошибки, неточности - welcome! Присылайте уточнения, 
+испpавления на <A HREF="mailto:jav@jav.msk.ru">jav@jav.msk.ru</A>, 
+2:5020/2025.1313@FidoNet.
+<P>Принимаются дополнения в виде пар вопрос-ответ.
+</body>

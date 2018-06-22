@@ -1,0 +1,302 @@
+<HTML
+><HEAD
+><TITLE
+>Использование рабочего стола</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.33"><LINK
+REL="HOME"
+TITLE="Руководство пользователя GNOME"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Рабочий стол GNOME"
+HREF="desk.html"><LINK
+REL="PREVIOUS"
+TITLE="Рабочий стол GNOME"
+HREF="desk.html"><LINK
+REL="NEXT"
+TITLE="Части рабочего стола"
+HREF="deskareas.html"></HEAD
+><BODY
+>
+<?php include("/home/maxcom/linux_html/books/head.php3") ?>
+<DIV
+CLASS="NAVHEADER"
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Руководство пользователя GNOME</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="desk.html"
+>Пред.</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Глава 5. Рабочий стол GNOME</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="deskareas.html"
+>След.</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="DESKUSE"
+>Использование рабочего стола</A
+></H1
+><P
+>     Пользоваться рабочим столом чрезвычайно просто; все, что вам
+     нужно - это перетащить на него те объекты (файлы, программы...),
+     которыми вы часто пользуетесь. По умолчанию, на рабочем столе
+     помещается папка с вашим персональным каталогом (/home/[user
+     name]). Чтобы посмотреть содержимое других каталогов вашей
+     системы, вы можете воспользоваться диспетчером файлов GNOME.
+   </P
+><P
+>    Для того, чтобы вы могли перетаскивать объекты из приложений на
+    рабочий стол и обратно, необходимо, чтобы приложения были
+    "совместимы" с соответствующим протоколом  GNOME  или
+    Motif. Протокол GNOME совместим с Motif, поэтому скорее всего,
+    многие из приложений, имеющихся на вашем компьютере, будут
+    поддерживать возможность перетаскивания объектов в GNOME.
+   </P
+><P
+>    Объекты, показываемые на рабочем столе, хранятся в каталоге 
+    <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>     <TT
+CLASS="PROMPT"
+>$</TT
+>/home/[user name]/.gnome-desktop/  
+    </PRE
+></TD
+></TR
+></TABLE
+>
+    Эта информация может быть полезной, когда вы хотите поместить на
+    рабочий стол какой-либо объект, который невозможно перетащить с
+    помощью мыши. 
+   </P
+><P
+>    
+     В начале сеанса работы, GNOME помещает на ваш рабочий стол
+     пиктограммы, соответствующие всем дисководам (включая жесткие
+     диски, дискеты и CD-драйвы) на вашей системе. Эти пиктограммы
+     предоставляют вам удобное средство подсоединения и доступа к этим
+     дискам.  Прежде чем вы можете использовать диск на вашей системе,
+     он должен быть подсоединен. Некоторые диски автоматически
+     подсоединяются в начале работы операционной системы; другие вы
+     должны подсоединить сами.
+   </P
+><DIV
+CLASS="IMPORTANT"
+><BLOCKQUOTE
+CLASS="IMPORTANT"
+><P
+><B
+>ВАЖНАЯ ИНФОРМАЦИЯ: </B
+>     Чтобы  подсоединить диск, вы должны иметь соответствующие
+     полномочия. Эти полномочия определяются системным администратором
+     (root), как описано ниже.  
+    </P
+><P
+>     
+      Простейший способ дать всем пользователям право
+      подсоединения
+      дисков - это использовать приложение
+      <TT
+CLASS="APPLICATION"
+><I
+CLASS="EMPHASIS"
+>linuxconf</I
+></TT
+>.
+      Выберите требуемый диск в разделе <I
+CLASS="GUILABEL"
+>Access
+      local drive</I
+>, и включите режим <I
+CLASS="GUILABEL"
+>User
+      Mountable</I
+> в разделе 
+      <I
+CLASS="GUILABEL"
+>Options</I
+>. Теперь любой  пользователь имеет
+      право подсоединения этого диска.
+     </P
+><P
+>      Если приложение 
+      <TT
+CLASS="APPLICATION"
+><I
+CLASS="EMPHASIS"
+>linuxconf</I
+></TT
+>
+      не установлено на вашей системе, то вам придется вручную
+      отредактировать файл 
+      <I
+CLASS="EMPHASIS"
+>/etc/fstab</I
+>.
+     </P
+><P
+>      Например, если ваш файл  fstab содержит строку 
+      <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>       /dev/cdrom /mnt/cdrom iso9660 exec,dev,ro,noauto 0 0
+      </PRE
+></TD
+></TR
+></TABLE
+>
+      и вы хотите дать всем пользователям право подсоединения
+      CD-драйва, то добавьте в четвертом столбце слово  "user":
+     <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>      /dev/cdrom /mnt/cdrom iso9660 user,exec,dev,ro,noauto 0 0
+     </PRE
+></TD
+></TR
+></TABLE
+>
+     </P
+><P
+>      Следует иметь в виду, что это связано с некоторым риском с точки
+      зрения безопасности данных на вашей системе. 
+     </P
+></BLOCKQUOTE
+></DIV
+><P
+>     Если у вас есть право подсоединения диска, вы можете щелкнуть на
+     соответствующую пиктограмму на рабочем столе. На экране появится
+     меню, в котором вы можете выбрать команды
+     <B
+CLASS="GUIMENUITEM"
+>Подсоединить</B
+> или
+     <B
+CLASS="GUIMENUITEM"
+>Высвободить устройство</B
+>. После
+     подсоединения, двойной щелчок на эту пиктограмму (или команда
+     <B
+CLASS="GUIMENUITEM"
+>Открыть</B
+> из всплывающего меню) запустит
+     окно диспетчера файлов, показывающее содержимое этого диска.
+    </P
+><P
+>     Если вы добавили к вашей системе новый диск, и он не показан на
+     рабочем столе - щелкните правой кнопкой мыши на пустом  участке
+     рабочего стола и выберите команду <B
+CLASS="GUIMENUITEM"
+>Recreate Desktop
+     Shortcuts</B
+> из всплывающего меню.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="desk.html"
+>Пред.</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+>Начало</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="deskareas.html"
+>След.</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Рабочий стол GNOME</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="desk.html"
+>Уровень выше</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Части рабочего стола</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

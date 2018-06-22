@@ -1,0 +1,134 @@
+<HTML>
+<HEAD>
+<TITLE>DOSEmu: Running dosemu as a normal user</TITLE>
+</HEAD>
+<BODY>
+<?php include("/home/maxcom/linux_html/books/head.php3") ?>
+<A HREF="README-6.html">Назад</A>
+<A HREF="README-8.html">Вперед</A>
+<A HREF="README.html#toc7">Оглавление</A>
+<HR>
+<H2><A NAME="runasuser"></A> <A NAME="s7">7. Запуск dosemu
+непривелигированным пользователем</A></H2>
+
+
+<P>This section of the document by Hans, 
+<A HREF="mailto:lermen@fgan.de">&lt;lermen@fgan.de&gt;</A>. Last
+updated on June 16, 1997.</P>
+
+
+<P>
+<OL>
+<LI> Сделать 'dos' suid root, обычно это происходит при запуске 
+'make install'.
+</LI>
+<LI> Вписать пользователей, которым позволено запускать dosemu в /etc/dosemu.user.
+Формат:
+
+<BLOCKQUOTE><CODE>
+<PRE>
+     loginname [ c_strict ] [ classes ...] [ c_dexeonly ] [ other ]
+</PRE>
+</CODE></BLOCKQUOTE>
+
+
+Подробности см. в 
+<A HREF="README-2.html#config">Configuring DOSEmu</A>. На первый раз 
+<EM>по-простому</EM> можно сделать так (но не забудьте потом это
+скорректировать !!!):
+
+<BLOCKQUOTE><CODE>
+<PRE>
+     root c_all
+     all c_all
+</PRE>
+</CODE></BLOCKQUOTE>
+
+</LI>
+<LI> 
+Разделы  msdos, к которым вы желаете иметь доступ через <A
+HREF="README-6.html#lredir">lredir</A> должны быть смонтированы с
+соответствующими правами. Я рекомендую делать это через права групп, а не
+пользователей. Пусть у вас есть группа 'dosemu' для этих целей, и вы хотите
+дать доступ пользователю 'lermen'. Тогда сделайте следующее:
+
+<UL>
+<LI> в /etc/passwd:
+<BLOCKQUOTE><CODE>
+<PRE>
+     lermen:x:500:100:Hans Lermen:/home/lermen:/bin/bash
+                  ^^^-- внимание: это НЕ id группы 'dosemu'
+</PRE>
+</CODE></BLOCKQUOTE>
+
+</LI>
+<LI> в /etc/group:
+<BLOCKQUOTE><CODE>
+<PRE>
+     users:x:100:
+     dosemu:x:200:dosemu,lermen
+              ^^^
+</PRE>
+</CODE></BLOCKQUOTE>
+
+</LI>
+<LI> в /etc/fstab:
+<BLOCKQUOTE><CODE>
+<PRE>
+     /dev/hda1 /dosc msdos defaults,gid=200,umask=002 0 0
+                                        ^^^
+</PRE>
+</CODE></BLOCKQUOTE>
+</LI>
+</UL>
+
+
+<EM>Внимание:</EM> изменения в /etc/passwd и /etc/group проявятся только при
+<EM>следующем</EM> входе в систему, поэтому не забудьте "перелогиниться".
+
+Запись в fstab позволит смонтировать /dosc так, что у него будут нужные
+права доступа
+<BLOCKQUOTE><CODE>
+<PRE>
+   ( drwxrwxr-x  22 root     dosemu      16384 Jan  1  1970 /dosc )
+</PRE>
+</CODE></BLOCKQUOTE>
+
+
+То же самое можно сделать явной командой mount:
+<BLOCKQUOTE><CODE>
+<PRE>
+      mount -t msdos -o gid=200,umask=002 /dev/hda1 /dosc 
+</PRE>
+</CODE></BLOCKQUOTE>
+
+
+Разумеется, обычные перенаправляемые lredir'ом каталоги unix должны иметь
+такие же права доступа.
+</LI>
+<LI> Убедитесь, что установлены права на чтение/запись для устройств,
+которые указаны (в /etc/dosemu.conf) для последовательного порта и
+мыши.</LI>
+</OL>
+</P>
+<P>
+Начиная с dosemu-0.66.1.4 нет никаких причин не запускать dosemu от обычного
+пользователя. Код привелигированного режима существенно переработан, и я не
+обнаружил ни одной программы, которая работала бы от имени суперпользователя 
+и не работала от имени обычного. Однако, если вы подозреваете, что проблема в
+том, что вы запускаете dosemu как непривелигированный пользователь, сначала
+попробуйте сконфигурировать эмулятор с опцией 'runasroot' (см.программу 
+setup-dosemu). Это позволит dosemu постоянно работать в режиме
+суперпользователя, и переходить в "обычный" режим только для обращения к
+ресурсам ограниченного (из соображений безопасности) доступа. Обычно же dosemu работает
+в непривелигированном режиме, и получает права администратора только при
+необходимости.
+</P>
+<HR>
+<A HREF="README-6.html">Назад</A>
+<A HREF="README-8.html">Вперед</A>
+<A HREF="README.html#toc7">Оглавление</A>
+
+<HR><I>Перевод: Валерий Груздев (grue@vpti.vladimir.ru)</I>
+</BODY>
+</HTML>

@@ -1,0 +1,159 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Меню.</TITLE>
+<META NAME="description" CONTENT="Меню.">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<!-- Meta http equivalent was here                               -->
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="IntroToLinux.css">
+
+<LINK REL="next" HREF="node56.html">
+<LINK REL="previous" HREF="node54.html">
+<LINK REL="up" HREF="node54.html">
+<LINK REL="next" HREF="node56.html">
+</HEAD>
+
+<BODY background="backgr.jpg" vlink="#000099" bgcolor="#E6E6FA">
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A NAME="tex2html868"
+  HREF="node56.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html864"
+  HREF="node54.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html858"
+  HREF="node54.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html866"
+  HREF="IntroToLinux.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A>  
+<BR>
+<B> След.:</B> <A NAME="tex2html869"
+  HREF="node56.html">Функции.</A>
+<B> Вверх:</B> <A NAME="tex2html865"
+  HREF="node54.html">Введение в FVWM2</A>
+<B> Пред.:</B> <A NAME="tex2html859"
+  HREF="node54.html">Введение в FVWM2</A>
+ &nbsp; <B>  <A NAME="tex2html867"
+  HREF="IntroToLinux.html">Содержание</A></B> 
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION00053100000000000000">
+Меню.</A>
+</H3>
+
+<P>
+В FVWM вы не ограниченны придуманным и зафиксированным разработчиками WindowManager меню.
+Здесь их у вас может быть сколько угодно и каких угодно видов.
+Присутствует и возможность отрывать от меню подменю (или фиксировать его самого на экране), что инициируется нажатием средней кнопки мыши на его заголовке...
+
+<P>
+К примеру мое главное меню создается следующим кодом:
+<PRE>
+DestroyMenu /Debian    #Уничтожили меню с этим именем, если оно было
+AddToMenu /Debian      #А теперь создаем его
+
+# Читаем автоматически генерируемое пакетом menu главное меню Debian,
+# содержащее все установленные у вас интерактивные программы...
+Read /etc/X11/fvwm/menudefs.hook Quiet
+
+# Добавляем к нему несколько своих пунктов
+AddToMenu /Debian
++  ""            Nop   # Полоска
++ "&amp;Documents"   Popup Documents
++  ""            Nop
++  "Exit Fvwm"   Popup Quit-Verify
+</PRE>
+Где команда <TT>Popup</TT> означает вызов другого меню в качестве подменю данного.
+
+<P>
+Например меню Quit-Verify определяется следующим образом:
+<PRE>
+DestroyMenu Quit-Verify
+# Выведем необязательный заголовок меню
+AddToMenu Quit-Verify "Really quit FVWM?" Title
++ "No, restart Fvwm"   Restart  # Команда перезапуска
++ ""                   Nop
++ "Yes, really quit"   Quit     # Команда выхода
+</PRE>
+
+<P>
+Все просто&nbsp;-- не так ли?
+Но это, конечно, далеко не все.
+
+<P>
+Наиболее интересной, на мой взгляд, является возможность динамической генерации меню, используя вывод любой программы. Для этого переопределяется функция генерации меню, которая теперь либо прямо определяет состав меню, вызывая в цикле <TT>AddToMenu</TT>, либо обращается ко внешней программе, которая сделает это и что вам угодно еще...
+Пример:
+<PRE>
+# Составляем меню (JpgMenu) из *.jpg файлов, вызывая по 
+# клику на них программу xv
+AddToMenu JpgMenu foo title
++ DynamicPopupAction Function MakeJpgMenu
+AddToFunc MakeJpgMenu
++ I DestroyMenu recreate JpgMenu
++ I AddToMenu JpgMenu Pictures Title
++ I PipeRead 'for i in $HOME/Pictures/*.jpg; \
+    do echo AddToMenu JpgMenu "`basename $i`" Exec xv $i; done'
+
+# Более интересный пример.
+# Генерирует меню, состоящее из файлов каталога, передаваемого
+# функции FuncFvwmMenuDirectory...
+# Для выбранного элемента вызывается команда see
+DestroyFunc FuncFvwmMenuDirectory
+AddToFunc FuncFvwmMenuDirectory I PipeRead 'fvwm-menu-directory \
+    --dir "$0" --exec-file ^"see" --xterm=" xterm -e" \
+    --icon-dir=mini.folder.xpm --icon-title=mini.term.xpm \
+    --icon-file=mini.file.xpm --icon-app=mini.hex.xpm --check-subdir'
+
+# Пример использования функции:
+AddToMenu Documents MissingSubmenuFunction FuncFvwmMenuDirectory
++ "&amp;Root dir%mini.folder.xpm%" Popup /
++ "&amp;Home dir%mini.folder.xpm%" Popup ~
+</PRE>
+Также очень удобно подключить к меню play-list XMMS...
+
+<P>
+
+<DIV CLASS="navigation"><HR>
+<!--Navigation Panel-->
+<A NAME="tex2html868"
+  HREF="node56.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html864"
+  HREF="node54.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html858"
+  HREF="node54.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html866"
+  HREF="IntroToLinux.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A>  
+<BR>
+<B> След.:</B> <A NAME="tex2html869"
+  HREF="node56.html">Функции.</A>
+<B> Вверх:</B> <A NAME="tex2html865"
+  HREF="node54.html">Введение в FVWM2</A>
+<B> Пред.:</B> <A NAME="tex2html859"
+  HREF="node54.html">Введение в FVWM2</A>
+ &nbsp; <B>  <A NAME="tex2html867"
+  HREF="IntroToLinux.html">Содержание</A></B> </DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<TABLE border="0" cellpadding="0" cellspacing="0" width="100%"><TR bgcolor="#336699"><TD bgcolor="#8080c0"><P align="center"><FONT color="#FFFFFF" size="1"><A href="http://www.gnu.org/copyleft/fdl.html"><FONT color="#FFFFFF" size="1">Copyleft</FONT></A> © 2002-2003 г. &nbsp; Nikolay A. Panov, <A href="http://www.uic.nnov.ru/~nik/articles/IntroToLinux/"><FONT color="#FFFFFF">"Intro To Linux" (orig)</FONT></A>, &nbsp;<a href="mailto:&#110;&#105;&#107;&#115;&#105;&#116;&#101;&#64;&#109;&#97;&#105;&#108;&#46;&#114;&#117;"><FONT color="#FFFFFF">&#110;&#105;&#107;&#115;&#105;&#116;&#101;&#64;&#109;&#97;&#105;&#108;&#46;&#114;&#117;</FONT></A>, &nbsp;ICQ: 122-40-8888</FONT></P></TD></TR></TABLE>
+</ADDRESS>
+</BODY>
+</HTML>

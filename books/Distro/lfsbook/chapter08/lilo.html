@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>Делаем систему LFS загрузочной.</title><meta name="GENERATOR" content="Modular DocBook HTML Stylesheet Version 1.73" /=""><link rel="HOME" title="Linux From Scratch" href="../index.html" /=""><link rel="UP" title="Making the LFS system bootable" href="../chapter08/chapter08.html" /=""><link rel="PREVIOUS" title="Installing Linux-2.4.19" href="../chapter08/kernel.html" /=""><link rel="NEXT" title="The End" href="../chapter09/chapter09.html" /=""></head><body class="sect1" bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#840084" alink="#006000"><div class="NAVHEADER"><table summary="Header navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><th colspan="3" align="Center">Linux From Scratch: Версия 4.0</th></tr><tr><td width="10%" align="Left" valign="Bottom"><a href="kernel.html" accesskey="P">Назад</a></td><td width="80%" align="Center" valign="Bottom">Глава 8. Делаем систему LFS загрузочной.</td><td width="10%" align="Right" valign="Bottom"><a href="../chapter09/chapter09.html" accesskey="N">Вперед</a></td></tr></tbody></table><hr align="Left" width="100%" /=""></div><div class="sect1"><h1 class="sect1"><a name="ch08-lilo">Делаем систему LFS загрузочной.</a></h1><p>Для того, что бы иметь возможность запускать LFS систему мы должны обновить наш
+загрузчик. Мы предполагаем, что ваша системы использует Lilo (наиболее распространенный
+загрузчик на данный момент).
+</p><p>Мы не будем запускать программу lilo из-под chroot. Запуск lilo под chroot
+можт вызвать фатальные последствия с уничтожением или повреждением MBR, и мы будем 
+использовать загрузочную дискету для запуска любых LFS систем .
+</p><p>Первое, мы должны выйти из режима chroot и скопировать файл ядра lfskernel в основную систему
+:</p><p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>logout</b></tt>
+<tt class="userinput"><b>cp $LFS/boot/lfskernel /boot</b></tt></pre></td></tr></tbody></table></p><p>Следующий шаг - добавление записи в файл /etc/lilo.conf дабы мы могли выбрать
+нашу LFS систему при загрузке компьютера:
+</p><p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>cat &gt;&gt; /etc/lilo.conf &lt;&lt; "EOF"</b></tt>
+image=/boot/lfskernel
+        label=lfs
+        root=&lt;partition&gt;
+        read-only
+<tt class="userinput"><b>EOF</b></tt></pre></td></tr></tbody></table></p><p>Значение &lt;partition&gt; должно быть заменено значением партиции на котором размещено ядро 
+LFS 
+.</p><p>Так же, если вы используете reiserfs для основной партиции, что значение
+<tt class="userinput"><b>read-only</b></tt> надо заменить на 
+<tt class="userinput"><b>read-write</b></tt>.</p><p>Теперь обновим загрузчик запустив следующее:
+</p><p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>/sbin/lilo -v</b></tt></pre></td></tr></tbody></table></p><p>Последний шаг - синхронизация конфигурации lilo на дискете и на LFS системе:
+</p><p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>cp /etc/lilo.conf $LFS/etc &amp;&amp;<br>cp $(grep "image.*=" /etc/lilo.conf | cut -f 2 -d "=") $LFS/boot</b></tt></pre></td></tr></tbody></table></p></div><div class="NAVFOOTER"><hr align="Left" width="100%" /=""><table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="33%" align="Left" valign="Top"><a href="kernel.html" accesskey="P">Назад</a></td><td width="34%" align="Center" valign="Top"><a href="../index.html" accesskey="H">Домой</a></td><td width="33%" align="Right" valign="Top"><a href="../chapter09/chapter09.html" accesskey="N">Вперед</a></td></tr><tr><td width="33%" align="Left" valign="Top">Установка ядра Linux-2.4.19</td><td width="34%" align="Center" valign="Top"><a href="chapter08.html" accesskey="U">Наверх</a></td><td width="33%" align="Right" valign="Top">Конец<br>
+</td></tr></tbody></table></div></body></html>

@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE> IFMAIL-HOWTO: Фрекание файлов</TITLE>
+ <LINK HREF="Ifmail-HOWTO-10.html" REL=next>
+ <LINK HREF="Ifmail-HOWTO-8.html" REL=previous>
+ <LINK HREF="Ifmail-HOWTO.html#toc9" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="Ifmail-HOWTO-10.html">Next</A>
+<A HREF="Ifmail-HOWTO-8.html">Previous</A>
+<A HREF="Ifmail-HOWTO.html#toc9">Contents</A>
+<HR>
+<H2><A NAME="s9">9. Фрекание файлов</A></H2>
+
+<P> 
+Для файловых запросов можно использовать perl-скрипт ifreq, который расположен 
+в etc/ifmail/misc/contrib. Некоторые freq-процессоры под DOS имеют проблемы
+с отсутствием символа перевода строки в конце строки. Ниже патч для этого:
+<BLOCKQUOTE><CODE>
+<PRE>
+ 
+ --- ifreq~      Sat Aug  6 14:41:28 1994
+ +++ ifreq       Sat Oct  8 12:05:09 1994
+ @@ -73,7 +73,7 @@
+ # open the flofile for appending
+ open(FLOFILE, ">>" . $reqfile) || die "can't open $reqfile";
+ while (@files) {
+ -                       print (FLOFILE shift(@files), "\n");
+ +                       print (FLOFILE shift(@files), "\r\n");
+ }
+ close(FLOFILE);
+</PRE>
+</CODE></BLOCKQUOTE>
+ 
+<P>
+<P>
+<HR>
+<A HREF="Ifmail-HOWTO-10.html">Next</A>
+<A HREF="Ifmail-HOWTO-8.html">Previous</A>
+<A HREF="Ifmail-HOWTO.html#toc9">Contents</A>
+</BODY>
+</HTML>

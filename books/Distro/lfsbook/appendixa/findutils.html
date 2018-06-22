@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>Findutils</title>
+  
+      
+  <meta name="GENERATOR" content="Modular DocBook HTML Stylesheet Version 1.73">
+   
+  <link rel="HOME" title="Linux From Scratch" href="http://www.linux.org.ru/books/Distro/lfsbook/appendixa/index">
+   
+  <link rel="UP" title="Package descriptions and dependencies" href="http://www.linux.org.ru/books/Distro/lfsbook/appendixa/appendixa">
+   
+  <link rel="PREVIOUS" title="Fileutils" href="http://www.linux.org.ru/books/Distro/lfsbook/appendixa/fileutils">
+   
+  <link rel="NEXT" title="Flex" href="http://www.linux.org.ru/books/Distro/lfsbook/appendixa/flex">
+  <meta http-equiv="content-type" content="text/html; charset=windows-1251"></head>
+
+<body class="sect1" bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#840084" alink="#006000">
+ 
+<div class="NAVHEADER"> 
+<table summary="Header navigation table" width="100%" border="0" cellpadding="0" cellspacing="0">
+   <tbody>
+     <tr>
+       <th colspan="3" align="center">Linux From Scratch: Версия 4.0</th>
+     </tr>
+     <tr>
+       <td width="10%" align="left" valign="bottom"><a href="fileutils.html" accesskey="P">Назад</a></td>
+       <td width="80%" align="center" valign="bottom">Приложение A. Описания 
+пакетов и зависимостей</td>
+       <td width="10%" align="right" valign="bottom"><a href="flex.html" accesskey="N">Вперед</a></td>
+     </tr>
+   
+  </tbody> 
+</table>
+ 
+<hr align="left" width="100%"></div>
+ 
+<div class="sect1"> 
+<h1 class="sect1"><a name="aa-findutils">Findutils</a></h1>
+ 
+<div class="sect2"> 
+<h2 class="sect2"><a name="AEN6679">Официальная ссылка</a></h2>
+ 
+<p></p>
+ 
+<p class="literallayout">Findutils (4.1):<br>
+  <a href="ftp://ftp.gnu.org/gnu/findutils/" target="_top">ftp://ftp.gnu.org/gnu/findutils/</a><br>
+  <br>
+  Findutils Patch (4.1):<br>
+  <a href="ftp://ftp.linuxfromscratch.org/lfs-packages/4.0/" target="_top">ftp://ftp.linuxfromscratch.org/lfs-packages/4.0/</a><br>
+  <a href="http://ftp.linuxfromscratch.org/lfs-packages/4.0/" target="_top">http://ftp.linuxfromscratch.org/lfs-packages/4.0/</a></p>
+ 
+<p></p>
+ </div>
+ 
+<div class="sect2"> 
+<h2 class="sect2"><a name="AEN6686">Содержимое Findutils</a></h2>
+ 
+<p>Последняя проверка: версия 4.1.</p>
+ 
+<div class="sect3"> 
+<h3 class="sect3"><a name="AEN6689">Программы</a></h3>
+ 
+<p>bigram, code, find, frcode, locate, updatedb и xargs</p>
+ </div>
+ 
+<div class="sect3"> 
+<h3 class="sect3"><a name="AEN6692">Описания</a></h3>
+ 
+<div class="sect4"> 
+<h4 class="sect4"><a name="AEN6694">bigram</a></h4>
+ 
+<p>bigram используется вместе с code для создания поисковых баз старого типа.
+Больше информации об этих программах приведено на locatedb.5  man page.</p>
+ </div>
+ 
+<div class="sect4"> 
+<h4 class="sect4"><a name="AEN6697">code</a></h4>
+ 
+<p>code - предшественник frcode. Он использовался в старых поисковых базах.</p>
+ </div>
+ 
+<div class="sect4"> 
+<h4 class="sect4"><a name="AEN6700">find</a></h4>
+ 
+<p>find ищет файлы, отвечающие заданному критерию. Если критерий не задан,
+выводится список файлов в текущем каталоге и каталогах нижнего уровня.</p>
+ </div>
+ 
+<div class="sect4"> 
+<h4 class="sect4"><a name="AEN6703">frcode</a></h4>
+ 
+<p>frcode вызывается updatedb для сжатия списка файлов, используя front-compression 
+и уменьшая размер базы данных в 4-5 раз.</p>
+ </div>
+ 
+<div class="sect4"> 
+<h4 class="sect4"><a name="AEN6706">locate</a></h4>
+ 
+<p>locate просматривает базу данных, содержащую сведения обо всех файлах и
+каталогах на файловой системе. Программа выводит имена файлов и каталогов 
+в базе, совпадающие с заданным критерием. Если пользователь ищет файлы, программа 
+просмотрит базу и сообщит, где находятся запрошенные файлы. Поиск даст результаты,
+только если база часто обновляется, иначе будет выдана устаревшая информация.</p>
+ </div>
+ 
+<div class="sect4"> 
+<h4 class="sect4"><a name="AEN6709">updatedb</a></h4>
+ 
+<p>updatedb обновляет поисковую базу. Просматривается вся файловая система 
+(включая все смонтированные, если не указано обратное), каждый найденный файл
+и каталог записывается в базу, используемую locate. Неплохо обновлять базу
+хотя бы раз в день, чтобы избежать ее устаревания.</p>
+ </div>
+ 
+<div class="sect4"> 
+<h4 class="sect4"><a name="AEN6712">xargs</a></h4>
+ 
+<p>xargs выполняет команду относительно списка файлов. Список должен содержать
+одно имя в строке.</p>
+ </div>
+ </div>
+ </div>
+ 
+<div class="sect2"> 
+<h2 class="sect2"><a name="AEN6715">Зависимости Findutils</a></h2>
+ 
+<p>Последняя проверка: версия 4.1.</p>
+ 
+<p class="literallayout">Bash: sh<br>
+  Binutils: ar, as, ld, ranlib<br>
+  Diffutils: cmp<br>
+  Fileutils: chmod, cp, install, mv, rm<br>
+  Grep: egrep, grep<br>
+  Gcc: cc1, collect2, cpp0, gcc<br>
+  Make: make<br>
+  Patch: patch<br>
+  Sed: sed<br>
+  Sh-utils: basename, date, echo, hostname<br>
+  Textutils: cat, tr</p>
+ </div>
+ </div>
+ 
+<div class="NAVFOOTER"> 
+<hr align="left" width="100%"> 
+<table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0">
+   <tbody>
+     <tr>
+       <td width="33%" align="left" valign="top"><a href="fileutils.html" accesskey="P">Назад</a></td>
+       <td width="34%" align="center" valign="top"><a href="../index.html" accesskey="H">Домой</a></td>
+       <td width="33%" align="right" valign="top"><a href="flex.html" accesskey="N">Вперед</a></td>
+     </tr>
+     <tr>
+       <td width="33%" align="left" valign="top">Fileutils</td>
+       <td width="34%" align="center" valign="top"><a href="appendixa.html" accesskey="U">Наверх</a></td>
+       <td width="33%" align="right" valign="top">Flex</td>
+     </tr>
+   
+  </tbody> 
+</table>
+ </div>
+ <br>
+ <br>
+<br>
+</body></html>

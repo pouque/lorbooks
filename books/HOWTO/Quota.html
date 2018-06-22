@@ -1,0 +1,697 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Quota mini-HOWTO</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.57"></HEAD
+><BODY
+CLASS="ARTICLE"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="ARTICLE"
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="TITLE"
+><A
+NAME="AEN2"
+>Quota mini-HOWTO</A
+></H1
+><DIV
+CLASS="AUTHORGROUP"
+><A
+NAME="AEN4"
+></A
+><H3
+CLASS="AUTHOR"
+><A
+NAME="AEN5"
+>Albert M.C. Tam</A
+></H3
+><DIV
+CLASS="AFFILIATION"
+><DIV
+CLASS="ADDRESS"
+><P
+CLASS="ADDRESS"
+>&nbsp;&nbsp;&nbsp;&nbsp;     bertie@scn.org
+    <br>
+&nbsp;&nbsp;&nbsp;</P
+></DIV
+></DIV
+><H3
+CLASS="CORPAUTHOR"
+> Перевод: <A
+HREF="mailto:pax@asp-linux.com"
+TARGET="_top"
+>Павел Гашев</A
+>,
+ <A
+HREF="http://www.asplinux.com"
+TARGET="_top"
+>SWSoft Pte Ltd.</A
+>
+ </H3
+></DIV
+><P
+CLASS="PUBDATE"
+>Версия 0.0, 8 августа 1997 <BR></P
+><DIV
+><DIV
+CLASS="ABSTRACT"
+><A
+NAME="AEN15"
+></A
+><P
+></P
+><P
+>Введение: This document is copylefted by Albert M.C. Tam (bertie@scn.org).
+Permission to use, copy, distribute this document for non-commerical purposes
+is hereby granted, provided that the author's / editor's name and this notice
+appear in all copies and/or supporting documents; that this document is not
+modified.</P
+><P
+>Надеюсь, что этот документ будет вам полезен, но БЕЗО ВСЯКИХ
+ГАРАНТИЙ, явных и не явных. Даже если в тексте присутствует убеждение в
+точности представленной информации, авторы/редакторы/сопроводители не несут
+НИКАКОЙ ОТВЕТСТВЕННОСТИ за ошибки или повреждения, полученными в
+результате ее использования. Этот документ описывает настройку квот для
+файловой системы Linux, определение квот для пользователей и групп, а также
+использование различных команд, связанных с квотированием. Предполагается,
+что у пользователя есть ядро 2.x (RedHat 4.1). Пользователям же старых
+ядер, чтобы использовать квотирование, необходимо
+обновить ядро. Если вы найдете ошибки или заметите пропущенную информацию,
+можете спокойно послать письмо с комментариями по адресу bertie@scn.org. Я
+оценю это.</P
+><P
+></P
+></DIV
+></DIV
+><HR></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Содержание</B
+></DT
+><DT
+>1. <A
+HREF="Quota.html#AEN18"
+>Что такое квотирование?</A
+></DT
+><DT
+>2. <A
+HREF="Quota.html#AEN21"
+>Текущее состояние квот в Linux</A
+></DT
+><DT
+>3. <A
+HREF="Quota.html#AEN25"
+>Основные требования</A
+></DT
+><DD
+><DL
+><DT
+>3.1. <A
+HREF="Quota.html#AEN27"
+>Ядро</A
+></DT
+><DT
+>3.2. <A
+HREF="Quota.html#AEN31"
+>Программное обеспечение</A
+></DT
+></DL
+></DD
+><DT
+>4. <A
+HREF="Quota.html#AEN35"
+>Установка - Часть I: Настройка</A
+></DT
+><DD
+><DL
+><DT
+>4.1. <A
+HREF="Quota.html#AEN37"
+>Настройка ядра</A
+></DT
+><DT
+>4.2. <A
+HREF="Quota.html#AEN41"
+>Установка программного обеспечения</A
+></DT
+><DT
+>4.3. <A
+HREF="Quota.html#AEN45"
+>Включение квотирования во время загрузки</A
+></DT
+><DT
+>4.4. <A
+HREF="Quota.html#AEN50"
+>Изменение /etc/fstab</A
+></DT
+><DT
+>4.5. <A
+HREF="Quota.html#AEN60"
+>Создание "quota.user" и "quota.group"</A
+></DT
+><DT
+>4.6. <A
+HREF="Quota.html#AEN65"
+>Перезагрузка</A
+></DT
+></DL
+></DD
+><DT
+>5. <A
+HREF="Quota.html#AEN69"
+>Установка - Часть II: Определение квот для пользователей и групп</A
+></DT
+><DD
+><DL
+><DT
+>5.1. <A
+HREF="Quota.html#AEN73"
+>Определение квот для конкретного пользователя</A
+></DT
+><DT
+>5.2. <A
+HREF="Quota.html#AEN79"
+>Определение квот для конкретной группы</A
+></DT
+><DT
+>5.3. <A
+HREF="Quota.html#AEN83"
+>Установка одинаковых квот для множества пользователей</A
+></DT
+><DT
+>5.4. <A
+HREF="Quota.html#AEN89"
+>Мягкие ограничения</A
+></DT
+><DT
+>5.5. <A
+HREF="Quota.html#AEN92"
+>Жесткие ограничения</A
+></DT
+><DT
+>5.6. <A
+HREF="Quota.html#AEN95"
+>Льготный период</A
+></DT
+></DL
+></DD
+><DT
+>6. <A
+HREF="Quota.html#AEN100"
+>Команды</A
+></DT
+><DD
+><DL
+><DT
+>6.1. <A
+HREF="Quota.html#AEN102"
+>Quotacheck</A
+></DT
+><DT
+>6.2. <A
+HREF="Quota.html#AEN105"
+>Repquota</A
+></DT
+><DT
+>6.3. <A
+HREF="Quota.html#AEN109"
+>Quotaon и Quotaoff</A
+></DT
+></DL
+></DD
+><DT
+>7. <A
+HREF="Quota.html#AEN112"
+>Авторские права</A
+></DT
+></DL
+></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="AEN18"
+>1. Что такое квотирование?</A
+></H1
+><P
+>Квотирование позволяет ограничить два аспекта использования диска: количество файлов, которыми владеет пользователь или группа пользователей; и количество блоков диска, которые может использовать пользователь или группа пользователей. Квотирование определяется, как для каждого пользователя, так и для каждой файловой системы. Если у вас несколько разделов, то квоты нужно определить для каждого раздела, в котором пользователь намеревается создавать файлы.
+&#13;</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN21"
+>2. Текущее состояние квот в Linux</A
+></H1
+><P
+>Я слышал, что поддержка квотирования встроена в ядро, начиная с версии 1.3.8x, и теперь это часть ядра 2.0.x. Если ваша система не поддерживает квотирование, я настоятельно рекомендую обновить ядро.
+&#13;</P
+><P
+>В настоящее время, квотирование работает только на файловой системе ext2.</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN25"
+>3. Основные требования</A
+></H1
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN27"
+>3.1. Ядро</A
+></H2
+><P
+>Исходные тексты ядра 2.x доступны на
+
+<PRE
+CLASS="PROGRAMLISTING"
+>http://sunsite.unc.edu/pub/Linux/kernel/v2.0 </PRE
+>&#13;</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN31"
+>3.2. Программное обеспечение</A
+></H2
+><P
+>В зависимости от дистрибутива, у вас может быть, а может и не быть установлено программное обеспечение для поддержки квотирования. В этом случае, вы можете загрузить исходные тексты с
+
+
+<PRE
+CLASS="PROGRAMLISTING"
+>ftp://ftp.funet.fi/pub/Linux/PEOPLE/Linus/subsystems/quota/all.tar.gz.</PRE
+>&#13;</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN35"
+>4. Установка - Часть I: Настройка</A
+></H1
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN37"
+>4.1. Настройка ядра</A
+></H2
+><P
+>Перенастройте свое ядро и добавьте туда поддержку квотирования.: 
+
+<PRE
+CLASS="PROGRAMLISTING"
+>Quota support (CONFIG_QUOTA) [n] y</PRE
+>&#13;</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN41"
+>4.2. Установка программного обеспечения</A
+></H2
+><P
+>Программное обеспечение для квотирования находится по адресу 
+
+<PRE
+CLASS="PROGRAMLISTING"
+>ftp://ftp.funet.fi/pub/Linux/PEOPLE/Linus/subsystems/quota/all.tar.gz </PRE
+>&#13;</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN45"
+>4.3. Включение квотирования во время загрузки</A
+></H2
+><P
+>Далее приводится пример: 
+
+<PRE
+CLASS="PROGRAMLISTING"
+># Проверка квот и затем включение квотирования. 
+if [ -x /usr/sbin/quotacheck ] 
+        then 
+               echo "Checking quotas. This may take some time." 
+               echo "Проверка квот. Подождите минуту..." 
+               /usr/sbin/quotacheck -avug 
+               echo " Ok." 
+        fi 
+         if [ -x /usr/sbin/quotaon ] 
+        then 
+                echo "Turning on quota." 
+                echo "Включаем квоты." 
+                /usr/sbin/quotaon -avug 
+        fi&#13;</PRE
+>&#13;</P
+><P
+>Золотое правило: всегда включайте квотирование после того, как файловые системы перечисленные в  /etc/fstab, установлены, иначе квотирование не будет работать. Я рекомендую включать квотирование в конце скрипта загрузки системы, или, если хотите, сразу после установки файловых систем. 
+&#13;</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN50"
+>4.4. Изменение /etc/fstab</A
+></H2
+><P
+>Разделы, на которых не включено квотирование, выглядят следующим образом: 
+
+<PRE
+CLASS="PROGRAMLISTING"
+>/dev/hda1       /       ext2    defaults        1       1
+/dev/hda2       /usr    ext2    defaults        1       1</PRE
+>&#13;</P
+><P
+>Для включения поддержки квотирования, напишите "usrquota" в четвертом поле, где написано "defaults" (для выяснения подробностей прочтите руководство к fstab). 
+
+
+
+<PRE
+CLASS="PROGRAMLISTING"
+>/dev/hda1       /       ext2    defaults        1       1
+/dev/hda2       /usr    ext2    defaults,usrquota       1       1</PRE
+>&#13;</P
+><P
+>Замените "usrquota" на "grpquota", если вам нужна поддержка квотирования групп пользователей в файловой системе. 
+
+
+
+<PRE
+CLASS="PROGRAMLISTING"
+>/dev/hda1       /       ext2    defaults        1       1
+/dev/hda2       /usr    ext2    defaults,grpquota       1       1</PRE
+>&#13;</P
+><P
+>Если вам нужна поддержка квотирования пользователей и их групп в файловой системе, то: 
+
+<PRE
+CLASS="PROGRAMLISTING"
+>/dev/hda1       /       ext2    defaults        1       1
+/dev/hda2       /usr    ext2    defaults,usrquota,grpquota       1   1</PRE
+>&#13;</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN60"
+>4.5. Создание "quota.user" и "quota.group"</A
+></H2
+><P
+>Доступ к файлам записи квот quota.user и quota.group должен иметь только пользователь с правами root</P
+><P
+>Зайдите как пользователь root. Зайдите в корневой каталог и создайте файлы quota.user и quota.group: 
+
+<PRE
+CLASS="PROGRAMLISTING"
+>touch /partition/quota.user 
+touch /partition/quota.group 
+chmod 600 /partition/quota.user 
+chmod 600 /partition/quota.group</PRE
+>&#13;</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN65"
+>4.6. Перезагрузка</A
+></H2
+><P
+>Теперь перезагрузите систему.</P
+><P
+>Запомните, что теперь для установления квотирования на каталоги вам потребуется произвести шаги 4, 5, и 6. </P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN69"
+>5. Установка - Часть II: Определение квот для пользователей и групп</A
+></H1
+><P
+>Эта операция выполняется, при помощи команды edqouta (man edquota).
+&#13;</P
+><P
+>Перед этим я обычно запускаю команду qoutacheck с параметрами -avug, чтобы файловая система точно знала, что и кем используется. Впрочем, это не обязательный шаг, а просто привычка.
+&#13;</P
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN73"
+>5.1. Определение квот для конкретного пользователя</A
+></H2
+><P
+>Например. У меня в системе есть пользователь bob. Команда "edqouta -u bob"
+запускает текстовый редактор (определенный в переменной окружения $EDITOR)
+для редактирования квот пользователя bob для каждого раздела, на котором
+включено квотирование:
+
+
+<PRE
+CLASS="PROGRAMLISTING"
+>Quotas for user bob: 
+/dev/hda2: blocks in use: 2594, limits (soft = 5000, hard = 6500) 
+         inodes in use: 356, limits (soft = 1000, hard = 1500)</PRE
+>&#13;</P
+><P
+>"blocks in use" это общее количество блоков (килобайт), используемых пользователем на этом разделе. </P
+><P
+>"inodes in use" это общее количество файлов, принадлежащих пользователю. 
+&#13;</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN79"
+>5.2. Определение квот для конкретной группы</A
+></H2
+><P
+>В моей системе есть группа games. "edquota -g games", снова запускает текстовый редактор для редактирования квот группы games:
+
+
+
+<PRE
+CLASS="PROGRAMLISTING"
+>        Quotas for group games: 
+        /dev/hda4: blocks in use: 5799, limits (soft = 8000, hard = 10000) 
+                inodes in use: 1454, limits (soft = 3000, hard = 4000)</PRE
+>&#13;</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN83"
+>5.3. Установка одинаковых квот для множества пользователей</A
+></H2
+><P
+>Для быстрой установки квот, скажем для 100 пользователей, на те же значения, что и для пользователя bob, я должен определить ему квоты, а затем запустить:
+
+
+<PRE
+CLASS="PROGRAMLISTING"
+>edquota -p bob `awk -F: '$3 &gt; 499 {print $1}' /etc/passwd`</PRE
+>&#13;</P
+><P
+>если вы используете оболочку csh и идентификаторы пользователей (UID), то последние начинаются с 500.</P
+><P
+>В добавок к edqouta вы еще должны ознакомиться с тремя понятиями: мягкие ограничения, жесткие ограничения и льготный период. 
+&#13;</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN89"
+>5.4. Мягкие ограничения</A
+></H2
+><P
+>Мягкие ограничения определяют максимальный объем диска для пользователя на каждом разделе. В комбинации со льготным периодом, они определяют границу, после которой пользователь начинает получать предупреждения. 
+&#13;</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN92"
+>5.5. Жесткие ограничения</A
+></H2
+><P
+>Жесткие ограничения работают только тогда, когда установлен льготный период. Они определяют абсолютный лимит использования диска, который пользователь не может превысить.
+&#13;</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN95"
+>5.6. Льготный период</A
+></H2
+><P
+>Льготный период (grace period) - это количество времени после превышения мягких ограничений, в течении которого пользователю позволено использовать дисковое пространство, если оно не превышает жесткий лимит. Он определяется в секундах (seconds), минутах (minutes), часах (hours), днях (days), неделях (weeks) или месяцах (months). Проверить его можно при помощи команды "edquota -t": 
+
+<PRE
+CLASS="PROGRAMLISTING"
+>Time units may be: days, hours, minutes, or seconds 
+Grace period before enforcing soft limits for users: 
+/dev/hda2: block grace period: 0 days, file grace period: 0 days </PRE
+>&#13;</P
+><P
+>Можете изменить число дней на любое разумное значение. Лично я использую 7 дней (или 1 неделю).</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN100"
+>6. Команды</A
+></H1
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN102"
+>6.1. Quotacheck</A
+></H2
+><P
+>Quotacheck используется для сканирования дискового пространства и обновления файла "quota.user". Я рекомендую запускать его во время загрузки системы или периодически через cron (скажем, каждую неделю).
+&#13;</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN105"
+>6.2. Repquota</A
+></H2
+><P
+>Repquota выводит общий отчет по квотированию файловой системы. Пример:
+<PRE
+CLASS="PROGRAMLISTING"
+># repquota -a 
+                                Block limits               File limits 
+        User            used    soft    hard  grace    used  soft  hard  grace 
+        root      --  175419       0       0          14679     0     0 
+        bin       --   18000       0       0            735     0     0 
+        uucp      --     729       0       0             23     0     0 
+        man       --      57       0       0             10     0     0 
+        user1     --   13046   15360   19200            806  1500  2250 
+        user2     --    2838    5120    6400            377  1000  1500</PRE
+>&#13;</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN109"
+>6.3. Quotaon и Quotaoff</A
+></H2
+><P
+>Quotaon используется для включения подсчета квот; quotaoff для выключения. На самом деле, оба файла похожи между собой и запускаются во время запуска, и выключения системы соответственно. </P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN112"
+>7. Авторские права</A
+></H1
+><P
+>Авторские права на русский перевод этого текста принадлежат &copy; 2000 SWSoft Pte Ltd.
+Все права зарезервированы.</P
+><P
+>Этот документ является частью проекта Linux HOWTO.</P
+><P
+>Авторские права на документы Linux HOWTO принадлежат их авторам, если явно
+не указано иное. Документы Linux HOWTO, а также их переводы, могут
+быть воспроизведены и распространены полностью или частично на любом
+носителе, физическом или электронном, при условии сохранения этой заметки об
+авторских правах на всех копиях. Коммерческое распространение разрешается и
+поощряется; но, так или иначе, автор текста и автор перевода желали бы знать о
+таких дистрибутивах.</P
+><P
+>Все переводы и производные работы, выполненные по документам Linux HOWTO,
+должны сопровождаться этой заметкой об авторских правах. Это делается в
+целях предотвращения случаев наложения дополнительных ограничений на
+распространение документов HOWTO. Исключения могут составить случаи
+получения специального разрешения у координатора Linux HOWTO, с которым
+можно связаться по адресу приведенному ниже.</P
+><P
+>Мы бы хотели распространить эту информацию по всем возможным каналам. Но
+при этом сохранить авторские права и быть уведомленными о всех планах
+распространения HOWTO. Если у вас возникли вопросы, пожалуйста, обратитесь
+к координатору проекта Linux HOWTO по электронной почте:
+<TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:linux-howto@metalab.unc.edu"
+>linux-howto@metalab.unc.edu</A
+>&#62;</TT
+> или к координатору русского
+перевода Linux HOWTO компании SWSoft Pte Ltd. по адресу
+<TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:linux-howto@asplinux.ru"
+>linux-howto@asplinux.ru</A
+>&#62;</TT
+></P
+></DIV
+></DIV
+></BODY
+></HTML
+>

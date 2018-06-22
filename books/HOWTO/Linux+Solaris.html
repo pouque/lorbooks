@@ -1,0 +1,1232 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Linux+Solaris HOWTO</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.57"></HEAD
+><BODY
+CLASS="ARTICLE"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="ARTICLE"
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="TITLE"
+><A
+NAME="AEN2"
+>Linux+Solaris HOWTO</A
+></H1
+><DIV
+CLASS="AUTHORGROUP"
+><A
+NAME="AEN4"
+></A
+><H3
+CLASS="AUTHOR"
+><A
+NAME="AEN5"
+>Max Berger</A
+></H3
+><DIV
+CLASS="AFFILIATION"
+><DIV
+CLASS="ADDRESS"
+><P
+CLASS="ADDRESS"
+>&nbsp;&nbsp;&nbsp;&nbsp;     max.berger@xslt.de
+    <br>
+&nbsp;&nbsp;&nbsp;</P
+></DIV
+></DIV
+><H3
+CLASS="CORPAUTHOR"
+>  Перевод: <A
+HREF="mailto:sam@asp-linux.com"
+TARGET="_top"
+>Станислав Рогин</A
+>,
+  <A
+HREF="http://www.asplinux.com"
+TARGET="_top"
+>SWSoft Pte Ltd.</A
+>
+ </H3
+></DIV
+><P
+CLASS="PUBDATE"
+>v0.8 2000/04/17 23:48:03<BR></P
+><DIV
+><DIV
+CLASS="ABSTRACT"
+><A
+NAME="AEN15"
+></A
+><P
+></P
+><P
+>В этом документе содержится информация о том,
+как использовать Linux (x86) и Solaris (x86) одновременно на одной
+машине</P
+><P
+></P
+></DIV
+></DIV
+><HR></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Содержание</B
+></DT
+><DT
+>1. <A
+HREF="Linux+Solaris.html#AEN17"
+>Вступление</A
+></DT
+><DD
+><DL
+><DT
+>1.1. <A
+HREF="Linux+Solaris.html#AEN19"
+>Почему Solaris?</A
+></DT
+><DT
+>1.2. <A
+HREF="Linux+Solaris.html#AEN29"
+>О чем этот документ?</A
+></DT
+><DT
+>1.3. <A
+HREF="Linux+Solaris.html#AEN42"
+>Упомянутые версии</A
+></DT
+><DT
+>1.4. <A
+HREF="Linux+Solaris.html#AEN54"
+>Предупреждения</A
+></DT
+></DL
+></DD
+><DT
+>2. <A
+HREF="Linux+Solaris.html#HARDDRIVE"
+>Подготовка Вашего жесткого диска</A
+></DT
+><DD
+><DL
+><DT
+>2.1. <A
+HREF="Linux+Solaris.html#AEN62"
+>Традиционные разделы</A
+></DT
+><DT
+>2.2. <A
+HREF="Linux+Solaris.html#AEN83"
+>Разметка Solaris-разделов</A
+></DT
+><DT
+>2.3. <A
+HREF="Linux+Solaris.html#AEN89"
+>Свободное место</A
+></DT
+><DT
+>2.4. <A
+HREF="Linux+Solaris.html#AEN96"
+>Быстрая проверка по списку</A
+></DT
+></DL
+></DD
+><DT
+>3. <A
+HREF="Linux+Solaris.html#AEN108"
+>Подготовка Linux</A
+></DT
+><DD
+><DL
+><DT
+>3.1. <A
+HREF="Linux+Solaris.html#KERNEL"
+>Сборка нового ядра</A
+></DT
+><DT
+>3.2. <A
+HREF="Linux+Solaris.html#AEN144"
+>Подготовка системного загрузчика</A
+></DT
+></DL
+></DD
+><DT
+>4. <A
+HREF="Linux+Solaris.html#AEN163"
+>Установка Solaris</A
+></DT
+><DD
+><DL
+><DT
+>4.1. <A
+HREF="Linux+Solaris.html#AEN165"
+>Интерактивный Solaris</A
+></DT
+><DT
+>4.2. <A
+HREF="Linux+Solaris.html#AEN179"
+>Web-Start</A
+></DT
+><DT
+>4.3. <A
+HREF="Linux+Solaris.html#AEN183"
+>Получение GNU-утилит</A
+></DT
+></DL
+></DD
+><DT
+>5. <A
+HREF="Linux+Solaris.html#BOOT"
+>Управление загрузкой</A
+></DT
+><DD
+><DL
+><DT
+>5.1. <A
+HREF="Linux+Solaris.html#AEN192"
+>Использование системного загрузчика Solaris</A
+></DT
+><DT
+>5.2. <A
+HREF="Linux+Solaris.html#AEN195"
+>Использование lilo</A
+></DT
+><DT
+>5.3. <A
+HREF="Linux+Solaris.html#AEN201"
+>Использование grub</A
+></DT
+></DL
+></DD
+><DT
+>6. <A
+HREF="Linux+Solaris.html#SHARING"
+>Совместное использование данных</A
+></DT
+><DD
+><DL
+><DT
+>6.1. <A
+HREF="Linux+Solaris.html#AEN206"
+>Использование раздела shared</A
+></DT
+><DT
+>6.2. <A
+HREF="Linux+Solaris.html#AEN216"
+>Другой путь</A
+></DT
+></DL
+></DD
+><DT
+>7. <A
+HREF="Linux+Solaris.html#AEN228"
+>Запуск "инородных" программ</A
+></DT
+><DD
+><DL
+><DT
+>7.1. <A
+HREF="Linux+Solaris.html#AEN230"
+>Запуск программ Linux в Solaris</A
+></DT
+><DT
+>7.2. <A
+HREF="Linux+Solaris.html#AEN233"
+>Запуск программ Solaris в Linux</A
+></DT
+></DL
+></DD
+><DT
+>8. <A
+HREF="Linux+Solaris.html#AEN236"
+>Ссылки на дополнительную информацию</A
+></DT
+><DT
+>9. <A
+HREF="Linux+Solaris.html#AEN258"
+>Благодарности и юридическая информация</A
+></DT
+><DD
+><DL
+><DT
+>9.1. <A
+HREF="Linux+Solaris.html#AEN260"
+>Благодарности</A
+></DT
+><DT
+>9.2. <A
+HREF="Linux+Solaris.html#AEN263"
+>Вопросы, комментарии, предложения</A
+></DT
+><DT
+>9.3. <A
+HREF="Linux+Solaris.html#LEGAL"
+>License</A
+></DT
+><DT
+>9.4. <A
+HREF="Linux+Solaris.html#AEN273"
+>Авторские права</A
+></DT
+></DL
+></DD
+></DL
+></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="AEN17"
+>1. Вступление</A
+></H1
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN19"
+>1.1. Почему Solaris?</A
+></H2
+><P
+>На самом деле, это очень хороший вопрос. Зачем использовать Solaris, когда
+есть Linux? Solaris - коммерческая операционная система, и в ней плохо
+реализована поддержка аппаратных средств. Однако, если Вы читаете это, то,
+вероятно, уже остановили свой выбор на Solaris. Если нет, то я попробую
+назвать несколько причин:
+<P
+></P
+><UL
+><LI
+><P
+>Я администрирую Solaris-машину. Бесполезно, что я изучил все команды и
+параметры Linux, т.к. не могу их использовать на Solaris.</P
+></LI
+><LI
+><P
+>Фирма Sun некоторое время раздавала Solaris, как они это называют "только
+за себестоимость". Хорошо, если они будут это делать всегда.</P
+></LI
+><LI
+><P
+>Причина может быть в том, что Вам понравится CDE.</P
+></LI
+></UL
+>&#13;</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN29"
+>1.2. О чем этот документ?</A
+></H2
+><P
+>Этот HOWTO поможет Вам установить Solaris 7 или 8 на x86 машину, на которой
+уже установлен Linux. Основные пункты:
+<P
+></P
+><UL
+><LI
+><P
+>Как не уничтожить Ваши данные - раздел <A
+HREF="Linux+Solaris.html#HARDDRIVE"
+>Разд. 2</A
+></P
+></LI
+><LI
+><P
+>Как Linux и Solaris могут сосуществовать (на уровне системной загрузки) -
+раздел <A
+HREF="Linux+Solaris.html#BOOT"
+>Разд. 5</A
+></P
+></LI
+><LI
+><P
+>Как одновременно использовать данные в Linux и Solaris - раздел
+<A
+HREF="Linux+Solaris.html#SHARING"
+>Разд. 6</A
+></P
+></LI
+></UL
+>&#13;</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN42"
+>1.3. Упомянутые версии</A
+></H2
+><P
+>Версии систем, используемые при составлении данного документа:
+<P
+></P
+><UL
+><LI
+><P
+>Solaris 7 x86 (= Solaris 2.7 / SunOS 5.7)</P
+></LI
+><LI
+><P
+>Solaris 8 x86 (= Solaris 2.8 / SunOS 5.8)</P
+></LI
+><LI
+><P
+>Linux 2.2.14, 2.3.99-pre3</P
+></LI
+><LI
+><P
+>fdisk v2.10f</P
+></LI
+></UL
+>
+Для некоторых других версий, информация приведенная в данном HOWTO, может
+полностью подходить, а для некоторых может и не подходить вообще.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN54"
+>1.4. Предупреждения</A
+></H2
+><P
+><I
+CLASS="EMPHASIS"
+>Пожалуйста, сделайте резервные копии всех данных прежде, чем
+приступите к установке новой системы! Многие вещи, приведенные в данном
+документе, могут вызвать полную потерю данных! Я не беру на себя
+ответственность за это! См. раздел <A
+HREF="Linux+Solaris.html#LEGAL"
+>Разд. 9.3</A
+></I
+></P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="HARDDRIVE"
+>2. Подготовка Вашего жесткого диска</A
+></H1
+><P
+>Чтобы подготовить Ваш жесткий диск к установке Solaris, Вы должны знать
+кое-что о стандартной таблице разделов и о разделе Solaris. В этом HOWTO я
+говорю о системах с одним жестким диском, но все сказанное будет
+справедливо и при большем их количестве.</P
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN62"
+>2.1. Традиционные разделы</A
+></H2
+><P
+>Стандартная таблица разделов имеет всего четыре раздела. Из них для нас важны:
+<P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>Primary Partition (Первичный раздел)</DT
+><DD
+><P
+>Может содержать только один раздел. Только с этого раздела Вы можете
+загружаться!</P
+></DD
+><DT
+>extended Partition (Расширенный раздел)</DT
+><DD
+><P
+>Может содержать много подразделов DOS, Linux и др.</P
+></DD
+><DT
+>Solaris Partition (Solaris раздел)</DT
+><DD
+><P
+>Может содржать много подразделов Solaris.</P
+></DD
+></DL
+></DIV
+>
+Чтобы убедиться, что Ваш жесткий диск разделен на разделы, используйте
+программу <TT
+CLASS="LITERAL"
+>fdisk</TT
+>. Номера разделов от 1 до 4 (<TT
+CLASS="LITERAL"
+>hda1</TT
+>..<TT
+CLASS="LITERAL"
+>4</TT
+>, <TT
+CLASS="LITERAL"
+>sda1</TT
+>..<TT
+CLASS="LITERAL"
+>4</TT
+>, ...) должны
+присутствовать в вашей таблице разделов.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN83"
+>2.2. Разметка Solaris-разделов</A
+></H2
+><P
+>Solaris имеет собственную схему разделов.Он делает собственную запись в
+таблице разделов и работает с ней.</P
+><P
+>Этот раздел Solaris делится на 8 подразделов. Третий подраздел фактически
+охватывает весь раздел, так что, на самом деле, могут использоваться только 7
+подразделов.</P
+><P
+>К сожалению, запись раздела Solaris в таблице разделов такого же типа, как
+и Linux swap-раздел (82). Поэтому Ваш swap-раздел Linux не должен быть
+первичным разделом.</P
+><P
+>Хотя программа Linux  fdisk  имеет поддержку ``Sun disklabel'', кажется, это
+не помогает.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN89"
+>2.3. Свободное место</A
+></H2
+><P
+>Безусловно, Solaris нуждается в свободном месте на жестком диске.
+Минимальная инсталляция  Solaris 8 занимает около 300Мб. Для нормальной
+инсталляции необходимо около 700Мб, с установкой "инструментов
+разработчика" - около 1Гб.</P
+><P
+>Но эти требования только для базовой инсталляции. Кроме этого, Вы можете
+установить утилиты GNU и т.п. Если Вы хотите совместно использовать данные
+в Linux и Solaris, то необходимо, чтобы эти данные находились на разделе
+Solaris.</P
+><P
+>Вероятно, Вы надеетесь совместно использовать Ваши домашние каталоги.
+Забудьте об этом! Я попробовал это реализовать и был <I
+CLASS="EMPHASIS"
+>очень</I
+> счастлив, что
+предварительно сделал резервные копии. Также смотрите раздел <A
+HREF="Linux+Solaris.html#SHARING"
+>Разд. 6</A
+></P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN96"
+>2.4. Быстрая проверка по списку</A
+></H2
+><P
+>Вы можете быстро проверить Ваше разбиение жесткого диска по списку:
+
+<P
+></P
+><UL
+><LI
+><P
+>У Вас не более 3 записей в таблице разделов&#13;</P
+></LI
+><LI
+><P
+>Ваш раздел подкачки Linux не является первичным</P
+></LI
+><LI
+><P
+>У Вас имеется, как минимум, один первичный раздел Linux ext2</P
+></LI
+><LI
+><P
+>У Вас имеется, по крайней мере, 1Гб неразмеченного пространства</P
+></LI
+></UL
+>&#13;</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN108"
+>3. Подготовка Linux</A
+></H1
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="KERNEL"
+>3.1. Сборка нового ядра</A
+></H2
+><P
+>Некоторые люди не любят пересобирать ядро. Для таковых: если Вы хотите
+использовать Solaris и Linux вместе, и чтобы каждая из систем могла
+работать с данными другой системы, то вы <I
+CLASS="EMPHASIS"
+>должны</I
+> пересобрать ядро. Но если
+Вы не хотите давать возможность системам работать с файлами друг друга, то
+можете ядро и не пересобирать.</P
+><P
+>Опции ядра для "совместимости с Solaris":
+<P
+></P
+><UL
+><LI
+><P
+>&#13;В <TT
+CLASS="LITERAL"
+>code maturity</TT
+>:
+<P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+><TT
+CLASS="LITERAL"
+>Prompt for development drivers</TT
+></DT
+><DD
+><P
+>К сожалению, возможность писать в файловую систему UFS все еще
+экспериментальна</P
+></DD
+></DL
+></DIV
+></P
+></LI
+><LI
+><P
+>В <TT
+CLASS="LITERAL"
+>file systems</TT
+>:
+<P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+><TT
+CLASS="LITERAL"
+>UFS file system support</TT
+></DT
+><DD
+><P
+>UFS - это файловая система Solaris</P
+></DD
+><DT
+><TT
+CLASS="LITERAL"
+>UFS file system
+write support</TT
+></DT
+><DD
+><P
+>Единственный способ передавать данные Solaris</P
+></DD
+><DT
+><TT
+CLASS="LITERAL"
+>partition types / Solaris
+(x86) partition table support</TT
+></DT
+><DD
+><P
+>Это необходимо для поддержки подразделов в пределах Вашего Solaris-раздела.</P
+></DD
+></DL
+></DIV
+></P
+></LI
+></UL
+>
+Дополнительную информацию о сборке ядра можно найти в Kernel-HOWTO</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN144"
+>3.2. Подготовка системного загрузчика</A
+></H2
+><P
+><I
+CLASS="EMPHASIS"
+>Перед началом каких бы то ни было изменений, пожалуйста,
+удостоверьтесь в том, что Вы сделали дискету, с помощью которой, в случае
+неудачи, можно загрузить Вашу старую систему. </I
+></P
+><P
+>К сожалению, при установке Solaris переписывает область начальной загрузки
+(MBR) и стирает Ваш старый системный загрузчик.</P
+><P
+>К счастью, системный загрузчик Solaris позволяет цепную загрузку. Поместите
+старый системный загрузчик (например lilo) в загрузочный сектор одного
+из первичных разделов Linux.</P
+><P
+>Для lilo: посмотрите Ваш файл <TT
+CLASS="FILENAME"
+>/etc/lilo.conf</TT
+>. Найдите строку
+<TT
+CLASS="LITERAL"
+>boot=</TT
+> . Если там написано, что-то вроде  <TT
+CLASS="LITERAL"
+>boot=/dev/hda1</TT
+>, то это хорошо. Но
+если там есть, что-то вроде  <TT
+CLASS="LITERAL"
+>boot=/dev/hda</TT
+>, то это указатель на MBR.
+Исправьте этот указатель так, чтобы грузиться с первичного раздела Linux
+(например, <TT
+CLASS="LITERAL"
+>boot=/dev/hda1</TT
+>).</P
+><P
+>Чтобы попробовать, позволяет ли Ваш системный загрузчик производить цепную
+загрузку, установите lilo в MBR и попробуйте загрузиться при помощи другого
+системного загрузчика. Я использую для этого файл
+<TT
+CLASS="FILENAME"
+>lilo.conf.mbr</TT
+> со следующим содержанием:
+
+<PRE
+CLASS="PROGRAMLISTING"
+>#lilo.conf.mbr
+#Lilo в MBR только передает загрузку другому lilo
+boot=/dev/hda
+root=/dev/hda5
+install=/boot/boot.b
+map=/boot/map
+vga=ask
+delay=50
+other=/dev/hda1
+label=lilochain</PRE
+>
+
+Теперь наберите <TT
+CLASS="LITERAL"
+>lilo -C lilo.conf.mbr</TT
+> для установки <TT
+CLASS="LITERAL"
+>lilo</TT
+> в MBR. И не
+забудьте запустить lilo для того, чтобы получить lilo в загрузочном секторе
+Вашего жесткого диска.</P
+><P
+>Если теперь Вы перезагрузитесь, то увидите приглашение lilo. Если вы
+выберете <TT
+CLASS="LITERAL"
+>other</TT
+>, то загрузится старый lilo, который, в свою очередь, загрузит
+Linux.</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN163"
+>4. Установка Solaris</A
+></H1
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN165"
+>4.1. Интерактивный Solaris</A
+></H2
+><P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>Solaris 7</DT
+><DD
+><P
+>Интерактивный Solaris  находится на первом CD. Загрузитесь с него.</P
+></DD
+><DT
+>Solaris 8</DT
+><DD
+><P
+> На дисках Solaris 8 интерактивный инсталлятор находится на первом CD с
+ программами. Отдельный CD с инсталлятором не нужен вообще.</P
+></DD
+></DL
+></DIV
+>
+Установка Solaris обычно не вызывает никаких трудностей. Единственная
+трудность, которая может возникнуть - деление на разделы. Solaris будет
+автоматически использовать все свободное место на Вашем жестком диске и
+создаст на этом диске свой раздел. Когда раздел будет делиться на
+подразделы, не забудьте выделить место для обмена Solaris/Linux. Хорошее
+место для этого - дополнительный раздел <TT
+CLASS="FILENAME"
+>/export/share</TT
+>.</P
+><P
+>Пожалуйста, обратите внимание: Если Вы прервете установку Solaris, MBR на
+Вашем жестком диске может быть уже перезаписан и Вы не сможете загрузиться
+с него вообще.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN179"
+>4.2. Web-Start</A
+></H2
+><P
+>Я не смог заставить работать Web-Start. Пожалуйста, напишите мне, если у Вас есть опыт работы с ним.</P
+><P
+>Однако, однажды я смог установить Solaris без всяких проблем, связанных с
+установкой пакетов web-start.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN183"
+>4.3. Получение GNU-утилит</A
+></H2
+><P
+>В стандартную поставку Solaris не входит даже команда <TT
+CLASS="LITERAL"
+>less</TT
+>. Некоторые
+советуют установить менеджер пакетов Redhat (RPM) для Solaris, но и
+стандартные инструменты могут выполнять его функции.  Вы можете найти
+замечательные пакеты на <A
+HREF="http://www.sunfreeware.com"
+TARGET="_top"
+>http://www.sunfreeware.com</A
+>. Стандартные пакеты
+устанавливаются командой  <TT
+CLASS="LITERAL"
+>pkgadd&nbsp;&lt;пакет&gt;</TT
+>, а пакеты web-start java
+<TT
+CLASS="LITERAL"
+>java&nbsp;&lt;packagewithoutclassextension&gt;</TT
+>.</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="BOOT"
+>5. Управление загрузкой</A
+></H1
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN192"
+>5.1. Использование системного загрузчика Solaris</A
+></H2
+><P
+>Когда загрузится системный загрузчик Solaris, он предоставит Вам выбор из
+четырех первичных разделов, с которых можно загрузиться. Если Ваш
+системный загрузчик установлен в первичном разделе - это прекрасно. Только
+загрузитесь с этого раздела, и все.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN195"
+>5.2. Использование lilo</A
+></H2
+><P
+>Теперь ваш lilo стал вторичным системным загрузчиком, но Вы хотите, чтоб он
+снова стал первичным загрузчиком? Нет проблем. Lilo может легко заменить
+загрузчик Solaris. Только добавьте/исправьте строку <TT
+CLASS="LITERAL"
+>other=</TT
+> в файле
+lilo.conf.</P
+><P
+>Для проверки, Вы должны  к lilo первым добавить системный загрузчик
+Solaris. Теперь проверьте цепочку: lilo, Solaris, lilo, Solaris, .... Если она
+срабатывает, то, наверняка, Вы сможете без каких-либо проблем поместить lilo
+обратно в MBR.</P
+><P
+>Однако, Solaris может конфликтовать с lilo. У меня возникла такая проблема
+после установки Solaris 8, т.к. lilo не понравился новый раздел. У меня не
+было проблем с Solaris 7.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN201"
+>5.3. Использование grub</A
+></H2
+><P
+>К сожалению, у меня нет опыта работы с Solaris-загрузчиком grub. Если Вы с ним работали, пожалуйста, напишите мне!</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="SHARING"
+>6. Совместное использование данных</A
+></H1
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN206"
+>6.1. Использование раздела shared</A
+></H2
+><P
+>&#13;Если Вы собрали ядро с поддержкой файловых систем Sun и UFS, как это
+описано в разделе <A
+HREF="Linux+Solaris.html#KERNEL"
+>Разд. 3.1</A
+>, то можете подключать раздел
+Solaris. Во время загрузки на экране должно появляться нечто подобное:
+  hda: [PTBL] [523/255/63] hda1 hda2 &lt; hda5 hda6 hda7 hda8 &gt; hda3 &lt;Polaris: [s0]
+  hda9 [s1] hda10 [s2] hda11 [s3] hda12 [s6] hda13 [s7] hda14 &gt;
+В данном случае: раздел 3 (hda3) - это Solaris-раздел с шестью подразделами
+(s0,s1,s2,s3,s6,s7). В Linux они будут иметь имена от  hda9 до hda14.</P
+><P
+>Попробуйте подключить раздел Solaris. Когда подключаете раздел UFS, Вы
+всегда должны указывать параметр  <TT
+CLASS="LITERAL"
+>-oufstype=</TT
+> в командной строке, в нашем
+случае, это <TT
+CLASS="LITERAL"
+>-oufstype=sunx86</TT
+>. Итак, команда для подключения раздела должна
+выглядеть следующим образом:
+
+ mount -oufstype=sunx86 /dev/hda14 /mnt
+Проверьте, подключился ли Ваш раздел. <I
+CLASS="EMPHASIS"
+>Пожалуйста, обратите внимание: Запись
+на раздел UFS находится пока только на экспериментальном уровне. Будьте
+крайне осторожны с записью на него: проверяйте записанные данные!</I
+></P
+><P
+>Если Вы хотите, чтобы Ваш Solaris-раздел подключался автоматически во время
+загрузки, добавьте строку
+/dev/hda14 /solaris ufs ufstype=sunx86 0 0
+в файл
+<TT
+CLASS="FILENAME"
+>/etc/fstab</TT
+>
+&#13;</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN216"
+>6.2. Другой путь</A
+></H2
+><P
+>Конечно, имеются и другие пути для обмена данными или совместного их использования:
+
+<P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>Дискета</DT
+><DD
+><P
+>Я не знаю, какая файловая система на дискетах является стандартной для
+Solaris. Вы знаете? Напишите мне.</P
+></DD
+><DT
+>Сеть</DT
+><DD
+><P
+>И Solaris, и Linux прекрасно работают с NFS. Скорее всего, это наилучший
+путь обмена данными или совместного их использования.</P
+></DD
+></DL
+></DIV
+></P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN228"
+>7. Запуск "инородных" программ</A
+></H1
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN230"
+>7.1. Запуск программ Linux в Solaris</A
+></H2
+><P
+>По идее, для этого используется программа ``lxrun''. Но у меня нет ее, и я
+не имел возможности ее испытать. Ищите ее на официальном сайте Solaris, для
+получения большей информации об этом.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN233"
+>7.2. Запуск программ Solaris в Linux</A
+></H2
+><P
+>Насколько мне известно, Linux не поддерживает бинарные файлы Solaris.</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN236"
+>8. Ссылки на дополнительную информацию</A
+></H1
+><P
+>Вот некоторые ссылки, которые помогут Вам и дадут более обширную информацию:
+
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="http://www.sunfreeware.com"
+TARGET="_top"
+>Sun Freeware</A
+>
+Прекрасный сайт, на нем много бесплатных утилит, готовых к установке.&#13;</P
+></LI
+><LI
+><P
+><A
+HREF="http://www.sun.com"
+TARGET="_top"
+>Sun Microsystems</A
+>
+
+
+Официальный сайт корпорации Sun.</P
+></LI
+><LI
+><P
+><A
+HREF="http://www.sun.com/Solaris"
+TARGET="_top"
+>Solaris Homepage</A
+></P
+></LI
+><LI
+><P
+> <A
+HREF="http://soldc.sun.com/support/drivers/hcl/index.html"
+TARGET="_top"
+>Solaris Hardware Compatibility List (HCL)</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="http://docs.sun.com"
+TARGET="_top"
+>Solaris Online Documentation</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="http://www.xslt.de"
+TARGET="_top"
+>My Website</A
+>
+Здесь Вы всегда найдете самую последнюю версию данного документа</P
+></LI
+></UL
+>&#13;</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN258"
+>9. Благодарности и юридическая информация</A
+></H1
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN260"
+>9.1. Благодарности</A
+></H2
+><P
+>Спасибо Marcel Meyer за проверку и тестирование данного HOWTO, в процессе установки Solaris на его машину.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN263"
+>9.2. Вопросы, комментарии, предложения</A
+></H2
+><P
+>Всегда пожалуйста. Вы можете написать мне на
+<A
+HREF="mailto:max.berger@xslt.de"
+TARGET="_top"
+>max.berger@xslt.de</A
+></P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="LEGAL"
+>9.3. License</A
+></H2
+><P
+>This document is copyrighted &copy; by Max Berger. You may
+use and/or modify it according to the Linux Documentation
+Project License (LDPL) found at <A
+HREF="http://www.linuxdoc.org/COPYRIGHT.html"
+TARGET="_top"
+>http://www.linuxdoc.org/COPYRIGHT.html</A
+>.</P
+><P
+>According to the license you don't have to tell me, but I'd
+very much like to know when you modify and/or republish this
+document.</P
+><P
+>Although the information given in this document is believed
+to be correct, the author will accept no liability for the
+content of this document. Use the tips and examples given
+herein at your own risk.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN273"
+>9.4. Авторские права</A
+></H2
+><P
+>Авторские права на русский перевод этого текста принадлежат &copy; 2000 SWSoft Pte Ltd.
+Все права зарезервированы.</P
+><P
+>Этот документ является частью проекта Linux HOWTO.</P
+><P
+>Авторские права на документы Linux HOWTO принадлежат их авторам, если явно
+не указано иное. Документы Linux HOWTO, а также их переводы, могут
+быть воспроизведены и распространены полностью или частично на любом
+носителе, физическом или электронном, при условии сохранения этой заметки об
+авторских правах на всех копиях. Коммерческое распространение разрешается и
+поощряется; но, так или иначе, автор текста и автор перевода желали бы знать о
+таких дистрибутивах.</P
+><P
+>Все переводы и производные работы, выполненные по документам Linux HOWTO,
+должны сопровождаться этой заметкой об авторских правах. Это делается в
+целях предотвращения случаев наложения дополнительных ограничений на
+распространение документов HOWTO. Исключения могут составить случаи
+получения специального разрешения у координатора Linux HOWTO, с которым
+можно связаться по адресу, приведенному ниже.</P
+><P
+>Мы бы хотели распространить эту информацию по всем возможным каналам. Но
+при этом сохранить авторские права и быть уведомленными о всех планах
+распространения HOWTO. Если у вас возникли вопросы, пожалуйста, обратитесь
+к координатору проекта Linux HOWTO по электронной почте:
+<TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:linux-howto@metalab.unc.edu"
+>linux-howto@metalab.unc.edu</A
+>&#62;</TT
+>, или к координатору русского
+перевода Linux HOWTO компании SWSoft Pte Ltd. по адресу
+<TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:linux-howto@asplinux.ru"
+>linux-howto@asplinux.ru</A
+>&#62;</TT
+></P
+></DIV
+></DIV
+></DIV
+></BODY
+></HTML
+>

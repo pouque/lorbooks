@@ -1,0 +1,133 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=koi8-r">
+<title> Locale &quot;AS IT IS&quot; - Standarts</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1>Кто занимается стандартизацией locale ?</h1>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp; Изначально стандарт на средства <strong>POSIX
+locale</strong> был заявлен <strong>Международной
+организацией по Стандартизации</strong> <a href="http://www.iso.ch"><strong>ISO</strong></a> и <a href="http://www.iec.ch"><strong>IEC</strong></a>
+в составе стандарта <strong>POSIX</strong> ( Portable Operating System
+Interface for Computer Environments ): 
+
+<ul>
+  <li>POSIX.1 (ISO/IEC 9945-1:1988) - Интерфейс </li>
+  <li>POSIX.2 (ISO/IEC 9945-2:1998) - Команды и утилиты </li>
+</ul>
+
+<p>&nbsp;&nbsp; Позднее он был принят комитетом <strong><a href="http://www.ieee.org">IEEE</a> </strong>как IEEE Std. 1003.1-1990 а позже
+введен в стандарт <strong>ANSI C</strong> ( ISO 9899:1990 ). </p>
+
+<p>&nbsp;&nbsp;&nbsp; В дальнейшем, в позднейших выпусках <strong>POSIX</strong>
+: 
+
+<ul>
+  <li>POSIX.1 ( ISO/IEC 9945-1:1992, он же IEEE Std. 1003.1-1992) </li>
+  <li>POSIX.2 ( ISO/IES 9945-2:1992, он же IEEE Std. 1003.2-1992)</li>
+</ul>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; и в выпусках 1994 и 1996 г.г.
+дополненных <strong>POSIX.2a, POSIX.2b</strong>, стандартный
+набор средств для локализации был <strong>расширен</strong>,
+сделан более <strong>переносимым</strong> и был более <strong>документирован</strong>.
+</p>
+
+<p>&nbsp;&nbsp;&nbsp; Свой вклад в развитие <strong>localе</strong>
+внесla также <a href="http://www.rdg.opengroup.org/"><strong>X/Open Co Ltd.</strong></a>
+, образовав <strong>Joint Internationalization Group (JIG)</strong> и
+выпустив документы <strong>XPG2, XPG3, XPG4</strong> (<strong>X/Open
+Portability Guide</strong>) включающие в себя также главы о
+локализации : 
+
+<ul>
+  <li>XPG2 : X/Open Portability Guide, Volume 2, January 1987, XVS System Calls and Libraries
+    (ISBN:&nbsp;0-444-70175-3).</li>
+  <li>XPG3 : X/Open Specification, February 1992, System Interfaces and Headers, Issue 3
+    (ISBN:&nbsp;1-872630-37-5, C212); this specification was formerly X/Open Portability
+    Guide, Issue 3, Volume 2, January 1989, XSI System Interface and Headers
+    (ISBN:&nbsp;0-13-685843-0, XO/XPG/89/003). </li>
+  <li>XPG4 : X/Open CAE Specification, July 1992, System Interfaces and Headers, Issue 4
+    (ISBN:&nbsp;1-872630-47-2, C202). </li>
+</ul>
+
+<p>&nbsp;&nbsp;&nbsp; В настоящее время происходит
+постепенный переход на стандарт <strong>POSIX</strong> 1996 и
+<strong>сосуществуют</strong> самые различные
+реализации, включающие в себя элементы как
+старого <strong>POSIX</strong> 1988, так и нового <strong>POSIX</strong>
+1996 в той или иной мере.</p>
+
+<p>&nbsp;&nbsp;&nbsp; Практически все современные
+коммерческие реализации Unix-ов имеют полную
+реализацию стандартов <strong>POSIX.1</strong> (вызовов) и <strong>POSIX.2</strong>
+(утилит) версии 1996 (в отношении <strong>locale</strong>). </p>
+
+<p>&nbsp;&nbsp;&nbsp; Из <strong>Free</strong> реализаций наиболее
+известны две : <strong>4.4BSD Lite libc</strong> и <strong>GNU libc</strong>
+(получившая дальнейшее развитие в <a href="locale08.html"><strong>Linux
+libс</strong></a>) также поддерживающие <strong>POSIX</strong> 1996 . </p>
+
+<p>&nbsp;&nbsp;&nbsp; В недалеком будущем возможно
+включение в стандарты локализации стандарта <a href="http://www.linux.org.ru/books/unicode/index.html"><strong>UNICODE</strong></a> (16-битныx
+символов) и возможности работы с ними. </p>
+
+<p>&nbsp;&nbsp;&nbsp; В других операцонных системах, таких
+как <strong>Windows NT, Windows'95, OS/2 Warp, Nowell Netware</strong> и т.д.
+также существуют средства локализации, в общих
+чертах повторяющие средства локализации <strong>POSIX</strong>.</p>
+
+<hr>
+
+<h3>Другие стандарты <strong>ISO</strong> :</h3>
+
+<p>ISO 646 - 1983, ISO 7bit coded character set for information interchange. Same as 7bit
+ASCII.</p>
+
+<p>ISO 2022 - 1986, ISO 7bit and 8bit coded character sets; Code extension techniques.
+Using the graphic characters and encoding later defined in is8859-1.</p>
+
+<p>ISO 4873 - 1986, ISO 8bit code for information interchange; Structure and rules for
+implementation. Using the graphic characters and encoding later defined in is8859-1.</p>
+
+<p>ISO 6429 - 1988, ISO 7bit and 8bit coded characters sets; Additional control functions
+for character-imaging devices.</p>
+
+<p>ISO 6937/2 - coded character sets for text communication; contains part 2 on latin
+alphabetic and non-alphabetic graphic characters.</p>
+
+<p>ISO 9036 - Arabic 7bit coded character set for information interchange.</p>
+
+<p>ASMO 449 - 7bit coded Arabic character set for information interchange.</p>
+
+<p>ISO/IEC 10367 - Repertoire of standardized coded graphic character sets for use in 8bit
+codes.</p>
+
+<p>ISO/IEC 10646 - Universal Coded Character Set, same as Unicode. UCS - same as Universal
+Coded Character Set.</p>
+
+<p>JIS x0208 - Japanese Industrial Standard codeset.</p>
+
+<p>KS C5601 - Korean Standard codeset.</p>
+
+<p>CNS 11643 - Chinese (ROC) codeset.</p>
+
+<p>GB 2312 - Chinese (PRC) codeset.</p>
+
+<hr>
+
+<p><a href="locale_i.html#locale">Дополнительная информация.</a></p>
+
+<hr>
+
+<p>Содержание <a href="index.html#toc">&quot;Locale AS IT IS&quot;</a></p>
+
+<hr>
+
+<h6><em>Last changed <!--webbot bot="Timestamp" S-Type="EDITED" S-Format="%d-%m-%Y" startspan -->01-10-2000<!--webbot bot="Timestamp" endspan i-checksum="12414" -->.</em></h6>
+</body>
+</html>

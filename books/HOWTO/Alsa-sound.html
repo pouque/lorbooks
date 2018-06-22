@@ -1,0 +1,3281 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Alsa-sound-mini-HOWTO</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.57"></HEAD
+><BODY
+CLASS="ARTICLE"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="ARTICLE"
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="TITLE"
+><A
+NAME="AEN2"
+>Alsa-sound-mini-HOWTO</A
+></H1
+><DIV
+CLASS="AUTHORGROUP"
+><A
+NAME="AEN4"
+></A
+><H3
+CLASS="AUTHOR"
+><A
+NAME="AEN5"
+>Valentijn Sessink</A
+></H3
+><DIV
+CLASS="AFFILIATION"
+><DIV
+CLASS="ADDRESS"
+><P
+CLASS="ADDRESS"
+>valentyn@alsa-project.org</P
+></DIV
+></DIV
+><H3
+CLASS="CORPAUTHOR"
+>Перевод: <A
+HREF="mailto:kmic@asp-linux.com"
+TARGET="_top"
+>Михаил Корепанов</A
+>,
+<A
+HREF="http://www.asplinux.com"
+TARGET="_top"
+>SWSoft Pte Ltd.</A
+></H3
+></DIV
+><P
+CLASS="PUBDATE"
+>v2.0-pre1, 12 November 1999<BR></P
+><DIV
+><DIV
+CLASS="ABSTRACT"
+><A
+NAME="AEN15"
+></A
+><P
+></P
+><P
+>Этот документ описывает установку драйверов ALSA под Linux. Они полностью совместимы с обычными драйверами и являются их полноценной заменой.</P
+><P
+></P
+></DIV
+></DIV
+><HR></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Содержание</B
+></DT
+><DT
+>1. <A
+HREF="Alsa-sound.html#AEN17"
+>Введение</A
+></DT
+><DD
+><DL
+><DT
+>1.1. <A
+HREF="Alsa-sound.html#AEN20"
+>Благодарности</A
+></DT
+><DT
+>1.2. <A
+HREF="Alsa-sound.html#AEN25"
+>Небольшая предыстория</A
+></DT
+><DT
+>1.3. <A
+HREF="Alsa-sound.html#AEN41"
+>Новые версии этого документа</A
+></DT
+><DT
+>1.4. <A
+HREF="Alsa-sound.html#AEN56"
+>Как со мной связаться</A
+></DT
+><DT
+>1.5. <A
+HREF="Alsa-sound.html#AEN63"
+>Distribution Policy</A
+></DT
+><DT
+>1.6. <A
+HREF="Alsa-sound.html#AEN73"
+>Авторские права</A
+></DT
+></DL
+></DD
+><DT
+>2. <A
+HREF="Alsa-sound.html#AEN82"
+>NOWTO - инструкция по быстрой установке</A
+></DT
+><DD
+><DL
+><DT
+>2.1. <A
+HREF="Alsa-sound.html#AEN85"
+>Установка ALSA для ядер 2.2.x</A
+></DT
+><DT
+>2.2. <A
+HREF="Alsa-sound.html#AEN97"
+>Воспроизведение и запись</A
+></DT
+><DT
+>2.3. <A
+HREF="Alsa-sound.html#AEN105"
+>Установка ALSA для ядер 2.0.x</A
+></DT
+><DT
+>2.4. <A
+HREF="Alsa-sound.html#AEN116"
+>Воспроизведение и запись</A
+></DT
+></DL
+></DD
+><DT
+>3. <A
+HREF="Alsa-sound.html#AEN123"
+>До того, как вы начнете</A
+></DT
+><DD
+><DL
+><DT
+>3.1. <A
+HREF="Alsa-sound.html#AEN125"
+>Введение</A
+></DT
+><DT
+>3.2. <A
+HREF="Alsa-sound.html#AEN129"
+>Общая информация о драйверах ALSA</A
+></DT
+><DT
+>3.3. <A
+HREF="Alsa-sound.html#AEN137"
+>Поддерживаемое оборудование</A
+></DT
+><DT
+>3.4. <A
+HREF="Alsa-sound.html#AEN209"
+>Другие HOWTO</A
+></DT
+><DD
+><DL
+><DT
+>3.4.1. <A
+HREF="Alsa-sound.html#AEN214"
+>Звуковые карты</A
+></DT
+><DT
+>3.4.2. <A
+HREF="Alsa-sound.html#AEN218"
+>Карты Plug and Play</A
+></DT
+><DT
+>3.4.3. <A
+HREF="Alsa-sound.html#AEN223"
+>Загружаемые модули</A
+></DT
+><DT
+>3.4.4. <A
+HREF="Alsa-sound.html#AEN228"
+>Kerneld</A
+></DT
+></DL
+></DD
+></DL
+></DD
+><DT
+>4. <A
+HREF="Alsa-sound.html#AEN233"
+>Как установить звуковые драйверы ALSA</A
+></DT
+><DD
+><DL
+><DT
+>4.1. <A
+HREF="Alsa-sound.html#AEN235"
+>Что вам потребуется</A
+></DT
+><DT
+>4.2. <A
+HREF="Alsa-sound.html#AEN251"
+>Где и как взять драйверы</A
+></DT
+><DT
+>4.3. <A
+HREF="Alsa-sound.html#AEN278"
+>Версии ALSA</A
+></DT
+><DT
+>4.4. <A
+HREF="Alsa-sound.html#AEN283"
+>Разархивирование</A
+></DT
+><DT
+>4.5. <A
+HREF="Alsa-sound.html#AEN294"
+>Сборка</A
+></DT
+><DT
+>4.6. <A
+HREF="Alsa-sound.html#AEN320"
+>Приготовление к работе устройств</A
+></DT
+></DL
+></DD
+><DT
+>5. <A
+HREF="Alsa-sound.html#AEN325"
+>Загрузка драйвера</A
+></DT
+><DD
+><DL
+><DT
+>5.1. <A
+HREF="Alsa-sound.html#AEN330"
+>Установка modprobe</A
+></DT
+><DT
+>5.2. <A
+HREF="Alsa-sound.html#WHICH-MODUL"
+>Какой модуль для какой карты?</A
+></DT
+><DD
+><DL
+><DT
+>5.2.1. <A
+HREF="Alsa-sound.html#AEN339"
+>Gravis UltraSound Extreme <A
+HREF="Alsa-sound.html#NO-CARD"
+>Разд. 5.2.21</A
+></A
+></DT
+><DT
+>5.2.2. <A
+HREF="Alsa-sound.html#AEN344"
+>Gravis UltraSound MAX <A
+HREF="Alsa-sound.html#NO-CARD"
+>Разд. 5.2.21</A
+></A
+></DT
+><DT
+>5.2.3. <A
+HREF="Alsa-sound.html#AEN349"
+>ESS AudioDrive <A
+HREF="Alsa-sound.html#NO-CARD"
+>Разд. 5.2.21</A
+></A
+></DT
+><DT
+>5.2.4. <A
+HREF="Alsa-sound.html#AEN355"
+>ESS AudioDrive 18xx <A
+HREF="Alsa-sound.html#NO-CARD"
+>Разд. 5.2.21</A
+></A
+></DT
+><DT
+>5.2.5. <A
+HREF="Alsa-sound.html#AEN361"
+>Gravis UltraSound PnP <A
+HREF="Alsa-sound.html#NO-CARD"
+>Разд. 5.2.21</A
+></A
+></DT
+><DT
+>5.2.6. <A
+HREF="Alsa-sound.html#AEN367"
+>UltraSound 32-Pro <A
+HREF="Alsa-sound.html#NO-CARD"
+>Разд. 5.2.21</A
+></A
+></DT
+><DT
+>5.2.7. <A
+HREF="Alsa-sound.html#AEN373"
+>Soundblaster <A
+HREF="Alsa-sound.html#NO-CARD"
+>Разд. 5.2.21</A
+></A
+></DT
+><DT
+>5.2.8. <A
+HREF="Alsa-sound.html#AEN379"
+>Soundblaster 16 <A
+HREF="Alsa-sound.html#NO-CARD"
+>Разд. 5.2.21</A
+></A
+></DT
+><DT
+>5.2.9. <A
+HREF="Alsa-sound.html#AEN385"
+>OAK Mozart <A
+HREF="Alsa-sound.html#NO-CARD"
+>Разд. 5.2.21</A
+></A
+></DT
+><DT
+>5.2.10. <A
+HREF="Alsa-sound.html#AEN390"
+>OPTi 82C9xx <A
+HREF="Alsa-sound.html#NO-CARD"
+>Разд. 5.2.21</A
+></A
+></DT
+><DT
+>5.2.11. <A
+HREF="Alsa-sound.html#AEN396"
+>AD1847/48 and CS4248</A
+></DT
+><DT
+>5.2.12. <A
+HREF="Alsa-sound.html#AEN400"
+>Yamaha OPL3-SA2/SA3 soundcards <A
+HREF="Alsa-sound.html#NO-CARD"
+>Разд. 5.2.21</A
+></A
+></DT
+><DT
+>5.2.13. <A
+HREF="Alsa-sound.html#AEN404"
+>S3 SonicVibes <A
+HREF="Alsa-sound.html#NO-CARD"
+>Разд. 5.2.21</A
+></A
+></DT
+><DT
+>5.2.14. <A
+HREF="Alsa-sound.html#AEN410"
+>Ensoniq/Soundblaster PCI64 <A
+HREF="Alsa-sound.html#NO-CARD"
+>Разд. 5.2.21</A
+></A
+></DT
+><DT
+>5.2.15. <A
+HREF="Alsa-sound.html#AEN416"
+>CS4231</A
+></DT
+><DT
+>5.2.16. <A
+HREF="Alsa-sound.html#AEN419"
+>CS4232/4232A</A
+></DT
+><DT
+>5.2.17. <A
+HREF="Alsa-sound.html#AEN422"
+>4235 и выше</A
+></DT
+><DT
+>5.2.18. <A
+HREF="Alsa-sound.html#AEN425"
+>4610/4612/4615 и 4680</A
+></DT
+><DT
+>5.2.19. <A
+HREF="Alsa-sound.html#AEN429"
+>ESS Solo 1 <A
+HREF="Alsa-sound.html#NO-CARD"
+>Разд. 5.2.21</A
+></A
+></DT
+><DT
+>5.2.20. <A
+HREF="Alsa-sound.html#AEN436"
+>Trident 4DWave DX/NX <A
+HREF="Alsa-sound.html#NO-CARD"
+>Разд. 5.2.21</A
+></A
+></DT
+><DT
+>5.2.21. <A
+HREF="Alsa-sound.html#NO-CARD"
+>ForteMedia FM801</A
+></DT
+></DL
+></DD
+><DT
+>5.3. <A
+HREF="Alsa-sound.html#AEN451"
+>modprobe для драйверов без автоматического определения карты</A
+></DT
+><DD
+><DL
+><DT
+>5.3.1. <A
+HREF="Alsa-sound.html#AEN454"
+>OPL3-SA2 и OPL3-SA3</A
+></DT
+><DT
+>5.3.2. <A
+HREF="Alsa-sound.html#AEN462"
+>Чипы CS4231</A
+></DT
+><DT
+>5.3.3. <A
+HREF="Alsa-sound.html#AEN467"
+>Чипы CS4232/CS4232A</A
+></DT
+><DT
+>5.3.4. <A
+HREF="Alsa-sound.html#AEN472"
+>Чипы CS4235/CS4236/CS4236B/CS4237B/CS4238B/CS4239</A
+></DT
+></DL
+></DD
+><DT
+>5.4. <A
+HREF="Alsa-sound.html#AEN481"
+>Использование kerneld</A
+></DT
+><DT
+>5.5. <A
+HREF="Alsa-sound.html#BACKW-COMPAT"
+>Обратная совместимость</A
+></DT
+></DL
+></DD
+><DT
+>6. <A
+HREF="Alsa-sound.html#AEN498"
+>Тестирование и использование</A
+></DT
+><DD
+><DL
+><DT
+>6.1. <A
+HREF="Alsa-sound.html#AEN501"
+>Файловая система /proc</A
+></DT
+><DT
+>6.2. <A
+HREF="Alsa-sound.html#AEN517"
+>Микшер</A
+></DT
+><DD
+><DL
+><DT
+>6.2.1. <A
+HREF="Alsa-sound.html#AEN530"
+>Установки микшера для воспроизведения</A
+></DT
+><DT
+>6.2.2. <A
+HREF="Alsa-sound.html#AEN545"
+>Элементы микшера</A
+></DT
+><DT
+>6.2.3. <A
+HREF="Alsa-sound.html#AEN552"
+>Установки микшера для записи</A
+></DT
+><DT
+>6.2.4. <A
+HREF="Alsa-sound.html#AEN566"
+>Другие установки микшера</A
+></DT
+></DL
+></DD
+><DT
+>6.3. <A
+HREF="Alsa-sound.html#AEN571"
+>Устройства /dev/snd/</A
+></DT
+><DT
+>6.4. <A
+HREF="Alsa-sound.html#AEN582"
+>Дополнительная информация</A
+></DT
+><DD
+><DL
+><DT
+>6.4.1. <A
+HREF="Alsa-sound.html#AEN585"
+>/proc/asound/#/pcm#0</A
+></DT
+><DT
+>6.4.2. <A
+HREF="Alsa-sound.html#AEN601"
+>/proc/asound/#card#/sb16</A
+></DT
+></DL
+></DD
+></DL
+></DD
+><DT
+>7. <A
+HREF="Alsa-sound.html#AEN608"
+>Советы по устранению неисправностей</A
+></DT
+><DD
+><DL
+><DT
+>7.1. <A
+HREF="Alsa-sound.html#AEN611"
+>Компиляция драйвера</A
+></DT
+><DD
+><DL
+><DT
+>7.1.1. <A
+HREF="Alsa-sound.html#AEN613"
+>Linux ".h" файлы ядра</A
+></DT
+><DT
+>7.1.2. <A
+HREF="Alsa-sound.html#AEN617"
+>Если вы не можете создать исполняемые файлы</A
+></DT
+></DL
+></DD
+><DT
+>7.2. <A
+HREF="Alsa-sound.html#AEN620"
+>Если вы не можете загрузить драйвер</A
+></DT
+><DD
+><DL
+><DT
+>7.2.1. <A
+HREF="Alsa-sound.html#AEN623"
+>Звуковые устройства</A
+></DT
+><DT
+>7.2.2. <A
+HREF="Alsa-sound.html#AEN626"
+>Проблемы с совместимостью карт</A
+></DT
+><DT
+>7.2.3. <A
+HREF="Alsa-sound.html#AEN629"
+>если вы получаете сообщения типа``Device busy'' или ``unresolved symbols''</A
+></DT
+><DT
+>7.2.4. <A
+HREF="Alsa-sound.html#AEN648"
+>Устранение ссылок на другой драйвер</A
+></DT
+><DT
+>7.2.5. <A
+HREF="Alsa-sound.html#AEN651"
+>Если у вас все еще появляется сообщение "Unresolved symbols"</A
+></DT
+><DT
+>7.2.6. <A
+HREF="Alsa-sound.html#AEN654"
+>Проверка установок PnP</A
+></DT
+><DT
+>7.2.7. <A
+HREF="Alsa-sound.html#AEN657"
+>Правильно ли вы указали параметры карты ?</A
+></DT
+></DL
+></DD
+><DT
+>7.3. <A
+HREF="Alsa-sound.html#AEN661"
+>Если драйвер загружается..... но звука нет</A
+></DT
+><DD
+><DL
+><DT
+>7.3.1. <A
+HREF="Alsa-sound.html#AEN663"
+>Настройки "mute"</A
+></DT
+><DT
+>7.3.2. <A
+HREF="Alsa-sound.html#AEN667"
+>Настройки "Gain"</A
+></DT
+><DT
+>7.3.3. <A
+HREF="Alsa-sound.html#AEN671"
+>Совместимость OSS/Linux</A
+></DT
+><DT
+>7.3.4. <A
+HREF="Alsa-sound.html#AEN675"
+>Если вы не можете открыть микшер</A
+></DT
+></DL
+></DD
+><DT
+>7.4. <A
+HREF="Alsa-sound.html#AEN679"
+>Общие рекомендации</A
+></DT
+><DD
+><DL
+><DT
+>7.4.1. <A
+HREF="Alsa-sound.html#AEN681"
+>Попробуйте использовать"insmod"</A
+></DT
+><DT
+>7.4.2. <A
+HREF="Alsa-sound.html#AEN684"
+>Прочтите файл INSTALL</A
+></DT
+><DT
+>7.4.3. <A
+HREF="Alsa-sound.html#AEN687"
+>Сообщения об ошибках</A
+></DT
+><DT
+>7.4.4. <A
+HREF="Alsa-sound.html#AEN694"
+>Если вы все же не смогли справиться...</A
+></DT
+></DL
+></DD
+><DT
+>7.5. <A
+HREF="Alsa-sound.html#AEN708"
+>Сообщите нам о замеченных ошибках</A
+></DT
+><DT
+>7.6. <A
+HREF="Alsa-sound.html#AEN727"
+>Совет по применению CD</A
+></DT
+><DT
+>7.7. <A
+HREF="Alsa-sound.html#AEN730"
+>Совет по установке драйвера MIDI</A
+></DT
+><DT
+>7.8. <A
+HREF="Alsa-sound.html#AEN737"
+>Совет: новое ядро? Новые модули!</A
+></DT
+><DT
+>7.9. <A
+HREF="Alsa-sound.html#AEN742"
+>Совет по использованию KDE и драйверов ALSA</A
+></DT
+><DT
+>7.10. <A
+HREF="Alsa-sound.html#AEN746"
+>Совет: используйте устройства ALSA</A
+></DT
+><DT
+>7.11. <A
+HREF="Alsa-sound.html#AEN749"
+>Совет по выгрузке из памяти всех модулей</A
+></DT
+></DL
+></DD
+></DL
+></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="AEN17"
+>1. Введение</A
+></H1
+><P
+>Это mini-HOWTO по драйверам ALSA. Документ объясняет как установить и
+использовать драйверы ALSA. Драйверы ALSA полностью модульные и
+поддерживают kerneld и kmod. Они совместимы, но превосходят возможности
+обычных OSS API. Другими словами, совместимы, но более совершенны.</P
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN20"
+>1.1. Благодарности</A
+></H2
+><P
+>Этот документ содержит информацию, взятую с сайта ALSA. Благодаря пакету <A
+HREF="http://www.sgmltools.org"
+TARGET="_top"
+>SGML</A
+>
+, HOWTO можно читать в различных форматах, генерирующихся из исходного. Спасибо Erik Warmelink за его корректировку, спасибо Alfred Munnikes за пару хороших вопросов и предложений. Благодаря Yamahata Isaku, вы можете прочесть этот документ на японском. Благодаря Miodrag Vallat, вы можете прочесть этот документ на французском. И особая благодарность Steve Crowder, редактировавшему и вычитывавшему текст. Выражаем благодарность Cserna Zsolt за венгерский перевод и Marco Meloni за итальянский. Спасибо Mohamed Ismail Mohamed-Ibrahim, пославшему документацию о звуковой карте Trident 4DWave DX/NX  со множеством полезной информации. Спасибо Gerard Haagh, пославшему много необходимой информации и указавшему на некоторые пробелы в других документах на эту тему.</P
+><P
+>Спасибо Marc-Aur`ele Darche, Piotr Ingling, Juergen Kahrs, Tim Pearce, Patrick Stoddard, Rutger de Graaf, Shuly Wintner, Jyrki Saarela, Jonas Lofwander, Kumar Sankaran и многим другим за полезные советы и добавления.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN25"
+>1.2. Небольшая предыстория</A
+></H2
+><P
+>Версия 2.0-pre1 - 12 ноября 1999. Изменены некоторые разделы в соответствии с ALSA 0.4.1e. Добавлено несколько ссылок.</P
+><P
+>Версия 1.7 - 29 июль 1999. Несколько поправок.</P
+><P
+>Версия 1.6 - 26 июля 1999. Добавлена глава о различных версиях ALSA.</P
+><P
+>Версия 1.5 - 21 мая 1999. Переработана глава о микшере. Глава о быстрой установке добавлена.</P
+><P
+>Версия 1.4 - 18 мая 1999. Включено URL французской версии и исправлены другие поменявшиеся URL.</P
+><P
+>Версия 1.3 - 16 мая 1999. Благодаря Jaroslav, HOWTO было размещено на сайте ALSA-project. В следствие этого были исправлены адреса электронной почты и URL.</P
+><P
+>Версия 1.2 - 11 мая 1999. Внесено несколько дополнений.</P
+><P
+>Версия 1.1 - 11 марта 1999. Добавлено описание нескольких звуковых карт, поддерживаемых драйверами серии 0.3. Описано ядро серии 2.2.</P
+><P
+>Версия 1.0 -  8 февраля 1999. Добавления к главе об устранении неисправностей. Практически законченная версия.</P
+><P
+>Версия 0.3 beta - 20 января 1999. Ссылка на сайт ALSA. Документ получил официальный статус!</P
+><P
+>Версия 0.2 alpha - Середина января 1999, Первая sgml-версия.</P
+><P
+>Версия 0.1 alpha - Январь 1999, Первая версия в формате HTML.</P
+><P
+>Still: please submit any patches in plain English, you native speakers!</P
+><P
+>Есть еще несколько дополнений, которые надо сделать в HOWTO на данный
+момент. Надо отметить, что Mohamed Ismail Mohamed-Ibrahim и Gerard Haagh написали
+прекрасные дополнения к этому HOWTO, что дало мне небольшую передышку
+во времени. Поэтому перед вами версия 2.0-pre1, и за ней последуют
+еще несколько таких же pre.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN41"
+>1.3. Новые версии этого документа</A
+></H2
+><P
+>Последняя версия находится на <A
+HREF="http://www.alsa-project.org/~valentyn"
+TARGET="_top"
+>http://www.alsa-project.org./~valentyn</A
+></P
+><P
+>Другие форматы документа находятся в каталоге
+<A
+HREF="http://www.alsa-project.org/~valentyn/other-formats"
+TARGET="_top"
+>other-formats</A
+>.
+К сожалению, я не смог создать Postscript-версию этого документа,
+потому что скрипт sgml2latex возвращает слишком много ошибок.</P
+><P
+>Yamahata Isaku перевела документ на японский и поместила его на <A
+HREF="http://plaza21.mbn.or.jp/~momokuri/alsa/index.html"
+TARGET="_top"
+>http://plaza21.mbn.or.jp/~momokuri/alsa/index.html</A
+></P
+><P
+>Miodrag Vallat поместил свой французский перевод на 
+<A
+HREF="http://www.freenix.fr/unix/linux/HOWTO/mini/Alsa.html"
+TARGET="_top"
+>http://www.freenix.fr/unix/linux/HOWTO/mini/Alsa.html</A
+>.</P
+><P
+>Cserna Zsolt перевел ALSA-HOWTO на венгерский. Он находится на <A
+HREF="http://kib4.vein.hu/~zsolt/alsa.html"
+TARGET="_top"
+>http://kib4.vein.hu/~zsolt/alsa.html</A
+>.</P
+><P
+>Marco Meloni сделал итальянский перевод, который можно найти на <A
+HREF="http://pluto.linux.it/ildp/index.html"
+TARGET="_top"
+>http://pluto.linux.it/ildp/index.html</A
+>.</P
+><P
+>Если вы сделаете перевод на другой язык, то, пожалуйста, сообщите нам, чтобы мы сделали ссылку на него.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN56"
+>1.4. Как со мной связаться</A
+></H2
+><P
+>Надеемся, что читатель поможет нам сделать HOWTO более полезным. Если у вас появятся какие-либо идеи, предложения и поправки, отсылайте их по адресу (<A
+HREF="mailto:alsa-howto@alsa-project.org"
+TARGET="_top"
+>alsa-howto@alsa-project.org</A
+>), 
+, и мы постараемся их включить в последующие версии.</P
+><P
+>К сожалению, я до сих пор получаю мало писем с информацией о этих драйверах, поэтому буду рад любым дополнениям. Даже письма типа "мне не совсем понятно то-то", я прочту с большим удовольствием.</P
+><P
+>Если вы включите эту работу на CD-ROM или какой-либо другой носитель, то я бы желал получить копию такого издания. Если вы захотите внести вклад в Linux Documentation Project, то свяжитесь с координатором проекта Linux HOWTO Tim Bynum
+<A
+HREF="mailto:linux-howto@metalab.unc.edu"
+TARGET="_top"
+>linux-howto@metalab.unc.edu</A
+>,
+для получения более подробной информации.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN63"
+>1.5. Distribution Policy</A
+></H2
+><P
+>Copyright 1998/1999 Valentijn Sessink</P
+><P
+>This HOWTO is free documentation; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by the
+Free Software Foundation; either version 2 of the License, or (at your
+option) any later version.</P
+><P
+>This document is distributed in the hope that it will be useful, but
+<I
+CLASS="EMPHASIS"
+>without
+any warranty</I
+>; without even the implied warranty of
+<I
+CLASS="EMPHASIS"
+>merchantability</I
+>
+or <I
+CLASS="EMPHASIS"
+>fitness for a particular purpose</I
+>. See the GNU General Public
+License for more details.</P
+><P
+>You can obtain a copy of the GNU General Public License by writing to
+the <A
+HREF="http://www.fsf.org"
+TARGET="_top"
+>Free Software Foundation</A
+>, Inc., 675
+Mass Ave, Cambridge, MA 02139, USA.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN73"
+>1.6. Авторские права</A
+></H2
+><P
+>Авторские права на русский перевод этого текста принадлежат (c) 2000 SWSoft Pte Ltd.
+Все права зарезервированы.</P
+><P
+>Этот документ является частью проекта Linux HOWTO.</P
+><P
+>Авторские права на документы Linux HOWTO принадлежат их авторам, если явно
+не указано иное. Документы Linux HOWTO, а также их переводы, могут
+быть воспроизведены и распространены полностью или частично на любом
+носителе физическом или электронном, при условии сохранения этой заметки об
+авторских правах на всех копиях. Коммерческое распространение разрешается и
+поощряется; но так или иначе автор текста и автор перевода желали бы знать о
+таких дистрибутивах.</P
+><P
+>Все переводы и производные работы, выполненные по документам Linux HOWTO
+должны сопровождаться этой заметкой об авторских правах. Это делается в
+целях предотвращения случаев наложения дополнительных ограничений на
+распространение документов HOWTO. Исключения могут составить случаи
+получения специального разрешения у координатора Linux HOWTO с которым
+можно связаться по адресу приведенному ниже.</P
+><P
+>Мы бы хотели распространить эту информацию по всем возможным каналам. Но
+при этом сохранить авторские права и быть уведомленными о всех планах
+распространения HOWTO. Если у вас возникли вопросы, пожалуйста, обратитесь
+к координатору проекта Linux HOWTO по электронной почте: <TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:linux-howto@metalab.unc.edu"
+>linux-howto@metalab.unc.edu</A
+>&#62;</TT
+>, или к координатору русского перевода
+Linux HOWTO компании SWSoft Pte Ltd. по адресу
+<TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:linux-howto@asplinux.ru"
+>linux-howto@asplinux.ru</A
+>&#62;</TT
+></P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN82"
+>2. NOWTO - инструкция по быстрой установке</A
+></H1
+><P
+>Если вам нужен звук и нужен именно СЕЙЧАС! и не после прочтения этого HOWTO, то этот краткий экскурс по правилам установки драйверов ALSA именно для вас. Замечание: есть небольшая разница между версиями ALSA, которые поддерживают ядра 2.0, и теми, которые поддерживают ядра 2.2.</P
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN85"
+>2.1. Установка ALSA для ядер 2.2.x</A
+></H2
+><P
+>Если вы устанавливаете ALSA 0.4.1e (или более поздние версии), то версия вашего ядра должна быть 2.2.x. Если же версия вашего ядра более старая, то рекомендуется использовать 0.3.0-pre4.</P
+><P
+>Выполните следующие команды  ``./configure - make - make install'' для <I
+CLASS="EMPHASIS"
+>драйверов, библиотеки и утилит</I
+>.
+Вам понадобится сделать это всех трех частей, потому что утилиты участвуют в процессе инициализации вашей карты. Ядра 2.2.x должны иметь <I
+CLASS="EMPHASIS"
+>общую систему поддержки звука</I
+> (без указания какой-либо конкретной карты).</P
+><P
+>Драйверы ALSA, разумеется, поддерживают родные карты, которые можно инициализировать, запустив скрипт <I
+CLASS="EMPHASIS"
+>./snddevices</I
+> .</P
+><P
+>Вы должны загрузить модуль для своей карты (или использовать kmod), а если вы хотите достичь обратной совместимости с драйверами ядра Linux, то вы должны догрузить еще два модуля: <I
+CLASS="EMPHASIS"
+>snd-pcm1-oss</I
+> и <I
+CLASS="EMPHASIS"
+>snd-mixer-oss</I
+>. Просмотрите главу 
+<A
+HREF="Alsa-sound.html#WHICH-MODUL"
+>Разд. 5.2</A
+> для того чтобы выбрать нужный вам модуль. После этого вы можете получить дополнительную информацию о драйверах ALSA в каталоге /proc/asound.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN97"
+>2.2. Воспроизведение и запись</A
+></H2
+><P
+>Несколько замечаний. У ALSA есть несколько устройств в /dev/snd, например /dev/snd/pcmC0D1 относится к Карте 0, Устройству 1 (Card 0, Device 1). Вы можете использовать старые устройства  /dev/pcmXY, если загрузили snd-pcm1-oss для обратной совместимости. Вам, наверняка, пригодится /dev/mixer, поэтому для его работы загрузите snd-mixer-oss. До того, как вы начнете использовать свою карту, вы должны будете ее инициализировать при помощи ``amixer''. Наберите ``amixer groups'', затем </P
+><P
+><TT
+CLASS="LITERAL"
+>amixer set PCM 100 unmute</TT
+></P
+><P
+>Или что-то похожее.</P
+><P
+>В принципе, вы можете использовать опции ``mute'' или ``unmute'', ``capture'' или ``nocapture'' и числа.</P
+><P
+>Ну, теперь, если у вас заработала карта, все нормально, иначе вам придется прочесть все HOWTO...</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN105"
+>2.3. Установка ALSA для ядер 2.0.x</A
+></H2
+><P
+>В драйверах ALSA версий 0.3.0, 0.3.1 и 0.3.2 были проблемы с интерфейсом микшера. Более поздние версии не поддерживают ядра 2.0.x, поэтому вам придется использовать версию драйверов 0.3.0-pre4 если у вас стоит ядро 2.0.</P
+><P
+>Выполните следующие команды  ``./configure - make - make install'' для <I
+CLASS="EMPHASIS"
+>драйверов, библиотеки и утилит</I
+>.
+Вам понадобится сделать это всех трех, потому, что утилиты участвуют в процессе инициализации вашей карты. Ядра 2.0.x должны иметь <I
+CLASS="EMPHASIS"
+>общую систему поддержки звука отключеной</I
+> в установках ядра.</P
+><P
+>Драйверы ALSA, разумеется, поддерживают родные карты, которые можно инициализировать запустив скрипт <I
+CLASS="EMPHASIS"
+>./snddevices</I
+>.</P
+><P
+>Вы должны загрузить модуль для своей карты (или использовать kmod), а если вы хотите достичь обратной совместимости с драйверами ядра Linux, то вы должны догрузить еще модуль <I
+CLASS="EMPHASIS"
+>snd-pcm1-oss</I
+>. Просмотрите главу 
+<A
+HREF="Alsa-sound.html#WHICH-MODUL"
+>Разд. 5.2</A
+> для того чтобы выбрать нужный вам модуль. После этого вы можете получить дополнительную информацию о драйверах ALSA в каталоге /proc/asound.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN116"
+>2.4. Воспроизведение и запись</A
+></H2
+><P
+>Несколько замечаний. У ALSA есть список устройств в /dev/snd, например /dev/snd/pcmC0D1 означает Карта 0, Устройство 1 (Card 0, Device 1). Вы можете использовать старые устройства  /dev/pcmXY если загрузили snd-pcm1-oss для обратной совместимости.  До того как вы начнете использовать свою карту вы должны будете ее инициализировать при помощи ``amixer''. Наберите ``amixer groups'', затем </P
+><P
+><TT
+CLASS="LITERAL"
+>amixer pcm 100 unmute</TT
+></P
+><P
+>В принципе вы можете использовать опции ``mute'' или ``unmute'', ``rec'' или ``norec'' и числа или левый:правый.</P
+><P
+>Ну теперь если у вас заработала карта, то все нормально, иначе вам придется прочесть все HOWTO...</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN123"
+>3. До того, как вы начнете</A
+></H1
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN125"
+>3.1. Введение</A
+></H2
+><P
+>Этот документ поможет вам при установке и использовании драйверов ALSA, если вы используете Linux. Базовые тесты были проведены на дистрибутиве Slackware 4.0 Linux на компьютере AMD/K6, но это все должно работать и с другими дистрибутивами. Я не испытывал драйверы при работе на других платформах. У меня есть данные только о x86-компьютерах, поэтому, если вы протестировали драйвер на других системах, пожалуйста, напишите мне.</P
+><P
+>Было бы не лишним, если бы вы прочли "HOWTO: Звук в Linux" (смотрите главу Другие HOWTO), так как этот документ HOWTO описывает только драйверы, встроенные в ядро.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN129"
+>3.2. Общая информация о драйверах ALSA</A
+></H2
+><P
+>Драйверы ALSA были изначально разработаны как замена драйверов карт Gravis UltraSound (GUS). Когда проект с GUS оказался удачным, автор начал проект ALSA, который бы снабдил рынок драйверами для различных карт. В основу проекта легла идея создать модульный вариант драйверов.</P
+><P
+>Они совместимы со звуковыми драйверами  OSS/Free и OSS/Linux (эти драйверы встроены в ядро), но имеют собственный интерфейс, который лучше, чем у драйверов OSS. Некоторые особенности можно выяснить, посетив <A
+HREF="http://www.alsa-project.org/intro.html"
+TARGET="_top"
+>http://www.alsa-project.org/intro.html</A
+></P
+><P
+>Но имейте в виду, что драйверы ALSA все еще находятся в стадии разработки.
+Все меняется, и некоторые программы, рассчитанные на ALSA работают только
+с некоторыми конкретными версиями драйвера. Однако, я думаю что эти драйверы
+великолепны. Я использую ALSA уже 10 месяцев, и никогда не вернусь в темные
+времена драйверов с закрытыми исходными текстами - подсказка ;-)</P
+><P
+>Домашняя страничка этого проекта находится на <A
+HREF="http://www.alsa-project.org/"
+TARGET="_top"
+>http://www.alsa-project.org/</A
+></P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN137"
+>3.3. Поддерживаемое оборудование</A
+></H2
+><P
+>Драйверы ALSA поддерживают только описанные здесь карты. На время написания этого документа поддерживались следующие карты:
+
+<P
+></P
+><UL
+><LI
+><P
+>Карты с чипсетом Trident 4D Wave DX/NX, спасибо компании Trident Microsystems, которая позволила ALSA "заглянуть" в их GPL-драйверы (только устройства MIXER и PCM) и документацию к их чипсету 4D Wave PCI . Для приобретения более подробной информации загляните на http://www.tridentmicro.com/HTML/products folder/audio.htm
+
+Карты, использующие этот чипсет: Best Union Miss Melody 4DWave PCI, HIS 4DWave PCI, Warpspeed ONSpeed 4DWave PCI, AzTech PCI 64-Q3D, Addonics SV 750, CHIC True Sound 4Dwave, Shark Predator4D-PCI и Jaton SonicWave 4D.&#13;</P
+></LI
+><LI
+><P
+>Gravis Ultrasound (GUS): ``PnP'',&nbsp; Extreme, Classic/ACE, MAX</P
+></LI
+><LI
+><P
+>Карты с чипсетом GUS: Dynasonic 3-D, STB Sound Rage 32, UltraSound 32-Pro (STB), ExpertColor MED3201 и другие с чипом AMD InterWaveT , например, некоторые карты STB, выпускаемые Compaq</P
+></LI
+><LI
+><P
+>Soundblaster: 1.0, 2.0, Pro, 16, AWE32/64, PCI64</P
+></LI
+><LI
+><P
+>ESS AudioDrive ESx688</P
+></LI
+><LI
+><P
+>Карты на основе ESS ES968 (только PnP).</P
+></LI
+><LI
+><P
+>ESS ES18xx (чипсеты). Но я лично испытал много проблем с ESS1888.</P
+></LI
+><LI
+><P
+>ESS Solo-1 ES1938 и ES1946. Работает только один из двух каналов, поэтому запись невозможна. Автор этого драйвера в настоящее время занимается этой проблемой.</P
+></LI
+><LI
+><P
+>Yamaha: OPL3-SA2, OPL3-SA3 (чипсеты)</P
+></LI
+><LI
+><P
+>OAK Mozart</P
+></LI
+><LI
+><P
+>Schubert 32 PCI (PINE, S3 SonicVibes PCI чипсет)</P
+></LI
+><LI
+><P
+>Звуковые карты Ensoniq AudioPCI ES1370/1371 PCI (Soundblaster PCI64)</P
+></LI
+><LI
+><P
+>Звуковые карты SonicVibes PCI (PINE Schubert 32 PCI)</P
+></LI
+><LI
+><P
+>Карты, основанные на ForteMedia FM801  (версия 0.3.2)</P
+></LI
+><LI
+><P
+>Карты на основе OPTi 82C9xx</P
+></LI
+><LI
+><P
+>Карты на основе AD1847, AD1848 и CS4248</P
+></LI
+><LI
+><P
+>Карты на основе AZT2320 (только PnP).</P
+></LI
+><LI
+><P
+>Карты на основе Avance Logic ALS100/ALS120</P
+></LI
+><LI
+><P
+>Карты на основе C-Media CMI8330</P
+></LI
+></UL
+>
+
+Далее следует множество карт, основанных на Crystal Semiconductors. Эти чипы употребляются достаточно часто, включая отдельные карты (некоторые серии Philips PCA) и материнские платы (например IBM Aptiva, Dell computers). Поддерживаются  карты на основе следующих чипсетов:
+
+<P
+></P
+><UL
+><LI
+><P
+>4231</P
+></LI
+><LI
+><P
+>4232</P
+></LI
+><LI
+><P
+>4232A</P
+></LI
+><LI
+><P
+>4235</P
+></LI
+><LI
+><P
+>4236B</P
+></LI
+><LI
+><P
+>4237B</P
+></LI
+><LI
+><P
+>4238B</P
+></LI
+><LI
+><P
+>4239</P
+></LI
+><LI
+><P
+>4280</P
+></LI
+><LI
+><P
+>4610</P
+></LI
+><LI
+><P
+>4612</P
+></LI
+><LI
+><P
+>4614</P
+></LI
+><LI
+><P
+>4615</P
+></LI
+><LI
+><P
+>4680</P
+></LI
+></UL
+>
+
+Одним из достижений ALSA можно считать то, что они позволяют компьютеру без звуковой карты воспроизводить видео! Это делается за счет "пустого" драйвера, который заставляет "думать" такие программы, как Realplayer, что в вашем компьютере есть аудио карта.</P
+><P
+>Новейший список можно найти в каталоге драйверов doc/SOUNDCARDS</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN209"
+>3.4. Другие HOWTO</A
+></H2
+><P
+>Документ ALSA-sound-mini-HOWTO небольшой, но он быстро пополняется. Другие HOWTO помогут вам, если этот документ покажется вам неполным. HOWTO можно найти на зеркалах Metalab (Sunsite). Поэтому загляните на <A
+HREF="http://metalab.unc.edu/LDP/mirrors.html"
+TARGET="_top"
+>http://metalab.unc.edu/LDP/mirrors.html</A
+>
+и выберите ближайшее зеркало. Так же вы можете найти HOWTO в каталоге LDP/HOWTO/. Заметка: все ссылки в этом документе взяты из  /LDP/HOWTO/mini.</P
+><P
+>Небольшое замечание для пользователей ядра версий 2.2.x. Поддержка звука
+в этих ядрах сделана также, как и все остальное: она работает, но по-другому,
+не совсем так, как это было раньше. Начиная с настоящей версии этот документ
+скоцентрирует свое внимание на ядрах серии 2.2, однако я буду пытаться
+указать на его отличия.</P
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN214"
+>3.4.1. Звуковые карты</A
+></H3
+><P
+>Итак, вы купили звуковую карту, или, может быть, она у вас уже стояла, и теперь вы собираетесь ее использовать! Внимательно изучите <A
+HREF="http://www.linux.org.ru/books/Sound-HOWTO.html"
+TARGET="_top"
+>Sound-HOWTO</A
+>.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN218"
+>3.4.2. Карты Plug and Play</A
+></H3
+><P
+>Большинство новых карт для платформы Intel - это ISA PnP карты ("Plug and Play"). Это означает, что карты настраиваются операционной системой. Это делается во время загрузки. Вам понадобится настроить карту с помощью набора утилит для PnP (PnP-utils-package). Все последние дистрибутивы Linux включают в себя такие наборы. Перед тем, как их использовать, рекомендую ознакомиться с 
+<A
+HREF="http://www.linux.org.ru/books/Plug-and-Play-HOWTO.html"
+TARGET="_top"
+>Plug-and-Play-HOWTO</A
+></P
+><P
+>Драйверы ALSA имеют встроенную поддержку ISA-PnP для некоторых карт. К сожалению, я не смог найти документацию на эту тему и поэтому не могу описать как это работает. Пожалуйста, напишите мне, если вы попробовали использовать драйверы ALSA без утилит ISA-PnP-tools.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN223"
+>3.4.3. Загружаемые модули</A
+></H3
+><P
+>Драйверы ALSA построены в виде модулей. Более подробную информацию по модулям можно найти в <A
+HREF="http://www.linux.org.ru/books/Kernel-HOWTO.html"
+TARGET="_top"
+>Kernel-HOWTO</A
+>.
+Так же существует module-HOWTO, но сейчас он не поддерживается и не дорабатывается, это можно выяснить в howto-HOWTO. В случаях затруднения можно обратиться к 
+<A
+HREF="Modules.html"
+TARGET="_top"
+>Modules-mini-HOWTO</A
+>, может быть, там вы найдете нужную информацию.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN228"
+>3.4.4. Kerneld</A
+></H3
+><P
+>Некоторым может понадобиться другое HOWTO, под названием <A
+HREF="Kerneld.html"
+TARGET="_top"
+>Kerneld-mini-HOWTO</A
+>.
+Kerneld - это демон, который устанавливает и убирает модули ядра по мере их необходимости. (У меня нет опыта работы с ним, поэтому прочту все советы по этому поводу. Документация драйверов ALSA содержит информацию по конфигурации kerneld, которая включена в это мини-HOWTO.)</P
+><P
+>С тех пор, как загрузчик модулей был встроен в ядро 2.2.x, все изменилось.
+Но я один из тех, кто предпочитает использовать modprobe вместо того, чтобы
+доверять демону. У меня нет информации по поводу работы с этим демоном.</P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN233"
+>4. Как установить звуковые драйверы ALSA</A
+></H1
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN235"
+>4.1. Что вам потребуется</A
+></H2
+><P
+>&#13;<P
+></P
+><UL
+><LI
+><P
+>работающая система Linux (например дистрибутив Slackware), с установленными приложениями: gcc, make и т.д.</P
+></LI
+><LI
+><P
+>некоторые практические знания о Linux (подразумевается ваше знание "ls", "cd", "tar" и т.д.)</P
+></LI
+><LI
+><P
+>доступ с паролем root</P
+></LI
+></UL
+>
+
+Если у вас нет звуковой карты, то в ALSA есть драйвер, который ее эмулирует! (Он абсолютно ничего не делает, но программы, которые требовали карту, будут работать).</P
+><P
+>Если у вас есть карта PnP, тогда вам так же потребуется:
+
+<P
+></P
+><UL
+><LI
+><P
+>пакет программ isapnptools.</P
+></LI
+></UL
+>
+
+В каталоге драйвера есть файл INSTALL, в котором говорится, что для некоторых карт поддержка PnP не требуется, так как она уже установлена.</P
+><P
+>Надо отметить, что у вас не должно быть никаких активных звуковых драйверов, когда вы используете драйверы ALSA. Если у вас встроенный драйвер, то вам придется перекомпилировать ядро. Если у вас стоит старый модуль "sound.o", то вы должны его сделать нерабочим. При использовании kerneld это означает, что вам надо удалить sound.o из каталога /lib/modules/&lt;kernel_version&gt;/misc .
+Новейшие системы RedHat могут использовать несколько активных звуковых модулей. Вам потребуется удалить их все.</P
+><P
+>При использовании ядер серии 2.2 вы должны включить в них поддержку звука, но не драйвер карты. Затем скомпилируйте и установите ядро, и после этого скомпилируйте драйверы ALSA.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN251"
+>4.2. Где и как взять драйверы</A
+></H2
+><P
+>Драйверы ALSA можно скачать с 
+<A
+HREF="ftp://ftp.alsa-project.org/pub/"
+TARGET="_top"
+>ftp://ftp.alsa-project.org/pub/</A
+>
+, зеркала которого находятся на 
+<P
+></P
+><UL
+><LI
+><P
+>США: <A
+HREF="ftp://ftp.silug.org/pub/alsa"
+TARGET="_top"
+>ftp://ftp.silug.org/pub/alsa</A
+></P
+></LI
+><LI
+><P
+>США: <A
+HREF="ftp://ftp.eecs.umich.edu/pub/linux/alsa"
+TARGET="_top"
+>ftp://ftp.eecs.umich.edu/pub/linux/alsa</A
+></P
+></LI
+><LI
+><P
+>Голландия: <A
+HREF="ftp://linux.a2000.nl/alsa"
+TARGET="_top"
+>ftp://linux.a2000.nl/alsa</A
+></P
+></LI
+><LI
+><P
+>Польша: <A
+HREF="ftp://ftp.task.gda.pl/pub/linux/misc/alsa"
+TARGET="_top"
+>ftp://ftp.task.gda.pl/pub/linux/misc/alsa</A
+></P
+></LI
+><LI
+><P
+>Германия: <A
+HREF="ftp://ftp.tu-clausthal.de/pub/linux/alsa"
+TARGET="_top"
+>ftp://ftp.tu-clausthal.de/pub/linux/alsa</A
+></P
+></LI
+><LI
+><P
+>Словакия: <A
+HREF="ftp://ftp.phacka.sk/pub/alsa"
+TARGET="_top"
+>ftp://ftp.phacka.sk/pub/alsa</A
+></P
+></LI
+><LI
+><P
+>Австралия: <A
+HREF="ftp://ftp.suburbia.com.au/pub/alsa"
+TARGET="_top"
+>ftp://ftp.suburbia.com.au/pub/alsa</A
+></P
+></LI
+></UL
+>&#13;</P
+><P
+>Для установки драйверов ALSA вам понадобятся драйверы, библиотеки и утилиты; например, вы выбрали зеркало A2000, вы берете там ftp://linux.a2000.nl/alsa/driver/alsa-driver-0.4.1e.tar.gz, ftp://linux.a2000.nl/alsa/lib/alsa-lib-0.4.1d.tar.gz и ftp://linux.a2000.nl/alsa/utils/alsa-utils-0.4.1.tar.gz</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN278"
+>4.3. Версии ALSA</A
+></H2
+><P
+>Драйверы ALSA далеко не новы. Их разработка началась еще для ядер 2.0, затем и для ядер 2.2 (у которых есть собственное звуковое ядро).</P
+><P
+>У меня замечательно работает версия 0.4 , я думаю, что и версии 0.4.1e (или более новые) будут не хуже. Если у вас ядро 2.0.x, вам понадобятся версии 0.3.0 или более старые. Я бы посоветовал использовать alsa-driver-0.3.0-pre4, alsa-lib-0.3.0-pre4 и alsa-utils-0.3.0-pre3.</P
+><P
+>Более старые версии, такие как 0.2.0-pre10p3 или старше, работают под ядром 2.0.x, но я не смог их запустить под 2.2.x .</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN283"
+>4.4. Разархивирование</A
+></H2
+><P
+>Вы можете разархивировать драйверы командой типа tar
+-zxf &lt;file&#62;. Было бы сподручнее если бы вы сделали это в каталоге /usr/src, но для этого вы должны зайти как пользователь root. Наберите "su" и пароль root для того, чтобы получить права одноименного пользователя. Но лучше не пользоваться этими правами без лишней необходимости. Итак:</P
+><P
+>&#13;<PRE
+CLASS="SCREEN"
+>cd /usr/src</PRE
+>&#13;</P
+><P
+>&#13;<PRE
+CLASS="SCREEN"
+>tar -zxf &tilde;/alsa-driver-0.4.1e.tar.gz</PRE
+>&#13;</P
+><P
+>&#13;<PRE
+CLASS="SCREEN"
+>tar -zxf &tilde;/alsa-lib-0.4.1d.tar.gz</PRE
+>&#13;</P
+><P
+>&#13;<PRE
+CLASS="SCREEN"
+>tar -zxf &tilde;/alsa-utils-0.4.1.tar.gz</PRE
+>
+
+Есть еще один проверочный файл, найдите ~ -name alsa* -exec tar -zxf {} \;
+(нежелательно это прослушивать в присутствии детей). Замечание: если вы скачиваете файлы при помощи Netscape, вы можете скачать неразархивированные драйверы с расширением ".tgz". Если tar будет ссылаться на неправильный формат файла, уберите  "z" в настройках tar.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN294"
+>4.5. Сборка</A
+></H2
+><P
+>До того, как вы начнете использовать библиотеки, у вас должен быть драйвер, а до использования утилит у вас должны быть библиотеки:
+
+<PRE
+CLASS="SCREEN"
+>cd alsa-driver-0.4.1e</PRE
+>
+
+(для не столь опытных: нажмите &lt;tab&#62; (клавиша "tab")
+после "alsa-d". Это называется <I
+CLASS="EMPHASIS"
+>автоматическое завершение командной строки</I
+>.)
+
+<PRE
+CLASS="SCREEN"
+>./configure</PRE
+>
+
+Если вы хотите использовать встроенные интерфейсы PnP, вы должны выполнить
+
+<PRE
+CLASS="SCREEN"
+>./configure --with-isapnp=yes</PRE
+>&#13;</P
+><P
+>&#13;<PRE
+CLASS="SCREEN"
+>make</PRE
+>
+
+Теперь вам потребуются права пользователя 'root' для установки программ
+
+<PRE
+CLASS="SCREEN"
+>make install</PRE
+>
+
+Если после этого система выдает сообщение вида "version.h cannot be found", значит, у вас нет соответствующего файла в исходных текстах ядра. Вам потребуются некоторые файлы исходного текста ядра для компиляции драйверов ALSA. Разархивируйте  linux-2.x.y.tar.gz в каталог /usr/src и запустите
+<TT
+CLASS="LITERAL"
+>make menuconfig</TT
+>. (В принципе, <TT
+CLASS="LITERAL"
+>make symlinks</TT
+> было бы достаточно).
+Теперь откомпилируйте библиотеки:
+
+<PRE
+CLASS="SCREEN"
+>cd ../alsa-lib-0.4.1d</PRE
+>&#13;</P
+><P
+>&#13;<PRE
+CLASS="SCREEN"
+>./configure</PRE
+>&#13;</P
+><P
+>&#13;<PRE
+CLASS="SCREEN"
+>make</PRE
+>&#13;</P
+><P
+>&#13;<PRE
+CLASS="SCREEN"
+>make install</PRE
+>
+
+Хорошо, вы закончили с библиотеками, теперь утилиты:
+
+<PRE
+CLASS="SCREEN"
+>cd ../alsa-utils-0.4.1</PRE
+>&#13;</P
+><P
+>&#13;<PRE
+CLASS="SCREEN"
+>./configure</PRE
+>&#13;</P
+><P
+>&#13;<PRE
+CLASS="SCREEN"
+>make</PRE
+>&#13;</P
+><P
+>&#13;<PRE
+CLASS="SCREEN"
+>make install</PRE
+>
+
+Замечание: вы можете вообще не делать "make install" для утилит и даже не собирать библиотеки и утилиты, если вам просто надо проверить, работает ли драйвер.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN320"
+>4.6. Приготовление к работе устройств</A
+></H2
+><P
+>В каталоге драйвера есть скрипт, который установит звуковые устройства ALSA в ваш каталог /dev . Наберите
+
+<PRE
+CLASS="SCREEN"
+>./snddevices</PRE
+>
+
+в каталоге драйвера. Теперь там должен появиться подкаталог /dev/snd (проверьте это. Если вы при помощи команды "ls" не нашли соответствующего каталога, то вам придется прочесть другой  HOWTO. У вас должны быть кое-какие навыки работы с Linux для того, чтобы установить эти драйверы).</P
+><P
+>Теперь вы можете установить драйвер. Это описано в следующей главе.</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN325"
+>5. Загрузка драйвера</A
+></H1
+><P
+>Существует два способа использования звуковых модулей ALSA. Я предпочитаю делать это, как описано в инструкции, этот метод подразумевает, что во время запуска системы модуль подгружается. Драйверы ALSA были спроектированы как двоякие, то есть существует возможность их применения как догружаемых модулей, так и не подгружаемых (установленных). После загрузки они не сбивают настроек микшера, поэтому вы можете воспользоваться другим способом их эксплуатации - при помощи kerneld.</P
+><P
+>Если у вас старое ядро, то для обеспечения поддержки звука прочтите главу <A
+HREF="Alsa-sound.html#BACKW-COMPAT"
+>Разд. 5.5</A
+>.</P
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN330"
+>5.1. Установка modprobe</A
+></H2
+><P
+>Замечание: если у вас карта PnP, то вам надо сначала правильно ее настроить на IO/IRQ/DMA. Для этого прочтите Plug-and-Play-HOWTO. Теперь вам следует запустить "modprobe snd-card-&lt;soundcard&#62;". 
+Замечу, что не все дистрибутивы включают в путь /sbin. Если вы получили сообщение "bash: modprobe: command not found", это означает, что modprobe не включен в путь. Попробуйте найти утилиту modprobe в ``/sbin/modprobe snd-card-sb16'' или где-либо еще.</P
+><P
+>Самые большие проблемы могут возникнуть с чипсетами Crystal -для них у драйверов ALSA нет автоматического определения. Более подробную информацию можно прочитать в файле INSTALL, который находится в каталоге драйвера. Вот два примера: первый для Gravis UltraSound (GUS) и аналогов:
+
+<PRE
+CLASS="SCREEN"
+>/sbin/modprobe snd-card-gusclassic</PRE
+>
+
+Для всех карт 16-bit Soundblaster (SoundBlaster 16 (PnP), SoundBlaster AWE 32 (PnP), SoundBlaster AWE 64 (PnP):
+
+<PRE
+CLASS="SCREEN"
+>/sbin/modprobe snd-card-sb16</PRE
+>
+
+Если вы используете драйвер 0.3.0-pre4 , драйвер GUS Classic называется ``snd-gusclassic'', а модуль SoundBlaster 16 называется  ``snd-sb16'' (без уточнения конкретной модели карты).</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="WHICH-MODUL"
+>5.2. Какой модуль для какой карты?</A
+></H2
+><P
+>Не забудьте, что в версиях ALSA до 0.4.x иногда употребляют названия моделей карт. Это отмечено звездочкой (*).</P
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN339"
+>5.2.1. Gravis UltraSound Extreme <A
+HREF="Alsa-sound.html#NO-CARD"
+>Разд. 5.2.21</A
+></A
+></H3
+><P
+><TT
+CLASS="LITERAL"
+>modprobe snd-card-gusextreme</TT
+></P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN344"
+>5.2.2. Gravis UltraSound MAX <A
+HREF="Alsa-sound.html#NO-CARD"
+>Разд. 5.2.21</A
+></A
+></H3
+><P
+><TT
+CLASS="LITERAL"
+>modprobe snd-card-gusmax</TT
+></P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN349"
+>5.2.3. ESS AudioDrive <A
+HREF="Alsa-sound.html#NO-CARD"
+>Разд. 5.2.21</A
+></A
+></H3
+><P
+>Карты ESS AudioDrive ES-1688 и ES-688</P
+><P
+><TT
+CLASS="LITERAL"
+>modprobe snd-card-audiodrive1688</TT
+></P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN355"
+>5.2.4. ESS AudioDrive 18xx <A
+HREF="Alsa-sound.html#NO-CARD"
+>Разд. 5.2.21</A
+></A
+></H3
+><P
+>Карты на основе ESS AudioDrive ES-18xx</P
+><P
+><TT
+CLASS="LITERAL"
+>modprobe snd-card-audiodrive18xx</TT
+></P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN361"
+>5.2.5. Gravis UltraSound PnP <A
+HREF="Alsa-sound.html#NO-CARD"
+>Разд. 5.2.21</A
+></A
+></H3
+><P
+>Gravis UltraSound PnP, Dynasonic 3-D/Pro, STB Sound Rage 32, ExpertColor MED3201 и другие карты, основанные на чипе AMD InterWave&trade;.</P
+><P
+><TT
+CLASS="LITERAL"
+>modprobe snd-card-interwave</TT
+></P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN367"
+>5.2.6. UltraSound 32-Pro <A
+HREF="Alsa-sound.html#NO-CARD"
+>Разд. 5.2.21</A
+></A
+></H3
+><P
+>UltraSound 32-Pro (карты STB используемые Compaq) и другие карты, основанные на чипе AMD InterWave (tm), с улучшенной схемой  управления низкими частотами TEA6330T, управлением высоких частот и громкостью</P
+><P
+><TT
+CLASS="LITERAL"
+>modprobe snd-card-interwave-stb</TT
+></P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN373"
+>5.2.7. Soundblaster <A
+HREF="Alsa-sound.html#NO-CARD"
+>Разд. 5.2.21</A
+></A
+></H3
+><P
+>Карты 8-bit Soundblaster (SoundBlaster 1.0, SoundBlaster 2.0, SoundBlaster Pro)</P
+><P
+><TT
+CLASS="LITERAL"
+>modprobe snd-card-sb8</TT
+></P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN379"
+>5.2.8. Soundblaster 16 <A
+HREF="Alsa-sound.html#NO-CARD"
+>Разд. 5.2.21</A
+></A
+></H3
+><P
+>Карты 16-bit SoundBlaster (SoundBlaster 16 (PnP), SoundBlaster AWE 32 (PnP), SoundBlaster AWE 64 (PnP). Замечание: этот модуль не поддерживает карту SoundBlaster VibraX16.</P
+><P
+><TT
+CLASS="LITERAL"
+>modprobe snd-card-sb16</TT
+></P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN385"
+>5.2.9. OAK Mozart <A
+HREF="Alsa-sound.html#NO-CARD"
+>Разд. 5.2.21</A
+></A
+></H3
+><P
+><TT
+CLASS="LITERAL"
+>modprobe snd-mozart</TT
+></P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN390"
+>5.2.10. OPTi 82C9xx <A
+HREF="Alsa-sound.html#NO-CARD"
+>Разд. 5.2.21</A
+></A
+></H3
+><P
+>Группа карт, использующих чипсет OPTi 82C9xx, такие как Audio 16 Pro EPC-SOUN9301 (основанная на 82C930), ExpertColor MED-3931 v2.0 (основанная на 82C931), ExpertMedia Sound 16 MED-1600 ( AD1848, основанная на 82C928 ), Mozart S601206-G ( CS4231, основанная на OPTI601) и Sound Player S-928 </P
+><P
+><TT
+CLASS="LITERAL"
+>modprobe snd-card-opti9xx</TT
+></P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN396"
+>5.2.11. AD1847/48 and CS4248</A
+></H3
+><P
+><TT
+CLASS="LITERAL"
+>modprobe snd-card-ad1848</TT
+></P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN400"
+>5.2.12. Yamaha OPL3-SA2/SA3 soundcards <A
+HREF="Alsa-sound.html#NO-CARD"
+>Разд. 5.2.21</A
+></A
+></H3
+><P
+>Команда "modprobe snd-opl3sa" не будет работать, так как этот драйвер не проводит автоматического определения. Смотрите далее.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN404"
+>5.2.13. S3 SonicVibes <A
+HREF="Alsa-sound.html#NO-CARD"
+>Разд. 5.2.21</A
+></A
+></H3
+><P
+>Карты S3 SonicVibes PCI . (PINE Schubert 32 PCI)</P
+><P
+><TT
+CLASS="LITERAL"
+>modprobe snd-card-sonicvibes</TT
+></P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN410"
+>5.2.14. Ensoniq/Soundblaster PCI64 <A
+HREF="Alsa-sound.html#NO-CARD"
+>Разд. 5.2.21</A
+></A
+></H3
+><P
+>Карты Ensoniq AudioPCI ES1370/1371 PCI . (SoundBlaster PCI 64)</P
+><P
+><TT
+CLASS="LITERAL"
+>modprobe snd-card-audiopci</TT
+></P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN416"
+>5.2.15. CS4231</A
+></H3
+><P
+>Команда ``modprobe snd-card-cs4231'' не будет работать, так как не проводится автоматического определения. Смотрите далее.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN419"
+>5.2.16. CS4232/4232A</A
+></H3
+><P
+>Для всех карт, основанных на чипе CS4232/CS4232A команда "modprobe snd-card-cs4232" не будет работать, так как не проводится автоматического определения. Смотрите далее.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN422"
+>5.2.17. 4235 и выше</A
+></H3
+><P
+>Для всех карт основанных на чипе CS4235/CS4236/CS4236B/CS4237B/CS4238B/CS4239, команда "modprobe snd-card-cs4236" не будет работать, так как не проводится автоматического определения. Смотрите далее.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN425"
+>5.2.18. 4610/4612/4615 и 4680</A
+></H3
+><P
+><TT
+CLASS="LITERAL"
+>modprobe snd-card-cs461x</TT
+></P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN429"
+>5.2.19. ESS Solo 1 <A
+HREF="Alsa-sound.html#NO-CARD"
+>Разд. 5.2.21</A
+></A
+></H3
+><P
+>Карты ESS Solo-1, 128iPCI (es1938, ESS-SOLO-1). Jonas Lofwander послал мне ссылку на <A
+HREF="http://dice.shopcenter.nu/alsa/"
+TARGET="_top"
+>http://dice.shopcenter.nu/alsa/</A
+>
+, где описывается установка этой карты, хотя, в этом случае, проблем не возникает. Просто команда 
+<TT
+CLASS="LITERAL"
+>modprobe snd-card-esssolo1</TT
+> ... .
+Если у вас IBM Thinkpad 1412, то можете заглянуть на ссылку, присланную Kumar Sankaran 
+<A
+HREF="http://www.geocities.com/SiliconValley/Peaks/3649/1412.html"
+TARGET="_top"
+>http://www.geocities.com/SiliconValley/Peaks/3649/1412.html</A
+> .</P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN436"
+>5.2.20. Trident 4DWave DX/NX <A
+HREF="Alsa-sound.html#NO-CARD"
+>Разд. 5.2.21</A
+></A
+></H3
+><P
+>Best Union  Miss Melody 4DWave PCI, HIS  4DWave PCI, Warpspeed  ONSpeed 4DWave PCI,
+AzTech  PCI 64-Q3D, Addonics  SV 750, CHIC  True Sound 4Dwave, Shark  Predator4D-PCI,
+Jaton  SonicWave 4D. </P
+><P
+><TT
+CLASS="LITERAL"
+>modprobe snd-card-trident</TT
+></P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="NO-CARD"
+>5.2.21. ForteMedia FM801</A
+></H3
+><P
+>Это карты PCI, основанные на чипе FM801.</P
+><P
+><TT
+CLASS="LITERAL"
+>modprobe snd-card-fm801</TT
+></P
+><P
+><I
+CLASS="EMPHASIS"
+>(*)</I
+>
+Для версии ALSA 0.3.0-pre4, вы должны пропустить "card-" (не для всех!) в названиях драйверов. Строка ``snd-card-sb16'' превращается в ``snd-sb16'', а  ``snd-cs4232'' остается ``snd-card-cs4232'' (modprobe snd-cs4232 начнет что-то выполнять, но не будет воспроизводить звук!)</P
+><P
+><I
+CLASS="EMPHASIS"
+>(**)</I
+>
+В более старых версиях ALSA драйвер называется ``snd-card-trid4wave'' и ``snd-trid4wave''.</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN451"
+>5.3. modprobe для драйверов без автоматического определения карты</A
+></H2
+><P
+>Если у вас драйвер без автоматического определения, то для его работы вам потребуется внести больше информации при его загрузке. Более подробно это описано в файле INSTALL каталога драйвера.</P
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN454"
+>5.3.1. OPL3-SA2 и OPL3-SA3</A
+></H3
+><P
+>По инструкции, приведенной в файле INSTALL, вы должны внести дополнительную информацию для драйвера. Если вы инициализировали карту при помощи isapnp-tools, вы можете получить следующую информацию из файла /etc/isapnp.conf :
+
+<PRE
+CLASS="SCREEN"
+>snd_port - control port # for OPL3-SA chip
+snd_wss_port - WSS port # for OPL3-SA chip (0x530,0xe80,0xf40,0x604)
+snd_midi_port - port # for MPU-401 UART (0x300,0x330), -1 = disable
+snd_fm_port - FM port # for OPL3-SA chip (0x388), -1 = disable
+snd_irq - IRQ # for OPL3-SA chip (5,7,9,10)
+snd_dma1 - first DMA # for Yamaha OPL3-SA chip (0,1,3)
+snd_dma1_size - max first DMA size in kB (4-64kB)
+snd_dma2 - second DMA # for Yamaha OPL3-SA chip (0,1,3), -1 = disable
+snd_dma2_size - max second DMA size in kB (4-64kB)</PRE
+>
+
+Для того, чтобы запустить драйвер вы можете выполнить "modprobe snd-card-opl3sa snd_port=0xNNN snd_wss_port=0x530 snd_midi_port=-1
+snd_fm_port=0x388 snd_irq=5 snd_dma1=0 snd_dma1_size=NN snd_dma2=1 snd_dma2_size=NN"
+ (это без поддержки midi. Я думаю, что вам потребуется  поддержка midi, если у вас есть синтезатор и другое оборудование, и вы хотите их собрать воедино под Linux. Но он вам не потребуется в других случаях, даже для проигрывания файлов формата midi.)</P
+><P
+>Заметьте, что значения NN необходимо указать, однако я не знаю
+стандартных значений. Я также не знаю, требуется ли для нормальной
+работы опция dma_size.</P
+><P
+>Если у вас IBM Thinkpad с этим чипсетом, то загляните на 
+<A
+HREF="http://www.cirs.org/patrick/index.html"
+TARGET="_top"
+>http://www.cirs.org/patrick/index.html</A
+>.</P
+><P
+>Если вы используете драйвер из версии 0.3.0-pre4, то пропустите ``card-'' в названии драйвера.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN462"
+>5.3.2. Чипы CS4231</A
+></H3
+><P
+>По инструкции, находящейся в файле INSTALL, вы должны определить основной порт для карты. Замечу, что для драйвера карт 3235/6/7/8/9 я прописал всю информацию(кроме размера DMA), иначе драйвер не работает. Если вы инициализировали карту при помощи isapnp-tools, вы можете получить следующую информацию из файла /etc/isapnp.conf :
+
+<PRE
+CLASS="SCREEN"
+>snd_port - port # for CS4232 chip (PnP setup - 0x534)
+snd_mpu_port - port # for MPU-401 UART (PnP setup - 0x300), -1 = disable
+snd_irq - IRQ # for CS4232 chip (5,7,9,11,12,15)
+snd_mpu_irq - IRQ # for MPU-401 UART (9,11,12,15)
+snd_dma1 - first DMA # for CS4232 chip (0,1,3)
+snd_dma1_size - max first DMA size in kB (4-64kB)
+snd_dma2 - second DMA # for Yamaha CS4232 chip (0,1,3), -1 = disable
+snd_dma2_size - max second DMA size in kB (4-64kB)</PRE
+>
+
+Для загрузки драйвера со стандартной настройкой карты, вы должны выполнить "modprobe snd-card-cs4231 snd_port=0x534 
+snd_mpu_port=-1 snd_irq=5 snd_dma1=0 snd_dma1_size=NN
+snd_dma2=1 snd_dma2_size=NN". (Без поддержки midi, смотрите заметку в Yamaha OPL-3). Если вы использовали другие значения в файле /etc/isapnp.conf, то здесь вам надо использовать те же значения.</P
+><P
+>Вместо "NN" вы должны поставить числовые значения, но я не могу подсказать наилучшие значения. Также я не знаю, необходимо ли указывать размер dma.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN467"
+>5.3.3. Чипы CS4232/CS4232A</A
+></H3
+><P
+>По инструкции, находящейся в файле INSTALL, вы должны определить основной порт для карты. Замечу, что для драйвера карт 3235/6/7/8/9 я прописал всю информацию(кроме размера DMA), иначе драйвер не работает. Если вы инициализировали карту при помощи isapnp-tools, вы можете получить следующую информацию из файла /etc/isapnp.conf :
+
+<PRE
+CLASS="SCREEN"
+>snd_port - port # for CS4232 chip (PnP setup - 0x534)
+snd_cport - control port # for CS4232 chip (PnP setup - 0x120)
+snd_mpu_port - port # for MPU-401 UART (PnP setup - 0x300), -1 = disable
+snd_fm_port - FM port # for CS4232 chip (PnP setup - 0x388), -1 = disable
+snd_jport - joystick port for CS4232 chip (PnP setup - 0x200), -1 =
+disable
+snd_irq - IRQ # for CS4232 chip (5,7,9,11,12,15)
+snd_mpu_irq - IRQ # for MPU-401 UART (9,11,12,15)
+snd_dma1 - first DMA # for CS4232 chip (0,1,3)
+snd_dma1_size - max first DMA size in kB (4-64kB)
+snd_dma2 - second DMA # for Yamaha CS4232 chip (0,1,3), -1 = disable
+snd_dma2_size - max second DMA size in kB (4-64kB)</PRE
+>
+
+Для загрузки драйвера со стандартной настройкой карты вы должны выполнить "modprobe snd-card-cs4232 snd_port=0x534 snd_cport=0x120
+snd_mpu_port=-1 snd_fm_port=0x388 snd_jport=-1 snd_irq=5 snd_dma1=0 snd_dma1_size=NN
+snd_dma2=1 snd_dma2_size=NN". (Без поддержки midi, прочитайте заметку в Yamaha OPL-3, и поддержки джойстика ). Если вы использовали другие значения в /etc/isapnp.conf, тогда вы должны их использовать и здесь.</P
+><P
+>Вместо "NN" вы должны поставить числовые значения, но я не могу подсказать наилучшие значения. Так же я не знаю, необходимо ли указывать размер dma.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN472"
+>5.3.4. Чипы CS4235/CS4236/CS4236B/CS4237B/CS4238B/CS4239</A
+></H3
+><P
+>По инструкции в находящейся в файле INSTALL, вы должны определить основной порт  и порт управления для карты. Замечу, что для драйвера карт CS4237B я прописал всю информацию (кроме размера DMA), иначе драйвер не работает. Если вы инициализировали карту при помощи isapnp-tools, вы можете получить следующую информацию из файла /etc/isapnp.conf :
+
+<PRE
+CLASS="SCREEN"
+>snd_port - port # for CS4232 chip (PnP setup - 0x534)
+snd_cport - control port # for CS4232 chip (PnP setup - 0x120)
+snd_mpu_port - port # for MPU-401 UART (PnP setup - 0x300), -1 = disable
+snd_fm_port - FM port # for CS4232 chip (PnP setup - 0x388), -1 = disable
+snd_jport - joystick port for CS4232 chip (PnP setup - 0x200), -1 = disable
+snd_irq - IRQ # for CS4232 chip (5,7,9,11,12,15)
+snd_mpu_irq - IRQ # for MPU-401 UART (9,11,12,15)
+snd_dma1 - first DMA # for CS4232 chip (0,1,3)
+snd_dma1_size - max first DMA size in kB (4-64kB)
+snd_dma2 - second DMA # for Yamaha CS4232 chip (0,1,3), -1 = disable
+snd_dma2_size - max second DMA size in kB (4-64kB)</PRE
+>
+
+Для того чтобы загрузить драйвер вы должны выполнить "modprobe snd-card-cs4236 snd_port=0x534 snd_cport=0x120
+snd_mpu_port=-1 snd_fm_port=0x388 snd_jport=-1 snd_irq=5 snd_dma1=0 snd_dma1_size=NN
+snd_dma2=1 snd_dma2_size=NN". (Без поддержки midi, прочитайте заметку в Yamaha OPL-3, и поддержки джойстика). Заметки:
+
+<P
+></P
+><UL
+><LI
+><P
+>Вместо "NN" вы должны поставить числовые значения, но я не могу вам подсказать наилучшие значения.</P
+></LI
+><LI
+><P
+>Моя карта CS4237B прекрасно работает без указания dma.</P
+></LI
+></UL
+>&#13;</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN481"
+>5.4. Использование kerneld</A
+></H2
+><P
+><TT
+CLASS="LITERAL"
+>kerneld</TT
+> - это демон, загружающий модули по мере необходимости, и убирающий их, если они более не используются. Так как я не имею практического опыта работы с kerneld, я не могу подтвердить, что нижеприведенная информация верна. Эта информация взята из файла INSTALL, находящегося в в пакете с драйверами ALSA. Информация по kerneld находится в kerneld-mini-HOWTO.</P
+><P
+>Следуйте нижеприведенным указаниям:
+
+<P
+></P
+><UL
+><LI
+><P
+>Отредактируйте свой /etc/conf.modules (примеры смотрите ниже)</P
+></LI
+><LI
+><P
+>Запустите 'modprobe snd-card', где "card" это название вашей карты [Хотя мне это кажется очень странным, так как kerneld предполагает их загрузку VS]</P
+></LI
+></UL
+>
+
+Пример файла /etc/conf.modules для карты Gravis UltraSound PnP:
+
+<PRE
+CLASS="SCREEN"
+>alias char-major-14 snd
+alias snd-minor-oss-0 snd-interwave
+alias snd-minor-oss-3 snd-pcm1-oss
+alias snd-minor-oss-4 snd-pcm1-oss
+alias snd-minor-oss-5 snd-pcm1-oss
+alias snd-minor-oss-12 snd-pcm1-oss
+alias snd-card-0 snd-interwave
+options snd snd_major=14 snd_cards_limit=1
+options snd-interwave snd_index=1 snd_id="guspnp" snd_port=0x220 snd_irq=5
+snd_dma1=5 snd_dma2=6</PRE
+>
+
+Пример на тот случай, если вы предполагаете использование нескольких карт на одном компьютере (настройка приведена для карт Sound Blaster 16 и Gravis UltraSound Classic):
+
+<PRE
+CLASS="SCREEN"
+>alias char-major-14 snd
+alias snd-minor-oss-0 snd-mixer
+alias snd-minor-oss-3 snd-pcm1-oss
+alias snd-minor-oss-4 snd-pcm1-oss
+alias snd-minor-oss-5 snd-pcm1-oss
+alias snd-minor-oss-12 snd-pcm1-oss
+alias snd-card-0 snd-sb16
+alias snd-card-1 snd-gusclassic
+options snd snd_major=14 snd_cards_limit=2
+options snd-sb16 snd_index=1 snd_port=0x220 snd_irq=5 snd_dma8=1 snd_dma16=5
+options snd-gusclassic snd_index=2 snd_irq=11 snd_dma1=6 snd_dma2=7</PRE
+>
+
+Пример на тот случай, если у вас установлены две карты Gravis UltraSound Classic:
+
+<PRE
+CLASS="SCREEN"
+>alias char-major-14 snd
+alias snd-minor-oss-0 snd-mixer
+alias snd-minor-oss-3 snd-pcm1-oss
+alias snd-minor-oss-4 snd-pcm1-oss
+alias snd-minor-oss-5 snd-pcm1-oss
+alias snd-minor-oss-12 snd-pcm1-oss
+alias snd-card-0 snd-gusclassic
+alias snd-card-1 snd-gusclassic
+options snd snd_major=14 snd_cards_limit=2
+options snd-gusclassic snd_index=1,2 snd_port=0x220,0x260 snd_irq=5,11
+snd_dma1=5,6 snd_dma2=7,3</PRE
+>&#13;</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="BACKW-COMPAT"
+>5.5. Обратная совместимость</A
+></H2
+><P
+>Если вы хотите сохранить совместимость OSS/Free или OSS/Linux, то вам придется установить еще один драйвер snd-pcm1-oss для совместимости с OSS. Наберите:
+
+<PRE
+CLASS="SCREEN"
+>modprobe snd-pcm1-oss</PRE
+>
+
+Это даст вам поддержку устройств /dev/audio и /dev/dsp так же, как это делают драйверы OSS/Free (находятся в ядре) и OSS/Linux (стоят $25). Замечу, что это всего лишь эмуляция.</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN498"
+>6. Тестирование и использование</A
+></H1
+><P
+>Теперь вам предстоит удостовериться, что драйвер правильно установлен и попробовать его в действии.</P
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN501"
+>6.1. Файловая система /proc</A
+></H2
+><P
+>Вы можете узнать много интересной информации о своей системе в подкаталоге /proc. Подкаталог /proc - это виртуальная файловая система, то есть, не существующая в действительности, но управляющая некоторыми процессами и задачами в вашем компьютере. Для того, чтобы ее запустить, вам нужно скомпилировать в ядре поддержку этой системы. У большинства дистрибутивов Linux это делается по умолчанию, но если вы специально пропустили поддержку /proc при компиляции, то разумеется в каталоге /proc ничего не будет.</P
+><P
+>В каталоге /proc/modules есть информация по загруженным модулям. Когда у вас загружены драйверы ALSA, напишите cat /proc/modules, и увидите примерно следующее:
+
+<PRE
+CLASS="SCREEN"
+>snd-pcm1-oss      4            0
+snd-sb16          1            1
+snd-sb-dsp        4    [snd-sb16]      0
+snd-pcm1          4    [snd-pcm1-oss snd-sb-dsp]      0
+snd-pcm           3    [snd-pcm1-oss snd-sb16 snd-sb-dsp snd-pcm1]    0
+snd-mixer         3    [snd-pcm1-oss snd-sb16 snd-sb-dsp]      1
+snd-mpu401-uart   1    [snd-sb16]      0
+snd-midi          4    [snd-sb16 snd-sb-dsp snd-mpu401-uart]   0
+snd-opl3          1    [snd-sb16]      0
+snd-synth         1    [snd-sb16 snd-opl3]     0
+snd-timer         1    [snd-opl3]      0
+snd               8    [snd-pcm1-oss snd-sb16 snd-sb-dsp snd-pcm1 snd-pcm snd-mixer snd-mpu401-uart snd-midi snd-opl3 snd-synth snd-timer]    0</PRE
+>
+
+Если у вас во время инсталляции что-то было сделано неправильно, то вы обнаружите несколько устройств "snd", но поддержки звука не будет.</P
+><P
+>Например (Запомните: никогда не запускайте подобную команду - драйверу cs4236 необходимы все опции):
+
+<PRE
+CLASS="SCREEN"
+>win3:&tilde;# modprobe snd-card-cs4236
+/lib/modules/2.0.35/misc/snd-card-cs4236.o: init_module: Device or resource busy
+snd-mixer: Device or resource busy
+win3:&tilde;# cat /proc/modules
+snd-cs4236        2           0
+snd-cs4231        3    [snd-cs4236]    0
+snd-timer         1    [snd-cs4231]    0
+snd-pcm1          4    [snd-cs4236 snd-cs4231] 0
+snd-mixer         3    [snd-cs4236 snd-cs4231] 0
+snd-pcm           3    [snd-cs4236 snd-cs4231 snd-pcm1]       0
+snd-mpu401-uart   1           0
+snd-midi          4    [snd-mpu401-uart]       0
+snd-opl3          1           0
+snd-synth         1    [snd-opl3]      0
+snd-timer         1    [snd-cs4231 snd-opl3]   0
+snd               8    [snd-cs4231 snd-timer snd-pcm1 snd-mixer snd-pcm]     0</PRE
+>
+
+Вы можете проверить наличие карты, заглянув в /proc/asound/cards. Например:
+
+<PRE
+CLASS="SCREEN"
+>bash$ cat /proc/asound/cards
+0 [card1          : SB16 - Sound Blaster 16
+                    Sound Blaster 16 at 0x220, irq 5, dma 1&amp;5</PRE
+>
+
+В предыдущем случае (где я забыл) на экране появится:
+
+<PRE
+CLASS="SCREEN"
+>win3:&tilde;# cat /proc/asound/cards
+--- no soundcards ---</PRE
+>
+
+Работающая карта CS4236 ответит так:
+
+<PRE
+CLASS="SCREEN"
+>0 [card1         ]: CS4236 - CS4237B
+                    CS4237B at 0x534, irq 7, dma 1&amp;0</PRE
+>
+
+Если вы проверили и перепроверили ваши установки, и не можете "найти" свою карту, посмотрите в главу, посвященную устранению ошибок.</P
+><P
+>Каталог <TT
+CLASS="LITERAL"
+>/proc/asound/</TT
+> содержит множество другой информации о вашей системе. Не забудьте, что /proc/asound/ будет существовать только после загрузки драйвера ALSA. Если у вас нет /proc/asound, то это означает, что вы неправильно загрузили модуль "snd". Вы можете проверить установленные карты в /proc/asound/cards; для карты0 смотрите /proc/asound/0, /proc/asound/1 для карты1 и т.д.</P
+><P
+>Если после <TT
+CLASS="LITERAL"
+>cat /proc/asound/card1/pcm0</TT
+> появляется
+
+<PRE
+CLASS="SCREEN"
+>      ES1370 DAC2/ADC
+      Playback isn't active.
+      Record isn't active.</PRE
+>
+ это означает, что ваш драйвер готов к работе , но в настоящий момент ничего не делает. (Все прошло правильно).</P
+><P
+>Для пользователей ядра 2.0.x есть еще один способ получения информации о звуковых устройствах, а именно - если вы установили драйвер совместимости с OSS, то у вас есть /dev/sndstat . Разработчики драйверов ALSA говорят, что нельзя полностью положиться на эту информацию, так как она взята из драйвера для совместимости, а более надежный источник находится в  /proc/asound/. В ядре 2.2.x ALSA использует модуль ядра soundcore и поэтому не может эмулировать /dev/sndstat, так как он будет конфликтовать с драйверами OSS.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN517"
+>6.2. Микшер</A
+></H2
+><P
+>Наконец-то, драйверы для вашей карты установлены и файловая система /proc подтверждает это, теперь вы можете пользоваться картой. Для этого нужно настроить микшера на нужные значения громкости. Для этого вам понадобится "amixer" из пакета alsa-utils. Сначала установите пакет или, хотя бы, "amixer" в какое-нибудь доступное место, например /usr/local/bin.</P
+><P
+>Версия 0.3.2 или более поздняя имеют интерфейс, отличающийся от аналогов в драйверах OSS. Если вы наберете "amixer", увидите составляющие и их значения. Одной из этих составляющих будет "Master volume". Это будет выглядеть примерно так:</P
+><P
+>&#13;<PRE
+CLASS="SCREEN"
+>Group 'Master',0
+  Capabilities: volume
+  Channels: Front-Left Front-Right 
+  Limits: min = 0, max = 31
+  Front-Left: 31 [100%] [on] [---]
+  Front-Right: 26 [84%] [on] [---]</PRE
+>&#13;</P
+><P
+>К сожалению, я не знаю, как раздельно установить громкость на каналах. При помощи amixer вы можете менять громкость командой "amixer set". Например, для того, чтобы установить Master volume, вам следует ввести:</P
+><P
+>&#13;<PRE
+CLASS="SCREEN"
+>amixer set Master 15</PRE
+>&#13;</P
+><P
+>Не забывайте, что названия элементов в каждой карте могут звучать по разному.</P
+><P
+>Если у вас установлена версия 0.3.0-pre4 ALSA, то amixer будет работать, как нормальный микшер. Вы можете посмотреть его настройки, набрав "amixer". Эта команда выводит список настроек микшера. Выходные сигналы с карт могут сильно различаться, на моей Soundblaster 16 они следующие:
+
+<PRE
+CLASS="SCREEN"
+>Master         0  % (-14.00dB) : 0  % (-14.00dB)
+Bass           0  % (-14.00dB) : 0  % (-14.00dB)
+Treble         0  % (-14.00dB) : 0  % (-14.00dB)
+Synth          0  % (-62.00dB) : 0  % (-62.00dB)
+PCM            0  % (-62.00dB) : 0  % (-62.00dB)
+Line-In        0  % (-62.00dB) : 0  % (-62.00dB) Mute
+MIC            0  % (-62.00dB) : 0  % (-62.00dB) Mute
+CD             0  % (-62.00dB) : 0  % (-62.00dB) Mute
+In-Gain        0  % (-18.00dB) : 0  % (-18.00dB)
+Out-Gain       0  % (-18.00dB) : 0  % (-18.00dB)
+PC Speaker     0  % (-18.00dB) : 0  % (-18.00dB)</PRE
+>&#13;</P
+><P
+>Если вы при такой команде получаете строку типа "amixer: Specify command...", то, скорее всего, вы используете утилиты ALSA 3.2 . Я бы посоветовал, установить версию 0.4.1e или более позднюю или 0.3.0-pre4.</P
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN530"
+>6.2.1. Установки микшера для воспроизведения</A
+></H3
+><P
+>Вы наверное заметили, что на установках некоторых устройств стоит "Mute". Это означает, что это устройство выключено. На некоторых картах (например CS4237B) можно отключить и основной канал. Поэтому для CS4237B, я бы написал </P
+><P
+><TT
+CLASS="LITERAL"
+>amixer set "Master d" unmute</TT
+></P
+><P
+>для того, чтобы карта могла воспроизводить звук. У Soundblaster нельзя отключить основной канал, но я пишу </P
+><P
+><TT
+CLASS="LITERAL"
+>amixer set Master 100 unmute</TT
+></P
+><P
+>для того, чтобы звук на выходе воспроизводился на 100% . Наберите </P
+><P
+><TT
+CLASS="LITERAL"
+>amixer set "Master d" 100; amixer set PCM 100 unmute</TT
+></P
+><P
+>для того, чтобы установить выходной звук с карты CS4237B на максимум и то же самое сделать для устройства PCM. </P
+><P
+>Если вы используете более старую версию amixer, то вам надо пропустить "set" в команде и просто напечатать:</P
+><P
+><TT
+CLASS="LITERAL"
+>amixer "master d" 100</TT
+></P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN545"
+>6.2.2. Элементы микшера</A
+></H3
+><P
+>Различные части микшера могут быть вам не знакомы, если вы не имели дела с цифровым звуком. В этом вам может помочь sound-HOWTO, а здесь описаны основные термины.</P
+><P
+>В действительности, вы будете использовать некоторые элементы микшера: один из них "CD" (это аналоговый сигнал с вашего CDROM, большинство CD ROM соединяются со звуковой картой 3-ех или 4-ех жильным красно/бело/черным проводом).</P
+><P
+>Установка "PCM" используется для большинства приложений. Такие программы, как mpg123, xmms, speakfreely, realplayer, в основном, используют канал PCM.</P
+><P
+>Установки "MIC" относятся к микрофону, "line-in" - это дополнительный вход звука на вашу карту.</P
+><P
+>Различные "gain" - это дополнительное усиление сигналов. (Например record-gain - это дополнительное усиление для канала записи, которое может быть полезно при использовании микрофона).</P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN552"
+>6.2.3. Установки микшера для записи</A
+></H3
+><P
+>Вы можете установить канал CD на запись командой: </P
+><P
+><TT
+CLASS="LITERAL"
+>amixer set CD capture</TT
+></P
+><P
+>и остановить запись командой: </P
+><P
+><TT
+CLASS="LITERAL"
+>amixer set CD nocapture</TT
+>.</P
+><P
+>Напомню, что более старый amixer для этого использует команды ``amixer CD rec'' и ``amixer CD norec''.</P
+><P
+>Для канала микрофона эти команды выглядят как: </P
+><P
+><TT
+CLASS="LITERAL"
+>amixer set "Input Gain" 100; amixer set Mic 100 capture mute</TT
+>.</P
+><P
+>(Using the
+Большинство микрофонов имеет установку "gain", для регулировки громкости.</P
+><P
+>Опять же, старый amixer использует команды ``amixer "input gain" 100; amixer mic 100 rec mute''.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN566"
+>6.2.4. Другие установки микшера</A
+></H3
+><P
+>К сожалению, я не смог изменить установки "3d center" и "3d space" при помощи 0.3.0-pre4. Я еще не пробовал это с 0.4.1e (просто мой компьютер работает под ядром 2.0.38). Если кому-то удастся, то, пожалуйста, дайте мне знать. Для этого можно использовать alsamixer, но он еще не переведен для работы с 0.4.1e.</P
+><P
+>В ALSA FAQ говорится, что возможно делать установки при помощи
+<TT
+CLASS="LITERAL"
+>cat &lt;file&#62; &#62; /proc/asound/#/mixerC0D0</TT
+>, где &lt;file&#62; получен из /proc/asound/#/mixerC0D0. Я не смог этого сделать, так как моя система начала указывать на отсутствие устройств. Также есть программа ``alsactl'', которой я не пользуюсь. И я приглашаю вас (да, именно вас!). чтобы написать эту главу.</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN571"
+>6.3. Устройства /dev/snd/</A
+></H2
+><P
+>В каталоге /dev/snd/ находятся звуковые устройства драйверов. Если у вас стоит одна карта, вам надо просмотреть следующие устройства:
+
+<PRE
+CLASS="SCREEN"
+>/dev/snd/pcmC0D0 - прямое аудио-устройство карты 0
+/dev/snd/mixerC0D0 - микшер карты 0
+/dev/snd/controlC0D0 - устройство управления картой 0</PRE
+>
+
+Первое число означает номер карты, второе (если есть) номер устройства . Если у карты два устройства PCM, то там будут pcmC0D0 и pcmC0D1. В старых драйверах ALSA используется обозначение  /dev/snd/pcm00 (где первое число означает номер карты, второе номер устройства).</P
+><P
+>Теперь вы можете послать звуковой файл в устройство PCM первой карты. То есть, послать в /dev/snd/pcmC0D0 следующим образом: <TT
+CLASS="LITERAL"
+>cat &lt;filename&#62; &#62; /dev/snd/pcmC0D0</TT
+>. filename - это любой файл. 
+Если у вас есть свой звуковой файл, воспользуйтесь им или загляните на 
+<A
+HREF="http://www.ldp.org/sounds/english.au"
+TARGET="_top"
+>http://www.ldp.org/sounds/english.au</A
+>
+и скачайте файл, в котором Linus Torvalds объясняет, как произносить слово Linux :)</P
+><P
+>Ваше звуковое устройство по умолчанию настроено на 8000 Hz, 8 bit. Это означает, что файл "english.au", описанный выше, воспроизведет речь, а другие тестовые файлы только шум. Если вы ничего не услышали, то проверьте ваши колонки, перезапустите "amixer" или обратитесь к доктору. (Позже вы можете использовать настройки  48 KHz, 16 bit, при использовании вашего проигрывателя типа sox или mpg123).</P
+><P
+>Если вы загрузили модуль"snd-pcm1-oss", вы можете использовать совместимость с OSS при воспроизведении с карты. Но надо сделать следующие настройки:
+
+<PRE
+CLASS="SCREEN"
+>/dev/snd/pcmC0D0 -&#62; /dev/audio0 (/dev/audio) -&#62; minor 4
+/dev/snd/pcmC0D0 -&#62; /dev/dsp0 (/dev/dsp) -&#62; minor 3
+/dev/snd/pcmC0D1 -&#62; /dev/adsp0 (/dev/adsp) -&#62; minor 12
+/dev/snd/pcmC1D0 -&#62; /dev/audio1 -&#62; minor 4+16 = 20
+/dev/snd/pcmC1D0 -&#62; /dev/dsp1 -&#62; minor 3+16 = 19
+/dev/snd/pcmC1D1 -&#62; /dev/adsp1 -&#62; minor 12+16 = 28
+/dev/snd/pcmC2D0 -&#62; /dev/audio2 -&#62; minor 4+32 = 36
+/dev/snd/pcmC2D0 -&#62; /dev/dsp2 -&#62; minor 3+32 = 35
+/dev/snd/pcmC2D1 -&#62; /dev/adsp2 -&#62; minor 12+32 = 44</PRE
+>&#13;</P
+><P
+>Если вы хотите использовать модуль ``snd-mixer-oss'', то вам придется это делать через микшер обратной совместимости.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN582"
+>6.4. Дополнительная информация</A
+></H2
+><P
+>В файле INSTALL упомянуты настройки, которые должен использовать драйвер ALSA. Но их использование зависит от того, какой программой вы пользуетесь при воспроизведении звука. Обычные программы типа: mpg123, sox или программы X11 типа RealPlayer, будут прекрасно работать и без них.</P
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN585"
+>6.4.1. /proc/asound/#/pcm#0</A
+></H3
+><P
+>&#13;<PRE
+CLASS="SCREEN"
+>"Playback erase" - удалить всю дополнительную информацию о приложениях OSS
+"Playback &lt;app_name&#62; &lt;fragments&#62; &lt;fragment_size&#62; [&lt;options&#62;]"
+"Record erase" - удалить всю дополнительную информацию о приложениях OSS
+"Record &lt;app_name&#62; &lt;fragments&#62; &lt;fragment_size&#62; [&lt;options&#62;]"</PRE
+>&#13;</P
+><P
+><TT
+CLASS="LITERAL"
+>&lt;app_name&#62;</TT
+> - имя приложения с/без указания пути</P
+><P
+><TT
+CLASS="LITERAL"
+>&lt;fragments&#62;</TT
+> - количество фрагментов или ноль, если авто</P
+><P
+><TT
+CLASS="LITERAL"
+>&lt;fragment_size&#62;</TT
+> - размер фрагментов или ноль, если авто</P
+><P
+><TT
+CLASS="LITERAL"
+>&lt;options&#62;</TT
+> - дополнительные параметры</P
+><P
+><TT
+CLASS="LITERAL"
+>WR_ONLY</TT
+> - если вы хотите, чтобы приложение только выводило на устройство pcm (это хорошо, например, для Quake)</P
+><P
+>Примеры:
+
+<PRE
+CLASS="SCREEN"
+>echo "Playback x11amp 128 16384" &#62; /proc/asound/0/pcm0o
+echo "Playback squake 0 0 WR_ONLY" &#62; /proc/asound/0/pcm0o</PRE
+>&#13;</P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN601"
+>6.4.2. /proc/asound/#card#/sb16</A
+></H3
+><P
+>&#13;<PRE
+CLASS="SCREEN"
+>"Playback 8" -&#62; драйвер будет всегда для воспроизведения использовать только 8-битный DMA-канал.
+"Playback 16" -&#62; драйвер будет всегда для воспроизведения использовать только 16-битный DMA-канал.
+"Playback auto" (по умолчанию) -&#62; драйвер будет находиться в автоматическом режиме
+"Record 8" -&#62; драйвер будет всегда для записи использовать только 8-битный DMA-канал.
+"Record 16" -&#62; драйвер будет всегда для записи использовать только 16-битный DMA-канал.
+"Record auto" (по умолчанию) -&#62; драйвер будет находиться в автоматическом режиме</PRE
+>&#13;</P
+><P
+>Пример: <TT
+CLASS="LITERAL"
+>echo "Record 16" &#62; /proc/asound/0/sb16</TT
+></P
+><P
+>Для разъяснения обратитесь к файлу INSTALL.</P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H1
+CLASS="SECT1"
+><A
+NAME="AEN608"
+>7. Советы по устранению неисправностей</A
+></H1
+><P
+>Пожалуйста, сначала прочтите файл FAQ в каталоге драйвера. Эта глава еще дорабатывается.</P
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN611"
+>7.1. Компиляция драйвера</A
+></H2
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="AEN613"
+>7.1.1. Linux ".h" файлы ядра</A
+></H3
+><P
+>Если драйверы ALSA не компилируются правильно, и вы получаете сообщения типа ``version.h'', и/или заголовки некоторых файлов не могут быть найдены, то это означает, что у вас отсутствуют ".h" файлы ядра. Просмотрите kernel-HOWTO, разархивируйте ядро в каталог /usr/src и выполните <TT
+CLASS="LITERAL"
+>make config</TT
+>.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN617"
+>7.1.2. Если вы не можете создать исполняемые файлы</A
+></H3
+><P
+>Эти утилиты содержат программы написанные на  c++. У большинства стоят компиляторы c++  из gcc или egcs, но следует проверить и наличие установленного libstdc++-devel, иначе ваша система при запуске скриптов настройки этих утилит выдаст сообщение об ошибке типа ``c++ compiler cannot create executables'' (ваш компилятор С++ не может создавать запускаемые файлы).</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN620"
+>7.2. Если вы не можете загрузить драйвер</A
+></H2
+><P
+>Пожалуйста, проверьте следующие шаги.</P
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN623"
+>7.2.1. Звуковые устройства</A
+></H3
+><P
+>Драйверы ALSA используют различные устройства из /dev-tree. Удостоверьтесь в том, что вы запустили скрипт ./snddevices в каталоге исходных текстов драйверов ALSA.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN626"
+>7.2.2. Проблемы с совместимостью карт</A
+></H3
+><P
+>Вы точно уверены, что ваша карта СОВМЕСТИМА с ALSA? Проверьте это еще раз. Иногда X123 - не обязательно X123b. С другой стороны, даже совместимая карта может доставить вам множество неудобств, я, например, очень долго возился при установке CS4237B, потому что к нему была очень туманная документация.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN629"
+>7.2.3. если вы получаете сообщения типа``Device busy'' или ``unresolved symbols''</A
+></H3
+><P
+>Возможно, у вас собрана поддержка звука в ядре 2.0.x, или загружается драйвер OSS/Lite (ядро) (проверьте это при помощи <TT
+CLASS="LITERAL"
+>cat /proc/modules</TT
+>). 
+Уберите драйвер или пересоберите ядро (взгляните на Kernel-HOWTO). </P
+><P
+>Звуковой модуль в ядрах 2.0 называется ``sound.o'', и <I
+CLASS="EMPHASIS"
+>не</I
+> должен загружаться. 
+(Есть еще драйвер ALSA ``snd.o'').</P
+><P
+>Если у вас ядро 2.2.x, и в нем не собран звуковой драйвер, то драйверы АLSA также не будут работать. </P
+><DIV
+CLASS="SECT4"
+><HR><H4
+CLASS="SECT4"
+><A
+NAME="AEN636"
+>7.2.3.1. Ядра 2.0</A
+></H4
+><P
+>Я знаю, это звучит глупо, но позвольте вам напомнить еще раз. Если у вас 
+<I
+CLASS="EMPHASIS"
+>ядро 2.0.x</I
+> (команда  ``uname -a'' выдает вам следующую информацию ``Linux penguin 2.0.35 #6 Wed Sep 23 10:19:16 CEST 1998 i686 unknown''), 
+то вы должны <I
+CLASS="EMPHASIS"
+>убрать</I
+> драйверы из ядра. 
+<I
+CLASS="EMPHASIS"
+>Версии ALSA 0.4.x и более поздние не работают с ядрами 2.0</I
+></P
+></DIV
+><DIV
+CLASS="SECT4"
+><HR><H4
+CLASS="SECT4"
+><A
+NAME="AEN642"
+>7.2.3.2. Ядра 2.2</A
+></H4
+><P
+>Если у вас ядро <I
+CLASS="EMPHASIS"
+>2.2.x</I
+> <I
+CLASS="EMPHASIS"
+>то вам не нужны звуковые драйверы</I
+>. Ядра 2.2 должны быть собраны <I
+CLASS="EMPHASIS"
+>с поддержкой звука, но без каких-либо драйверов карт</I
+>.</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN648"
+>7.2.4. Устранение ссылок на другой драйвер</A
+></H3
+><P
+>Другой причиной, того, что драйвер ссылается на занятость устройства может быть файл /etc/conf.modules, который до сих пор ссылается на драйвер карты. Вы должны удалить ссылки на драйвер карты и вставить ссылки на драйверы ALSA.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN651"
+>7.2.5. Если у вас все еще появляется сообщение "Unresolved symbols"</A
+></H3
+><P
+>Другим источником ошибки "unresolved symbols" может являться новое ядро со старыми драйверами. Перекомпилируйте драйверы ALSA после того, как перекомпилируете новое ядро.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN654"
+>7.2.6. Проверка установок PnP</A
+></H3
+><P
+>Вы уверены, что ваша карта работет? Посмотрите еще раз PnP-HOWTO и удостоверьтесь, что вы инициализировали ее правильно.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN657"
+>7.2.7. Правильно ли вы указали параметры карты ?</A
+></H3
+><P
+>Проверьте и перепроверьте параметры вашей карты. Напоминаю: 534 это не 543, как и 0x534 это не 534.</P
+><P
+>Некоторые карты могут иметь модули с другим названием. Еще раз просмотрите команду ``modprobe''. Например, драйвер к Crystal 4232 должен загружаться как modprobe snd-card-cs4232, а не "snd-cs4231", или SoundBlaster PCI 64 загружается как "snd-card-audiopci", а не snd-es1370.</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN661"
+>7.3. Если драйвер загружается..... но звука нет</A
+></H2
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="AEN663"
+>7.3.1. Настройки "mute"</A
+></H3
+><P
+>У драйверов ALSA, как и у большинства карт, есть настройки типа "mutе". Если вы правильно установили драйверы, но карта все равно не работает, то, возможно, вы забыли про настройки "mute" . Для этого вам потребуется "amixer" или "alsamixer", которые находятся в утилитах драйверов АLSA. Теперь наберите: 
+
+<PRE
+CLASS="SCREEN"
+>amixer set -c 1 Master 70 unmute
+amixer set -c 1 PCM 70 unmute
+amixer set -c 1 CD 70 unmute</PRE
+>
+
+Не забудьте, что вы должны пропустить "set" в командной строке, если у вас старый `amixer'.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN667"
+>7.3.2. Настройки "Gain"</A
+></H3
+><P
+>Некоторые карты имеют отдельный усилитель в микшере для входных и выходных сигналов. Это дополнение обычно называется "gain", "in-gain" для входа и "out-gain" для выхода. Устанавливая этот gain на определенный уровень, вы можете достичь максимальной громкости на колонках (подумайте о ваших родителях/соседях/своих ушах). Установки делаются командой
+
+<PRE
+CLASS="SCREEN"
+>amixer set out-gain 100 unmute</PRE
+>&#13;</P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN671"
+>7.3.3. Совместимость OSS/Linux</A
+></H3
+><P
+>Если вы используете драйверы ALSA впервые, но уже пользовались встроенными драйверами ранее, то вам скорее всего понадобится обратная совместимость (можно использовать устройство /dev/pcmX ). Для этого вам потребуется установить "драйвер совместимости с OSS". Выполните команду <TT
+CLASS="LITERAL"
+>modprobe snd-pcm1-oss &#38;&#38; modprobe snd-mixer-oss</TT
+>. 
+(Прочитайте конец этой главы об установке драйвера). Замечание:  snd-pcm1-oss это не то же самое, что и snd-pcm1; snd-pcm1-oss вам потребуется для поддержки звука старым способом, а snd-mixer-oss для микшера.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN675"
+>7.3.4. Если вы не можете открыть микшер</A
+></H3
+><P
+>Если вы пробовали установить несколько разных версий ALSA, то иногда, в этих случаях, микшер больше нельзя открыть. Это случается если вы установили 0.3.2, а потом переустановили версию 0.3.0-pre4 (IIRC). Вам следует удалить все файлы libasound и все ссылки из /usr/lib, а затем перекомпилировать все библиотеки и утилиты:
+
+<PRE
+CLASS="SCREEN"
+>rm /usr/lib/libasound.*</PRE
+>
+
+И чтобы полностью быть уверенным в успехе, вам надо удалить все драйверы ALSA, затем их перекомпилировать и переустановить.</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN679"
+>7.4. Общие рекомендации</A
+></H2
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="AEN681"
+>7.4.1. Попробуйте использовать"insmod"</A
+></H3
+><P
+>Лучше начинать с "insmod", а не с kerneld. Может быть, вам поступит сообщение об ошибке.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN684"
+>7.4.2. Прочтите файл INSTALL</A
+></H3
+><P
+>Очень много информации можно почерпнуть из файла INSTALL находящегося в каталоге драйверов. Если ваш драйвер не работает, то я бы посоветовал заглянуть туда и посмотреть дополнительную информацию по нему.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN687"
+>7.4.3. Сообщения об ошибках</A
+></H3
+><P
+>В крайнем случае, можно пересобрать драйвер, а сообщения об ошибках переправить в /var/log/messages. Зайдите в каталог драйверов, используя <TT
+CLASS="LITERAL"
+>cd /usr/src/alsa-driver-....</TT
+>,
+и дайте следующую команду:</P
+><P
+>&#13;<PRE
+CLASS="SCREEN"
+>./configure --with-debug=detect; make clean; make</PRE
+>&#13;</P
+><P
+>Уберите драйвер (так как он активирован, посмотрите инструкцию по его удалению). Затем при помощи "modprobe", установите заново собранный драйвер. Просмотрите  /var/log/messages на наличие сообщений.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><HR><H3
+CLASS="SECT3"
+><A
+NAME="AEN694"
+>7.4.4. Если вы все же не смогли справиться...</A
+></H3
+><P
+>Если эти сообщения не помогли вам разобраться в ситуации, то пошлите письмо с описанием вашей проблемы по адресу 
+<A
+HREF="mailto:alsa-user@alsa-project.org"
+TARGET="_top"
+>alsa-user@alsa-project.org</A
+>.</P
+><P
+>В письме должна содержаться следующая информация:
+
+<P
+></P
+><UL
+><LI
+><P
+>Название вашей звуковой карты + названия микросхем, используемых картой</P
+></LI
+><LI
+><P
+>Соответствующие части isapnp.conf, если у вас карта ISA PnP</P
+></LI
+><LI
+><P
+>conf.modules, или команды которыми вы активировали драйвер ALSA</P
+></LI
+><LI
+><P
+>Все сообщения из /var/log/messages, касающиеся драйвера ALSA</P
+></LI
+></UL
+>&#13;</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN708"
+>7.5. Сообщите нам о замеченных ошибках</A
+></H2
+><P
+>Если вы обнаружите ошибку, то разработчики драйверов ALSA были бы вам очень признательны за следующую информацию о ней
+
+<P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>Название драйвера + версия ядра: 'cat /proc/asound/version'</P
+></LI
+><LI
+><P
+>Информация по карте:
+
+<P
+></P
+><UL
+><LI
+><P
+>название карты (данное производителем)</P
+></LI
+><LI
+><P
+>список используемых картой микросхем</P
+></LI
+><LI
+><P
+>содержание 'cat /proc/asound/cards'</P
+></LI
+></UL
+>&#13;</P
+></LI
+><LI
+><P
+>Все сообщения из /var/log/messages, относящиеся к драйверу ALSA</P
+></LI
+><LI
+><P
+>Описание ошибки</P
+></LI
+></OL
+>&#13;</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN727"
+>7.6. Совет по применению CD</A
+></H2
+><P
+>При использовании kmod/kerneld  и драйверов ALSA для проигрывания CD, программы kmod/kerneld не используют драйверы. Это случается потому, что команда, поступающая на  проигрыватель CD, приказывает, только ему воспроизводить звук, и не посылает сообщение kmod/kerneld о том, что есть звук. Пожалуй, единственным решением может быть использование modprobe.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN730"
+>7.7. Совет по установке драйвера MIDI</A
+></H2
+><P
+>Обычно IO порт последовательного устройства управляется стандартным драйвером устройства. До команды ``modprobe snd-serial'' мы должны предупредить драйвер, чтобы он освободил устройство.</P
+><P
+>Здесь описана процедура. </P
+><P
+>&#13;<PRE
+CLASS="SCREEN"
+>setserial /dev/ttyS0 uart none
+modprobe snd-serial</PRE
+>&#13;</P
+><P
+>(Замените  /dev/ttyS0 соответствующим устройством /dev/ttySx, если ваше устройство MIDI использует другое последовательное устройство).</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN737"
+>7.8. Совет: новое ядро? Новые модули!</A
+></H2
+><P
+>После того как вы замените ядро, вам следует пересобрать драйверы ALSA. Если вы в каталоге /usr/src, не забудьте скомандовать <TT
+CLASS="LITERAL"
+>make clean</TT
+> 
+до того, как выполните  ./configure, make, make install.</P
+><P
+>Да, еще есть ошибка с ядром ``2.2.0ac1'' о котором скрипт настройки говорит ``not a number'' (использовано не числовое выражение). Я думаю, что это все же поправили в новых скриптах, иначе вам придется изменить версию ядра в исходниках.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN742"
+>7.9. Совет по использованию KDE и драйверов ALSA</A
+></H2
+><P
+>Предположим, что у вас стоит работающая KDE, но не работают системные звуки: например звук при открытии окна или программы. При этом у вас работает проигрыватель CD, mp3 и микшер, то, возможно, у вас не запущено "kwmsound".</P
+><P
+>Поэтому удостоверьтесь, что "kwmsound" запускается вашим загрузочным скриптом ($KDEDIR/bin/startkde)</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN746"
+>7.10. Совет: используйте устройства ALSA</A
+></H2
+><P
+>Если у вас скомпилирована поддержка звука в ядре, то все приложения будут работать с /dev/pcm0, /dev/audio и /dev/mixer. Это нормально, если вы используете совместимость с OSS при помощи модуля snd-pcm1-oss. Но было бы лучше, если бы вы использовали устройства ALSA, находящиеся в /dev/snd/.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H2
+CLASS="SECT2"
+><A
+NAME="AEN749"
+>7.11. Совет по выгрузке из памяти всех модулей</A
+></H2
+><P
+>Удаление из памяти более десяти модулей занятие довольно скучное. К счастью, все модули имеют приставку "snd-" , поэтому можно исхитриться и написать программу в одну командную строку. Вы можете удалить их, используя строку:</P
+><P
+>&#13;<PRE
+CLASS="SCREEN"
+>cat /proc/modules|gawk '/^snd-/{print $1}'|xargs -i rmmod {}</PRE
+>&#13;</P
+><P
+>Juergen Kahrs написал мне: "У меня есть скрипт, который выгружает из памяти модули soundcore, soundlow и sound, если они не используются". Этот скрипт обращается к  /proc/modules трижды, поэтому там не должно оставаться модулей после запуска скрипта''. Его скрипт представлен ниже</P
+><P
+>&#13;<PRE
+CLASS="SCREEN"
+>awk '/^snd/||/^sound/&amp;&amp;($3==0){system("rmmod " $1)}' /proc/modules /proc/modules /proc/modules</PRE
+>&#13;</P
+><P
+>Замечание: если один модуль зависит от другого модуля (главного) вы не можете просто удалить главный модуль. Вам придется удалить сначала зависимый, а потом уже главный. (Я не сталкивался с такой ситуацией, но, вероятно, можно выгружать модули ALSA в том порядке в каком они стоят в  /proc/modules).</P
+></DIV
+></DIV
+></DIV
+></BODY
+></HTML
+>

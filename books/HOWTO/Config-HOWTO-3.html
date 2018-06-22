@@ -1,0 +1,730 @@
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=koi8-r">
+   <META NAME="GENERATOR" CONTENT="Mozilla/4.05 [en] (X11; I; Linux 2.0.36 i686) [Netscape]">
+   <TITLE> Configuration HOWTO: Software Configuration</TITLE>
+<LINK HREF="Config-HOWTO-4.html" REL=next>
+<LINK HREF="Config-HOWTO-2.html" REL=previous>
+<LINK HREF="Config-HOWTO.html#toc3" REL=contents>
+</HEAD>
+<BODY>
+<?php include("/home/maxcom/linux_html/books/head.php3") ?>
+<A HREF="Config-HOWTO-4.html">Next</A>
+<A HREF="Config-HOWTO-2.html">Previous</A> <A HREF="Config-HOWTO.html">Contents</A>&nbsp;
+<HR>
+<H2>
+<A NAME="s3"></A>3. Настройка приложений</H2>
+Вот перечень файлов, которые мы будем настраивать: <TT>/etc/profile</TT>
+<TT>/etc/bashrc</TT> <TT>.bashrc</TT> <TT>.bash_profile .inputrc .less
+.lessrc .xinitrc .fvwmrc .fvwm2rc95</TT> <TT>.Xmodmap .Xdefaults .jedrc.
+.abbrevs.sl .joerc .emacs </TT>. Не добавляйте пользователей, пока вы не
+закончили настраивать вашу систему; вы можете положить общие файлы в <TT>/etc/skel</TT>.
+<H2>
+<A NAME="ss3.1"></A>3.1 <TT>bash</TT>(1)</H2>
+Чтобы определить поведение <TT>bash</TT>, нужно редактировать следующие
+файлы:
+<UL>
+<LI>
+<TT>/etc/bashrc</TT> содержит общесистемные псевдонимы и функции;</LI>
+
+<LI>
+<TT>/etc/profile</TT> содержит общесистемные переменные окружения и приложения,
+которые запускаются при начальной загрузке;</LI>
+
+<LI>
+<TT>$HOME/.bashrc</TT> содержить пользовательские псевдонимы и функции;</LI>
+
+<LI>
+<TT>$HOME/.bash_profile</TT> содержит пользовательские переменные окружения
+и приложения, которые запускаются при начальной загрузке;</LI>
+
+<LI>
+<TT>$HOME/.inputrc</TT> содержить клавишные привязки и др. вещи.</LI>
+</UL>
+Примеры этих файлов приведены ниже. Первый и наиболее важный : <TT>/etc/profile</TT>.
+Он содержит настройки многих свойств вашей системы, как вы увидите в следующих
+секциях.
+
+<P>
+<HR>
+<PRE># /etc/profile
+
+# Системные переменные окружения и программы начальной загрузки
+# Функции и псевдонимы перенесены в /etc/bashrc
+
+# Этот файл определяет следующие свойства:
+#
+#&nbsp;&nbsp; o пути
+#&nbsp;&nbsp; o приглашения командной строки
+#&nbsp;&nbsp; o некоторые переменные окружения
+#&nbsp;&nbsp; o цвет ls
+#&nbsp;&nbsp; o less
+#
+# Пользователи могут переопределить эти установки и/или добавить другие
+# $HOME/.bash_profile
+
+# установим нужный путь
+
+echo $PATH | grep X11R6 > /dev/null
+if [ $? = 1 ] ; then&nbsp;&nbsp; # добавим новые пути
+&nbsp; PATH="$PATH:/usr/X11R6/bin:$HOME/bin:."
+fi
+
+# предупреждение пльзователя: регистрирующий или нерегистрирующий shell. Если регистрирующий, то приглашение
+# синего цвета; в противном случае бирюзового. Приглашение для Root'а красное.
+
+USER=`whoami`
+if [ $LOGNAME = $USER ] ; then
+&nbsp; COLOUR=44
+else
+&nbsp; COLOUR=45
+fi
+
+if [ $USER = 'root' ] ; then
+&nbsp; COLOUR=41
+fi
+
+# задать действительный escape символ вместо ^[. Чтобы сделать это:
+# emacs: ^Q ESC&nbsp;&nbsp; vi: ^V ESC&nbsp;&nbsp; joe: ` 0 2 7&nbsp;&nbsp; jed: ` ESC
+# Уберите `;1' если вы не любите атрибут `жирный'.
+ESC=^[
+PS1='$ESC[$COLOUR;37;1m$USER:$ESC[37;40;1m\w\$ '
+PS2="Continue> "
+
+# не создавать дамп памяти
+
+ulimit -c 0&nbsp;&nbsp;&nbsp;
+
+# установка umask
+
+if [ `id -gn` = `id -un` -a `id -u` -gt 14 ]; then
+&nbsp; umask 002
+else
+&nbsp; umask 022
+fi
+
+# несколько переменных
+
+USER=`id -un`
+LOGNAME=$USER
+MAIL="/var/spool/mail/$USER"
+EDITOR=jed
+HOSTNAME=`/bin/hostname`
+HISTSIZE=1000
+HISTFILESIZE=1000
+export PATH PS1 PS2 USER LOGNAME MAIL EDITOR HOSTNAME HISTSIZE HISTFILESIZE
+
+# включить цвет в ls
+
+eval `dircolors /etc/DIR_COLORS -b`
+export LS_OPTIONS='-F -s -T 0 --color=tty'
+
+# настройка less
+
+LESS='-M-Q'
+LESSEDIT="%E ?lt+%lt. %f"
+LESSOPEN="| lesspipe.sh %s"
+VISUAL=jed
+LESSCHARSET=latin1
+export LESS LESSEDIT LESSOPEN VISUAL LESSCHARSET
+
+for i in /etc/profile.d/*.sh ; do
+&nbsp; if [ -x $i ]; then
+&nbsp;&nbsp;&nbsp; . $i
+&nbsp; fi
+done</PRE>
+
+<HR>
+
+<P>Вот пример <TT>/etc/bashrc</TT>:
+
+<P>
+<HR>
+<PRE># /etc/bashrc
+
+# Общесистемные функции и псевдонимы
+# Переменные окружения перенесены в /etc/profile
+
+alias which="type -path"
+alias d="ls"
+alias dir="d"</PRE>
+
+<HR>
+
+<P>Похожий и .<TT>bashrc</TT>:
+
+<P>
+<HR>
+<PRE># $HOME/.bashrc
+# Источник глобальных определений
+
+if [ -f /etc/bashrc ]; then
+&nbsp; . /etc/bashrc
+fi
+
+# необходимо предупредить пользователя, что он в нерегистрирующем shell
+
+if [ "$GET_PS1" = "" ] ; then
+&nbsp; COLOUR=45
+# определение действительного escape символа вместо ^[
+&nbsp; ESC=^[
+&nbsp; PS1='$ESC[$COLOUR;37m`whoami`:$ESC[37;40m\w\$ '
+&nbsp; export PS1
+fi
+
+# псевдонимы
+
+alias cp='cp -i'
+alias l=less
+alias lyx='lyx -width 900 -height 700'
+alias mv='mv -i'
+alias rm='rm -i'
+alias x=startx
+
+# Несколько полезных функций
+
+inst() # Инсталировать .tar.gz архив в текущую директорию.
+{ gzip -dc $1 | tar xvf - }
+
+cz() # Содержание .zip архива.
+{ unzip -l $* }
+
+ctgz() # Содержание .tar.gz архива.
+{
+&nbsp; for file in $* ; do
+&nbsp;&nbsp;&nbsp; gzip -dc ${file} | tar tf -
+&nbsp; done
+}
+
+tgz() # Создать .tgz архив по типу zip.
+{
+&nbsp; name=$1 ; tar -cvf $1 ; shift
+&nbsp; tar -rf ${name} $*
+&nbsp; gzip -S .tgz ${name}
+}</PRE>
+
+<HR>
+
+<P>Это пример <TT>.bash_profile</TT>:
+
+<P>
+<HR>
+<PRE># $HOME/.bash_profile
+
+# Пользовательские переменные окружения и программы начальной загрузки
+# Этот файл содержить пользовательские настройки, который переопределяют
+# установленные в /etc/profile
+
+# Взять псевдонимы и функции
+if [ -f ~/.bashrc ]; then
+&nbsp; GET_PS1="NO"&nbsp; # не изменять цвет приглашения
+&nbsp; . ~/.bashrc
+fi
+&nbsp;&nbsp;&nbsp;&nbsp;
+# назначить несколько директорий `по умолчанию'
+export CDPATH="$CDPATH:$HOME:$HOME/text:$HOME/text/geology"
+
+# исправить забой в rxvt 2.45
+if [ "$COLORTERM" != "" ] ; then
+&nbsp; stty erase ^?
+&nbsp; ESC=^[&nbsp; # задать действительный escape символ вместо ^[
+&nbsp; echo -n "$ESC[36l"
+fi</PRE>
+
+<HR>
+
+<P>Это пример <TT>.inputrc</TT>:
+
+<P>
+<HR>
+<PRE># $HOME/.inputrc
+
+# клавишные привязки
+
+"\e[1~": beginning-of-line
+"\e[3~": delete-char
+"\e[4~": end-of-line
+# (F1 .. F5) are "\e[[A" ... "\e[[E"
+"\e[[A": "info \C-m"
+
+set bell-style visible&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # убрать писк
+set meta-flag On&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # разрешить 8-битный ввод (например, диакритические знаки)
+set convert-meta Off&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # не выдалять 8-битные символы
+set output-meta On&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # корректно отображать 8-битные символы
+set horizontal-scroll-mode On&nbsp;&nbsp; # пролистывать длинные команды
+set show-all-if-ambiguous On&nbsp;&nbsp;&nbsp; # после нажатия TAB</PRE>
+
+<HR>
+
+<P>Для того, чтобы backspace и delete корректно работали в&nbsp; <TT>xterm</TT>
+и других&nbsp; X11 приложениях, необходимо сделать следующее:
+<UL>
+<LI>
+поместите это в ваш&nbsp; <TT>.xinitrc</TT>:</LI>
+
+<BLOCKQUOTE>
+<PRE><TT>usermodmap=$HOME/.Xmodmap
+xmodmap $usermodmap</TT></PRE>
+</BLOCKQUOTE>
+
+<LI>
+поместите это в ваш&nbsp; <TT>.Xmodmap</TT>:</LI>
+
+<BLOCKQUOTE>
+<PRE><TT>keycode 22 = BackSpace
+keycode 107 = Delete</TT></PRE>
+</BLOCKQUOTE>
+это исправит консоль. Для исправления <TT>xterm</TT>:
+<LI>
+поместите в ваш&nbsp; <TT>.Xdefaults</TT>:</LI>
+
+<BLOCKQUOTE>
+<PRE><TT>xterm*VT100.Translations: #override ?Key>BackSpace: string(0x7F)\n\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ?Key>Delete:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; string(0x1b) string("[3~")\n\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ?Key>Home:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; string(0x1b) string("[1~")\n\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ?Key>End:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; string(0x1b) string("[4~")\n\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ctrl?Key>Prior:&nbsp;&nbsp;&nbsp;&nbsp; string(0x1b) string("[40~")\n\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ctrl?Key>Next:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; string(0x1b) string("[41~")
+
+nxterm*VT100.Translations: #override ?Key>BackSpace: string(0x7F)\n\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ?Key>Delete:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; string(0x1b) string("[3~")\n\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ?Key>Home:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; string(0x1b) string("[1~")\n\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ?Key>End:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; string(0x1b) string("[4~")\n\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ctrl?Key>Prior:&nbsp;&nbsp;&nbsp;&nbsp; string(0x1b) string("[40~")\n\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ctrl?Key>Next:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; string(0x1b) string("[41~")</TT></PRE>
+</BLOCKQUOTE>
+</UL>
+<TT>rxvt</TT> немного более сложный, поскольку на его поведение влияют
+некоторые параметры, задаваемые во время компиляции. Смотрите выше&nbsp;
+<TT>.bash_profile</TT>.
+
+<P>Более детальную информацию по <TT>bash</TT>(1) и <TT>readline</TT>(3)
+смотрите в man.
+
+<P>Не надейтесь, что все программы будут работать корректно! Если вы, например,
+запускаете <TT>joe</TT> в <TT>xterm </TT>некоторые клавиши не будут работать;
+подобное верно и для версий <TT>rxvt</TT> старее 2.21.
+<H2>
+<A NAME="ss3.2"></A>3.2 <TT>ls</TT>(1)</H2>
+<TT>ls</TT> может отображать содержание директории используя разные цвета
+для отображения разных типов файлов. Чтобы включить это свойство, добавьте
+следующие строчки в <TT>/etc/profile</TT>:
+<BLOCKQUOTE>
+<PRE><TT>eval `dircolors /etc/DIR_COLORS -b`
+export LS_OPTIONS='-F -T 0 --color=tty'</TT></PRE>
+</BLOCKQUOTE>
+(Если у вас нет файла <TT>/etc/DIR_COLORS</TT>, удалите ссылку на него
+в первой строке.) Это устанавливает переменную окружения <TT>LS_COLORS,&nbsp;</TT>
+которая содержит список цветов установленных в&nbsp; <TT>/etc/DIR_COLORS</TT>.
+Примечание: не спрашивайте меня почему, но это не работает с версией <TT>rxvt</TT>
+старее v. 2.21; используйте вместо него&nbsp; <TT>xterm</TT>. Схоже на
+то, что <TT>rxvt</TT> имеет глюк, который не позволяет ему при некоторых
+обстоятельствах корректно наследовать окружение.
+
+<P><TT>ls </TT>в дистрибутиве Caldera&nbsp; не имеет цветов, однако есть
+эквивалент <TT>color-ls</TT>. Добавьте это к <TT>/etc/bashrc</TT>:
+<BLOCKQUOTE>
+<PRE><TT>alias ls="color-ls $LS_OPTIONS"</TT></PRE>
+</BLOCKQUOTE>
+
+<H2>
+<A NAME="ss3.3"></A>3.3 <TT>less</TT>(1)</H2>
+С помощью этого прекрасного пейджера вы можете просматривать&nbsp; не только
+обыкновенный текст, но и сжатые gzip, tar и zip архивы, man страницы и
+все, что хотите. Его настройка включает несколько шагов:
+<UL>
+<LI>
+чтобы использовать его с клавишами перемещения, поместите этот ASCII файл
+<TT>.lesskey</TT> в вашу домашнюю директорию:</LI>
+
+<BLOCKQUOTE>
+<PRE><TT>^[[A&nbsp;&nbsp; back-line
+^[[B&nbsp;&nbsp; forw-line
+^[[C&nbsp;&nbsp; right-scroll
+^[[D&nbsp;&nbsp; left-scroll
+^[OA&nbsp;&nbsp; back-line
+^[OB&nbsp;&nbsp; forw-line
+^[OC&nbsp;&nbsp; right-scroll
+^[OD&nbsp;&nbsp; left-scroll
+^[[6~&nbsp; forw-scroll
+^[[5~&nbsp; back-scroll
+^[[1~&nbsp; goto-line
+^[[4~&nbsp; goto-end
+^[[7~&nbsp; goto-line
+^[[8~&nbsp; goto-end</TT></PRE>
+</BLOCKQUOTE>
+затем выполните команду <TT>lesskey</TT>. Она создаст двоичный файл <TT>.less</TT>
+содержащий клавишные привязки.
+<LI>
+сохраните следующий файл как <TT>/usr/bin/lesspipe.sh</TT>:&nbsp;
+<HR></LI>
+
+<PRE>#!/bin/sh
+# Это препроцессор для 'less'.&nbsp; Он используется, когда установлена переменная окружения&nbsp;
+# LESSOPEN="|lesspipe.sh %s"
+
+lesspipe() {
+&nbsp; case "$1" in
+&nbsp; *.tar) tar tf $1 2>/dev/null ;; # Просмотр содержания .tar и .tgz файлов
+&nbsp; *.tgz|*.tar.gz|*.tar.Z|*.tar.z) tar ztf $1 2>/dev/null ;;
+&nbsp; *.Z|*.z|*.gz) gzip -dc $1&nbsp; 2>/dev/null ;; # Корректное отображение сжатых файлов
+&nbsp; *.zip) unzip -l $1 2>/dev/null ;; # Просмотр архивов
+&nbsp; *.arj) unarj -l $1 2>/dev/null ;;
+&nbsp; *.rpm) rpm -q -p -i -l $1 2>/dev/null ;;
+&nbsp; *.cpio) cpio --list -F $1 2>/dev/null ;;
+&nbsp; *.1|*.2|*.3|*.4|*.5|*.6|*.7|*.8|*.9|*.n|*.man) FILE=`file -L $1`
+&nbsp;&nbsp;&nbsp; FILE=`echo $FILE | cut -d ' ' -f 2`
+&nbsp;&nbsp;&nbsp; if [ "$FILE" = "troff" ]; then
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; groff -s -p -t -e -Tascii -mandoc $1
+&nbsp;&nbsp;&nbsp; fi ;;
+&nbsp; *) file $1 | grep text > /dev/null ;
+&nbsp;&nbsp;&nbsp; if [ $? = 1 ] ; then # это не некоторый тип текста
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; strings $1
+&nbsp;&nbsp;&nbsp; fi ;;
+&nbsp; esac
+}
+
+lesspipe $1</PRE>
+
+<HR>и не забудьте сделать его выполняемым с помощью комманды&nbsp; <TT>chmod
+755 lesspipe.sh</TT>.
+<LI>
+поместите эти строки в <TT>/etc/profile</TT>:</LI>
+
+<BLOCKQUOTE>
+<PRE><TT>LESS="-M-Q"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # не показывать длинные сообщения
+LESSEDIT="%E ?lt+%lt. %f"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # редактировать верхнюю строку
+LESSOPEN="| lesspipe.sh %s"&nbsp;&nbsp;&nbsp;&nbsp; # фильтр
+VISUAL=jed&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # редактор по умолчанию --- вставьте ваш любимый
+LESSCHARSET=latin1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # отображать диакритические символы если нужно&nbsp;
+export LESS LESSEDIT LESSOPEN VISUAL LESSCHARSET</TT></PRE>
+</BLOCKQUOTE>
+Переменная <TT>LESSCHARSET</TT> зависит от факта, что я живу в Италии и
+хочу использовать таблицу символов ISO 8859/1. Вы друзья американцы, японцы,
+русские и тому подобное лучше не устанавливайте ее.</UL>
+
+<H2>
+<A NAME="ss3.4"></A>3.4 <TT>emacs</TT>(1)</H2>
+Я не использую&nbsp; <TT>emacs</TT>, поэтому я могу посоветовать вам только
+одно. Некоторые дистрибутивы <TT>emacs</TT> поставляются без предустановленной
+цветовой и синтаксической подсветки. Допишите это в ваш <TT>.emacs</TT>:
+<BLOCKQUOTE>
+<PRE><TT>(global-font-lock-mode t)
+(setq font-lock-maximum-decoration t)</TT></PRE>
+</BLOCKQUOTE>
+Это работает только для X11. Я отправляю вас внимательно почитать всю документацию
+по <TT>emacs, </TT>чтобы вы смоголи настроить его под свои нужды -- потенциально,
+это можеть занять несколько месяцев отладки...
+<H2>
+<A NAME="ss3.5"></A>3.5 <TT>joe</TT>(1)</H2>
+Некоторые "товарищи" сообщают, что&nbsp; <TT>joe</TT> работает с цветами
+под X11, но не в tty. К тому же, не работают некоторые специльные клавиши.
+Насколько мне известно, никто не нашел решения для маленькой старой клячи;
+кое-кто предлагает отлаживать&nbsp; <TT>/etc/termcap</TT>.
+
+<P>Если вы столкнулись с этой проблемой, быстрое и плохое (и неэлегантное)
+решение следующее:
+<BLOCKQUOTE>
+<PRE><TT>~$ export TERM=vt100
+~$ joe myfile
+&nbsp;&nbsp; (edit your file)
+~$ export TERM=linux</TT></PRE>
+</BLOCKQUOTE>
+
+<H2>
+<A NAME="ss3.6"></A>3.6 <TT>jed</TT>(1)</H2>
+Это мой любимый редактор: он делает то, что я хочу, его легче и проще настраивать
+чем <TT>emacs</TT>, и IMHO отлично эмулирует другие редакторы. Многие пользователи
+в моем университете хотят, чтобы <TT>jed</TT> эмулировал <TT>EDT</TT>,
+редактор системы VMS.
+<BR>Настроечным файлом для jed является<TT> .jedrc</TT> и все, что в <TT>/usr/lib/jed/lib/</TT>;
+предыдущий может быть взят из&nbsp; <TT>jed.rc</TT>&nbsp; в указанной дериктории.
+<UL>
+<LI>
+чтобы заставить <TT>jed</TT> корректно использовать специльные клавиши,
+создайте файл <TT>/usr/lib/jed/lib/defaults.sl</TT>, который содержит только
+одну строку:</LI>
+
+<BLOCKQUOTE>
+<PRE><TT>() = evalfile("linux");</TT></PRE>
+</BLOCKQUOTE>
+
+<LI>
+отредактируйте <TT>/usr/lib/jed/lib/linux.sl</TT>; снимите комментарий
+со строки <TT>Info_Directory = "/usr/info";</TT> и добавьте&nbsp; <TT>/bin/mail</TT>
+после <TT>UCB_Mailer =</TT>;</LI>
+
+<LI>
+способ заставить <TT>jed</TT> эмулировать&nbsp; <TT>EDT</TT> (или другие
+редакторы ) довольно прямолинеен : вы только должны отредактивновать несколько
+строк в&nbsp; <TT>.jedrc</TT>. Если вы хотите использовать клавишу "+"
+на цифровой клавиатуре для удаления слов вместо единичных символов, добавьте
+это в<TT>.jedrc</TT>:</LI>
+
+<BLOCKQUOTE>
+<PRE><TT>unsetkey("\eOl");
+unsetkey("\eOP\eOl");
+setkey("edt_wdel", "\eOl");
+setkey("edt_uwdel", "\eOP\eOl");</TT></PRE>
+</BLOCKQUOTE>
+после строки, следующего вида <TT>() = evalfile("edt");</TT>.
+<LI>
+чтобу <TT>xjed</TT> использовал цифровую клавиатуру для эмуляции&nbsp;
+<TT>EDT</TT>, вставьте следующее в <TT>.Xmodmap</TT>:</LI>
+
+<BLOCKQUOTE>
+<PRE><TT>keycode 77&nbsp; = KP_F1
+keycode 112 = KP_F2
+keycode 63&nbsp; = KP_F3
+keycode 82&nbsp; = KP_F4
+keycode 86&nbsp; = KP_Separator</TT></PRE>
+</BLOCKQUOTE>
+Более того, убедитесь, что ваш <TT>/etc/X11/XF86Config</TT> содержит следующие
+строки:
+<BLOCKQUOTE>
+<PRE><TT>#&nbsp;&nbsp;&nbsp; ServerNumLock&nbsp; # должен быть откоментирован
+&nbsp;&nbsp;&nbsp; XkbDisable</TT></PRE>
+</BLOCKQUOTE>
+Это применяется для XFree 3.2. Если только вы не используете американский
+стандарт клавиатуры , заметьте, что&nbsp; ``XkbDisable'' создает проблемы.
+Вы исследуете это сами.
+<LI>
+настройка цветов для&nbsp; <TT>xjed</TT> производится добавлением следующих
+строк к <TT>.Xdefaults</TT>:</LI>
+
+<BLOCKQUOTE>
+<PRE><TT>xjed*Geometry: 80x32+150+50
+xjed*font: 10x20
+xjed*background: midnight blue</TT></PRE>
+``Аббревиатуры'' - это неоценимое средство сохранения времени. Создайте
+файл
+<BR>&nbsp;подобный следующему и сохраните в <TT>$HOME/.abbrevs.sl</TT>:</BLOCKQUOTE>
+
+<BLOCKQUOTE>
+<PRE><TT>create_abbrev_table ("Global", "");
+define_abbrev ("Global", "GG", "Guido Gonzato");
+create_abbrev_table ("TeX", "\\A-Za-z0-9");
+define_abbrev ("TeX", "\\beq", "\\begin{equation}");
+define_abbrev ("TeX", "\\eeq", "\\end{equation}");
+% and so on...</TT></PRE>
+</BLOCKQUOTE>
+и выполните <TT>ESC x abbrev_mode, </TT>чтобы включить его. Чтобы аббревиатуры
+были включены по умолчанию, добавьте следующие строки к вашему <TT>.jedrc</TT>:
+<BLOCKQUOTE>
+<PRE><TT>define text_mode_hook ()
+{
+&nbsp; set_abbrev_mode (1);
+}
+%
+define fortran_hook ()
+{
+&nbsp; set_abbrev_mode (1);
+&nbsp; use_abbrev_table ("Fortran");
+}
+% and so on...</TT></PRE>
+</BLOCKQUOTE>
+</UL>
+
+<H2>
+<A NAME="ss3.7"></A>3.7 <TT>efax</TT>(1)</H2>
+Этот пакет вероятно самый удобный для простой отправки/получения факсов.
+Вам нужно будет создать скрипт <TT>/usr/bin/fax</TT>; легко работающий,
+но с некоторыми причудами, вызвавшими у меня головную боль:
+<UL>
+<LI>
+DIALPREFIX: простой выбор только `T' или `P' не будет работать в большинстве
+стран. Задайте вместо этого `ATDT' или `ATDP';</LI>
+
+<LI>
+INIT и RESET: эти строки содержат инициализаторы `-i' и `-k', необходимые
+для <TT>efax</TT>. Если вы хотите добавить AT команду, добавьте ее к соответствующей
+строке без `AT' с предшествующим ключом `-i' или `-k'. Например: чтобы
+добавить команду `ATX3' к INIT, вы добавите `-iX3'.</LI>
+</UL>
+
+<H2>
+<A NAME="ss3.8"></A>3.8 TeX и аналоги</H2>
+Я предположу, что у вас дистрибутив teTeX. Остановимся здесь только на
+нескольких вещах:
+<UL>
+<LI>
+чтобы определить схему переносов для вашего языка, отредактируйте файл
+<TT>/usr/lib/texmf/texmf/tex/generic/config/language.dat</TT>, затем выполните:</LI>
+
+<BLOCKQUOTE>
+<PRE><TT>~# texconfig init ; texconfig hyphen</TT></PRE>
+</BLOCKQUOTE>
+
+<LI>
+если вы добавили пакет LaTeX, после добавления файлов в <TT>/usr/lib/texmf/texmf/tex/latex/</TT>
+выполните команду <TT>texhash, </TT>чтобы teTeX узнал о новом пакете;</LI>
+
+<LI>
+чтобы настроить <TT>dvips</TT>, нужно редактировать файл <TT>/usr/lib/texmf/texmf/dvips/config/config.ps</TT>.
+Помните, что строки, отвечающие за разрешение по умолчанию, также определяют
+поведение&nbsp; <TT>xdvi</TT>; если вам надоело задавать фонты каждый раз,
+когда вы запускаете пакет, поместите строку</LI>
+
+<BLOCKQUOTE>
+<PRE><TT>XDvi*mfmode:</TT></PRE>
+</BLOCKQUOTE>
+в <TT>.Xdefault</TT>. Это должно помочь.</UL>
+
+<H2>
+<A NAME="ss3.9"></A>3.9 PPP</H2>
+Здесь я буду предполагать, что поддержка PPP + TCP/IP уже встроена в ядро
+при компиляции, активирован loopback интерфейс, вы уже имеете корректно
+инсталированный пакет <TT>pppd</TT> и зарегистрированы под root. Обычно
+ваш интернет провайдер должен поддерживать PPP.
+
+<P>Существует теперь два способа заставить PPP работать: a) ручная настройка,
+и b) с помощью конфигурационной программы, которая это делает сама. Какой
+бы вариант вы не выбрали, вам потребуется следующая информация:
+<UL>
+<LI>
+номер телефона вашего провайдера;</LI>
+
+<LI>
+сервер имен вашего провайдера;</LI>
+
+<LI>
+сервер почты и новостей вашего провайдера;</LI>
+
+<LI>
+домен вашего провайдера;</LI>
+
+<LI>
+ваше регистрационное имя и пароль.</LI>
+</UL>
+Ручная настройка более хлопотная. Нужно отредактировать некоторые файлы
+и написать скрипты; не очень много работы, но легко наделать ошибок и новички
+часто пугаются. Здесь вам может помочь PPP-HOWTO. Как альтернатива, существуют
+утилиты, которые спрашивают перечисленную выше информацию и делают всю
+работу сами.
+
+<P>Будет несравненно лучше для вас, исли вы посетите товарища, который
+уже имеет настроенную связь с провайдером и скачаете один из следующих
+прекрасных инструментов:
+<UL>
+<LI>
+для X11 есть утилита EzPPP, домашняя страница которой находится по адресу
+<TT><A HREF="http://www.serv.net/~cameron/ezppp/index.html">http://www.serv.net/~cameron/ezppp/index.html</A>
+</TT>. Очень легка в использовании и почти сама настраивается;</LI>
+
+<LI>
+для соединения в&nbsp; tty, попробуйте утилиту с&nbsp; <TT><A HREF="ftp://sunsite.unc.edu/pub/Linux/system/network/serial/ppp">ftp://sunsite.unc.edu/pub/Linux/system/network/serial/ppp</A></TT>.
+Одной из лучших является pppsetup-X.XX.tar.gz.</LI>
+
+<LI>
+наипростейшей настроечной утилитой на сегодня уверенно можно назвать <TT>wvdial</TT>.
+Вы даете ей телефон вашего провайдера, ваш логин, ваш пароль, и вы уже
+в полете. Из README файла: ``Сейчас для wvdial есть web страница по адресу:
+<TT><A HREF="http://www.worldvisions.ca/wvdial">http://www.worldvisions.ca/wvdial</A></TT>''.
+Очень хороший инструмент.</LI>
+</UL>
+
+<H2>
+<A NAME="ss3.10"></A>3.10 POP клиент</H2>
+Для получения вашей почты с POP сервера, вы используете таких POP клиентов
+как <TT>fetchpop</TT> или <TT>fetchmail</TT>. Последний более продвинут,
+и вероятно является единственным выбором, если PPP сервер вашего провайдера
+не может работать с командой LAST. Они доступны на <TT><A HREF="ftp://sunsite.unc.edu/pub/Linux/system/mail/pop">ftp://sunsite.unc.edu/pub/Linux/system/mail/pop</A></TT>.
+
+<P>Для настройки этих клиентов:
+<UL>
+<LI>
+<TT>fetchpop</TT>: при первом запуске он вас спросит некоторые сведения.
+Ответьте на вопросы и вы готовы к работе.</LI>
+
+<LI>
+<TT>fetchmail</TT>: настройте подобно примеру <TT>.fetchmailrc</TT>:</LI>
+
+<BLOCKQUOTE>
+<PRE><TT># $HOME/.fetchmailrc
+poll mbox.myisp.com with protocol pop3;
+&nbsp; user john there with password _Loo%ny is john here</TT></PRE>
+</BLOCKQUOTE>
+Вы должны установить права доступа к этому файлу с помощью команды <TT>chmod
+600 .fetchmailrc</TT>, в противном случае <TT>fetchmail</TT> скорее всего
+не захочет запуститься. Этот пример показывает только основные настройки
+и предполагает, что у вас запущен <TT>sendmail</TT>; в принципе, возможности
+настройки безграничны. Почитайте <A HREF="http://www.ccil.org/~esr/fetchmail">http://www.ccil.org/~esr/fetchmail</A>.</UL>
+
+<H2>
+<A NAME="ss3.11"></A>3.11 Система X Window</H2>
+Как только вы заставили X работать (правильный выбор видеокарты и т.п.),
+существуют безграничные возможности для настройки - все зависит от того,
+какой менеджер окон вы выбрали. В любом случае, все сведется к редактированию
+одного или нескольких ASCII файлов в вашей домашней директории. Так для
+менеджеров окон:
+<UL>
+<LI>
+<B>fvwm</B>: скопируйте <TT>/etc/X11/fvwm/system.fvwmrc</TT> в вашу домашнюю
+директорию как <TT>.fvwmrc</TT>, просмотрите его и начинайте экспериментировать.
+Этот встроенный <TT>system.fvwmrc</TT> является по моему мнению слишком
+простым и не делает погоды в <TT>fvwm</TT>.</LI>
+
+<LI>
+<B>fvwm95-2</B>: скопируйте <TT>/etc/X11/fvwm95-2/fvwm2rc95</TT> в вашу
+домашнюю директорию как <TT>.fvwm2rc95</TT>, затем отредактируйте его.
+Встроенный пример достаточно хорош.</LI>
+
+<LI>
+<B>TheNextLevel</B>: этого немного труднее настраивать. Скопируйте <TT>/etc/X11/TheNextLevel/.*</TT>
+в вашу домашнюю директорию, внимательно их изучите, затем попробуйте поэкспериментировать
+с ними. Первое, на что нужно смотреть, это&nbsp; <TT>.fvwm2rc.defines</TT>.</LI>
+</UL>
+К тому же, убедитесь, что у вас корректный&nbsp; <TT>.xinitrc</TT>. Например:
+<BLOCKQUOTE>
+<PRE><TT>#!/bin/sh
+
+# $HOME/.xinitrc
+
+# настройка корректной работы некоторых клавиш
+
+usermodmap=$HOME/.Xmodmap&nbsp;
+xmodmap $usermodmap
+
+xset s noblank&nbsp; # выключить хранитель экрана
+xset s 300 2&nbsp;&nbsp;&nbsp; # хранитель экрана запустится через 5 минут
+xsetroot -solid "medium blue" ?
+
+# rxvt занимает меньше памяти, но у версий старше 2.21 есть глюки&nbsp;
+# касательно клавиш и способа наследования окружения. Обновите версию или
+# используйте вместо него xterm.
+
+xterm -ls -bg black -fg white -sb -sl 500 -j -ls -fn 10x20 -fb 10x20bold \
+-title "Color xterm" -geometry 80x25+150+0 ?
+
+fvwm95-2</TT></PRE>
+</BLOCKQUOTE>
+
+<H2>
+<A NAME="ss3.12"></A>3.12 Fortran</H2>
+Судя по моему опыту, если вам нужен Фортран, то лучшей альтернативой использованию&nbsp;
+<TT>g77</TT> будет Фортран --> Си транслятор <TT>f2c</TT> и перед ним <TT>yaf77</TT>.
+
+<P><TT>yaf77-X.Y.tgz</TT> можно получить на <TT><A HREF="ftp://sunsite.unc.edu/pub/Linux/devel/lang/fortran">ftp://sunsite.unc.edu/pub/Linux/devel/lang/fortran</A>
+</TT>.
+<H2>
+<A NAME="ss3.13"></A>3.13 Настройки пользователей</H2>
+Хорошая идея предоставить новому пользователю несколько готовых настроечных
+файлов во время первой регистрации в системе. Поместите следующие файлы
+в <TT>/etc/skel</TT>: <TT>.bashrc .bash_profile .bash_logout .inputrc .less
+.xinitrc .fvwmrc .fvwm2rc95 .Xmodmap .Xdefaults .jedrc .abbrevs.sl. .joerc
+.emacs</TT>
+
+<P>Заметьте, что <TT>.pinerc</TT>&nbsp; может быть не одинаковым; удостоверьтесь,
+что, как минимум, <TT>user-domain</TT>, <TT>smtp-server</TT>, и <TT>nntp-server</TT>
+установлены правильно.
+<H2>
+<A NAME="ss3.14"></A>3.14 Модернизация</H2>
+Если вы обновляете ваш компьютер, не забудьте сохранить до этого некоторые
+дополнительные файлы. Некоторые из них: <TT>/etc/X11/XF86Config,</TT> <TT>/usr/bin/fax,</TT>
+...
+
+<P>
+<HR><A HREF="Config-HOWTO-4.html">Next</A> <A HREF="Config-HOWTO-2.html">Previous</A>
+<A HREF="Config-HOWTO.html">Contents</A>
+</BODY>
+</HTML>

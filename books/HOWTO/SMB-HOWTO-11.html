@@ -1,0 +1,264 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE>SMB HOWTO: Резервирование данных с машин с Windows на машину с Linux</TITLE>
+ <LINK HREF="SMB-HOWTO-12.html" REL=next>
+ <LINK HREF="SMB-HOWTO-10.html" REL=previous>
+ <LINK HREF="SMB-HOWTO.html#toc11" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="SMB-HOWTO-12.html">Следующий</A>
+<A HREF="SMB-HOWTO-10.html">Предыдущий</A>
+<A HREF="SMB-HOWTO.html#toc11">Содержание</A>
+<HR>
+<H2><A NAME="s11">11. Резервирование данных с машин с Windows на машину с Linux</A></H2>
+
+<P>Adam Neat (
+<A HREF="mailto:adamneat@ipax.com.au">adamneat@ipax.com.au</A>) предоставил следующий скрипт, который
+выполняет резервирование данных с машин с Windows machines на машину с
+Linux, используя утилиту smbclient. Adam сказал, что он использует этот
+скрипт для резервирования данных с машин с Windows 3.x и NT на диск DAT
+SCSI под Linux. 
+<P>Adam не гордится стилем программирования, используемым в этом примере, но
+это работает. Как я хочу сказать: "Если это работает и это сделано тупо, то 
+это не тупо".
+<P>Другой скрипт для сохранения данных с Windows, предоставлен Dan Tager
+(
+<A HREF="mailto:dtager@marsala.com">dtager@marsala.com</A>) и
+приводится ниже. Скрипт присланный Dan также может сохранять данные с машин 
+с Unix через rsh, хотя он может легко быть изменен для использования ssh.
+<P>В этом скрипте строка 'agnea1' является именем пользователя на машине с
+Linux, на которую производится резервирование данных.
+<P>
+<BLOCKQUOTE><CODE>
+<HR>
+<PRE>
+#!/bin/bash
+
+clear
+echo Initialising ...
+checkdate=`date | awk '{print $1}'
+
+if [ -f "~agnea1/backup-dir/backup-data" ]; then
+
+        echo "ERROR: No config file for today!"
+        echo "FATAL!"
+        exit 1
+fi
+
+if [ -d "~agnea1/backup-dir/temp" ]; then
+
+        echo "ERROR: No tempoary directory found!"
+        echo
+        echo "Attempting to create"
+        cd ~agnea1
+        cd backup-dir
+        mkdir temp
+        echo "Directory Made - temp"
+fi
+
+if [ "$1" = "" ]; then
+
+        echo "ERROR: enter in a machine name (ie: cdwriter)"
+        exit 1
+fi
+
+if [ "$2" = "" ]; then
+
+        echo "ERROR: enter in a SMB (Lan Manager) Resource (ie: work)"
+        exit 1
+fi
+
+if [ "$3" = "" ]; then
+
+        echo "ERROR: enter in an IP address for $1 (ie:
+        130.xxx.xxx.52)" exit 1
+fi
+
+
+#############################################################################
+# Main Section
+#
+#############################################################################
+
+cd ~agnea1/backup-dir/temp
+rm -r ~agnea1/backup-dir/temp/*
+cd ~agnea1/backup-dir/
+
+case "$checkdate"
+in
+        Mon)
+                echo "Backuping for Monday"
+                cat backup-data | /usr/local/samba/bin/smbclient
+                \\\\$1\\$2 -I$3 -N echo "Complete"
+
+                        if [ -d "~agnea1/backup-dir/Monday" ]; then
+                                echo "Directory Monday Not found ...
+                                making" mkdir
+                                ~agnea1/backup-dir/Monday
+                        fi
+
+                echo "Archiving ..."
+                cd ~agnea1/backup-dir/temp
+                tar -cf monday.tar *                echo "done ..."
+                rm ~agnea1/backup-dir/Monday/monday.tar
+                mv monday.tar ~agnea1/backup-dir/Monday
+                ;;
+
+
+        Tue)
+                echo "Backuping for Tuesday"
+                cat backup-data | /usr/local/samba/bin/smbclient
+                \\\\$1\\$2 -I$3 -N echo "Complete"
+
+                        if [ -d "~agnea1/backup-dir/Tuesday" ]; then
+                                echo "Directory Tuesday Not found ...
+                                making" mkdir
+                                ~agnea1/backup-dir/Tuesday
+                        fi
+                echo "Archiving ..."
+                cd ~agnea1/backup-dir/temp
+                tar -cf tuesday.tar *
+                echo "done ..."
+                rm ~agnea1/backup-dir/Tuesday/tuesday.tar
+                mv tuesday.tar ~agnea1/backup-dir/Tuesday
+                ;;
+
+        Wed)
+                echo "Backuping for Wednesday"
+                cat backup-data | /usr/local/samba/bin/smbclient
+                \\\\$1\\$2 -I$3 -N echo "Complete"
+
+                        if [ -d "~agnea1/backup-dir/Wednesday" ]; then
+                                echo "Directory Wednesday Not found
+                                ... making" mkdir
+                                ~agnea1/backup-dir/Wednesday
+                        fi
+                echo "Archiving ..."
+                cd ~agnea1/backup-dir/temp
+                tar -cf wednesday.tar *
+                echo "done ..."
+             rm ~agnea1/backup-dir/Wednesday/wednesday.tar
+                mv wednesday.tar ~agnea1/backup-dir/Wednesday
+                ;;
+
+        Thu)
+                echo "Backuping for Thrusday"
+                cat backup-data | /usr/local/samba/bin/smbclient
+                \\\\$1\\$2 -I$3 -N echo "Complete"
+
+                        if [ -d "~agnea1/backup-dir/Thursday" ]; then
+                                echo "Directory Thrusday Not found ...
+                                making" mkdir
+                                ~agnea1/backup-dir/Thursday
+                        fi
+                echo "Archiving ..."
+                cd ~agnea1/backup-dir/temp
+                tar -cf thursday.tar *
+                echo "done ..."
+                rm ~agnea1/backup-dir/Thursday/thursday.tar
+                mv thursday.tar ~agnea1/backup-dir/Thursday
+                ;;
+
+
+        Fri)
+                echo "Backuping for Friday"
+                cat backup-data | /usr/local/samba/bin/smbclient
+                \\\\$1\\$2 -I$3 -N echo "Complete"
+
+                        if [ -d "~agnea1/backup-dir/Friday" ]; then
+                                echo "Directory Friday Not found ...
+                                making" mkdir
+                                ~agnea1/backup-dir/Friday
+                        fi
+                echo "Archiving ..."
+                cd ~agnea1/backup-dir/temp
+                tar -cf friday.tar *
+                echo "done ..."
+                rm ~agnea1/backup-dir/Friday/friday.tar
+                mv friday.tar ~agnea1/backup-dir/Friday
+                ;;
+
+        *)
+                echo "FATAL ERROR: Unknown variable passed for day"
+                exit 1;;
+
+esac
+###########
+</PRE>
+<HR>
+</CODE></BLOCKQUOTE>
+<P>Вот скрипт предоставленный Dan:
+<P>
+<BLOCKQUOTE><CODE>
+<HR>
+<PRE>
+#!/bin/bash
+
+BACKDIR=3D/backup
+WINCMD=3D/usr/sbin/smbclient
+
+function CopyWinHost(){
+
+# tars and gzips "windows shares" to a local directory using samba's
+# smbclient
+# argument 1 is the remote host window's host name
+# argument 2 is the share name to be backed up
+
+   echo $1,$2,$3
+   REMOTE=3D$1
+   SHARE=3D$2
+   DEST=3D$3
+
+ # create a tarred gzip file using samba to copy direct from a
+ # windows pc
+ # 12345 is a password.  Needs some password even if not defined on
+ # remote system
+   $WINCMD \\\\$REMOTE\\$SHARE 12345 -Tc -|gzip > $DEST
+   echo `date`": Done backing up "$REMOTE" to "$DEST
+   echo
+}
+
+function CopyUnixHost(){
+
+# tars and gzips a directory using rsh
+# argument 1 is the name of the remote source host
+# argument 2 is the full path to the remote source directory
+# argument 3 is the name of the local tar-gzip file.  day of week
+#  plus .tgz will be appended to argument 3
+
+   REMOTE=3D$1
+   SRC=3D$2
+   DEST=3D$3
+
+
+   if rsh $REMOTE tar -cf - $SRC |gzip > $DEST; then
+      echo `date`": Done backing up "$REMOTE":"$SRC" to "$DEST
+   else
+     echo `date`": Error backing up "$REMOTE":"$SRC" to "$DEST
+   fi
+
+}
+
+# $1: win=3Dbackup windows machine, unix=3Dbackup unix machine
+case $1 in
+   win)
+      # $2=3D remote windows name, $3=3Dremote share name,
+      # $4=3Dlocal destination directory
+      CopyWinHost $2 $3 $4;;
+   unix)
+      # $2 =3D remote host, $3 =3D remote directory,
+      # $4 =3D destination name
+      CopyUnixHost $2 $3 $4;;
+esac
+</PRE>
+<HR>
+</CODE></BLOCKQUOTE>
+<P>
+<HR>
+<A HREF="SMB-HOWTO-12.html">Следующий</A>
+<A HREF="SMB-HOWTO-10.html">Предыдущий</A>
+<A HREF="SMB-HOWTO.html#toc11">Содержание</A>
+</BODY>
+</HTML>

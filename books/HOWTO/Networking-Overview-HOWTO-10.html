@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE>Linux Networking Overview HOWTO: Производственные сети и Linux</TITLE>
+ <LINK HREF="Networking-Overview-HOWTO-11.html" REL=next>
+ <LINK HREF="Networking-Overview-HOWTO-9.html" REL=previous>
+ <LINK HREF="Networking-Overview-HOWTO.html#toc10" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="Networking-Overview-HOWTO-11.html">Next</A>
+<A HREF="Networking-Overview-HOWTO-9.html">Previous</A>
+<A HREF="Networking-Overview-HOWTO.html#toc10">Contents</A>
+<HR>
+<H2><A NAME="s10">10. Производственные сети и Linux</A></H2>
+
+<P>В некоторых ситуациях при работе с сетями необходимо иметь механизмы,
+гарантирующие &nbsp;100% работоспособность cети. Некоторые такие методы
+описаны в последующих разделах. Большинство из этого материала может быть
+найдено на превосходном веб-сайте Linas: 
+<A HREF="http://linas.org/linux/index.html">http://linas.org/linux/index.html</A>
+и в High-Availability-HOWTO для Linux
+<A HREF="http://sunsite.unc.edu/pub/Linux/ALPHA/linux-ha/High-Availability-HOWTO.html">http://sunsite.unc.edu/pub/Linux/ALPHA/linux-ha/High-Availability-HOWTO.html</A><P>
+<P>
+<H2><A NAME="ss10.1">10.1 Высокая надежность</A>
+</H2>
+
+<P>Для предотвращения полный краха системы при единичных случаях отказа
+используется избыточность. Станция с одной сетевой платой или одним SCSI
+диском имеет две потенциальные точки отказа. Цель состоит в сокрытии от
+пользователей незапланированных сбоев и возможности максимально быстро
+позволить пользователям возобновить работу. Программное обеспечение
+обеспечения высокой надежности - это набор скриптов и инструментальных
+средств, которые автоматически контролируют и обнаруживают отказы,
+предпринимая соответствующие шаги для восстановления нормальной работы и
+сообщая об этом администратору системы.
+<P>
+<P>
+<H2><A NAME="ss10.2">10.2 RAID</A>
+</H2>
+
+<P>RAID, сокращение для Избыточного Массива Недорогих Дисков, является методом,
+с помощью которого информация располагается на нескольких дисках, используя
+методы типа дискового striping (RAID уровня 0) и зеркального отображения
+диска (RAID уровня 1), чтобы достигнуть избыточности, более малого времени
+ожидания и/или большей скорости чтения и/или записи, и восстановимости после
+сбоев жесткого диска. Имеется свыше шести различных типов конфигураций RAID.
+Для пользователей Linux доступны три вида реализации RAID: программный RAID,
+внешние корзины DASD и контроллеры RAID.
+<P>
+<DL>
+<DT><B>   Программный RAID:</B><DD><P>Исключительно программная реализация RAID осуществляет
+различные уровни RAID в дисковом коде ядра.
+<P>
+<DT><B>   Внешние корзины DASD:</B><DD><P>DASD (Устройство Памяти Прямого доступа) - отдельные
+модули, которые поставляются с их собственным питанием, обеспечивают
+шкаф/блок для закрепления жестких дисков, и видны в Linux как SCSI
+устройства. Во многих случаях они предоставляют наиболее продуманное
+решение RAID.
+<P>
+<DT><B>   Контроллеры RAID: </B><DD><P>Контроллеры - платы адаптера, которые подключают к шине
+ISA/EISA/PCI. Точно так же как и обычные платы дискового контроллера,
+кабель присоединяется к дисководам. В отличие от обычных контроллеров
+дисков, контроллеры RAID реализуют RAID непосредственно на самой плате,
+выполняя все необходимые операции по обеспечению различных уровней RAID.
+</DL>
+
+How-tos:
+<UL>
+<LI>   
+<A HREF="http://sunsite.unc.edu/mdw/HOWTO/mini/DPT-Hardware-RAID.html">http://sunsite.unc.edu/mdw/HOWTO/mini/DPT-Hardware-RAID.html</A>
+</LI>
+<LI>   
+<A HREF="http://sunsite.unc.edu/mdw/HOWTO/Root-Rescue.html">http://sunsite.unc.edu/mdw/HOWTO/Root-Rescue.html</A>
+</LI>
+<LI>   
+<A HREF="http://sunsite.unc.edu/mdw/HOWTO/mini/Software-RAID.html">http://sunsite.unc.edu/mdw/HOWTO/mini/Software-RAID.html</A></LI>
+</UL>
+
+RAID в linas.org:
+<UL>
+<LI>   
+<A HREF="http://linas.org/linux/raid.html">http://linas.org/linux/raid.html</A></LI>
+</UL>
+<P>
+<H2><A NAME="ss10.3">10.3 Избыточность в сетях</A>
+</H2>
+
+<P>IP Address Takeover (IPAT). Когда сбоит плата сетевого адаптера, ее адрес IP
+должен переназначиться рабочей сетевой плате на том же самом хосте или на
+другом хосте. MAC Address Takeover: когда происходит перераспределение IP
+адресов, надо удостовериться, что все узлы в сети модифицировали свои ARP
+кэши (отображение между IP и MAC адресами). См. High-Availability How-To для
+подробностей:
+<A HREF="http://sunsite.unc.edu/pub/Linux/ALPHA/linux-ha/High-Availability-HOWTO.html">http://sunsite.unc.edu/pub/Linux/ALPHA/linux-ha/High-Availability-HOWTO.html</A><P>
+<P>
+<HR>
+<A HREF="Networking-Overview-HOWTO-11.html">Next</A>
+<A HREF="Networking-Overview-HOWTO-9.html">Previous</A>
+<A HREF="Networking-Overview-HOWTO.html#toc10">Contents</A>
+</BODY>
+</HTML>

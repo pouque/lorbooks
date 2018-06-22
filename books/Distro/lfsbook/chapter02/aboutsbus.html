@@ -1,0 +1,188 @@
+<HTML
+><HEAD
+><TITLE
+>About SBUs</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Microsoft FrontPage 4.0"/><LINK
+REL="HOME"
+TITLE="Linux From Scratch"
+HREF="http://www.linuxfromscratch.org/view/4.0/index.html"/><LINK
+REL="UP"
+TITLE="Important information"
+HREF="http://www.linuxfromscratch.org/view/4.0/chapter02/chapter02.html"/><LINK
+REL="PREVIOUS"
+TITLE="About $LFS"
+HREF="http://www.linuxfromscratch.org/view/4.0/chapter02/aboutlfs.html"/><LINK
+REL="NEXT"
+TITLE="Where to store the downloaded software"
+HREF="http://www.linuxfromscratch.org/view/4.0/chapter02/download.html"/></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#006000"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Linux From Scratch: Версия 4.0</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="aboutlfs.html"
+ACCESSKEY="P"
+>Назад</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Глава 2. Важная информация</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="download.html"
+ACCESSKEY="N"
+>Вперед</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"/></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="ch02-aboutsbus"
+>Про SBU</A
+></H1
+><P
+>SBU или <EM
+>Static Bash Units</EM
+>  &lt;Статические единицы Bash&gt; используются
+  для определения времени, необходимого для
+  компиляции программы. Почему мы не
+  используем привычные единицы времени,
+  такие как секунды, минуты, часы?</P
+><P
+>Проблема заключается в том, что
+  использование привычных единиц времени в
+  данном случае дает слишком неточные
+  результаты. Люди инсталлируют LFS на
+  множестве различных систем, и время,
+  затраченное на компиляцию определенной
+  программы будет разным для каждой системы.
+  На одной системе пакет компилируется за 20
+  минут, на другой системе тот же самый пакет
+  собирается за 3 дня (заметьте, это не
+  преувеличение). Поэтому мы решили
+  использовать <EM
+>SBU</EM
+>.</P
+><P
+>Как это работает: первым пакетом, который
+  вам будет предложено скомпилировать в
+  Главе 5 будет оболочка Bash со статическими
+  ссылками. Время, потраченное на его
+  компиляцию, будет взято за базис и названо
+  SBU. Время компиляции других программ
+  попадет в прямую зависимость от времени,
+  затраченного на компиляцию Bash. К примеру,
+  компиляция GCC-3.2 занимает примерно 9.5 SBU, и
+  проверено, что это число довольно
+  постоянно на разных системах. Теперь мы
+  умножим 9.5 на число секунд, потраченных на
+  компиляцию Bash (значение SBU), и получим
+  приблизительное время в секундах,
+  необходимое для компиляции GCC.</P
+><P
+>Примечание: Использование SBU не подходит
+  для многопроцессорных систем. В случае
+  если вы счастливый обладатель такого
+  компьютера, время компиляции,
+  подсчитанное с помощью SBU будет неточным.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"/><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="aboutlfs.html"
+ACCESSKEY="P"
+>Назад</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="../index.html"
+ACCESSKEY="H"
+>Домой</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="download.html"
+ACCESSKEY="N"
+>Вперед</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Про $LFS</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="chapter02.html"
+ACCESSKEY="U"
+>Наверх</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Где хранить загруженные программы</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

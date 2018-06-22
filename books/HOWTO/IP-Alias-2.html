@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE>MINI HOW-TO ON SETTING UP IP ALIASING ON A LINUX MACHINE: Команды:</TITLE>
+ <LINK HREF="IP-Alias-3.html" REL=next>
+ <LINK HREF="IP-Alias-1.html" REL=previous>
+ <LINK HREF="IP-Alias.html#toc2" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="IP-Alias-3.html">Next</A>
+<A HREF="IP-Alias-1.html">Previous</A>
+<A HREF="IP-Alias.html#toc2">Contents</A>
+<HR>
+<H2><A NAME="s2">2. Команды:</A></H2>
+
+<P>
+<UL>
+<LI>      Сперва загрузите модуль IP Alias (если вы вкомпилировали модуль в
+ядро, можете пропустить этот шаг):
+<BLOCKQUOTE><CODE>
+<PRE>
+/sbin/insmod /lib/modules/`uname -r`/ipv4/ip_alias.o
+</PRE>
+</CODE></BLOCKQUOTE>
+</LI>
+<LI>      Во-вторых, настройте интерфейсы loopback, eth0 и все IP адреса,
+начиная с основного IP адреса для интерфейса eth0:
+<BLOCKQUOTE><CODE>
+<PRE>
+/sbin/ifconfig lo 127.0.0.1
+/sbin/ifconfig eth0 up
+/sbin/ifconfig eth0 172.16.3.1
+/sbin/ifconfig eth0:0 172.16.3.10
+/sbin/ifconfig eth0:1 172.16.3.100
+</PRE>
+</CODE></BLOCKQUOTE>
+       172.16.3.1 - основной адрес, в то время как .10 и .100 - алиасы.
+Отметьте себе строку с eth0:x, где x=0,1,2,...n назначаются для
+прочих IP адресов. Основной IP адрес не нужно aliased.</LI>
+<LI>      Третье, настройте маршрутизацию. Первый маршрут loopback, затем
+сеть и, наконец, различные IP адреса перед маршрутом по умолчанию:
+<BLOCKQUOTE><CODE>
+<PRE>
+/sbin/route add -net 127.0.0.0
+/sbin/route add -net 172.16.3.0 dev eth0
+/sbin/route add -host 172.16.3.1 dev eth0
+/sbin/route add -host 172.16.3.10 dev eth0:0
+/sbin/route add -host 172.16.3.100 dev eth0:1
+/sbin/route add default gw 172.16.3.200
+</PRE>
+</CODE></BLOCKQUOTE>
+</LI>
+</UL>
+
+Это все.
+<P>Для примера IP адреса выше я использовал приватные IP адреса
+(RFC 1918). Замените их на ваши собственные официальные или
+частные IP адреса.
+<P>Пример показывает только 3 IP адреса. В
+/usr/include/linux/net_alias.h определено их максимальное
+количество - 256. 256 IP адресов на ОДНУ карточку - это круто :-)!
+<P>Вот что показывает мой /sbin/ifconfig:
+<BLOCKQUOTE><CODE>
+<PRE>
+ lo        Link encap:Local Loopback
+           inet addr:127.0.0.1  Bcast:127.255.255.255  Mask:255.0.0.0
+           UP BROADCAST LOOPBACK RUNNING  MTU:3584  Metric:1
+           RX packets:5088 errors:0 dropped:0 overruns:0
+           TX packets:5088 errors:0 dropped:0 overruns:0
+
+ eth0      Link encap:10Mbps Ethernet  HWaddr 00:8E:B8:83:19:20
+           inet addr:172.16.3.1  Bcast:172.16.3.255  Mask:255.255.255.0
+           UP BROADCAST RUNNING PROMISC MULTICAST  MTU:1500  Metric:1
+           RX packets:334036 errors:0 dropped:0 overruns:0
+           TX packets:11605 errors:0 dropped:0 overruns:0
+           Interrupt:7 Base address:0x378
+
+ eth0:0    Link encap:10Mbps Ethernet  HWaddr 00:8E:B8:83:19:20
+           inet addr:172.16.3.10  Bcast:172.16.3.255  Mask:255.255.255.0
+           UP BROADCAST RUNNING  MTU:1500  Metric:1
+           RX packets:0 errors:0 dropped:0 overruns:0
+           TX packets:0 errors:0 dropped:0 overruns:0
+
+ eth0:1    Link encap:10Mbps Ethernet  HWaddr 00:8E:B8:83:19:20
+           inet addr:172.16.3.100  Bcast:172.16.3.255  Mask:255.255.255.0
+           UP BROADCAST RUNNING  MTU:1500  Metric:1
+           RX packets:1 errors:0 dropped:0 overruns:0
+           TX packets:0 errors:0 dropped:0 overruns:0
+</PRE>
+</CODE></BLOCKQUOTE>
+
+И /proc/net/aliases:
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+ device           family address
+ eth0:0           2      172.16.3.10
+ eth0:1           2      172.16.3.100
+</PRE>
+</CODE></BLOCKQUOTE>
+       И /proc/net/alias_types:
+<BLOCKQUOTE><CODE>
+<PRE>
+ type    name            n_attach
+ 2       ip              2
+</PRE>
+</CODE></BLOCKQUOTE>
+       Конечно, запись в /proc/net была создана командой ifconfig, а не
+руками!
+<P>
+<HR>
+<A HREF="IP-Alias-3.html">Next</A>
+<A HREF="IP-Alias-1.html">Previous</A>
+<A HREF="IP-Alias.html#toc2">Contents</A>
+</BODY>
+</HTML>

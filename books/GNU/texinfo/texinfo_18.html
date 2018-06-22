@@ -1,0 +1,94 @@
+<HTML>
+<HEAD>
+<!-- Created by texi2html 1.56k from texinfo.texi on 31 May 2000 -->
+
+<TITLE>Texinfo 4.0 - Поддержка разных языков</TITLE>
+</HEAD>
+<BODY>
+Go to the <A HREF="texinfo_1.html">first</A>, <A HREF="texinfo_17.html">previous</A>, <A HREF="texinfo_19.html">next</A>, <A HREF="texinfo_33.html">last</A> section, <A HREF="texinfo_toc.html">table of contents</A>.
+<P><HR><P>
+
+
+<H1><A NAME="SEC204" HREF="texinfo_toc.html#TOC204">Поддержка разных языков</A></H1>
+
+<P>
+<A NAME="IDX731"></A>
+<A NAME="IDX732"></A>
+<A NAME="IDX733"></A>
+В Texinfo есть некоторая поддержка для документов, написанных не на
+английском языке, хотя в этой области еще предстоит сделать значительную
+работу.
+
+
+<P>
+Для получения перечня различных акцентов и специальных символов,
+поддерживаемых Texinfo, смотрите section <A HREF="texinfo_14.html#SEC154">Вставка акцентов</A>.
+
+
+
+
+<H2><A NAME="SEC205" HREF="texinfo_toc.html#TOC205"><CODE>@documentlanguage <VAR>cc</VAR></CODE>: Задание языка документа</A></H2>
+
+<P>
+<A NAME="IDX734"></A>
+<A NAME="IDX735"></A>
+
+
+<P>
+Команда <CODE>@documentlanguage</CODE> объявляет язык текущего документа.
+Пишите ее на отдельной строке, после нее пишите двухсимвольный код языка
+ISO-639 (перечень ниже).  Если у вас есть документ на нескольких языках,
+предполагается, что вы можете использовать ее несколько раз, для
+объявления каждого изменения языка.  Если эта команда не написана, по
+умолчанию используется значение <CODE>en</CODE>, английский язык.
+
+
+<P>
+<A NAME="IDX736"></A>
+В настоящее время эта команда игнорируется при выводе в Info и HTML.  В
+TeX, она считывает файл <TT>`txi-<VAR>cc</VAR>.tex'</TT> (если он существует).
+Эти файлы переопределяют различные английские слова, используемые в
+выводе TeX, такие как `Chapter', `See' и так далее.
+
+
+<P>
+<A NAME="IDX737"></A>
+<A NAME="IDX738"></A>
+Было бы неплохо, если бы эти команды изменяли также представление TeX
+о текущих образцах переносов (с помощью примитива TeX
+<CODE>\language</CODE>), но, к сожалению, пока это не реализовано.
+
+
+
+
+<H2><A NAME="SEC206" HREF="texinfo_toc.html#TOC206"><CODE>@documentencoding <VAR>enc</VAR></CODE>: Задание входной кодировки</A></H2>
+
+<P>
+<A NAME="IDX739"></A>
+<A NAME="IDX740"></A>
+<A NAME="IDX741"></A>
+
+
+<P>
+Команда <CODE>@documentencoding</CODE> объявляет входную кодировку документа.
+Пишите ее на отдельной строке, после нее пишите правильное описание
+кодировки, такое как <SAMP>`ISO-8859-1'</SAMP>.
+
+
+<P>
+<A NAME="IDX742"></A>
+<A NAME="IDX743"></A>
+На данный момент это используется только при выводе <CODE>makeinfo</CODE> в
+формате HTML.  Если задана кодировка документа <VAR>код</VAR>, она
+используется в теге <SAMP>`&#60;meta&#62;'</SAMP> в секции <SAMP>`&#60;head&#62;'</SAMP>:
+
+
+
+<PRE>
+&#60;meta http-equiv="Content-Type" content="text/html; charset=<VAR>код</VAR>"&#62;
+</PRE>
+
+<P><HR><P>
+Go to the <A HREF="texinfo_1.html">first</A>, <A HREF="texinfo_17.html">previous</A>, <A HREF="texinfo_19.html">next</A>, <A HREF="texinfo_33.html">last</A> section, <A HREF="texinfo_toc.html">table of contents</A>.
+</BODY>
+</HTML>

@@ -1,0 +1,273 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE>LDAP Linux HOWTO: Дополнительная информация и свойства</TITLE>
+ <LINK HREF="LDAP-HOWTO-7.html" REL=next>
+ <LINK HREF="LDAP-HOWTO-5.html" REL=previous>
+ <LINK HREF="LDAP-HOWTO.html#toc6" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="LDAP-HOWTO-7.html">Next</A>
+<A HREF="LDAP-HOWTO-5.html">Previous</A>
+<A HREF="LDAP-HOWTO.html#toc6">Contents</A>
+<HR>
+<H2><A NAME="s6">6. Дополнительная информация и свойства</A></H2>
+
+<P>В этом разделе Вы найдете информацию о Netscape Address Book,- клиенте LDAP, который можно использовать для работы с Вашим Каталогом. Также описано как реализовать Roaming Access/блуждающий доступ?/ используя Netscape Navigator версии 4.5 и Ваш LDAP сервер. О Roaming Access было много разговоров в OpenLDAP конференциях, поскольку эта функциональность еще не полностью реализована. Большинству людей не нравится способ, которым Netscape Navigator оперирует с LDAP сервером во время скачивания и закачивания данных. Поэтому, если после прочтения этого раздела Вы найдете, что Roaming Access работает не так как Вам хотелось бы, не огорчайтесь, через это прошло уже много людей. Основная цель описания этой функциональности здесь, в большей мере, показать людям возможности протокола LDAP. И напоследок Вы получите некоторую информацию о безопасной остановке сервера slapd, а также о его журнальных файлах.
+<P>
+<H2><A NAME="ss6.1">6.1 Roaming Access</A>
+</H2>
+
+<P>Цель сервиса Roaming Access состоит в предоставлении доступа используя Netscape Navigator и LDAP сервера к Вашим закладкам, настройкам, почтовым фильтрам и т.п. из любой точки Сети, где-бы Вы ни находились. Это добольно приятное свойство,- предствьте, что откуда-бы Вы не вошли в Сеть, Вы получаете свои собственные настройки браузера. Если Вы собираетесь путешествовать и Вам нужен будет валютный сервер, который находится в Ваших локальных закладках, не беспокойтесь, закачиваете закладки и другие конфигурационный файлы на LDAP сервер, и после этого Вы можете получить их из любого места в Сети.
+<P>Для реализации сервиса Roaming Access Вам нужно сделать следующее:
+<UL>
+<LI>Изменить Ваш файл описания атрибутов</LI>
+<LI>Изменить Ваш файл описания объектных классов</LI>
+<LI>Включить профили в Ваш LDIF файл</LI>
+<LI>Настроить Netscape Navigator для использования LDAP сервера как Roaming Access сервера</LI>
+<LI>Перезапустить LDAP сервер с новыми настройками.</LI>
+</UL>
+<P>- Изменение файла атрбутов:
+Вам нужно добавить новые атрбуты к существующему списку атрибутов в файле slapd.at.conf (это файл, который Вы включаете в Ваш slapd.conf, который обычно находится в /usr/local/etc/openldap):
+<BLOCKQUOTE><CODE>
+<PRE>
+attribute       nsLIPtrURL              ces 
+attribute       nsLIPrefs               ces 
+attribute       nsLIProfileName         cis 
+attribute       nsLIData                bin 
+attribute       nsLIElementType         cis 
+attribute       nsLIServerType          cis 
+attribute       nsLIVersion             cis 
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>- Изменение файла объектных классов:
+Вам также нужно добавить несколько новых классов к Вашему slapd.oc.conf (это другой файл, который обычно включается в slapd.conf и находится в /usr/local/etc/openldap) для активации roaming access:
+<BLOCKQUOTE><CODE>
+<PRE>
+objectclass nsLIPtr 
+requires 
+        objectclass 
+allows 
+        nsliptrurl, 
+        owner 
+
+objectclass nsLIProfile 
+requires 
+        objectclass, 
+        nsliprofilename 
+allows 
+        nsliprefs, 
+        uid, 
+        owner 
+
+objectclass nsLIProfileElement 
+requires 
+        objectclass, 
+        nslielementtype 
+allows 
+        owner, 
+        nslidata, 
+        nsliversion 
+
+objectclass nsLIServer 
+requires 
+        objectclass, 
+        serverhostname 
+allows 
+        description, 
+        cn, 
+        nsserverport, 
+        nsliservertype, 
+        serverroot 
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>- Изменение файла LDIF:
+Теперь Вам нужно модифицировать Ваш LDIF файл, путем добавления профилей для каждого пользователя, который хочет использовать функциональность Roaming Access в Netscape. Вот простой пример файла LDIF с записями профилей:
+<BLOCKQUOTE><CODE>
+<PRE>
+dn: o=myOrg,c=NL 
+o: myOrg 
+objectclass: organization 
+
+dn: cn=seallers,ou=People,o=myOrg,c=NL 
+cn: seallers 
+userpassword: myPassword 
+objectclass: top 
+objectclass: person 
+
+dn: nsLIProfileName=seallers,ou=Roaming,o=myOrg,c=NL 
+changetype: add 
+objectclass: top 
+owner: cn=seallers,ou=People,o=myOrg,c=NL 
+objectclass: top 
+objectclass: nsLIProfile 
+</PRE>
+</CODE></BLOCKQUOTE>
+
+Следующим шагом настраиваем Netscape для активации Roaming Access к Вашему LDAP серверу. Сделайте следующее:
+<P>- Перейдите в меню Edit -&gt; Preferences -&gt; Roaming User
+<P>Теперь Вы должны активировать Roaming Access для текущего профиля, щелкнув на соответствующем этой опции элементе выбора.
+<P>- Введите имя пользователя в соответствующую строку редактирования, например john
+<P>Раскройте иерархию закладки Roaming User в левой части панели Preferences для получения доступа к вложенным под-опциям Roaming Access.
+<P>- Щелкните на Server Information и активируйте параметр LDAP Server, а затем введите следующую информацию в соответствующие поля:
+<BLOCKQUOTE><CODE>
+<PRE>
+Address: ldap://&lt;имя_вашего_сервера>/nsLIProfileName=$USERID,ou=Roaming,o=myOrg,c=NL 
+</PRE>
+</CODE></BLOCKQUOTE>
+
+<BLOCKQUOTE><CODE>
+<PRE>
+User DN: cn=$USERID,ou=People,o=myOrg,c=NL 
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>ВНИМАНИЕ : Netscape автоматически заменяет переменную $USERID именем профиля, который Вы выбрали до запуска браузера. Так если вы выбрали профиль seallers, он подставит вместо $USERID значение seallers, если Вы выбрали профиль gonzales - он подставит gonzales. Если Вы не сильны в профилях, запустите приложение Profile Manager, которое поставляется с дистрибутивом Netscape Navigator. Это приложение разработано для поддержки многопользовательского режима использования браузера на одном компьютере, так чтобы каждый из пользователей имел свои собственные настройки браузера.
+<P>Финальным шагом есть перезапуск сервера, смотрите разделы 
+<A HREF="LDAP-HOWTO-6.html#6.6">6</A> и 
+<A HREF="LDAP-HOWTO-4.html#4">4</A> о том, как это сделать безопасно и чтобы после этого все работало.
+<P>
+<H2><A NAME="ss6.2">6.2 Netscape Address Book</A>
+</H2>
+
+<P>Как только Вы настроили и запустили LDAP сервер, Вы (и не только Вы) можете общаться с ним с помощью любого LDAP клиента (например, утилиты ldapsearch). Одним из таких клиентов является Netscape Address Book. Он доступен начиная с версии 4.х Netscape, но для стабильной работы с LDAP сервером лучше использовать версии выше 4.5. 
+<P>Выполните следующее:
+<BLOCKQUOTE><CODE>
+<PRE>
+Запустите Netscape Navigator -&gt; перейдите в Communicator Menu -&gt; Address Book 
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>Netscape Address Book запустится с настройками LDAP каталогов по умолчанию. Конечно, для роботы Вы должны добавить свой LDAP каталог в настройки Netscape Address Book.
+<BLOCKQUOTE><CODE>
+<PRE>
+Перейдите в File Menu -&gt; New Directory
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>Заполните соответствующие поля информацией о Вашем LDAP серевере. 
+<P>Например:
+<BLOCKQUOTE><CODE>
+<PRE>
+- Description : TUDelft 
+</PRE>
+</CODE></BLOCKQUOTE>
+
+<BLOCKQUOTE><CODE>
+<PRE>
+- LDAP Server : dutedin.et.tudelft.nl 
+</PRE>
+</CODE></BLOCKQUOTE>
+
+<BLOCKQUOTE><CODE>
+<PRE>
+- Server Root : o=TUDelft, c=NL 
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>По умолчанию LDAP отвечает на 389 порту, не изменяйте его, если Вы конечно не изменили его, когда настраивали Ваш сервер.
+<P>Теперь отошлите на Ваш сервер простой запрос, используя поле Show Names Containing, или сложный,- используя кнопку Search for...
+<P>
+<H2><A NAME="ss6.3">6.3 LDAP Migration Tools /Конвертеры/</A>
+</H2>
+
+<P>LDAP Migration Tools - это коллекция скриптов на Perl, которые можно использовать для конвертирования различных конфигурационных файлов в LDIF формат. Эти скрипты предоствлены PADL Software Ltd и я рекомендую Вам ознакомиться с лицензией до их использования, не смотря на то, что они бесплатные. Если Вы планируете использовать Ваш сервер для аутентификации пользователей, эти скрипты будут очень полезны. Используйте эти утилиты для преобразования Ваших NIS или passwd архивов в LDIF формат, чтобы сделать их совместимыми с LDAP сервером. Их можно также использовать для перевода пользователей, групп, псевдонимов, машин, сетевых групп, сетей, протоколов, RPCs и сервисов из существующих серверов имен (NIS, NetInfo или файлов из /etc) в LDIF формат.
+Выкачать LDAP Migration Tools и получить дополнительную информацию по ним можно в Сети по следующему адресу:
+<P>
+<A HREF="http://www.padl.com/tools.html">http://www.padl.com/tools.html</A><P>Пакет скриптов поставляется с README файлом, а названия выполняемых файлов интуитивны. Так что сначала просмотрите README, а затем применяйте скрипты.
+<P>
+<H2><A NAME="ss6.4">6.4 Аутентификация с помощью LDAP</A>
+</H2>
+
+<P>Ваш LDAP сервер может аутентифицировать пользователей используя механизм называемый РАМ (Pluggable Authentication Modules /подлючамые модули аутентификации/). С самого начала существования UNIX аутентификация пользователя проводилась посредством проверки введенного им пароля на соответствие зашифрованному паролю, хранимому в файле /etc/passwd. 
+<P>Так было вначале. С того времени появилось много новых популярных методов аутентификации пользователей, включая более сложные альтернативы файлу /etc/passwd, а также специальные устройства, как Smart карты. Проблема состоит в том, что как только разработана новая схема аутентификации, для её поддержки необходимо переписать все соответствующие программы (login, ftpd и т.п.). PAM предоставляет способ разработки программ, которые не зависят от схемы аутентификации. Чтобы эти программы работали, к ним должны во время выполнения /run-time/ подключаться "модули аутентификации".
+<P>Модули аутентификации для LDAP доступны по следующему адресу:
+<P>
+<A HREF="http://www.padl.com/pam_ldap.html">http://www.padl.com/pam_ldap.html</A><P>Здесь я предполагаю, что Ваш дистрибутив Linux уже подготовлен для использования РАМ. Если нет, сходите сюда: 
+<A HREF="http://www.kernel.org/pub/linux/libs/pam">http://www.kernel.org/pub/linux/libs/pam</A>. Конечно, различные дистрибутивы Linux используют разные параметры по умолчанию, установленные для РАМ. Обычно файлы конфигурации РАМ находятся в директории <CODE>/etc/pam.d/</CODE>. Там Вы найдете файл со всеми сервисами запущенными в Вашей системе. Например, если Вы хотите, чтобы Ваш LDAP серевер аутентивацировал пользователей после старта системы, Вы должны сделать Вашу систему PAM совместимой (см. начало параграфа), установить LDAP PAM модуль и отредактировать файл login в директории конфигурации PAM (/etc/pam.d) следующим образом:
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+#%PAM-1.0
+auth       required     /lib/security/pam_securetty.so
+auth       required     /lib/security/pam_nologin.so
+auth       sufficient   /lib/security/pam_ldap.so
+auth       required     /lib/security/pam_unix_auth.so try_first_pass
+account    sufficient   /lib/security/pam_ldap.so
+account    required     /lib/security/pam_unix_acct.so
+password   required     /lib/security/pam_cracklib.so
+password   required     /lib/security/pam_ldap.so
+password   required     /lib/security/pam_pwdb.so use_first_pass
+session    required     /lib/security/pam_unix_session.so
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>
+<H2><A NAME="ss6.5">6.5 GUI программы для LDAP</A>
+</H2>
+
+<P>
+<UL>
+<LI>Kldap</LI>
+</UL>
+<P>Kldap графический LDAP клиет написанный для KDE. Kldap имеет хороший пользовательский интерфейс и способен показывать любую информацию сохраненную в Вашем Каталоге. Вы можете оценить некоторые проспекты и скачать само приложение по адресу:
+<P>
+<A HREF="http://www.mountpoint.ch/oliver/kldap/">http://www.mountpoint.ch/oliver/kldap</A><P>
+<UL>
+<LI>GQ</LI>
+</UL>
+<P>GQ - другой графический LDAP клиент, который имеет более простой интерфейс, и написан для Gnome. Конечно, он работает и под KDE, в общем как и Kldap под Gnome. Вот адрес для скачивания и получения более детальной информации: 
+<P>
+<A HREF="http://biot.com/gq/">http://biot.com/gq/</A><P>
+<H2><A NAME="6.6"></A> <A NAME="ss6.6">6.6 Завершение LDAP сервера</A>
+</H2>
+
+<P>Чтобы безопасно завершить работу slapd, Вы должны выполнить комманду, подобную следующей:
+<BLOCKQUOTE><CODE>
+<PRE>
+kill -TERM `cat $(ETCDIR)/slapd.pid` 
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>Завершение slapd более кардинальным методом может привести к повреждению его LDBM базы, поскольку ей до завершения обычно нужно сохранить различные буферы. Заметьте, что slapd записывает свой pid в файл slapd.pid в директорию, которую Вы задали в файле slapd.conf, например: /usr/local/var/slapd.pid
+<P>Вы можете изменить местонахождение этого pid файла изменив переменную SLAPD_PIDFILE в файле include/ldapconfig.h.edit.
+<P>slapd также записывает свои аргументы в файл slapd.args в директорию, заданную в конфигурационном файле slapd.conf, например /usr/local/var/slapd.args.
+<P>Вы можете изменить местонахождение файла аргументов изменив переменную SLAPD_ARGSFILE в файле include/ldapconfig.h.edit.
+<P>
+<H2><A NAME="ss6.7">6.7 Журналы</A>
+</H2>
+
+<P>slapd использует syslog(8) сервис для генерации журналов. Сервис syslog(8) имеет пользователя по умолчанию - LOCAL4, но значения также разрешены и от LOCAL0, LOCAL1, и до LOCAL7.
+<P>Чтобы включить генерацию журналов, Вам нужно соответствующим образом отредактировать файл syslog.conf, который обычно находится в директории /etc.
+<P>Добавьте следующую запись:
+<BLOCKQUOTE><CODE>
+<PRE>
+local4.*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/usr/adm/ldalog 
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>Эта запись использует пользователя по умолчанию LOCAL4 для сервиса syslog. Если Вы не сильны в приведенном синтаксисе, обратитесь к страницам man по syslog, syslog.conf и syslogd. Еслы Вы хотите изменить пользователя по умолчанию или установить уровень протоколирования, Вы можете оперировать следующими параметрами во время запуска slapd:
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+-s syslog-level 
+</PRE>
+</CODE></BLOCKQUOTE>
+
+Этот параметр указывает slapd уровень отладочной информации, который должен протоколироваться в журнал сервиса syslog(8). Уровень описывает критичность сообщения, и задается одним из следующих упорядоченных (от высшего к низшему) ключевых слов: emerg, alert, crit, err, warning, notice, info, и debug. 
+<P>Например:
+<BLOCKQUOTE><CODE>
+<PRE>
+slapd -f myslapd.conf -s debug 
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+-l syslog-local-user 
+</PRE>
+</CODE></BLOCKQUOTE>
+
+Выбирает локального пользователя для сервиса syslog(8). Значение может быть одним из LOCAL0, LOCAL1, и так до LOCAL7. По умолчанию LOCAL4. Однако этот параметр разрешен только на системах, поддерживающих локальных пользователей сервиса syslog(8). 
+<P>Теперь рассмотрите сгенерированные журналы, они могут помочь решить много проблем, связанных с запросами, изменениями, связыванием и т.п.
+<P>
+<HR>
+<A HREF="LDAP-HOWTO-7.html">Next</A>
+<A HREF="LDAP-HOWTO-5.html">Previous</A>
+<A HREF="LDAP-HOWTO.html#toc6">Contents</A>
+</BODY>
+</HTML>

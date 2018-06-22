@@ -1,0 +1,198 @@
+<HTML
+><HEAD
+><TITLE
+>Creating the mtab symlink</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Microsoft FrontPage 4.0"/><LINK
+REL="HOME"
+TITLE="Linux From Scratch"
+HREF="http://www.linuxfromscratch.org/view/4.0/index.html"/><LINK
+REL="UP"
+TITLE="Installing basic system software"
+HREF="http://www.linuxfromscratch.org/view/4.0/chapter06/chapter06.html"/><LINK
+REL="PREVIOUS"
+TITLE="Mounting the proc file system"
+HREF="http://www.linuxfromscratch.org/view/4.0/chapter06/proc.html"/><LINK
+REL="NEXT"
+TITLE="Creating the bash and sh symlinks"
+HREF="http://www.linuxfromscratch.org/view/4.0/chapter06/createfiles.html"/></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#006000"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Linux From Scratch: Версия 4.0</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="proc.html"
+ACCESSKEY="P"
+>Назад</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Глава 6. Установка основных компонентов
+        системы</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="createfiles.html"
+ACCESSKEY="N"
+>Вперед</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"/></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="ch06-mtablink"
+>Создание символической ссылки mtab</A
+></H1
+><P
+>Следующий шаг - создание символической
+  ссылки
+<TT
+CLASS="filename"
+>/etc/mtab</TT
+> на <TT
+CLASS="filename"
+>/proc/mounts</TT
+>. Для этого выполните:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="screen"
+><TT
+CLASS="userinput"
+><B
+>ln -sf /proc/mounts /etc/mtab</B
+></TT
+></PRE
+></TD
+></TR
+></TABLE
+><P
+>Создание этой символической ссылки
+  предотвращает возможные проблемы при
+  монтировании / только для чтения, когда
+  информация в <TT
+CLASS="filename"
+>/etc/mtab</TT
+>  устарела. Символическая ссылка на&nbsp; <TT
+CLASS="filename"
+>/proc/mounts</TT
+> позволяет всегда иметь свежую информацию
+  о монтированных устройствах.</P
+><P
+>Примечание: Использование данной
+  символической ссылки предполагает, что в
+  ядро вашей системы встроена поддержка
+  файловой системы proc. Данная поддержка
+  встроена по умолчанию, не удаляйте ее, если
+  вы не уверены в своих действиях, т.к.
+  множество других вещей кроме
+  символической ссылки
+<TT
+CLASS="filename"
+>/etc/mtab</TT
+>  зависят от нее. Вкратце, убедитесь, что
+  поддержка файловой системы proc включена в
+  ядре.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"/><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="proc.html"
+ACCESSKEY="P"
+>Назад</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="../index.html"
+ACCESSKEY="H"
+>Домой</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="createfiles.html"
+ACCESSKEY="N"
+>Вперед</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Монтирование файловой системы proc</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="chapter06.html"
+ACCESSKEY="U"
+>Наверх</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Создание символических ссылок bash и sh</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

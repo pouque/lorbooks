@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Введение в IceWM</TITLE>
+<META NAME="description" CONTENT="Введение в IceWM">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<!-- Meta http equivalent was here                               -->
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="IntroToLinux.css">
+
+<LINK REL="next" HREF="node54.html">
+<LINK REL="previous" HREF="node43.html">
+<LINK REL="up" HREF="node42.html">
+<LINK REL="next" HREF="node54.html">
+</HEAD>
+
+<BODY background="backgr.jpg" vlink="#000099" bgcolor="#E6E6FA">
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A NAME="tex2html840"
+  HREF="node54.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html836"
+  HREF="node42.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html830"
+  HREF="node52.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html838"
+  HREF="IntroToLinux.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A>  
+<BR>
+<B> След.:</B> <A NAME="tex2html841"
+  HREF="node54.html">Введение в FVWM2</A>
+<B> Вверх:</B> <A NAME="tex2html837"
+  HREF="node42.html">Введения...</A>
+<B> Пред.:</B> <A NAME="tex2html831"
+  HREF="node52.html">Документация.</A>
+ &nbsp; <B>  <A NAME="tex2html839"
+  HREF="IntroToLinux.html">Содержание</A></B> 
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00052000000000000000">
+Введение в IceWM</A>
+</H2>
+
+<P>
+Первым делом скопируйте файлы настроек IceWM из <TT>/etc/X11/icewm</TT> в каталог (<TT>~/.icewm</TT>).
+Теперь можно править.
+
+<P>
+В каталоге <TT>~/.icewm</TT> у вас лежат следующие файлы:
+<DL>
+<DT><STRONG>preferences</STRONG></DT>
+<DD>- самый важный файл по части настроек. 
+Тут вы настроите русскоязычность (путем замены указанных там шрифтов на cronyx, например и замены финальных <TT>*-*</TT> на <TT>koi8-r</TT>), вид вашей панели задач, задержки, тему (не советую пользоваться существующими - лучше скопируйте наиболее симпатичную в каталог <TT>~/.icewm/themes/имя_темы</TT> и, опять исправив или закоментировав шрифты, поправьте по вкусу. 
+Я, например, предельно уменьшил размеры границ окон, удалил излишние (то есть все) кнопки в заголовках и т.д.) и определите функциональные комбинации клавиш (привыкайте - в Linux вам не придется ждать годами когда в MicroSoft догадаются реализовать сворачивание текущего окна не по <TT>&lt;Ctrl&gt;+&lt;Alt&gt;+с</TT> - тут вам предлагается определить их сообразно с собственной логикой)...
+
+<P>
+Графическими конфигураторами для настройки IceWM я пользоваться не рекомендую в силу их глючности...
+</DD>
+<DT><STRONG>keys</STRONG></DT>
+<DD>- совершенно бесполезный файл, предназначенный для определения клавиш быстрого запуска программ.
+Почему бесполезный? Смотрите страницу&nbsp;<A HREF="node69.html#ref:xbindkeys"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> на тему xbindkeys.
+</DD>
+<DT><STRONG>toolbar</STRONG></DT>
+<DD>- определяет программы на тулбаре...
+</DD>
+<DT><STRONG>menu</STRONG></DT>
+<DD>- главное меню. Для конфигурирования рекомендую использовать <TT>iceme</TT>. Не забудьте установить пакет <SPAN  CLASS="textit">menu</SPAN> для добавления общесистемного меню ``Программы'', содержащее все установленные вами иксовые приложения.
+</DD>
+<DT><STRONG>winoptions</STRONG></DT>
+<DD>- а вот это довольно полезный файл, определяющий помимо всего прочего на каком экране следует запускать то, или иное приложение, на каком слое и многое, многое другое...
+</DD>
+</DL>
+
+<P>
+Весьма подробно настройка IceWM описана в его справке, что вызывается обычно из главного меню... 
+
+<P>
+
+<DIV CLASS="navigation"><HR>
+<!--Navigation Panel-->
+<A NAME="tex2html840"
+  HREF="node54.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html836"
+  HREF="node42.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html830"
+  HREF="node52.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html838"
+  HREF="IntroToLinux.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A>  
+<BR>
+<B> След.:</B> <A NAME="tex2html841"
+  HREF="node54.html">Введение в FVWM2</A>
+<B> Вверх:</B> <A NAME="tex2html837"
+  HREF="node42.html">Введения...</A>
+<B> Пред.:</B> <A NAME="tex2html831"
+  HREF="node52.html">Документация.</A>
+ &nbsp; <B>  <A NAME="tex2html839"
+  HREF="IntroToLinux.html">Содержание</A></B> </DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<TABLE border="0" cellpadding="0" cellspacing="0" width="100%"><TR bgcolor="#336699"><TD bgcolor="#8080c0"><P align="center"><FONT color="#FFFFFF" size="1"><A href="http://www.gnu.org/copyleft/fdl.html"><FONT color="#FFFFFF" size="1">Copyleft</FONT></A> © 2002-2003 г. &nbsp; Nikolay A. Panov, <A href="http://www.uic.nnov.ru/~nik/articles/IntroToLinux/"><FONT color="#FFFFFF">"Intro To Linux" (orig)</FONT></A>, &nbsp;<a href="mailto:&#110;&#105;&#107;&#115;&#105;&#116;&#101;&#64;&#109;&#97;&#105;&#108;&#46;&#114;&#117;"><FONT color="#FFFFFF">&#110;&#105;&#107;&#115;&#105;&#116;&#101;&#64;&#109;&#97;&#105;&#108;&#46;&#114;&#117;</FONT></A>, &nbsp;ICQ: 122-40-8888</FONT></P></TD></TR></TABLE>
+</ADDRESS>
+</BODY>
+</HTML>

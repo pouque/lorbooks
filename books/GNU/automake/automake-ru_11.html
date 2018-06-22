@@ -1,0 +1,114 @@
+<HTML>
+<HEAD>
+<!-- Created by texi2html 1.56k from automake-ru.texi on 11 July 2000 -->
+
+<TITLE>automake - Что будет установлено</TITLE>
+</HEAD>
+<BODY>
+Go to the <A HREF="automake-ru_1.html">first</A>, <A HREF="automake-ru_10.html">previous</A>, <A HREF="automake-ru_12.html">next</A>, <A HREF="automake-ru_25.html">last</A> section, <A HREF="automake-ru_toc.html">table of contents</A>.
+<P><HR><P>
+
+
+<H1><A NAME="SEC51" HREF="automake-ru_toc.html#TOC51">Что будет установлено</A></H1>
+
+<P>
+<A NAME="IDX396"></A>
+<A NAME="IDX397"></A>
+
+
+<P>
+Automake обрабатывает установку вашей программы после компиляции.
+Всё перечисленное в <CODE>PROGRAMS</CODE>,
+<CODE>SCRIPTS</CODE>, <CODE>LIBRARIES</CODE>, <CODE>LISP</CODE>, <CODE>DATA</CODE> и
+<CODE>HEADERS</CODE> автоматически устанавливается на соответствующие места.
+
+
+<P>
+Automake также обрабатывает установку указанных страниц info и
+страниц руководства.
+
+
+<P>
+В том случае, когда программа установки устанавливает пакет на несколько
+машин с общей структурой каталогов, Automake создает отдельные
+цели <CODE>install-data</CODE> и <CODE>install-exec</CODE> -- они позволяют
+установить машино-независимые части только один раз. Цель <CODE>install</CODE>
+зависит от обоих этих целей.
+<A NAME="IDX398"></A>
+<A NAME="IDX399"></A>
+<A NAME="IDX400"></A>
+
+
+<P>
+Automake также создает цель <CODE>uninstall</CODE>, цель <CODE>installdirs</CODE> и
+цель <CODE>install-strip</CODE>.
+<A NAME="IDX401"></A>
+<A NAME="IDX402"></A>
+<A NAME="IDX403"></A>
+
+
+<P>
+Также можно расширить этот механизм определением цели
+<CODE>install-exec-local</CODE> или <CODE>install-data-local</CODE>. Если эти цели
+определены, то они будут запущены при выполнении <SAMP>`make install'</SAMP>.
+<A NAME="IDX404"></A>
+<A NAME="IDX405"></A>
+
+
+<P>
+Переменные, использующие стандартные префиксы каталогов <SAMP>`data'</SAMP>,
+<SAMP>`info'</SAMP>, <SAMP>`man'</SAMP>, <SAMP>`include'</SAMP>, <SAMP>`oldinclude'</SAMP>,
+<SAMP>`pkgdata'</SAMP> или <SAMP>`pkginclude'</SAMP> (например, <SAMP>`data_DATA'</SAMP>) будут
+устанавливаться при выполнении цели <SAMP>`install-data'</SAMP>.
+
+
+<P>
+Переменные, использующие стандартные префиксы каталогов <SAMP>`bin'</SAMP>,
+<SAMP>`sbin'</SAMP>, <SAMP>`libexec'</SAMP>, <SAMP>`sysconf'</SAMP>, <SAMP>`localstate'</SAMP>,
+<SAMP>`lib'</SAMP> или <SAMP>`pkglib'</SAMP> (например, <SAMP>`bin_PROGRAMS'</SAMP>), устанавливаются
+целью <SAMP>`install-exec'</SAMP>.
+
+
+<P>
+Любые переменные, использующие определенные пользователем префиксы
+каталогов со словом <SAMP>`exec'</SAMP> в имени (например,
+<SAMP>`myexecbin_PROGRAMS'</SAMP> устанавливаются целью <SAMP>`install-exec'</SAMP>. Все
+другие определенные пользователем префиксы устанавливаются целью
+<SAMP>`install-data'</SAMP>.
+
+
+<P>
+<A NAME="IDX406"></A>
+
+
+<P>
+Automake генерирует поддержку переменной <SAMP>`DESTDIR'</SAMP> во всех правилах
+установки. Переменная <SAMP>`DESTDIR'</SAMP> используется в процессе выполнения
+<SAMP>`make install'</SAMP> для перемещения устанавливаемых объектов в область
+установки. К каждому объекту и пути добавляется значение переменной
+<SAMP>`DESTDIR'</SAMP> до того, как быть скопированным в область установки. Вот
+пример типичного использования DESTDIR:
+
+
+
+<PRE>
+make DESTDIR=/tmp/staging install
+</PRE>
+
+<P>
+Это помещает устанавливаемые объекты в дерево каталогов, которое создано
+в каталоге <TT>`/tmp/staging'</TT>. Если устанавливаются файлы
+<TT>`/gnu/bin/foo'</TT> и <TT>`/gnu/share/aclocal/foo.m4'</TT>, то
+вышеприведенная команда установит <TT>`/tmp/staging/gnu/bin/foo'</TT> и
+<TT>`/tmp/staging/gnu/share/aclocal/foo.m4'</TT>.
+
+
+<P>
+Это свойство часто используется для построения пакетов и установок. Для
+получения дополнительной информации смотрите section `Makefile Conventions' in <CITE>The GNU Coding Standards</CITE>.
+
+
+<P><HR><P>
+Go to the <A HREF="automake-ru_1.html">first</A>, <A HREF="automake-ru_10.html">previous</A>, <A HREF="automake-ru_12.html">next</A>, <A HREF="automake-ru_25.html">last</A> section, <A HREF="automake-ru_toc.html">table of contents</A>.
+</BODY>
+</HTML>

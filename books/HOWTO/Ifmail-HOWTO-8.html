@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE> IFMAIL-HOWTO: Mail/Netmail чтение и написание</TITLE>
+ <LINK HREF="Ifmail-HOWTO-9.html" REL=next>
+ <LINK HREF="Ifmail-HOWTO-7.html" REL=previous>
+ <LINK HREF="Ifmail-HOWTO.html#toc8" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="Ifmail-HOWTO-9.html">Next</A>
+<A HREF="Ifmail-HOWTO-7.html">Previous</A>
+<A HREF="Ifmail-HOWTO.html#toc8">Contents</A>
+<HR>
+<H2><A NAME="s8">8. Mail/Netmail чтение и написание</A></H2>
+
+<P> 
+Я использую Pine. Вам не нужно ставить что-то специализированное, вам только
+нужно использовать pfnz-нотацию при указании адреса. Например 
+<BLOCKQUOTE><CODE>
+<PRE>
+ 
+ Greg Frydenlund 1:125/720 
+</PRE>
+</CODE></BLOCKQUOTE>
+ 
+пишется как
+<BLOCKQUOTE><CODE>
+<PRE>
+ 
+ Greg.Frydenlund@.f710.n125.z1.fidonet.org
+</PRE>
+</CODE></BLOCKQUOTE>
+
+или
+<BLOCKQUOTE><CODE>
+<PRE>
+ Greg.Frydenlund@f710.n125.z1.fidonet.org (Greg Frydenlund)
+</PRE>
+</CODE></BLOCKQUOTE>
+ 
+А 
+<BLOCKQUOTE><CODE>
+<PRE>
+ Greg Frydenlund 21:100/64.
+</PRE>
+</CODE></BLOCKQUOTE>
+
+пишется как
+<BLOCKQUOTE><CODE>
+<PRE>
+ Greg.Frydenlund@f64.n100.z21.prognet
+</PRE>
+</CODE></BLOCKQUOTE>
+ 
+Другой важный момент - отправка почты другим мейлерам (Areafix, FileMgr). 
+Часто возникают проблемы с почтой, созданной ifmail. Так как почта часто имеет
+в первой строке "* To: address", что интерпретируется некоторыми мейлерами как
+команда для всех Areas ("*"). Если вы не желаете иметь такие строки, то можете 
+ввести в меню Setup под User-Defined-Header (перед отправкой сообщения) 
+дополнительную строку заголовка:
+<BLOCKQUOTE><CODE>
+<PRE>
+ 
+ X-Flags: N
+</PRE>
+</CODE></BLOCKQUOTE>
+ 
+Другая проблема - FileScan и некоторые другие мейлеры имеют привычку брать
+адрес не из заголовка, а из message-ID. Но там содержится не FTN-адрес 
+(Z:N/F.P), а Internet-адрес. Это можно исправить:
+<BLOCKQUOTE><CODE>
+<PRE>
+ 
+ X-Flags: M
+</PRE>
+</CODE></BLOCKQUOTE>
+ 
+, чтобы генерировался обычный Fido-message-ID (для различных сетей 
+соответствующие адреса).
+<P> 
+Конечно вы может комбинировать X-flags. Я к примеру использую для всех 
+писем к роботам:
+<BLOCKQUOTE><CODE>
+<PRE>
+ 
+ X-Flags: MN
+</PRE>
+</CODE></BLOCKQUOTE>
+ 
+Если вы хотите отправить crashmails, нужно добавить дополнительно "/X-Flags: C".
+Если вы пишите пойнту, почта обрушится на его босса.
+<BLOCKQUOTE><CODE>
+<PRE>
+ 
+ Можно делать аттачи. Добавьте "X-Flags: F" и имя файла (с путем!) в строке
+ subject.
+&lt;p> 
+ Ели вы хотите установить флаги для всей почты, вы должны создать файл типа
+ ~/.elm/elmheaders, который содержит только строки заголовка, например:
+&lt;tscreen>&lt;verb> 
+ X-Flags: MN
+</PRE>
+</CODE></BLOCKQUOTE>
+ 
+Эти строки будут добавлены во все сообщения.
+<P> 
+Если X-Flags не дают видимого эффекта, посмотрите логи ifmail, так как ifmail 
+возможно выскажется по этому поводу. Но надо продумать доступность X-Flags, 
+иначе каждый сможет создавать crashmails и файловые запросы и отправлять
+их с вашего сайта.
+<P>
+<P>
+<P>
+<HR>
+<A HREF="Ifmail-HOWTO-9.html">Next</A>
+<A HREF="Ifmail-HOWTO-7.html">Previous</A>
+<A HREF="Ifmail-HOWTO.html#toc8">Contents</A>
+</BODY>
+</HTML>

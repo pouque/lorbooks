@@ -1,0 +1,144 @@
+<HTML>
+<HEAD>
+<TITLE>DOSEmu: Using Lredir</TITLE>
+</HEAD>
+<BODY>
+<?php include("/home/maxcom/linux_html/books/head.php3") ?>
+<A HREF="README-5.html">Назад</A>
+<A HREF="README-7.html">Вперед</A>
+<A HREF="README.html#toc6">Оглавление</A>
+<HR>
+<H2><A NAME="lredir"></A> <A NAME="s6">6. Использование Lredir</A></H2>
+
+
+<P>This section of the document by Hans, 
+<A HREF="mailto:lermen@fgan.de">&lt;lermen@fgan.de&gt;</A>. Last
+updated on June 16, 1997.</P>
+
+
+<P>
+Что это такое? Ну, это просто маленькая DOS программа, которая говорит коду MFS
+(Mach File System), какие "сетевые" диски перенаправить. С помощью этого
+можно "монтировать" любые каталоги Linux в виртуальные диски DOS. В
+дополнение к этому, Linux, как и другие сессии dosemu, смогут 
+одновременно обращаться к одним и тем же дискам, что невозможно при доступе к
+разделу жесткого диска (partition access).
+</P>
+
+<H2><A NAME="ss6.1">6.1 Как это делается?</A></H2>
+
+
+<P>
+Во-первых, смонтируйте DOSовский раздел диска в каталог Linux.
+К примеру, можно создать в Linux каталог /dos (mkdir -m 755 /dos) и добавить
+строчку типа 
+</P>
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+   /dev/hda1       /dos     msdos   umask=022
+</PRE>
+</CODE></BLOCKQUOTE>
+</P>
+<P>
+в  /etc/fstab. (В этом примере жесткий диск смонтирован только для чтения.
+Его можно монтировать на чтение/запись, заменив "022" на "000" и используя
+параметр  -m 777 в mkdir). Монтируем /dos. Теперь можно добавить строку вида 
+</P>
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+  lredir d: linux\fs/dos
+</PRE>
+</CODE></BLOCKQUOTE>
+</P>
+<P>
+в  AUTOEXEC.BAT на образе загрузочного диска (но см. комментарий ниже). На
+многопользовательской системе можно использовать
+</P>
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+  lredir d: linux\fs\${home}
+</PRE>
+</CODE></BLOCKQUOTE>
+</P>
+<P>
+где "home" - это имя переменной окружения, которая содержит расположение
+dos-каталога (в нашем примере это /dos)</P>  
+<P>
+Однако, вам может потребоваться "родной" раздел DOS в качестве C: под
+дос-эмулятором. Чтобы добиться этого, можно также с помошью lredir отключить
+виртуальный образ диска и переключиться на <EM>настоящий</EM> диск C:
+</P>
+<P>
+Предполагая, что каталог c:\dosemu присутствует на обоих дисках (виртуальном
+и настоящем) <EM>и</EM> ваш DOS раздел смонтирован как  /dosc,
+вам понадобятся следующие файлы на виртуальном диске:</P>
+<P>autoexec.bat:</P>
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+  lredir z: linux\fs\dosc
+  copy c:\dosemu\auto2.bat z:\dosemu\auto2.bat
+  lredir del z:
+  c:\dosemu\auto2.bat
+</PRE>
+</CODE></BLOCKQUOTE>
+</P>
+<P>dosemu\auto2.bat:</P>
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+  lredir c: linux\fs\dosc
+  rem further autoexec stuff
+</PRE>
+</CODE></BLOCKQUOTE>
+</P>
+<P>
+Пояснение, <EM>зачем</EM> пакетный файл (не обязательно  autoexec.bat) 
+<EM>должен</EM> быть тем же самым:</P>
+<P>Command.com, который их интерпретирует, хранит указатель (смещение в
+байтах), чтобы найти следующую строку файла. Он открывает и закрывает
+пакетный файл на каждой новой строке. Если пакетник, в котором делается
+'lredir c: ...' , будет на c:, command.com неожиданно прочтет следующую
+строку из файла с этого только что перенаправленного диска. Понятно?</P>
+
+
+<H2><A NAME="ss6.2">6.2 Другие альтернативы Lredir</A></H2>
+
+
+<P>
+Чтобы перенаправить диск из config.sys можно либо использовать emufs.sys</P> 
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+   device=c:\emufs.sys /dosc
+</PRE>
+</CODE></BLOCKQUOTE>
+</P>
+<P>
+либо применить команду install в config.sys (но не обе вместе)
+</P>
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+   install=c:\lredir.exe c: linux\fs\dosc
+</PRE>
+</CODE></BLOCKQUOTE>
+</P>
+<P>
+Последнее имеет то преимущество, что вы на "родном" C: с самого начала.
+<EM>но</EM>, как и с autoexec.bat, оба config.sys должны быть идентичны.</P>
+<P>Информацию об использование 'перенаправленных' дисков как
+'пользовательских' (т.е. имеющих правильные разрешения), см. в 
+./doc/README.runasuser.</P>
+
+<HR>
+<A HREF="README-5.html">Назад</A>
+<A HREF="README-7.html">Вперед</A>
+<A HREF="README.html#toc6">Оглавление</A>
+
+<HR><I>Перевод: Валерий Груздев (grue@vpti.vladimir.ru)</I>
+</BODY>
+</HTML>

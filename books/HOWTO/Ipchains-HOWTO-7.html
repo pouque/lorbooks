@@ -1,0 +1,503 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE>Linux IPCHAINS-HOWTO: Серьезный пример.</TITLE>
+ <LINK HREF="Ipchains-HOWTO-8.html" REL=next>
+ <LINK HREF="Ipchains-HOWTO-6.html" REL=previous>
+ <LINK HREF="Ipchains-HOWTO.html#toc7" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="Ipchains-HOWTO-8.html">Next</A>
+<A HREF="Ipchains-HOWTO-6.html">Previous</A>
+<A HREF="Ipchains-HOWTO.html#toc7">Contents</A>
+<HR>
+<H2><A NAME="s7">7. Серьезный пример.</A></H2>
+
+<P>Это пример от Michael Neuling и моего LinuxWorld Tutorial за Март 1999; это  
+не единственый способ решить данную проблему, но вероятно самый простой. Я 
+надеюсь, что вы найдете его информативным.
+<P>
+<P>
+<H2><A NAME="ss7.1">7.1 Соглашения</A>
+</H2>
+
+<P>
+<UL>
+<LI>Внутренняя сеть за маскарадом (различные операционные системы), которую мы 
+называем "GOOD" ("ХОРОШАЯ").
+</LI>
+<LI>Выставленные серверы в отдельной сети (называемой "DMZ" -- Demilitarized 
+Zone -- нейтральная зона).
+</LI>
+<LI>PPP соединение с Internet (называемым "BAD" -- "ПЛОХИМ").</LI>
+</UL>
+
+<PRE>
+          Внешняя сеть (BAD)
+                  |
+                  |
+              ppp0|
+           ---------------
+           | 192.84.219.1|             Сервера сети (DMZ)
+           |             |eth0
+           |             |----------------------------------------------
+           |             |192.84.219.250 |             |              |
+           |             |               |             |              |
+           |192.168.1.250|               |             |              |
+           ---------------          --------       -------        -------
+                  | eth1            | SMTP |       | DNS |        | WWW |
+                  |                 --------       -------        -------
+                  |              192.84.219.128  192.84.219.129  192.84.218.130
+                  |
+          Внутренняя сеть (GOOD)
+</PRE>
+<P>
+<H2><A NAME="ss7.2">7.2 Цели</A>
+</H2>
+
+<P>
+<UL>
+<LI>Машина пакетной фильтрации:
+<DL>
+<P>
+<DT><B>PING любой сети</B><DD><P>Полезно для определения, действует ли машина.
+<P>
+<P>
+<DT><B>TRACEROUTE любой сети</B><DD><P>Аналогично, полезно для диагностики.
+<P>
+<P>
+<DT><B>DNS доступ</B><DD><P>Чтобы ping и DNS были полезнее.
+</DL>
+</LI>
+<LI>Внутри DMZ:
+<UL>
+<LI>Почтовый сервер 
+<UL>
+<LI> SMTP ко внешним соединениям
+</LI>
+<LI> Прием SMTP от внутренних и внешних соединений
+</LI>
+<LI> Прием Pop-3 от внутренних соединений</LI>
+</UL>
+</LI>
+<LI>Сервер имен
+<UL>
+<LI>  Отправка DNS во внешнюю сеть
+</LI>
+<LI> Прием DNS от внутренней и внешней сети и машины пакетной фильтрации</LI>
+</UL>
+</LI>
+<LI>Web сервер
+<UL>
+<LI> Прием HTTP от внутренней и внешней сетей
+</LI>
+<LI> Rsync доступ из внутренней сети</LI>
+</UL>
+</LI>
+</UL>
+
+</LI>
+<LI>Внутренняя сеть:
+<DL>
+<P>
+<DT><B>Разрешенные WWW, ftp, traceroute, ssh доступы во внешнюю сеть.</B><DD><P>Это достаточно
+стандартные вещи, чтобы разрешить их использование: здесь мы ограничиваемся
+только этими сервисами, а не всеми доступными сервисами Интернет.
+<P>
+<P>
+<DT><B>Разрешить SMTP на почтовом сервере</B><DD><P>То есть позволить отправку почты наружу.
+<P>
+<P>
+<DT><B>  Разрешить POP-3 на почтовом сервере</B><DD><P>То есть позволить пользователям читать их почту 
+<P>
+<P>
+<DT><B>  Разрешить DNS на серевере имен</B><DD><P>Это нужно для работы с внешними именами WWW, ftp, traceroute и ssh.
+<P>
+<P>
+<DT><B>  Разрешить rsync на веб сервер</B><DD><P>Для синхронизации внешнего веб сервера со внутренним.
+<P>
+<P>
+<DT><B>  Разрешить WWW на веб сервере </B><DD><P>Очевидно, что пользователи должны иметь доступ к своему внешнему 
+веб серверу.
+<P>
+<P>
+<DT><B>  Разрешить ping на машине пакетной фильтрации</B><DD><P>Это вежливость по отношению к пользователям. Они могут проверить, 
+работает ли машина пакетной фильтрации (чтобы не наезжали на нас, если
+на самом деле не работает внешний сайт).
+</DL>
+</LI>
+</UL>
+<P>
+<H2><A NAME="ss7.3">7.3 Перед фильтрацией пакетов</A>
+</H2>
+
+<P>
+<UL>
+<LI> Антиспуфинг
+
+Так как у нас не асимметричная маршрутизация, мы можем просто включить 
+антиспуфинг для всех интерфейсов.
+<PRE>
+      # for f in /proc/sys/net/ipv4/conf/*/rp_filter; do echo 1 > $f; done
+      #
+</PRE>
+</LI>
+<LI> Установка правил фильтрации на отбрасывание (DENY) всего:
+<P>Запрещаем все, кроме loopback трафика.
+<PRE>
+          # ipchains -A input -i ! lo -j DENY
+          # ipchains -A output -i ! lo -j DENY
+          # ipchains -A forward -j DENY
+          #
+</PRE>
+</LI>
+<LI> Установка интерфейсов
+<P>Это обычно делается в сценариях начальной загрузки. Удостоверьтесь, что  
+вышеупомянутые шаги выполнены прежде, чем интерфейсы настроены, чтобы не 
+пропустить пакеты до того, как будут настроены правила.
+<P>
+</LI>
+<LI> Вставка модулей маскарадинга по-протоколам.
+<P>Мы должны вставить модуль маскарадинга для FTP, так, чтобы активный и 
+пассивный FTP "работал только' из внутренней сети.
+<PRE>
+          # insmod ip_masq_ftp
+          #
+</PRE>
+</LI>
+</UL>
+<P>
+<H2><A NAME="ss7.4">7.4 Фильтрация проходящих пакетов </A>
+</H2>
+
+<P>При маскарадинге самое лучшее -- фильтр в цепочке forward.
+<P>Разбейте цепочку forward на несколько пользовательских цепочек в зависимости 
+от интерфейсов источника/приемника; проблема разделяется на более простые в
+управлении части.
+<PRE>
+       ipchains -N good-dmz 
+       ipchains -N bad-dmz 
+       ipchains -N good-bad 
+       ipchains -N dmz-good 
+       ipchains -N dmz-bad 
+       ipchains -N bad-good
+</PRE>
+
+ACCEPT'ие стандартных ICMP сообщений об ошибках -- достаточно общая вещь,
+поэтому создадим для нее цепочку.
+<PRE>
+       ipchains -N icmp-acc
+</PRE>
+<P>
+<H3>Установка переходов из цепочки forward</H3>
+
+<P>К сожалению, мы знаем (в цепочке forward) только исходящий интерфейс. Таким 
+образом, чтобы выяснить с какого интерфейса пришел пакет, мы используем 
+адрес источника (подделку этого адреса предотвращает антиспуфинг).
+<P>Обратите внимание, что в журнал регистрации пойдет все, что не подпадает ни
+под одно из этих правил (очевидно, что такого никогда не случится).
+<PRE>
+     ipchains -A forward -s 192.168.1.0/24 -i eth0 -j good-dmz 
+     ipchains -A forward -s 192.168.1.0/24 -i ppp0 -j good-bad 
+     ipchains -A forward -s 192.84.219.0/24 -i ppp0 -j dmz-bad 
+     ipchains -A forward -s 192.84.219.0/24 -i eth1 -j dmz-good 
+     ipchains -A forward -i eth0 -j bad-dmz 
+     ipchains -A forward -i eth1 -j bad-good 
+     ipchains -A forward -j DENY -l
+</PRE>
+<P>
+<H3>Определим icmp-acc цепочку</H3>
+
+<P>Пакеты, которые являются одним из ICMP сообщений об ошибке ACCEPT'ся, иначе 
+управление перейдет обратно к вызывающей цепочке.
+<PRE>
+     ipchains -A icmp-acc -p icmp --icmp-type destination-unreachable -j ACCEPT 
+     ipchains -A icmp-acc -p icmp --icmp-type source-quench -j ACCEPT 
+     ipchains -A icmp-acc -p icmp --icmp-type time-exceeded -j ACCEPT 
+     ipchains -A icmp-acc -p icmp --icmp-type parameter-problem -j ACCEPT
+</PRE>
+<P>
+<H3>От Good (внутренняя сеть) к DMZ (сервера)</H3>
+
+<P>Внутренние ограничения:
+<UL>
+<LI> Позволить WWW, ftp, traceroute, ssh к внешней сети
+</LI>
+<LI> Позволить SMTP к почтовому серверу
+</LI>
+<LI> Позволить POP-3 к почтовому серверу
+</LI>
+<LI> Позволить DNS к сереверу имен
+</LI>
+<LI> Позволить rsync к веб серверу 
+</LI>
+<LI> Позволить WWW к веб серверу 
+</LI>
+<LI> Позволить ping к машине пакетной фильтрации</LI>
+</UL>
+
+Можно было бы сделать маскарадинг от внутренней сети к DMZ, но здесь мы это не 
+делаем. Так как кто-то из внутренней сети может попробовать напакостить, мы 
+регистрируем в журнале все отклоненные пакеты.
+<PRE>
+        ipchains -A good-dmz -p tcp -d 192.84.219.128 smtp -j ACCEPT 
+        ipchains -A good-dmz -p tcp -d 192.84.219.128 pop-3 -j ACCEPT 
+        ipchains -A good-dmz -p udp -d 192.84.219.129 domain -j ACCEPT 
+        ipchains -A good-dmz -p tcp -d 192.84.219.129 domain -j ACCEPT 
+        ipchains -A good-dmz -p tcp -d 192.84.218.130 www -j ACCEPT 
+        ipchains -A good-dmz -p tcp -d 192.84.218.130 rsync -j ACCEPT 
+        ipchains -A good-dmz -p icmp -j icmp-acc 
+        ipchains -A good-dmz -j DENY -l
+</PRE>
+<P>
+<H3>От BAD (внешняя сеть) к DMZ (сервера).</H3>
+
+<P>
+<UL>
+<LI> DMZ ограничения:
+<UL>
+<LI> Почтовый сервер
+<UL>
+<LI> SMTP во внешнюю сеть</LI>
+<LI> Прием SMTP от внутренней и внешней сетей</LI>
+<LI> Прием POP-3 от внутренней сети</LI>
+</UL>
+</LI>
+<LI>  Сервер имен
+<UL>
+<LI> Посылка DNS во внешнюю сеть</LI>
+<LI> Прием DNS от внутренней и внешней сетей и машины пакетной фильтрации</LI>
+</UL>
+</LI>
+<LI>  Web сервер
+<UL>
+<LI> Прием HTTP от внутренней и внешней сети</LI>
+<LI> Rsync доступ из внутренней сети</LI>
+</UL>
+</LI>
+</UL>
+</LI>
+<LI> Вещи, которые мы разрешаем от внешней сети к DMZ.
+<UL>
+<LI> Не регистрировать нарушения, поскольку они могут случаться.</LI>
+</UL>
+</LI>
+</UL>
+
+<PRE>
+  
+        ipchains -A bad-dmz -p tcp -d 192.84.219.128 smtp -j ACCEPT 
+        ipchains -A bad-dmz -p udp -d 192.84.219.129 domain -j ACCEPT 
+        ipchains -A bad-dmz -p tcp -d 192.84.219.129 domain -j ACCEPT 
+        ipchains -A bad-dmz -p tcp -d 192.84.218.130 www -j ACCEPT 
+        ipchains -A bad-dmz -p icmp -j icmp-acc 
+        ipchains -A bad-dmz -j DENY
+</PRE>
+<P>
+<H3>От Good (внутренняя сеть) к Bad (внешняя сеть).</H3>
+
+<P>
+<P>Внутренние ограничения:
+<UL>
+<LI> Позволить WWW, ftp, traceroute, ssh ко внешней сети</LI>
+<LI> Позволить SMTP к почтовому серверу</LI>
+<LI> Позволить POP-3 к почтовому серверу</LI>
+<LI> Позволить DNS к серверу имен</LI>
+<LI> Позволить rsync к веб серверу </LI>
+<LI> Позволить WWW к веб серверу </LI>
+<LI> Позволить ping к машине пакетной фильтрации</LI>
+<LI> Многие люди позволяют все из внутренней сети ко внешней сети, и затем 
+добавляют ограничения. Мы -- тираны.</LI>
+<LI> Регистрационные нарушения.</LI>
+<LI> Пассивный FTP, обработанный модулем masq.</LI>
+</UL>
+
+<PRE>
+       ipchains -A good-bad -p tcp --dport www -j MASQ
+       ipchains -A good-bad -p tcp --dport ssh -j MASQ
+       ipchains -A good-bad -p udp --dport 33434:33500 -j MASQ
+       ipchains -A good-bad -p tcp --dport ftp --j MASQ
+       ipchains -A good-bad -p icmp --icmp-type ping -j MASQ
+       ipchains -A good-bad -j REJECT -l
+</PRE>
+<P>
+<H3>От DMZ к Good (внутренняя сеть).</H3>
+
+<P>Внутренние ограничения:
+<UL>
+<LI> Позволить WWW, ftp, traceroute, ssh к внешней сети</LI>
+<LI> Позволить SMTP к почтовому серверу</LI>
+<LI> Позволить POP-3 к почтовому серверу</LI>
+<LI> Позволить DNS к серверу имен</LI>
+<LI> Позволить rsync к веб серверу </LI>
+<LI> Позволить WWW к веб серверу </LI>
+<LI> Позволить ping к машине пакетной фильтрации</LI>
+<LI> Многие люди позволяют доступ ко всем сервисам из внутренней сети ко 
+внешней сети, и затем добавляют ограничения. Мы -- бессовестные тираны.</LI>
+<LI> Регистрационные нарушения.</LI>
+<LI> Пассивный FTP, обработанный модулем masq.</LI>
+<LI> Если бы мы были замаскарадены от внутренней сети к DMZ, то просто 
+отказывались бы от всех пакетов, приходящих другим путем. Сейчас позволяем 
+только пакеты, которые могли бы быть часть установленного соединения.</LI>
+</UL>
+
+<PRE>
+       ipchains -A dmz-good -p tcp ! -y -s 192.84.219.128 smtp -j ACCEPT
+       ipchains -A dmz-good -p udp -s 192.84.219.129 domain -j ACCEPT
+       ipchains -A dmz-good -p tcp ! -y -s 192.84.219.129 domain -j ACCEPT
+       ipchains -A dmz-good -p tcp ! -y -s 192.84.218.130 www -j ACCEPT
+       ipchains -A dmz-good -p tcp ! -y -s 192.84.218.130 rsync -j ACCEPT
+       ipchains -A dmz-good -p icmp -j icmp-acc
+       ipchains -A dmz-bad -j DENY -l
+</PRE>
+<P>
+<H3>От DMZ к bad (внешняя сеть).</H3>
+
+<P>DMZ ограничения:
+<UL>
+<LI> Почтовый сервер
+<UL>
+<LI> SMTP во внешнюю сеть</LI>
+<LI> Прием SMTP от внутренней и внешней сетей</LI>
+<LI> Прием POP-3 от внутренней сети</LI>
+</UL>
+</LI>
+<LI>  Сервер имен
+<UL>
+<LI> Посылка DNS во внешнюю сеть</LI>
+<LI> Прием DNS от внутренней и внешней сетей и машины пакетной фильтрации</LI>
+</UL>
+</LI>
+<LI>  Web сервер
+<UL>
+<LI> Прием HTTP от внутренней и внешней сети</LI>
+<LI> Rsync доступ из внутренней сети</LI>
+</UL>
+</LI>
+</UL>
+
+<PRE>
+       ipchains -A dmz-bad -p tcp -s 192.84.219.128 smtp -j ACCEPT
+       ipchains -A dmz-bad -p udp -s 192.84.219.129 domain -j ACCEPT
+       ipchains -A dmz-bad -p tcp -s 192.84.219.129 domain -j ACCEPT
+       ipchains -A dmz-bad -p tcp ! -y -s 192.84.218.130 www -j ACCEPT
+       ipchains -A dmz-bad -p icmp -j icmp-acc
+       ipchains -A dmz-bad -j DENY -l
+</PRE>
+<P>
+<H3>От Bad (внешняя сеть) к Good (внутренняя сеть).</H3>
+
+<P>Мы не позволяем ничего (не-маскарадное) от внешней сети к внутренней сети
+<PRE>
+       ipchains -A bad-good -j REJECT
+</PRE>
+<P>
+<H3>Фильтрация пакетов непосредственно для Linux машины</H3>
+
+<P>Если мы хотим использовать фильтрацию пакета на пакетах, приходящих
+непосредственно к linux машине, то мы должны настроить фильтрацию в цепочке 
+input. Мы создаем одну цепочку для каждого интерфейса адресата:
+<PRE>
+       ipchains -N bad-if 
+       ipchains -N dmz-if 
+       ipchains -N good-if
+</PRE>
+
+Создаем переходы на них:
+<PRE>
+       ipchains -A input -d 192.84.219.1 -j bad-if 
+       ipchains -A input -d 192.84.219.250 -j dmz-if 
+       ipchains -A input -d 192.168.1.250 -j good-if
+</PRE>
+<P>
+<H3>Интерфейс Bad (внешняя сеть).</H3>
+
+<P>Машина пакетной фильтрации:
+<UL>
+<LI>  PING любой сети</LI>
+<LI>  TRACEROUTE любой сети</LI>
+<LI>  Доступ к DNS</LI>
+<LI>  Внешний интерфейс также получает ответы на маскараденные пакеты и ICMP 
+сообщения об ошибках на них и ping ответы.</LI>
+</UL>
+
+<PRE>
+        ipchains -A bad-if -i ! ppp0 -j DENY -l 
+        ipchains -A bad-if -p TCP --dport 61000:65096 -j ACCEPT 
+        ipchains -A bad-if -p UDP --dport 61000:65096 -j ACCEPT 
+        ipchains -A bad-if -p ICMP --icmp-type pong -j ACCEPT 
+        ipchains -A bad-if -j icmp-acc 
+        ipchains -A bad-if -j DENY
+</PRE>
+<P>
+<P>
+<H3>Интерфейс DMZ.</H3>
+
+<P>Ограничения машины пакетной фильтрации:
+<UL>
+<LI> PING любой сети</LI>
+<LI> TRACEROUTE любой сети</LI>
+<LI> Доступ к DNS</LI>
+<LI> DMZ интерфейс получает ответы DNS, ответы ping и ICMP сообщения об ошибках.</LI>
+</UL>
+
+<PRE>
+       ipchains -A dmz-if -i ! eth0 -j DENY 
+       ipchains -A dmz-if -p TCP ! -y -s 192.84.219.129 53 -j ACCEPT 
+       ipchains -A dmz-if -p UDP -s 192.84.219.129 53 -j ACCEPT 
+       ipchains -A dmz-if -p ICMP --icmp-type pong -j ACCEPT 
+       ipchains -A dmz-if -j icmp-acc 
+       ipchains -A dmz-if -j DENY -l
+</PRE>
+<P>
+<H3>Интерфейс Good (внутренний).</H3>
+
+<P>
+<UL>
+<LI>Ограничения машины пакетной фильтрации:
+<UL>
+<LI> PING любой сети</LI>
+<LI> TRACEROUTE любой сети</LI>
+<LI> Доступ к DNS</LI>
+<LI> DMZ интерфейс получает ответы DNS, ответы ping и ICMP сообщения об ошибках.</LI>
+</UL>
+</LI>
+<LI>Ограничения внутренней сети:
+<UL>
+<LI> Разрешить WWW, ftp, traceroute, ssh ко внешней сети</LI>
+<LI> Позволить SMTP к почтовому серверу</LI>
+<LI> Позволить POP-3 к почтовому серверу</LI>
+<LI> Позволить DNS к серверу имен</LI>
+<LI> Позволить rsync к веб серверу </LI>
+<LI> Позволить WWW к веб серверу </LI>
+<LI> Позволить ping к машине пакетной фильтрации</LI>
+<LI> Внутренний интерфейс получает ответы DNS, ответы ping и ICMP сообщения об 
+ошибках.</LI>
+</UL>
+</LI>
+</UL>
+
+<PRE>
+         ipchains -A good-if -i ! eth1 -j DENY 
+         ipchains -A good-if -p ICMP --icmp-type ping -j ACCEPT 
+         ipchains -A good-if -p ICMP --icmp-type pong -j ACCEPT 
+         ipchains -A good-if -j icmp-acc 
+         ipchains -A good-if -j DENY -l
+</PRE>
+<P>
+<H2><A NAME="ss7.5">7.5 В заключение</A>
+</H2>
+
+<P>Удаление правил блокировки:
+<PRE>
+        ipchains -D input 1 
+        ipchains -D forward 1 
+        ipchains -D output 1
+</PRE>
+<HR>
+<A HREF="Ipchains-HOWTO-8.html">Next</A>
+<A HREF="Ipchains-HOWTO-6.html">Previous</A>
+<A HREF="Ipchains-HOWTO.html#toc7">Contents</A>
+</BODY>
+</HTML>

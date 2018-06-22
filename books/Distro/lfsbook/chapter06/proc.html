@@ -1,0 +1,206 @@
+<HTML
+><HEAD
+><TITLE
+>Mounting the proc file system</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Microsoft FrontPage 4.0"/><LINK
+REL="HOME"
+TITLE="Linux From Scratch"
+HREF="http://www.linuxfromscratch.org/view/4.0/index.html"/><LINK
+REL="UP"
+TITLE="Installing basic system software"
+HREF="http://www.linuxfromscratch.org/view/4.0/chapter06/chapter06.html"/><LINK
+REL="PREVIOUS"
+TITLE="Creating directories"
+HREF="http://www.linuxfromscratch.org/view/4.0/chapter06/creatingdirs.html"/><LINK
+REL="NEXT"
+TITLE="Creating the mtab symlink"
+HREF="http://www.linuxfromscratch.org/view/4.0/chapter06/mtablink.html"/></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#006000"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Linux From Scratch: Версия 4.0</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="creatingdirs.html"
+ACCESSKEY="P"
+>Назад</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Глава 6. Установка основных компонентов
+        системы</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="mtablink.html"
+ACCESSKEY="N"
+>Вперед</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"/></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="ch06-proc"
+>Монтирование файловой системы proc</A
+></H1
+><P
+>Для обеспечения корректной работы
+  некоторых программ, необходимо установить
+  файловую систему proc в среде chroot. Так как
+  файловая система может быть монтирована
+  сколько угодно раз и в каких угодно местах,
+  проблем с тем, что файловая система proc уже
+  монтирована в вашем базовом дистрибутиве,
+  возникнуть не должно. Тем более, что proc -
+  виртуальная файловая система.</P
+><P
+>Для монтирования файловой системы proc в
+<TT
+CLASS="filename"
+>/proc</TT
+>, выполните:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="screen"
+><TT
+CLASS="userinput"
+><B
+>mount proc /proc -t proc</B
+></TT
+></PRE
+></TD
+></TR
+></TABLE
+><P
+>Вероятно, следующие предупреждения
+  команды mount будут выведены на экран:</P
+><A
+NAME="AEN2255"
+></A
+><BLOCKQUOTE
+CLASS="BLOCKQUOTE"
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="screen"
+>warning: can't open /etc/fstab: No such file or directory
+not enough memory</PRE
+></TD
+></TR
+></TABLE
+></BLOCKQUOTE
+><P
+>Не обращайте на них особого внимания - наша
+  система полностью не установлена, и
+  некоиторые файлы отсутствуют. Само
+  монтирование файловой системы будет
+  выполнено, и на данном этапе нам больше
+  ничего не требуется.&nbsp;</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"/><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="creatingdirs.html"
+ACCESSKEY="P"
+>Назад</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="../index.html"
+ACCESSKEY="H"
+>Домой</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="mtablink.html"
+ACCESSKEY="N"
+>Вперед</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Создание директорий</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="chapter06.html"
+ACCESSKEY="U"
+>Наверх</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Создание символической ссылки mtab</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

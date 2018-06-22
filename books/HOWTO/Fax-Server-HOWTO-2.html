@@ -1,0 +1,231 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE>  Linux simple fax printer server mini-HOWTO (faxsrv-mini-HOWTO): Вопросы и ответы</TITLE>
+ <LINK HREF="Fax-Server-HOWTO-3.html" REL=next>
+ <LINK HREF="Fax-Server-HOWTO-1.html" REL=previous>
+ <LINK HREF="Fax-Server-HOWTO.html#toc2" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="Fax-Server-HOWTO-3.html">Next</A>
+<A HREF="Fax-Server-HOWTO-1.html">Previous</A>
+<A HREF="Fax-Server-HOWTO.html#toc2">Contents</A>
+<HR>
+<H2><A NAME="s2">2. Вопросы и ответы</A></H2>
+
+<H2><A NAME="ss2.1">2.1 Что такое факс-сервер печати?</A>
+</H2>
+
+<P>Факс-сервер печати - это набор из нескольких программ: efax и принт-сервера,
+настроенных с таким расчетом, чтобы сделать отправку факсов такой же легкой, 
+как и печать на принтере.
+<P>
+<H2><A NAME="ss2.2">2.2 Как все это настроить?</A>
+</H2>
+
+<P>При настройке efax в качестве факс-сервера печати можно наткнуться на 
+несколько проблем. Так как я работал с ним некоторое время, я решил собрать
+их решения в mini-HOWTO, комментарии приветствуются по адресу 
+(erez@newplaces.com).  Я привел здесь и проблемы и их решения, и все 
+инструкции рахбил по коротким шагам :
+<P>
+<H3>ПО efax</H3>
+
+<P>Убедитесь, что у вас есть пакет efax.
+<P>На RPM-основанных системах используйте команду 'rpm -qv efax'.
+<P>Вы можете взять исходные тексты efax в формате tar.gz с sunsite:
+<A HREF="ftp://sunsite.unc.edu/pub/Linux/apps/serialcomm/fax/efax08a.tar.gz">ftp://sunsite.unc.edu/pub/Linux/apps/serialcomm/fax/efax08a.tar.gz</A>
+или скомпилированный rpm пакет:
+<A HREF="ftp://ftp.redhat.com/pub/redhat/redhat-4.2/i386/RedHat/RPMS/efax-0.8a-3.i386.rpm">ftp://ftp.redhat.com/pub/redhat/redhat-4.2/i386/RedHat/RPMS/efax-0.8a-3.i386.rpm</A><P>
+<H3>The printcap entry.</H3>
+
+<P>В документации efax пропущено :  в конце записи printcap.
+<P>Решение: Добавьте следующие строки в /etc/printcap:
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+       fax:\
+               :lp=/dev/null:\
+               :sd=/var/spool/fax:\
+               :if=/usr/bin/faxlpr:
+</PRE>
+</CODE></BLOCKQUOTE>
+<H3>Команда fax</H3>
+
+<P>Используйте для команды fax жесткую связь, а не символическую.
+<P>Команда:
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+       ln /usr/bin/fax /usr/bin/faxlpr
+</PRE>
+</CODE></BLOCKQUOTE>
+<H3>Файл /usr/bin/fax.</H3>
+
+<P>Отредактируйте /usr/bin/fax под ваши потребности:
+<P>Выберите правильный Fax Class для вашего модема:
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+       CLASS=2.0
+</PRE>
+</CODE></BLOCKQUOTE>
+
+Установите поле FROM="ваш международный телефонный номер"
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+       NAME="Ваше имя"
+</PRE>
+</CODE></BLOCKQUOTE>
+
+Добавьте строку для преобразования международного телефонного номера в 
+локальный, например, для Израиля вы должны использовать:
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+       TELCVT='sed -e s/+972/0/ -e s/+/00/'  # Израиль
+</PRE>
+</CODE></BLOCKQUOTE>
+
+Есть загвоздка в файле в строке 586, измените cfile=... на следующие две
+строки:
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+       cfile=`/usr/bin/tail -1 lock`
+       cfile=`cat $cfile`
+</PRE>
+</CODE></BLOCKQUOTE>
+
+а в строках  586,587 не должно быть знаков '-' в строках:
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+       0) echo "$l" | mail -s "fax to $num succeeded" $user@$host ;;
+       *) echo "$l" | mail -s "fax to $num failed   " $user@$host ;;
+</PRE>
+</CODE></BLOCKQUOTE>
+<H3>Каталог /var/spool/fax.</H3>
+
+<P>Создайте каталог /var/spool/fax
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+       mkdir /var/spool/fax
+       chmod 777 /var/spool/fax
+</PRE>
+</CODE></BLOCKQUOTE>
+<H3>Файл lock.</H3>
+
+<P>Файл lock (/var/spool/fax/lock) создается с неправильными правами доступа,
+подправьте их командой:
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+       touch /var/spool/fax/lock ; chmod 644 /var/spool/fax/lock
+</PRE>
+</CODE></BLOCKQUOTE>
+<H3>Специальный файл /dev/modem.</H3>
+
+<P>Программа efax надеется иметь /dev/modem реальным устройством и не работает,
+если этот файл является символической ссылкой, так что создайте файл 
+устройства с теми же числами major и minor, что и /dev/cua? , соответствующий
+модему. Файл должен иметь права доступа rw-rw-rw- , чтобы любой пользователь 
+мог воспользоваться факсом.
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+       ls -lL /dev/modem
+       rm /dev/modem
+       mknod /dev/modem c Mj Mi
+       chmod 666 /dev/modem
+</PRE>
+</CODE></BLOCKQUOTE>
+
+Mj равен 5 и Mi равен 64 для cua0, 65 для cua1 и т.д. Например, (для cua1):
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+       mknod /dev/modem c 5 65
+</PRE>
+</CODE></BLOCKQUOTE>
+<H3>Каталог /var/lock.</H3>
+
+<P>Смените права доступа каталога /var/lock 
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+       chmod 1777 /var/lock
+</PRE>
+</CODE></BLOCKQUOTE>
+<H2><A NAME="ss2.3">2.3 Как этим пользоваться, для сервера ?</A>
+</H2>
+
+<P>Вы должны использовать fax-принтер, используя опцию -P, и опцию -J с номером
+факса.
+<P>Ипользуйте одну из приведенных команд lpr:
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+        lpr -Pfax -J &lt;Номер-Факса> [имена-файлов]
+        любая_команда | lpr -Pfax -J &lt;Номер-Факса>
+</PRE>
+</CODE></BLOCKQUOTE>
+<H2><A NAME="ss2.4">2.4 Где указывается номер факса, на который мне нужно позвонить ?</A>
+</H2>
+
+<P>После опции -J.
+<P>
+<H2><A NAME="ss2.5">2.5 Как мне это использовать из других Unixes в сети ?</A>
+</H2>
+
+<P>Добавьте указанную запись в файл /etc/printcap и клиентские Linux системы, 
+создайте каталог спула, и т.д...
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+       fax:\
+               :sd=/var/spool/fax:\
+               :mx#0:\
+               :sh:\
+               :rm=host.domain:\
+               :rp=fax:
+</PRE>
+</CODE></BLOCKQUOTE>
+
+Добавьте имена клиенских машин в /etc/hosts.lpd на машине факс-сервера.
+<P>Используйте его как было описано выше.
+<P><B>Заметьте:</B>
+<P>Заголовок, который efax добавляет на страницы факса не соответствует имени
+пользователя, который отправил факс. (может быть обновлено).
+<P>
+<H2><A NAME="ss2.6">2.6 Пользователи Caldera, LPRng</A>
+</H2>
+
+<P>ПО управления печатью LPRng использует другие методы обработки управляющего
+файла.
+<P>Спасибо Luca Montecchiani (m.luca@usa.net), который обнаружил проблему и ее
+решение. Вот обновленный файл /usr/bin/fax. Следующие строки заменяют две
+строки cfile=... под номерами 586,587
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+  # Modified to work also with the LPRng package
+  # Luca Montecchiani (08/11/97 m.luca@usa.net)
+  if [ !-z "$CONTROL_FILE" ]
+      then
+          cfile=`cat tail -1 lock`
+          cfile=`cat $cfile`
+      else
+          cfile=$CONTROL_FILE
+  fi
+</PRE>
+</CODE></BLOCKQUOTE>
+<HR>
+<A HREF="Fax-Server-HOWTO-3.html">Next</A>
+<A HREF="Fax-Server-HOWTO-1.html">Previous</A>
+<A HREF="Fax-Server-HOWTO.html#toc2">Contents</A>
+</BODY>
+</HTML>

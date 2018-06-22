@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE>Мини HOWTO:Boot + Root + Raid + Lilo : Программный Raid: Что вам потребуется до НАЧАЛА РАБОТЫ</TITLE>
+ <LINK HREF="Boot+Root+Raid+LILO-3.html" REL=next>
+ <LINK HREF="Boot+Root+Raid+LILO-1.html" REL=previous>
+ <LINK HREF="Boot+Root+Raid+LILO.html#toc2" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="Boot+Root+Raid+LILO-3.html">Next</A>
+<A HREF="Boot+Root+Raid+LILO-1.html">Previous</A>
+<A HREF="Boot+Root+Raid+LILO.html#toc2">Contents</A>
+<HR>
+<H2><A NAME="s2">2. Что вам потребуется до НАЧАЛА РАБОТЫ</A></H2>
+
+<P>Ниже перечислены пакеты, которые вам понадобятся, а также приведен список документации, которая отвечает на все обычные вопросы о настройке и запуске raid. Пожалуйста, прочитайте это внимательно.
+<P>
+<H2><A NAME="ss2.1">2.1 Необходимые пакеты</A>
+</H2>
+
+<P>Вам понадобится получить наиболее новые версии этих пакетов.
+<UL>
+<LI>ядро linux, поддерживающее raid и initrd
+<BLOCKQUOTE>
+ Я взял 
+<A HREF="ftp://ftp.kernel.org/pub/linux/kernel/v2.2/">linux-2.2.14</A>
+с kernel.org
+</BLOCKQUOTE>
+</LI>
+<LI>
+<A HREF="ftp://ftp.kernel.org/pub/linux/daemons/raid/alpha/">ftp://ftp.kernel.org/pub/linux/daemons/raid/alpha/</A>
+- самые новые утилиты и патч с поддержкой новых raid1/4/5
+<BLOCKQUOTE>
+ Я использовал 
+<A HREF="http://people.redhat.com/mingo/raid-patches/raid-2.2.14-B1">http://people.redhat.com/mingo/raid-patches/</A></BLOCKQUOTE>
+</LI>
+</UL>
+<P>
+<H2><A NAME="ss2.2">2.2 Где найти новые версии этого документа.</A>
+</H2>
+
+<P>Можете просмотреть 
+<A HREF="ftp://ftp.bizsystems.com/pub/raid/Boot+Root+Raid+LILO.html">последнюю версию авторского оригинала</A> этого документа. Исправления и предложения приветствуются!
+<P>Мини-HOWTO Boot+Root+Raid+Lilo
+<P>Формат LaTeX (для DVI и PostScript), чистый текст, и HTML.
+<BLOCKQUOTE>
+ 
+<A HREF="http://www.linuxdoc.org/HOWTO/mini/Boot+Root+Raid+LILO.html"> http://www.linuxdoc.org/HOWTO/mini/Boot+Root+Raid+LILO.html</A></BLOCKQUOTE>
+
+SGML и HTML.
+<BLOCKQUOTE>
+ 
+<A HREF="ftp://ftp.bizsystems.net/pub/raid/">ftp.bizsystems.net/pub/raid/</A></BLOCKQUOTE>
+<P>
+<H2><A NAME="ss2.3">2.3 Документация рекомендуемая для прочтения</A>
+</H2>
+
+<P><B>Если вы планируете использовать raid1/5 поверх raid0, прочтите:</B>
+<BLOCKQUOTE>
+<B>/usr/src/linux/Documentation/initrd.txt</B>
+</BLOCKQUOTE>
+<P>
+<P>а также документацию и руководства, поставляемые с утилитами raidtools.
+<P>
+<P>и..... 
+<A HREF="http://metalab.unc.edu/mdw/HOWTO/Software-RAID-HOWTO.html">Software-RAID-HOWTO.html</A><P>
+<H2><A NAME="ss2.4">2.4 Информационные ресурсы по RAID</A>
+</H2>
+
+<P>Подключиться к спискам рассылки можно по адресам:
+<UL>
+<LI>Этот достаточно спокоен: 
+<A HREF="mailto:majordomo@nuclecu.unam.mx">majordomo@nuclecu.unam.mx</A><I> пошлите письмо с темой</I>
+<B>subscribe raiddev</B><P>почту посылайте по адресу: 
+<A HREF="mailto:raiddev@nuclecu.unam.mx">raiddev@nuclecu.unam.mx</A><P>&nbsp;
+</LI>
+<LI>Разработка Raid: 
+<A HREF="mailto:majordomo@vger.rutgers.edu">majordomo@vger.rutgers.edu</A><I> пошлите письмо с темой</I>
+<B>subscribe linux-raid</B><P>почту посылайте по адресу: 
+<A HREF="mailto:linux-raid@vger.rutgers.edu">linux-raid@vger.rutgers.edu</A>
+<I>(это по-видимому наиболее активный список)</I>
+</LI>
+</UL>
+<P>
+<P>
+<HR>
+<A HREF="Boot+Root+Raid+LILO-3.html">Next</A>
+<A HREF="Boot+Root+Raid+LILO-1.html">Previous</A>
+<A HREF="Boot+Root+Raid+LILO.html#toc2">Contents</A>
+</BODY>
+</HTML>

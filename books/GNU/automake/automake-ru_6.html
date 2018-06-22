@@ -1,0 +1,111 @@
+<HTML>
+<HEAD>
+<!-- Created by texi2html 1.56k from automake-ru.texi on 11 July 2000 -->
+
+<TITLE>automake - Makefile.am верхнего уровня</TITLE>
+</HEAD>
+<BODY>
+Go to the <A HREF="automake-ru_1.html">first</A>, <A HREF="automake-ru_5.html">previous</A>, <A HREF="automake-ru_7.html">next</A>, <A HREF="automake-ru_25.html">last</A> section, <A HREF="automake-ru_toc.html">table of contents</A>.
+<P><HR><P>
+
+
+<H1><A NAME="SEC19" HREF="automake-ru_toc.html#TOC19"><TT>`Makefile.am'</TT> верхнего уровня</A></H1>
+
+<P>
+<A NAME="IDX217"></A>
+
+
+<P>
+В неплоских пакетах в файле <TT>`Makefile.am'</TT> верхнего
+уровня надо указать Automake, в каких подкаталогах будет производится сборка. 
+Это выполняется с помощью переменной <CODE>SUBDIRS</CODE>.
+<A NAME="IDX218"></A>
+
+
+<P>
+Макрос <CODE>SUBDIRS</CODE> содержит список подкаталогов, в которых могут
+производиться различные виды сборки.  Многие цели (например, <CODE>all</CODE>)
+в сгенерированном файле <TT>`Makefile'</TT> будут выполняться как в текущем
+каталоге, так и во всех указанных подкаталогах.  Заметьте, что
+подкаталоги, перечисленные в <CODE>SUBDIRS</CODE>, не обязаны содержать файл
+<TT>`Makefile.am'</TT>, а только лишь <TT>`Makefile'</TT> (после выполнения
+конфигурации).  Это позволяет использовать библиотеки из пакетов,
+которые не используют Automake (например, <CODE>gettext</CODE>).  Каталоги,
+упомянутые в <CODE>SUBDIRS</CODE>, должны быть прямыми потомками текущего
+каталога.  Например, вы не можете поместить каталог <SAMP>`src/subdir'</SAMP> в
+переменную <CODE>SUBDIRS</CODE>.
+
+
+<P>
+В глубоких пакетах <TT>`Makefile.am'</TT> верхнего уровня часто очень
+короток. Например, вот <TT>`Makefile.am'</TT> из дистрибутива GNU Hello:
+
+
+
+<PRE>
+EXTRA_DIST = BUGS ChangeLog.O README-alpha
+SUBDIRS = doc intl po src tests
+</PRE>
+
+<P>
+<A NAME="IDX219"></A>
+<A NAME="IDX220"></A>
+
+
+<P>
+Можно переопределить переменную <CODE>SUBDIRS</CODE> если, как в случае
+GNU <CODE>Inetutils</CODE>, вы хотите собрать только некоторое подмножество пакета. 
+Для этого включите в ваш файл <TT>`Makefile.am'</TT> следующие строки:
+
+
+
+<PRE>
+SUBDIRS = @SUBDIRS@
+</PRE>
+
+<P>
+Затем в вашем файле <TT>`configure.in'</TT> вы можете указать:
+
+
+
+<PRE>
+SUBDIRS = "src doc lib po"
+AC_SUBST(SUBDIRS)
+</PRE>
+
+<P>
+В результате этого Automake сможет при построении пакета заставить его
+принимать список каталогов, но точное содержимое этого списка станет
+известно только после запуска <CODE>configure</CODE>.
+
+
+<P>
+Хотя макрос <CODE>SUBDIRS</CODE> может содержать подстановки (например
+<SAMP>`@DIRS@'</SAMP>); сам Automake в действительности не проверяет
+содержимое этой переменной.
+
+
+<P>
+Если определена переменная <CODE>SUBDIRS</CODE>, то ваш файл
+<TT>`configure.in'</TT> должен включать макрос <CODE>AC_PROG_MAKE_SET</CODE>.
+
+
+<P>
+Использование <CODE>SUBDIRS</CODE> не ограничено только <TT>`Makefile.am'</TT>
+верхнего уровня.  Automake может использоваться для создания пакетов
+любой глубины.
+
+
+<P>
+По умолчанию Automake создает файлы <TT>`Makefile'</TT>, которые работают,
+выполняя сначала make в подкаталогах (<EM>постфиксный метод</EM>).  Однако, можно
+изменить это поведение, поместив <SAMP>`.'</SAMP> в
+переменную <CODE>SUBDIRS</CODE>. Например, поместив <SAMP>`.'</SAMP> в начало списка,
+вы заставите выполнять make сначала в текущем каталоге, а затем уже в
+подкаталогах (<EM>префиксный метод</EM>).
+
+
+<P><HR><P>
+Go to the <A HREF="automake-ru_1.html">first</A>, <A HREF="automake-ru_5.html">previous</A>, <A HREF="automake-ru_7.html">next</A>, <A HREF="automake-ru_25.html">last</A> section, <A HREF="automake-ru_toc.html">table of contents</A>.
+</BODY>
+</HTML>

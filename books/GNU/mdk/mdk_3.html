@@ -1,0 +1,390 @@
+<HTML>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- Created on June, 9  2003 by texi2html 1.64 -->
+<!-- 
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Olaf Bachmann <obachman@mathematik.uni-kl.de>
+Send bugs and suggestions to <texi2html@mathematik.uni-kl.de>
+ 
+-->
+<HEAD>
+<TITLE>GNU MIX Development Kit (mdk): Установка MDK</TITLE>
+
+<META NAME="description" CONTENT="GNU MIX Development Kit (mdk): Установка MDK">
+<META NAME="keywords" CONTENT="GNU MIX Development Kit (mdk): Установка MDK">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="texi2html 1.64">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+
+<A NAME="SEC3"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_2.html#SEC2"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_3.html#SEC4"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_2.html#SEC2"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_4.html#SEC10"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H1> 1. Установка MDK </H1>
+<!--docid::SEC3::-->
+<P>
+
+<BLOCKQUOTE><TABLE BORDER=0 CELLSPACING=0> 
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="mdk_3.html#SEC4">1.1 Загрузка архива исходных текстов</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="mdk_3.html#SEC5">1.2 Требования</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="mdk_3.html#SEC6">1.3 Базовая установка</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="mdk_3.html#SEC7">1.4 Поддержка Emacs</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="mdk_3.html#SEC8">1.5 Специальные флаги конфигурации</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="mdk_3.html#SEC9">1.6 Поддерживаемые платформы</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+</TABLE></BLOCKQUOTE>
+<P>
+
+<A NAME="Загрузка"></A>
+<HR SIZE="6">
+<A NAME="SEC4"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_3.html#SEC3"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_3.html#SEC5"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_3.html#SEC3"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_3.html#SEC3"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_4.html#SEC10"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 1.1 Загрузка архива исходных текстов </H2>
+<!--docid::SEC4::-->
+<P>
+
+GNU MDK распространяется в виде архива исходных текстов, загрузить
+который можно по следующим <FONT SIZE="-1">URL</FONT>:
+</P><P>
+
+<UL>
+<LI>
+<A HREF="ftp://ftp.gnu.org/pub/gnu/mdk">ftp://ftp.gnu.org/pub/gnu/mdk</A>
+<LI>
+<A HREF="http://www.gnu.org/prep/ftp.html">зеркала GNU</A>
+<LI>
+<A HREF="http://sourceforge.net/project/showfiles.php?group_id=13897">http://sourceforge.net/project/showfiles.php?group_id=13897</A>
+</UL>
+ 
+Эти сайты содержат последний стабильный выпуск MDK. Ветка
+разработки доступна по адресу:
+<P>
+
+<UL>
+<LI>
+<A HREF="https://savannah.gnu.org/cvs/?group_id=118">https://savannah.gnu.org/cvs/?group_id=118</A>
+</UL>
+<P>
+
+После загрузки архива исходных текстов распакуйте его в произвольный
+каталог командой:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>tar xfvz mdk-X.Y.tar.gz
+</pre></td></tr></table></P><P>
+
+где <VAR>X.Y</VAR> соответствует загруженной версии (текущий стабильный
+выпуск имеет номер версии 1.0).
+</P><P>
+
+<A NAME="Требования"></A>
+<HR SIZE="6">
+<A NAME="SEC5"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_3.html#SEC4"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_3.html#SEC6"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_3.html#SEC3"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_3.html#SEC3"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_4.html#SEC10"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 1.2 Требования </H2>
+<!--docid::SEC5::-->
+<P>
+
+Для сборки и установки MDK вам необходимо, чтобы в системе были
+установлены следующие библиотеки:
+</P><P>
+
+<UL>
+<LI>
+<A HREF="http://www.gtk.org">GLIB 1.2.0</A> (обязательно)
+<LI>
+<A HREF="http://www.gnu.org/software/flex/flex.html">GNU Flex 2.3</A> (обязательно)
+<LI>
+<A HREF="http://www.gtk.org">GTK 1.2.0</A> (необязательно)
+<LI>
+<A HREF="ftp://ftp.gnome.org/pub/GNOME/stable/sources/libglade/">Libglade</A>
+(необязательно)
+<LI>
+<A HREF="http://cnswww.cns.cwru.edu/php/chet/readline/rltop.html">GNU
+Readline</A>
+(необязательно)
+<LI>
+<A HREF="http://www.gnu.org/software/guile">GNU Libguile 1.3</A> (необязательно)
+</UL>
+<P>
+
+Если присутствуют readline и history, они используются для завершения
+команд и управления историей командной строки виртуальной машины MIX
+<CODE>mixvm</CODE>. GTK+ и libglade необходимы, если вы хотите собрать
+графический интерфейс виртуальнйо машины MIX <CODE>gmixvm</CODE>. Наконец,
+если найдена libguile, утилиты MDK будут скомпилированы с поддержкой
+Guile, и их можно будет расширять с использованием Scheme.
+</P><P>
+
+<STRONG>Пожалуйста, имейте в виду</STRONG>: вам нужны <EM>и</EM> библиотеки <EM>и</EM>
+заголовки, то есть как пакет библиотеки, так и пакет <TT>`-dev'</TT>, если
+вы не компилируете библиотеки самостоятельно (например, под Debian
+установите пакеты <TT>`libgtk1.2'</TT> и <TT>`libgtk1.2-dev'</TT>).
+</P><P>
+
+<A NAME="Базовая установка"></A>
+<HR SIZE="6">
+<A NAME="SEC6"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_3.html#SEC5"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_3.html#SEC7"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_3.html#SEC3"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_3.html#SEC3"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_4.html#SEC10"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 1.3 Базовая установка </H2>
+<!--docid::SEC6::-->
+<P>
+
+MDK использует инструменты GNU Autoconf и Automake, и поэтому
+должен собираться и устанавливаться без лишних хлопот, с использованием
+следующих команд в каталоге исходных текстов:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>./configure
+make
+make install
+</pre></td></tr></table></P><P>
+
+последняя из которых должна выполняться с правами администратора.
+</P><P>
+
+Первая команда (<CODE>configure</CODE>) создаст и настроит файлы make для
+вашей системы. В частности, <CODE>configure</CODE> проверит наличие GTK+ и
+libglade, и если они присутствуют, создаст файлы make для сборки
+графического интерфейса <CODE>gmixvm</CODE>. По завершении конфигурирования
+вы увидите сообщение о результатах наподобие следующего:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>*** GNU MDK 1.0 has been successfully configured. ***
+
+Type 'make' to build the following utilities:
+    - mixasm (MIX assembler)
+    - mixvm (MIX virtual machine, with readline support, 
+             with guile support)
+    - gmixvm (mixvm GTK+ GUI, with guile support)
+    - mixguile (the mixvm guile shell)
+</pre></td></tr></table></P><P>
+
+последние строки которого могут отсутствовать, если у вас нет
+вышеупомянутых библиотек.
+</P><P>
+
+Следующая команда (<CODE>make</CODE>) в действительности соберёт программы
+MDK в следующих местах:
+</P><P>
+
+<UL>
+<LI>
+<TT>`mixutils/mixasm'</TT>
+<LI>
+<TT>`mixutils/mixvm'</TT>
+<LI>
+<TT>`mixgtk/gmixvm'</TT>
+<LI>
+<TT>`mixguile/mixguile'</TT>
+</UL>
+<P>
+
+Вы можете запускать эти программы из этих каталогов, но я рекомендую
+установить их в правильные каталоги, используя <CODE>make install</CODE>
+с правами администратора.
+</P><P>
+
+<A NAME="Поддержка Emacs"></A>
+<HR SIZE="6">
+<A NAME="SEC7"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_3.html#SEC6"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_3.html#SEC8"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_3.html#SEC3"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_3.html#SEC3"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_4.html#SEC10"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 1.4 Поддержка Emacs </H2>
+<!--docid::SEC7::-->
+<P>
+
+<CODE>mixvm</CODE> может запускаться из буфера GUD Emacs с использованием
+программы на elisp <TT>`misc/mixvm.el'</TT>, написанной Филиппом Э. Кингом
+(Philip E. King).
+</P><P>
+
+<TT>`mixvm.el'</TT> предоставляет интерфейс между <CODE>mixvm</CODE> MDK
+и Emacs через <FONT SIZE="-1">GUD</FONT>.  Поместите этот файл в ваш путь загрузки,
+возможно, добавив к файлу <TT>`.emacs'</TT> следующую строку:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(autoload 'mixvm "mixvm" "mixvm/gud interaction" t)
+</pre></td></tr></table></P><P>
+
+<A NAME="Специальные флаги конфигурации"></A>
+<HR SIZE="6">
+<A NAME="SEC8"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_3.html#SEC7"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_3.html#SEC9"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_3.html#SEC3"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_3.html#SEC3"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_4.html#SEC10"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 1.5 Специальные флаги конфигурации </H2>
+<!--docid::SEC8::-->
+<P>
+
+Вы можете производить тонкую настройку процесса конфигурирования,
+используя следующие параметры configure:
+</P><P>
+
+<A NAME="IDX1"></A>
+<DL>
+<DT><U>User Option:</U> <B>--enable-gui[=yes|no]</B>
+<DD><A NAME="IDX2"></A>
+<DT><U>User Option:</U> <B>--disable-gui</B>
+<DD>Включает/выключает сборку графического интерфейса виртуальной машины
+MIX (<CODE>gmixvm</CODE>). Если отсутствуют необходимые библиотеки
+(see section <A HREF="mdk_3.html#SEC5">1.2 Требования</A>), скрипт конфигурирования автоматически отключит
+эту возможность.
+</DL>
+</P><P>
+
+<A NAME="IDX3"></A>
+<DL>
+<DT><U>User Option:</U> <B>--with-guile[=yes|no]</B>
+<DD><A NAME="IDX4"></A>
+<DT><U>User Option:</U> <B>--without-guile</B>
+<DD>Включает/выключает подержку Guile в <CODE>mixvm</CODE> и <CODE>gmixvm</CODE> и
+сборку <CODE>mixguile</CODE>.  Если отсутствуют необходимые библиотеки,
+(see section <A HREF="mdk_3.html#SEC5">1.2 Требования</A>), скрипт конфигурирования автоматически отключит
+эту возможность.
+</DL>
+</P><P>
+
+<A NAME="IDX5"></A>
+<DL>
+<DT><U>User Option:</U> <B>--with-readline[=yes|no]</B>
+<DD><A NAME="IDX6"></A>
+<DT><U>User Option:</U> <B>--without-readline</B>
+<DD>Включает/выключает поддержку GNU Readline в <CODE>mixvm</CODE>.  Если
+отсутствуют необходимые библиотеки (see section <A HREF="mdk_3.html#SEC5">1.2 Требования</A>), скрипт
+конфигурирования автоматически отключит эту возможность.
+</DL>
+</P><P>
+
+Дополнительные параметры конфигурирования см. в файле
+<TT>`INSTALL'</TT> или выполните
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>configure --help
+</pre></td></tr></table></P><P>
+
+<A NAME="Поддерживаемые платформы"></A>
+<HR SIZE="6">
+<A NAME="SEC9"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_3.html#SEC8"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_4.html#SEC10"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_3.html#SEC3"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_3.html#SEC3"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_4.html#SEC10"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 1.6 Поддерживаемые платформы </H2>
+<!--docid::SEC9::-->
+<P>
+
+GNU MDK тестировался на следующих платформах:
+</P><P>
+
+<UL>
+<LI>
+Debian GNU/Linux 2.2/2.3/3.0
+<LI>
+Redhat GNU/Linux 7.0 (Агустин Наварро (Agustin Navarro)), 6.2 (Роберто Ферреро (Roberto Ferrero))
+<LI>
+Mandrake 8.0 (Агустин Наварро (Agustin Navarro))
+<LI>
+FreeBSD 4.2, 4.3, 4.4, 4.5 (Йинг-Чи Ляо (Ying-Chieh Liao))
+<LI>
+Solaris 2.8/gcc 2.95.3 (Стивен Рамзай (Stephen Ramsay))
+<LI>
+MS Windows 98 SE/Cygwin 1.1.8-2 (Кристоф фон Натусиус (Christoph von
+Nathusius))<A NAME="DOCF3" HREF="mdk_fot.html#FOOT3">(3)</A>
+<LI>
+Mac OS X 10.1.2 (Йохан Сванльюнг (Johan Swanljung))
+</UL>
+<P>
+
+Вероятно, MDK будет работать на всех платформах GNU/Linux и BSD.  Если
+вы пытаетесь использовать на одной из не упомянутых выше платформ,
+пожалуйста, пошлите письмо <A HREF="mailto:jao@gnu.org">автору</A>.
+</P><P>
+
+<A NAME="Учебник по MIX и MIXAL"></A>
+<HR SIZE="6">
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_3.html#SEC3"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_4.html#SEC10"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="mdk_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<BR>  
+<FONT SIZE="-1">
+This document was generated
+on <I>June, 9  2003</I>
+using <A HREF="http://www.mathematik.uni-kl.de/~obachman/Texi2html
+"><I>texi2html</I></A>
+
+</BODY>
+</HTML>

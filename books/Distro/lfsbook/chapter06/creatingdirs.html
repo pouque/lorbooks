@@ -1,0 +1,265 @@
+<HTML
+><HEAD
+><TITLE
+>Creating directories</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Microsoft FrontPage 4.0"/><LINK
+REL="HOME"
+TITLE="Linux From Scratch"
+HREF="http://www.linuxfromscratch.org/view/4.0/index.html"/><LINK
+REL="UP"
+TITLE="Installing basic system software"
+HREF="http://www.linuxfromscratch.org/view/4.0/chapter06/chapter06.html"/><LINK
+REL="PREVIOUS"
+TITLE="Changing ownership"
+HREF="http://www.linuxfromscratch.org/view/4.0/chapter06/changingowner.html"/><LINK
+REL="NEXT"
+TITLE="Mounting the proc file system"
+HREF="http://www.linuxfromscratch.org/view/4.0/chapter06/proc.html"/></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#006000"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Linux From Scratch: Версия 4.0</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="changingowner.html"
+ACCESSKEY="P"
+>Назад</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Глава 6. Установка основных компонентов
+        системы</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="proc.html"
+ACCESSKEY="N"
+>Вперед</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"/></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="ch06-creatingdirs"
+>Создание директорий</A
+></H1
+><P
+>Давайте создадим структуру файловой
+  системы LFS. Начнем с создания более или
+  менее стандартного дерева с помощью
+  следующих команд:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="screen"
+><TT
+CLASS="userinput"
+><B
+>mkdir -p /{bin,boot,dev/pts,etc/opt,home,lib,mnt,proc} &amp;&amp;
+mkdir -p /{root,sbin,tmp,usr/local,var,opt} &amp;&amp;
+for dirname in /usr /usr/local
+&nbsp;&nbsp;&nbsp;&nbsp;do
+&nbsp;&nbsp;&nbsp;&nbsp;mkdir $dirname/{bin,etc,include,lib,sbin,share,src}
+&nbsp;&nbsp;&nbsp;&nbsp;ln -s share/{man,doc,info} $dirname
+&nbsp;&nbsp;&nbsp;&nbsp;mkdir $dirname/share/{dict,doc,info,locale,man}
+&nbsp;&nbsp;&nbsp;&nbsp;mkdir $dirname/share/{nls,misc,terminfo,zoneinfo}
+&nbsp;&nbsp;&nbsp;&nbsp;mkdir $dirname/share/man/man{1,2,3,4,5,6,7,8}
+done &amp;&amp;
+mkdir /var/{lock,log,mail,run,spool} &amp;&amp;
+mkdir -p /var/{tmp,opt,cache,lib/misc,local} &amp;&amp;
+mkdir /opt/{bin,doc,include,info} &amp;&amp;
+mkdir -p /opt/{lib,man/man{1,2,3,4,5,6,7,8}} &amp;&amp;
+ln -s ../var/tmp /usr</B
+></TT
+></PRE
+></TD
+></TR
+></TABLE
+><P
+>По умолчанию директории создаются с
+  правами доступа 755, однако это подходит не
+  для всех директорий. Мы сделаем два
+  изменения: для домашнего каталога root и для
+  каталога временных файлов.</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="screen"
+><TT
+CLASS="userinput"
+><B
+>chmod 0750 /root &amp;&amp;
+chmod 1777 /tmp /var/tmp</B
+></TT
+></PRE
+></TD
+></TR
+></TABLE
+><P
+>Первое изменение гарантирует, что не все
+  пользователи имеют доступ к директории
+<TT
+CLASS="filename"
+>/root</TT
+> directory -- аналогичные действия выполняет
+  обычный пользователь со своим домашним
+  каталогом. Второе изменение дает любому
+  пользователю право на запись в директории <TT
+CLASS="filename"
+>/tmp</TT
+> и <TT
+CLASS="filename"
+>/var/tmp</TT
+>, однако не разрешает удалять из них файлы
+  других пользователей. Удаление чужих
+  файлов определяется параметром "sticky bit" --
+  наивысший двоичный знак в двоичной маске 1777.</P
+><P
+>Итак, после создания директорий
+  переместите tar-архивы исходных кодов
+  пакетов, загруженных по инструкциям Главы
+  3, в некоторый самостоятельно созданный
+  подкаталог в /usr/src.</P
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+>Соответствие <A
+NAME="AEN2239"
+>FHS</A
+></H2
+><P
+>При создании директорий мы основывались на
+    стандарте FHS (см.
+<A
+HREF="http://www.pathname.com/fhs/"
+TARGET="_top"
+>http://www.pathname.com/fhs/</A
+>). Помимо созданных каталогов данный
+    стандарт ставит условием наличие
+    каталогов
+<TT
+CLASS="filename"
+>/usr/local/games</TT
+> и <TT
+CLASS="filename"
+>/usr/share/games</TT
+>, но, по нашему мнению, для базовой системы
+    они не нужны. Однако можете смело
+    привести свою систему к полному
+    соответствию с FHS. Что касается структуры
+    каталога <TT
+CLASS="filename"
+>/usr/local/share</TT
+>, стандарт FHS строго не оговаривает&nbsp; его
+    содержимое, так что мы решили создать в
+    нем необходимые, по нашему убеждению,
+    подкаталоги.</P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"/><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="changingowner.html"
+ACCESSKEY="P"
+>Назад</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="../index.html"
+ACCESSKEY="H"
+>Домой</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="proc.html"
+ACCESSKEY="N"
+>Вперед</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Изменение прав</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="chapter06.html"
+ACCESSKEY="U"
+>Наверх</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Монтирование файловой системы proc</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,193 @@
+<HTML
+><HEAD
+><TITLE
+>Introduction</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Microsoft FrontPage 4.0"/><LINK
+REL="HOME"
+TITLE="Linux From Scratch"
+HREF="http://www.linuxfromscratch.org/view/4.0/index.html"/><LINK
+REL="UP"
+TITLE="Installing basic system software"
+HREF="http://www.linuxfromscratch.org/view/4.0/chapter06/chapter06.html"/><LINK
+REL="PREVIOUS"
+TITLE="Installing basic system software"
+HREF="http://www.linuxfromscratch.org/view/4.0/chapter06/chapter06.html"/><LINK
+REL="NEXT"
+TITLE="About debugging symbols"
+HREF="http://www.linuxfromscratch.org/view/4.0/chapter06/aboutdebug.html"/></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#006000"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Linux From Scratch: Версия 4.0</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="chapter06.html"
+ACCESSKEY="P"
+>Назад</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Глава 6. Установка основных компонентов
+        системы</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="aboutdebug.html"
+ACCESSKEY="N"
+>Вперед</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"/></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="ch06-introduction"
+>Вступление</A
+></H1
+><P
+>В этой главе мы всерьез займемся
+  установкой системы LFS. Сначала мы войдем в
+  созданную в предыдущей главе мини-систему
+  Linux, создадим несколько вспомогательных
+  вещей и перейдем к поочередной
+  инсталляции всех пакетов.</P
+><P
+>Инсталляция программ довольно однообразна.
+  Вероятно, можно было бы дать общие
+  инструкции установки, а более подробно
+  пояснять установку тех пакетов, которые
+  требуют иного подхода. Однако мы решили
+  предоставить полное руководство по
+  установке для каждого пакета с целью
+  минимизации возможных ошибок.</P
+><P
+>Если вы собираетесь воспользоваться
+  оптимизациями компилятора в данной главе,
+  см. соответствующее руководство по адресу
+<A
+HREF="http://hints.linuxfromscratch.org/hints/optimization.txt"
+TARGET="_top"
+>http://hints.linuxfromscratch.org/hints/optimization.txt</A
+>. Оптимизации компилятора позволяют
+  ускорить выполнение той или иной
+  программы, однако иногда они создают
+  трудности при компиляции. В случае если
+  пакет не компилируется с использованием
+  оптимизаций, попробуйте скомпилировать
+  его без них.</P
+><P
+>Настоятельно рекомендуется строго
+  соблюдать порядок инсталляции пакетов в
+  данной главе для того, чтобы не включить в
+  программу ссылку на каталог <TT
+CLASS="filename"
+>/static</TT
+>. По той же причине, ни в коем случае не
+  компилируйте несколько пакетов
+  одновременно. Параллельная компиляция
+  хоть и позволяет сэкономить время (особенно
+  на двухпроцессорных системах), однако в
+  этом случае в программу может быть
+  встроена ссылка на каталог <TT
+CLASS="filename"
+>/static</TT
+>. После удаления данного каталога,
+  программа будет давать сбои.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"/><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="chapter06.html"
+ACCESSKEY="P"
+>Назад</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="../index.html"
+ACCESSKEY="H"
+>Домой</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="aboutdebug.html"
+ACCESSKEY="N"
+>Вперед</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Установка основных компонентов системы</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="chapter06.html"
+ACCESSKEY="U"
+>Наверх</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Отладочные символы</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

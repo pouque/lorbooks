@@ -1,0 +1,595 @@
+<HTML
+><HEAD
+><TITLE
+>Собираем все вместе: Создание диска (ов).</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="The Linux Bootdisk HOWTO"
+HREF="t1.htm"><LINK
+REL="PREVIOUS"
+TITLE="Выбор ядра."
+HREF="x688.htm"><LINK
+REL="NEXT"
+TITLE="Поиск неисправностей, или Агония Поражения"
+HREF="x844.htm"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>The Linux Bootdisk HOWTO</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x688.htm"
+ACCESSKEY="P"
+>&#1055;&#1088;&#1077;&#1076;.</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x844.htm"
+ACCESSKEY="N"
+>&#1057;&#1083;&#1077;&#1076;.</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="AEN703">Собираем все вместе: Создание диска (ов).</H1
+><P
+>Теперь у Вас есть ядро и сжатая корневая файловая система. Если Вы создаете загрузочный/корневой диск, проверьте их размеры и убедитесь, что они оба поместятся на одном диске. Если Вы делаете две дискеты загрузочную + корневую, проверьте, помещается ли корневая файловая система на одной дискете.</P
+><P
+> Вы должны решить, использовать ли LILO для загрузки ядра с загрузочного диска. Или же копировать ядро непосредственно на дискету и загружаться без LILO. Преимущество использования LILO - возможность указать некоторые параметры ядра, которые могут быть необходимы для инициализации аппаратных средств (проверьте в вашей системе файл <TT
+CLASS="FILENAME"
+>/etc/lilo.conf</TT
+>, если он существует и содержит строку ``<TT
+CLASS="LITERAL"
+>append=...</TT
+>'', то, скорее всего, Вам нужно это свойство). Недостатками LILO являются: усложнение создания загрузочного диска, и немного большее занимаемое пространство. Вы должны установить отдельную маленькую файловую систему, которую мы назовем <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>файловой системой ядра</I
+></SPAN
+>, куда Вы перенесете ядро и несколько других необходимых LILO файлов.</P
+><P
+> Если Вы собираетесь использовать LILO - читайте; если Вы собираетесь перемещать ядро непосредственно, пропустите до секции <A
+HREF="x703.htm#TRANSFERRINGWITHOUTLILO"
+>&#1056;&#1072;&#1079;&#1076;. <I
+>Перенос ядра без LILO</I
+></A
+>.</P
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="TRANSFERRINGWITHLILO">Перенос ядра с LILO</H2
+><P
+>Первым делом - создайте маленький конфигурационный файл LILO. Он должен выглядеть так:
+<PRE
+CLASS="PROGRAMLISTING"
+>        boot      =/dev/fd0
+        install   =/boot/boot.b
+        map       =/boot/map
+        read-write
+        backup    =/dev/null
+        compact
+        image     = KERNEL
+        label     = Bootdisk
+        root      =/dev/fd0</PRE
+>
+Для объяснения этих параметров, см. документацию по использованию LILO. Вероятно, Вы захотите добавить к этому файлу строку <TT
+CLASS="LITERAL"
+>append=...</TT
+> из файла <TT
+CLASS="FILENAME"
+>/etc/lilo.conf</TT
+> на вашем жестком диске.</P
+><P
+>Сохраните этот файл как <TT
+CLASS="FILENAME"
+>bdlilo.conf</TT
+>.</P
+><P
+> Вы теперь создайте маленькую файловую систему, которую мы будем называть <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>файловой системой ядра</I
+></SPAN
+>, чтобы отличить ее от корневой файловой системы.</P
+><P
+>Сначала вычислите, насколько большой должна быть файловая система. Возьмите размер вашего ядра в блоках (размер выводимый ``<B
+CLASS="COMMAND"
+>ls -s KERNEL</B
+>'') и добавьте 50. Пятьдесят блоков - пространство, приблизительно необходимое для inodes плюс другие файлы. Если хотите, можете вычислить это число точно, или используйте 50. Если вы создаете двухдисковый набор, Вы можете завысить необходимое пространство, так как первый диск все равно используется только для ядра. Назовем это число <TT
+CLASS="LITERAL"
+>KERNEL&lowbar;BLOCKS</TT
+>.</P
+><P
+>Поместите дискету в привод (для простоты, предположим 
+<TT
+CLASS="FILENAME"
+>/dev/fd0</TT
+>) и создайте  на ней файловую систему ext2:
+<PRE
+CLASS="SCREEN"
+>        mke2fs -i 8192 -m 0 /dev/fd0 KERNEL&lowbar;BLOCKS</PRE
+>
+
+
+
+``<TT
+CLASS="LITERAL"
+>-i 8192</TT
+>'' означает - один inode на 8192 байта. Затем, примонтируйте файловую систему, удалите каталог <TT
+CLASS="FILENAME"
+>lost+found</TT
+>, и создайте для LILO каталоги <TT
+CLASS="FILENAME"
+>dev</TT
+> и <TT
+CLASS="FILENAME"
+>boot</TT
+>:
+<PRE
+CLASS="SCREEN"
+>        mount /dev/fd0 /mnt
+        rm -rf /mnt/lost+found
+        mkdir /mnt/&lcub;boot,dev&rcub;</PRE
+></P
+><P
+>Затем, создайте устройства <TT
+CLASS="FILENAME"
+>/dev/null</TT
+> и <TT
+CLASS="FILENAME"
+>/dev/fd0</TT
+>.  Вместо того, чтобы искать числа устройств, Вы можете просто скопировать их с вашего жесткого диска используя <TT
+CLASS="LITERAL"
+>-R</TT
+>:
+<PRE
+CLASS="SCREEN"
+>        cp -R /dev/{null,fd0} /mnt/dev</PRE
+> 
+LILO нужна копия загрузчика <TT
+CLASS="FILENAME"
+>boot.b</TT
+>, который Вы можете взять с вашего жесткого диска. Он обычно хранится в каталоге 
+<TT
+CLASS="FILENAME"
+>/boot</TT
+>.
+<PRE
+CLASS="SCREEN"
+>        cp /boot/boot.b /mnt/boot</PRE
+>
+В заключение, скопируйте конфигурационный файл LILO, который Вы создали в последней секции, вместе с ядром. Оба могут быть помещены в корневой каталог:
+<PRE
+CLASS="SCREEN"
+>        cp bdlilo.conf KERNEL /mnt</PRE
+>
+Все, что нужно LILO теперь есть на файловой системе ядра, так что Вы готовы к его запуску. Флажок LILO <TT
+CLASS="LITERAL"
+>-r</TT
+> используется для установки начального загрузчика в другом корне:
+<PRE
+CLASS="SCREEN"
+>        lilo -v -C bdlilo.conf -r /mnt</PRE
+>
+
+LILO должна выполниться без ошибок, после чего файловая система ядра должна выглядеть так:
+<PRE
+CLASS="SCREEN"
+>total 361
+  1 &ndash;rw&ndash;r&ndash;&ndash;r&ndash;&ndash;   1 root     root          176 Jan 10 07:22 bdlilo.conf
+  1 drwxr&ndash;xr&ndash;x   2 root     root         1024 Jan 10 07:23 boot/
+  1 drwxr&ndash;xr&ndash;x   2 root     root         1024 Jan 10 07:22 dev/
+358 &ndash;rw&ndash;r&ndash;&ndash;r&ndash;&ndash;   1 root     root       362707 Jan 10 07:23 vmlinuz
+boot:
+total 8
+  4 &ndash;rw&ndash;r&ndash;&ndash;r&ndash;&ndash;   1 root     root         3708 Jan 10 07:22 boot.b
+  4 &ndash;rw&ndash;&ndash;&ndash;&ndash;&ndash;&ndash;&ndash;   1 root     
+root         3584 Jan 10 07:23 map
+dev:
+total 0
+  0 brw&ndash;r&ndash;&ndash;&ndash;&ndash;&ndash;   1 root     root       2,   0 Jan 10 07:22 fd0
+  0 crw&ndash;r&ndash;&ndash;r&ndash;&ndash;   1 root     root       1,   3 Jan 10 07:22 null           </PRE
+></P
+><P
+>Не волнуйтесь, если размеры ваших файлов немного отличаются.</P
+><P
+>Теперь оставьте диск в приводе, и идите к секции <A
+HREF="x703.htm#SETTINGRAMDISKWORD"
+>&#1056;&#1072;&#1079;&#1076;. <I
+>Установка слова ramdisk</I
+></A
+>.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="TRANSFERRINGWITHOUTLILO">Перенос ядра без LILO</H2
+><P
+>Если Вы <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>не используете</I
+></SPAN
+> LILO, перенесите ядро на загрузочный диск командой <B
+CLASS="COMMAND"
+>dd</B
+>:
+<PRE
+CLASS="SCREEN"
+>        % dd if=KERNEL of=/dev/fd0 bs=1k
+        353+1 records in
+        353+1 records out</PRE
+>
+
+В этом примере, <B
+CLASS="COMMAND"
+>dd</B
+> записала 353 полных записи + 1 частичную запись, так что ядро занимает первые 354 блока дискеты. Назовем это число <TT
+CLASS="LITERAL"
+>KERNEL&lowbar;BLOCKS</TT
+>, и запомним его для использования в следующей секции.</P
+><P
+>В заключение, установите дискету как корневое устройство, затем установите загрузку корневой файловой системы в режиме чтение-запись:
+<PRE
+CLASS="SCREEN"
+>        rdev /dev/fd0 /dev/fd0
+        rdev -R /dev/fd0 0</PRE
+>
+
+
+
+Будьте внимательны - используйте прописную букву <TT
+CLASS="LITERAL"
+>-R</TT
+> во второй <B
+CLASS="COMMAND"
+>rdev</B
+> команде.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="SETTINGRAMDISKWORD">Установка слова ramdisk</H2
+><P
+> 
+Внутри образа ядра есть <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>слово ramdisk</I
+></SPAN
+>, которое, наряду с другими опциями, указывает расположение корневой файловой системы. Слово может быть считано и установлено посредством команды <B
+CLASS="COMMAND"
+>rdev</B
+> и интерпретируется следующим образом:
+  <DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN781"><P
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><THEAD
+><TR
+><TH
+WIDTH="96"
+ALIGN="RIGHT"
+VALIGN="TOP"
+>Бит(ы)</TH
+><TH
+WIDTH="100%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>Описание</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+WIDTH="96"
+ALIGN="RIGHT"
+VALIGN="TOP"
+>0-10</TD
+><TD
+WIDTH="100%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>Смещение начала ramdisk, в 1024 байтовых блоках</TD
+></TR
+><TR
+><TD
+WIDTH="96"
+ALIGN="RIGHT"
+VALIGN="TOP"
+>11-13</TD
+><TD
+WIDTH="100%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>не используется</TD
+></TR
+><TR
+><TD
+WIDTH="96"
+ALIGN="RIGHT"
+VALIGN="TOP"
+>14</TD
+><TD
+WIDTH="100%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>Флаг указывающий, что нужно загружаться в ramdisk</TD
+></TR
+><TR
+><TD
+WIDTH="96"
+ALIGN="RIGHT"
+VALIGN="TOP"
+>15</TD
+><TD
+WIDTH="100%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>Флаг, указывающий необходимость запроса подтверждения перед загрузкой корневой файловой системы</TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></P
+><P
+>Если бит 15 установлен, в процессе загрузки у Вас запросят поместить новую дискету в привод. Это необходимо для двухдискового загрузочного набора.</P
+><P
+>В зависимости от того, создается ли одиночная загрузочная дискета или набор из двух дискет ``загрузочная + корневая'', возможны два варианта:</P
+><P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>Если Вы создаете один диск, сжатая корневая файловая система будет помещена сразу после ядра, так что смещением будет первый свободный блок (который должен быть такой же, как <TT
+CLASS="LITERAL"
+>KERNEL&lowbar;BLOCKS</TT
+>). Бит 14 должен быть 1, и бит 15 должен быть 0.
+
+Например, пусть Вы создаете одиночный диск, и корневая файловая система будет начинаться с блока 253 (десятичное число).  Значение слова ramdisk должно быть 253 (десятичное) с битом 14 установленным в 1 и битом 15 установленным в 0. Для вычисления значения Вы можете просто сложить десятичные значения. 253 + (2&circ;14) = 253 + 16384 = 16637. Если Вы не совсем поняли, откуда взялось это число, вставьте его в инженерный калькулятор и преобразуйте в двоичное.</P
+></LI
+><LI
+><P
+>Если Вы формируете двухдисковый набор, корневая файловая система начинается в блоке 0 на втором диске, так что смещение будет нулевое. Бит 14 
+должен быть 1, и бит 15 должен быть 1. В этом случае десятичное значение будет 
+2&circ;14 + 2&circ;15 = 49152.</P
+></LI
+></OL
+><P
+>После тщательно вычисления значения слова ramdisk, установите его с помощью 
+<B
+CLASS="COMMAND"
+>rdev -r</B
+>. Используйте <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>десятичное</I
+></SPAN
+> 
+значение. Если Вы использовали LILO, аргументом <B
+CLASS="COMMAND"
+>rdev</B
+> должен 
+быть - <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>путь где смонтировано ядро</I
+></SPAN
+>, например 
+<TT
+CLASS="FILENAME"
+>/mnt/vmlinuz</TT
+>; если Вы скопировали ядро с помощью 
+<B
+CLASS="COMMAND"
+>dd</B
+>, взамен используйте имя флоппи-устройства 
+(<SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>такое как</I
+></SPAN
+> <TT
+CLASS="FILENAME"
+>/dev/fd0</TT
+>).
+<PRE
+CLASS="SCREEN"
+>        rdev -r KERNEL&lowbar;OR&lowbar;FLOPPY&lowbar;DRIVE  VALUE</PRE
+></P
+><P
+>Если Вы использовали LILO, размонтируйте сейчас дискету.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN825">Перенос корневой файловой системы.</H2
+><P
+>Последний шаг - перенос корневой файловой системы.</P
+><P
+>&#13;<P
+></P
+><UL
+><LI
+><P
+> Если корневая файловая система будет помещена на <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>диск с 
+ядром</I
+></SPAN
+>, перенесите ее, используя <B
+CLASS="COMMAND"
+>dd</B
+> с опцией 
+<TT
+CLASS="OPTION"
+>seek</TT
+>, которая определяет, сколько блоков проскочить:
+<PRE
+CLASS="SCREEN"
+>        dd if=rootfs.gz of=/dev/fd0 bs=1k seek=<SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>KERNEL&lowbar;BLOCKS</I
+></SPAN
+></PRE
+></P
+></LI
+><LI
+><P
+>Если корневая файловая система будет помещена на <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>второй</I
+></SPAN
+> 
+диск, удалите первую дискету, вставьте вторую, затем перенесите на нее 
+корневую файловую систему:
+<PRE
+CLASS="SCREEN"
+>        dd if=rootfs.gz of=/dev/fd0 bs=1k</PRE
+></P
+></LI
+></UL
+>&#13;</P
+><P
+>Поздравляю, Вы закончили!</P
+><DIV
+CLASS="IMPORTANT"
+><BLOCKQUOTE
+CLASS="IMPORTANT"
+><P
+><B
+>&#1042;&#1072;&#1078;&#1085;&#1086;: </B
+>Вы должны всегда проверять загрузочный диск перед тем, как отложить его в 
+сторону до критической ситуации! Если он не загружается - читайте дальше.</P
+></BLOCKQUOTE
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x688.htm"
+ACCESSKEY="P"
+>&#1055;&#1088;&#1077;&#1076;.</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="t1.htm"
+ACCESSKEY="H"
+>&#1053;&#1072;&#1095;&#1072;&#1083;&#1086;</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x844.htm"
+ACCESSKEY="N"
+>&#1057;&#1083;&#1077;&#1076;.</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Выбор ядра.</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Поиск неисправностей, или Агония Поражения</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

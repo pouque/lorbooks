@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=koi8-r"><title>Глава 11. Программы электронной почты и чтения новостей</title><meta name="generator" content="DocBook XSL Stylesheets V1.59.1"><link rel="home" href="index.html" title="The Linux Cyrillic HOWTO (russian)"><link rel="up" href="index.html" title="The Linux Cyrillic HOWTO (russian)"><link rel="previous" href="ch10s07.html" title="Использование старого матричного принтера для печати
+кириллического текста"><link rel="next" href="ch11s02.html" title="Настройка программ рассылки электронной почты (MTA)"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Глава 11. Программы электронной почты и чтения новостей</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch10s07.html">Пред.</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch11s02.html">След.</a></td></tr></table><hr></div><div class="chapter" lang="ru"><div class="titlepage"><div><h2 class="title"><a name="email"></a>Глава 11. Программы электронной почты и чтения новостей</h2></div></div><div class="toc"><p><b>Содержание</b></p><dl><dt><a href="ch11.html#id2908854">Настройка пользовательской программы электронной почты
+(MUA)</a></dt><dd><dl><dt><a href="ch11.html#id2908874">Emacs</a></dt><dt><a href="ch11.html#id2908932">elm</a></dt><dt><a href="ch11.html#pine">pine</a></dt><dt><a href="ch11.html#id2909188">mutt</a></dt></dl></dd><dt><a href="ch11s02.html">Настройка программ рассылки электронной почты (MTA)</a></dt><dd><dl><dt><a href="ch11s02.html#id2909371">sendmail</a></dt></dl></dd><dt><a href="ch11s03.html">Настройка программы чтения новостей</a></dt><dd><dl><dt><a href="ch11s03.html#tin">tin</a></dt><dt><a href="ch11s03.html#gnus">gnus</a></dt></dl></dd></dl></div><a class="indexterm" name="id2908684"></a><a class="indexterm" name="id2908696"></a><a class="indexterm" name="id2916583"></a><a class="indexterm" name="id2908653"></a><p>Настройка программ электронной почты и чтения новостей для
+распознавания кириллицы не очень сложна, хотя вам следует знать
+основные принципы работы электронной почты и новостей.</p><p>Обычно программы Internet электронной почты состоят из двух
+частей: <span class="emphasis"><em>MUA</em></span> (Mail User Agent &#8212;
+пользовательская программа электронной почты) и
+<span class="emphasis"><em>MTA</em></span> (Mail Transfer Agent &#8212; программа
+рассылки электронной почты).  MUA - это программа, которую вы
+используете для чтения, составления и посылки электронных
+сообщений. Однако пользовательская программа электронной почты сама
+письма не посылает; вместо этого она вызывает программу рассылки
+электронной почты, которая отвечает за посылку сообщения в
+соответствующем направлении, используя соответствующий протокол.
+Пример пользовательской программы электронной почты &#8212;
+<tt>Pine</tt>, программы рассылки электронной почты &#8212;
+<tt>qmail</tt>.</p><p>До недавнего времени и MTA, и MUA по умолчанию не были чисто
+8-ми битными программами. Поэтому, когда вы посылаете сообщение,
+скажем, из Америки в Россию, то вы никогда не будете уверены в том,
+что какая-нибудь промежуточная программа рассылки электронной почты не
+&quot;откусит&quot;  в вашем сообщении 8-ой бит у каждой буквы в вашем
+сообщении. Поэтому был разработан ряд протоколов, которые позволяют
+закодировать любой тип данных с использованием только печатаемых
+символов из 7-ми битного ASCII. Эта группа протоколов зовётся
+<span class="emphasis"><em>MIME</em></span> (MultimedIa Mail Encoding &#8212;
+мультимедийная кодировка электронных сообщений).</p><p>Так как MIME обычно сконфигурирован по умолчанию довольно
+правильно, мы не будем обсуждать его здесь. Мы поговорим о MIME, когда
+будет обсуждаться совместимость между русскими кодировками (См. раздел
+<a href="ch13.html#mime" title="Совместимость данных в MIME формате">&#8220;Совместимость данных в MIME формате&#8221;</a>).</p><p>Мы начнём с настройки пользовательской программы электронной
+почты, потому что именно с этой программой вы работаете
+непосредственно.  Ей нужно указать:</p><div class="orderedlist"><ol type="1"><li><p>что письма будут содержать 8-битные символы,</p></li><li><p>с какой кодировкой вы работаете, и</p></li><li><p>с какой кодировкой письма будут посылаться.</p></li></ol></div><p>Кодировки нужно обозначать не произвольными именами, а
+согласно рекомендаций <span class="emphasis"><em>IANA</em></span>.</p><p>Конечно, указывая кодировку для посылаемых писем, вы должны
+действовать в соответствии с существующими стандартами.  Стандарт для
+России: для электронной почты используется
+<span class="emphasis"><em>KOI8-R</em></span>, именем этой кодировки согласно
+рекомендаций <span class="emphasis"><em>IANA</em></span> является
+<span class="emphasis"><em>koi8-r</em></span>.  В Болгарии же для электронной почты
+используется кодировка <span class="emphasis"><em>cp1251</em></span>, имя согласно
+<span class="emphasis"><em>IANA</em></span> &#8212;
+<span class="emphasis"><em>windows-1251</em></span>.</p><p><span class="emphasis"><em>Дополнение:</em></span> Довольно часто случается так,
+что те, кто посылают вам письма, неправильно настраивают (или не
+настраивают вообще, а по умолчанию стоит чёрте-что &#8212; пример
+Outlook) свои почтовые программы.  В заголовках писем вместо
+<tt>windows-1251</tt> чаще всего стоит
+<tt>iso-8859-1</tt>, <tt>US-ASCII</tt> или
+<tt>UNKNOWN-8BIT</tt>.  Для исправления получаемых писем
+создайте файл <tt>&#732;/.procmailrc</tt> со следующим
+содержанием (но я <span class="emphasis"><em>предупреждаю</em></span> вас, что после
+ошибки в <tt>&#732;/.procmailrc</tt> вы можете потерять всю
+вашу почту):</p><pre class="programlisting">
+:0 fHw
+* ^Content-Type: *text/plain; *charset=&quot;?(iso-8859-1|US-ASCII|UNKNOWN-8BIT)&quot;?
+| formail -i &quot;Content-Type: text/plain; charset=windows-1251&quot;
+</pre><div class="sect1" lang="ru"><div class="titlepage"><div><h2 class="title" style="clear: both"><a name="id2908854"></a>Настройка пользовательской программы электронной почты
+(MUA)</h2></div></div><a class="indexterm" name="id2908863"></a><div class="sect2" lang="ru"><div class="titlepage"><div><h3 class="title"><a name="id2908874"></a>Emacs</h3></div></div><a class="indexterm" name="id2908881"></a><a class="indexterm" name="id2908896"></a><p>Если вы уже настроили <span class="emphasis"><em>emacs</em></span> как
+таковой, то вам не нужно специально настраивать программу электронной
+почты, которая обеспечивается средствами Emacs. (Для настройки Emacs
+смотрите раздел <a href="ch07s02.html" title="Emacs и XEmacs">&#8220;Emacs и XEmacs&#8221;</a>).</p></div><div class="sect2" lang="ru"><div class="titlepage"><div><h3 class="title"><a name="id2908932"></a>elm</h3></div></div><a class="indexterm" name="id2908939"></a><a class="indexterm" name="id2908955"></a><p>Добавьте следующую запись в ваш
+      <tt>&#732;/.elm/elmrc</tt>:</p><pre class="screen">
+CHARSET=koi8-r
+</pre></div><div class="sect2" lang="ru"><div class="titlepage"><div><h3 class="title"><a name="pine"></a>pine</h3></div></div><a class="indexterm" name="id2908997"></a><a class="indexterm" name="id2909013"></a><p>Добавьте следующую запись в
+<tt>&#732;/.pinerc</tt> для персональной настройки или в
+<tt>/usr/lib/pine.conf</tt> для настройки всей системы (эту
+опцию можно настроить прямо из pine):</p><pre class="screen">
+character-set=koi8-r
+</pre><p>Вы можете также изменить настройку вашего
+<tt>Pine</tt> для того, чтобы предотвратить посылку письма в
+<tt>quoted-printable</tt> кодировке.</p><div class="literallayout"><p><br>
+enable-8bit-nntp-posting<br>
+enable-8bit-esmtp-negotiation<br>
+</p></div><p>
+</p><p>Кроме того, удостоверьтесь, что вы имеете свежую версию
+<tt>pine</tt>.  До недавнего времени эта программа имела
+различные проблемы с русским кодировками.</p><p><span class="emphasis"><em>Дополнение:</em></span> Чтобы настроить
+перекодировку win в koi в <span class="emphasis"><em>pine</em></span> в
+<tt>.pinerc</tt> следует прописать нечто вроде (это можно
+сделать и из самого pine):</p><div class="literallayout"><p><br>
+  display-filters=_CHARSET(iso8859-5)_ /usr/local/bin/icat,<br>
+          _CHARSET(utf-8)_ /usr/local/bin/ucat,<br>
+          _CHARSET(windows-1251)_ /usr/local/bin/wcat<br>
+</p></div><p>
+</p><p>Вместо <tt>icat</tt>, <tt>wcat</tt> и
+<tt>ucat</tt> можно написать, скажем,
+<tt>iconv</tt> -from что-надо -to что-надо, или
+<tt>recode</tt>.  <span class="emphasis"><em>Главное</em></span> &#8212;
+писать с полным путём, а то у неё паранойя (и это правильно).</p></div><div class="sect2" lang="ru"><div class="titlepage"><div><h3 class="title"><a name="id2909188"></a>mutt</h3></div></div><a class="indexterm" name="id2909194"></a><a class="indexterm" name="id2909210"></a><p>Добавьте следующую запись в ваш
+      <tt>&#732;/.muttrc</tt>:</p><pre class="programlisting">
+set charset=koi8-r
+set allow_8bit
+</pre><p>Эта программа автоматически перекодирует получаемые
+письма, если они написаны не в стандартной кодировке.  Кроме того, она
+умеет перекодировать отправляемые письма, если вы используете
+кодировку, отличную от стандартной для электронной почты в вашей
+стране &#8212; если вы хотите воспользоваться этой особенностью, то
+укажите это в <tt>&#732;/.muttrc</tt>.</p><p>Например, если вы живёте в России и используете
+<span class="emphasis"><em>cp1251</em></span>, то, чтобы ваши письма отправлялись в
+<span class="emphasis"><em>KOI8-R</em></span>, поместите следующие три строки в
+<tt>&#732;/.muttrc</tt>:</p><pre class="programlisting">
+set charset=windows-1251
+set send_charset=koi8-r
+set allow_8bit
+</pre><p>Если версия sendmail старше 8, то, вероятно, в
+<tt>&#732;/.muttrc</tt> следует добавить директиву:</p><pre class="programlisting">
+set use_8bitmime
+</pre></div></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch10s07.html">Пред.</a> </td><td width="20%" align="center"><a accesskey="u" href="index.html">Уровень выше</a></td><td width="40%" align="right"> <a accesskey="n" href="ch11s02.html">След.</a></td></tr><tr><td width="40%" align="left" valign="top">Использование старого матричного принтера для печати
+кириллического текста </td><td width="20%" align="center"><a accesskey="h" href="index.html">Начало</a></td><td width="40%" align="right" valign="top"> Настройка программ рассылки электронной почты (MTA)</td></tr></table></div></body></html>

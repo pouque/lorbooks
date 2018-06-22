@@ -1,0 +1,210 @@
+<HTML>
+<HEAD>
+<!-- Created by texi2html 1.56k from automake-ru.texi on 11 July 2000 -->
+
+<TITLE>automake - Построение документации</TITLE>
+</HEAD>
+<BODY>
+Go to the <A HREF="automake-ru_1.html">first</A>, <A HREF="automake-ru_9.html">previous</A>, <A HREF="automake-ru_11.html">next</A>, <A HREF="automake-ru_25.html">last</A> section, <A HREF="automake-ru_toc.html">table of contents</A>.
+<P><HR><P>
+
+
+<H1><A NAME="SEC48" HREF="automake-ru_toc.html#TOC48">Построение документации</A></H1>
+
+<P>
+В настоящее время Automake обеспечивает поддержку Texinfo и страниц
+руководства.
+
+
+
+
+<H2><A NAME="SEC49" HREF="automake-ru_toc.html#TOC49">Texinfo</A></H2>
+
+<P>
+<A NAME="IDX362"></A>
+<A NAME="IDX363"></A>
+<A NAME="IDX364"></A>
+
+
+<P>
+Если текущий каталог содержит исходный текст Texinfo, то вы должны
+указать это с помощью основной переменной <SAMP>`TEXINFOS'</SAMP>.  В общем случае файлы
+Texinfo могут быть преобразованы в формат info, и поэтому макрос
+<CODE>info_TEXINFOS</CODE> является наиболее часто используемым. Заметьте, что
+имена файлов исходных текстов Texinfo должны заканчиваться на
+<TT>`.texi'</TT> или <TT>`.texinfo'</TT>.
+<A NAME="IDX365"></A>
+<A NAME="IDX366"></A>
+
+
+<P>
+<A NAME="IDX367"></A>
+<A NAME="IDX368"></A>
+<A NAME="IDX369"></A>
+
+
+<P>
+<A NAME="IDX370"></A>
+<A NAME="IDX371"></A>
+<A NAME="IDX372"></A>
+
+
+<P>
+<A NAME="IDX373"></A>
+
+
+<P>
+Если файл <TT>`.texi'</TT> включает в себя с помощью <SAMP>`@include'</SAMP> файл
+<TT>`version.texi'</TT>, то он будет сгенерирован автоматически.  Файл <TT>`version.texi'</TT>
+определяет три макроса Texinfo, на которые вы можете ссылаться:
+<CODE>EDITION</CODE>, <CODE>VERSION</CODE> и <CODE>UPDATED</CODE>. Первые два макроса
+содержат номер версии вашего пакета (но для ясности они разделены на две
+части); последний макрос содержит дату изменения основного
+файла. Поддержка <TT>`version.texi'</TT> требует наличия программы
+<CODE>mdate-sh</CODE>; эта программа поставляется с Automake и автоматически
+включается при запуске <CODE>automake</CODE> с ключом <CODE>--add-missing</CODE>.
+
+
+<P>
+Иногда файл info зависит от более чем одного файла
+<TT>`.texi'</TT>. Например, в пакете GNU Hello, файл <TT>`hello.texi'</TT>
+включает файл <TT>`gpl.texi'</TT>. Вы можете сообщить об этих зависимостях
+Automake, используя переменную <CODE><VAR>texi</VAR>_TEXINFOS</CODE>. Вот как это
+делается в GNU Hello:
+<A NAME="IDX374"></A>
+<A NAME="IDX375"></A>
+
+
+
+<PRE>
+info_TEXINFOS = hello.texi
+hello_TEXINFOS = gpl.texi
+</PRE>
+
+<P>
+<A NAME="IDX376"></A>
+
+
+<P>
+По умолчанию Automake требует наличия файла <TT>`texinfo.tex'</TT> в том же
+каталоге, что и исходные файлы Texinfo. Однако, если вы используете в
+файле <TT>`configure.in'</TT> макрос <CODE>AC_CONFIG_AUX_DIR</CODE> (see section `Hахождение ввода `configure'' in <CITE>Руководство Autoconf</CITE>), то
+<TT>`texinfo.tex'</TT> ищется в заданном каталоге. Automake устанавливает
+файл <TT>`texinfo.tex'</TT>, если задан ключ <SAMP>`--add-missing'</SAMP>.
+
+
+<P>
+<A NAME="IDX377"></A>
+
+
+<P>
+Если в вашем пакете файлы Texinfo находятся в нескольких каталогах, то
+вы можете использовать переменную <CODE>TEXINFO_TEX</CODE> для того, чтобы
+сообщить Automake, где найти файл <TT>`texinfo.tex'</TT>.  Значением
+этой переменной должен быть относительный путь от текущего файла
+<TT>`Makefile.am'</TT> к файлу <TT>`texinfo.tex'</TT>:
+
+
+
+<PRE>
+TEXINFO_TEX = ../doc/texinfo.tex
+</PRE>
+
+<P>
+<A NAME="IDX378"></A>
+
+
+<P>
+Ключ <SAMP>`no-texinfo.tex'</SAMP> может быть использован для отмены требования
+наличия файла <TT>`texinfo.tex'</TT>. Однако предпочтительней использование
+переменной <CODE>TEXINFO_TEX</CODE>, поскольку это позволяет работать цели
+<CODE>dvi</CODE>.
+
+
+<P>
+<A NAME="IDX379"></A>
+<A NAME="IDX380"></A>
+<A NAME="IDX381"></A>
+<A NAME="IDX382"></A>
+
+
+<P>
+<A NAME="IDX383"></A>
+<A NAME="IDX384"></A>
+
+
+<P>
+Automake создает цель <CODE>install-info</CODE>; она, очевидно, используется
+некоторыми.  По умолчанию страницы info устанавливаются при
+выполнении <SAMP>`make install'</SAMP>. Это поведение может быть изменено,
+используя ключ <CODE>no-installinfo</CODE>.
+
+
+
+
+<H2><A NAME="SEC50" HREF="automake-ru_toc.html#TOC50">Страницы руководства</A></H2>
+
+<P>
+<A NAME="IDX385"></A>
+<A NAME="IDX386"></A>
+<A NAME="IDX387"></A>
+
+
+<P>
+Пакет также может включать в свой состав справочные страницы (но
+взгляните на стандартны GNU за информацией о них, section `Man Pages' in <CITE>The GNU Coding Standards</CITE>).  Страницы руководства объявляются 
+с помощью основной переменной <SAMP>`MANS'</SAMP>.  Обычно используется макрос
+<CODE>man_MANS</CODE>. Справочные страницы автоматически устанавливаются в
+зависимости от расширения файлов в соответствующие подкаталоги
+<CODE>mandir</CODE>. Они не включаются в состав дистрибутива автоматически.
+<A NAME="IDX388"></A>
+<A NAME="IDX389"></A>
+
+
+<P>
+<A NAME="IDX390"></A>
+<A NAME="IDX391"></A>
+<A NAME="IDX392"></A>
+<A NAME="IDX393"></A>
+
+
+<P>
+По умолчанию страницы руководства устанавливаются при выполнении
+<SAMP>`make install'</SAMP>. Однако, поскольку проекты GNU не требуют наличия
+справочных страниц, то многие разработчики проектов не расходуют
+время на поддержание справочных страниц в обновленном состоянии. В этих
+случаях опция <CODE>no-installman</CODE> отключит установку справочных страниц
+по умолчанию. Пользователь все равно будет иметь возможность явно
+установить справочные страницы, используя команду <SAMP>`make
+install-man'</SAMP>.
+<A NAME="IDX394"></A>
+<A NAME="IDX395"></A>
+
+
+<P>
+Вот как документация обрабатывается в пакете GNU <CODE>cpio</CODE> (который
+включает в себя как документацию в Texinfo, так и справочные страницы):
+
+
+
+<PRE>
+info_TEXINFOS = cpio.texi
+man_MANS = cpio.1 mt.1
+EXTRA_DIST = $(man_MANS)
+</PRE>
+
+<P>
+Исходные тексты Texinfo и страницы info считаются исходными файлами и
+включаются в состав дистрибутива.
+
+
+<P>
+В настоящее время страницы руководства не рассматриваются как исходные
+файлы, потому что зачастую они генерируются автоматически.  Именно
+поэтому они и не включаются автоматически в состав дистрибутива.
+
+
+<P><HR><P>
+Go to the <A HREF="automake-ru_1.html">first</A>, <A HREF="automake-ru_9.html">previous</A>, <A HREF="automake-ru_11.html">next</A>, <A HREF="automake-ru_25.html">last</A> section, <A HREF="automake-ru_toc.html">table of contents</A>.
+</BODY>
+</HTML>
