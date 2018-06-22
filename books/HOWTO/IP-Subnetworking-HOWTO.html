@@ -16,51 +16,51 @@ Contents
 
 <H2>Robert Hart, 
 <A HREF="mailto:hartr@interweft.com.au">hartr@interweft.com.au</A><BR>
-Русский перевод Ilgiz Kalmetev 
+п═я┐я│я│п╨п╦п╧ п©п╣я─п╣п╡п╬п╢ Ilgiz Kalmetev 
 <A HREF="mailto:ilgiz@mail.rb.ru">ilgiz@mail.rb.ru</A></H2>  v1.0, 31 March 1997
 <P><HR>
-<EM>  Этот документ описывает зачем и как сделать подсеть IP сети - которая
-  использует свои адреса класса A, B или C, чтобы корректно работать
-  с несколькими взаимосоединенными сетями.</EM>
+<EM>  п╜я┌п╬я┌ п╢п╬п╨я┐п╪п╣п╫я┌ п╬п©п╦я│я▀п╡п╟п╣я┌ п╥п╟я┤п╣п╪ п╦ п╨п╟п╨ я│п╢п╣п╩п╟я┌я▄ п©п╬п╢я│п╣я┌я▄ IP я│п╣я┌п╦ - п╨п╬я┌п╬я─п╟я▐
+  п╦я│п©п╬п╩я▄п╥я┐п╣я┌ я│п╡п╬п╦ п╟п╢я─п╣я│п╟ п╨п╩п╟я│я│п╟ A, B п╦п╩п╦ C, я┤я┌п╬п╠я▀ п╨п╬я─я─п╣п╨я┌п╫п╬ я─п╟п╠п╬я┌п╟я┌я▄
+  я│ п╫п╣я│п╨п╬п╩я▄п╨п╦п╪п╦ п╡п╥п╟п╦п╪п╬я│п╬п╣п╢п╦п╫п╣п╫п╫я▀п╪п╦ я│п╣я┌я▐п╪п╦.</EM>
 <HR>
 <P>
-<H2><A NAME="toc1">1.</A> <A HREF="IP-Subnetworking-HOWTO-1.html">Авторские права</A></H2>
+<H2><A NAME="toc1">1.</A> <A HREF="IP-Subnetworking-HOWTO-1.html">п░п╡я┌п╬я─я│п╨п╦п╣ п©я─п╟п╡п╟</A></H2>
 
 <P>
-<H2><A NAME="toc2">2.</A> <A HREF="IP-Subnetworking-HOWTO-2.html">Введение</A></H2>
+<H2><A NAME="toc2">2.</A> <A HREF="IP-Subnetworking-HOWTO-2.html">п▓п╡п╣п╢п╣п╫п╦п╣</A></H2>
 
 <UL>
-<LI><A HREF="IP-Subnetworking-HOWTO-2.html#ss2.1">2.1 Другие источники информации</A>
+<LI><A HREF="IP-Subnetworking-HOWTO-2.html#ss2.1">2.1 п■я─я┐пЁп╦п╣ п╦я│я┌п╬я┤п╫п╦п╨п╦ п╦п╫я└п╬я─п╪п╟я├п╦п╦</A>
 </UL>
 <P>
-<H2><A NAME="toc3">3.</A> <A HREF="IP-Subnetworking-HOWTO-3.html">Анатомия адресов IP </A></H2>
+<H2><A NAME="toc3">3.</A> <A HREF="IP-Subnetworking-HOWTO-3.html">п░п╫п╟я┌п╬п╪п╦я▐ п╟п╢я─п╣я│п╬п╡ IP </A></H2>
 
 <UL>
-<LI><A HREF="IP-Subnetworking-HOWTO-3.html#ss3.1">3.1 IP адреса назначаются интерфейсам - НЕ хостам!</A>
-<LI><A HREF="IP-Subnetworking-HOWTO-3.html#ss3.2">3.2 IP адреса в "точечной нотации"</A>
-<LI><A HREF="IP-Subnetworking-HOWTO-3.html#ss3.3">3.3 Классы IP сетей</A>
-<LI><A HREF="IP-Subnetworking-HOWTO-3.html#ss3.4">3.4 Сетевые адреса, адреса интерфейсов и широковещательные адреса</A>
-<LI><A HREF="IP-Subnetworking-HOWTO-3.html#ss3.5">3.5 Сетевая маска</A>
+<LI><A HREF="IP-Subnetworking-HOWTO-3.html#ss3.1">3.1 IP п╟п╢я─п╣я│п╟ п╫п╟п╥п╫п╟я┤п╟я▌я┌я│я▐ п╦п╫я┌п╣я─я└п╣п╧я│п╟п╪ - п²п∙ я┘п╬я│я┌п╟п╪!</A>
+<LI><A HREF="IP-Subnetworking-HOWTO-3.html#ss3.2">3.2 IP п╟п╢я─п╣я│п╟ п╡ "я┌п╬я┤п╣я┤п╫п╬п╧ п╫п╬я┌п╟я├п╦п╦"</A>
+<LI><A HREF="IP-Subnetworking-HOWTO-3.html#ss3.3">3.3 п п╩п╟я│я│я▀ IP я│п╣я┌п╣п╧</A>
+<LI><A HREF="IP-Subnetworking-HOWTO-3.html#ss3.4">3.4 п║п╣я┌п╣п╡я▀п╣ п╟п╢я─п╣я│п╟, п╟п╢я─п╣я│п╟ п╦п╫я┌п╣я─я└п╣п╧я│п╬п╡ п╦ я┬п╦я─п╬п╨п╬п╡п╣я┴п╟я┌п╣п╩я▄п╫я▀п╣ п╟п╢я─п╣я│п╟</A>
+<LI><A HREF="IP-Subnetworking-HOWTO-3.html#ss3.5">3.5 п║п╣я┌п╣п╡п╟я▐ п╪п╟я│п╨п╟</A>
 </UL>
 <P>
-<H2><A NAME="toc4">4.</A> <A HREF="IP-Subnetworking-HOWTO-4.html">Что такое подсеть?</A></H2>
+<H2><A NAME="toc4">4.</A> <A HREF="IP-Subnetworking-HOWTO-4.html">п╖я┌п╬ я┌п╟п╨п╬п╣ п©п╬п╢я│п╣я┌я▄?</A></H2>
 
 <P>
-<H2><A NAME="toc5">5.</A> <A HREF="IP-Subnetworking-HOWTO-5.html">Зачем нужны подсети?</A></H2>
+<H2><A NAME="toc5">5.</A> <A HREF="IP-Subnetworking-HOWTO-5.html">п≈п╟я┤п╣п╪ п╫я┐п╤п╫я▀ п©п╬п╢я│п╣я┌п╦?</A></H2>
 
 <P>
-<H2><A NAME="toc6">6.</A> <A HREF="IP-Subnetworking-HOWTO-6.html">Как разбить сетевые IP адреса на подсети</A></H2>
+<H2><A NAME="toc6">6.</A> <A HREF="IP-Subnetworking-HOWTO-6.html">п п╟п╨ я─п╟п╥п╠п╦я┌я▄ я│п╣я┌п╣п╡я▀п╣ IP п╟п╢я─п╣я│п╟ п╫п╟ п©п╬п╢я│п╣я┌п╦</A></H2>
 
 <UL>
-<LI><A HREF="IP-Subnetworking-HOWTO-6.html#ss6.1">6.1 Установка физических соединений</A>
-<LI><A HREF="IP-Subnetworking-HOWTO-6.html#ss6.2">6.2 Размер подсети</A>
-<LI><A HREF="IP-Subnetworking-HOWTO-6.html#ss6.3">6.3 Вычисление сетевой маски и сетевых номеров</A>
+<LI><A HREF="IP-Subnetworking-HOWTO-6.html#ss6.1">6.1 пёя│я┌п╟п╫п╬п╡п╨п╟ я└п╦п╥п╦я┤п╣я│п╨п╦я┘ я│п╬п╣п╢п╦п╫п╣п╫п╦п╧</A>
+<LI><A HREF="IP-Subnetworking-HOWTO-6.html#ss6.2">6.2 п═п╟п╥п╪п╣я─ п©п╬п╢я│п╣я┌п╦</A>
+<LI><A HREF="IP-Subnetworking-HOWTO-6.html#ss6.3">6.3 п▓я▀я┤п╦я│п╩п╣п╫п╦п╣ я│п╣я┌п╣п╡п╬п╧ п╪п╟я│п╨п╦ п╦ я│п╣я┌п╣п╡я▀я┘ п╫п╬п╪п╣я─п╬п╡</A>
 </UL>
 <P>
-<H2><A NAME="toc7">7.</A> <A HREF="IP-Subnetworking-HOWTO-7.html">Маршрутизация</A></H2>
+<H2><A NAME="toc7">7.</A> <A HREF="IP-Subnetworking-HOWTO-7.html">п°п╟я─я┬я─я┐я┌п╦п╥п╟я├п╦я▐</A></H2>
 
 <UL>
-<LI><A HREF="IP-Subnetworking-HOWTO-7.html#ss7.1">7.1 Таблицы маршрутизации</A>
+<LI><A HREF="IP-Subnetworking-HOWTO-7.html#ss7.1">7.1 п╒п╟п╠п╩п╦я├я▀ п╪п╟я─я┬я─я┐я┌п╦п╥п╟я├п╦п╦</A>
 </UL>
 <HR>
 <A HREF="IP-Subnetworking-HOWTO-1.html">Next</A>

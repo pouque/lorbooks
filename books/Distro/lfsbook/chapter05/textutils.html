@@ -1,48 +1,48 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
   <meta http-equiv="Content-Type" content="text/html; charset=windows-1251"><title>Installing Textutils-2.1</title>
-<meta name="GENERATOR" content="Modular DocBook HTML Stylesheet Version 1.73"><link rel="HOME" title="Linux From Scratch" href="http://www.linux.org.ru/books/Distro/lfsbook/chapter05/index.html"><link rel="UP" title="Preparing the LFS system" href="chapter05.html"><link rel="PREVIOUS" title="Installing Texinfo-4.2" href="texinfo.html"><link rel="NEXT" title="Installing Util-linux-2.11u" href="util-linux.html"></head><body class="sect1" bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#840084" alink="#006000"><div class="NAVHEADER"><table summary="Header navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><th colspan="3" align="Center">Linux From Scratch: Версия 4.0</th></tr><tr><td width="10%" align="Left" valign="Bottom"><a href="texinfo.html" accesskey="P">Назад</a></td><td width="80%" align="Center" valign="Bottom">Глава 5. Подготовка системы LFS</td><td width="10%" align="Right" valign="Bottom"><a href="util-linux.html" accesskey="N">Вперед</a></td></tr></tbody></table><hr align="Left" width="100%"></div><div class="sect1"><h1 class="sect1"><a name="ch05-textutils">Установка Textutils-2.1</a></h1><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen">Приблизительное время компиляции:           0.95 SBU<br>Необходимое дисковое пространство:  49 MB</pre></td></tr></tbody></table><div class="sect2"><h2 class="sect2"><a name="AEN2051">Инсталляция Textutils</a></h2><p>Для инсталляции Textutils выполните:</p><p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>CPPFLAGS=-Dre_max_failures=re_max_failures2 \<br>	./configure --prefix=$LFS/static \<br>	--disable-nls &amp;&amp;<br>make LDFLAGS=-static &amp;&amp;<br>make install</b></tt></pre></td></tr></tbody></table></p></div><div class="sect2">
-<div class="sect2"><h2 class="sect2"><a name="AEN8660">Содержимое Textutils</a></h2><p>Последняя проверка: версия 2.0.</p><div class="sect3"><h3 class="sect3"><a name="AEN8663">Программы</a></h3><p>cat, cksum, comm, csplit, cut, expand, fmt, fold, head, join,
+<meta name="GENERATOR" content="Modular DocBook HTML Stylesheet Version 1.73"><link rel="HOME" title="Linux From Scratch" href="http://www.linux.org.ru/books/Distro/lfsbook/chapter05/index.html"><link rel="UP" title="Preparing the LFS system" href="chapter05.html"><link rel="PREVIOUS" title="Installing Texinfo-4.2" href="texinfo.html"><link rel="NEXT" title="Installing Util-linux-2.11u" href="util-linux.html"></head><body class="sect1" bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#840084" alink="#006000"><div class="NAVHEADER"><table summary="Header navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><th colspan="3" align="Center">Linux From Scratch: Р±Р•РџРЇРҐРЄ 4.0</th></tr><tr><td width="10%" align="Left" valign="Bottom"><a href="texinfo.html" accesskey="P">РјР®Р“Р®Р”</a></td><td width="80%" align="Center" valign="Bottom">С†РљР®Р‘Р® 5. РѕРќР”Р¦РќР РќР‘Р™Р® РЇРҐРЇР Р•Р›РЁ LFS</td><td width="10%" align="Right" valign="Bottom"><a href="util-linux.html" accesskey="N">Р±РћР•РџР•Р”</a></td></tr></tbody></table><hr align="Left" width="100%"></div><div class="sect1"><h1 class="sect1"><a name="ch05-textutils">СЃРЇР Р®РњРќР‘Р™Р® Textutils-2.1</a></h1><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen">РѕРџРҐРђРљРҐР“РҐР Р•РљР­РњРќР• Р‘РџР•Р›РЄ Р™РќР›РћРҐРљРЄР–РҐРҐ:           0.95 SBU<br>РјР•РќРђРЈРќР”РҐР›РќР• Р”РҐРЇР™РќР‘РќР• РћРџРќРЇР РџР®РњРЇР Р‘Рќ:  49 MB</pre></td></tr></tbody></table><div class="sect2"><h2 class="sect2"><a name="AEN2051">С…РњРЇР Р®РљРљРЄР–РҐРЄ Textutils</a></h2><p>РґРљРЄ РҐРњРЇР Р®РљРљРЄР–РҐРҐ Textutils Р‘РЁРћРќРљРњРҐР Р•:</p><p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>CPPFLAGS=-Dre_max_failures=re_max_failures2 \<br>	./configure --prefix=$LFS/static \<br>	--disable-nls &amp;&amp;<br>make LDFLAGS=-static &amp;&amp;<br>make install</b></tt></pre></td></tr></tbody></table></p></div><div class="sect2">
+<div class="sect2"><h2 class="sect2"><a name="AEN8660">СЏРќР”Р•РџР¤РҐР›РќР• Textutils</a></h2><p>РѕРќРЇРљР•Р”РњРЄРЄ РћРџРќР‘Р•РџР™Р®: Р‘Р•РџРЇРҐРЄ 2.0.</p><div class="sect3"><h3 class="sect3"><a name="AEN8663">РѕРџРќР¦РџР®Р›Р›РЁ</a></h3><p>cat, cksum, comm, csplit, cut, expand, fmt, fold, head, join,
 md5sum, nl, od, paste, pr, ptx, sort, split, sum, tac, tail, tr, tsort,
-unexpand, uniq и wc</p></div><div class="sect3"><h3 class="sect3"><a name="AEN8666">Описание</a></h3><div class="sect4"><h4 class="sect4"><a name="AEN8668">cat</a></h4><p>cat выводит файлы на стандартный вывод.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8671">cksum</a></h4><p>cksum выводит контрольную сумму CRC и объем в байтах каждого
-указанного файла.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8674">comm</a></h4><p>comm построчно сравнивает два отсортированных файла.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8677">csplit</a></h4><p>csplit выводит части файла, разделенные заданными строками, в файлы
-xx01, xx02, ..., и размер каждой части на стандартный вывод.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8680">cut</a></h4><p>cut выводит указанные строки из указанных файлов на стандартный
-вывод.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8683">expand</a></h4><p>expand конвертирует знаки табуляции в файле в пробелы и выводит
-результат на стандартный вывод.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8686">fmt</a></h4><p>fmt форматирует каждый абзац в указанных файлах и выводит результат
-на стандартный вывод.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8689">fold</a></h4><p>fold делает переносы вводимых строк из указанных файлов (по
-умолчанию, со стандартного ввода) и выводит результат на стандартный
-вывод.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8692">head</a></h4><p>head выводит первые x (по умолчанию 10) строк каждого указанного
-файла на стандартный вывод.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8695">join</a></h4><p>join соединяет строки двух файлов в поля.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8698">md5sum</a></h4><p>md5sum выводит или проверяет контрольные суммы MD5.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8701">nl</a></h4><p>nl выводит каждый указанный файл на стандартный вывод, добавляя
-номера строк.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8704">od</a></h4><p>od выводит выводит файл в различных форматах, по умолчанию в
-восьмеричном, на стандартный вывод.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8707">paste</a></h4><p>paste выводит строки, соответствующие заданным образцам из указанных
-файлов и разделенные символами табуляции, на стандартный вывод.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8710">pr</a></h4><p>pr разделяет файлы на страницы или колонки для распечатки.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8713">ptx</a></h4><p>ptx составляет оглавление файла.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8716">sort</a></h4><p>sort выводит на стандартный вывод построчно отсортированное слияние
-файлов.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8719">split</a></h4><p>split разбивает входной файл на части заданного размера PREFIXaa,
-PREFIXab, ...</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8722">sum</a></h4><p>sum выводит контрольную сумму и количество занимаемых блоков каждого
-указанного файла.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8725">tac</a></h4><p>tac выводит каждый указанный файл на стандартный вывод last line
-first.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8728">tail</a></h4><p>tail выводит последние xx (по умолчанию 10) строк каждого указанного
-файла на стандартный вывод.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8731">tr</a></h4><p>tr заменяет, вставляет, и/или удаляет символы из стандартного ввода,
-выводя результат на стандартный вывод.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8734">tsort</a></h4><p>tsort выводит полностью упорядоченные списки, учитывая уже
-проведенную сортировку указанных файлов.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8737">unexpand</a></h4><p>unexpand конвертирует пробелы в каждом файле в символы табуляции,
-выводя результат на стандартный вывод.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8740">uniq</a></h4><p>uniq удаляет повторяющиеся строки из отсортированного файла.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8743">wc</a></h4><p>wc выводит количество строк, слов и размер в байтах кажого
-указанного файла и сумму результатов, если указано более одного файла.</p></div></div></div>
-<div class="sect2"><h2 class="sect2"><a name="AEN8746">Зависимости Textutils</a></h2><p>Последняя проверка: версия 2.0.</p><p class="literallayout">Autoconf: autoconf, autoheader<br>
-Automake: aclocal, automake<br>
-Bash: sh<br>
-Binutils: ar, as, ld, ranlib<br>
-Diffutils: cmp<br>
-Fileutils: chmod, install, ls, mv, rm<br>
-Gettext: msgfmt, xgettext<br>
-Gcc: cc, cc1, collect2, cpp0, gcc<br>
-Glibc: getconf<br>
-Grep: egrep, fgrep, grep<br>
-M4: m4<br>
-Make: make<br>
-Gawk: gawk<br>
-Net-tools: hostname<br>
-Perl: perl<br>
-Sed: sed<br>
-Sh-utils: basename, echo, expr, sleep, uname<br>
-Tar: tar<br>
-Texinfo: install-info, makeinfo<br>
-Textutils: cat, tr</p></div>
-<h2 class="sect2"></h2></div></div><div class="NAVFOOTER"><hr align="Left" width="100%"><table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="33%" align="Left" valign="Top"><a href="texinfo.html" accesskey="P">Назад</a></td><td width="34%" align="Center" valign="Top"><a href="../index.html" accesskey="H">Домой</a></td><td width="33%" align="Right" valign="Top"><a href="util-linux.html" accesskey="N">Вперед</a></td></tr><tr><td width="33%" align="Left" valign="Top">Установка Texinfo-4.2</td><td width="34%" align="Center" valign="Top"><a href="chapter05.html" accesskey="U">Наверх</a></td><td width="33%" align="Right" valign="Top">Установка Util-linux-2.11u</td></tr></tbody></table></div><br>
+unexpand, uniq РҐ wc</p></div><div class="sect3"><h3 class="sect3"><a name="AEN8666">РЅРћРҐРЇР®РњРҐР•</a></h3><div class="sect4"><h4 class="sect4"><a name="AEN8668">cat</a></h4><p>cat Р‘РЁР‘РќР”РҐР  РўР®РРљРЁ РњР® РЇР Р®РњР”Р®РџР РњРЁР Р‘РЁР‘РќР”.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8671">cksum</a></h4><p>cksum Р‘РЁР‘РќР”РҐР  Р™РќРњР РџРќРљР­РњРЎР§ РЇРЎР›Р›РЎ CRC РҐ РќРђР—Р•Р› Р‘ РђР®РР Р®РЈ Р™Р®Р¤Р”РќР¦Рќ
+РЎР™Р®Р“Р®РњРњРќР¦Рќ РўР®РРљР®.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8674">comm</a></h4><p>comm РћРќРЇР РџРќР’РњРќ РЇРџР®Р‘РњРҐР‘Р®Р•Р  Р”Р‘Р® РќР РЇРќРџР РҐРџРќР‘Р®РњРњРЁРЈ РўР®РРљР®.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8677">csplit</a></h4><p>csplit Р‘РЁР‘РќР”РҐР  Р’Р®РЇР РҐ РўР®РРљР®, РџР®Р“Р”Р•РљР•РњРњРЁР• Р“Р®Р”Р®РњРњРЁР›РҐ РЇР РџРќР™Р®Р›РҐ, Р‘ РўР®РРљРЁ
+xx01, xx02, ..., РҐ РџР®Р“Р›Р•Рџ Р™Р®Р¤Р”РќР Р’Р®РЇР РҐ РњР® РЇР Р®РњР”Р®РџР РњРЁР Р‘РЁР‘РќР”.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8680">cut</a></h4><p>cut Р‘РЁР‘РќР”РҐР  РЎР™Р®Р“Р®РњРњРЁР• РЇР РџРќР™РҐ РҐР“ РЎР™Р®Р“Р®РњРњРЁРЈ РўР®РРљРќР‘ РњР® РЇР Р®РњР”Р®РџР РњРЁР
+Р‘РЁР‘РќР”.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8683">expand</a></h4><p>expand Р™РќРњР‘Р•РџР РҐРџРЎР•Р  Р“РњР®Р™РҐ Р Р®РђРЎРљРЄР–РҐРҐ Р‘ РўР®РРљР• Р‘ РћРџРќРђР•РљРЁ РҐ Р‘РЁР‘РќР”РҐР 
+РџР•Р“РЎРљР­Р Р®Р  РњР® РЇР Р®РњР”Р®РџР РњРЁР Р‘РЁР‘РќР”.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8686">fmt</a></h4><p>fmt РўРќРџР›Р®Р РҐРџРЎР•Р  Р™Р®Р¤Р”РЁР Р®РђР“Р®Р– Р‘ РЎР™Р®Р“Р®РњРњРЁРЈ РўР®РРљР®РЈ РҐ Р‘РЁР‘РќР”РҐР  РџР•Р“РЎРљР­Р Р®Р 
+РњР® РЇР Р®РњР”Р®РџР РњРЁР Р‘РЁР‘РќР”.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8689">fold</a></h4><p>fold Р”Р•РљР®Р•Р  РћР•РџР•РњРќРЇРЁ Р‘Р‘РќР”РҐР›РЁРЈ РЇР РџРќР™ РҐР“ РЎР™Р®Р“Р®РњРњРЁРЈ РўР®РРљРќР‘ (РћРќ
+РЎР›РќРљР’Р®РњРҐР§, РЇРќ РЇР Р®РњР”Р®РџР РњРќР¦Рќ Р‘Р‘РќР”Р®) РҐ Р‘РЁР‘РќР”РҐР  РџР•Р“РЎРљР­Р Р®Р  РњР® РЇР Р®РњР”Р®РџР РњРЁР
+Р‘РЁР‘РќР”.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8692">head</a></h4><p>head Р‘РЁР‘РќР”РҐР  РћР•РџР‘РЁР• x (РћРќ РЎР›РќРљР’Р®РњРҐР§ 10) РЇР РџРќР™ Р™Р®Р¤Р”РќР¦Рќ РЎР™Р®Р“Р®РњРњРќР¦Рќ
+РўР®РРљР® РњР® РЇР Р®РњР”Р®РџР РњРЁР Р‘РЁР‘РќР”.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8695">join</a></h4><p>join РЇРќР•Р”РҐРњРЄР•Р  РЇР РџРќР™РҐ Р”Р‘РЎРЈ РўР®РРљРќР‘ Р‘ РћРќРљРЄ.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8698">md5sum</a></h4><p>md5sum Р‘РЁР‘РќР”РҐР  РҐРљРҐ РћРџРќР‘Р•РџРЄР•Р  Р™РќРњР РџРќРљР­РњРЁР• РЇРЎР›Р›РЁ MD5.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8701">nl</a></h4><p>nl Р‘РЁР‘РќР”РҐР  Р™Р®Р¤Р”РЁР РЎР™Р®Р“Р®РњРњРЁР РўР®РРљ РњР® РЇР Р®РњР”Р®РџР РњРЁР Р‘РЁР‘РќР”, Р”РќРђР®Р‘РљРЄРЄ
+РњРќР›Р•РџР® РЇР РџРќР™.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8704">od</a></h4><p>od Р‘РЁР‘РќР”РҐР  Р‘РЁР‘РќР”РҐР  РўР®РРљ Р‘ РџР®Р“РљРҐР’РњРЁРЈ РўРќРџР›Р®Р Р®РЈ, РћРќ РЎР›РќРљР’Р®РњРҐР§ Р‘
+Р‘РќРЇР­Р›Р•РџРҐР’РњРќР›, РњР® РЇР Р®РњР”Р®РџР РњРЁР Р‘РЁР‘РќР”.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8707">paste</a></h4><p>paste Р‘РЁР‘РќР”РҐР  РЇР РџРќР™РҐ, РЇРќРќР Р‘Р•Р РЇР Р‘РЎР§Р«РҐР• Р“Р®Р”Р®РњРњРЁР› РќРђРџР®Р“Р–Р®Р› РҐР“ РЎР™Р®Р“Р®РњРњРЁРЈ
+РўР®РРљРќР‘ РҐ РџР®Р“Р”Р•РљР•РњРњРЁР• РЇРҐР›Р‘РќРљР®Р›РҐ Р Р®РђРЎРљРЄР–РҐРҐ, РњР® РЇР Р®РњР”Р®РџР РњРЁР Р‘РЁР‘РќР”.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8710">pr</a></h4><p>pr РџР®Р“Р”Р•РљРЄР•Р  РўР®РРљРЁ РњР® РЇР РџР®РњРҐР–РЁ РҐРљРҐ Р™РќРљРќРњР™РҐ Р”РљРЄ РџР®РЇРћР•Р’Р®Р Р™РҐ.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8713">ptx</a></h4><p>ptx РЇРќРЇР Р®Р‘РљРЄР•Р  РќР¦РљР®Р‘РљР•РњРҐР• РўР®РРљР®.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8716">sort</a></h4><p>sort Р‘РЁР‘РќР”РҐР  РњР® РЇР Р®РњР”Р®РџР РњРЁР Р‘РЁР‘РќР” РћРќРЇР РџРќР’РњРќ РќР РЇРќРџР РҐРџРќР‘Р®РњРњРќР• РЇРљРҐРЄРњРҐР•
+РўР®РРљРќР‘.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8719">split</a></h4><p>split РџР®Р“РђРҐР‘Р®Р•Р  Р‘РЈРќР”РњРќР РўР®РРљ РњР® Р’Р®РЇР РҐ Р“Р®Р”Р®РњРњРќР¦Рќ РџР®Р“Р›Р•РџР® PREFIXaa,
+PREFIXab, ...</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8722">sum</a></h4><p>sum Р‘РЁР‘РќР”РҐР  Р™РќРњР РџРќРљР­РњРЎР§ РЇРЎР›Р›РЎ РҐ Р™РќРљРҐР’Р•РЇР Р‘Рќ Р“Р®РњРҐР›Р®Р•Р›РЁРЈ РђРљРќР™РќР‘ Р™Р®Р¤Р”РќР¦Рќ
+РЎР™Р®Р“Р®РњРњРќР¦Рќ РўР®РРљР®.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8725">tac</a></h4><p>tac Р‘РЁР‘РќР”РҐР  Р™Р®Р¤Р”РЁР РЎР™Р®Р“Р®РњРњРЁР РўР®РРљ РњР® РЇР Р®РњР”Р®РџР РњРЁР Р‘РЁР‘РќР” last line
+first.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8728">tail</a></h4><p>tail Р‘РЁР‘РќР”РҐР  РћРќРЇРљР•Р”РњРҐР• xx (РћРќ РЎР›РќРљР’Р®РњРҐР§ 10) РЇР РџРќР™ Р™Р®Р¤Р”РќР¦Рќ РЎР™Р®Р“Р®РњРњРќР¦Рќ
+РўР®РРљР® РњР® РЇР Р®РњР”Р®РџР РњРЁР Р‘РЁР‘РќР”.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8731">tr</a></h4><p>tr Р“Р®Р›Р•РњРЄР•Р , Р‘РЇР Р®Р‘РљРЄР•Р , РҐ/РҐРљРҐ РЎР”Р®РљРЄР•Р  РЇРҐР›Р‘РќРљРЁ РҐР“ РЇР Р®РњР”Р®РџР РњРќР¦Рќ Р‘Р‘РќР”Р®,
+Р‘РЁР‘РќР”РЄ РџР•Р“РЎРљР­Р Р®Р  РњР® РЇР Р®РњР”Р®РџР РњРЁР Р‘РЁР‘РќР”.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8734">tsort</a></h4><p>tsort Р‘РЁР‘РќР”РҐР  РћРќРљРњРќРЇР Р­Р§ РЎРћРќРџРЄР”РќР’Р•РњРњРЁР• РЇРћРҐРЇР™РҐ, РЎР’РҐР РЁР‘Р®РЄ РЎР¤Р•
+РћРџРќР‘Р•Р”Р•РњРњРЎР§ РЇРќРџР РҐРџРќР‘Р™РЎ РЎР™Р®Р“Р®РњРњРЁРЈ РўР®РРљРќР‘.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8737">unexpand</a></h4><p>unexpand Р™РќРњР‘Р•РџР РҐРџРЎР•Р  РћРџРќРђР•РљРЁ Р‘ Р™Р®Р¤Р”РќР› РўР®РРљР• Р‘ РЇРҐР›Р‘РќРљРЁ Р Р®РђРЎРљРЄР–РҐРҐ,
+Р‘РЁР‘РќР”РЄ РџР•Р“РЎРљР­Р Р®Р  РњР® РЇР Р®РњР”Р®РџР РњРЁР Р‘РЁР‘РќР”.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8740">uniq</a></h4><p>uniq РЎР”Р®РљРЄР•Р  РћРќР‘Р РќРџРЄР§Р«РҐР•РЇРЄ РЇР РџРќР™РҐ РҐР“ РќР РЇРќРџР РҐРџРќР‘Р®РњРњРќР¦Рќ РўР®РРљР®.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8743">wc</a></h4><p>wc Р‘РЁР‘РќР”РҐР  Р™РќРљРҐР’Р•РЇР Р‘Рќ РЇР РџРќР™, РЇРљРќР‘ РҐ РџР®Р“Р›Р•Рџ Р‘ РђР®РР Р®РЈ Р™Р®Р¤РќР¦Рќ
+РЎР™Р®Р“Р®РњРњРќР¦Рќ РўР®РРљР® РҐ РЇРЎР›Р›РЎ РџР•Р“РЎРљР­Р Р®Р РќР‘, Р•РЇРљРҐ РЎР™Р®Р“Р®РњРќ РђРќРљР•Р• РќР”РњРќР¦Рќ РўР®РРљР®.</p></div></div></div>
+<div class="sect2"><h2 class="sect2"><a name="AEN8746">РіР®Р‘РҐРЇРҐР›РќРЇР РҐ Textutils</a></h2><p>РѕРќРЇРљР•Р”РњРЄРЄ РћРџРќР‘Р•РџР™Р®: Р‘Р•РџРЇРҐРЄ 2.0.</p><p class="literallayout">Autoconf:в•ђautoconf,в•ђautoheader<br>
+Automake:в•ђaclocal,в•ђautomake<br>
+Bash:в•ђsh<br>
+Binutils:в•ђar,в•ђas,в•ђld,в•ђranlib<br>
+Diffutils:в•ђcmp<br>
+Fileutils:в•ђchmod,в•ђinstall,в•ђls,в•ђmv,в•ђrm<br>
+Gettext:в•ђmsgfmt,в•ђxgettext<br>
+Gcc:в•ђcc,в•ђcc1,в•ђcollect2,в•ђcpp0,в•ђgcc<br>
+Glibc:в•ђgetconf<br>
+Grep:в•ђegrep,в•ђfgrep,в•ђgrep<br>
+M4:в•ђm4<br>
+Make:в•ђmake<br>
+Gawk:в•ђgawk<br>
+Net-tools:в•ђhostname<br>
+Perl:в•ђperl<br>
+Sed:в•ђsed<br>
+Sh-utils:в•ђbasename,в•ђecho,в•ђexpr,в•ђsleep,в•ђuname<br>
+Tar:в•ђtar<br>
+Texinfo:в•ђinstall-info,в•ђmakeinfo<br>
+Textutils:в•ђcat,в•ђtr</p></div>
+<h2 class="sect2"></h2></div></div><div class="NAVFOOTER"><hr align="Left" width="100%"><table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="33%" align="Left" valign="Top"><a href="texinfo.html" accesskey="P">РјР®Р“Р®Р”</a></td><td width="34%" align="Center" valign="Top"><a href="../index.html" accesskey="H">РґРќР›РќР</a></td><td width="33%" align="Right" valign="Top"><a href="util-linux.html" accesskey="N">Р±РћР•РџР•Р”</a></td></tr><tr><td width="33%" align="Left" valign="Top">СЃРЇР Р®РњРќР‘Р™Р® Texinfo-4.2</td><td width="34%" align="Center" valign="Top"><a href="chapter05.html" accesskey="U">РјР®Р‘Р•РџРЈ</a></td><td width="33%" align="Right" valign="Top">СЃРЇР Р®РњРќР‘Р™Р® Util-linux-2.11u</td></tr></tbody></table></div><br>
 </body></html>

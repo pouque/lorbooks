@@ -9,29 +9,29 @@
 
 <body bgcolor="#FFFFFF">
 
-<h1>Как проверить, что локализация заработала ?</h1>
+<h1>п п╟п╨ п©я─п╬п╡п╣я─п╦я┌я▄, я┤я┌п╬ п╩п╬п╨п╟п╩п╦п╥п╟я├п╦я▐ п╥п╟я─п╟п╠п╬я┌п╟п╩п╟ ?</h1>
 
-<p>&nbsp;&nbsp;&nbsp; Если у Вас полная реализация <strong>POSIX.2</strong>
-1996, то проще всего воспользоваться утилитой <a
+<p>&nbsp;&nbsp;&nbsp; п∙я│п╩п╦ я┐ п▓п╟я│ п©п╬п╩п╫п╟я▐ я─п╣п╟п╩п╦п╥п╟я├п╦я▐ <strong>POSIX.2</strong>
+1996, я┌п╬ п©я─п╬я┴п╣ п╡я│п╣пЁп╬ п╡п╬я│п©п╬п╩я▄п╥п╬п╡п╟я┌я▄я│я▐ я┐я┌п╦п╩п╦я┌п╬п╧ <a
 href="http://www.linux.org.ru/books/man/man1/locale.html"><em>locale</em></a>.</p>
 
-<p>&nbsp;&nbsp;&nbsp; Применяя <a href="http://www.linux.org.ru/books/man/man1/locale.html"><em>locale</em></a>
-можно получить множество полезных сведений : 
+<p>&nbsp;&nbsp;&nbsp; п÷я─п╦п╪п╣п╫я▐я▐ <a href="http://www.linux.org.ru/books/man/man1/locale.html"><em>locale</em></a>
+п╪п╬п╤п╫п╬ п©п╬п╩я┐я┤п╦я┌я▄ п╪п╫п╬п╤п╣я│я┌п╡п╬ п©п╬п╩п╣п╥п╫я▀я┘ я│п╡п╣п╢п╣п╫п╦п╧ : 
 
 <ul>
-  <li>какие возможные значения <strong>locale</strong> уже
-    инсталлированы и известны системе. <pre><strong>$ locale -a</strong></pre>
+  <li>п╨п╟п╨п╦п╣ п╡п╬п╥п╪п╬п╤п╫я▀п╣ п╥п╫п╟я┤п╣п╫п╦я▐ <strong>locale</strong> я┐п╤п╣
+    п╦п╫я│я┌п╟п╩п╩п╦я─п╬п╡п╟п╫я▀ п╦ п╦п╥п╡п╣я│я┌п╫я▀ я│п╦я│я┌п╣п╪п╣. <pre><strong>$ locale -a</strong></pre>
   </li>
-  <li>каковы текущие значения отдельных категорий
-    локализации : <pre><strong>$ locale</strong></pre>
+  <li>п╨п╟п╨п╬п╡я▀ я┌п╣п╨я┐я┴п╦п╣ п╥п╫п╟я┤п╣п╫п╦я▐ п╬я┌п╢п╣п╩я▄п╫я▀я┘ п╨п╟я┌п╣пЁп╬я─п╦п╧
+    п╩п╬п╨п╟п╩п╦п╥п╟я├п╦п╦ : <pre><strong>$ locale</strong></pre>
   </li>
-  <li>каково внутреннее содержание какой-либо
-    категории : <pre><strong>$ locale LC_CTYPE
+  <li>п╨п╟п╨п╬п╡п╬ п╡п╫я┐я┌я─п╣п╫п╫п╣п╣ я│п╬п╢п╣я─п╤п╟п╫п╦п╣ п╨п╟п╨п╬п╧-п╩п╦п╠п╬
+    п╨п╟я┌п╣пЁп╬я─п╦п╦ : <pre><strong>$ locale LC_CTYPE
 $ locale LC_TIME</strong></pre>
     <p>e.t.c. </p>
   </li>
-  <li>каковы текущие значения ключей (<em>keywords</em>) в
-    какой-либо категории локализации : <pre><strong>$ locale alpha
+  <li>п╨п╟п╨п╬п╡я▀ я┌п╣п╨я┐я┴п╦п╣ п╥п╫п╟я┤п╣п╫п╦я▐ п╨п╩я▌я┤п╣п╧ (<em>keywords</em>) п╡
+    п╨п╟п╨п╬п╧-п╩п╦п╠п╬ п╨п╟я┌п╣пЁп╬я─п╦п╦ п╩п╬п╨п╟п╩п╦п╥п╟я├п╦п╦ : <pre><strong>$ locale alpha
 $ locale toupper
 $ locale abmon</strong></pre>
     <p>e.t.c. </p>
@@ -40,13 +40,13 @@ $ locale abmon</strong></pre>
 
 <hr>
 
-<p>Также можно воспользоваться такой короткой
-прогрммкой : </p>
+<p>п╒п╟п╨п╤п╣ п╪п╬п╤п╫п╬ п╡п╬я│п©п╬п╩я▄п╥п╬п╡п╟я┌я▄я│я▐ я┌п╟п╨п╬п╧ п╨п╬я─п╬я┌п╨п╬п╧
+п©я─п╬пЁя─п╪п╪п╨п╬п╧ : </p>
 
 <table border="1">
   <tr>
-    <td><pre>/* testlocl.c : Минимальная проверка работоспособности locale,
-                категория LC_CTYPE, &quot;ключевое слово&quot; - alpha */
+    <td><pre>/* testlocl.c : п°п╦п╫п╦п╪п╟п╩я▄п╫п╟я▐ п©я─п╬п╡п╣я─п╨п╟ я─п╟п╠п╬я┌п╬я│п©п╬я│п╬п╠п╫п╬я│я┌п╦ locale,
+                п╨п╟я┌п╣пЁп╬я─п╦я▐ LC_CTYPE, &quot;п╨п╩я▌я┤п╣п╡п╬п╣ я│п╩п╬п╡п╬&quot; - alpha */
 
 #include &lt;stdio.h&gt;
 #include <a
@@ -69,30 +69,30 @@ return 0;
   </tr>
 </table>
 
-<p>&nbsp;&nbsp;&nbsp; Для русской локализации в koi8-r
-согласно <a href="ftp://ds.internic.net/rfc/rfc1489.txt">RFC-1489</a>, коду <strong>0x0f9</strong>
-соответствует русская буква &quot;<strong>Ы</strong>&quot; : <br>
+<p>&nbsp;&nbsp;&nbsp; п■п╩я▐ я─я┐я│я│п╨п╬п╧ п╩п╬п╨п╟п╩п╦п╥п╟я├п╦п╦ п╡ koi8-r
+я│п╬пЁп╩п╟я│п╫п╬ <a href="ftp://ds.internic.net/rfc/rfc1489.txt">RFC-1489</a>, п╨п╬п╢я┐ <strong>0x0f9</strong>
+я│п╬п╬я┌п╡п╣я┌я│я┌п╡я┐п╣я┌ я─я┐я│я│п╨п╟я▐ п╠я┐п╨п╡п╟ &quot;<strong>п╚</strong>&quot; : <br>
 <strong>F9&nbsp; CYRILLIC CAPITAL LETTER YERI</strong><br>
-то есть. : </p>
+я┌п╬ п╣я│я┌я▄. : </p>
 
 <pre><strong>$ cc -o testlocl testlocl.c
 $ ./testlocl
 </strong>LC_CTYPE = ru_RU.KOI8-R 
-isalpha(Ы) = yes 
+isalpha(п╚) = yes 
 <strong>$</strong></pre>
 
 <hr>
 
-<p>&nbsp;&nbsp;&nbsp; Правильность работы категории <strong>LC_COLLATE</strong>
-можно проверить даже не компилируя тестовых
-программок, предполагая, что утилиты <a
-href="http://www.linux.org.ru/books/man/man1/tr.html"><em>tr</em></a> и <em>dd</em> работают в
-соответствии с <strong>POSIX</strong> :</p>
+<p>&nbsp;&nbsp;&nbsp; п÷я─п╟п╡п╦п╩я▄п╫п╬я│я┌я▄ я─п╟п╠п╬я┌я▀ п╨п╟я┌п╣пЁп╬я─п╦п╦ <strong>LC_COLLATE</strong>
+п╪п╬п╤п╫п╬ п©я─п╬п╡п╣я─п╦я┌я▄ п╢п╟п╤п╣ п╫п╣ п╨п╬п╪п©п╦п╩п╦я─я┐я▐ я┌п╣я│я┌п╬п╡я▀я┘
+п©я─п╬пЁя─п╟п╪п╪п╬п╨, п©я─п╣п╢п©п╬п╩п╟пЁп╟я▐, я┤я┌п╬ я┐я┌п╦п╩п╦я┌я▀ <a
+href="http://www.linux.org.ru/books/man/man1/tr.html"><em>tr</em></a> п╦ <em>dd</em> я─п╟п╠п╬я┌п╟я▌я┌ п╡
+я│п╬п╬я┌п╡п╣я┌я│я┌п╡п╦п╦ я│ <strong>POSIX</strong> :</p>
 
-<pre><strong>$ echo ы | tr '[:lower:]' '[:upper:]'</strong>
-Ы
-<strong>$ echo ы | dd conv=ucase
-</strong>Ы
+<pre><strong>$ echo я▀ | tr '[:lower:]' '[:upper:]'</strong>
+п╚
+<strong>$ echo я▀ | dd conv=ucase
+</strong>п╚
 0+1 records in
 0+1 records out
 <strong>$</strong></pre>

@@ -1,61 +1,61 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
   <meta http-equiv="Content-Type" content="text/html; charset=windows-1251"><title>Installing Binutils-2.13</title>
-<meta name="GENERATOR" content="Modular DocBook HTML Stylesheet Version 1.73"><link rel="HOME" title="Linux From Scratch" href="http://www.linux.org.ru/books/Distro/lfsbook/chapter05/index.html"><link rel="UP" title="Preparing the LFS system" href="chapter05.html"><link rel="PREVIOUS" title="Installing Bash-2.05a" href="bash.html"><link rel="NEXT" title="Installing Bzip2-1.0.2" href="bzip2.html"></head><body class="sect1" bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#840084" alink="#006000"><div class="NAVHEADER"><table summary="Header navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><th colspan="3" align="Center">Linux From Scratch: Версия 4.0</th></tr><tr><td width="10%" align="Left" valign="Bottom"><a href="bash.html" accesskey="P">Назад</a></td><td width="80%" align="Center" valign="Bottom">Глава 5. Подготовка системы LFS</td><td width="10%" align="Right" valign="Bottom"><a href="bzip2.html" accesskey="N">Вперед</a></td></tr></tbody></table><hr align="Left" width="100%"></div><div class="sect1"><h1 class="sect1"><a name="ch05-binutils">Установка Binutils-2.13</a></h1><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen">Приблизительное время компиляции:           2.05 SBU<br>Необходимое дисковое пространство:  160 MB</pre></td></tr></tbody></table><div class="sect2"><h2 class="sect2"><a name="AEN1244">Установка of Binutils</a></h2><p>Этот
-пакет известен своим нестабильным поведением при компиляции с измененными
-опциями оптимизации (включая опции -march и -mcpu). Binutils рекомендуется
-компилировать с настройками по умолчанию. Следовательно, если вы задали переменные
-такие как CFLAGS или CXXFLAGS, изменяющие уровень оптимизации по умолчанию,
-рекомендуется убрать их при сборке пакета binutils. Изменяя оптимизации для
-binutils, вы действуете на свой страх и риск.</p><p>Для инсталляции Binutils выполните:</p><p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>mkdir ../binutils-build &amp;&amp;<br>cd ../binutils-build &amp;&amp;<br>../binutils-2.13/configure --prefix=$LFS/static --disable-nls &amp;&amp;<br>make LDFLAGS=-all-static &amp;&amp;<br>make install</b></tt></pre></td></tr></tbody></table></p></div><div class="sect2"><h2 class="sect2"><a name="AEN1251">Пояснения команд</a></h2><p><tt class="userinput"><b>mkdir ../binutils-build:</b></tt>
-В инструкциях установки Binutils рекомендуется создать отдельную директорию
-для сборки, вместо того, чтобы компилировать программу в директории исходников.
-Итак, мы создаем директорию binutils-build и будем работать из нее.</p><p><tt class="userinput"><b>--disable-nls:</b></tt>
-Эта опция выключает поддержку интернационализации (или i18n), которая не
-нужна нам на стадии статически связанных программ, т.к. часто дает сбои при
-использовании статических ссылок.</p><p><tt class="userinput"><b>LDFLAGS=-all-static:</b></tt> Присваиваем переменной LDFLAGS
-значение -all-static для того, чтобы использовать статические ссыдки.</p></div><div class="sect2">
-<div class="sect2"><h2 class="sect2"><a name="AEN6278">Содержимое Binutils</a></h2><p>Последняя проверка: версия 2.12.1.</p><div class="sect3"><h3 class="sect3"><a name="AEN6281">Программы</a></h3><p>addr2line, ar, as, gasp, gprof, ld, nm, objcopy, objdump,  ranlib, readelf, 
- size, strings and strip</p></div><div class="sect3"><h3 class="sect3"><a name="AEN6284">Описания</a></h3><div class="sect4"><h4 class="sect4"><a name="AEN6286">addr2line</a></h4><p>addr2line переводит программные адреса в имена файлов и номера строк. 
-Given an address and an executable, используется отладочная информация исполняемого
-файла, чтобы определить, какое имя файла и номер строки связаны с данным
-адресом.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6289">ar</a></h4><p>ar создает и изменяет архивы, а также производит их распаковку. Архив
-- файл, содержащий несколько файлов в виде, позволяющем восстановить оригинал.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6292">as</a></h4><p>as используется для ассемблирования вывода the GNU C Compiler,    gcc
-для использования с линкером ld.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6295">gasp</a></h4><p>gasp - Assembler Macro Preprocessor.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6298">gprof</a></h4><p>gprof отображает статистику системных вызовов.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6301">ld</a></h4><p>ld объединяет несколько объектных и архивных файлов и устанавливает символьные
-отношения. Последний шаг в сборке скомпилированной программы - запуск ld.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6304">nm</a></h4><p>nm перечисляет символы из объектных файлов.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6307">objcopy</a></h4><p>objcopy utility копирует содержимое одного объектного файла в другой.
-objcopy использует библиотеку GNU BFD для чтения/записи объектных файлов.
-Возможна запись конечного объектного файла в формате, отличном от исходного.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6310">objdump</a></h4><p>objdump выводит информацию об одном или нескольких объектных файлах. Опции
-указываеют, какую информацию выводить. Эта информация полезна для программистов,
-разрабатывающих компиляторы, в противоположность тем, кому нужно просто скомпилировать
-и запустить программу.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6313">ranlib</a></h4><p>ranlib генерирует оглавление содержимого архива и сохраняет его в архиве.
-Список будет содержать все символы, определенные членами архива, that is
-a relocatable object file.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6316">readelf</a></h4><p>readelf выводит информацию об бинарных файлах типа elf.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6319">size</a></h4><p>size выводит размеры секций --и общий размер-- каждого указанного объектного
-файла. По умолчанию, генерируется одна строка для каждого объектного файла
-или модуля в архиве.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6322">strings</a></h4><p>Для каждого задананного файла strings выводит последовательность отображаемых
-символов длиной минимум 4 знака (или указанной длины), завершающуюся непечатным
-символом. По умолчанию, выводятся лишь строки из инициализированных и загруженных
-частей объектных файлов. Для других типов файлов выводятся строки из всего
-файла.</p><p>strings зачастую используется для определения содержимого нетекстовых
-файлов.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6326">strip</a></h4><p>strip удаляет все или указанные символы из объектных файлов. Список объектных 
-файлов может включать архивы. Должен быть задан как минимум один объектный 
-файл. Модификация указанных файлов приоритетнее, чем запись модифицированных 
-копий под другими именами.</p></div></div><div class="sect3"><h3 class="sect3"><a name="AEN6329">Библиотеки</a></h3><p>libbfd.[a,so] и libopcodes.[a,so]</p></div><div class="sect3"><h3 class="sect3"><a name="AEN6332">Описания</a></h3><div class="sect4"><h4 class="sect4"><a name="AEN6334">libbfd</a></h4><p>libbfd - библиотека Binary File Descriptor.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6337">libopcodes</a></h4><p>libopcodes - библиотека для работы с опкодами, используется в сборке утилит 
-вроде objdump. Опкоды - "читаемые" версии инструкций процессора.</p></div></div></div>
-<div class="sect2"><h2 class="sect2"><a name="AEN6340">Зависимости Binutils</a></h2><p>Последняя проверка: версия 2.11.2.</p><p class="literallayout">Autoconf: autoconf, autoheader<br>
-    Automake: aclocal, automake<br>
-    Bash: sh<br>
-    Binutils: ar, as, ld, nm, ranlib, strip<br>
-    Diffutils: cmp<br>
-    Fileutils: chmod, cp, ln, ls, mkdir, mv, rm, rmdir, touch<br>
-    Flex: flex<br>
-    Gcc: cc, cc1, collect2, cpp0, gcc<br>
-    Glibc: ldconfig<br>
-    Grep: egrep, fgrep, grep<br>
-    M4: m4<br>
-    Make: make<br>
-    Gawk: gawk<br>
-    Sed: sed<br>
-    Sh-utils: basename, echo, expr, hostname, sleep, true, uname<br>
-    Texinfo: install-info, makeinfo<br>
-    Textutils: cat, sort, tr, uniq</p></div>
-<h2 class="sect2"><a name="AEN1259"></a></h2></div></div><div class="NAVFOOTER"><hr align="Left" width="100%"><table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="33%" align="Left" valign="Top"><a href="bash.html" accesskey="P">Назад</a></td><td width="34%" align="Center" valign="Top"><a href="../index.html" accesskey="H">Домой</a></td><td width="33%" align="Right" valign="Top"><a href="bzip2.html" accesskey="N">Вперед</a></td></tr><tr><td width="33%" align="Left" valign="Top">Установка Bash-2.05a</td><td width="34%" align="Center" valign="Top"><a href="chapter05.html" accesskey="U">Наверх</a></td><td width="33%" align="Right" valign="Top">Установка Bzip2-1.0.2</td></tr></tbody></table></div><br>
+<meta name="GENERATOR" content="Modular DocBook HTML Stylesheet Version 1.73"><link rel="HOME" title="Linux From Scratch" href="http://www.linux.org.ru/books/Distro/lfsbook/chapter05/index.html"><link rel="UP" title="Preparing the LFS system" href="chapter05.html"><link rel="PREVIOUS" title="Installing Bash-2.05a" href="bash.html"><link rel="NEXT" title="Installing Bzip2-1.0.2" href="bzip2.html"></head><body class="sect1" bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#840084" alink="#006000"><div class="NAVHEADER"><table summary="Header navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><th colspan="3" align="Center">Linux From Scratch: Р±Р•РџРЇРҐРЄ 4.0</th></tr><tr><td width="10%" align="Left" valign="Bottom"><a href="bash.html" accesskey="P">РјР®Р“Р®Р”</a></td><td width="80%" align="Center" valign="Bottom">С†РљР®Р‘Р® 5. РѕРќР”Р¦РќР РќР‘Р™Р® РЇРҐРЇР Р•Р›РЁ LFS</td><td width="10%" align="Right" valign="Bottom"><a href="bzip2.html" accesskey="N">Р±РћР•РџР•Р”</a></td></tr></tbody></table><hr align="Left" width="100%"></div><div class="sect1"><h1 class="sect1"><a name="ch05-binutils">СЃРЇР Р®РњРќР‘Р™Р® Binutils-2.13</a></h1><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen">РѕРџРҐРђРљРҐР“РҐР Р•РљР­РњРќР• Р‘РџР•Р›РЄ Р™РќР›РћРҐРљРЄР–РҐРҐ:           2.05 SBU<br>РјР•РќРђРЈРќР”РҐР›РќР• Р”РҐРЇР™РќР‘РќР• РћРџРќРЇР РџР®РњРЇР Р‘Рќ:  160 MB</pre></td></tr></tbody></table><div class="sect2"><h2 class="sect2"><a name="AEN1244">СЃРЇР Р®РњРќР‘Р™Р® of Binutils</a></h2><p>С‰Р РќР 
+РћР®Р™Р•Р  РҐР“Р‘Р•РЇР Р•Рњ РЇР‘РќРҐР› РњР•РЇР Р®РђРҐРљР­РњРЁР› РћРќР‘Р•Р”Р•РњРҐР•Р› РћРџРҐ Р™РќР›РћРҐРљРЄР–РҐРҐ РЇ РҐР“Р›Р•РњР•РњРњРЁР›РҐ
+РќРћР–РҐРЄР›РҐ РќРћР РҐР›РҐР“Р®Р–РҐРҐ (Р‘Р™РљР§Р’Р®РЄ РќРћР–РҐРҐ -march РҐ -mcpu). Binutils РџР•Р™РќР›Р•РњР”РЎР•Р РЇРЄ
+Р™РќР›РћРҐРљРҐРџРќР‘Р®Р Р­ РЇ РњР®РЇР РџРќРР™Р®Р›РҐ РћРќ РЎР›РќРљР’Р®РњРҐР§. СЏРљР•Р”РќР‘Р®Р Р•РљР­РњРќ, Р•РЇРљРҐ Р‘РЁ Р“Р®Р”Р®РљРҐ РћР•РџР•Р›Р•РњРњРЁР•
+Р Р®Р™РҐР• Р™Р®Р™ CFLAGS РҐРљРҐ CXXFLAGS, РҐР“Р›Р•РњРЄР§Р«РҐР• РЎРџРќР‘Р•РњР­ РќРћР РҐР›РҐР“Р®Р–РҐРҐ РћРќ РЎР›РќРљР’Р®РњРҐР§,
+РџР•Р™РќР›Р•РњР”РЎР•Р РЇРЄ РЎРђРџР®Р Р­ РҐРЈ РћРџРҐ РЇРђРќРџР™Р• РћР®Р™Р•Р Р® binutils. С…Р“Р›Р•РњРЄРЄ РќРћР РҐР›РҐР“Р®Р–РҐРҐ Р”РљРЄ
+binutils, Р‘РЁ Р”Р•РРЇР Р‘РЎР•Р Р• РњР® РЇР‘РќР РЇР РџР®РЈ РҐ РџРҐРЇР™.</p><p>РґРљРЄ РҐРњРЇР Р®РљРљРЄР–РҐРҐ Binutils Р‘РЁРћРќРљРњРҐР Р•:</p><p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>mkdir ../binutils-build &amp;&amp;<br>cd ../binutils-build &amp;&amp;<br>../binutils-2.13/configure --prefix=$LFS/static --disable-nls &amp;&amp;<br>make LDFLAGS=-all-static &amp;&amp;<br>make install</b></tt></pre></td></tr></tbody></table></p></div><div class="sect2"><h2 class="sect2"><a name="AEN1251">РѕРќРЄРЇРњР•РњРҐРЄ Р™РќР›Р®РњР”</a></h2><p><tt class="userinput"><b>mkdir ../binutils-build:</b></tt>
+Р± РҐРњРЇР РџРЎР™Р–РҐРЄРЈ РЎРЇР Р®РњРќР‘Р™РҐ Binutils РџР•Р™РќР›Р•РњР”РЎР•Р РЇРЄ РЇРќР“Р”Р®Р Р­ РќР Р”Р•РљР­РњРЎР§ Р”РҐРџР•Р™Р РќРџРҐР§
+Р”РљРЄ РЇРђРќРџР™РҐ, Р‘Р›Р•РЇР Рќ Р РќР¦Рќ, Р’Р РќРђРЁ Р™РќР›РћРҐРљРҐРџРќР‘Р®Р Р­ РћРџРќР¦РџР®Р›Р›РЎ Р‘ Р”РҐРџР•Р™Р РќРџРҐРҐ РҐРЇРЈРќР”РњРҐР™РќР‘.
+С…Р Р®Р™, Р›РЁ РЇРќР“Р”Р®Р•Р› Р”РҐРџР•Р™Р РќРџРҐР§ binutils-build РҐ РђРЎР”Р•Р› РџР®РђРќР Р®Р Р­ РҐР“ РњР•Р•.</p><p><tt class="userinput"><b>--disable-nls:</b></tt>
+С‰Р Р® РќРћР–РҐРЄ Р‘РЁР™РљР§Р’Р®Р•Р  РћРќР”Р”Р•РџР¤Р™РЎ РҐРњР Р•РџРњР®Р–РҐРќРњР®РљРҐР“Р®Р–РҐРҐ (РҐРљРҐ i18n), Р™РќР РќРџР®РЄ РњР•
+РњРЎР¤РњР® РњР®Р› РњР® РЇР Р®Р”РҐРҐ РЇР Р®Р РҐР’Р•РЇР™РҐ РЇР‘РЄР“Р®РњРњРЁРЈ РћРџРќР¦РџР®Р›Р›, Р .Р™. Р’Р®РЇР Рќ Р”Р®Р•Р  РЇРђРќРҐ РћРџРҐ
+РҐРЇРћРќРљР­Р“РќР‘Р®РњРҐРҐ РЇР Р®Р РҐР’Р•РЇР™РҐРЈ РЇРЇРЁРљРќР™.</p><p><tt class="userinput"><b>LDFLAGS=-all-static:</b></tt> РѕРџРҐРЇР‘Р®РҐР‘Р®Р•Р› РћР•РџР•Р›Р•РњРњРќР LDFLAGS
+Р“РњР®Р’Р•РњРҐР• -all-static Р”РљРЄ Р РќР¦Рќ, Р’Р РќРђРЁ РҐРЇРћРќРљР­Р“РќР‘Р®Р Р­ РЇР Р®Р РҐР’Р•РЇР™РҐР• РЇРЇРЁР”Р™РҐ.</p></div><div class="sect2">
+<div class="sect2"><h2 class="sect2"><a name="AEN6278">СЏРќР”Р•РџР¤РҐР›РќР• Binutils</a></h2><p>РѕРќРЇРљР•Р”РњРЄРЄ РћРџРќР‘Р•РџР™Р®: Р‘Р•РџРЇРҐРЄ 2.12.1.</p><div class="sect3"><h3 class="sect3"><a name="AEN6281">РѕРџРќР¦РџР®Р›Р›РЁ</a></h3><p>addr2line, ar, as, gasp, gprof, ld, nm, objcopy, objdump,  ranlib, readelf, 
+ size, strings and strip</p></div><div class="sect3"><h3 class="sect3"><a name="AEN6284">РЅРћРҐРЇР®РњРҐРЄ</a></h3><div class="sect4"><h4 class="sect4"><a name="AEN6286">addr2line</a></h4><p>addr2line РћР•РџР•Р‘РќР”РҐР  РћРџРќР¦РџР®Р›Р›РњРЁР• Р®Р”РџР•РЇР® Р‘ РҐР›Р•РњР® РўР®РРљРќР‘ РҐ РњРќР›Р•РџР® РЇР РџРќР™. 
+Given an address and an executable, РҐРЇРћРќРљР­Р“РЎР•Р РЇРЄ РќР РљР®Р”РќР’РњР®РЄ РҐРњРўРќРџР›Р®Р–РҐРЄ РҐРЇРћРќРљРњРЄР•Р›РќР¦Рќ
+РўР®РРљР®, Р’Р РќРђРЁ РќРћРџР•Р”Р•РљРҐР Р­, Р™Р®Р™РќР• РҐР›РЄ РўР®РРљР® РҐ РњРќР›Р•Рџ РЇР РџРќР™РҐ РЇР‘РЄР“Р®РњРЁ РЇ Р”Р®РњРњРЁР›
+Р®Р”РџР•РЇРќР›.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6289">ar</a></h4><p>ar РЇРќР“Р”Р®Р•Р  РҐ РҐР“Р›Р•РњРЄР•Р  Р®РџРЈРҐР‘РЁ, Р® Р Р®Р™Р¤Р• РћРџРќРҐР“Р‘РќР”РҐР  РҐРЈ РџР®РЇРћР®Р™РќР‘Р™РЎ. СЋРџРЈРҐР‘
+- РўР®РРљ, РЇРќР”Р•РџР¤Р®Р«РҐР РњР•РЇР™РќРљР­Р™Рќ РўР®РРљРќР‘ Р‘ Р‘РҐР”Р•, РћРќР“Р‘РќРљРЄР§Р«Р•Р› Р‘РќРЇРЇР Р®РњРќР‘РҐР Р­ РќРџРҐР¦РҐРњР®Рљ.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6292">as</a></h4><p>as РҐРЇРћРќРљР­Р“РЎР•Р РЇРЄ Р”РљРЄ Р®РЇРЇР•Р›РђРљРҐРџРќР‘Р®РњРҐРЄ Р‘РЁР‘РќР”Р® the GNU C Compiler,    gcc
+Р”РљРЄ РҐРЇРћРќРљР­Р“РќР‘Р®РњРҐРЄ РЇ РљРҐРњР™Р•РџРќР› ld.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6295">gasp</a></h4><p>gasp - Assembler Macro Preprocessor.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6298">gprof</a></h4><p>gprof РќР РќРђРџР®Р¤Р®Р•Р  РЇР Р®Р РҐРЇР РҐР™РЎ РЇРҐРЇР Р•Р›РњРЁРЈ Р‘РЁР“РќР‘РќР‘.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6301">ld</a></h4><p>ld РќРђР—Р•Р”РҐРњРЄР•Р  РњР•РЇР™РќРљР­Р™Рќ РќРђР—Р•Р™Р РњРЁРЈ РҐ Р®РџРЈРҐР‘РњРЁРЈ РўР®РРљРќР‘ РҐ РЎРЇР Р®РњР®Р‘РљРҐР‘Р®Р•Р  РЇРҐР›Р‘РќРљР­РњРЁР•
+РќР РњРќР¬Р•РњРҐРЄ. РѕРќРЇРљР•Р”РњРҐР Р¬Р®Р¦ Р‘ РЇРђРќРџР™Р• РЇР™РќР›РћРҐРљРҐРџРќР‘Р®РњРњРќР РћРџРќР¦РџР®Р›Р›РЁ - Р“Р®РћРЎРЇР™ ld.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6304">nm</a></h4><p>nm РћР•РџР•Р’РҐРЇРљРЄР•Р  РЇРҐР›Р‘РќРљРЁ РҐР“ РќРђР—Р•Р™Р РњРЁРЈ РўР®РРљРќР‘.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6307">objcopy</a></h4><p>objcopy utility Р™РќРћРҐРџРЎР•Р  РЇРќР”Р•РџР¤РҐР›РќР• РќР”РњРќР¦Рќ РќРђР—Р•Р™Р РњРќР¦Рќ РўР®РРљР® Р‘ Р”РџРЎР¦РќР.
+objcopy РҐРЇРћРќРљР­Р“РЎР•Р  РђРҐРђРљРҐРќР Р•Р™РЎ GNU BFD Р”РљРЄ Р’Р Р•РњРҐРЄ/Р“Р®РћРҐРЇРҐ РќРђР—Р•Р™Р РњРЁРЈ РўР®РРљРќР‘.
+Р±РќР“Р›РќР¤РњР® Р“Р®РћРҐРЇР­ Р™РќРњР•Р’РњРќР¦Рќ РќРђР—Р•Р™Р РњРќР¦Рќ РўР®РРљР® Р‘ РўРќРџР›Р®Р Р•, РќР РљРҐР’РњРќР› РќР  РҐРЇРЈРќР”РњРќР¦Рќ.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6310">objdump</a></h4><p>objdump Р‘РЁР‘РќР”РҐР  РҐРњРўРќРџР›Р®Р–РҐР§ РќРђ РќР”РњРќР› РҐРљРҐ РњР•РЇР™РќРљР­Р™РҐРЈ РќРђР—Р•Р™Р РњРЁРЈ РўР®РРљР®РЈ. РЅРћР–РҐРҐ
+РЎР™Р®Р“РЁР‘Р®Р•Р§Р , Р™Р®Р™РЎР§ РҐРњРўРќРџР›Р®Р–РҐР§ Р‘РЁР‘РќР”РҐР Р­. С‰Р Р® РҐРњРўРќРџР›Р®Р–РҐРЄ РћРќРљР•Р“РњР® Р”РљРЄ РћРџРќР¦РџР®Р›Р›РҐРЇР РќР‘,
+РџР®Р“РџР®РђР®Р РЁР‘Р®Р§Р«РҐРЈ Р™РќР›РћРҐРљРЄР РќРџРЁ, Р‘ РћРџРќР РҐР‘РќРћРќРљРќР¤РњРќРЇР Р­ Р Р•Р›, Р™РќР›РЎ РњРЎР¤РњРќ РћРџРќРЇР Рќ РЇР™РќР›РћРҐРљРҐРџРќР‘Р®Р Р­
+РҐ Р“Р®РћРЎРЇР РҐР Р­ РћРџРќР¦РџР®Р›Р›РЎ.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6313">ranlib</a></h4><p>ranlib Р¦Р•РњР•РџРҐРџРЎР•Р  РќР¦РљР®Р‘РљР•РњРҐР• РЇРќР”Р•РџР¤РҐР›РќР¦Рќ Р®РџРЈРҐР‘Р® РҐ РЇРќРЈРџР®РњРЄР•Р  Р•Р¦Рќ Р‘ Р®РџРЈРҐР‘Р•.
+СЏРћРҐРЇРќР™ РђРЎР”Р•Р  РЇРќР”Р•РџР¤Р®Р Р­ Р‘РЇР• РЇРҐР›Р‘РќРљРЁ, РќРћРџР•Р”Р•РљР•РњРњРЁР• Р’РљР•РњР®Р›РҐ Р®РџРЈРҐР‘Р®, that is
+a relocatable object file.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6316">readelf</a></h4><p>readelf Р‘РЁР‘РќР”РҐР  РҐРњРўРќРџР›Р®Р–РҐР§ РќРђ РђРҐРњР®РџРњРЁРЈ РўР®РРљР®РЈ Р РҐРћР® elf.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6319">size</a></h4><p>size Р‘РЁР‘РќР”РҐР  РџР®Р“Р›Р•РџРЁ РЇР•Р™Р–РҐР --РҐ РќРђР«РҐР РџР®Р“Р›Р•Рџ-- Р™Р®Р¤Р”РќР¦Рќ РЎР™Р®Р“Р®РњРњРќР¦Рќ РќРђР—Р•Р™Р РњРќР¦Рќ
+РўР®РРљР®. РѕРќ РЎР›РќРљР’Р®РњРҐР§, Р¦Р•РњР•РџРҐРџРЎР•Р РЇРЄ РќР”РњР® РЇР РџРќР™Р® Р”РљРЄ Р™Р®Р¤Р”РќР¦Рќ РќРђР—Р•Р™Р РњРќР¦Рќ РўР®РРљР®
+РҐРљРҐ Р›РќР”РЎРљРЄ Р‘ Р®РџРЈРҐР‘Р•.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6322">strings</a></h4><p>РґРљРЄ Р™Р®Р¤Р”РќР¦Рќ Р“Р®Р”Р®РњР®РњРњРќР¦Рќ РўР®РРљР® strings Р‘РЁР‘РќР”РҐР  РћРќРЇРљР•Р”РќР‘Р®Р Р•РљР­РњРќРЇР Р­ РќР РќРђРџР®Р¤Р®Р•Р›РЁРЈ
+РЇРҐР›Р‘РќРљРќР‘ Р”РљРҐРњРќР Р›РҐРњРҐР›РЎР› 4 Р“РњР®Р™Р® (РҐРљРҐ РЎР™Р®Р“Р®РњРњРќР Р”РљРҐРњРЁ), Р“Р®Р‘Р•РџР¬Р®Р§Р«РЎР§РЇРЄ РњР•РћР•Р’Р®Р РњРЁР›
+РЇРҐР›Р‘РќРљРќР›. РѕРќ РЎР›РќРљР’Р®РњРҐР§, Р‘РЁР‘РќР”РЄР РЇРЄ РљРҐР¬Р­ РЇР РџРќР™РҐ РҐР“ РҐРњРҐР–РҐР®РљРҐР“РҐРџРќР‘Р®РњРњРЁРЈ РҐ Р“Р®Р¦РџРЎР¤Р•РњРњРЁРЈ
+Р’Р®РЇР Р•Р РќРђР—Р•Р™Р РњРЁРЈ РўР®РРљРќР‘. РґРљРЄ Р”РџРЎР¦РҐРЈ Р РҐРћРќР‘ РўР®РРљРќР‘ Р‘РЁР‘РќР”РЄР РЇРЄ РЇР РџРќР™РҐ РҐР“ Р‘РЇР•Р¦Рќ
+РўР®РРљР®.</p><p>strings Р“Р®Р’Р®РЇР РЎР§ РҐРЇРћРќРљР­Р“РЎР•Р РЇРЄ Р”РљРЄ РќРћРџР•Р”Р•РљР•РњРҐРЄ РЇРќР”Р•РџР¤РҐР›РќР¦Рќ РњР•Р Р•Р™РЇР РќР‘РЁРЈ
+РўР®РРљРќР‘.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6326">strip</a></h4><p>strip РЎР”Р®РљРЄР•Р  Р‘РЇР• РҐРљРҐ РЎР™Р®Р“Р®РњРњРЁР• РЇРҐР›Р‘РќРљРЁ РҐР“ РќРђР—Р•Р™Р РњРЁРЈ РўР®РРљРќР‘. СЏРћРҐРЇРќР™ РќРђР—Р•Р™Р РњРЁРЈ 
+РўР®РРљРќР‘ Р›РќР¤Р•Р  Р‘Р™РљР§Р’Р®Р Р­ Р®РџРЈРҐР‘РЁ. РґРќРљР¤Р•Рњ РђРЁР Р­ Р“Р®Р”Р®Рњ Р™Р®Р™ Р›РҐРњРҐР›РЎР› РќР”РҐРњ РќРђР—Р•Р™Р РњРЁР 
+РўР®РРљ. Р»РќР”РҐРўРҐР™Р®Р–РҐРЄ РЎР™Р®Р“Р®РњРњРЁРЈ РўР®РРљРќР‘ РћРџРҐРќРџРҐР Р•Р РњР•Р•, Р’Р•Р› Р“Р®РћРҐРЇР­ Р›РќР”РҐРўРҐР–РҐРџРќР‘Р®РњРњРЁРЈ 
+Р™РќРћРҐР РћРќР” Р”РџРЎР¦РҐР›РҐ РҐР›Р•РњР®Р›РҐ.</p></div></div><div class="sect3"><h3 class="sect3"><a name="AEN6329">Р°РҐРђРљРҐРќР Р•Р™РҐ</a></h3><p>libbfd.[a,so] РҐ libopcodes.[a,so]</p></div><div class="sect3"><h3 class="sect3"><a name="AEN6332">РЅРћРҐРЇР®РњРҐРЄ</a></h3><div class="sect4"><h4 class="sect4"><a name="AEN6334">libbfd</a></h4><p>libbfd - РђРҐРђРљРҐРќР Р•Р™Р® Binary File Descriptor.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6337">libopcodes</a></h4><p>libopcodes - РђРҐРђРљРҐРќР Р•Р™Р® Р”РљРЄ РџР®РђРќР РЁ РЇ РќРћР™РќР”Р®Р›РҐ, РҐРЇРћРќРљР­Р“РЎР•Р РЇРЄ Р‘ РЇРђРќРџР™Р• РЎР РҐРљРҐР  
+Р‘РџРќР”Р• objdump. РЅРћР™РќР”РЁ - "Р’РҐР Р®Р•Р›РЁР•" Р‘Р•РџРЇРҐРҐ РҐРњРЇР РџРЎР™Р–РҐР РћРџРќР–Р•РЇРЇРќРџР®.</p></div></div></div>
+<div class="sect2"><h2 class="sect2"><a name="AEN6340">РіР®Р‘РҐРЇРҐР›РќРЇР РҐ Binutils</a></h2><p>РѕРќРЇРљР•Р”РњРЄРЄ РћРџРќР‘Р•РџР™Р®: Р‘Р•РџРЇРҐРЄ 2.11.2.</p><p class="literallayout">Autoconf:в•ђautoconf,в•ђautoheader<br>
+    Automake:в•ђaclocal,в•ђautomake<br>
+    Bash:в•ђsh<br>
+    Binutils:в•ђar,в•ђas,в•ђld,в•ђnm,в•ђranlib,в•ђstrip<br>
+    Diffutils:в•ђcmp<br>
+    Fileutils:в•ђchmod,в•ђcp,в•ђln,в•ђls,в•ђmkdir,в•ђmv,в•ђrm,в•ђrmdir,в•ђtouch<br>
+    Flex:в•ђflex<br>
+    Gcc:в•ђcc,в•ђcc1,в•ђcollect2,в•ђcpp0,в•ђgcc<br>
+    Glibc:в•ђldconfig<br>
+    Grep:в•ђegrep,в•ђfgrep,в•ђgrep<br>
+    M4:в•ђm4<br>
+    Make:в•ђmake<br>
+    Gawk:в•ђgawk<br>
+    Sed:в•ђsed<br>
+    Sh-utils:в•ђbasename,в•ђecho,в•ђexpr,в•ђhostname,в•ђsleep,в•ђtrue,в•ђuname<br>
+    Texinfo:в•ђinstall-info,в•ђmakeinfo<br>
+    Textutils:в•ђcat,в•ђsort,в•ђtr,в•ђuniq</p></div>
+<h2 class="sect2"><a name="AEN1259"></a></h2></div></div><div class="NAVFOOTER"><hr align="Left" width="100%"><table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="33%" align="Left" valign="Top"><a href="bash.html" accesskey="P">РјР®Р“Р®Р”</a></td><td width="34%" align="Center" valign="Top"><a href="../index.html" accesskey="H">РґРќР›РќР</a></td><td width="33%" align="Right" valign="Top"><a href="bzip2.html" accesskey="N">Р±РћР•РџР•Р”</a></td></tr><tr><td width="33%" align="Left" valign="Top">СЃРЇР Р®РњРќР‘Р™Р® Bash-2.05a</td><td width="34%" align="Center" valign="Top"><a href="chapter05.html" accesskey="U">РјР®Р‘Р•РџРЈ</a></td><td width="33%" align="Right" valign="Top">СЃРЇР Р®РњРќР‘Р™Р® Bzip2-1.0.2</td></tr></tbody></table></div><br>
 </body></html>

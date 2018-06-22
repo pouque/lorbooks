@@ -1,30 +1,30 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
   <meta http-equiv="Content-Type" content="text/html; charset=windows-1251"><title>Installing Tar-1.13</title>
-<meta name="GENERATOR" content="Modular DocBook HTML Stylesheet Version 1.73"><link rel="HOME" title="Linux From Scratch" href="http://www.linux.org.ru/books/Distro/lfsbook/chapter05/index.html"><link rel="UP" title="Preparing the LFS system" href="chapter05.html"><link rel="PREVIOUS" title="Installing Sh-utils-2.0" href="sh-utils.html"><link rel="NEXT" title="Installing Texinfo-4.2" href="texinfo.html"></head><body class="sect1" bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#840084" alink="#006000"><div class="NAVHEADER"><table summary="Header navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><th colspan="3" align="Center">Linux From Scratch: Версия 4.0</th></tr><tr><td width="10%" align="Left" valign="Bottom"><a href="sh-utils.html" accesskey="P">Назад</a></td><td width="80%" align="Center" valign="Bottom">Глава 5. Подготовка системы LFS</td><td width="10%" align="Right" valign="Bottom"><a href="texinfo.html" accesskey="N">Вперед</a></td></tr></tbody></table><hr align="Left" width="100%"></div><div class="sect1"><h1 class="sect1"><a name="ch05-tar">Установка Tar-1.13</a></h1><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen">Приблизительное время компиляции:           0.25 SBU<br>Необходимое дисковое пространство:  10 MB</pre></td></tr></tbody></table><div class="sect2"><h2 class="sect2"><a name="AEN1980">Инсталляция Tar</a></h2><p>Для
-того чтобы использовать tar с файлами формата bzip2 напрямую, примените патч
-с FTP-сервера LFS. Этот патч добавляет опцию -j, которая работает с командой
-tar также как опция -z (которая используется с файлами gzip).</p><p>Примените патч следующим образом:</p><p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>patch -Np1 -i ../tar-1.13.patch</b></tt></pre></td></tr></tbody></table></p><p>Для инсталляции Tar выполните:</p><p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>./configure --prefix=$LFS/static --disable-nls &amp;&amp;<br>make LDFLAGS=-static &amp;&amp;<br>make install</b></tt></pre></td></tr></tbody></table></p></div><div class="sect2">
-<div class="sect2"><h2 class="sect2"><a name="AEN8598">Содержимое Tar</a></h2><p>Последняя проверка: версия 1.13.</p><div class="sect3"><h3 class="sect3"><a name="AEN8601">Программы</a></h3><p>rmt и tar</p></div><div class="sect3"><h3 class="sect3"><a name="AEN8604">Описания</a></h3><div class="sect4"><h4 class="sect4"><a name="AEN8606">rmt</a></h4><p>rmt используется другими программами для удаленного управления
-приводом магнитных лент.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8609">tar</a></h4><p>tar - программа архивации, сохраняющая и извлекающая файлы из
-архивов tar.</p></div></div></div>
-<div class="sect2"><h2 class="sect2"><a name="AEN8612">Зависимости Tar</a></h2><p>Последняя проверка: версия 1.13.</p><p class="literallayout">Autoconf: autoconf, autoheader<br>
-Automake: aclocal, automake<br>
-Bash: sh<br>
-Binutils: ar, as, ld, ranlib<br>
-Diffutils: cmp<br>
-Fileutils: chmod, install, ls, mv, rm<br>
-Gettext: msgfmt, xgettext<br>
-Gcc: cc, cc1, collect2, cpp0, gcc<br>
-Glibc: getconf<br>
-Grep: egrep, fgrep, grep<br>
-M4: m4<br>
-Make: make<br>
-Gawk: gawk<br>
-Net-tools: hostname<br>
-Patch: patch<br>
-Sed: sed<br>
-Sh-utils: basename, echo, expr, sleep, uname<br>
-Texinfo: install-info, makeinfo<br>
-Textutils: cat, tr</p></div>
-<h2 class="sect2"></h2></div></div><div class="NAVFOOTER"><hr align="Left" width="100%"><table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="33%" align="Left" valign="Top"><a href="sh-utils.html" accesskey="P">Назад</a></td><td width="34%" align="Center" valign="Top"><a href="../index.html" accesskey="H">Домой</a></td><td width="33%" align="Right" valign="Top"><a href="texinfo.html" accesskey="N">Вперед</a></td></tr><tr><td width="33%" align="Left" valign="Top">Установка Sh-utils-2.0</td><td width="34%" align="Center" valign="Top"><a href="chapter05.html" accesskey="U">Наверх</a></td><td width="33%" align="Right" valign="Top">Установка Texinfo-4.2</td></tr></tbody></table></div><br>
+<meta name="GENERATOR" content="Modular DocBook HTML Stylesheet Version 1.73"><link rel="HOME" title="Linux From Scratch" href="http://www.linux.org.ru/books/Distro/lfsbook/chapter05/index.html"><link rel="UP" title="Preparing the LFS system" href="chapter05.html"><link rel="PREVIOUS" title="Installing Sh-utils-2.0" href="sh-utils.html"><link rel="NEXT" title="Installing Texinfo-4.2" href="texinfo.html"></head><body class="sect1" bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#840084" alink="#006000"><div class="NAVHEADER"><table summary="Header navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><th colspan="3" align="Center">Linux From Scratch: Р±Р•РџРЇРҐРЄ 4.0</th></tr><tr><td width="10%" align="Left" valign="Bottom"><a href="sh-utils.html" accesskey="P">РјР®Р“Р®Р”</a></td><td width="80%" align="Center" valign="Bottom">С†РљР®Р‘Р® 5. РѕРќР”Р¦РќР РќР‘Р™Р® РЇРҐРЇР Р•Р›РЁ LFS</td><td width="10%" align="Right" valign="Bottom"><a href="texinfo.html" accesskey="N">Р±РћР•РџР•Р”</a></td></tr></tbody></table><hr align="Left" width="100%"></div><div class="sect1"><h1 class="sect1"><a name="ch05-tar">СЃРЇР Р®РњРќР‘Р™Р® Tar-1.13</a></h1><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen">РѕРџРҐРђРљРҐР“РҐР Р•РљР­РњРќР• Р‘РџР•Р›РЄ Р™РќР›РћРҐРљРЄР–РҐРҐ:           0.25 SBU<br>РјР•РќРђРЈРќР”РҐР›РќР• Р”РҐРЇР™РќР‘РќР• РћРџРќРЇР РџР®РњРЇР Р‘Рќ:  10 MB</pre></td></tr></tbody></table><div class="sect2"><h2 class="sect2"><a name="AEN1980">С…РњРЇР Р®РљРљРЄР–РҐРЄ Tar</a></h2><p>РґРљРЄ
+Р РќР¦Рќ Р’Р РќРђРЁ РҐРЇРћРќРљР­Р“РќР‘Р®Р Р­ tar РЇ РўР®РРљР®Р›РҐ РўРќРџР›Р®Р Р® bzip2 РњР®РћРџРЄР›РЎР§, РћРџРҐР›Р•РњРҐР Р• РћР®Р Р’
+РЇ FTP-РЇР•РџР‘Р•РџР® LFS. С‰Р РќР  РћР®Р Р’ Р”РќРђР®Р‘РљРЄР•Р  РќРћР–РҐР§ -j, Р™РќР РќРџР®РЄ РџР®РђРќР Р®Р•Р  РЇ Р™РќР›Р®РњР”РќР
+tar Р Р®Р™Р¤Р• Р™Р®Р™ РќРћР–РҐРЄ -z (Р™РќР РќРџР®РЄ РҐРЇРћРќРљР­Р“РЎР•Р РЇРЄ РЇ РўР®РРљР®Р›РҐ gzip).</p><p>РѕРџРҐР›Р•РњРҐР Р• РћР®Р Р’ РЇРљР•Р”РЎР§Р«РҐР› РќРђРџР®Р“РќР›:</p><p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>patch -Np1 -i ../tar-1.13.patch</b></tt></pre></td></tr></tbody></table></p><p>РґРљРЄ РҐРњРЇР Р®РљРљРЄР–РҐРҐ Tar Р‘РЁРћРќРљРњРҐР Р•:</p><p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>./configure --prefix=$LFS/static --disable-nls &amp;&amp;<br>make LDFLAGS=-static &amp;&amp;<br>make install</b></tt></pre></td></tr></tbody></table></p></div><div class="sect2">
+<div class="sect2"><h2 class="sect2"><a name="AEN8598">СЏРќР”Р•РџР¤РҐР›РќР• Tar</a></h2><p>РѕРќРЇРљР•Р”РњРЄРЄ РћРџРќР‘Р•РџР™Р®: Р‘Р•РџРЇРҐРЄ 1.13.</p><div class="sect3"><h3 class="sect3"><a name="AEN8601">РѕРџРќР¦РџР®Р›Р›РЁ</a></h3><p>rmt РҐ tar</p></div><div class="sect3"><h3 class="sect3"><a name="AEN8604">РЅРћРҐРЇР®РњРҐРЄ</a></h3><div class="sect4"><h4 class="sect4"><a name="AEN8606">rmt</a></h4><p>rmt РҐРЇРћРќРљР­Р“РЎР•Р РЇРЄ Р”РџРЎР¦РҐР›РҐ РћРџРќР¦РџР®Р›Р›Р®Р›РҐ Р”РљРЄ РЎР”Р®РљР•РњРњРќР¦Рќ РЎРћРџР®Р‘РљР•РњРҐРЄ
+РћРџРҐР‘РќР”РќР› Р›Р®Р¦РњРҐР РњРЁРЈ РљР•РњР .</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8609">tar</a></h4><p>tar - РћРџРќР¦РџР®Р›Р›Р® Р®РџРЈРҐР‘Р®Р–РҐРҐ, РЇРќРЈРџР®РњРЄР§Р«Р®РЄ РҐ РҐР“Р‘РљР•Р™Р®Р§Р«Р®РЄ РўР®РРљРЁ РҐР“
+Р®РџРЈРҐР‘РќР‘ tar.</p></div></div></div>
+<div class="sect2"><h2 class="sect2"><a name="AEN8612">РіР®Р‘РҐРЇРҐР›РќРЇР РҐ Tar</a></h2><p>РѕРќРЇРљР•Р”РњРЄРЄ РћРџРќР‘Р•РџР™Р®: Р‘Р•РџРЇРҐРЄ 1.13.</p><p class="literallayout">Autoconf:в•ђautoconf,в•ђautoheader<br>
+Automake:в•ђaclocal,в•ђautomake<br>
+Bash:в•ђsh<br>
+Binutils:в•ђar,в•ђas,в•ђld,в•ђranlib<br>
+Diffutils:в•ђcmp<br>
+Fileutils:в•ђchmod,в•ђinstall,в•ђls,в•ђmv,в•ђrm<br>
+Gettext:в•ђmsgfmt,в•ђxgettext<br>
+Gcc:в•ђcc,в•ђcc1,в•ђcollect2,в•ђcpp0,в•ђgcc<br>
+Glibc:в•ђgetconf<br>
+Grep:в•ђegrep,в•ђfgrep,в•ђgrep<br>
+M4:в•ђm4<br>
+Make:в•ђmake<br>
+Gawk:в•ђgawk<br>
+Net-tools:в•ђhostname<br>
+Patch:в•ђpatch<br>
+Sed:в•ђsed<br>
+Sh-utils:в•ђbasename,в•ђecho,в•ђexpr,в•ђsleep,в•ђuname<br>
+Texinfo:в•ђinstall-info,в•ђmakeinfo<br>
+Textutils:в•ђcat,в•ђtr</p></div>
+<h2 class="sect2"></h2></div></div><div class="NAVFOOTER"><hr align="Left" width="100%"><table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="33%" align="Left" valign="Top"><a href="sh-utils.html" accesskey="P">РјР®Р“Р®Р”</a></td><td width="34%" align="Center" valign="Top"><a href="../index.html" accesskey="H">РґРќР›РќР</a></td><td width="33%" align="Right" valign="Top"><a href="texinfo.html" accesskey="N">Р±РћР•РџР•Р”</a></td></tr><tr><td width="33%" align="Left" valign="Top">СЃРЇР Р®РњРќР‘Р™Р® Sh-utils-2.0</td><td width="34%" align="Center" valign="Top"><a href="chapter05.html" accesskey="U">РјР®Р‘Р•РџРЈ</a></td><td width="33%" align="Right" valign="Top">СЃРЇР Р®РњРќР‘Р™Р® Texinfo-4.2</td></tr></tbody></table></div><br>
 </body></html>

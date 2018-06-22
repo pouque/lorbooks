@@ -2,137 +2,137 @@
 <HTML>
 <HEAD>
  <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
- <TITLE>IPX в Linux HOWTO</TITLE>
+ <TITLE>IPX п╡ Linux HOWTO</TITLE>
  <LINK HREF="IPX-HOWTO-1.html" REL=next>
 
 
 </HEAD>
 <BODY>
-<A HREF="IPX-HOWTO-1.html">Следующий</A>
-Предыдущий
-Содержание
+<A HREF="IPX-HOWTO-1.html">п║п╩п╣п╢я┐я▌я┴п╦п╧</A>
+п÷я─п╣п╢я▀п╢я┐я┴п╦п╧
+п║п╬п╢п╣я─п╤п╟п╫п╦п╣
 <HR>
-<H1>IPX в Linux HOWTO</H1>
+<H1>IPX п╡ Linux HOWTO</H1>
 
       
-<H2>Kevin Thorpe, <CODE>kevin@pricetrak.com</CODE>, перевод Alex Ott
+<H2>Kevin Thorpe, <CODE>kevin@pricetrak.com</CODE>, п©п╣я─п╣п╡п╬п╢ Alex Ott
         <CODE>ott@phtd.tpu.edu.ru</CODE>       </H2>v2.3, 06 May 1998
       
 <P><HR>
-<EM>        Этот документ описывает как получить, установить и настроить
-        различные утилиты для операционной системы Linux, которые
-        используют поддержку протокола IPX в ядре Linux.
+<EM>        п╜я┌п╬я┌ п╢п╬п╨я┐п╪п╣п╫я┌ п╬п©п╦я│я▀п╡п╟п╣я┌ п╨п╟п╨ п©п╬п╩я┐я┤п╦я┌я▄, я┐я│я┌п╟п╫п╬п╡п╦я┌я▄ п╦ п╫п╟я│я┌я─п╬п╦я┌я▄
+        я─п╟п╥п╩п╦я┤п╫я▀п╣ я┐я┌п╦п╩п╦я┌я▀ п╢п╩я▐ п╬п©п╣я─п╟я├п╦п╬п╫п╫п╬п╧ я│п╦я│я┌п╣п╪я▀ Linux, п╨п╬я┌п╬я─я▀п╣
+        п╦я│п©п╬п╩я▄п╥я┐я▌я┌ п©п╬п╢п╢п╣я─п╤п╨я┐ п©я─п╬я┌п╬п╨п╬п╩п╟ IPX п╡ я▐п╢я─п╣ Linux.
       </EM>
 <HR>
-<P><B>Примечание переводчика:</B> Шлите мне любый комментарии и
-замечания, даже небольшие.
+<P><B>п÷я─п╦п╪п╣я┤п╟п╫п╦п╣ п©п╣я─п╣п╡п╬п╢я┤п╦п╨п╟:</B> п╗п╩п╦я┌п╣ п╪п╫п╣ п╩я▌п╠я▀п╧ п╨п╬п╪п╪п╣п╫я┌п╟я─п╦п╦ п╦
+п╥п╟п╪п╣я┤п╟п╫п╦я▐, п╢п╟п╤п╣ п╫п╣п╠п╬п╩я▄я┬п╦п╣.
 <P>
 <P>
-<H2><A NAME="toc1">1.</A> <A HREF="IPX-HOWTO-1.html">Введение</A></H2>
+<H2><A NAME="toc1">1.</A> <A HREF="IPX-HOWTO-1.html">п▓п╡п╣п╢п╣п╫п╦п╣</A></H2>
 
 <UL>
-<LI><A HREF="IPX-HOWTO-1.html#ss1.1">1.1 Изменения с предыдущей версии</A>
-<LI><A HREF="IPX-HOWTO-1.html#ss1.2">1.2 Введение</A>
+<LI><A HREF="IPX-HOWTO-1.html#ss1.1">1.1 п≤п╥п╪п╣п╫п╣п╫п╦я▐ я│ п©я─п╣п╢я▀п╢я┐я┴п╣п╧ п╡п╣я─я│п╦п╦</A>
+<LI><A HREF="IPX-HOWTO-1.html#ss1.2">1.2 п▓п╡п╣п╢п╣п╫п╦п╣</A>
 </UL>
 <P>
-<H2><A NAME="toc2">2.</A> <A HREF="IPX-HOWTO-2.html">Отказ от ответственности       </A></H2>
+<H2><A NAME="toc2">2.</A> <A HREF="IPX-HOWTO-2.html">п·я┌п╨п╟п╥ п╬я┌ п╬я┌п╡п╣я┌я│я┌п╡п╣п╫п╫п╬я│я┌п╦       </A></H2>
 
 <P>
-<H2><A NAME="toc3">3.</A> <A HREF="IPX-HOWTO-3.html">Относящаяся документация</A></H2>
+<H2><A NAME="toc3">3.</A> <A HREF="IPX-HOWTO-3.html">п·я┌п╫п╬я│я▐я┴п╟я▐я│я▐ п╢п╬п╨я┐п╪п╣п╫я┌п╟я├п╦я▐</A></H2>
 
 <UL>
-<LI><A HREF="IPX-HOWTO-3.html#ss3.1">3.1 Новые версии этого документа</A>
-<LI><A HREF="IPX-HOWTO-3.html#ss3.2">3.2 Обратная связь</A>
-<LI><A HREF="IPX-HOWTO-3.html#ss3.3">3.3 Поддержка списка рассылки</A>
+<LI><A HREF="IPX-HOWTO-3.html#ss3.1">3.1 п²п╬п╡я▀п╣ п╡п╣я─я│п╦п╦ я█я┌п╬пЁп╬ п╢п╬п╨я┐п╪п╣п╫я┌п╟</A>
+<LI><A HREF="IPX-HOWTO-3.html#ss3.2">3.2 п·п╠я─п╟я┌п╫п╟я▐ я│п╡я▐п╥я▄</A>
+<LI><A HREF="IPX-HOWTO-3.html#ss3.3">3.3 п÷п╬п╢п╢п╣я─п╤п╨п╟ я│п©п╦я│п╨п╟ я─п╟я│я│я▀п╩п╨п╦</A>
 </UL>
 <P>
-<H2><A NAME="toc4">4.</A> <A HREF="IPX-HOWTO-4.html">Некоторые термины, используемые в этом документе</A></H2>
+<H2><A NAME="toc4">4.</A> <A HREF="IPX-HOWTO-4.html">п²п╣п╨п╬я┌п╬я─я▀п╣ я┌п╣я─п╪п╦п╫я▀, п╦я│п©п╬п╩я▄п╥я┐п╣п╪я▀п╣ п╡ я█я┌п╬п╪ п╢п╬п╨я┐п╪п╣п╫я┌п╣</A></H2>
 
 <P>
-<H2><A NAME="toc5">5.</A> <A HREF="IPX-HOWTO-5.html">Краткое обсуждение топологии сетей  IPX       </A></H2>
+<H2><A NAME="toc5">5.</A> <A HREF="IPX-HOWTO-5.html">п я─п╟я┌п╨п╬п╣ п╬п╠я│я┐п╤п╢п╣п╫п╦п╣ я┌п╬п©п╬п╩п╬пЁп╦п╦ я│п╣я┌п╣п╧  IPX       </A></H2>
 
 <P>
-<H2><A NAME="toc6">6.</A> <A HREF="IPX-HOWTO-6.html">Файлы в файловой системе <CODE>/proc</CODE>, относящиеся к IPX       </A></H2>
+<H2><A NAME="toc6">6.</A> <A HREF="IPX-HOWTO-6.html">п╓п╟п╧п╩я▀ п╡ я└п╟п╧п╩п╬п╡п╬п╧ я│п╦я│я┌п╣п╪п╣ <CODE>/proc</CODE>, п╬я┌п╫п╬я│я▐я┴п╦п╣я│я▐ п╨ IPX       </A></H2>
 
 <P>
-<H2><A NAME="toc7">7.</A> <A HREF="IPX-HOWTO-7.html">IPX утилиты Greg Pages</A></H2>
+<H2><A NAME="toc7">7.</A> <A HREF="IPX-HOWTO-7.html">IPX я┐я┌п╦п╩п╦я┌я▀ Greg Pages</A></H2>
 
 <UL>
-<LI><A HREF="IPX-HOWTO-7.html#ss7.1">7.1 Более детально об утилитах IPX</A>
+<LI><A HREF="IPX-HOWTO-7.html#ss7.1">7.1 п▒п╬п╩п╣п╣ п╢п╣я┌п╟п╩я▄п╫п╬ п╬п╠ я┐я┌п╦п╩п╦я┌п╟я┘ IPX</A>
 </UL>
 <P>
-<H2><A NAME="toc8">8.</A> <A HREF="IPX-HOWTO-8.html">Настройка вашей Linux-машины как маршрутизатора IPX</A></H2>
+<H2><A NAME="toc8">8.</A> <A HREF="IPX-HOWTO-8.html">п²п╟я│я┌я─п╬п╧п╨п╟ п╡п╟я┬п╣п╧ Linux-п╪п╟я┬п╦п╫я▀ п╨п╟п╨ п╪п╟я─я┬я─я┐я┌п╦п╥п╟я┌п╬я─п╟ IPX</A></H2>
 
 <UL>
-<LI><A HREF="IPX-HOWTO-8.html#ss8.1">8.1 Необходимо ли мне настраивать внутреннюю сеть?</A>
+<LI><A HREF="IPX-HOWTO-8.html#ss8.1">8.1 п²п╣п╬п╠я┘п╬п╢п╦п╪п╬ п╩п╦ п╪п╫п╣ п╫п╟я│я┌я─п╟п╦п╡п╟я┌я▄ п╡п╫я┐я┌я─п╣п╫п╫я▌я▌ я│п╣я┌я▄?</A>
 </UL>
 <P>
-<H2><A NAME="toc9">9.</A> <A HREF="IPX-HOWTO-9.html">Настройка вашей Linux-машины как клиента NCP</A></H2>
+<H2><A NAME="toc9">9.</A> <A HREF="IPX-HOWTO-9.html">п²п╟я│я┌я─п╬п╧п╨п╟ п╡п╟я┬п╣п╧ Linux-п╪п╟я┬п╦п╫я▀ п╨п╟п╨ п╨п╩п╦п╣п╫я┌п╟ NCP</A></H2>
 
 <UL>
-<LI><A HREF="IPX-HOWTO-9.html#ss9.1">9.1 Где взять <B><EM>ncpfs</EM></B>.</A>
-<LI><A HREF="IPX-HOWTO-9.html#ss9.2">9.2 Построение <B><EM>ncpfs</EM></B> для ядра 1.2.13.</A>
-<LI><A HREF="IPX-HOWTO-9.html#ss9.3">9.3 Построение <B><EM>ncpfs</EM></B> для ядер</A>
-<LI><A HREF="IPX-HOWTO-9.html#ss9.4">9.4 Настройка и использование <B><EM>ncpfs</EM></B>.</A>
+<LI><A HREF="IPX-HOWTO-9.html#ss9.1">9.1 п⌠п╢п╣ п╡п╥я▐я┌я▄ <B><EM>ncpfs</EM></B>.</A>
+<LI><A HREF="IPX-HOWTO-9.html#ss9.2">9.2 п÷п╬я│я┌я─п╬п╣п╫п╦п╣ <B><EM>ncpfs</EM></B> п╢п╩я▐ я▐п╢я─п╟ 1.2.13.</A>
+<LI><A HREF="IPX-HOWTO-9.html#ss9.3">9.3 п÷п╬я│я┌я─п╬п╣п╫п╦п╣ <B><EM>ncpfs</EM></B> п╢п╩я▐ я▐п╢п╣я─</A>
+<LI><A HREF="IPX-HOWTO-9.html#ss9.4">9.4 п²п╟я│я┌я─п╬п╧п╨п╟ п╦ п╦я│п©п╬п╩я▄п╥п╬п╡п╟п╫п╦п╣ <B><EM>ncpfs</EM></B>.</A>
 </UL>
 <P>
-<H2><A NAME="toc10">10.</A> <A HREF="IPX-HOWTO-10.html">Настройка вашей Linux машины как сервер NCP.</A></H2>
+<H2><A NAME="toc10">10.</A> <A HREF="IPX-HOWTO-10.html">п²п╟я│я┌я─п╬п╧п╨п╟ п╡п╟я┬п╣п╧ Linux п╪п╟я┬п╦п╫я▀ п╨п╟п╨ я│п╣я─п╡п╣я─ NCP.</A></H2>
 
 <UL>
-<LI><A HREF="IPX-HOWTO-10.html#ss10.1">10.1 Пакет <B><EM>mars_nwe</EM></B></A>
-<LI><A HREF="IPX-HOWTO-10.html#ss10.2">10.2 Пакет <B><EM>lwared</EM></B></A>
+<LI><A HREF="IPX-HOWTO-10.html#ss10.1">10.1 п÷п╟п╨п╣я┌ <B><EM>mars_nwe</EM></B></A>
+<LI><A HREF="IPX-HOWTO-10.html#ss10.2">10.2 п÷п╟п╨п╣я┌ <B><EM>lwared</EM></B></A>
 </UL>
 <P>
-<H2><A NAME="toc11">11.</A> <A HREF="IPX-HOWTO-11.html">Настройка машины под Linux как клиента печати Novell</A></H2>
+<H2><A NAME="toc11">11.</A> <A HREF="IPX-HOWTO-11.html">п²п╟я│я┌я─п╬п╧п╨п╟ п╪п╟я┬п╦п╫я▀ п©п╬п╢ Linux п╨п╟п╨ п╨п╩п╦п╣п╫я┌п╟ п©п╣я┤п╟я┌п╦ Novell</A></H2>
 
 <P>
-<H2><A NAME="toc12">12.</A> <A HREF="IPX-HOWTO-12.html">Настройка вашей Linux-машины как сервера печати Novell</A></H2>
-
-<UL>
-<LI><A HREF="IPX-HOWTO-12.html#ss12.1">12.1 Непременные условия</A>
-<LI><A HREF="IPX-HOWTO-12.html#ss12.2">12.2 Настройка</A>
-</UL>
-<P>
-<H2><A NAME="toc13">13.</A> <A HREF="IPX-HOWTO-13.html">Обзор команд пользователя и администрирования <EM>ncpfs</EM></A></H2>
+<H2><A NAME="toc12">12.</A> <A HREF="IPX-HOWTO-12.html">п²п╟я│я┌я─п╬п╧п╨п╟ п╡п╟я┬п╣п╧ Linux-п╪п╟я┬п╦п╫я▀ п╨п╟п╨ я│п╣я─п╡п╣я─п╟ п©п╣я┤п╟я┌п╦ Novell</A></H2>
 
 <UL>
-<LI><A HREF="IPX-HOWTO-13.html#ss13.1">13.1 Команды пользователя</A>
-<LI><A HREF="IPX-HOWTO-13.html#ss13.2">13.2 Утилиты администрирования</A>
+<LI><A HREF="IPX-HOWTO-12.html#ss12.1">12.1 п²п╣п©я─п╣п╪п╣п╫п╫я▀п╣ я┐я│п╩п╬п╡п╦я▐</A>
+<LI><A HREF="IPX-HOWTO-12.html#ss12.2">12.2 п²п╟я│я┌я─п╬п╧п╨п╟</A>
 </UL>
 <P>
-<H2><A NAME="toc14">14.</A> <A HREF="IPX-HOWTO-14.html">Настройка PPP для поддержки IPX</A></H2>
+<H2><A NAME="toc13">13.</A> <A HREF="IPX-HOWTO-13.html">п·п╠п╥п╬я─ п╨п╬п╪п╟п╫п╢ п©п╬п╩я▄п╥п╬п╡п╟я┌п╣п╩я▐ п╦ п╟п╢п╪п╦п╫п╦я│я┌я─п╦я─п╬п╡п╟п╫п╦я▐ <EM>ncpfs</EM></A></H2>
 
 <UL>
-<LI><A HREF="IPX-HOWTO-14.html#ss14.1">14.1 Настройка сервера IPX/PPP</A>
-<LI><A HREF="IPX-HOWTO-14.html#ss14.2">14.2 Настройка клиента IPX/PPP</A>
+<LI><A HREF="IPX-HOWTO-13.html#ss13.1">13.1 п п╬п╪п╟п╫п╢я▀ п©п╬п╩я▄п╥п╬п╡п╟я┌п╣п╩я▐</A>
+<LI><A HREF="IPX-HOWTO-13.html#ss13.2">13.2 пёя┌п╦п╩п╦я┌я▀ п╟п╢п╪п╦п╫п╦я│я┌я─п╦я─п╬п╡п╟п╫п╦я▐</A>
 </UL>
 <P>
-<H2><A NAME="toc15">15.</A> <A HREF="IPX-HOWTO-15.html">Тунелирование IPX через IP</A></H2>
+<H2><A NAME="toc14">14.</A> <A HREF="IPX-HOWTO-14.html">п²п╟я│я┌я─п╬п╧п╨п╟ PPP п╢п╩я▐ п©п╬п╢п╢п╣я─п╤п╨п╦ IPX</A></H2>
 
 <UL>
-<LI><A HREF="IPX-HOWTO-15.html#ss15.1">15.1 Получение <EM>ipxtunnel</EM></A>
-<LI><A HREF="IPX-HOWTO-15.html#ss15.2">15.2 Построение <EM>ipxtunnel</EM></A>
-<LI><A HREF="IPX-HOWTO-15.html#ss15.3">15.3 Настройка <EM>ipxtunnel</EM></A>
-<LI><A HREF="IPX-HOWTO-15.html#ss15.4">15.4 Тестирование и использование <EM>ipxtunnel</EM></A>
+<LI><A HREF="IPX-HOWTO-14.html#ss14.1">14.1 п²п╟я│я┌я─п╬п╧п╨п╟ я│п╣я─п╡п╣я─п╟ IPX/PPP</A>
+<LI><A HREF="IPX-HOWTO-14.html#ss14.2">14.2 п²п╟я│я┌я─п╬п╧п╨п╟ п╨п╩п╦п╣п╫я┌п╟ IPX/PPP</A>
 </UL>
 <P>
-<H2><A NAME="toc16">16.</A> <A HREF="IPX-HOWTO-16.html">Коммерческая поддержка IPX для Linux.</A></H2>
+<H2><A NAME="toc15">15.</A> <A HREF="IPX-HOWTO-15.html">п╒я┐п╫п╣п╩п╦я─п╬п╡п╟п╫п╦п╣ IPX я┤п╣я─п╣п╥ IP</A></H2>
+
+<UL>
+<LI><A HREF="IPX-HOWTO-15.html#ss15.1">15.1 п÷п╬п╩я┐я┤п╣п╫п╦п╣ <EM>ipxtunnel</EM></A>
+<LI><A HREF="IPX-HOWTO-15.html#ss15.2">15.2 п÷п╬я│я┌я─п╬п╣п╫п╦п╣ <EM>ipxtunnel</EM></A>
+<LI><A HREF="IPX-HOWTO-15.html#ss15.3">15.3 п²п╟я│я┌я─п╬п╧п╨п╟ <EM>ipxtunnel</EM></A>
+<LI><A HREF="IPX-HOWTO-15.html#ss15.4">15.4 п╒п╣я│я┌п╦я─п╬п╡п╟п╫п╦п╣ п╦ п╦я│п©п╬п╩я▄п╥п╬п╡п╟п╫п╦п╣ <EM>ipxtunnel</EM></A>
+</UL>
+<P>
+<H2><A NAME="toc16">16.</A> <A HREF="IPX-HOWTO-16.html">п п╬п╪п╪п╣я─я┤п╣я│п╨п╟я▐ п©п╬п╢п╢п╣я─п╤п╨п╟ IPX п╢п╩я▐ Linux.</A></H2>
 
 <UL>
 <LI><A HREF="IPX-HOWTO-16.html#ss16.1">16.1 Caldera'a Network Desktop</A>
 </UL>
 <P>
-<H2><A NAME="toc17">17.</A> <A HREF="IPX-HOWTO-17.html">Некоторые часто задаваемые вопросы (FAQ)</A></H2>
+<H2><A NAME="toc17">17.</A> <A HREF="IPX-HOWTO-17.html">п²п╣п╨п╬я┌п╬я─я▀п╣ я┤п╟я│я┌п╬ п╥п╟п╢п╟п╡п╟п╣п╪я▀п╣ п╡п╬п©я─п╬я│я▀ (FAQ)</A></H2>
 
 <P>
-<H2><A NAME="toc18">18.</A> <A HREF="IPX-HOWTO-18.html">Сообщение об авторских правах</A></H2>
+<H2><A NAME="toc18">18.</A> <A HREF="IPX-HOWTO-18.html">п║п╬п╬п╠я┴п╣п╫п╦п╣ п╬п╠ п╟п╡я┌п╬я─я│п╨п╦я┘ п©я─п╟п╡п╟я┘</A></H2>
 
 <P>
-<H2><A NAME="toc19">19.</A> <A HREF="IPX-HOWTO-19.html">Разное и благодарности</A></H2>
+<H2><A NAME="toc19">19.</A> <A HREF="IPX-HOWTO-19.html">п═п╟п╥п╫п╬п╣ п╦ п╠п╩п╟пЁп╬п╢п╟я─п╫п╬я│я┌п╦</A></H2>
 
 <HR>
-<A HREF="IPX-HOWTO-1.html">Следующий</A>
-Предыдущий
-Содержание
+<A HREF="IPX-HOWTO-1.html">п║п╩п╣п╢я┐я▌я┴п╦п╧</A>
+п÷я─п╣п╢я▀п╢я┐я┴п╦п╧
+п║п╬п╢п╣я─п╤п╟п╫п╦п╣
 </BODY>
 </HTML>

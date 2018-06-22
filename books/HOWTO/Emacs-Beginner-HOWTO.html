@@ -2,88 +2,88 @@
 <HTML>
 <HEAD>
  <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
- <TITLE>Emacs для начинающих HOWTO (Emacs Beginner's HOWTO)</TITLE>
+ <TITLE>Emacs п╢п╩я▐ п╫п╟я┤п╦п╫п╟я▌я┴п╦я┘ HOWTO (Emacs Beginner's HOWTO)</TITLE>
  <LINK HREF="Emacs-Beginner-HOWTO-1.html" REL=next>
 
 
 </HEAD>
 <BODY>
-<A HREF="Emacs-Beginner-HOWTO-1.html">Следующий</A>
-Предыдущий
-Содержание
+<A HREF="Emacs-Beginner-HOWTO-1.html">п║п╩п╣п╢я┐я▌я┴п╦п╧</A>
+п÷я─п╣п╢я▀п╢я┐я┴п╦п╧
+п║п╬п╢п╣я─п╤п╟п╫п╦п╣
 <HR>
-<H1>Emacs для начинающих HOWTO (Emacs Beginner's HOWTO)</H1>
+<H1>Emacs п╢п╩я▐ п╫п╟я┤п╦п╫п╟я▌я┴п╦я┘ HOWTO (Emacs Beginner's HOWTO)</H1>
 
 <H2>Jeremy D. Zawodny, 
-<A HREF="mailto:jzawodn@wcnet.org">jzawodn@wcnet.org</A>, перевод Alex Ott <CODE>ott@phtd.tpu.edu.ru</CODE>
-      </H2>v1.7, 14 Октября 1999
+<A HREF="mailto:jzawodn@wcnet.org">jzawodn@wcnet.org</A>, п©п╣я─п╣п╡п╬п╢ Alex Ott <CODE>ott@phtd.tpu.edu.ru</CODE>
+      </H2>v1.7, 14 п·п╨я┌я▐п╠я─я▐ 1999
 <P><HR>
-<EM>Этот документ описывает редактор Emacs для пользователей Linux. Он
-предполагает некоторое знакомство с редактором <CODE>vi</CODE> или
-подобным. Последние версии этого документа обычно доступны с 
+<EM>п╜я┌п╬я┌ п╢п╬п╨я┐п╪п╣п╫я┌ п╬п©п╦я│я▀п╡п╟п╣я┌ я─п╣п╢п╟п╨я┌п╬я─ Emacs п╢п╩я▐ п©п╬п╩я▄п╥п╬п╡п╟я┌п╣п╩п╣п╧ Linux. п·п╫
+п©я─п╣п╢п©п╬п╩п╟пЁп╟п╣я┌ п╫п╣п╨п╬я┌п╬я─п╬п╣ п╥п╫п╟п╨п╬п╪я│я┌п╡п╬ я│ я─п╣п╢п╟п╨я┌п╬я─п╬п╪ <CODE>vi</CODE> п╦п╩п╦
+п©п╬п╢п╬п╠п╫я▀п╪. п÷п╬я│п╩п╣п╢п╫п╦п╣ п╡п╣я─я│п╦п╦ я█я┌п╬пЁп╬ п╢п╬п╨я┐п╪п╣п╫я┌п╟ п╬п╠я▀я┤п╫п╬ п╢п╬я│я┌я┐п©п╫я▀ я│ 
 <A HREF="http://www.wcnet.org/jzawodn/emacs/">http://www.wcnet.org/jzawodn/emacs/</A>
       </EM>
 <HR>
 <P>
-<H2><A NAME="toc1">1.</A> <A HREF="Emacs-Beginner-HOWTO-1.html">Введение</A></H2>
+<H2><A NAME="toc1">1.</A> <A HREF="Emacs-Beginner-HOWTO-1.html">п▓п╡п╣п╢п╣п╫п╦п╣</A></H2>
 
 <UL>
-<LI><A HREF="Emacs-Beginner-HOWTO-1.html#ss1.1">1.1 Авторские права</A>
-<LI><A HREF="Emacs-Beginner-HOWTO-1.html#ss1.2">1.2 Назначение документа и его аудитория</A>
-<LI><A HREF="Emacs-Beginner-HOWTO-1.html#ss1.3">1.3 Что такое Emacs?</A>
+<LI><A HREF="Emacs-Beginner-HOWTO-1.html#ss1.1">1.1 п░п╡я┌п╬я─я│п╨п╦п╣ п©я─п╟п╡п╟</A>
+<LI><A HREF="Emacs-Beginner-HOWTO-1.html#ss1.2">1.2 п²п╟п╥п╫п╟я┤п╣п╫п╦п╣ п╢п╬п╨я┐п╪п╣п╫я┌п╟ п╦ п╣пЁп╬ п╟я┐п╢п╦я┌п╬я─п╦я▐</A>
+<LI><A HREF="Emacs-Beginner-HOWTO-1.html#ss1.3">1.3 п╖я┌п╬ я┌п╟п╨п╬п╣ Emacs?</A>
 </UL>
 <P>
-<H2><A NAME="toc2">2.</A> <A HREF="Emacs-Beginner-HOWTO-2.html">Запуск Emacs </A></H2>
+<H2><A NAME="toc2">2.</A> <A HREF="Emacs-Beginner-HOWTO-2.html">п≈п╟п©я┐я│п╨ Emacs </A></H2>
 
 <UL>
-<LI><A HREF="Emacs-Beginner-HOWTO-2.html#ss2.1">2.1 Запуск Emacs и выход из него</A>
-<LI><A HREF="Emacs-Beginner-HOWTO-2.html#ss2.2">2.2 Немного терминологии</A>
-<LI><A HREF="Emacs-Beginner-HOWTO-2.html#ss2.3">2.3 Основы работы с клавиатурой</A>
-<LI><A HREF="Emacs-Beginner-HOWTO-2.html#ss2.4">2.4 Учебник, Помощь и Info</A>
+<LI><A HREF="Emacs-Beginner-HOWTO-2.html#ss2.1">2.1 п≈п╟п©я┐я│п╨ Emacs п╦ п╡я▀я┘п╬п╢ п╦п╥ п╫п╣пЁп╬</A>
+<LI><A HREF="Emacs-Beginner-HOWTO-2.html#ss2.2">2.2 п²п╣п╪п╫п╬пЁп╬ я┌п╣я─п╪п╦п╫п╬п╩п╬пЁп╦п╦</A>
+<LI><A HREF="Emacs-Beginner-HOWTO-2.html#ss2.3">2.3 п·я│п╫п╬п╡я▀ я─п╟п╠п╬я┌я▀ я│ п╨п╩п╟п╡п╦п╟я┌я┐я─п╬п╧</A>
+<LI><A HREF="Emacs-Beginner-HOWTO-2.html#ss2.4">2.4 пёя┤п╣п╠п╫п╦п╨, п÷п╬п╪п╬я┴я▄ п╦ Info</A>
 </UL>
 <P>
-<H2><A NAME="toc3">3.</A> <A HREF="Emacs-Beginner-HOWTO-3.html">Режимы Emacs</A></H2>
+<H2><A NAME="toc3">3.</A> <A HREF="Emacs-Beginner-HOWTO-3.html">п═п╣п╤п╦п╪я▀ Emacs</A></H2>
 
 <UL>
-<LI><A HREF="Emacs-Beginner-HOWTO-3.html#ss3.1">3.1 Главные режимы против второстепенных</A>
-<LI><A HREF="Emacs-Beginner-HOWTO-3.html#ss3.2">3.2 Режимы для программирования</A>
-<LI><A HREF="Emacs-Beginner-HOWTO-3.html#ss3.3">3.3 Создание текстов</A>
-<LI><A HREF="Emacs-Beginner-HOWTO-3.html#ss3.4">3.4 Другие режимы</A>
+<LI><A HREF="Emacs-Beginner-HOWTO-3.html#ss3.1">3.1 п⌠п╩п╟п╡п╫я▀п╣ я─п╣п╤п╦п╪я▀ п©я─п╬я┌п╦п╡ п╡я┌п╬я─п╬я│я┌п╣п©п╣п╫п╫я▀я┘</A>
+<LI><A HREF="Emacs-Beginner-HOWTO-3.html#ss3.2">3.2 п═п╣п╤п╦п╪я▀ п╢п╩я▐ п©я─п╬пЁя─п╟п╪п╪п╦я─п╬п╡п╟п╫п╦я▐</A>
+<LI><A HREF="Emacs-Beginner-HOWTO-3.html#ss3.3">3.3 п║п╬п╥п╢п╟п╫п╦п╣ я┌п╣п╨я│я┌п╬п╡</A>
+<LI><A HREF="Emacs-Beginner-HOWTO-3.html#ss3.4">3.4 п■я─я┐пЁп╦п╣ я─п╣п╤п╦п╪я▀</A>
 </UL>
 <P>
-<H2><A NAME="toc4">4.</A> <A HREF="Emacs-Beginner-HOWTO-4.html">Настройка Emacs </A></H2>
+<H2><A NAME="toc4">4.</A> <A HREF="Emacs-Beginner-HOWTO-4.html">п²п╟я│я┌я─п╬п╧п╨п╟ Emacs </A></H2>
 
 <UL>
-<LI><A HREF="Emacs-Beginner-HOWTO-4.html#ss4.1">4.1 Временная настройка</A>
-<LI><A HREF="Emacs-Beginner-HOWTO-4.html#ss4.2">4.2 Использование файла <CODE>.emacs</CODE></A>
-<LI><A HREF="Emacs-Beginner-HOWTO-4.html#ss4.3">4.3 Пакет Customize</A>
-<LI><A HREF="Emacs-Beginner-HOWTO-4.html#ss4.4">4.4 Дисплей X Windows</A>
+<LI><A HREF="Emacs-Beginner-HOWTO-4.html#ss4.1">4.1 п▓я─п╣п╪п╣п╫п╫п╟я▐ п╫п╟я│я┌я─п╬п╧п╨п╟</A>
+<LI><A HREF="Emacs-Beginner-HOWTO-4.html#ss4.2">4.2 п≤я│п©п╬п╩я▄п╥п╬п╡п╟п╫п╦п╣ я└п╟п╧п╩п╟ <CODE>.emacs</CODE></A>
+<LI><A HREF="Emacs-Beginner-HOWTO-4.html#ss4.3">4.3 п÷п╟п╨п╣я┌ Customize</A>
+<LI><A HREF="Emacs-Beginner-HOWTO-4.html#ss4.4">4.4 п■п╦я│п©п╩п╣п╧ X Windows</A>
 </UL>
 <P>
-<H2><A NAME="toc5">5.</A> <A HREF="Emacs-Beginner-HOWTO-5.html">Популярные пакеты </A></H2>
+<H2><A NAME="toc5">5.</A> <A HREF="Emacs-Beginner-HOWTO-5.html">п÷п╬п©я┐п╩я▐я─п╫я▀п╣ п©п╟п╨п╣я┌я▀ </A></H2>
 
 <UL>
-<LI><A HREF="Emacs-Beginner-HOWTO-5.html#ss5.1">5.1 VM (Почта)</A>
-<LI><A HREF="Emacs-Beginner-HOWTO-5.html#ss5.2">5.2 Gnus (Почта и новости)</A>
-<LI><A HREF="Emacs-Beginner-HOWTO-5.html#ss5.3">5.3 BBDB (органайзер)</A>
-<LI><A HREF="Emacs-Beginner-HOWTO-5.html#ss5.4">5.4 AucTeX (другой режим TeX)</A>
+<LI><A HREF="Emacs-Beginner-HOWTO-5.html#ss5.1">5.1 VM (п÷п╬я┤я┌п╟)</A>
+<LI><A HREF="Emacs-Beginner-HOWTO-5.html#ss5.2">5.2 Gnus (п÷п╬я┤я┌п╟ п╦ п╫п╬п╡п╬я│я┌п╦)</A>
+<LI><A HREF="Emacs-Beginner-HOWTO-5.html#ss5.3">5.3 BBDB (п╬я─пЁп╟п╫п╟п╧п╥п╣я─)</A>
+<LI><A HREF="Emacs-Beginner-HOWTO-5.html#ss5.4">5.4 AucTeX (п╢я─я┐пЁп╬п╧ я─п╣п╤п╦п╪ TeX)</A>
 </UL>
 <P>
-<H2><A NAME="toc6">6.</A> <A HREF="Emacs-Beginner-HOWTO-6.html">Другие ресурсы</A></H2>
+<H2><A NAME="toc6">6.</A> <A HREF="Emacs-Beginner-HOWTO-6.html">п■я─я┐пЁп╦п╣ я─п╣я│я┐я─я│я▀</A></H2>
 
 <UL>
-<LI><A HREF="Emacs-Beginner-HOWTO-6.html#ss6.1">6.1 Книги</A>
-<LI><A HREF="Emacs-Beginner-HOWTO-6.html#ss6.2">6.2 Сервера</A>
-<LI><A HREF="Emacs-Beginner-HOWTO-6.html#ss6.3">6.3 Группы новостей</A>
-<LI><A HREF="Emacs-Beginner-HOWTO-6.html#ss6.4">6.4 Списки рассылки</A>
-<LI><A HREF="Emacs-Beginner-HOWTO-6.html#ss6.5">6.5 Архив Emacs Lisp</A>
+<LI><A HREF="Emacs-Beginner-HOWTO-6.html#ss6.1">6.1 п п╫п╦пЁп╦</A>
+<LI><A HREF="Emacs-Beginner-HOWTO-6.html#ss6.2">6.2 п║п╣я─п╡п╣я─п╟</A>
+<LI><A HREF="Emacs-Beginner-HOWTO-6.html#ss6.3">6.3 п⌠я─я┐п©п©я▀ п╫п╬п╡п╬я│я┌п╣п╧</A>
+<LI><A HREF="Emacs-Beginner-HOWTO-6.html#ss6.4">6.4 п║п©п╦я│п╨п╦ я─п╟я│я│я▀п╩п╨п╦</A>
+<LI><A HREF="Emacs-Beginner-HOWTO-6.html#ss6.5">6.5 п░я─я┘п╦п╡ Emacs Lisp</A>
 </UL>
 <P>
-<H2><A NAME="toc7">7.</A> <A HREF="Emacs-Beginner-HOWTO-7.html">Благодарности </A></H2>
+<H2><A NAME="toc7">7.</A> <A HREF="Emacs-Beginner-HOWTO-7.html">п▒п╩п╟пЁп╬п╢п╟я─п╫п╬я│я┌п╦ </A></H2>
 
 <HR>
-<A HREF="Emacs-Beginner-HOWTO-1.html">Следующий</A>
-Предыдущий
-Содержание
+<A HREF="Emacs-Beginner-HOWTO-1.html">п║п╩п╣п╢я┐я▌я┴п╦п╧</A>
+п÷я─п╣п╢я▀п╢я┐я┴п╦п╧
+п║п╬п╢п╣я─п╤п╟п╫п╦п╣
 </BODY>
 </HTML>

@@ -1,37 +1,37 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>Установка ядра Linux-2.4.19</title><meta name="GENERATOR" content="Modular DocBook HTML Stylesheet Version 1.73" /=""><link rel="HOME" title="Linux From Scratch" href="../index.html" /=""><link rel="UP" title="Making the LFS system bootable" href="../chapter08/chapter08.html" /=""><link rel="PREVIOUS" title="Creating the /etc/fstab file" href="../chapter08/fstab.html" /=""><link rel="NEXT" title="Making the LFS system bootable" href="../chapter08/lilo.html" /=""></head><body class="sect1" bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#840084" alink="#006000"><div class="NAVHEADER"><table summary="Header navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><th colspan="3" align="Center">Linux From Scratch: Версия 4.0</th></tr><tr><td width="10%" align="Left" valign="Bottom"><a href="fstab.html" accesskey="P">Назад</a></td><td width="80%" align="Center" valign="Bottom">Глава 8. Делаем систему LFS загрузочной.</td><td width="10%" align="Right" valign="Bottom"><a href="lilo.html" accesskey="N">Вперед</a></td></tr></tbody></table><hr align="Left" width="100%" /=""></div><div class="sect1"><h1 class="sect1"><a name="ch08-kernel">Установка ядра Linux-2.4.19</a></h1><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen">Приблизительное время компиляции со всеми опциями по умолчанию: 4.20 SBU<br>Необходимое дисковое пространство со всеми опциями по умолчанию: 181 MB</pre></td></tr></tbody></table><p>Построение ядра включает в себ несколько шагов: конфигурация и компиляция
-ядра. Есть несколько путей для конфигурации ядра. Если вам не нравится путь,
- описываемый здесь, то читайте
- <tt class="filename">README</tt> поставляемый с исходниками нового ядра, и ищите другие опции.
-</p><p>Необходимые телодвижения которые вы должны совершить, это взять файл
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>СЃРЇР Р®РњРќР‘Р™Р® РЄР”РџР® Linux-2.4.19</title><meta name="GENERATOR" content="Modular DocBook HTML Stylesheet Version 1.73" /=""><link rel="HOME" title="Linux From Scratch" href="../index.html" /=""><link rel="UP" title="Making the LFS system bootable" href="../chapter08/chapter08.html" /=""><link rel="PREVIOUS" title="Creating the /etc/fstab file" href="../chapter08/fstab.html" /=""><link rel="NEXT" title="Making the LFS system bootable" href="../chapter08/lilo.html" /=""></head><body class="sect1" bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#840084" alink="#006000"><div class="NAVHEADER"><table summary="Header navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><th colspan="3" align="Center">Linux From Scratch: Р±Р•РџРЇРҐРЄ 4.0</th></tr><tr><td width="10%" align="Left" valign="Bottom"><a href="fstab.html" accesskey="P">РјР®Р“Р®Р”</a></td><td width="80%" align="Center" valign="Bottom">С†РљР®Р‘Р® 8. РґР•РљР®Р•Р› РЇРҐРЇР Р•Р›РЎ LFS Р“Р®Р¦РџРЎР“РќР’РњРќР.</td><td width="10%" align="Right" valign="Bottom"><a href="lilo.html" accesskey="N">Р±РћР•РџР•Р”</a></td></tr></tbody></table><hr align="Left" width="100%" /=""></div><div class="sect1"><h1 class="sect1"><a name="ch08-kernel">СЃРЇР Р®РњРќР‘Р™Р® РЄР”РџР® Linux-2.4.19</a></h1><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen">РѕРџРҐРђРљРҐР“РҐР Р•РљР­РњРќР• Р‘РџР•Р›РЄ Р™РќР›РћРҐРљРЄР–РҐРҐ РЇРќ Р‘РЇР•Р›РҐ РќРћР–РҐРЄР›РҐ РћРќ РЎР›РќРљР’Р®РњРҐР§: 4.20 SBU<br>РјР•РќРђРЈРќР”РҐР›РќР• Р”РҐРЇР™РќР‘РќР• РћРџРќРЇР РџР®РњРЇР Р‘Рќ РЇРќ Р‘РЇР•Р›РҐ РќРћР–РҐРЄР›РҐ РћРќ РЎР›РќРљР’Р®РњРҐР§:в•ђ181 MB</pre></td></tr></tbody></table><p>РѕРќРЇР РџРќР•РњРҐР• РЄР”РџР® Р‘Р™РљР§Р’Р®Р•Р  Р‘ РЇР•Рђ РњР•РЇР™РќРљР­Р™Рќ Р¬Р®Р¦РќР‘: Р™РќРњРўРҐР¦РЎРџР®Р–РҐРЄ РҐ Р™РќР›РћРҐРљРЄР–РҐРЄ
+РЄР”РџР®. РµРЇР Р­ РњР•РЇР™РќРљР­Р™Рќ РћРЎР Р•Р Р”РљРЄ Р™РќРњРўРҐР¦РЎРџР®Р–РҐРҐ РЄР”РџР®. РµРЇРљРҐ Р‘Р®Р› РњР• РњРџР®Р‘РҐР РЇРЄ РћРЎР Р­,
+ РќРћРҐРЇРЁР‘Р®Р•Р›РЁР Р“Р”Р•РЇР­, Р Рќ Р’РҐР Р®РР Р•
+ <tt class="filename">README</tt> РћРќРЇР Р®Р‘РљРЄР•Р›РЁР РЇ РҐРЇРЈРќР”РњРҐР™Р®Р›РҐ РњРќР‘РќР¦Рќ РЄР”РџР®, РҐ РҐР«РҐР Р• Р”РџРЎР¦РҐР• РќРћР–РҐРҐ.
+</p><p>РјР•РќРђРЈРќР”РҐР›РЁР• Р Р•РљРќР”Р‘РҐР¤Р•РњРҐРЄ Р™РќР РќРџРЁР• Р‘РЁ Р”РќРљР¤РњРЁ РЇРќР‘Р•РџР¬РҐР Р­, Р©Р Рќ Р‘Р“РЄР Р­ РўР®РРљ
 <tt class="filename">.config</tt>
-из дистрибутива исходников ядра и скопировать его в 
+РҐР“ Р”РҐРЇР РџРҐРђРЎР РҐР‘Р® РҐРЇРЈРќР”РњРҐР™РќР‘ РЄР”РџР® РҐ РЇР™РќРћРҐРџРќР‘Р®Р Р­ Р•Р¦Рќ Р‘ 
 <tt class="filename">$LFS/usr/src/linux-2.4.19</tt>.
-В этом случае вам нет необходимости конфигурировать отдельные опции, и
- возпользоваться значениями по умолчанию. Если вы хотите сделать так, то сначала
- запустите комманду
-<tt class="userinput"><b>make mrproper</b></tt> затем скопируйте файл
-<tt class="filename">.config</tt> снова, и запустите
-<tt class="userinput"><b>make menuconfig</b></tt>; далее запустите комманду
-<tt class="userinput"><b>make oldconfig</b></tt> (может быть лучше в некоторых ситуациях. Смотрите 
- <tt class="filename">README</tt> для более детальной информации по использованию
- <tt class="userinput"><b>make oldconfig</b></tt>).</p><p>Если вы внимательно используете модули для ядра, то вы должны подправить файл
-<tt class="filename">/etc/modules.conf</tt>. Информация имеющая отношение к модулям и конфигурации ядра в основном находится
-в документации к ядру, которая находится в каталоге 
-<tt class="filename">/usr/src/linux-2.4.19/Documentation</tt>. Страница man page по 
-modules.conf и файлы документации kernel HOWTO в 
-<a href="http://www.tldp.org/HOWTO/Kernel-HOWTO.html" target="_top">http://www.tldp.org/HOWTO/Kernel-HOWTO.html</a> могут так-же быть полезными.</p><p>Необходимо запустить следующие комманды для построения нового ядра:
-</p><p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>make mrproper &amp;&amp;<br>make menuconfig &amp;&amp;<br>make dep &amp;&amp;<br>make bzImage &amp;&amp;<br>make modules &amp;&amp;<br>make modules_install &amp;&amp;<br>cp arch/i386/boot/bzImage /boot/lfskernel &amp;&amp;<br>cp System.map /boot</b></tt></pre></td></tr></tbody></table></p><p>Примечание: путь arch/i386/boot/bzImage может различаться в зависимости от платформы.
-</p><div class="sect2"><h2 class="sect2"><a name="AEN5999">Зависимости Linux</a></h2><p>Последняя проверка на версии 2.4.17.</p><p class="literallayout">Bash: sh<br /="">
-Binutils: ar, as, ld, nm, objcopy<br /="">
-Fileutils: cp, ln, mkdir, mv, rm, touch<br /="">
-Findutils: find, xargs<br /="">
-Gcc: cc1, collect2, cpp0, gcc<br /="">
-Grep: grep<br /="">
-Gzip: gzip<br /="">
-Make: make<br /="">
-Gawk: awk<br /="">
-Modutils: depmod, genksyms<br /="">
-Net-tools: dnsdomainname, hostname<br /="">
-Sed: sed<br /="">
-Sh-utils: basename, date, expr, pwd, stty, uname, whoami, yes<br /="">
-Textutils: cat, md5sum, sort, tail</p></div></div><div class="NAVFOOTER"><hr align="Left" width="100%" /=""><table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="33%" align="Left" valign="Top"><a href="fstab.html" accesskey="P">Назад</a></td><td width="34%" align="Center" valign="Top"><a href="../index.html" accesskey="H">Домой</a></td><td width="33%" align="Right" valign="Top"><a href="lilo.html" accesskey="N">Вперед</a></td></tr><tr><td width="33%" align="Left" valign="Top">Создание файла /etc/fstab</td><td width="34%" align="Center" valign="Top"><a href="chapter08.html" accesskey="U">Наверх</a></td><td width="33%" align="Right" valign="Top">Делаем систему LFS загрузочной</td></tr></tbody></table></div></body></html>
+Р± Р©Р РќР› РЇРљРЎР’Р®Р• Р‘Р®Р› РњР•Р  РњР•РќРђРЈРќР”РҐР›РќРЇР РҐ Р™РќРњРўРҐР¦РЎРџРҐРџРќР‘Р®Р Р­ РќР Р”Р•РљР­РњРЁР• РќРћР–РҐРҐ, РҐ
+ Р‘РќР“РћРќРљР­Р“РќР‘Р®Р Р­РЇРЄ Р“РњР®Р’Р•РњРҐРЄР›РҐ РћРќ РЎР›РќРљР’Р®РњРҐР§. РµРЇРљРҐ Р‘РЁ РЈРќР РҐР Р• РЇР”Р•РљР®Р Р­ Р Р®Р™, Р Рќ РЇРњР®Р’Р®РљР®
+ Р“Р®РћРЎРЇР РҐР Р• Р™РќР›Р›Р®РњР”РЎ
+<tt class="userinput"><b>make mrproper</b></tt> Р“Р®Р Р•Р› РЇР™РќРћРҐРџРЎРР Р• РўР®РРљ
+<tt class="filename">.config</tt> РЇРњРќР‘Р®, РҐ Р“Р®РћРЎРЇР РҐР Р•
+<tt class="userinput"><b>make menuconfig</b></tt>; Р”Р®РљР•Р• Р“Р®РћРЎРЇР РҐР Р• Р™РќР›Р›Р®РњР”РЎ
+<tt class="userinput"><b>make oldconfig</b></tt> (Р›РќР¤Р•Р  РђРЁР Р­ РљРЎР’Р¬Р• Р‘ РњР•Р™РќР РќРџРЁРЈ РЇРҐР РЎР®Р–РҐРЄРЈ. СЏР›РќР РџРҐР Р• 
+ <tt class="filename">README</tt> Р”РљРЄ РђРќРљР•Р• Р”Р•Р Р®РљР­РњРќР РҐРњРўРќРџР›Р®Р–РҐРҐ РћРќ РҐРЇРћРќРљР­Р“РќР‘Р®РњРҐР§
+ <tt class="userinput"><b>make oldconfig</b></tt>).</p><p>РµРЇРљРҐ Р‘РЁ Р‘РњРҐР›Р®Р Р•РљР­РњРќ РҐРЇРћРќРљР­Р“РЎР•Р Р• Р›РќР”РЎРљРҐ Р”РљРЄ РЄР”РџР®, Р Рќ Р‘РЁ Р”РќРљР¤РњРЁ РћРќР”РћРџР®Р‘РҐР Р­ РўР®РРљ
+<tt class="filename">/etc/modules.conf</tt>. С…РњРўРќРџР›Р®Р–РҐРЄ РҐР›Р•Р§Р«Р®РЄ РќР РњРќР¬Р•РњРҐР• Р™ Р›РќР”РЎРљРЄР› РҐ Р™РќРњРўРҐР¦РЎРџР®Р–РҐРҐ РЄР”РџР® Р‘ РќРЇРњРќР‘РњРќР› РњР®РЈРќР”РҐР РЇРЄ
+Р‘ Р”РќР™РЎР›Р•РњР Р®Р–РҐРҐ Р™ РЄР”РџРЎ, Р™РќР РќРџР®РЄ РњР®РЈРќР”РҐР РЇРЄ Р‘ Р™Р®Р Р®РљРќР¦Р• 
+<tt class="filename">/usr/src/linux-2.4.19/Documentation</tt>. СЏР РџР®РњРҐР–Р® man page РћРќ 
+modules.conf РҐ РўР®РРљРЁ Р”РќР™РЎР›Р•РњР Р®Р–РҐРҐ kernel HOWTO Р‘ 
+<a href="http://www.tldp.org/HOWTO/Kernel-HOWTO.html" target="_top">http://www.tldp.org/HOWTO/Kernel-HOWTO.html</a> Р›РќР¦РЎР  Р Р®Р™-Р¤Р• РђРЁР Р­ РћРќРљР•Р“РњРЁР›РҐ.</p><p>РјР•РќРђРЈРќР”РҐР›Рќ Р“Р®РћРЎРЇР РҐР Р­ РЇРљР•Р”РЎР§Р«РҐР• Р™РќР›Р›Р®РњР”РЁ Р”РљРЄ РћРќРЇР РџРќР•РњРҐРЄ РњРќР‘РќР¦Рќ РЄР”РџР®:
+</p><p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>make mrproper &amp;&amp;<br>make menuconfig &amp;&amp;<br>make dep &amp;&amp;<br>make bzImage &amp;&amp;<br>make modules &amp;&amp;<br>make modules_install &amp;&amp;<br>cp arch/i386/boot/bzImage /boot/lfskernel &amp;&amp;<br>cp System.map /boot</b></tt></pre></td></tr></tbody></table></p><p>РѕРџРҐР›Р•Р’Р®РњРҐР•: РћРЎР Р­ arch/i386/boot/bzImage Р›РќР¤Р•Р  РџР®Р“РљРҐР’Р®Р Р­РЇРЄ Р‘ Р“Р®Р‘РҐРЇРҐР›РќРЇР РҐ РќР  РћРљР®Р РўРќРџР›РЁ.
+</p><div class="sect2"><h2 class="sect2"><a name="AEN5999">РіР®Р‘РҐРЇРҐР›РќРЇР РҐ Linux</a></h2><p>РѕРќРЇРљР•Р”РњРЄРЄ РћРџРќР‘Р•РџР™Р® РњР® Р‘Р•РџРЇРҐРҐ 2.4.17.</p><p class="literallayout">Bash:в•ђsh<br /="">
+Binutils:в•ђar,в•ђas,в•ђld,в•ђnm,в•ђobjcopy<br /="">
+Fileutils:в•ђcp,в•ђln,в•ђmkdir,в•ђmv,в•ђrm,в•ђtouch<br /="">
+Findutils:в•ђfind,в•ђxargs<br /="">
+Gcc:в•ђcc1,в•ђcollect2,в•ђcpp0,в•ђgcc<br /="">
+Grep:в•ђgrep<br /="">
+Gzip:в•ђgzip<br /="">
+Make:в•ђmake<br /="">
+Gawk:в•ђawk<br /="">
+Modutils:в•ђdepmod,в•ђgenksyms<br /="">
+Net-tools:в•ђdnsdomainname,в•ђhostname<br /="">
+Sed:в•ђsed<br /="">
+Sh-utils:в•ђbasename,в•ђdate,в•ђexpr,в•ђpwd,в•ђstty,в•ђuname,в•ђwhoami,в•ђyes<br /="">
+Textutils:в•ђcat,в•ђmd5sum,в•ђsort,в•ђtail</p></div></div><div class="NAVFOOTER"><hr align="Left" width="100%" /=""><table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="33%" align="Left" valign="Top"><a href="fstab.html" accesskey="P">РјР®Р“Р®Р”</a></td><td width="34%" align="Center" valign="Top"><a href="../index.html" accesskey="H">РґРќР›РќР</a></td><td width="33%" align="Right" valign="Top"><a href="lilo.html" accesskey="N">Р±РћР•РџР•Р”</a></td></tr><tr><td width="33%" align="Left" valign="Top">СЏРќР“Р”Р®РњРҐР• РўР®РРљР® /etc/fstab</td><td width="34%" align="Center" valign="Top"><a href="chapter08.html" accesskey="U">РјР®Р‘Р•РџРЈ</a></td><td width="33%" align="Right" valign="Top">РґР•РљР®Р•Р› РЇРҐРЇР Р•Р›РЎ LFS Р“Р®Р¦РџРЎР“РќР’РњРќР</td></tr></tbody></table></div></body></html>

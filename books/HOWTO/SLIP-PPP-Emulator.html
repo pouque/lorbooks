@@ -1,31 +1,31 @@
 <html>
 
 <head>
-<title>HOWTO: Эмулятор SLIP/PPP</title>
+<title>HOWTO: п╜п╪я┐п╩я▐я┌п╬я─ SLIP/PPP</title>
 </head>
 
 <body lang=RU link=blue vlink=purple style='tab-interval:35.4pt'>
 
 <div class=Section1>
 
-<h1>HOWTO: Эмулятор SLIP/PPP</h1>
+<h1>HOWTO: п╜п╪я┐п╩я▐я┌п╬я─ SLIP/PPP</h1>
 
-<h2>версия 3.0 (доработана 07.08.1997), автор Irish</h2>
+<h2>п╡п╣я─я│п╦я▐ 3.0 (п╢п╬я─п╟п╠п╬я┌п╟п╫п╟ 07.08.1997), п╟п╡я┌п╬я─ Irish</h2>
 
-<h2>Перевод: <a href="mailto:sam@asp-linux.com">Станислав
-Рогин</a>, <a href="http://www.asp-linux.com">SWSoft Pte Ltd.</a></h2>
+<h2>п÷п╣я─п╣п╡п╬п╢: <a href="mailto:sam@asp-linux.com">п║я┌п╟п╫п╦я│п╩п╟п╡
+п═п╬пЁп╦п╫</a>, <a href="http://www.asp-linux.com">SWSoft Pte Ltd.</a></h2>
 
-<p>Этот документ описывает процесс
-установки соединения между Linux-машиной
-и стандартными сайтом через эмулятор SLIP/PPP, например, такой как SLiRP или
-TIA. Я не несу никакой ответственности за использование этой информации, но
-замечания и дополнения приветствуются.</p>
+<p>п╜я┌п╬я┌ п╢п╬п╨я┐п╪п╣п╫я┌ п╬п©п╦я│я▀п╡п╟п╣я┌ п©я─п╬я├п╣я│я│
+я┐я│я┌п╟п╫п╬п╡п╨п╦ я│п╬п╣п╢п╦п╫п╣п╫п╦я▐ п╪п╣п╤п╢я┐ Linux-п╪п╟я┬п╦п╫п╬п╧
+п╦ я│я┌п╟п╫п╢п╟я─я┌п╫я▀п╪п╦ я│п╟п╧я┌п╬п╪ я┤п╣я─п╣п╥ я█п╪я┐п╩я▐я┌п╬я─ SLIP/PPP, п╫п╟п©я─п╦п╪п╣я─, я┌п╟п╨п╬п╧ п╨п╟п╨ SLiRP п╦п╩п╦
+TIA. п╞ п╫п╣ п╫п╣я│я┐ п╫п╦п╨п╟п╨п╬п╧ п╬я┌п╡п╣я┌я│я┌п╡п╣п╫п╫п╬я│я┌п╦ п╥п╟ п╦я│п©п╬п╩я▄п╥п╬п╡п╟п╫п╦п╣ я█я┌п╬п╧ п╦п╫я└п╬я─п╪п╟я├п╦п╦, п╫п╬
+п╥п╟п╪п╣я┤п╟п╫п╦я▐ п╦ п╢п╬п©п╬п╩п╫п╣п╫п╦я▐ п©я─п╦п╡п╣я┌я│я┌п╡я┐я▌я┌я│я▐.</p>
 
-<p>Я не буду пытаться рассказывать, что можно сделать после установления
-соединения, но я сошлюсь на другие документы или сайты, на которых находится
-подобная информация.</p>
+<p>п╞ п╫п╣ п╠я┐п╢я┐ п©я▀я┌п╟я┌я▄я│я▐ я─п╟я│я│п╨п╟п╥я▀п╡п╟я┌я▄, я┤я┌п╬ п╪п╬п╤п╫п╬ я│п╢п╣п╩п╟я┌я▄ п©п╬я│п╩п╣ я┐я│я┌п╟п╫п╬п╡п╩п╣п╫п╦я▐
+я│п╬п╣п╢п╦п╫п╣п╫п╦я▐, п╫п╬ я▐ я│п╬я┬п╩я▌я│я▄ п╫п╟ п╢я─я┐пЁп╦п╣ п╢п╬п╨я┐п╪п╣п╫я┌я▀ п╦п╩п╦ я│п╟п╧я┌я▀, п╫п╟ п╨п╬я┌п╬я─я▀я┘ п╫п╟я┘п╬п╢п╦я┌я│я▐
+п©п╬п╢п╬п╠п╫п╟я▐ п╦п╫я└п╬я─п╪п╟я├п╦я▐.</p>
 
-<p>Хорошо, перейдем к делу!</p>
+<p>п╔п╬я─п╬я┬п╬, п©п╣я─п╣п╧п╢п╣п╪ п╨ п╢п╣п╩я┐!</p>
 
 
 <div class=MsoNormal align=center style='text-align:center'>
@@ -40,88 +40,88 @@ AR-SA'>
 
 <ul type=disc>
  <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
-     mso-list:l22 level1 lfo1;tab-stops:list 36.0pt'>1.0 Как работает эмулятор?</li>
+     mso-list:l22 level1 lfo1;tab-stops:list 36.0pt'>1.0 п п╟п╨ я─п╟п╠п╬я┌п╟п╣я┌ я█п╪я┐п╩я▐я┌п╬я─?</li>
 </ul>
 
 </span>
 
-<p style='margin-left:72.0pt'>Необходимо понимать общие принципы работы
-эмулятора SLIP/PPP, чтобы знать его ограничения. Во-первых, нет необходимости
-устанавливать этот эмулятор на вашей машине. Он работает только на
-вашей удаленной машине. Все, что нужно иметь
-на вашей машине - это TCP/IP и протоколы SLIP
-или PPP, встроенные в ядро (об этом немного позже),
-а также некоторые клиентские
-программы.</p>
+<p style='margin-left:72.0pt'>п²п╣п╬п╠я┘п╬п╢п╦п╪п╬ п©п╬п╫п╦п╪п╟я┌я▄ п╬п╠я┴п╦п╣ п©я─п╦п╫я├п╦п©я▀ я─п╟п╠п╬я┌я▀
+я█п╪я┐п╩я▐я┌п╬я─п╟ SLIP/PPP, я┤я┌п╬п╠я▀ п╥п╫п╟я┌я▄ п╣пЁп╬ п╬пЁя─п╟п╫п╦я┤п╣п╫п╦я▐. п▓п╬-п©п╣я─п╡я▀я┘, п╫п╣я┌ п╫п╣п╬п╠я┘п╬п╢п╦п╪п╬я│я┌п╦
+я┐я│я┌п╟п╫п╟п╡п╩п╦п╡п╟я┌я▄ я█я┌п╬я┌ я█п╪я┐п╩я▐я┌п╬я─ п╫п╟ п╡п╟я┬п╣п╧ п╪п╟я┬п╦п╫п╣. п·п╫ я─п╟п╠п╬я┌п╟п╣я┌ я┌п╬п╩я▄п╨п╬ п╫п╟
+п╡п╟я┬п╣п╧ я┐п╢п╟п╩п╣п╫п╫п╬п╧ п╪п╟я┬п╦п╫п╣. п▓я│п╣, я┤я┌п╬ п╫я┐п╤п╫п╬ п╦п╪п╣я┌я▄
+п╫п╟ п╡п╟я┬п╣п╧ п╪п╟я┬п╦п╫п╣ - я█я┌п╬ TCP/IP п╦ п©я─п╬я┌п╬п╨п╬п╩я▀ SLIP
+п╦п╩п╦ PPP, п╡я│я┌я─п╬п╣п╫п╫я▀п╣ п╡ я▐п╢я─п╬ (п╬п╠ я█я┌п╬п╪ п╫п╣п╪п╫п╬пЁп╬ п©п╬п╥п╤п╣),
+п╟ я┌п╟п╨п╤п╣ п╫п╣п╨п╬я┌п╬я─я▀п╣ п╨п╩п╦п╣п╫я┌я│п╨п╦п╣
+п©я─п╬пЁя─п╟п╪п╪я▀.</p>
 
-<p style='margin-left:72.0pt'>Итак, что происходит: вы посылаете сетевые
-запросы с вашей машины на удаленную через SLIP/PPP соединение.
-Эмулятор перехватывает запросы и посылает их напрямую в сеть. Затем, входящие
-данные из сети посылаются в адрес удаленной
-машины, где эмулятор их
-перехватывает и посылает через SLIP/PPP на вашу машину. Итак, в сети все
-выглядит так, как будто вы работаете со своего входа на
-удаленной машине, то есть, как будто вы на самом деле в сети.</p>
+<p style='margin-left:72.0pt'>п≤я┌п╟п╨, я┤я┌п╬ п©я─п╬п╦я│я┘п╬п╢п╦я┌: п╡я▀ п©п╬я│я▀п╩п╟п╣я┌п╣ я│п╣я┌п╣п╡я▀п╣
+п╥п╟п©я─п╬я│я▀ я│ п╡п╟я┬п╣п╧ п╪п╟я┬п╦п╫я▀ п╫п╟ я┐п╢п╟п╩п╣п╫п╫я┐я▌ я┤п╣я─п╣п╥ SLIP/PPP я│п╬п╣п╢п╦п╫п╣п╫п╦п╣.
+п╜п╪я┐п╩я▐я┌п╬я─ п©п╣я─п╣я┘п╡п╟я┌я▀п╡п╟п╣я┌ п╥п╟п©я─п╬я│я▀ п╦ п©п╬я│я▀п╩п╟п╣я┌ п╦я┘ п╫п╟п©я─я▐п╪я┐я▌ п╡ я│п╣я┌я▄. п≈п╟я┌п╣п╪, п╡я┘п╬п╢я▐я┴п╦п╣
+п╢п╟п╫п╫я▀п╣ п╦п╥ я│п╣я┌п╦ п©п╬я│я▀п╩п╟я▌я┌я│я▐ п╡ п╟п╢я─п╣я│ я┐п╢п╟п╩п╣п╫п╫п╬п╧
+п╪п╟я┬п╦п╫я▀, пЁп╢п╣ я█п╪я┐п╩я▐я┌п╬я─ п╦я┘
+п©п╣я─п╣я┘п╡п╟я┌я▀п╡п╟п╣я┌ п╦ п©п╬я│я▀п╩п╟п╣я┌ я┤п╣я─п╣п╥ SLIP/PPP п╫п╟ п╡п╟я┬я┐ п╪п╟я┬п╦п╫я┐. п≤я┌п╟п╨, п╡ я│п╣я┌п╦ п╡я│п╣
+п╡я▀пЁп╩я▐п╢п╦я┌ я┌п╟п╨, п╨п╟п╨ п╠я┐п╢я┌п╬ п╡я▀ я─п╟п╠п╬я┌п╟п╣я┌п╣ я│п╬ я│п╡п╬п╣пЁп╬ п╡я┘п╬п╢п╟ п╫п╟
+я┐п╢п╟п╩п╣п╫п╫п╬п╧ п╪п╟я┬п╦п╫п╣, я┌п╬ п╣я│я┌я▄, п╨п╟п╨ п╠я┐п╢я┌п╬ п╡я▀ п╫п╟ я│п╟п╪п╬п╪ п╢п╣п╩п╣ п╡ я│п╣я┌п╦.</p>
 
-<p style='margin-left:72.0pt'>Как вы могли заметить, такой механизм может
-вызвать некоторые трудности при работе с
-сетью. Например, talk не работает
-через эмулятор, потому что входящий запрос на talk вызывает демон (daemon) talk
-на удаленной машине, а не ваш.</p>
+<p style='margin-left:72.0pt'>п п╟п╨ п╡я▀ п╪п╬пЁп╩п╦ п╥п╟п╪п╣я┌п╦я┌я▄, я┌п╟п╨п╬п╧ п╪п╣я┘п╟п╫п╦п╥п╪ п╪п╬п╤п╣я┌
+п╡я▀п╥п╡п╟я┌я▄ п╫п╣п╨п╬я┌п╬я─я▀п╣ я┌я─я┐п╢п╫п╬я│я┌п╦ п©я─п╦ я─п╟п╠п╬я┌п╣ я│
+я│п╣я┌я▄я▌. п²п╟п©я─п╦п╪п╣я─, talk п╫п╣ я─п╟п╠п╬я┌п╟п╣я┌
+я┤п╣я─п╣п╥ я█п╪я┐п╩я▐я┌п╬я─, п©п╬я┌п╬п╪я┐ я┤я┌п╬ п╡я┘п╬п╢я▐я┴п╦п╧ п╥п╟п©я─п╬я│ п╫п╟ talk п╡я▀п╥я▀п╡п╟п╣я┌ п╢п╣п╪п╬п╫ (daemon) talk
+п╫п╟ я┐п╢п╟п╩п╣п╫п╫п╬п╧ п╪п╟я┬п╦п╫п╣, п╟ п╫п╣ п╡п╟я┬.</p>
 
-<p style='margin-left:72.0pt'>Другое серьезное различие между эмулятором и
-настоящим SLIP/PPP состоит в том, что вам НЕ выделяется ваш личный IP-адрес;
-запомните, вы просто превращаете свой dialup вход в SLIP/PPP соединение.</p>
+<p style='margin-left:72.0pt'>п■я─я┐пЁп╬п╣ я│п╣я─я▄п╣п╥п╫п╬п╣ я─п╟п╥п╩п╦я┤п╦п╣ п╪п╣п╤п╢я┐ я█п╪я┐п╩я▐я┌п╬я─п╬п╪ п╦
+п╫п╟я│я┌п╬я▐я┴п╦п╪ SLIP/PPP я│п╬я│я┌п╬п╦я┌ п╡ я┌п╬п╪, я┤я┌п╬ п╡п╟п╪ п²п∙ п╡я▀п╢п╣п╩я▐п╣я┌я│я▐ п╡п╟я┬ п╩п╦я┤п╫я▀п╧ IP-п╟п╢я─п╣я│;
+п╥п╟п©п╬п╪п╫п╦я┌п╣, п╡я▀ п©я─п╬я│я┌п╬ п©я─п╣п╡я─п╟я┴п╟п╣я┌п╣ я│п╡п╬п╧ dialup п╡я┘п╬п╢ п╡ SLIP/PPP я│п╬п╣п╢п╦п╫п╣п╫п╦п╣.</p>
 
 <ul type=disc>
  <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
-     mso-list:l5 level1 lfo2;tab-stops:list 36.0pt'>1.1 Что такое TIA?</li>
+     mso-list:l5 level1 lfo2;tab-stops:list 36.0pt'>1.1 п╖я┌п╬ я┌п╟п╨п╬п╣ TIA?</li>
 </ul>
 
 <p style='margin-left:72.0pt'><a
-href="http://www.marketplace.com/tia/tiahome.html">The Internet Adaptor </a>(адаптер
-интернета) был написан классными ребятами с marketplace.com. Они уже прекратили
-работать над ним, и считают его 'законченным' продуктом. Последняя его версия -
-2.05; если&nbsp; вы собираетесь использовать TIA, то возьмите эту версию.
-!ЗАМЕТЬТЕ! По-моему, только сайтовые лицензии доступны&nbsp;на текущий момент. </p>
+href="http://www.marketplace.com/tia/tiahome.html">The Internet Adaptor </a>(п╟п╢п╟п©я┌п╣я─
+п╦п╫я┌п╣я─п╫п╣я┌п╟) п╠я▀п╩ п╫п╟п©п╦я│п╟п╫ п╨п╩п╟я│я│п╫я▀п╪п╦ я─п╣п╠я▐я┌п╟п╪п╦ я│ marketplace.com. п·п╫п╦ я┐п╤п╣ п©я─п╣п╨я─п╟я┌п╦п╩п╦
+я─п╟п╠п╬я┌п╟я┌я▄ п╫п╟п╢ п╫п╦п╪, п╦ я│я┤п╦я┌п╟я▌я┌ п╣пЁп╬ 'п╥п╟п╨п╬п╫я┤п╣п╫п╫я▀п╪' п©я─п╬п╢я┐п╨я┌п╬п╪. п÷п╬я│п╩п╣п╢п╫я▐я▐ п╣пЁп╬ п╡п╣я─я│п╦я▐ -
+2.05; п╣я│п╩п╦&nbsp; п╡я▀ я│п╬п╠п╦я─п╟п╣я┌п╣я│я▄ п╦я│п©п╬п╩я▄п╥п╬п╡п╟я┌я▄ TIA, я┌п╬ п╡п╬п╥я▄п╪п╦я┌п╣ я█я┌я┐ п╡п╣я─я│п╦я▌.
+!п≈п░п°п∙п╒п╛п╒п∙! п÷п╬-п╪п╬п╣п╪я┐, я┌п╬п╩я▄п╨п╬ я│п╟п╧я┌п╬п╡я▀п╣ п╩п╦я├п╣п╫п╥п╦п╦ п╢п╬я│я┌я┐п©п╫я▀&nbsp;п╫п╟ я┌п╣п╨я┐я┴п╦п╧ п╪п╬п╪п╣п╫я┌. </p>
 
 <ul type=disc>
  <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
-     mso-list:l12 level1 lfo3;tab-stops:list 36.0pt'>1.2 Что такое SLiRP?&nbsp;
+     mso-list:l12 level1 lfo3;tab-stops:list 36.0pt'>1.2 п╖я┌п╬ я┌п╟п╨п╬п╣ SLiRP?&nbsp;
      </li>
 </ul>
 
-<p style='margin-left:72.0pt'>Это бесплатная программа (freeware), созданная с
-лицензией GNU Public License. Она уже вышла из зачаточного состояния, и теперь
-по-настоящему стабильна. У нее немного больше функций, чем у TIA, и она (по
-сообщениям) требует меньше ресурсов. Она доступна почти на всех хороших Linux
-FTP-сайтах.</p>
+<p style='margin-left:72.0pt'>п╜я┌п╬ п╠п╣я│п©п╩п╟я┌п╫п╟я▐ п©я─п╬пЁя─п╟п╪п╪п╟ (freeware), я│п╬п╥п╢п╟п╫п╫п╟я▐ я│
+п╩п╦я├п╣п╫п╥п╦п╣п╧ GNU Public License. п·п╫п╟ я┐п╤п╣ п╡я▀я┬п╩п╟ п╦п╥ п╥п╟я┤п╟я┌п╬я┤п╫п╬пЁп╬ я│п╬я│я┌п╬я▐п╫п╦я▐, п╦ я┌п╣п©п╣я─я▄
+п©п╬-п╫п╟я│я┌п╬я▐я┴п╣п╪я┐ я│я┌п╟п╠п╦п╩я▄п╫п╟. пё п╫п╣п╣ п╫п╣п╪п╫п╬пЁп╬ п╠п╬п╩я▄я┬п╣ я└я┐п╫п╨я├п╦п╧, я┤п╣п╪ я┐ TIA, п╦ п╬п╫п╟ (п©п╬
+я│п╬п╬п╠я┴п╣п╫п╦я▐п╪) я┌я─п╣п╠я┐п╣я┌ п╪п╣п╫я▄я┬п╣ я─п╣я│я┐я─я│п╬п╡. п·п╫п╟ п╢п╬я│я┌я┐п©п╫п╟ п©п╬я┤я┌п╦ п╫п╟ п╡я│п╣я┘ я┘п╬я─п╬я┬п╦я┘ Linux
+FTP-я│п╟п╧я┌п╟я┘.</p>
 
 <ul type=disc>
  <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
-     mso-list:l11 level1 lfo4;tab-stops:list 36.0pt'>1.3 Что насчет Term?</li>
+     mso-list:l11 level1 lfo4;tab-stops:list 36.0pt'>1.3 п╖я┌п╬ п╫п╟я│я┤п╣я┌ Term?</li>
 </ul>
 
-<p style='margin-left:72.0pt'>Если у вас нет root-доступа к вашей машине по той
-или иной причине, и вы не можете уговорить того, кто устанавливает SLIP и dip,
-то у вас нет другого выбора, как использовать Term. Если вы хотите больше знать
-о Term, то читайте HOWTO на Sunsite. </p>
+<p style='margin-left:72.0pt'>п∙я│п╩п╦ я┐ п╡п╟я│ п╫п╣я┌ root-п╢п╬я│я┌я┐п©п╟ п╨ п╡п╟я┬п╣п╧ п╪п╟я┬п╦п╫п╣ п©п╬ я┌п╬п╧
+п╦п╩п╦ п╦п╫п╬п╧ п©я─п╦я┤п╦п╫п╣, п╦ п╡я▀ п╫п╣ п╪п╬п╤п╣я┌п╣ я┐пЁп╬п╡п╬я─п╦я┌я▄ я┌п╬пЁп╬, п╨я┌п╬ я┐я│я┌п╟п╫п╟п╡п╩п╦п╡п╟п╣я┌ SLIP п╦ dip,
+я┌п╬ я┐ п╡п╟я│ п╫п╣я┌ п╢я─я┐пЁп╬пЁп╬ п╡я▀п╠п╬я─п╟, п╨п╟п╨ п╦я│п©п╬п╩я▄п╥п╬п╡п╟я┌я▄ Term. п∙я│п╩п╦ п╡я▀ я┘п╬я┌п╦я┌п╣ п╠п╬п╩я▄я┬п╣ п╥п╫п╟я┌я▄
+п╬ Term, я┌п╬ я┤п╦я┌п╟п╧я┌п╣ HOWTO п╫п╟ Sunsite. </p>
 
 <ul type=disc>
  <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
-     mso-list:l15 level1 lfo5;tab-stops:list 36.0pt'>1.4 Что о настоящем
+     mso-list:l15 level1 lfo5;tab-stops:list 36.0pt'>1.4 п╖я┌п╬ п╬ п╫п╟я│я┌п╬я▐я┴п╣п╪
      SLIP/PPP?</li>
 </ul>
 
-<p style='margin-left:72.0pt'>Да, многие фирмы сейчас предлагают настоящий
-SLIP/PPP по доступным ценам для невыделенного dial-up. Если&nbsp; вы можете
-себе это позволить, или просто ощущаете потребность, тогда используйте его.
-Настоящее всегда лучше эмуляции. Однако, у эмулятора есть одна очень хорошая
-особенность - безопасность; он действует как мощный&nbsp; firewall, и с ним вы
-значительно более пуленепробиваемы, в отличие от вашего провайдера. Конечно, вы
-за это заплатите, эмуляция достаточно медленна, и не полностью поддерживает все
-протоколы. В любом случае, эмуляция достаточно хороша для многих, и является
-прекрасным способом подключения к Интернет. </p>
+<p style='margin-left:72.0pt'>п■п╟, п╪п╫п╬пЁп╦п╣ я└п╦я─п╪я▀ я│п╣п╧я┤п╟я│ п©я─п╣п╢п╩п╟пЁп╟я▌я┌ п╫п╟я│я┌п╬я▐я┴п╦п╧
+SLIP/PPP п©п╬ п╢п╬я│я┌я┐п©п╫я▀п╪ я├п╣п╫п╟п╪ п╢п╩я▐ п╫п╣п╡я▀п╢п╣п╩п╣п╫п╫п╬пЁп╬ dial-up. п∙я│п╩п╦&nbsp; п╡я▀ п╪п╬п╤п╣я┌п╣
+я│п╣п╠п╣ я█я┌п╬ п©п╬п╥п╡п╬п╩п╦я┌я▄, п╦п╩п╦ п©я─п╬я│я┌п╬ п╬я┴я┐я┴п╟п╣я┌п╣ п©п╬я┌я─п╣п╠п╫п╬я│я┌я▄, я┌п╬пЁп╢п╟ п╦я│п©п╬п╩я▄п╥я┐п╧я┌п╣ п╣пЁп╬.
+п²п╟я│я┌п╬я▐я┴п╣п╣ п╡я│п╣пЁп╢п╟ п╩я┐я┤я┬п╣ я█п╪я┐п╩я▐я├п╦п╦. п·п╢п╫п╟п╨п╬, я┐ я█п╪я┐п╩я▐я┌п╬я─п╟ п╣я│я┌я▄ п╬п╢п╫п╟ п╬я┤п╣п╫я▄ я┘п╬я─п╬я┬п╟я▐
+п╬я│п╬п╠п╣п╫п╫п╬я│я┌я▄ - п╠п╣п╥п╬п©п╟я│п╫п╬я│я┌я▄; п╬п╫ п╢п╣п╧я│я┌п╡я┐п╣я┌ п╨п╟п╨ п╪п╬я┴п╫я▀п╧&nbsp; firewall, п╦ я│ п╫п╦п╪ п╡я▀
+п╥п╫п╟я┤п╦я┌п╣п╩я▄п╫п╬ п╠п╬п╩п╣п╣ п©я┐п╩п╣п╫п╣п©я─п╬п╠п╦п╡п╟п╣п╪я▀, п╡ п╬я┌п╩п╦я┤п╦п╣ п╬я┌ п╡п╟я┬п╣пЁп╬ п©я─п╬п╡п╟п╧п╢п╣я─п╟. п п╬п╫п╣я┤п╫п╬, п╡я▀
+п╥п╟ я█я┌п╬ п╥п╟п©п╩п╟я┌п╦я┌п╣, я█п╪я┐п╩я▐я├п╦я▐ п╢п╬я│я┌п╟я┌п╬я┤п╫п╬ п╪п╣п╢п╩п╣п╫п╫п╟, п╦ п╫п╣ п©п╬п╩п╫п╬я│я┌я▄я▌ п©п╬п╢п╢п╣я─п╤п╦п╡п╟п╣я┌ п╡я│п╣
+п©я─п╬я┌п╬п╨п╬п╩я▀. п▓ п╩я▌п╠п╬п╪ я│п╩я┐я┤п╟п╣, я█п╪я┐п╩я▐я├п╦я▐ п╢п╬я│я┌п╟я┌п╬я┤п╫п╬ я┘п╬я─п╬я┬п╟ п╢п╩я▐ п╪п╫п╬пЁп╦я┘, п╦ я▐п╡п╩я▐п╣я┌я│я▐
+п©я─п╣п╨я─п╟я│п╫я▀п╪ я│п©п╬я│п╬п╠п╬п╪ п©п╬п╢п╨п╩я▌я┤п╣п╫п╦я▐ п╨ п≤п╫я┌п╣я─п╫п╣я┌. </p>
 
 
 <div class=MsoNormal align=center style='text-align:center'>
@@ -131,100 +131,100 @@ SLIP/PPP по доступным ценам для невыделенного dial-up. Если&nbsp; вы можете
 </div>
 
 
-<p><i>Достаточно! Как я все это настрою?<o:p></o:p></i></p>
+<p><i>п■п╬я│я┌п╟я┌п╬я┤п╫п╬! п п╟п╨ я▐ п╡я│п╣ я█я┌п╬ п╫п╟я│я┌я─п╬я▌?<o:p></o:p></i></p>
 
-<p>Хорошо, горячая голова, мы уже почти на месте, но сначала некоторая
-информация, которую ты должен узнать, и пара объяснений.</p>
+<p>п╔п╬я─п╬я┬п╬, пЁп╬я─я▐я┤п╟я▐ пЁп╬п╩п╬п╡п╟, п╪я▀ я┐п╤п╣ п©п╬я┤я┌п╦ п╫п╟ п╪п╣я│я┌п╣, п╫п╬ я│п╫п╟я┤п╟п╩п╟ п╫п╣п╨п╬я┌п╬я─п╟я▐
+п╦п╫я└п╬я─п╪п╟я├п╦я▐, п╨п╬я┌п╬я─я┐я▌ я┌я▀ п╢п╬п╩п╤п╣п╫ я┐п╥п╫п╟я┌я▄, п╦ п©п╟я─п╟ п╬п╠я┼я▐я│п╫п╣п╫п╦п╧.</p>
 
-<p>Во-первых, вам будет необходим IP-адрес вашего провайдера, если у вас его
-еще нет. Вы можете сделать это, набрав 'who' в командной строке, или посмотреть
-их /etc/hosts, или просто спросить. Пока вы все это узнаете, не забудьте взять
-адреса также и POP/SMTP, и NNTP серверов&nbsp; (если вы не знаете, что это
-такое, доверьтесь мне, спросите про них в любом случае, они вам понадобятся).</p>
+<p>п▓п╬-п©п╣я─п╡я▀я┘, п╡п╟п╪ п╠я┐п╢п╣я┌ п╫п╣п╬п╠я┘п╬п╢п╦п╪ IP-п╟п╢я─п╣я│ п╡п╟я┬п╣пЁп╬ п©я─п╬п╡п╟п╧п╢п╣я─п╟, п╣я│п╩п╦ я┐ п╡п╟я│ п╣пЁп╬
+п╣я┴п╣ п╫п╣я┌. п▓я▀ п╪п╬п╤п╣я┌п╣ я│п╢п╣п╩п╟я┌я▄ я█я┌п╬, п╫п╟п╠я─п╟п╡ 'who' п╡ п╨п╬п╪п╟п╫п╢п╫п╬п╧ я│я┌я─п╬п╨п╣, п╦п╩п╦ п©п╬я│п╪п╬я┌я─п╣я┌я▄
+п╦я┘ /etc/hosts, п╦п╩п╦ п©я─п╬я│я┌п╬ я│п©я─п╬я│п╦я┌я▄. п÷п╬п╨п╟ п╡я▀ п╡я│п╣ я█я┌п╬ я┐п╥п╫п╟п╣я┌п╣, п╫п╣ п╥п╟п╠я┐п╢я▄я┌п╣ п╡п╥я▐я┌я▄
+п╟п╢я─п╣я│п╟ я┌п╟п╨п╤п╣ п╦ POP/SMTP, п╦ NNTP я│п╣я─п╡п╣я─п╬п╡&nbsp; (п╣я│п╩п╦ п╡я▀ п╫п╣ п╥п╫п╟п╣я┌п╣, я┤я┌п╬ я█я┌п╬
+я┌п╟п╨п╬п╣, п╢п╬п╡п╣я─я▄я┌п╣я│я▄ п╪п╫п╣, я│п©я─п╬я│п╦я┌п╣ п©я─п╬ п╫п╦я┘ п╡ п╩я▌п╠п╬п╪ я│п╩я┐я┤п╟п╣, п╬п╫п╦ п╡п╟п╪ п©п╬п╫п╟п╢п╬п╠я▐я┌я│я▐).</p>
 
-<p>Во-вторых, коротко объясню про имена машин
-и доменов. Имя машины - это
-первая часть имени машины, а домен - это остальная часть. Например:
-hostname.domain.name (если частей четыре, то это будет: hostname.do.main.name).
-Вместе они составляют полное имя машины (Fully Qualified Domain Name) (FQDN).</p>
+<p>п▓п╬-п╡я┌п╬я─я▀я┘, п╨п╬я─п╬я┌п╨п╬ п╬п╠я┼я▐я│п╫я▌ п©я─п╬ п╦п╪п╣п╫п╟ п╪п╟я┬п╦п╫
+п╦ п╢п╬п╪п╣п╫п╬п╡. п≤п╪я▐ п╪п╟я┬п╦п╫я▀ - я█я┌п╬
+п©п╣я─п╡п╟я▐ я┤п╟я│я┌я▄ п╦п╪п╣п╫п╦ п╪п╟я┬п╦п╫я▀, п╟ п╢п╬п╪п╣п╫ - я█я┌п╬ п╬я│я┌п╟п╩я▄п╫п╟я▐ я┤п╟я│я┌я▄. п²п╟п©я─п╦п╪п╣я─:
+hostname.domain.name (п╣я│п╩п╦ я┤п╟я│я┌п╣п╧ я┤п╣я┌я▀я─п╣, я┌п╬ я█я┌п╬ п╠я┐п╢п╣я┌: hostname.do.main.name).
+п▓п╪п╣я│я┌п╣ п╬п╫п╦ я│п╬я│я┌п╟п╡п╩я▐я▌я┌ п©п╬п╩п╫п╬п╣ п╦п╪я▐ п╪п╟я┬п╦п╫я▀ (Fully Qualified Domain Name) (FQDN).</p>
 
-<p>Имя вашей Linux машины находится в файле /etc/HOSTNAME, и, конечно, вы
-можете его изменить. На самом деле, измените (в дистрибутиве Slackware, это
-будет &quot;darkstar.frop.org&quot; по умолчанию). Просто отредактируйте файл
-/etc/HOSTNAME, как захотите - помните, что у вас эмулятор, вы невидимы для сети,
-и можете быть изобретательны. Однако, если вы планируете когда-нибудь
-подключиться к настоящему SLIP/PPP, то вам лучше быть суб-машиной вашего
-провайдера. Например, если ваш провайдер &quot;info.superhiway.com&quot;, то
-его домен &quot;superhiway.com&quot; и имя машины &quot;info&quot;. Поэтому вы
-можете быть или &quot;offramp.info.superhiway.com&quot;, или просто
-&quot;offramp.superhiway.com&quot;. Оба варианта должны работать, но,
-в любом
-случае, имя вашего машины - &quot;offramp&quot;. </p>
+<p>п≤п╪я▐ п╡п╟я┬п╣п╧ Linux п╪п╟я┬п╦п╫я▀ п╫п╟я┘п╬п╢п╦я┌я│я▐ п╡ я└п╟п╧п╩п╣ /etc/HOSTNAME, п╦, п╨п╬п╫п╣я┤п╫п╬, п╡я▀
+п╪п╬п╤п╣я┌п╣ п╣пЁп╬ п╦п╥п╪п╣п╫п╦я┌я▄. п²п╟ я│п╟п╪п╬п╪ п╢п╣п╩п╣, п╦п╥п╪п╣п╫п╦я┌п╣ (п╡ п╢п╦я│я┌я─п╦п╠я┐я┌п╦п╡п╣ Slackware, я█я┌п╬
+п╠я┐п╢п╣я┌ &quot;darkstar.frop.org&quot; п©п╬ я┐п╪п╬п╩я┤п╟п╫п╦я▌). п÷я─п╬я│я┌п╬ п╬я┌я─п╣п╢п╟п╨я┌п╦я─я┐п╧я┌п╣ я└п╟п╧п╩
+/etc/HOSTNAME, п╨п╟п╨ п╥п╟я┘п╬я┌п╦я┌п╣ - п©п╬п╪п╫п╦я┌п╣, я┤я┌п╬ я┐ п╡п╟я│ я█п╪я┐п╩я▐я┌п╬я─, п╡я▀ п╫п╣п╡п╦п╢п╦п╪я▀ п╢п╩я▐ я│п╣я┌п╦,
+п╦ п╪п╬п╤п╣я┌п╣ п╠я▀я┌я▄ п╦п╥п╬п╠я─п╣я┌п╟я┌п╣п╩я▄п╫я▀. п·п╢п╫п╟п╨п╬, п╣я│п╩п╦ п╡я▀ п©п╩п╟п╫п╦я─я┐п╣я┌п╣ п╨п╬пЁп╢п╟-п╫п╦п╠я┐п╢я▄
+п©п╬п╢п╨п╩я▌я┤п╦я┌я▄я│я▐ п╨ п╫п╟я│я┌п╬я▐я┴п╣п╪я┐ SLIP/PPP, я┌п╬ п╡п╟п╪ п╩я┐я┤я┬п╣ п╠я▀я┌я▄ я│я┐п╠-п╪п╟я┬п╦п╫п╬п╧ п╡п╟я┬п╣пЁп╬
+п©я─п╬п╡п╟п╧п╢п╣я─п╟. п²п╟п©я─п╦п╪п╣я─, п╣я│п╩п╦ п╡п╟я┬ п©я─п╬п╡п╟п╧п╢п╣я─ &quot;info.superhiway.com&quot;, я┌п╬
+п╣пЁп╬ п╢п╬п╪п╣п╫ &quot;superhiway.com&quot; п╦ п╦п╪я▐ п╪п╟я┬п╦п╫я▀ &quot;info&quot;. п÷п╬я█я┌п╬п╪я┐ п╡я▀
+п╪п╬п╤п╣я┌п╣ п╠я▀я┌я▄ п╦п╩п╦ &quot;offramp.info.superhiway.com&quot;, п╦п╩п╦ п©я─п╬я│я┌п╬
+&quot;offramp.superhiway.com&quot;. п·п╠п╟ п╡п╟я─п╦п╟п╫я┌п╟ п╢п╬п╩п╤п╫я▀ я─п╟п╠п╬я┌п╟я┌я▄, п╫п╬,
+п╡ п╩я▌п╠п╬п╪
+я│п╩я┐я┤п╟п╣, п╦п╪я▐ п╡п╟я┬п╣пЁп╬ п╪п╟я┬п╦п╫я▀ - &quot;offramp&quot;. </p>
 
 <ul type=disc>
  <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
-     mso-list:l8 level1 lfo6;tab-stops:list 36.0pt'>2.0 Подготавливаем вашу
-     Linux машину</li>
+     mso-list:l8 level1 lfo6;tab-stops:list 36.0pt'>2.0 п÷п╬п╢пЁп╬я┌п╟п╡п╩п╦п╡п╟п╣п╪ п╡п╟я┬я┐
+     Linux п╪п╟я┬п╦п╫я┐</li>
 </ul>
 
-<p style='margin-left:72.0pt'>Короче говоря, требуется следующее. Первые три
-пункта я объясню подробнее.</p>
+<p style='margin-left:72.0pt'>п п╬я─п╬я┤п╣ пЁп╬п╡п╬я─я▐, я┌я─п╣п╠я┐п╣я┌я│я▐ я│п╩п╣п╢я┐я▌я┴п╣п╣. п÷п╣я─п╡я▀п╣ я┌я─п╦
+п©я┐п╫п╨я┌п╟ я▐ п╬п╠я┼я▐я│п╫я▌ п©п╬п╢я─п╬п╠п╫п╣п╣.</p>
 
 <ul type=disc>
  <ul type=circle>
   <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
-      auto;mso-list:l10 level2 lfo7;tab-stops:list 72.0pt'>- Соберите свое
-      ядро, включив в него SLIP и TCP/IP </li>
+      auto;mso-list:l10 level2 lfo7;tab-stops:list 72.0pt'>- п║п╬п╠п╣я─п╦я┌п╣ я│п╡п╬п╣
+      я▐п╢я─п╬, п╡п╨п╩я▌я┤п╦п╡ п╡ п╫п╣пЁп╬ SLIP п╦ TCP/IP </li>
   <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
-      auto;mso-list:l10 level2 lfo7;tab-stops:list 72.0pt'>- Исправьте
-      некоторые файлы в каталоге /etc </li>
+      auto;mso-list:l10 level2 lfo7;tab-stops:list 72.0pt'>- п≤я│п©я─п╟п╡я▄я┌п╣
+      п╫п╣п╨п╬я┌п╬я─я▀п╣ я└п╟п╧п╩я▀ п╡ п╨п╟я┌п╟п╩п╬пЁп╣ /etc </li>
   <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
-      auto;mso-list:l10 level2 lfo7;tab-stops:list 72.0pt'>- Установите и
-      настройте dip </li>
+      auto;mso-list:l10 level2 lfo7;tab-stops:list 72.0pt'>- пёя│я┌п╟п╫п╬п╡п╦я┌п╣ п╦
+      п╫п╟я│я┌я─п╬п╧я┌п╣ dip </li>
   <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
-      auto;mso-list:l10 level2 lfo7;tab-stops:list 72.0pt'>- Установите pppd
-      (необязательно, только для PPP) </li>
+      auto;mso-list:l10 level2 lfo7;tab-stops:list 72.0pt'>- пёя│я┌п╟п╫п╬п╡п╦я┌п╣ pppd
+      (п╫п╣п╬п╠я▐п╥п╟я┌п╣п╩я▄п╫п╬, я┌п╬п╩я▄п╨п╬ п╢п╩я▐ PPP) </li>
  </ul>
 </ul>
 
-<p style='margin-left:72.0pt'>Вам также понадобится
-получить&nbsp;соответствующий эмулятор для
-вашей удаленноймашины и
-установить&nbsp;его там. SLiRP можно найти на <a
-href="ftp://sunsite.unc.edu/pub/Linux/INDEX.html">Sunsite</a> и других хороших
-Linux-сайтах. Вся информация о TIA находится на <a
-href="http://marketplace.com/tiahome/tia.html">Домашнем cайте TIA</a>. </p>
+<p style='margin-left:72.0pt'>п▓п╟п╪ я┌п╟п╨п╤п╣ п©п╬п╫п╟п╢п╬п╠п╦я┌я│я▐
+п©п╬п╩я┐я┤п╦я┌я▄&nbsp;я│п╬п╬я┌п╡п╣я┌я│я┌п╡я┐я▌я┴п╦п╧ я█п╪я┐п╩я▐я┌п╬я─ п╢п╩я▐
+п╡п╟я┬п╣п╧ я┐п╢п╟п╩п╣п╫п╫п╬п╧п╪п╟я┬п╦п╫я▀ п╦
+я┐я│я┌п╟п╫п╬п╡п╦я┌я▄&nbsp;п╣пЁп╬ я┌п╟п╪. SLiRP п╪п╬п╤п╫п╬ п╫п╟п╧я┌п╦ п╫п╟ <a
+href="ftp://sunsite.unc.edu/pub/Linux/INDEX.html">Sunsite</a> п╦ п╢я─я┐пЁп╦я┘ я┘п╬я─п╬я┬п╦я┘
+Linux-я│п╟п╧я┌п╟я┘. п▓я│я▐ п╦п╫я└п╬я─п╪п╟я├п╦я▐ п╬ TIA п╫п╟я┘п╬п╢п╦я┌я│я▐ п╫п╟ <a
+href="http://marketplace.com/tiahome/tia.html">п■п╬п╪п╟я┬п╫п╣п╪ cп╟п╧я┌п╣ TIA</a>. </p>
 
-<p>Это все! Начнем.</p>
-
-<ul type=disc>
- <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
-     mso-list:l4 level1 lfo8;tab-stops:list 36.0pt'>2.1 Собираем ваше ядро</li>
-</ul>
-
-<p style='margin-left:72.0pt'>Если вы никогда ранее этого&nbsp;не делали, то
-придется начать. Сначала прочитайте FAQ, но не волнуйтесь, там все просто.
-Если&nbsp; вы хотите, напишите мне и я помогу.</p>
-
-<p style='margin-left:72.0pt'>Для краткости предположим, что вы это уже
-проделывали. Когда будете делать 'make config', ищите там раздел
-&quot;Network Devices&quot; (&quot;Сетевые устройства&quot;). Ответьте там 'y'
-(да), конечно, потом так же ответьте на вопросы SLIP, CSLIP, (или соответственно
-PPP) и, обязательно, TCP/IP, и ответьте 'n'(нет) на все остальное, если
-нет сетевой платы или вам не нужны другие протоколы для чего-то еще. <b>Если вы
-этого не сделаете, эмулятор не заработает! </b>Заканчивайте сборку и установку
-ядра и затем</p>
+<p>п╜я┌п╬ п╡я│п╣! п²п╟я┤п╫п╣п╪.</p>
 
 <ul type=disc>
  <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
-     mso-list:l18 level1 lfo9;tab-stops:list 36.0pt'>2.2 Отредактируйте
-     некоторые файлы в каталоге /etc</li>
+     mso-list:l4 level1 lfo8;tab-stops:list 36.0pt'>2.1 п║п╬п╠п╦я─п╟п╣п╪ п╡п╟я┬п╣ я▐п╢я─п╬</li>
 </ul>
 
-<p style='margin-left:72.0pt'>Эти&nbsp; файлы настроят маршрутизацию к
-удаленной машине. Каталог /etc содержит файлы системной конфигурации. Замените
-все, вписанное в кавычки, реальными значениями, взятыми ранее (но уже без
-кавычек - они здесь приведены для выделения). Вам надо исправить три файла:</p>
+<p style='margin-left:72.0pt'>п∙я│п╩п╦ п╡я▀ п╫п╦п╨п╬пЁп╢п╟ я─п╟п╫п╣п╣ я█я┌п╬пЁп╬&nbsp;п╫п╣ п╢п╣п╩п╟п╩п╦, я┌п╬
+п©я─п╦п╢п╣я┌я│я▐ п╫п╟я┤п╟я┌я▄. п║п╫п╟я┤п╟п╩п╟ п©я─п╬я┤п╦я┌п╟п╧я┌п╣ FAQ, п╫п╬ п╫п╣ п╡п╬п╩п╫я┐п╧я┌п╣я│я▄, я┌п╟п╪ п╡я│п╣ п©я─п╬я│я┌п╬.
+п∙я│п╩п╦&nbsp; п╡я▀ я┘п╬я┌п╦я┌п╣, п╫п╟п©п╦я┬п╦я┌п╣ п╪п╫п╣ п╦ я▐ п©п╬п╪п╬пЁя┐.</p>
+
+<p style='margin-left:72.0pt'>п■п╩я▐ п╨я─п╟я┌п╨п╬я│я┌п╦ п©я─п╣п╢п©п╬п╩п╬п╤п╦п╪, я┤я┌п╬ п╡я▀ я█я┌п╬ я┐п╤п╣
+п©я─п╬п╢п╣п╩я▀п╡п╟п╩п╦. п п╬пЁп╢п╟ п╠я┐п╢п╣я┌п╣ п╢п╣п╩п╟я┌я▄ 'make config', п╦я┴п╦я┌п╣ я┌п╟п╪ я─п╟п╥п╢п╣п╩
+&quot;Network Devices&quot; (&quot;п║п╣я┌п╣п╡я▀п╣ я┐я│я┌я─п╬п╧я│я┌п╡п╟&quot;). п·я┌п╡п╣я┌я▄я┌п╣ я┌п╟п╪ 'y'
+(п╢п╟), п╨п╬п╫п╣я┤п╫п╬, п©п╬я┌п╬п╪ я┌п╟п╨ п╤п╣ п╬я┌п╡п╣я┌я▄я┌п╣ п╫п╟ п╡п╬п©я─п╬я│я▀ SLIP, CSLIP, (п╦п╩п╦ я│п╬п╬я┌п╡п╣я┌я│я┌п╡п╣п╫п╫п╬
+PPP) п╦, п╬п╠я▐п╥п╟я┌п╣п╩я▄п╫п╬, TCP/IP, п╦ п╬я┌п╡п╣я┌я▄я┌п╣ 'n'(п╫п╣я┌) п╫п╟ п╡я│п╣ п╬я│я┌п╟п╩я▄п╫п╬п╣, п╣я│п╩п╦
+п╫п╣я┌ я│п╣я┌п╣п╡п╬п╧ п©п╩п╟я┌я▀ п╦п╩п╦ п╡п╟п╪ п╫п╣ п╫я┐п╤п╫я▀ п╢я─я┐пЁп╦п╣ п©я─п╬я┌п╬п╨п╬п╩я▀ п╢п╩я▐ я┤п╣пЁп╬-я┌п╬ п╣я┴п╣. <b>п∙я│п╩п╦ п╡я▀
+я█я┌п╬пЁп╬ п╫п╣ я│п╢п╣п╩п╟п╣я┌п╣, я█п╪я┐п╩я▐я┌п╬я─ п╫п╣ п╥п╟я─п╟п╠п╬я┌п╟п╣я┌! </b>п≈п╟п╨п╟п╫я┤п╦п╡п╟п╧я┌п╣ я│п╠п╬я─п╨я┐ п╦ я┐я│я┌п╟п╫п╬п╡п╨я┐
+я▐п╢я─п╟ п╦ п╥п╟я┌п╣п╪</p>
+
+<ul type=disc>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l18 level1 lfo9;tab-stops:list 36.0pt'>2.2 п·я┌я─п╣п╢п╟п╨я┌п╦я─я┐п╧я┌п╣
+     п╫п╣п╨п╬я┌п╬я─я▀п╣ я└п╟п╧п╩я▀ п╡ п╨п╟я┌п╟п╩п╬пЁп╣ /etc</li>
+</ul>
+
+<p style='margin-left:72.0pt'>п╜я┌п╦&nbsp; я└п╟п╧п╩я▀ п╫п╟я│я┌я─п╬я▐я┌ п╪п╟я─я┬я─я┐я┌п╦п╥п╟я├п╦я▌ п╨
+я┐п╢п╟п╩п╣п╫п╫п╬п╧ п╪п╟я┬п╦п╫п╣. п п╟я┌п╟п╩п╬пЁ /etc я│п╬п╢п╣я─п╤п╦я┌ я└п╟п╧п╩я▀ я│п╦я│я┌п╣п╪п╫п╬п╧ п╨п╬п╫я└п╦пЁя┐я─п╟я├п╦п╦. п≈п╟п╪п╣п╫п╦я┌п╣
+п╡я│п╣, п╡п©п╦я│п╟п╫п╫п╬п╣ п╡ п╨п╟п╡я▀я┤п╨п╦, я─п╣п╟п╩я▄п╫я▀п╪п╦ п╥п╫п╟я┤п╣п╫п╦я▐п╪п╦, п╡п╥я▐я┌я▀п╪п╦ я─п╟п╫п╣п╣ (п╫п╬ я┐п╤п╣ п╠п╣п╥
+п╨п╟п╡я▀я┤п╣п╨ - п╬п╫п╦ п╥п╢п╣я│я▄ п©я─п╦п╡п╣п╢п╣п╫я▀ п╢п╩я▐ п╡я▀п╢п╣п╩п╣п╫п╦я▐). п▓п╟п╪ п╫п╟п╢п╬ п╦я│п©я─п╟п╡п╦я┌я▄ я┌я─п╦ я└п╟п╧п╩п╟:</p>
 
 <ul type=disc>
  <ul type=circle>
@@ -233,7 +233,7 @@ PPP) и, обязательно, TCP/IP, и ответьте 'n'(нет) на все остальное, если
  </ul>
 </ul>
 
-<pre><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre><pre>#Следующая строка обязательна ИМЕННО в таком виде</pre><pre>127.0.0.1<span style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>localhost</pre><pre><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre><pre>#Заметьте, что в конце следующих двух строк повторяется имя машины.</pre><pre>#Эта аббревиатура является псевдонимом, и обязательна для первой строки.</pre><pre>#Если вы подключены к локальной сети, вам надо заменить IP-адрес</pre><pre>#в первой строке, приведенной ниже.</pre><pre><span
+<pre><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre><pre>#п║п╩п╣п╢я┐я▌я┴п╟я▐ я│я┌я─п╬п╨п╟ п╬п╠я▐п╥п╟я┌п╣п╩я▄п╫п╟ п≤п°п∙п²п²п· п╡ я┌п╟п╨п╬п╪ п╡п╦п╢п╣</pre><pre>127.0.0.1<span style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>localhost</pre><pre><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre><pre>#п≈п╟п╪п╣я┌я▄я┌п╣, я┤я┌п╬ п╡ п╨п╬п╫я├п╣ я│п╩п╣п╢я┐я▌я┴п╦я┘ п╢п╡я┐я┘ я│я┌я─п╬п╨ п©п╬п╡я┌п╬я─я▐п╣я┌я│я▐ п╦п╪я▐ п╪п╟я┬п╦п╫я▀.</pre><pre>#п╜я┌п╟ п╟п╠п╠я─п╣п╡п╦п╟я┌я┐я─п╟ я▐п╡п╩я▐п╣я┌я│я▐ п©я│п╣п╡п╢п╬п╫п╦п╪п╬п╪, п╦ п╬п╠я▐п╥п╟я┌п╣п╩я▄п╫п╟ п╢п╩я▐ п©п╣я─п╡п╬п╧ я│я┌я─п╬п╨п╦.</pre><pre>#п∙я│п╩п╦ п╡я▀ п©п╬п╢п╨п╩я▌я┤п╣п╫я▀ п╨ п╩п╬п╨п╟п╩я▄п╫п╬п╧ я│п╣я┌п╦, п╡п╟п╪ п╫п╟п╢п╬ п╥п╟п╪п╣п╫п╦я┌я▄ IP-п╟п╢я─п╣я│</pre><pre>#п╡ п©п╣я─п╡п╬п╧ я│я┌я─п╬п╨п╣, п©я─п╦п╡п╣п╢п╣п╫п╫п╬п╧ п╫п╦п╤п╣.</pre><pre><span
 lang=EN-US style='mso-ansi-language:EN-US'>192.0.2.1<span style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>&quot;yourhostname.domain.name<span style="mso-spacerun: yes">&nbsp; </span>yourhostname&quot;<o:p></o:p></span></pre><pre><span
 lang=EN-US style='mso-ansi-language:EN-US'>&quot;XXX.XXX.XX.XX&quot;<span
 style='mso-tab-count:1'> </span>&quot;remotehostname.domain.name<span style="mso-spacerun: yes">&nbsp; </span>remotehostname&quot;<span style="mso-spacerun: yes">&nbsp; </span><o:p></o:p></span></pre><pre><span
@@ -262,7 +262,7 @@ lang=EN-US style='mso-ansi-language:EN-US'><span style='mso-tab-count:1'>&nbsp;&
 
 <pre><span lang=EN-US style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></pre><pre><span
 lang=EN-US style='mso-ansi-language:EN-US'>domain &quot;yourdomain.name&quot; <span
-style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><o:p></o:p></span></pre><pre>#Следующая строка обычно содержит тот же IP-адрес, что и /etc/hosts</pre><pre><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><o:p></o:p></span></pre><pre>#п║п╩п╣п╢я┐я▌я┴п╟я▐ я│я┌я─п╬п╨п╟ п╬п╠я▀я┤п╫п╬ я│п╬п╢п╣я─п╤п╦я┌ я┌п╬я┌ п╤п╣ IP-п╟п╢я─п╣я│, я┤я┌п╬ п╦ /etc/hosts</pre><pre><span
 lang=EN-US style='mso-ansi-language:EN-US'>nameserver &quot;XXX.XXX.XX.XX&quot;<span
 style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp; </span><o:p></o:p></span></pre><pre><span
 lang=EN-US style='mso-ansi-language:EN-US'><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><o:p></o:p></span></pre>
@@ -270,8 +270,8 @@ lang=EN-US style='mso-ansi-language:EN-US'><span style='mso-tab-count:1'>&nbsp;&
 <ul type=disc>
  <ul type=circle>
   <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
-      auto;mso-list:l17 level2 lfo13;tab-stops:list 72.0pt'>Для
-      использования&nbsp; NNTP-сервера, добавьте следующую строку в файл
+      auto;mso-list:l17 level2 lfo13;tab-stops:list 72.0pt'>п■п╩я▐
+      п╦я│п©п╬п╩я▄п╥п╬п╡п╟п╫п╦я▐&nbsp; NNTP-я│п╣я─п╡п╣я─п╟, п╢п╬п╠п╟п╡я▄я┌п╣ я│п╩п╣п╢я┐я▌я┴я┐я▌ я│я┌я─п╬п╨я┐ п╡ я└п╟п╧п╩
       /etc/profile:</li>
  </ul>
 </ul>
@@ -284,124 +284,124 @@ NNTPSERVER=&quot;remote.hosts.nntpservername&quot;<o:p></o:p></span></p>
      mso-list:l9 level1 lfo14;tab-stops:list 36.0pt'>2.3.1 DIP</li>
 </ul>
 
-<p style='margin-left:72.0pt'>DIP (Dialup Internet Protocol) - это то, что вам
-понадобится для дозвона до удаленной
-машины, запуска эмулятора и протокола
-SLIP/PPP. Он идет в наборе &quot;N&quot; пакетов дистрибутива Slackware, вместе
-с большим набором клиентов и утилит, несколько из которых вы тоже,
-скорее всего,
-захотите установить =). DIP можно также взять на <a
-href="ftp://sunsite.unc.edu/pub/Linux/INDEX.html">Sunsite</a>, в виде
-независимого tar-файла</p>
+<p style='margin-left:72.0pt'>DIP (Dialup Internet Protocol) - я█я┌п╬ я┌п╬, я┤я┌п╬ п╡п╟п╪
+п©п╬п╫п╟п╢п╬п╠п╦я┌я│я▐ п╢п╩я▐ п╢п╬п╥п╡п╬п╫п╟ п╢п╬ я┐п╢п╟п╩п╣п╫п╫п╬п╧
+п╪п╟я┬п╦п╫я▀, п╥п╟п©я┐я│п╨п╟ я█п╪я┐п╩я▐я┌п╬я─п╟ п╦ п©я─п╬я┌п╬п╨п╬п╩п╟
+SLIP/PPP. п·п╫ п╦п╢п╣я┌ п╡ п╫п╟п╠п╬я─п╣ &quot;N&quot; п©п╟п╨п╣я┌п╬п╡ п╢п╦я│я┌я─п╦п╠я┐я┌п╦п╡п╟ Slackware, п╡п╪п╣я│я┌п╣
+я│ п╠п╬п╩я▄я┬п╦п╪ п╫п╟п╠п╬я─п╬п╪ п╨п╩п╦п╣п╫я┌п╬п╡ п╦ я┐я┌п╦п╩п╦я┌, п╫п╣я│п╨п╬п╩я▄п╨п╬ п╦п╥ п╨п╬я┌п╬я─я▀я┘ п╡я▀ я┌п╬п╤п╣,
+я│п╨п╬я─п╣п╣ п╡я│п╣пЁп╬,
+п╥п╟я┘п╬я┌п╦я┌п╣ я┐я│я┌п╟п╫п╬п╡п╦я┌я▄ =). DIP п╪п╬п╤п╫п╬ я┌п╟п╨п╤п╣ п╡п╥я▐я┌я▄ п╫п╟ <a
+href="ftp://sunsite.unc.edu/pub/Linux/INDEX.html">Sunsite</a>, п╡ п╡п╦п╢п╣
+п╫п╣п╥п╟п╡п╦я│п╦п╪п╬пЁп╬ tar-я└п╟п╧п╩п╟</p>
 
-<p style='margin-left:72.0pt'>После установки вам необходимо настроить
-dip-скрипт. Ниже приведен пример, просто впишите правильные значения&nbsp;
-вместо тех, что в кавычках (но уже без кавычек - они здесь приведены для
-выделения):</p>
+<p style='margin-left:72.0pt'>п÷п╬я│п╩п╣ я┐я│я┌п╟п╫п╬п╡п╨п╦ п╡п╟п╪ п╫п╣п╬п╠я┘п╬п╢п╦п╪п╬ п╫п╟я│я┌я─п╬п╦я┌я▄
+dip-я│п╨я─п╦п©я┌. п²п╦п╤п╣ п©я─п╦п╡п╣п╢п╣п╫ п©я─п╦п╪п╣я─, п©я─п╬я│я┌п╬ п╡п©п╦я┬п╦я┌п╣ п©я─п╟п╡п╦п╩я▄п╫я▀п╣ п╥п╫п╟я┤п╣п╫п╦я▐&nbsp;
+п╡п╪п╣я│я┌п╬ я┌п╣я┘, я┤я┌п╬ п╡ п╨п╟п╡я▀я┤п╨п╟я┘ (п╫п╬ я┐п╤п╣ п╠п╣п╥ п╨п╟п╡я▀я┤п╣п╨ - п╬п╫п╦ п╥п╢п╣я│я▄ п©я─п╦п╡п╣п╢п╣п╫я▀ п╢п╩я▐
+п╡я▀п╢п╣п╩п╣п╫п╦я▐):</p>
 
-<p style='margin-left:72.0pt'>-----------------------------РЕЗАТЬ
-ЗДЕСЬ-----------------------------</p>
+<p style='margin-left:72.0pt'>-----------------------------п═п∙п≈п░п╒п╛
+п≈п■п∙п║п╛-----------------------------</p>
 
 <pre style='margin-left:72.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre><pre
 style='margin-left:72.0pt'>main:</pre><pre style='margin-left:72.0pt'><span style="mso-spacerun: yes">&nbsp; </span><span
 lang=EN-US style='mso-ansi-language:EN-US'>get $local &quot;yourhostname.domain.name&quot;<o:p></o:p></span></pre><pre
 style='margin-left:72.0pt'><span lang=EN-US style='mso-ansi-language:EN-US'><span style="mso-spacerun: yes">&nbsp; </span>get $remote &quot;remotehostname.domain.name&quot;<o:p></o:p></span></pre><pre
 style='margin-left:72.0pt'><span lang=EN-US style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></pre><pre
-style='margin-left:72.0pt'>#Ваш последовательный порт здесь</pre><pre
+style='margin-left:72.0pt'>#п▓п╟я┬ п©п╬я│п╩п╣п╢п╬п╡п╟я┌п╣п╩я▄п╫я▀п╧ п©п╬я─я┌ п╥п╢п╣я│я▄</pre><pre
 style='margin-left:72.0pt'><span style="mso-spacerun: yes">&nbsp; </span>port cua&quot;?&quot; </pre><pre
 style='margin-left:72.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre><pre
-style='margin-left:72.0pt'>#Используйте 115200 для более быстрых модемов</pre><pre
+style='margin-left:72.0pt'>#п≤я│п©п╬п╩я▄п╥я┐п╧я┌п╣ 115200 п╢п╩я▐ п╠п╬п╩п╣п╣ п╠я▀я│я┌я─я▀я┘ п╪п╬п╢п╣п╪п╬п╡</pre><pre
 style='margin-left:72.0pt'><span style="mso-spacerun: yes">&nbsp; </span>speed 57600</pre><pre
 style='margin-left:72.0pt'><span style="mso-spacerun: yes">&nbsp; </span>reset</pre><pre
 style='margin-left:72.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre><pre
-style='margin-left:72.0pt'>#Не используйте пробелы в ваших AT-командах</pre><pre
-style='margin-left:72.0pt'><span style="mso-spacerun: yes">&nbsp; </span>init AT &quot;строка команд&quot; </pre><pre
+style='margin-left:72.0pt'>#п²п╣ п╦я│п©п╬п╩я▄п╥я┐п╧я┌п╣ п©я─п╬п╠п╣п╩я▀ п╡ п╡п╟я┬п╦я┘ AT-п╨п╬п╪п╟п╫п╢п╟я┘</pre><pre
+style='margin-left:72.0pt'><span style="mso-spacerun: yes">&nbsp; </span>init AT &quot;я│я┌я─п╬п╨п╟ п╨п╬п╪п╟п╫п╢&quot; </pre><pre
 style='margin-left:72.0pt'><span style="mso-spacerun: yes">&nbsp;&nbsp;</span>wait OK 5</pre><pre
 style='margin-left:72.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre><pre
-style='margin-left:72.0pt'># Эта секция занимется передозвоном. Если не работает,</pre><pre
-style='margin-left:72.0pt'># то измените время ожидания (слушая модем).</pre><pre
-style='margin-left:72.0pt'># Если все еще не работает, пишите мне.</pre><pre
-style='margin-left:72.0pt'># <b>См.также: замечание о кодах ошибок в конце скрипта.<o:p></o:p></b></pre><pre
+style='margin-left:72.0pt'># п╜я┌п╟ я│п╣п╨я├п╦я▐ п╥п╟п╫п╦п╪п╣я┌я│я▐ п©п╣я─п╣п╢п╬п╥п╡п╬п╫п╬п╪. п∙я│п╩п╦ п╫п╣ я─п╟п╠п╬я┌п╟п╣я┌,</pre><pre
+style='margin-left:72.0pt'># я┌п╬ п╦п╥п╪п╣п╫п╦я┌п╣ п╡я─п╣п╪я▐ п╬п╤п╦п╢п╟п╫п╦я▐ (я│п╩я┐я┬п╟я▐ п╪п╬п╢п╣п╪).</pre><pre
+style='margin-left:72.0pt'># п∙я│п╩п╦ п╡я│п╣ п╣я┴п╣ п╫п╣ я─п╟п╠п╬я┌п╟п╣я┌, п©п╦я┬п╦я┌п╣ п╪п╫п╣.</pre><pre
+style='margin-left:72.0pt'># <b>п║п╪.я┌п╟п╨п╤п╣: п╥п╟п╪п╣я┤п╟п╫п╦п╣ п╬ п╨п╬п╢п╟я┘ п╬я┬п╦п╠п╬п╨ п╡ п╨п╬п╫я├п╣ я│п╨я─п╦п©я┌п╟.<o:p></o:p></b></pre><pre
 style='margin-left:72.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre><pre
-style='margin-left:72.0pt'>dial:</pre><pre style='margin-left:72.0pt'><span style="mso-spacerun: yes">&nbsp; </span>dial &quot;номер телефорна&quot;</pre><pre
-style='margin-left:72.0pt'><span style="mso-spacerun: yes">&nbsp; </span>print Набор номера...</pre><pre
+style='margin-left:72.0pt'>dial:</pre><pre style='margin-left:72.0pt'><span style="mso-spacerun: yes">&nbsp; </span>dial &quot;п╫п╬п╪п╣я─ я┌п╣п╩п╣я└п╬я─п╫п╟&quot;</pre><pre
+style='margin-left:72.0pt'><span style="mso-spacerun: yes">&nbsp; </span>print п²п╟п╠п╬я─ п╫п╬п╪п╣я─п╟...</pre><pre
 style='margin-left:72.0pt'><span style="mso-spacerun: yes">&nbsp; </span><span
 lang=EN-US style='mso-ansi-language:EN-US'>if $errlvl != 0 goto error<o:p></o:p></span></pre><pre
 style='margin-left:72.0pt'><span lang=EN-US style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></pre><pre
-style='margin-left:72.0pt'>#Вам возможно потребуется изменить это время ожидания для вашего модема</pre><pre
+style='margin-left:72.0pt'>#п▓п╟п╪ п╡п╬п╥п╪п╬п╤п╫п╬ п©п╬я┌я─п╣п╠я┐п╣я┌я│я▐ п╦п╥п╪п╣п╫п╦я┌я▄ я█я┌п╬ п╡я─п╣п╪я▐ п╬п╤п╦п╢п╟п╫п╦я▐ п╢п╩я▐ п╡п╟я┬п╣пЁп╬ п╪п╬п╢п╣п╪п╟</pre><pre
 style='margin-left:72.0pt'><span style="mso-spacerun: yes">&nbsp; </span><span
 lang=EN-US style='mso-ansi-language:EN-US'>wait BUSY 20<o:p></o:p></span></pre><pre
 style='margin-left:72.0pt'><span lang=EN-US style='mso-ansi-language:EN-US'><span style="mso-spacerun: yes">&nbsp; </span>if $errlvl == 0 goto dial<span
 style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><o:p></o:p></span></pre><pre
 style='margin-left:72.0pt'><span lang=EN-US style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></pre><pre
-style='margin-left:72.0pt'>login:</pre><pre style='margin-left:72.0pt'><span style="mso-spacerun: yes">&nbsp; </span>print Соединение установлено. Регистрация...</pre><pre
+style='margin-left:72.0pt'>login:</pre><pre style='margin-left:72.0pt'><span style="mso-spacerun: yes">&nbsp; </span>print п║п╬п╣п╢п╦п╫п╣п╫п╦п╣ я┐я│я┌п╟п╫п╬п╡п╩п╣п╫п╬. п═п╣пЁп╦я│я┌я─п╟я├п╦я▐...</pre><pre
 style='margin-left:72.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre><pre
-style='margin-left:72.0pt'>#Секция ниже ожидает входа и входит в мою машину Annex. <b>Измените соответственно вашему сайту!<o:p></o:p></b></pre><pre
+style='margin-left:72.0pt'>#п║п╣п╨я├п╦я▐ п╫п╦п╤п╣ п╬п╤п╦п╢п╟п╣я┌ п╡я┘п╬п╢п╟ п╦ п╡я┘п╬п╢п╦я┌ п╡ п╪п╬я▌ п╪п╟я┬п╦п╫я┐ Annex. <b>п≤п╥п╪п╣п╫п╦я┌п╣ я│п╬п╬я┌п╡п╣я┌я│я┌п╡п╣п╫п╫п╬ п╡п╟я┬п╣п╪я┐ я│п╟п╧я┌я┐!<o:p></o:p></b></pre><pre
 style='margin-left:72.0pt'><span style="mso-spacerun: yes">&nbsp; </span><span
 lang=EN-US style='mso-ansi-language:EN-US'>wait ==&gt; 60<o:p></o:p></span></pre><pre
 style='margin-left:72.0pt'><span lang=EN-US style='mso-ansi-language:EN-US'><span style="mso-spacerun: yes">&nbsp; </span>send 4\n<o:p></o:p></span></pre><pre
 style='margin-left:72.0pt'><span lang=EN-US style='mso-ansi-language:EN-US'><span style="mso-spacerun: yes">&nbsp; </span>wait ogin: 60<o:p></o:p></span></pre><pre
 style='margin-left:72.0pt'><span lang=EN-US style='mso-ansi-language:EN-US'><span style="mso-spacerun: yes">&nbsp; </span>if $errlvl != 0 goto login_error1<o:p></o:p></span></pre><pre
-style='margin-left:72.0pt'><span lang=EN-US style='mso-ansi-language:EN-US'><span style="mso-spacerun: yes">&nbsp; </span></span>send &quot;УЧЕТНОЕ ИМЯ&quot;\n</pre><pre
+style='margin-left:72.0pt'><span lang=EN-US style='mso-ansi-language:EN-US'><span style="mso-spacerun: yes">&nbsp; </span></span>send &quot;пёп╖п∙п╒п²п·п∙ п≤п°п╞&quot;\n</pre><pre
 style='margin-left:72.0pt'><span style="mso-spacerun: yes">&nbsp; </span><span
 lang=EN-US style='mso-ansi-language:EN-US'>wait assword: 60<o:p></o:p></span></pre><pre
 style='margin-left:72.0pt'><span lang=EN-US style='mso-ansi-language:EN-US'><span style="mso-spacerun: yes">&nbsp; </span>if $errlvl != 0 goto login_error2<o:p></o:p></span></pre><pre
-style='margin-left:72.0pt'><span lang=EN-US style='mso-ansi-language:EN-US'><span style="mso-spacerun: yes">&nbsp; </span>send &quot;</span>ПАРОЛЬ<span
+style='margin-left:72.0pt'><span lang=EN-US style='mso-ansi-language:EN-US'><span style="mso-spacerun: yes">&nbsp; </span>send &quot;</span>п÷п░п═п·п⌡п╛<span
 lang=EN-US style='mso-ansi-language:EN-US'>&quot;\n<o:p></o:p></span></pre><pre
 style='margin-left:72.0pt'><span lang=EN-US style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></pre><pre
-style='margin-left:72.0pt'>loggedin:</pre><pre style='margin-left:72.0pt'><span style="mso-spacerun: yes">&nbsp; </span>wait &quot;СИСТЕМНОЕ ПРИГЛАШЕНИЕ&quot; 60</pre><pre
+style='margin-left:72.0pt'>loggedin:</pre><pre style='margin-left:72.0pt'><span style="mso-spacerun: yes">&nbsp; </span>wait &quot;п║п≤п║п╒п∙п°п²п·п∙ п÷п═п≤п⌠п⌡п░п╗п∙п²п≤п∙&quot; 60</pre><pre
 style='margin-left:72.0pt'><span style="mso-spacerun: yes">&nbsp; </span><span
 lang=EN-US style='mso-ansi-language:EN-US'>if $errlvl != 0 goto shell_error<o:p></o:p></span></pre><pre
 style='margin-left:72.0pt'><span lang=EN-US style='mso-ansi-language:EN-US'><span style="mso-spacerun: yes">&nbsp; </span>print Logged in!<o:p></o:p></span></pre><pre
-style='margin-left:72.0pt'><span lang=EN-US style='mso-ansi-language:EN-US'><span style="mso-spacerun: yes">&nbsp; </span></span>send &quot;команда запуска эмулятора&quot;\n</pre><pre
-style='margin-left:72.0pt'><span style="mso-spacerun: yes">&nbsp; </span>wait &quot;ответ эмулятора&quot; 60</pre><pre
+style='margin-left:72.0pt'><span lang=EN-US style='mso-ansi-language:EN-US'><span style="mso-spacerun: yes">&nbsp; </span></span>send &quot;п╨п╬п╪п╟п╫п╢п╟ п╥п╟п©я┐я│п╨п╟ я█п╪я┐п╩я▐я┌п╬я─п╟&quot;\n</pre><pre
+style='margin-left:72.0pt'><span style="mso-spacerun: yes">&nbsp; </span>wait &quot;п╬я┌п╡п╣я┌ я█п╪я┐п╩я▐я┌п╬я─п╟&quot; 60</pre><pre
 style='margin-left:72.0pt'><span style="mso-spacerun: yes">&nbsp; </span><span
 lang=EN-US style='mso-ansi-language:EN-US'>if $errlvl != 0 goto emu_error<o:p></o:p></span></pre><pre
 style='margin-left:72.0pt'><span lang=EN-US style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></pre><pre
-style='margin-left:72.0pt'>#Рекомендованное значение MTU (Maximum Transfer Unit) равно 1500, </pre><pre
-style='margin-left:72.0pt'>#но значение 296 визуально быстрее.</pre><pre
-style='margin-left:72.0pt'>#FTP может стать медленнее, так что выбирайте по вкусу.</pre><pre
+style='margin-left:72.0pt'>#п═п╣п╨п╬п╪п╣п╫п╢п╬п╡п╟п╫п╫п╬п╣ п╥п╫п╟я┤п╣п╫п╦п╣ MTU (Maximum Transfer Unit) я─п╟п╡п╫п╬ 1500, </pre><pre
+style='margin-left:72.0pt'>#п╫п╬ п╥п╫п╟я┤п╣п╫п╦п╣ 296 п╡п╦п╥я┐п╟п╩я▄п╫п╬ п╠я▀я│я┌я─п╣п╣.</pre><pre
+style='margin-left:72.0pt'>#FTP п╪п╬п╤п╣я┌ я│я┌п╟я┌я▄ п╪п╣п╢п╩п╣п╫п╫п╣п╣, я┌п╟п╨ я┤я┌п╬ п╡я▀п╠п╦я─п╟п╧я┌п╣ п©п╬ п╡п╨я┐я│я┐.</pre><pre
 style='margin-left:72.0pt'><span style="mso-spacerun: yes">&nbsp; </span><span
 lang=EN-US style='mso-ansi-language:EN-US'>get $mtu 296<o:p></o:p></span></pre><pre
 style='margin-left:72.0pt'><span lang=EN-US style='mso-ansi-language:EN-US'><span style="mso-spacerun: yes">&nbsp; </span>default<o:p></o:p></span></pre><pre
 style='margin-left:72.0pt'><span lang=EN-US style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></pre><pre
 style='margin-left:72.0pt'><span lang=EN-US style='mso-ansi-language:EN-US'>done:<o:p></o:p></span></pre><pre
-style='margin-left:72.0pt'><span lang=EN-US style='mso-ansi-language:EN-US'><span style="mso-spacerun: yes">&nbsp; </span></span>print СОЕДИНЕНИЕ с $remote установлено. Адрес<span
+style='margin-left:72.0pt'><span lang=EN-US style='mso-ansi-language:EN-US'><span style="mso-spacerun: yes">&nbsp; </span></span>print п║п·п∙п■п≤п²п∙п²п≤п∙ я│ $remote я┐я│я┌п╟п╫п╬п╡п╩п╣п╫п╬. п░п╢я─п╣я│<span
 lang=EN-US style='mso-ansi-language:EN-US'> $rmtip<o:p></o:p></span></pre><pre
 style='margin-left:72.0pt'><span lang=EN-US style='mso-ansi-language:EN-US'><span style="mso-spacerun: yes">&nbsp; </span>mode CSLIP<o:p></o:p></span></pre><pre
 style='margin-left:72.0pt'><span lang=EN-US style='mso-ansi-language:EN-US'><span style="mso-spacerun: yes">&nbsp; </span>goto exit<o:p></o:p></span></pre><pre
 style='margin-left:72.0pt'><span lang=EN-US style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></pre><pre
 style='margin-left:72.0pt'><span lang=EN-US style='mso-ansi-language:EN-US'>error:<o:p></o:p></span></pre><pre
-style='margin-left:72.0pt'><span lang=EN-US style='mso-ansi-language:EN-US'><span style="mso-spacerun: yes">&nbsp; </span>print </span>Ошибка<span
-style='mso-ansi-language:EN-US'> </span>дозвона<span lang=EN-US
+style='margin-left:72.0pt'><span lang=EN-US style='mso-ansi-language:EN-US'><span style="mso-spacerun: yes">&nbsp; </span>print </span>п·я┬п╦п╠п╨п╟<span
+style='mso-ansi-language:EN-US'> </span>п╢п╬п╥п╡п╬п╫п╟<span lang=EN-US
 style='mso-ansi-language:EN-US'><o:p></o:p></span></pre><pre style='margin-left:
 72.0pt'><span lang=EN-US style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></pre><pre
 style='margin-left:72.0pt'><span lang=EN-US style='mso-ansi-language:EN-US'>login_error1:<o:p></o:p></span></pre><pre
-style='margin-left:72.0pt'><span lang=EN-US style='mso-ansi-language:EN-US'><span style="mso-spacerun: yes">&nbsp; </span></span>print Нет приглашения Login</pre><pre
+style='margin-left:72.0pt'><span lang=EN-US style='mso-ansi-language:EN-US'><span style="mso-spacerun: yes">&nbsp; </span></span>print п²п╣я┌ п©я─п╦пЁп╩п╟я┬п╣п╫п╦я▐ Login</pre><pre
 style='margin-left:72.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre><pre
 style='margin-left:72.0pt'><span lang=EN-US style='mso-ansi-language:EN-US'>login_error2:<o:p></o:p></span></pre><pre
-style='margin-left:72.0pt'><span lang=EN-US style='mso-ansi-language:EN-US'><span style="mso-spacerun: yes">&nbsp; </span>print </span>Нет<span
-style='mso-ansi-language:EN-US'> </span>приглашения<span lang=EN-US
+style='margin-left:72.0pt'><span lang=EN-US style='mso-ansi-language:EN-US'><span style="mso-spacerun: yes">&nbsp; </span>print </span>п²п╣я┌<span
+style='mso-ansi-language:EN-US'> </span>п©я─п╦пЁп╩п╟я┬п╣п╫п╦я▐<span lang=EN-US
 style='mso-ansi-language:EN-US'> Password<o:p></o:p></span></pre><pre
 style='margin-left:72.0pt'><span lang=EN-US style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></pre><pre
-style='margin-left:72.0pt'>shell_error:</pre><pre style='margin-left:72.0pt'><span style="mso-spacerun: yes">&nbsp; </span>print Нет приглашения командной строки</pre><pre
+style='margin-left:72.0pt'>shell_error:</pre><pre style='margin-left:72.0pt'><span style="mso-spacerun: yes">&nbsp; </span>print п²п╣я┌ п©я─п╦пЁп╩п╟я┬п╣п╫п╦я▐ п╨п╬п╪п╟п╫п╢п╫п╬п╧ я│я┌я─п╬п╨п╦</pre><pre
 style='margin-left:72.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre><pre
-style='margin-left:72.0pt'>emu_error:</pre><pre style='margin-left:72.0pt'><span style="mso-spacerun: yes">&nbsp; </span>print Ошибка при запуске эмулятора</pre><pre
+style='margin-left:72.0pt'>emu_error:</pre><pre style='margin-left:72.0pt'><span style="mso-spacerun: yes">&nbsp; </span>print п·я┬п╦п╠п╨п╟ п©я─п╦ п╥п╟п©я┐я│п╨п╣ я█п╪я┐п╩я▐я┌п╬я─п╟</pre><pre
 style='margin-left:72.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre><pre
 style='margin-left:72.0pt'>exit:</pre><pre style='margin-left:72.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre><pre
-style='margin-left:72.0pt'>#Это будет ошибкой при запуске с флагом -v, но сработает при обычном запуске</pre><pre
-style='margin-left:72.0pt'>#(dip Заканчивает работу в локальном приглашении командной строки).</pre><pre
+style='margin-left:72.0pt'>#п╜я┌п╬ п╠я┐п╢п╣я┌ п╬я┬п╦п╠п╨п╬п╧ п©я─п╦ п╥п╟п©я┐я│п╨п╣ я│ я└п╩п╟пЁп╬п╪ -v, п╫п╬ я│я─п╟п╠п╬я┌п╟п╣я┌ п©я─п╦ п╬п╠я▀я┤п╫п╬п╪ п╥п╟п©я┐я│п╨п╣</pre><pre
+style='margin-left:72.0pt'>#(dip п≈п╟п╨п╟п╫я┤п╦п╡п╟п╣я┌ я─п╟п╠п╬я┌я┐ п╡ п╩п╬п╨п╟п╩я▄п╫п╬п╪ п©я─п╦пЁп╩п╟я┬п╣п╫п╦п╦ п╨п╬п╪п╟п╫п╢п╫п╬п╧ я│я┌я─п╬п╨п╦).</pre><pre
 style='margin-left:72.0pt'><span style="mso-spacerun: yes">&nbsp; </span>\r<span
 style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></pre>
 
-<p style='margin-left:72.0pt'>-----------------------------РЕЗАТЬ
-ЗДЕСЬ-----------------------------</p>
+<p style='margin-left:72.0pt'>-----------------------------п═п∙п≈п░п╒п╛
+п≈п■п∙п║п╛-----------------------------</p>
 
 <ul type=disc>
  <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
-     mso-list:l6 level1 lfo15;tab-stops:list 36.0pt'>2.3.2 Замечания по
-     dip:&nbsp; Новые версии dip не возвращают ответы модема (BUSY, NO CONNECT,
-     и т.п..), они вместо этого используют их номера. Вот список кодов ответов:</li>
+     mso-list:l6 level1 lfo15;tab-stops:list 36.0pt'>2.3.2 п≈п╟п╪п╣я┤п╟п╫п╦я▐ п©п╬
+     dip:&nbsp; п²п╬п╡я▀п╣ п╡п╣я─я│п╦п╦ dip п╫п╣ п╡п╬п╥п╡я─п╟я┴п╟я▌я┌ п╬я┌п╡п╣я┌я▀ п╪п╬п╢п╣п╪п╟ (BUSY, NO CONNECT,
+     п╦ я┌.п©..), п╬п╫п╦ п╡п╪п╣я│я┌п╬ я█я┌п╬пЁп╬ п╦я│п©п╬п╩я▄п╥я┐я▌я┌ п╦я┘ п╫п╬п╪п╣я─п╟. п▓п╬я┌ я│п©п╦я│п╬п╨ п╨п╬п╢п╬п╡ п╬я┌п╡п╣я┌п╬п╡:</li>
  <ul type=circle>
   <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
       auto;mso-list:l6 level2 lfo15;tab-stops:list 72.0pt'><span lang=EN-US
@@ -420,102 +420,102 @@ style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n
  </ul>
 </ul>
 
-<p style='margin-left:72.0pt'>Таким образом, секция dial будет выглядеть
-примерно так: </p>
+<p style='margin-left:72.0pt'>п╒п╟п╨п╦п╪ п╬п╠я─п╟п╥п╬п╪, я│п╣п╨я├п╦я▐ dial п╠я┐п╢п╣я┌ п╡я▀пЁп╩я▐п╢п╣я┌я▄
+п©я─п╦п╪п╣я─п╫п╬ я┌п╟п╨: </p>
 
 <pre style='margin-left:72.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre><pre
-style='margin-left:72.0pt'>dial:</pre><pre style='margin-left:72.0pt'><span style="mso-spacerun: yes">&nbsp; </span>dial &quot;номер телефона&quot;</pre><pre
-style='margin-left:72.0pt'><span style="mso-spacerun: yes">&nbsp; </span>print Набор номера...</pre><pre
+style='margin-left:72.0pt'>dial:</pre><pre style='margin-left:72.0pt'><span style="mso-spacerun: yes">&nbsp; </span>dial &quot;п╫п╬п╪п╣я─ я┌п╣п╩п╣я└п╬п╫п╟&quot;</pre><pre
+style='margin-left:72.0pt'><span style="mso-spacerun: yes">&nbsp; </span>print п²п╟п╠п╬я─ п╫п╬п╪п╣я─п╟...</pre><pre
 style='margin-left:72.0pt'><span style="mso-spacerun: yes">&nbsp; </span><span
 lang=EN-US style='mso-ansi-language:EN-US'>if $errlvl != 0 goto error<o:p></o:p></span></pre><pre
 style='margin-left:72.0pt'><span lang=EN-US style='mso-ansi-language:EN-US'><span style="mso-spacerun: yes">&nbsp; </span>wait 1 20<span
 style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><o:p></o:p></span></pre><pre
 style='margin-left:72.0pt'><span lang=EN-US style='mso-ansi-language:EN-US'><span style="mso-spacerun: yes">&nbsp; </span>if $errlvl != </span>1 goto dial</pre>
 
-<p style='margin-left:72.0pt'>Спасибо Lee Olds (lee@eskimo.com) за эту
-подсказку.</p>
+<p style='margin-left:72.0pt'>п║п©п╟я│п╦п╠п╬ Lee Olds (lee@eskimo.com) п╥п╟ я█я┌я┐
+п©п╬п╢я│п╨п╟п╥п╨я┐.</p>
 
 <p style='margin-left:72.0pt'><span lang=EN-US style='mso-ansi-language:EN-US'>\n
-= </span>перевод<span style='mso-ansi-language:EN-US'> </span>строки<span
-lang=EN-US style='mso-ansi-language:EN-US'> (new line), \r = </span>возврат<span
-style='mso-ansi-language:EN-US'> </span>каретки<span lang=EN-US
-style='mso-ansi-language:EN-US'> (carriage return). </span>Вам понадобится тот
-или другой (или оба) в необходимых для этого местах. Если те, которые приведены
-выше, не работают, то поэкспериментируйте.</p>
+= </span>п©п╣я─п╣п╡п╬п╢<span style='mso-ansi-language:EN-US'> </span>я│я┌я─п╬п╨п╦<span
+lang=EN-US style='mso-ansi-language:EN-US'> (new line), \r = </span>п╡п╬п╥п╡я─п╟я┌<span
+style='mso-ansi-language:EN-US'> </span>п╨п╟я─п╣я┌п╨п╦<span lang=EN-US
+style='mso-ansi-language:EN-US'> (carriage return). </span>п▓п╟п╪ п©п╬п╫п╟п╢п╬п╠п╦я┌я│я▐ я┌п╬я┌
+п╦п╩п╦ п╢я─я┐пЁп╬п╧ (п╦п╩п╦ п╬п╠п╟) п╡ п╫п╣п╬п╠я┘п╬п╢п╦п╪я▀я┘ п╢п╩я▐ я█я┌п╬пЁп╬ п╪п╣я│я┌п╟я┘. п∙я│п╩п╦ я┌п╣, п╨п╬я┌п╬я─я▀п╣ п©я─п╦п╡п╣п╢п╣п╫я▀
+п╡я▀я┬п╣, п╫п╣ я─п╟п╠п╬я┌п╟я▌я┌, я┌п╬ п©п╬я█п╨я│п©п╣я─п╦п╪п╣п╫я┌п╦я─я┐п╧я┌п╣.</p>
 
-<p style='margin-left:72.0pt'>Пара слов об ожиданиях и посылках данных. Если
-это не ясно из примера, то вот
-приблизительно то, что происходит:</p>
+<p style='margin-left:72.0pt'>п÷п╟я─п╟ я│п╩п╬п╡ п╬п╠ п╬п╤п╦п╢п╟п╫п╦я▐я┘ п╦ п©п╬я│я▀п╩п╨п╟я┘ п╢п╟п╫п╫я▀я┘. п∙я│п╩п╦
+я█я┌п╬ п╫п╣ я▐я│п╫п╬ п╦п╥ п©я─п╦п╪п╣я─п╟, я┌п╬ п╡п╬я┌
+п©я─п╦п╠п╩п╦п╥п╦я┌п╣п╩я▄п╫п╬ я┌п╬, я┤я┌п╬ п©я─п╬п╦я│я┘п╬п╢п╦я┌:</p>
 
 <pre style='margin-left:72.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre><pre
 style='margin-left:72.0pt'><span style="mso-spacerun: yes">&nbsp; </span>wait ogin: 60</pre><pre
-style='margin-left:72.0pt'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span>(скрипт ожидает символов 'ogin:' от<span style="mso-spacerun: yes">&nbsp; </span>удаленной машины в течение 60</pre><pre
-style='margin-left:72.0pt'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span> секунд. Когда он их получает, то продолжает работу. Если не получает,</pre><pre
-style='margin-left:72.0pt'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span> он продолжает работу через 60 секунд.)</pre><pre
-style='margin-left:72.0pt'><span style="mso-spacerun: yes">&nbsp; </span>if $errlvl != 0 goto login_error1 (вся эта строка не обязательна)</pre><pre
-style='margin-left:72.0pt'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span>(Если скрипт продолжил работу, получив то, что ожидал, </pre><pre
-style='margin-left:72.0pt'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span><span style="mso-spacerun: yes">&nbsp;</span>то эта строка пропускается. Если же вышло время ожидания, </pre><pre
-style='margin-left:72.0pt'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span><span style="mso-spacerun: yes">&nbsp;</span>то он перейдет к строке с сообщением об ошибке</pre><pre
-style='margin-left:72.0pt'><span style="mso-spacerun: yes">&nbsp; </span>send &quot;УЧЕТНОЕ ИМЯ&quot;\n</pre><pre
-style='margin-left:72.0pt'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span>(DIP посылает 'УЧЕТНОЕ ИМЯ' и символ новой строки) </pre>
+style='margin-left:72.0pt'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span>(я│п╨я─п╦п©я┌ п╬п╤п╦п╢п╟п╣я┌ я│п╦п╪п╡п╬п╩п╬п╡ 'ogin:' п╬я┌<span style="mso-spacerun: yes">&nbsp; </span>я┐п╢п╟п╩п╣п╫п╫п╬п╧ п╪п╟я┬п╦п╫я▀ п╡ я┌п╣я┤п╣п╫п╦п╣ 60</pre><pre
+style='margin-left:72.0pt'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span> я│п╣п╨я┐п╫п╢. п п╬пЁп╢п╟ п╬п╫ п╦я┘ п©п╬п╩я┐я┤п╟п╣я┌, я┌п╬ п©я─п╬п╢п╬п╩п╤п╟п╣я┌ я─п╟п╠п╬я┌я┐. п∙я│п╩п╦ п╫п╣ п©п╬п╩я┐я┤п╟п╣я┌,</pre><pre
+style='margin-left:72.0pt'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span> п╬п╫ п©я─п╬п╢п╬п╩п╤п╟п╣я┌ я─п╟п╠п╬я┌я┐ я┤п╣я─п╣п╥ 60 я│п╣п╨я┐п╫п╢.)</pre><pre
+style='margin-left:72.0pt'><span style="mso-spacerun: yes">&nbsp; </span>if $errlvl != 0 goto login_error1 (п╡я│я▐ я█я┌п╟ я│я┌я─п╬п╨п╟ п╫п╣ п╬п╠я▐п╥п╟я┌п╣п╩я▄п╫п╟)</pre><pre
+style='margin-left:72.0pt'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span>(п∙я│п╩п╦ я│п╨я─п╦п©я┌ п©я─п╬п╢п╬п╩п╤п╦п╩ я─п╟п╠п╬я┌я┐, п©п╬п╩я┐я┤п╦п╡ я┌п╬, я┤я┌п╬ п╬п╤п╦п╢п╟п╩, </pre><pre
+style='margin-left:72.0pt'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span><span style="mso-spacerun: yes">&nbsp;</span>я┌п╬ я█я┌п╟ я│я┌я─п╬п╨п╟ п©я─п╬п©я┐я│п╨п╟п╣я┌я│я▐. п∙я│п╩п╦ п╤п╣ п╡я▀я┬п╩п╬ п╡я─п╣п╪я▐ п╬п╤п╦п╢п╟п╫п╦я▐, </pre><pre
+style='margin-left:72.0pt'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span><span style="mso-spacerun: yes">&nbsp;</span>я┌п╬ п╬п╫ п©п╣я─п╣п╧п╢п╣я┌ п╨ я│я┌я─п╬п╨п╣ я│ я│п╬п╬п╠я┴п╣п╫п╦п╣п╪ п╬п╠ п╬я┬п╦п╠п╨п╣</pre><pre
+style='margin-left:72.0pt'><span style="mso-spacerun: yes">&nbsp; </span>send &quot;пёп╖п∙п╒п²п·п∙ п≤п°п╞&quot;\n</pre><pre
+style='margin-left:72.0pt'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span>(DIP п©п╬я│я▀п╩п╟п╣я┌ 'пёп╖п∙п╒п²п·п∙ п≤п°п╞' п╦ я│п╦п╪п╡п╬п╩ п╫п╬п╡п╬п╧ я│я┌я─п╬п╨п╦) </pre>
 
-<p style='margin-left:72.0pt'>Вы можете вставить команды 'sleep', где это
-необходимо, например: &quot;sleep 10&quot; Это заставит скрипт ожидать (pause)
-в течение 10 секунд.</p>
+<p style='margin-left:72.0pt'>п▓я▀ п╪п╬п╤п╣я┌п╣ п╡я│я┌п╟п╡п╦я┌я▄ п╨п╬п╪п╟п╫п╢я▀ 'sleep', пЁп╢п╣ я█я┌п╬
+п╫п╣п╬п╠я┘п╬п╢п╦п╪п╬, п╫п╟п©я─п╦п╪п╣я─: &quot;sleep 10&quot; п╜я┌п╬ п╥п╟я│я┌п╟п╡п╦я┌ я│п╨я─п╦п©я┌ п╬п╤п╦п╢п╟я┌я▄ (pause)
+п╡ я┌п╣я┤п╣п╫п╦п╣ 10 я│п╣п╨я┐п╫п╢.</p>
 
-<p style='margin-left:72.0pt'>После редактирования этого файла, переименуйте
-его, например, в remote.dip и поместите в каталог /root. Затем, будучи root-ом,
-запустите 'dip remote'. Используйте флаг -v для просмотра более детальных
-(debug) сообщений ('dip -v remote'), это укажет вам все шаги, которые
-предпринимает dip.</p>
+<p style='margin-left:72.0pt'>п÷п╬я│п╩п╣ я─п╣п╢п╟п╨я┌п╦я─п╬п╡п╟п╫п╦я▐ я█я┌п╬пЁп╬ я└п╟п╧п╩п╟, п©п╣я─п╣п╦п╪п╣п╫я┐п╧я┌п╣
+п╣пЁп╬, п╫п╟п©я─п╦п╪п╣я─, п╡ remote.dip п╦ п©п╬п╪п╣я│я┌п╦я┌п╣ п╡ п╨п╟я┌п╟п╩п╬пЁ /root. п≈п╟я┌п╣п╪, п╠я┐п╢я┐я┤п╦ root-п╬п╪,
+п╥п╟п©я┐я│я┌п╦я┌п╣ 'dip remote'. п≤я│п©п╬п╩я▄п╥я┐п╧я┌п╣ я└п╩п╟пЁ -v п╢п╩я▐ п©я─п╬я│п╪п╬я┌я─п╟ п╠п╬п╩п╣п╣ п╢п╣я┌п╟п╩я▄п╫я▀я┘
+(debug) я│п╬п╬п╠я┴п╣п╫п╦п╧ ('dip -v remote'), я█я┌п╬ я┐п╨п╟п╤п╣я┌ п╡п╟п╪ п╡я│п╣ я┬п╟пЁп╦, п╨п╬я┌п╬я─я▀п╣
+п©я─п╣п╢п©я─п╦п╫п╦п╪п╟п╣я┌ dip.</p>
 
-<p style='margin-left:72.0pt'>Dip может запускаться только под root-ом, но
-существует способ запустить его и под обычными пользователями. На текущий
-момент, если вам интересно, как это
-происходит, пишите. Я, возможно, включу эту информацию
-сюда, если будет много просьб.</p>
+<p style='margin-left:72.0pt'>Dip п╪п╬п╤п╣я┌ п╥п╟п©я┐я│п╨п╟я┌я▄я│я▐ я┌п╬п╩я▄п╨п╬ п©п╬п╢ root-п╬п╪, п╫п╬
+я│я┐я┴п╣я│я┌п╡я┐п╣я┌ я│п©п╬я│п╬п╠ п╥п╟п©я┐я│я┌п╦я┌я▄ п╣пЁп╬ п╦ п©п╬п╢ п╬п╠я▀я┤п╫я▀п╪п╦ п©п╬п╩я▄п╥п╬п╡п╟я┌п╣п╩я▐п╪п╦. п²п╟ я┌п╣п╨я┐я┴п╦п╧
+п╪п╬п╪п╣п╫я┌, п╣я│п╩п╦ п╡п╟п╪ п╦п╫я┌п╣я─п╣я│п╫п╬, п╨п╟п╨ я█я┌п╬
+п©я─п╬п╦я│я┘п╬п╢п╦я┌, п©п╦я┬п╦я┌п╣. п╞, п╡п╬п╥п╪п╬п╤п╫п╬, п╡п╨п╩я▌я┤я┐ я█я┌я┐ п╦п╫я└п╬я─п╪п╟я├п╦я▌
+я│я▌п╢п╟, п╣я│п╩п╦ п╠я┐п╢п╣я┌ п╪п╫п╬пЁп╬ п©я─п╬я│я▄п╠.</p>
 
-<p style='margin-left:72.0pt'>Если dip продолжает выдавать ошибки, то
-попробуйте убрать комментарии.</p>
+<p style='margin-left:72.0pt'>п∙я│п╩п╦ dip п©я─п╬п╢п╬п╩п╤п╟п╣я┌ п╡я▀п╢п╟п╡п╟я┌я▄ п╬я┬п╦п╠п╨п╦, я┌п╬
+п©п╬п©я─п╬п╠я┐п╧я┌п╣ я┐п╠я─п╟я┌я▄ п╨п╬п╪п╪п╣п╫я┌п╟я─п╦п╦.</p>
 
 <ul type=disc>
  <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
      mso-list:l1 level1 lfo16;tab-stops:list 36.0pt'>2.4 PPP</li>
 </ul>
 
-<p style='margin-left:72.0pt'>Все, что написано выше, работает с CSLIP, что
-достаточно почти для всего. Его, на самом деле, просто заставить работать, так
-как поддержка протокола ведется на уровне ядра - убедитесь, что
-поддержка встроена, и она заработает.</p>
+<p style='margin-left:72.0pt'>п▓я│п╣, я┤я┌п╬ п╫п╟п©п╦я│п╟п╫п╬ п╡я▀я┬п╣, я─п╟п╠п╬я┌п╟п╣я┌ я│ CSLIP, я┤я┌п╬
+п╢п╬я│я┌п╟я┌п╬я┤п╫п╬ п©п╬я┤я┌п╦ п╢п╩я▐ п╡я│п╣пЁп╬. п∙пЁп╬, п╫п╟ я│п╟п╪п╬п╪ п╢п╣п╩п╣, п©я─п╬я│я┌п╬ п╥п╟я│я┌п╟п╡п╦я┌я▄ я─п╟п╠п╬я┌п╟я┌я▄, я┌п╟п╨
+п╨п╟п╨ п©п╬п╢п╢п╣я─п╤п╨п╟ п©я─п╬я┌п╬п╨п╬п╩п╟ п╡п╣п╢п╣я┌я│я▐ п╫п╟ я┐я─п╬п╡п╫п╣ я▐п╢я─п╟ - я┐п╠п╣п╢п╦я┌п╣я│я▄, я┤я┌п╬
+п©п╬п╢п╢п╣я─п╤п╨п╟ п╡я│я┌я─п╬п╣п╫п╟, п╦ п╬п╫п╟ п╥п╟я─п╟п╠п╬я┌п╟п╣я┌.</p>
 
-<p style='margin-left:72.0pt'>Однако, некоторые из вас захотят поставить PPP,
-по причинам им одним известным. Я не буду пытаться описать
-процесс настройки,
-для этого есть целый HOWTO. Лишь скажу, в чем могут быть трудности при
-настройке эмулятора с PPP.</p>
+<p style='margin-left:72.0pt'>п·п╢п╫п╟п╨п╬, п╫п╣п╨п╬я┌п╬я─я▀п╣ п╦п╥ п╡п╟я│ п╥п╟я┘п╬я┌я▐я┌ п©п╬я│я┌п╟п╡п╦я┌я▄ PPP,
+п©п╬ п©я─п╦я┤п╦п╫п╟п╪ п╦п╪ п╬п╢п╫п╦п╪ п╦п╥п╡п╣я│я┌п╫я▀п╪. п╞ п╫п╣ п╠я┐п╢я┐ п©я▀я┌п╟я┌я▄я│я▐ п╬п©п╦я│п╟я┌я▄
+п©я─п╬я├п╣я│я│ п╫п╟я│я┌я─п╬п╧п╨п╦,
+п╢п╩я▐ я█я┌п╬пЁп╬ п╣я│я┌я▄ я├п╣п╩я▀п╧ HOWTO. п⌡п╦я┬я▄ я│п╨п╟п╤я┐, п╡ я┤п╣п╪ п╪п╬пЁя┐я┌ п╠я▀я┌я▄ я┌я─я┐п╢п╫п╬я│я┌п╦ п©я─п╦
+п╫п╟я│я┌я─п╬п╧п╨п╣ я█п╪я┐п╩я▐я┌п╬я─п╟ я│ PPP.</p>
 
-<p style='margin-left:72.0pt'>Во-первых, в последних версиях DIP сказано, что его
-можно использовать для запуска PPP, и вы конечно можете, НО он лишь
-запускает PPPd - ни флагов, ни чего-то другого. Поэтому если вы будете
-использовать DIP для запуска PPP, внесите все ваши данные и установки в файл
-/etc/ppp/options, или ничего не заработает.</p>
+<p style='margin-left:72.0pt'>п▓п╬-п©п╣я─п╡я▀я┘, п╡ п©п╬я│п╩п╣п╢п╫п╦я┘ п╡п╣я─я│п╦я▐я┘ DIP я│п╨п╟п╥п╟п╫п╬, я┤я┌п╬ п╣пЁп╬
+п╪п╬п╤п╫п╬ п╦я│п©п╬п╩я▄п╥п╬п╡п╟я┌я▄ п╢п╩я▐ п╥п╟п©я┐я│п╨п╟ PPP, п╦ п╡я▀ п╨п╬п╫п╣я┤п╫п╬ п╪п╬п╤п╣я┌п╣, п²п· п╬п╫ п╩п╦я┬я▄
+п╥п╟п©я┐я│п╨п╟п╣я┌ PPPd - п╫п╦ я└п╩п╟пЁп╬п╡, п╫п╦ я┤п╣пЁп╬-я┌п╬ п╢я─я┐пЁп╬пЁп╬. п÷п╬я█я┌п╬п╪я┐ п╣я│п╩п╦ п╡я▀ п╠я┐п╢п╣я┌п╣
+п╦я│п©п╬п╩я▄п╥п╬п╡п╟я┌я▄ DIP п╢п╩я▐ п╥п╟п©я┐я│п╨п╟ PPP, п╡п╫п╣я│п╦я┌п╣ п╡я│п╣ п╡п╟я┬п╦ п╢п╟п╫п╫я▀п╣ п╦ я┐я│я┌п╟п╫п╬п╡п╨п╦ п╡ я└п╟п╧п╩
+/etc/ppp/options, п╦п╩п╦ п╫п╦я┤п╣пЁп╬ п╫п╣ п╥п╟я─п╟п╠п╬я┌п╟п╣я┌.</p>
 
-<p style='margin-left:72.0pt'>Упоминая о файле options, одна из строк там
-ДОЛЖНА быть, независимо от того, как вы запускаете pppd:
-'192.0.2.1:XXX.XXX.XX.XX'. Она обозначает 'локальныйIPадрес:удаленныйIPадрес'.
-Вам это нужно потому, что в обычном случае pppd это заполнит сам, но при&nbsp;
-работе с эмулятором этого не произойдет, что
-и приведет к ошибке.</p>
+<p style='margin-left:72.0pt'>пёп©п╬п╪п╦п╫п╟я▐ п╬ я└п╟п╧п╩п╣ options, п╬п╢п╫п╟ п╦п╥ я│я┌я─п╬п╨ я┌п╟п╪
+п■п·п⌡п√п²п░ п╠я▀я┌я▄, п╫п╣п╥п╟п╡п╦я│п╦п╪п╬ п╬я┌ я┌п╬пЁп╬, п╨п╟п╨ п╡я▀ п╥п╟п©я┐я│п╨п╟п╣я┌п╣ pppd:
+'192.0.2.1:XXX.XXX.XX.XX'. п·п╫п╟ п╬п╠п╬п╥п╫п╟я┤п╟п╣я┌ 'п╩п╬п╨п╟п╩я▄п╫я▀п╧IPп╟п╢я─п╣я│:я┐п╢п╟п╩п╣п╫п╫я▀п╧IPп╟п╢я─п╣я│'.
+п▓п╟п╪ я█я┌п╬ п╫я┐п╤п╫п╬ п©п╬я┌п╬п╪я┐, я┤я┌п╬ п╡ п╬п╠я▀я┤п╫п╬п╪ я│п╩я┐я┤п╟п╣ pppd я█я┌п╬ п╥п╟п©п╬п╩п╫п╦я┌ я│п╟п╪, п╫п╬ п©я─п╦&nbsp;
+я─п╟п╠п╬я┌п╣ я│ я█п╪я┐п╩я▐я┌п╬я─п╬п╪ я█я┌п╬пЁп╬ п╫п╣ п©я─п╬п╦п╥п╬п╧п╢п╣я┌, я┤я┌п╬
+п╦ п©я─п╦п╡п╣п╢п╣я┌ п╨ п╬я┬п╦п╠п╨п╣.</p>
 
-<p style='margin-left:72.0pt'>Убедитесь в том, что у вас последняя и самая
-хорошая версия пакета pppd. У некоторых более старых версии были некоторые
-проблемы.</p>
+<p style='margin-left:72.0pt'>пёп╠п╣п╢п╦я┌п╣я│я▄ п╡ я┌п╬п╪, я┤я┌п╬ я┐ п╡п╟я│ п©п╬я│п╩п╣п╢п╫я▐я▐ п╦ я│п╟п╪п╟я▐
+я┘п╬я─п╬я┬п╟я▐ п╡п╣я─я│п╦я▐ п©п╟п╨п╣я┌п╟ pppd. пё п╫п╣п╨п╬я┌п╬я─я▀я┘ п╠п╬п╩п╣п╣ я│я┌п╟я─я▀я┘ п╡п╣я─я│п╦п╦ п╠я▀п╩п╦ п╫п╣п╨п╬я┌п╬я─я▀п╣
+п©я─п╬п╠п╩п╣п╪я▀.</p>
 
-<p style='margin-left:72.0pt'>В конце концов, пока у вас нет серьезных причин
-использовать PPP или желания узнать, как он работает, то он вам не
-нужен. Я пробовал оба варианта и не заметил никакой разницы между ними со
-стандартным набором клиентов. Конечно, богу богово, кесарю кесарево, а слесарю
-слесарево. :) </p>
+<p style='margin-left:72.0pt'>п▓ п╨п╬п╫я├п╣ п╨п╬п╫я├п╬п╡, п©п╬п╨п╟ я┐ п╡п╟я│ п╫п╣я┌ я│п╣я─я▄п╣п╥п╫я▀я┘ п©я─п╦я┤п╦п╫
+п╦я│п©п╬п╩я▄п╥п╬п╡п╟я┌я▄ PPP п╦п╩п╦ п╤п╣п╩п╟п╫п╦я▐ я┐п╥п╫п╟я┌я▄, п╨п╟п╨ п╬п╫ я─п╟п╠п╬я┌п╟п╣я┌, я┌п╬ п╬п╫ п╡п╟п╪ п╫п╣
+п╫я┐п╤п╣п╫. п╞ п©я─п╬п╠п╬п╡п╟п╩ п╬п╠п╟ п╡п╟я─п╦п╟п╫я┌п╟ п╦ п╫п╣ п╥п╟п╪п╣я┌п╦п╩ п╫п╦п╨п╟п╨п╬п╧ я─п╟п╥п╫п╦я├я▀ п╪п╣п╤п╢я┐ п╫п╦п╪п╦ я│п╬
+я│я┌п╟п╫п╢п╟я─я┌п╫я▀п╪ п╫п╟п╠п╬я─п╬п╪ п╨п╩п╦п╣п╫я┌п╬п╡. п п╬п╫п╣я┤п╫п╬, п╠п╬пЁя┐ п╠п╬пЁп╬п╡п╬, п╨п╣я│п╟я─я▌ п╨п╣я│п╟я─п╣п╡п╬, п╟ я│п╩п╣я│п╟я─я▌
+я│п╩п╣я│п╟я─п╣п╡п╬. :) </p>
 
 
 <div class=MsoNormal align=center style='text-align:center'>
@@ -530,72 +530,72 @@ AR-SA'>
 
 <ul type=disc>
  <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
-     mso-list:l7 level1 lfo17;tab-stops:list 36.0pt'>3.0 И что теперь?</li>
+     mso-list:l7 level1 lfo17;tab-stops:list 36.0pt'>3.0 п≤ я┤я┌п╬ я┌п╣п©п╣я─я▄?</li>
 </ul>
 
 </span>
 
-<p style='margin-left:72.0pt'>Ну, если все прошло хорошо, то вы уже в Сети!
-Попробуйте 'telnet remotehostname' (помните эту аббревиатуру в вашем файле
-hosts?). Вы должны получить приглашение ко входу через telnet. Давайте,
-пробуйте! Теперь вы можете использовать telnet/FTP/и т.п.
-где угодно в Сети с
-вашей машины. Как? Ваша машина использует
-удаленную машинe, как nameserver
-(сервер имен) для преобразования&nbsp; (resolve) адресов (см. файл
-resolv.conf). Экспериментируйте, выясните, что работает, и что нет.</p>
+<p style='margin-left:72.0pt'>п²я┐, п╣я│п╩п╦ п╡я│п╣ п©я─п╬я┬п╩п╬ я┘п╬я─п╬я┬п╬, я┌п╬ п╡я▀ я┐п╤п╣ п╡ п║п╣я┌п╦!
+п÷п╬п©я─п╬п╠я┐п╧я┌п╣ 'telnet remotehostname' (п©п╬п╪п╫п╦я┌п╣ я█я┌я┐ п╟п╠п╠я─п╣п╡п╦п╟я┌я┐я─я┐ п╡ п╡п╟я┬п╣п╪ я└п╟п╧п╩п╣
+hosts?). п▓я▀ п╢п╬п╩п╤п╫я▀ п©п╬п╩я┐я┤п╦я┌я▄ п©я─п╦пЁп╩п╟я┬п╣п╫п╦п╣ п╨п╬ п╡я┘п╬п╢я┐ я┤п╣я─п╣п╥ telnet. п■п╟п╡п╟п╧я┌п╣,
+п©я─п╬п╠я┐п╧я┌п╣! п╒п╣п©п╣я─я▄ п╡я▀ п╪п╬п╤п╣я┌п╣ п╦я│п©п╬п╩я▄п╥п╬п╡п╟я┌я▄ telnet/FTP/п╦ я┌.п©.
+пЁп╢п╣ я┐пЁп╬п╢п╫п╬ п╡ п║п╣я┌п╦ я│
+п╡п╟я┬п╣п╧ п╪п╟я┬п╦п╫я▀. п п╟п╨? п▓п╟я┬п╟ п╪п╟я┬п╦п╫п╟ п╦я│п©п╬п╩я▄п╥я┐п╣я┌
+я┐п╢п╟п╩п╣п╫п╫я┐я▌ п╪п╟я┬п╦п╫e, п╨п╟п╨ nameserver
+(я│п╣я─п╡п╣я─ п╦п╪п╣п╫) п╢п╩я▐ п©я─п╣п╬п╠я─п╟п╥п╬п╡п╟п╫п╦я▐&nbsp; (resolve) п╟п╢я─п╣я│п╬п╡ (я│п╪. я└п╟п╧п╩
+resolv.conf). п╜п╨я│п©п╣я─п╦п╪п╣п╫я┌п╦я─я┐п╧я┌п╣, п╡я▀я▐я│п╫п╦я┌п╣, я┤я┌п╬ я─п╟п╠п╬я┌п╟п╣я┌, п╦ я┤я┌п╬ п╫п╣я┌.</p>
 
-<p style='margin-left:72.0pt'>Вы не сможете использовать сервисы, которые
-недоступны на вашей удаленной машине! Например, если ваш сервер не разрешает
-telnet, скорее всего, и вы не сможете. Почему? Потому, что эмулятор просто
-перенаправляет (re-direct) то, что уже есть.</p>
+<p style='margin-left:72.0pt'>п▓я▀ п╫п╣ я│п╪п╬п╤п╣я┌п╣ п╦я│п©п╬п╩я▄п╥п╬п╡п╟я┌я▄ я│п╣я─п╡п╦я│я▀, п╨п╬я┌п╬я─я▀п╣
+п╫п╣п╢п╬я│я┌я┐п©п╫я▀ п╫п╟ п╡п╟я┬п╣п╧ я┐п╢п╟п╩п╣п╫п╫п╬п╧ п╪п╟я┬п╦п╫п╣! п²п╟п©я─п╦п╪п╣я─, п╣я│п╩п╦ п╡п╟я┬ я│п╣я─п╡п╣я─ п╫п╣ я─п╟п╥я─п╣я┬п╟п╣я┌
+telnet, я│п╨п╬я─п╣п╣ п╡я│п╣пЁп╬, п╦ п╡я▀ п╫п╣ я│п╪п╬п╤п╣я┌п╣. п÷п╬я┤п╣п╪я┐? п÷п╬я┌п╬п╪я┐, я┤я┌п╬ я█п╪я┐п╩я▐я┌п╬я─ п©я─п╬я│я┌п╬
+п©п╣я─п╣п╫п╟п©я─п╟п╡п╩я▐п╣я┌ (re-direct) я┌п╬, я┤я┌п╬ я┐п╤п╣ п╣я│я┌я▄.</p>
 
 <ul type=disc>
  <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
-     mso-list:l20 level1 lfo18;tab-stops:list 36.0pt'>3.1 Почта</li>
+     mso-list:l20 level1 lfo18;tab-stops:list 36.0pt'>3.1 п÷п╬я┤я┌п╟</li>
 </ul>
 
-<p style='margin-left:72.0pt'>Очевидным решением для текстового режима является
-Pine, его можно взять в <a href="ftp://ftp.cac.washington.edu/">Вашингтонском
-университете</a>.</p>
+<p style='margin-left:72.0pt'>п·я┤п╣п╡п╦п╢п╫я▀п╪ я─п╣я┬п╣п╫п╦п╣п╪ п╢п╩я▐ я┌п╣п╨я│я┌п╬п╡п╬пЁп╬ я─п╣п╤п╦п╪п╟ я▐п╡п╩я▐п╣я┌я│я▐
+Pine, п╣пЁп╬ п╪п╬п╤п╫п╬ п╡п╥я▐я┌я▄ п╡ <a href="ftp://ftp.cac.washington.edu/">п▓п╟я┬п╦п╫пЁя┌п╬п╫я│п╨п╬п╪
+я┐п╫п╦п╡п╣я─я│п╦я┌п╣я┌п╣</a>.</p>
 
-<p style='margin-left:72.0pt'>По моему мнению, 'Лучшая почтовая X-программа' -
-это XFmail. Она наконец-то вылезла из начальной beta-стадии и прекрасно
-работает. Легко устанавливается; не требует установки локальной почтовой
-системы (но работает с локальными spool-ами почты), потому что в нее встроен
-протокол POP - никаких лишних popclient/fetchpop! Проста в использовании;
-полностью настраиваема в GUI. Также поддерживает MIME. Получите ее с <a
-href="http://burka.netvision.net.il/xfmail/xfmail.html">Официального сайта
+<p style='margin-left:72.0pt'>п÷п╬ п╪п╬п╣п╪я┐ п╪п╫п╣п╫п╦я▌, 'п⌡я┐я┤я┬п╟я▐ п©п╬я┤я┌п╬п╡п╟я▐ X-п©я─п╬пЁя─п╟п╪п╪п╟' -
+я█я┌п╬ XFmail. п·п╫п╟ п╫п╟п╨п╬п╫п╣я├-я┌п╬ п╡я▀п╩п╣п╥п╩п╟ п╦п╥ п╫п╟я┤п╟п╩я▄п╫п╬п╧ beta-я│я┌п╟п╢п╦п╦ п╦ п©я─п╣п╨я─п╟я│п╫п╬
+я─п╟п╠п╬я┌п╟п╣я┌. п⌡п╣пЁп╨п╬ я┐я│я┌п╟п╫п╟п╡п╩п╦п╡п╟п╣я┌я│я▐; п╫п╣ я┌я─п╣п╠я┐п╣я┌ я┐я│я┌п╟п╫п╬п╡п╨п╦ п╩п╬п╨п╟п╩я▄п╫п╬п╧ п©п╬я┤я┌п╬п╡п╬п╧
+я│п╦я│я┌п╣п╪я▀ (п╫п╬ я─п╟п╠п╬я┌п╟п╣я┌ я│ п╩п╬п╨п╟п╩я▄п╫я▀п╪п╦ spool-п╟п╪п╦ п©п╬я┤я┌я▀), п©п╬я┌п╬п╪я┐ я┤я┌п╬ п╡ п╫п╣п╣ п╡я│я┌я─п╬п╣п╫
+п©я─п╬я┌п╬п╨п╬п╩ POP - п╫п╦п╨п╟п╨п╦я┘ п╩п╦я┬п╫п╦я┘ popclient/fetchpop! п÷я─п╬я│я┌п╟ п╡ п╦я│п©п╬п╩я▄п╥п╬п╡п╟п╫п╦п╦;
+п©п╬п╩п╫п╬я│я┌я▄я▌ п╫п╟я│я┌я─п╟п╦п╡п╟п╣п╪п╟ п╡ GUI. п╒п╟п╨п╤п╣ п©п╬п╢п╢п╣я─п╤п╦п╡п╟п╣я┌ MIME. п÷п╬п╩я┐я┤п╦я┌п╣ п╣п╣ я│ <a
+href="http://burka.netvision.net.il/xfmail/xfmail.html">п·я└п╦я├п╦п╟п╩я▄п╫п╬пЁп╬ я│п╟п╧я┌п╟
 XFmail</a>.</p>
 
 <ul type=disc>
  <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
-     mso-list:l16 level1 lfo19;tab-stops:list 36.0pt'>3.2 Новости</li>
+     mso-list:l16 level1 lfo19;tab-stops:list 36.0pt'>3.2 п²п╬п╡п╬я│я┌п╦</li>
 </ul>
 
-<p style='margin-left:72.0pt'>Текстовая система чтения новостей <a
-href="ftp://space.mit.edu/pub/davis/slrn">SLRN</a> достаточно проста в
-установке и использовании. Это настоящая система чтения новостей NNTP, которая <i>не
-требует настройки локального транспорта новостей</i> для работы (то есть не
-надо ставить Cnews или INN). Ей просто необходимо, чтобы у вас был доступ к
-NNTP-серверу, и у многих провайдеров этот доступ открыт. Она сделана для
-текстового режима, но в нее встроена поддержка цвета и мыши, а также она
-прекрасно работает в окне rxvt.</p>
+<p style='margin-left:72.0pt'>п╒п╣п╨я│я┌п╬п╡п╟я▐ я│п╦я│я┌п╣п╪п╟ я┤я┌п╣п╫п╦я▐ п╫п╬п╡п╬я│я┌п╣п╧ <a
+href="ftp://space.mit.edu/pub/davis/slrn">SLRN</a> п╢п╬я│я┌п╟я┌п╬я┤п╫п╬ п©я─п╬я│я┌п╟ п╡
+я┐я│я┌п╟п╫п╬п╡п╨п╣ п╦ п╦я│п©п╬п╩я▄п╥п╬п╡п╟п╫п╦п╦. п╜я┌п╬ п╫п╟я│я┌п╬я▐я┴п╟я▐ я│п╦я│я┌п╣п╪п╟ я┤я┌п╣п╫п╦я▐ п╫п╬п╡п╬я│я┌п╣п╧ NNTP, п╨п╬я┌п╬я─п╟я▐ <i>п╫п╣
+я┌я─п╣п╠я┐п╣я┌ п╫п╟я│я┌я─п╬п╧п╨п╦ п╩п╬п╨п╟п╩я▄п╫п╬пЁп╬ я┌я─п╟п╫я│п©п╬я─я┌п╟ п╫п╬п╡п╬я│я┌п╣п╧</i> п╢п╩я▐ я─п╟п╠п╬я┌я▀ (я┌п╬ п╣я│я┌я▄ п╫п╣
+п╫п╟п╢п╬ я│я┌п╟п╡п╦я┌я▄ Cnews п╦п╩п╦ INN). п∙п╧ п©я─п╬я│я┌п╬ п╫п╣п╬п╠я┘п╬п╢п╦п╪п╬, я┤я┌п╬п╠я▀ я┐ п╡п╟я│ п╠я▀п╩ п╢п╬я│я┌я┐п© п╨
+NNTP-я│п╣я─п╡п╣я─я┐, п╦ я┐ п╪п╫п╬пЁп╦я┘ п©я─п╬п╡п╟п╧п╢п╣я─п╬п╡ я█я┌п╬я┌ п╢п╬я│я┌я┐п© п╬я┌п╨я─я▀я┌. п·п╫п╟ я│п╢п╣п╩п╟п╫п╟ п╢п╩я▐
+я┌п╣п╨я│я┌п╬п╡п╬пЁп╬ я─п╣п╤п╦п╪п╟, п╫п╬ п╡ п╫п╣п╣ п╡я│я┌я─п╬п╣п╫п╟ п©п╬п╢п╢п╣я─п╤п╨п╟ я├п╡п╣я┌п╟ п╦ п╪я▀я┬п╦, п╟ я┌п╟п╨п╤п╣ п╬п╫п╟
+п©я─п╣п╨я─п╟я│п╫п╬ я─п╟п╠п╬я┌п╟п╣я┌ п╡ п╬п╨п╫п╣ rxvt.</p>
 
-<p style='margin-left:72.0pt'>Система чтения новостей <a
-href="http://www.student.nada.kth.se/~su95-kjo/knews.html">KNews</a> для
-X-Windows почти безупречна. Как и вышеописанная SLRN, она не требует локального
-транспорта, ей достаточно NNTP-сервера. По крайней мере, она стоит того, чтобы
-на нее взглянуть. </p>
+<p style='margin-left:72.0pt'>п║п╦я│я┌п╣п╪п╟ я┤я┌п╣п╫п╦я▐ п╫п╬п╡п╬я│я┌п╣п╧ <a
+href="http://www.student.nada.kth.se/~su95-kjo/knews.html">KNews</a> п╢п╩я▐
+X-Windows п©п╬я┤я┌п╦ п╠п╣п╥я┐п©я─п╣я┤п╫п╟. п п╟п╨ п╦ п╡я▀я┬п╣п╬п©п╦я│п╟п╫п╫п╟я▐ SLRN, п╬п╫п╟ п╫п╣ я┌я─п╣п╠я┐п╣я┌ п╩п╬п╨п╟п╩я▄п╫п╬пЁп╬
+я┌я─п╟п╫я│п©п╬я─я┌п╟, п╣п╧ п╢п╬я│я┌п╟я┌п╬я┤п╫п╬ NNTP-я│п╣я─п╡п╣я─п╟. п÷п╬ п╨я─п╟п╧п╫п╣п╧ п╪п╣я─п╣, п╬п╫п╟ я│я┌п╬п╦я┌ я┌п╬пЁп╬, я┤я┌п╬п╠я▀
+п╫п╟ п╫п╣п╣ п╡п╥пЁп╩я▐п╫я┐я┌я▄. </p>
 
 <ul type=disc>
  <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
      mso-list:l2 level1 lfo20;tab-stops:list 36.0pt'>3.3 Mosaic/Netscape</li>
 </ul>
 
-<p style='margin-left:72.0pt'>Очевидно, что для этого вам придется запустить X,
-но это одно из самых простых условий, по сравнению с перекачкой их по FTP,
-распаковкой и установкой в систему. </p>
+<p style='margin-left:72.0pt'>п·я┤п╣п╡п╦п╢п╫п╬, я┤я┌п╬ п╢п╩я▐ я█я┌п╬пЁп╬ п╡п╟п╪ п©я─п╦п╢п╣я┌я│я▐ п╥п╟п©я┐я│я┌п╦я┌я▄ X,
+п╫п╬ я█я┌п╬ п╬п╢п╫п╬ п╦п╥ я│п╟п╪я▀я┘ п©я─п╬я│я┌я▀я┘ я┐я│п╩п╬п╡п╦п╧, п©п╬ я│я─п╟п╡п╫п╣п╫п╦я▌ я│ п©п╣я─п╣п╨п╟я┤п╨п╬п╧ п╦я┘ п©п╬ FTP,
+я─п╟я│п©п╟п╨п╬п╡п╨п╬п╧ п╦ я┐я│я┌п╟п╫п╬п╡п╨п╬п╧ п╡ я│п╦я│я┌п╣п╪я┐. </p>
 
 
 <div class=MsoNormal align=center style='text-align:center'>
@@ -610,49 +610,49 @@ AR-SA'>
 
 <ul type=disc>
  <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
-     mso-list:l3 level1 lfo21;tab-stops:list 36.0pt'>4.0 Прочее</li>
+     mso-list:l3 level1 lfo21;tab-stops:list 36.0pt'>4.0 п÷я─п╬я┤п╣п╣</li>
 </ul>
 
 </span>
 
-<p style='margin-left:72.0pt'>Если я что-то упустил, или у вас все еще остались
-вопросы, то имейте в виду,&nbsp; что я читаю свою почту ежедневно. Этот документ
-обновляется достаточно регулярно, поэтому проверяйте его версию
-чаще (я буду менять номера версий). На самом деле, чем больше вы сотрудничаете
-со мной, тем больше информации будет включено
-в этот документ, поэтому не стесняйтесь говорить мнео
-своих предложениях.</p>
+<p style='margin-left:72.0pt'>п∙я│п╩п╦ я▐ я┤я┌п╬-я┌п╬ я┐п©я┐я│я┌п╦п╩, п╦п╩п╦ я┐ п╡п╟я│ п╡я│п╣ п╣я┴п╣ п╬я│я┌п╟п╩п╦я│я▄
+п╡п╬п©я─п╬я│я▀, я┌п╬ п╦п╪п╣п╧я┌п╣ п╡ п╡п╦п╢я┐,&nbsp; я┤я┌п╬ я▐ я┤п╦я┌п╟я▌ я│п╡п╬я▌ п©п╬я┤я┌я┐ п╣п╤п╣п╢п╫п╣п╡п╫п╬. п╜я┌п╬я┌ п╢п╬п╨я┐п╪п╣п╫я┌
+п╬п╠п╫п╬п╡п╩я▐п╣я┌я│я▐ п╢п╬я│я┌п╟я┌п╬я┤п╫п╬ я─п╣пЁя┐п╩я▐я─п╫п╬, п©п╬я█я┌п╬п╪я┐ п©я─п╬п╡п╣я─я▐п╧я┌п╣ п╣пЁп╬ п╡п╣я─я│п╦я▌
+я┤п╟я┴п╣ (я▐ п╠я┐п╢я┐ п╪п╣п╫я▐я┌я▄ п╫п╬п╪п╣я─п╟ п╡п╣я─я│п╦п╧). п²п╟ я│п╟п╪п╬п╪ п╢п╣п╩п╣, я┤п╣п╪ п╠п╬п╩я▄я┬п╣ п╡я▀ я│п╬я┌я─я┐п╢п╫п╦я┤п╟п╣я┌п╣
+я│п╬ п╪п╫п╬п╧, я┌п╣п╪ п╠п╬п╩я▄я┬п╣ п╦п╫я└п╬я─п╪п╟я├п╦п╦ п╠я┐п╢п╣я┌ п╡п╨п╩я▌я┤п╣п╫п╬
+п╡ я█я┌п╬я┌ п╢п╬п╨я┐п╪п╣п╫я┌, п©п╬я█я┌п╬п╪я┐ п╫п╣ я│я┌п╣я│п╫я▐п╧я┌п╣я│я▄ пЁп╬п╡п╬я─п╦я┌я▄ п╪п╫п╣п╬
+я│п╡п╬п╦я┘ п©я─п╣п╢п╩п╬п╤п╣п╫п╦я▐я┘.</p>
 
-<p style='margin-left:72.0pt'>Если вам нужна какая-либо помощь, или у вас
-проблемы с настройкой, я помогу, <i>но вы должны послать мне следующую
-информацию: </i>1. Копию трех ваших файлов из каталога /etc. 2.&nbsp; Копию
-выходной информации (output) вашего dip-скрипта, запущенного с флагом -v (<b>Пожалуйста,
-</b>уберите оттуда ваш пароль!)</p>
+<p style='margin-left:72.0pt'>п∙я│п╩п╦ п╡п╟п╪ п╫я┐п╤п╫п╟ п╨п╟п╨п╟я▐-п╩п╦п╠п╬ п©п╬п╪п╬я┴я▄, п╦п╩п╦ я┐ п╡п╟я│
+п©я─п╬п╠п╩п╣п╪я▀ я│ п╫п╟я│я┌я─п╬п╧п╨п╬п╧, я▐ п©п╬п╪п╬пЁя┐, <i>п╫п╬ п╡я▀ п╢п╬п╩п╤п╫я▀ п©п╬я│п╩п╟я┌я▄ п╪п╫п╣ я│п╩п╣п╢я┐я▌я┴я┐я▌
+п╦п╫я└п╬я─п╪п╟я├п╦я▌: </i>1. п п╬п©п╦я▌ я┌я─п╣я┘ п╡п╟я┬п╦я┘ я└п╟п╧п╩п╬п╡ п╦п╥ п╨п╟я┌п╟п╩п╬пЁп╟ /etc. 2.&nbsp; п п╬п©п╦я▌
+п╡я▀я┘п╬п╢п╫п╬п╧ п╦п╫я└п╬я─п╪п╟я├п╦п╦ (output) п╡п╟я┬п╣пЁп╬ dip-я│п╨я─п╦п©я┌п╟, п╥п╟п©я┐я┴п╣п╫п╫п╬пЁп╬ я│ я└п╩п╟пЁп╬п╪ -v (<b>п÷п╬п╤п╟п╩я┐п╧я│я┌п╟,
+</b>я┐п╠п╣я─п╦я┌п╣ п╬я┌я┌я┐п╢п╟ п╡п╟я┬ п©п╟я─п╬п╩я▄!)</p>
 
-<p style='margin-left:72.0pt'>Если вам нечего мне посоветовать, но вы удачно
-использовали мой документ, ПОЖАЛУЙСТА, НАПИШИТЕ МНЕ. Я хочу знать, насколько
-применим мой документ. </p>
+<p style='margin-left:72.0pt'>п∙я│п╩п╦ п╡п╟п╪ п╫п╣я┤п╣пЁп╬ п╪п╫п╣ п©п╬я│п╬п╡п╣я┌п╬п╡п╟я┌я▄, п╫п╬ п╡я▀ я┐п╢п╟я┤п╫п╬
+п╦я│п©п╬п╩я▄п╥п╬п╡п╟п╩п╦ п╪п╬п╧ п╢п╬п╨я┐п╪п╣п╫я┌, п÷п·п√п░п⌡пёп≥п║п╒п░, п²п░п÷п≤п╗п≤п╒п∙ п°п²п∙. п╞ я┘п╬я┤я┐ п╥п╫п╟я┌я▄, п╫п╟я│п╨п╬п╩я▄п╨п╬
+п©я─п╦п╪п╣п╫п╦п╪ п╪п╬п╧ п╢п╬п╨я┐п╪п╣п╫я┌. </p>
 
 <ul type=disc>
  <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
-     mso-list:l13 level1 lfo22;tab-stops:list 36.0pt'>4.1 Ссылки</li>
+     mso-list:l13 level1 lfo22;tab-stops:list 36.0pt'>4.1 п║я│я▀п╩п╨п╦</li>
 </ul>
 
-<p style='margin-left:72.0pt'>FTP-сайт Sunsite находится по адресу <a
-href="ftp://sunsite.unc.edu/pub/Linux/INDEX.html">sunsite.unc.edu</a>, это
-настоящий рог изобилия&nbsp;со всем, что касается Linux, включая почти все
-написанные FAQ, HOWTO, и README.</p>
+<p style='margin-left:72.0pt'>FTP-я│п╟п╧я┌ Sunsite п╫п╟я┘п╬п╢п╦я┌я│я▐ п©п╬ п╟п╢я─п╣я│я┐ <a
+href="ftp://sunsite.unc.edu/pub/Linux/INDEX.html">sunsite.unc.edu</a>, я█я┌п╬
+п╫п╟я│я┌п╬я▐я┴п╦п╧ я─п╬пЁ п╦п╥п╬п╠п╦п╩п╦я▐&nbsp;я│п╬ п╡я│п╣п╪, я┤я┌п╬ п╨п╟я│п╟п╣я┌я│я▐ Linux, п╡п╨п╩я▌я┤п╟я▐ п©п╬я┤я┌п╦ п╡я│п╣
+п╫п╟п©п╦я│п╟п╫п╫я▀п╣ FAQ, HOWTO, п╦ README.</p>
 
 <p style='margin-left:72.0pt'><a href="http://marketplace.com/">Marketplace.com
-</a>- это домашний адрес программы TIA, единственное место, где его можно
-взять.</p>
+</a>- я█я┌п╬ п╢п╬п╪п╟я┬п╫п╦п╧ п╟п╢я─п╣я│ п©я─п╬пЁя─п╟п╪п╪я▀ TIA, п╣п╢п╦п╫я│я┌п╡п╣п╫п╫п╬п╣ п╪п╣я│я┌п╬, пЁп╢п╣ п╣пЁп╬ п╪п╬п╤п╫п╬
+п╡п╥я▐я┌я▄.</p>
 
-<p style='margin-left:72.0pt'>А я сам - Irish, <a href="mailto:irish@eskimo.com">irish@eskimo.com</a>,
-я доступен для любых комментариев по Linux, если только не играю со своей
-кошкой или не обнимаюсь со своим ребенком.</p>
+<p style='margin-left:72.0pt'>п░ я▐ я│п╟п╪ - Irish, <a href="mailto:irish@eskimo.com">irish@eskimo.com</a>,
+я▐ п╢п╬я│я┌я┐п©п╣п╫ п╢п╩я▐ п╩я▌п╠я▀я┘ п╨п╬п╪п╪п╣п╫я┌п╟я─п╦п╣п╡ п©п╬ Linux, п╣я│п╩п╦ я┌п╬п╩я▄п╨п╬ п╫п╣ п╦пЁя─п╟я▌ я│п╬ я│п╡п╬п╣п╧
+п╨п╬я┬п╨п╬п╧ п╦п╩п╦ п╫п╣ п╬п╠п╫п╦п╪п╟я▌я│я▄ я│п╬ я│п╡п╬п╦п╪ я─п╣п╠п╣п╫п╨п╬п╪.</p>
 
-<p style='margin-left:72.0pt'>Этот HOWTO можно взять по&nbsp; следующим
-адресам: </p>
+<p style='margin-left:72.0pt'>п╜я┌п╬я┌ HOWTO п╪п╬п╤п╫п╬ п╡п╥я▐я┌я▄ п©п╬&nbsp; я│п╩п╣п╢я┐я▌я┴п╦п╪
+п╟п╢я─п╣я│п╟п╪: </p>
 
 <ul type=disc>
  <ul type=circle>
@@ -675,44 +675,44 @@ href="ftp://sunsite.unc.edu/pub/Linux/INDEX.html">sunsite.unc.edu</a>, это
 </div>
 
 <hr>
-<h2>Авторские права</h2>
-<p>Авторские права на русский перевод этого
-текста принадлежат © 2000 SWSoft Pte Ltd. Все права
-зарезервированы.</p>
-<p>Этот документ является частью проекта Linux
+<h2>п░п╡я┌п╬я─я│п╨п╦п╣ п©я─п╟п╡п╟</h2>
+<p>п░п╡я┌п╬я─я│п╨п╦п╣ п©я─п╟п╡п╟ п╫п╟ я─я┐я│я│п╨п╦п╧ п©п╣я─п╣п╡п╬п╢ я█я┌п╬пЁп╬
+я┌п╣п╨я│я┌п╟ п©я─п╦п╫п╟п╢п╩п╣п╤п╟я┌ б╘ 2000 SWSoft Pte Ltd. п▓я│п╣ п©я─п╟п╡п╟
+п╥п╟я─п╣п╥п╣я─п╡п╦я─п╬п╡п╟п╫я▀.</p>
+<p>п╜я┌п╬я┌ п╢п╬п╨я┐п╪п╣п╫я┌ я▐п╡п╩я▐п╣я┌я│я▐ я┤п╟я│я┌я▄я▌ п©я─п╬п╣п╨я┌п╟ Linux
 HOWTO.</p>
-<p>Авторские права на документы Linux HOWTO
-принадлежат их авторам, если явно не
-указано иное. Документы Linux HOWTO, а также их
-переводы, могут быть воспроизведены и
-распространены полностью или частично на
-любом носителе, физическом или электронном,
-при условии сохранения этой заметки об
-авторских правах на всех копиях.
-Коммерческое распространение разрешается
-и поощряется; но, так или иначе, автор текста
-и автор перевода желали бы знать о таких
-дистрибутивах.</p>
-<p>Все переводы и производные работы,
-выполненные по документам Linux HOWTO, должны
-сопровождаться этой заметкой об авторских
-правах. Это делается в целях предотвращения
-случаев наложения дополнительных
-ограничений на распространение документов
-HOWTO. Исключения могут составить случаи
-получения специального разрешения у
-координатора Linux HOWTO, с которым можно
-связаться по адресу приведенному ниже.</p>
-<p>Мы бы хотели распространить эту
-информацию по всем возможным каналам. Но
-при этом сохранить авторские права и быть
-уведомленными о всех планах
-распространения HOWTO. Если у вас возникли
-вопросы, пожалуйста, обратитесь к
-координатору проекта Linux HOWTO по электронной
-почте: <tt CLASS="EMAIL">&lt;<a HREF="mailto:linux-howto@metalab.unc.edu">linux-howto@metalab.unc.edu</a>&gt;</tt>
-или к координатору русского перевода Linux HOWTO
-компании SWSoft Pte Ltd. по адресу <tt CLASS="EMAIL">&lt;<a HREF="mailto:linux-howto@asplinux.ru">linux-howto@asplinux.ru</a>&gt;</tt></p>
+<p>п░п╡я┌п╬я─я│п╨п╦п╣ п©я─п╟п╡п╟ п╫п╟ п╢п╬п╨я┐п╪п╣п╫я┌я▀ Linux HOWTO
+п©я─п╦п╫п╟п╢п╩п╣п╤п╟я┌ п╦я┘ п╟п╡я┌п╬я─п╟п╪, п╣я│п╩п╦ я▐п╡п╫п╬ п╫п╣
+я┐п╨п╟п╥п╟п╫п╬ п╦п╫п╬п╣. п■п╬п╨я┐п╪п╣п╫я┌я▀ Linux HOWTO, п╟ я┌п╟п╨п╤п╣ п╦я┘
+п©п╣я─п╣п╡п╬п╢я▀, п╪п╬пЁя┐я┌ п╠я▀я┌я▄ п╡п╬я│п©я─п╬п╦п╥п╡п╣п╢п╣п╫я▀ п╦
+я─п╟я│п©я─п╬я│я┌я─п╟п╫п╣п╫я▀ п©п╬п╩п╫п╬я│я┌я▄я▌ п╦п╩п╦ я┤п╟я│я┌п╦я┤п╫п╬ п╫п╟
+п╩я▌п╠п╬п╪ п╫п╬я│п╦я┌п╣п╩п╣, я└п╦п╥п╦я┤п╣я│п╨п╬п╪ п╦п╩п╦ я█п╩п╣п╨я┌я─п╬п╫п╫п╬п╪,
+п©я─п╦ я┐я│п╩п╬п╡п╦п╦ я│п╬я┘я─п╟п╫п╣п╫п╦я▐ я█я┌п╬п╧ п╥п╟п╪п╣я┌п╨п╦ п╬п╠
+п╟п╡я┌п╬я─я│п╨п╦я┘ п©я─п╟п╡п╟я┘ п╫п╟ п╡я│п╣я┘ п╨п╬п©п╦я▐я┘.
+п п╬п╪п╪п╣я─я┤п╣я│п╨п╬п╣ я─п╟я│п©я─п╬я│я┌я─п╟п╫п╣п╫п╦п╣ я─п╟п╥я─п╣я┬п╟п╣я┌я│я▐
+п╦ п©п╬п╬я┴я─я▐п╣я┌я│я▐; п╫п╬, я┌п╟п╨ п╦п╩п╦ п╦п╫п╟я┤п╣, п╟п╡я┌п╬я─ я┌п╣п╨я│я┌п╟
+п╦ п╟п╡я┌п╬я─ п©п╣я─п╣п╡п╬п╢п╟ п╤п╣п╩п╟п╩п╦ п╠я▀ п╥п╫п╟я┌я▄ п╬ я┌п╟п╨п╦я┘
+п╢п╦я│я┌я─п╦п╠я┐я┌п╦п╡п╟я┘.</p>
+<p>п▓я│п╣ п©п╣я─п╣п╡п╬п╢я▀ п╦ п©я─п╬п╦п╥п╡п╬п╢п╫я▀п╣ я─п╟п╠п╬я┌я▀,
+п╡я▀п©п╬п╩п╫п╣п╫п╫я▀п╣ п©п╬ п╢п╬п╨я┐п╪п╣п╫я┌п╟п╪ Linux HOWTO, п╢п╬п╩п╤п╫я▀
+я│п╬п©я─п╬п╡п╬п╤п╢п╟я┌я▄я│я▐ я█я┌п╬п╧ п╥п╟п╪п╣я┌п╨п╬п╧ п╬п╠ п╟п╡я┌п╬я─я│п╨п╦я┘
+п©я─п╟п╡п╟я┘. п╜я┌п╬ п╢п╣п╩п╟п╣я┌я│я▐ п╡ я├п╣п╩я▐я┘ п©я─п╣п╢п╬я┌п╡я─п╟я┴п╣п╫п╦я▐
+я│п╩я┐я┤п╟п╣п╡ п╫п╟п╩п╬п╤п╣п╫п╦я▐ п╢п╬п©п╬п╩п╫п╦я┌п╣п╩я▄п╫я▀я┘
+п╬пЁя─п╟п╫п╦я┤п╣п╫п╦п╧ п╫п╟ я─п╟я│п©я─п╬я│я┌я─п╟п╫п╣п╫п╦п╣ п╢п╬п╨я┐п╪п╣п╫я┌п╬п╡
+HOWTO. п≤я│п╨п╩я▌я┤п╣п╫п╦я▐ п╪п╬пЁя┐я┌ я│п╬я│я┌п╟п╡п╦я┌я▄ я│п╩я┐я┤п╟п╦
+п©п╬п╩я┐я┤п╣п╫п╦я▐ я│п©п╣я├п╦п╟п╩я▄п╫п╬пЁп╬ я─п╟п╥я─п╣я┬п╣п╫п╦я▐ я┐
+п╨п╬п╬я─п╢п╦п╫п╟я┌п╬я─п╟ Linux HOWTO, я│ п╨п╬я┌п╬я─я▀п╪ п╪п╬п╤п╫п╬
+я│п╡я▐п╥п╟я┌я▄я│я▐ п©п╬ п╟п╢я─п╣я│я┐ п©я─п╦п╡п╣п╢п╣п╫п╫п╬п╪я┐ п╫п╦п╤п╣.</p>
+<p>п°я▀ п╠я▀ я┘п╬я┌п╣п╩п╦ я─п╟я│п©я─п╬я│я┌я─п╟п╫п╦я┌я▄ я█я┌я┐
+п╦п╫я└п╬я─п╪п╟я├п╦я▌ п©п╬ п╡я│п╣п╪ п╡п╬п╥п╪п╬п╤п╫я▀п╪ п╨п╟п╫п╟п╩п╟п╪. п²п╬
+п©я─п╦ я█я┌п╬п╪ я│п╬я┘я─п╟п╫п╦я┌я▄ п╟п╡я┌п╬я─я│п╨п╦п╣ п©я─п╟п╡п╟ п╦ п╠я▀я┌я▄
+я┐п╡п╣п╢п╬п╪п╩п╣п╫п╫я▀п╪п╦ п╬ п╡я│п╣я┘ п©п╩п╟п╫п╟я┘
+я─п╟я│п©я─п╬я│я┌я─п╟п╫п╣п╫п╦я▐ HOWTO. п∙я│п╩п╦ я┐ п╡п╟я│ п╡п╬п╥п╫п╦п╨п╩п╦
+п╡п╬п©я─п╬я│я▀, п©п╬п╤п╟п╩я┐п╧я│я┌п╟, п╬п╠я─п╟я┌п╦я┌п╣я│я▄ п╨
+п╨п╬п╬я─п╢п╦п╫п╟я┌п╬я─я┐ п©я─п╬п╣п╨я┌п╟ Linux HOWTO п©п╬ я█п╩п╣п╨я┌я─п╬п╫п╫п╬п╧
+п©п╬я┤я┌п╣: <tt CLASS="EMAIL">&lt;<a HREF="mailto:linux-howto@metalab.unc.edu">linux-howto@metalab.unc.edu</a>&gt;</tt>
+п╦п╩п╦ п╨ п╨п╬п╬я─п╢п╦п╫п╟я┌п╬я─я┐ я─я┐я│я│п╨п╬пЁп╬ п©п╣я─п╣п╡п╬п╢п╟ Linux HOWTO
+п╨п╬п╪п©п╟п╫п╦п╦ SWSoft Pte Ltd. п©п╬ п╟п╢я─п╣я│я┐ <tt CLASS="EMAIL">&lt;<a HREF="mailto:linux-howto@asplinux.ru">linux-howto@asplinux.ru</a>&gt;</tt></p>
 <p>&nbsp;
 
 </body>

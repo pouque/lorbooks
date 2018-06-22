@@ -15,191 +15,191 @@ Contents
 <H1> Text-Terminal-HOWTO </H1>
 
 <H2>David S. Lawyer <BR>
-Русский перевод Ilgiz Kalmetev 
+п═я┐я│я│п╨п╦п╧ п©п╣я─п╣п╡п╬п╢ Ilgiz Kalmetev 
 <A HREF="mailto:ilgiz@mail.rb.ru">ilgiz@mail.rb.ru</A></H2>  v0.05, June 1998
 <P><HR>
-<EM>  Этот документ объясняет, что такое текстовые терминалы, как они работают, как  устанавливать и конфигурировать их и дает некоторую информацию об их ремонте.  Он может отчасти использоваться, даже если у вас нет руководства по терминалу.
- Хотя этот труд написан для реальных терминалов на системе Linux, часть его  также применима для эмуляторов терминала и/или других Unix-подобных систем.</EM>
+<EM>  п╜я┌п╬я┌ п╢п╬п╨я┐п╪п╣п╫я┌ п╬п╠я┼я▐я│п╫я▐п╣я┌, я┤я┌п╬ я┌п╟п╨п╬п╣ я┌п╣п╨я│я┌п╬п╡я▀п╣ я┌п╣я─п╪п╦п╫п╟п╩я▀, п╨п╟п╨ п╬п╫п╦ я─п╟п╠п╬я┌п╟я▌я┌, п╨п╟п╨  я┐я│я┌п╟п╫п╟п╡п╩п╦п╡п╟я┌я▄ п╦ п╨п╬п╫я└п╦пЁя┐я─п╦я─п╬п╡п╟я┌я▄ п╦я┘ п╦ п╢п╟п╣я┌ п╫п╣п╨п╬я┌п╬я─я┐я▌ п╦п╫я└п╬я─п╪п╟я├п╦я▌ п╬п╠ п╦я┘ я─п╣п╪п╬п╫я┌п╣.  п·п╫ п╪п╬п╤п╣я┌ п╬я┌я┤п╟я│я┌п╦ п╦я│п©п╬п╩я▄п╥п╬п╡п╟я┌я▄я│я▐, п╢п╟п╤п╣ п╣я│п╩п╦ я┐ п╡п╟я│ п╫п╣я┌ я─я┐п╨п╬п╡п╬п╢я│я┌п╡п╟ п©п╬ я┌п╣я─п╪п╦п╫п╟п╩я┐.
+ п╔п╬я┌я▐ я█я┌п╬я┌ я┌я─я┐п╢ п╫п╟п©п╦я│п╟п╫ п╢п╩я▐ я─п╣п╟п╩я▄п╫я▀я┘ я┌п╣я─п╪п╦п╫п╟п╩п╬п╡ п╫п╟ я│п╦я│я┌п╣п╪п╣ Linux, я┤п╟я│я┌я▄ п╣пЁп╬  я┌п╟п╨п╤п╣ п©я─п╦п╪п╣п╫п╦п╪п╟ п╢п╩я▐ я█п╪я┐п╩я▐я┌п╬я─п╬п╡ я┌п╣я─п╪п╦п╫п╟п╩п╟ п╦/п╦п╩п╦ п╢я─я┐пЁп╦я┘ Unix-п©п╬п╢п╬п╠п╫я▀я┘ я│п╦я│я┌п╣п╪.</EM>
 <HR>
 <P>
-<H2><A NAME="toc1">1.</A> <A HREF="Text-Terminal-HOWTO-1.html">Введение</A></H2>
+<H2><A NAME="toc1">1.</A> <A HREF="Text-Terminal-HOWTO-1.html">п▓п╡п╣п╢п╣п╫п╦п╣</A></H2>
 
 <UL>
-<LI><A HREF="Text-Terminal-HOWTO-1.html#ss1.1">1.1 Авторские права, оговорки и об авторе</A>
-<LI><A HREF="Text-Terminal-HOWTO-1.html#ss1.2">1.2 Что такое терминал?</A>
-<LI><A HREF="Text-Terminal-HOWTO-1.html#ss1.3">1.3 Dumb терминалы</A>
-<LI><A HREF="Text-Terminal-HOWTO-1.html#ss1.4">1.4 Типы терминалов</A>
-<LI><A HREF="Text-Terminal-HOWTO-1.html#ss1.5">1.5 Терминология</A>
+<LI><A HREF="Text-Terminal-HOWTO-1.html#ss1.1">1.1 п░п╡я┌п╬я─я│п╨п╦п╣ п©я─п╟п╡п╟, п╬пЁп╬п╡п╬я─п╨п╦ п╦ п╬п╠ п╟п╡я┌п╬я─п╣</A>
+<LI><A HREF="Text-Terminal-HOWTO-1.html#ss1.2">1.2 п╖я┌п╬ я┌п╟п╨п╬п╣ я┌п╣я─п╪п╦п╫п╟п╩?</A>
+<LI><A HREF="Text-Terminal-HOWTO-1.html#ss1.3">1.3 Dumb я┌п╣я─п╪п╦п╫п╟п╩я▀</A>
+<LI><A HREF="Text-Terminal-HOWTO-1.html#ss1.4">1.4 п╒п╦п©я▀ я┌п╣я─п╪п╦п╫п╟п╩п╬п╡</A>
+<LI><A HREF="Text-Terminal-HOWTO-1.html#ss1.5">1.5 п╒п╣я─п╪п╦п╫п╬п╩п╬пЁп╦я▐</A>
 </UL>
 <P>
-<H2><A NAME="toc2">2.</A> <A HREF="Text-Terminal-HOWTO-2.html">Быстрая установка</A></H2>
+<H2><A NAME="toc2">2.</A> <A HREF="Text-Terminal-HOWTO-2.html">п▒я▀я│я┌я─п╟я▐ я┐я│я┌п╟п╫п╬п╡п╨п╟</A></H2>
 
 <P>
-<H2><A NAME="toc3">3.</A> <A HREF="Text-Terminal-HOWTO-3.html">Зачем использовать терминал?</A></H2>
+<H2><A NAME="toc3">3.</A> <A HREF="Text-Terminal-HOWTO-3.html">п≈п╟я┤п╣п╪ п╦я│п©п╬п╩я▄п╥п╬п╡п╟я┌я▄ я┌п╣я─п╪п╦п╫п╟п╩?</A></H2>
 
 <UL>
-<LI><A HREF="Text-Terminal-HOWTO-3.html#ss3.1">3.1 Введение</A>
-<LI><A HREF="Text-Terminal-HOWTO-3.html#ss3.2">3.2 Более низкие аппаратные затраты</A>
-<LI><A HREF="Text-Terminal-HOWTO-3.html#ss3.3">3.3 Управление программным обеспечением</A>
-<LI><A HREF="Text-Terminal-HOWTO-3.html#ss3.4">3.4 Аппаратные обновления</A>
-<LI><A HREF="Text-Terminal-HOWTO-3.html#ss3.5">3.5 Другие преимущества терминалов</A>
-<LI><A HREF="Text-Terminal-HOWTO-3.html#ss3.6">3.6 Главные недостатки терминалов</A>
-<LI><A HREF="Text-Terminal-HOWTO-3.html#ss3.7">3.7 Являются ли текстовые терминалы устаревшими?</A>
+<LI><A HREF="Text-Terminal-HOWTO-3.html#ss3.1">3.1 п▓п╡п╣п╢п╣п╫п╦п╣</A>
+<LI><A HREF="Text-Terminal-HOWTO-3.html#ss3.2">3.2 п▒п╬п╩п╣п╣ п╫п╦п╥п╨п╦п╣ п╟п©п©п╟я─п╟я┌п╫я▀п╣ п╥п╟я┌я─п╟я┌я▀</A>
+<LI><A HREF="Text-Terminal-HOWTO-3.html#ss3.3">3.3 пёп©я─п╟п╡п╩п╣п╫п╦п╣ п©я─п╬пЁя─п╟п╪п╪п╫я▀п╪ п╬п╠п╣я│п©п╣я┤п╣п╫п╦п╣п╪</A>
+<LI><A HREF="Text-Terminal-HOWTO-3.html#ss3.4">3.4 п░п©п©п╟я─п╟я┌п╫я▀п╣ п╬п╠п╫п╬п╡п╩п╣п╫п╦я▐</A>
+<LI><A HREF="Text-Terminal-HOWTO-3.html#ss3.5">3.5 п■я─я┐пЁп╦п╣ п©я─п╣п╦п╪я┐я┴п╣я│я┌п╡п╟ я┌п╣я─п╪п╦п╫п╟п╩п╬п╡</A>
+<LI><A HREF="Text-Terminal-HOWTO-3.html#ss3.6">3.6 п⌠п╩п╟п╡п╫я▀п╣ п╫п╣п╢п╬я│я┌п╟я┌п╨п╦ я┌п╣я─п╪п╦п╫п╟п╩п╬п╡</A>
+<LI><A HREF="Text-Terminal-HOWTO-3.html#ss3.7">3.7 п╞п╡п╩я▐я▌я┌я│я▐ п╩п╦ я┌п╣п╨я│я┌п╬п╡я▀п╣ я┌п╣я─п╪п╦п╫п╟п╩я▀ я┐я│я┌п╟я─п╣п╡я┬п╦п╪п╦?</A>
 </UL>
 <P>
-<H2><A NAME="toc4">4.</A> <A HREF="Text-Terminal-HOWTO-4.html">Кратко о том, как работают терминалы (в Linux)</A></H2>
+<H2><A NAME="toc4">4.</A> <A HREF="Text-Terminal-HOWTO-4.html">п я─п╟я┌п╨п╬ п╬ я┌п╬п╪, п╨п╟п╨ я─п╟п╠п╬я┌п╟я▌я┌ я┌п╣я─п╪п╦п╫п╟п╩я▀ (п╡ Linux)</A></H2>
 
 <UL>
-<LI><A HREF="Text-Terminal-HOWTO-4.html#ss4.1">4.1 Имена устройств</A>
-<LI><A HREF="Text-Terminal-HOWTO-4.html#ss4.2">4.2 Вход/выход в/из системы</A>
-<LI><A HREF="Text-Terminal-HOWTO-4.html#ss4.3">4.3 Полу/полный дуплекс</A>
-<LI><A HREF="Text-Terminal-HOWTO-4.html#ss4.4">4.4 Память терминала</A>
-<LI><A HREF="Text-Terminal-HOWTO-4.html#ss4.5">4.5 Команды терминала</A>
-<LI><A HREF="Text-Terminal-HOWTO-4.html#ss4.6">4.6 Недостаток стандартизации, решенный с помощью terminfo</A>
-<LI><A HREF="Text-Terminal-HOWTO-4.html#ss4.7">4.7 Интерфейс</A>
-<LI><A HREF="Text-Terminal-HOWTO-4.html#ss4.8">4.8 Эмуляция</A>
-<LI><A HREF="Text-Terminal-HOWTO-4.html#ss4.9">4.9 Консоль</A>
+<LI><A HREF="Text-Terminal-HOWTO-4.html#ss4.1">4.1 п≤п╪п╣п╫п╟ я┐я│я┌я─п╬п╧я│я┌п╡</A>
+<LI><A HREF="Text-Terminal-HOWTO-4.html#ss4.2">4.2 п▓я┘п╬п╢/п╡я▀я┘п╬п╢ п╡/п╦п╥ я│п╦я│я┌п╣п╪я▀</A>
+<LI><A HREF="Text-Terminal-HOWTO-4.html#ss4.3">4.3 п÷п╬п╩я┐/п©п╬п╩п╫я▀п╧ п╢я┐п©п╩п╣п╨я│</A>
+<LI><A HREF="Text-Terminal-HOWTO-4.html#ss4.4">4.4 п÷п╟п╪я▐я┌я▄ я┌п╣я─п╪п╦п╫п╟п╩п╟</A>
+<LI><A HREF="Text-Terminal-HOWTO-4.html#ss4.5">4.5 п п╬п╪п╟п╫п╢я▀ я┌п╣я─п╪п╦п╫п╟п╩п╟</A>
+<LI><A HREF="Text-Terminal-HOWTO-4.html#ss4.6">4.6 п²п╣п╢п╬я│я┌п╟я┌п╬п╨ я│я┌п╟п╫п╢п╟я─я┌п╦п╥п╟я├п╦п╦, я─п╣я┬п╣п╫п╫я▀п╧ я│ п©п╬п╪п╬я┴я▄я▌ terminfo</A>
+<LI><A HREF="Text-Terminal-HOWTO-4.html#ss4.7">4.7 п≤п╫я┌п╣я─я└п╣п╧я│</A>
+<LI><A HREF="Text-Terminal-HOWTO-4.html#ss4.8">4.8 п╜п╪я┐п╩я▐я├п╦я▐</A>
+<LI><A HREF="Text-Terminal-HOWTO-4.html#ss4.9">4.9 п п╬п╫я│п╬п╩я▄</A>
 </UL>
 <P>
-<H2><A NAME="toc5">5.</A> <A HREF="Text-Terminal-HOWTO-5.html">Специальные файлы терминалов: /dev/tty ... и т.д.</A></H2>
+<H2><A NAME="toc5">5.</A> <A HREF="Text-Terminal-HOWTO-5.html">п║п©п╣я├п╦п╟п╩я▄п╫я▀п╣ я└п╟п╧п╩я▀ я┌п╣я─п╪п╦п╫п╟п╩п╬п╡: /dev/tty ... п╦ я┌.п╢.</A></H2>
 
 <UL>
-<LI><A HREF="Text-Terminal-HOWTO-5.html#ss5.1">5.1 Терминал на последовательном порту</A>
-<LI><A HREF="Text-Terminal-HOWTO-5.html#ss5.2">5.2 Псевдотерминалы</A>
-<LI><A HREF="Text-Terminal-HOWTO-5.html#ss5.3">5.3 Управляющие терминалы /dev/tty</A>
-<LI><A HREF="Text-Terminal-HOWTO-5.html#ss5.4">5.4 "Терминалы" /dev/ttyI?</A>
-<LI><A HREF="Text-Terminal-HOWTO-5.html#ss5.5">5.5 Консоль: /dev/tty?</A>
-<LI><A HREF="Text-Terminal-HOWTO-5.html#ss5.6">5.6 Создание устройства командой mknod</A>
+<LI><A HREF="Text-Terminal-HOWTO-5.html#ss5.1">5.1 п╒п╣я─п╪п╦п╫п╟п╩ п╫п╟ п©п╬я│п╩п╣п╢п╬п╡п╟я┌п╣п╩я▄п╫п╬п╪ п©п╬я─я┌я┐</A>
+<LI><A HREF="Text-Terminal-HOWTO-5.html#ss5.2">5.2 п÷я│п╣п╡п╢п╬я┌п╣я─п╪п╦п╫п╟п╩я▀</A>
+<LI><A HREF="Text-Terminal-HOWTO-5.html#ss5.3">5.3 пёп©я─п╟п╡п╩я▐я▌я┴п╦п╣ я┌п╣я─п╪п╦п╫п╟п╩я▀ /dev/tty</A>
+<LI><A HREF="Text-Terminal-HOWTO-5.html#ss5.4">5.4 "п╒п╣я─п╪п╦п╫п╟п╩я▀" /dev/ttyI?</A>
+<LI><A HREF="Text-Terminal-HOWTO-5.html#ss5.5">5.5 п п╬п╫я│п╬п╩я▄: /dev/tty?</A>
+<LI><A HREF="Text-Terminal-HOWTO-5.html#ss5.6">5.6 п║п╬п╥п╢п╟п╫п╦п╣ я┐я│я┌я─п╬п╧я│я┌п╡п╟ п╨п╬п╪п╟п╫п╢п╬п╧ mknod</A>
 </UL>
 <P>
-<H2><A NAME="toc6">6.</A> <A HREF="Text-Terminal-HOWTO-6.html">Некоторые подробности о работе терминалов</A></H2>
+<H2><A NAME="toc6">6.</A> <A HREF="Text-Terminal-HOWTO-6.html">п²п╣п╨п╬я┌п╬я─я▀п╣ п©п╬п╢я─п╬п╠п╫п╬я│я┌п╦ п╬ я─п╟п╠п╬я┌п╣ я┌п╣я─п╪п╦п╫п╟п╩п╬п╡</A></H2>
 
 <UL>
-<LI><A HREF="Text-Terminal-HOWTO-6.html#ss6.1">6.1 Память терминала</A>
-<LI><A HREF="Text-Terminal-HOWTO-6.html#ss6.2">6.2 Ранние терминалы</A>
-<LI><A HREF="Text-Terminal-HOWTO-6.html#ss6.3">6.3 Управляющие коды и escape-последовательности</A>
+<LI><A HREF="Text-Terminal-HOWTO-6.html#ss6.1">6.1 п÷п╟п╪я▐я┌я▄ я┌п╣я─п╪п╦п╫п╟п╩п╟</A>
+<LI><A HREF="Text-Terminal-HOWTO-6.html#ss6.2">6.2 п═п╟п╫п╫п╦п╣ я┌п╣я─п╪п╦п╫п╟п╩я▀</A>
+<LI><A HREF="Text-Terminal-HOWTO-6.html#ss6.3">6.3 пёп©я─п╟п╡п╩я▐я▌я┴п╦п╣ п╨п╬п╢я▀ п╦ escape-п©п╬я│п╩п╣п╢п╬п╡п╟я┌п╣п╩я▄п╫п╬я│я┌п╦</A>
 </UL>
 <P>
-<H2><A NAME="toc7">7.</A> <A HREF="Text-Terminal-HOWTO-7.html">Специальные возможности некоторых терминалов</A></H2>
+<H2><A NAME="toc7">7.</A> <A HREF="Text-Terminal-HOWTO-7.html">п║п©п╣я├п╦п╟п╩я▄п╫я▀п╣ п╡п╬п╥п╪п╬п╤п╫п╬я│я┌п╦ п╫п╣п╨п╬я┌п╬я─я▀я┘ я┌п╣я─п╪п╦п╫п╟п╩п╬п╡</A></H2>
 
 <UL>
-<LI><A HREF="Text-Terminal-HOWTO-7.html#ss7.1">7.1 Цвет</A>
-<LI><A HREF="Text-Terminal-HOWTO-7.html#ss7.2">7.2 Двойные сеансы</A>
-<LI><A HREF="Text-Terminal-HOWTO-7.html#ss7.3">7.3 Порты Printer/Auxiliary</A>
-<LI><A HREF="Text-Terminal-HOWTO-7.html#ss7.4">7.4 Символьные наборы</A>
-<LI><A HREF="Text-Terminal-HOWTO-7.html#ss7.5">7.5 Шрифты</A>
-<LI><A HREF="Text-Terminal-HOWTO-7.html#ss7.6">7.6 Клавиатуры и специальные клавиши</A>
-<LI><A HREF="Text-Terminal-HOWTO-7.html#ss7.7">7.7 Консоль Linux</A>
+<LI><A HREF="Text-Terminal-HOWTO-7.html#ss7.1">7.1 п╕п╡п╣я┌</A>
+<LI><A HREF="Text-Terminal-HOWTO-7.html#ss7.2">7.2 п■п╡п╬п╧п╫я▀п╣ я│п╣п╟п╫я│я▀</A>
+<LI><A HREF="Text-Terminal-HOWTO-7.html#ss7.3">7.3 п÷п╬я─я┌я▀ Printer/Auxiliary</A>
+<LI><A HREF="Text-Terminal-HOWTO-7.html#ss7.4">7.4 п║п╦п╪п╡п╬п╩я▄п╫я▀п╣ п╫п╟п╠п╬я─я▀</A>
+<LI><A HREF="Text-Terminal-HOWTO-7.html#ss7.5">7.5 п╗я─п╦я└я┌я▀</A>
+<LI><A HREF="Text-Terminal-HOWTO-7.html#ss7.6">7.6 п п╩п╟п╡п╦п╟я┌я┐я─я▀ п╦ я│п©п╣я├п╦п╟п╩я▄п╫я▀п╣ п╨п╩п╟п╡п╦я┬п╦</A>
+<LI><A HREF="Text-Terminal-HOWTO-7.html#ss7.7">7.7 п п╬п╫я│п╬п╩я▄ Linux</A>
 </UL>
 <P>
-<H2><A NAME="toc8">8.</A> <A HREF="Text-Terminal-HOWTO-8.html">Примечания о фирменных знаках</A></H2>
+<H2><A NAME="toc8">8.</A> <A HREF="Text-Terminal-HOWTO-8.html">п÷я─п╦п╪п╣я┤п╟п╫п╦я▐ п╬ я└п╦я─п╪п╣п╫п╫я▀я┘ п╥п╫п╟п╨п╟я┘</A></H2>
 
 <UL>
-<LI><A HREF="Text-Terminal-HOWTO-8.html#ss8.1">8.1 Терминалы CIT</A>
-<LI><A HREF="Text-Terminal-HOWTO-8.html#ss8.2">8.2 Терминалы IBM</A>
-<LI><A HREF="Text-Terminal-HOWTO-8.html#ss8.3">8.3 Телетайпы</A>
-<LI><A HREF="Text-Terminal-HOWTO-8.html#ss8.4">8.4 Терминалы VT (DEC)</A>
+<LI><A HREF="Text-Terminal-HOWTO-8.html#ss8.1">8.1 п╒п╣я─п╪п╦п╫п╟п╩я▀ CIT</A>
+<LI><A HREF="Text-Terminal-HOWTO-8.html#ss8.2">8.2 п╒п╣я─п╪п╦п╫п╟п╩я▀ IBM</A>
+<LI><A HREF="Text-Terminal-HOWTO-8.html#ss8.3">8.3 п╒п╣п╩п╣я┌п╟п╧п©я▀</A>
+<LI><A HREF="Text-Terminal-HOWTO-8.html#ss8.4">8.4 п╒п╣я─п╪п╦п╫п╟п╩я▀ VT (DEC)</A>
 </UL>
 <P>
-<H2><A NAME="toc9">9.</A> <A HREF="Text-Terminal-HOWTO-9.html">Последовательная связь на EIA-232 (RS-232)</A></H2>
+<H2><A NAME="toc9">9.</A> <A HREF="Text-Terminal-HOWTO-9.html">п÷п╬я│п╩п╣п╢п╬п╡п╟я┌п╣п╩я▄п╫п╟я▐ я│п╡я▐п╥я▄ п╫п╟ EIA-232 (RS-232)</A></H2>
 
 <UL>
-<LI><A HREF="Text-Terminal-HOWTO-9.html#ss9.1">9.1 Введение</A>
-<LI><A HREF="Text-Terminal-HOWTO-9.html#ss9.2">9.2 Напряжения</A>
-<LI><A HREF="Text-Terminal-HOWTO-9.html#ss9.3">9.3 Контроль четности, объясненный</A>
-<LI><A HREF="Text-Terminal-HOWTO-9.html#ss9.4">9.4 Формирование байта (кадрирование)</A>
-<LI><A HREF="Text-Terminal-HOWTO-9.html#ss9.5">9.5 Ограничения EIA-232</A>
-<LI><A HREF="Text-Terminal-HOWTO-9.html#ss9.6">9.6 Синхронизация и синхронный</A>
-<LI><A HREF="Text-Terminal-HOWTO-9.html#ss9.7">9.7 Блочный режим</A>
-<LI><A HREF="Text-Terminal-HOWTO-9.html#ss9.8">9.8 Книги по EIA-232 (RS-232)</A>
+<LI><A HREF="Text-Terminal-HOWTO-9.html#ss9.1">9.1 п▓п╡п╣п╢п╣п╫п╦п╣</A>
+<LI><A HREF="Text-Terminal-HOWTO-9.html#ss9.2">9.2 п²п╟п©я─я▐п╤п╣п╫п╦я▐</A>
+<LI><A HREF="Text-Terminal-HOWTO-9.html#ss9.3">9.3 п п╬п╫я┌я─п╬п╩я▄ я┤п╣я┌п╫п╬я│я┌п╦, п╬п╠я┼я▐я│п╫п╣п╫п╫я▀п╧</A>
+<LI><A HREF="Text-Terminal-HOWTO-9.html#ss9.4">9.4 п╓п╬я─п╪п╦я─п╬п╡п╟п╫п╦п╣ п╠п╟п╧я┌п╟ (п╨п╟п╢я─п╦я─п╬п╡п╟п╫п╦п╣)</A>
+<LI><A HREF="Text-Terminal-HOWTO-9.html#ss9.5">9.5 п·пЁя─п╟п╫п╦я┤п╣п╫п╦я▐ EIA-232</A>
+<LI><A HREF="Text-Terminal-HOWTO-9.html#ss9.6">9.6 п║п╦п╫я┘я─п╬п╫п╦п╥п╟я├п╦я▐ п╦ я│п╦п╫я┘я─п╬п╫п╫я▀п╧</A>
+<LI><A HREF="Text-Terminal-HOWTO-9.html#ss9.7">9.7 п▒п╩п╬я┤п╫я▀п╧ я─п╣п╤п╦п╪</A>
+<LI><A HREF="Text-Terminal-HOWTO-9.html#ss9.8">9.8 п п╫п╦пЁп╦ п©п╬ EIA-232 (RS-232)</A>
 </UL>
 <P>
-<H2><A NAME="toc10">10.</A> <A HREF="Text-Terminal-HOWTO-10.html">Управление потоком данных (подтверждение связи)</A></H2>
+<H2><A NAME="toc10">10.</A> <A HREF="Text-Terminal-HOWTO-10.html">пёп©я─п╟п╡п╩п╣п╫п╦п╣ п©п╬я┌п╬п╨п╬п╪ п╢п╟п╫п╫я▀я┘ (п©п╬п╢я┌п╡п╣я─п╤п╢п╣п╫п╦п╣ я│п╡я▐п╥п╦)</A></H2>
 
 <UL>
-<LI><A HREF="Text-Terminal-HOWTO-10.html#ss10.1">10.1 Почему необходимо управлять потоком данных?</A>
-<LI><A HREF="Text-Terminal-HOWTO-10.html#ss10.2">10.2 Переполнение последовательного порта</A>
-<LI><A HREF="Text-Terminal-HOWTO-10.html#ss10.3">10.3 Посылка сигнала останова</A>
-<LI><A HREF="Text-Terminal-HOWTO-10.html#ss10.4">10.4 Продолжение передачи</A>
-<LI><A HREF="Text-Terminal-HOWTO-10.html#ss10.5">10.5 Аппаратное управление потоком данных (RTS/CTS и т.д.)</A>
-<LI><A HREF="Text-Terminal-HOWTO-10.html#ss10.6">10.6 Аппаратное управление потоком данных выполнено аппаратными средствами?</A>
-<LI><A HREF="Text-Terminal-HOWTO-10.html#ss10.7">10.7 Устаревшее управление потоком данных ETX/ACK</A>
+<LI><A HREF="Text-Terminal-HOWTO-10.html#ss10.1">10.1 п÷п╬я┤п╣п╪я┐ п╫п╣п╬п╠я┘п╬п╢п╦п╪п╬ я┐п©я─п╟п╡п╩я▐я┌я▄ п©п╬я┌п╬п╨п╬п╪ п╢п╟п╫п╫я▀я┘?</A>
+<LI><A HREF="Text-Terminal-HOWTO-10.html#ss10.2">10.2 п÷п╣я─п╣п©п╬п╩п╫п╣п╫п╦п╣ п©п╬я│п╩п╣п╢п╬п╡п╟я┌п╣п╩я▄п╫п╬пЁп╬ п©п╬я─я┌п╟</A>
+<LI><A HREF="Text-Terminal-HOWTO-10.html#ss10.3">10.3 п÷п╬я│я▀п╩п╨п╟ я│п╦пЁп╫п╟п╩п╟ п╬я│я┌п╟п╫п╬п╡п╟</A>
+<LI><A HREF="Text-Terminal-HOWTO-10.html#ss10.4">10.4 п÷я─п╬п╢п╬п╩п╤п╣п╫п╦п╣ п©п╣я─п╣п╢п╟я┤п╦</A>
+<LI><A HREF="Text-Terminal-HOWTO-10.html#ss10.5">10.5 п░п©п©п╟я─п╟я┌п╫п╬п╣ я┐п©я─п╟п╡п╩п╣п╫п╦п╣ п©п╬я┌п╬п╨п╬п╪ п╢п╟п╫п╫я▀я┘ (RTS/CTS п╦ я┌.п╢.)</A>
+<LI><A HREF="Text-Terminal-HOWTO-10.html#ss10.6">10.6 п░п©п©п╟я─п╟я┌п╫п╬п╣ я┐п©я─п╟п╡п╩п╣п╫п╦п╣ п©п╬я┌п╬п╨п╬п╪ п╢п╟п╫п╫я▀я┘ п╡я▀п©п╬п╩п╫п╣п╫п╬ п╟п©п©п╟я─п╟я┌п╫я▀п╪п╦ я│я─п╣п╢я│я┌п╡п╟п╪п╦?</A>
+<LI><A HREF="Text-Terminal-HOWTO-10.html#ss10.7">10.7 пёя│я┌п╟я─п╣п╡я┬п╣п╣ я┐п©я─п╟п╡п╩п╣п╫п╦п╣ п©п╬я┌п╬п╨п╬п╪ п╢п╟п╫п╫я▀я┘ ETX/ACK</A>
 </UL>
 <P>
-<H2><A NAME="toc11">11.</A> <A HREF="Text-Terminal-HOWTO-11.html">Физическое соединение</A></H2>
+<H2><A NAME="toc11">11.</A> <A HREF="Text-Terminal-HOWTO-11.html">п╓п╦п╥п╦я┤п╣я│п╨п╬п╣ я│п╬п╣п╢п╦п╫п╣п╫п╦п╣</A></H2>
 
 <UL>
-<LI><A HREF="Text-Terminal-HOWTO-11.html#ss11.1">11.1 Прямое кабельное соединение.</A>
-<LI><A HREF="Text-Terminal-HOWTO-11.html#ss11.2">11.2 Модемное соединение  </A>
-<LI><A HREF="Text-Terminal-HOWTO-11.html#ss11.3">11.3 Соединение с терминальным сервером</A>
-<LI><A HREF="Text-Terminal-HOWTO-11.html#ss11.4">11.4 Создание или изменение кабеля</A>
+<LI><A HREF="Text-Terminal-HOWTO-11.html#ss11.1">11.1 п÷я─я▐п╪п╬п╣ п╨п╟п╠п╣п╩я▄п╫п╬п╣ я│п╬п╣п╢п╦п╫п╣п╫п╦п╣.</A>
+<LI><A HREF="Text-Terminal-HOWTO-11.html#ss11.2">11.2 п°п╬п╢п╣п╪п╫п╬п╣ я│п╬п╣п╢п╦п╫п╣п╫п╦п╣  </A>
+<LI><A HREF="Text-Terminal-HOWTO-11.html#ss11.3">11.3 п║п╬п╣п╢п╦п╫п╣п╫п╦п╣ я│ я┌п╣я─п╪п╦п╫п╟п╩я▄п╫я▀п╪ я│п╣я─п╡п╣я─п╬п╪</A>
+<LI><A HREF="Text-Terminal-HOWTO-11.html#ss11.4">11.4 п║п╬п╥п╢п╟п╫п╦п╣ п╦п╩п╦ п╦п╥п╪п╣п╫п╣п╫п╦п╣ п╨п╟п╠п╣п╩я▐</A>
 </UL>
 <P>
-<H2><A NAME="toc12">12.</A> <A HREF="Text-Terminal-HOWTO-12.html">Установка компьютера и терминала</A></H2>
+<H2><A NAME="toc12">12.</A> <A HREF="Text-Terminal-HOWTO-12.html">пёя│я┌п╟п╫п╬п╡п╨п╟ п╨п╬п╪п©я▄я▌я┌п╣я─п╟ п╦ я┌п╣я─п╪п╦п╫п╟п╩п╟</A></H2>
 
 <UL>
-<LI><A HREF="Text-Terminal-HOWTO-12.html#ss12.1">12.1 Введение</A>
-<LI><A HREF="Text-Terminal-HOWTO-12.html#ss12.2">12.2 Установка терминалов</A>
-<LI><A HREF="Text-Terminal-HOWTO-12.html#ss12.3">12.3 На компьютере</A>
-<LI><A HREF="Text-Terminal-HOWTO-12.html#ss12.4">12.4 Установка интерфейса связи</A>
-<LI><A HREF="Text-Terminal-HOWTO-12.html#ss12.5">12.5 Редко требующийся файл /etc/ttytype</A>
-<LI><A HREF="Text-Terminal-HOWTO-12.html#ss12.6">12.6 Ограничение входа в систему</A>
-<LI><A HREF="Text-Terminal-HOWTO-12.html#ss12.7">12.7 Выполнять команду только в том случае, если TERM=my_term_type</A>
+<LI><A HREF="Text-Terminal-HOWTO-12.html#ss12.1">12.1 п▓п╡п╣п╢п╣п╫п╦п╣</A>
+<LI><A HREF="Text-Terminal-HOWTO-12.html#ss12.2">12.2 пёя│я┌п╟п╫п╬п╡п╨п╟ я┌п╣я─п╪п╦п╫п╟п╩п╬п╡</A>
+<LI><A HREF="Text-Terminal-HOWTO-12.html#ss12.3">12.3 п²п╟ п╨п╬п╪п©я▄я▌я┌п╣я─п╣</A>
+<LI><A HREF="Text-Terminal-HOWTO-12.html#ss12.4">12.4 пёя│я┌п╟п╫п╬п╡п╨п╟ п╦п╫я┌п╣я─я└п╣п╧я│п╟ я│п╡я▐п╥п╦</A>
+<LI><A HREF="Text-Terminal-HOWTO-12.html#ss12.5">12.5 п═п╣п╢п╨п╬ я┌я─п╣п╠я┐я▌я┴п╦п╧я│я▐ я└п╟п╧п╩ /etc/ttytype</A>
+<LI><A HREF="Text-Terminal-HOWTO-12.html#ss12.6">12.6 п·пЁя─п╟п╫п╦я┤п╣п╫п╦п╣ п╡я┘п╬п╢п╟ п╡ я│п╦я│я┌п╣п╪я┐</A>
+<LI><A HREF="Text-Terminal-HOWTO-12.html#ss12.7">12.7 п▓я▀п©п╬п╩п╫я▐я┌я▄ п╨п╬п╪п╟п╫п╢я┐ я┌п╬п╩я▄п╨п╬ п╡ я┌п╬п╪ я│п╩я┐я┤п╟п╣, п╣я│п╩п╦ TERM=my_term_type</A>
 </UL>
 <P>
-<H2><A NAME="toc13">13.</A> <A HREF="Text-Terminal-HOWTO-13.html">terminfo и termcap (подробно)</A></H2>
+<H2><A NAME="toc13">13.</A> <A HREF="Text-Terminal-HOWTO-13.html">terminfo п╦ termcap (п©п╬п╢я─п╬п╠п╫п╬)</A></H2>
 
 <UL>
-<LI><A HREF="Text-Terminal-HOWTO-13.html#ss13.1">13.1 Введение</A>
-<LI><A HREF="Text-Terminal-HOWTO-13.html#ss13.2">13.2 База данных terminfo  </A>
-<LI><A HREF="Text-Terminal-HOWTO-13.html#ss13.3">13.3 Инициализация</A>
-<LI><A HREF="Text-Terminal-HOWTO-13.html#ss13.4">13.4 Переменная TERM</A>
-<LI><A HREF="Text-Terminal-HOWTO-13.html#ss13.5">13.5 Termcap документы</A>
+<LI><A HREF="Text-Terminal-HOWTO-13.html#ss13.1">13.1 п▓п╡п╣п╢п╣п╫п╦п╣</A>
+<LI><A HREF="Text-Terminal-HOWTO-13.html#ss13.2">13.2 п▒п╟п╥п╟ п╢п╟п╫п╫я▀я┘ terminfo  </A>
+<LI><A HREF="Text-Terminal-HOWTO-13.html#ss13.3">13.3 п≤п╫п╦я├п╦п╟п╩п╦п╥п╟я├п╦я▐</A>
+<LI><A HREF="Text-Terminal-HOWTO-13.html#ss13.4">13.4 п÷п╣я─п╣п╪п╣п╫п╫п╟я▐ TERM</A>
+<LI><A HREF="Text-Terminal-HOWTO-13.html#ss13.5">13.5 Termcap п╢п╬п╨я┐п╪п╣п╫я┌я▀</A>
 </UL>
 <P>
-<H2><A NAME="toc14">14.</A> <A HREF="Text-Terminal-HOWTO-14.html">Использование терминала</A></H2>
+<H2><A NAME="toc14">14.</A> <A HREF="Text-Terminal-HOWTO-14.html">п≤я│п©п╬п╩я▄п╥п╬п╡п╟п╫п╦п╣ я┌п╣я─п╪п╦п╫п╟п╩п╟</A></H2>
 
 <UL>
-<LI><A HREF="Text-Terminal-HOWTO-14.html#ss14.1">14.1 Введение</A>
-<LI><A HREF="Text-Terminal-HOWTO-14.html#ss14.2">14.2 Запуск терминала</A>
-<LI><A HREF="Text-Terminal-HOWTO-14.html#ss14.3">14.3 Драйвер устройства терминала</A>
-<LI><A HREF="Text-Terminal-HOWTO-14.html#ss14.4">14.4 Испорченный интерфейс терминала</A>
-<LI><A HREF="Text-Terminal-HOWTO-14.html#ss14.5">14.5 Специальные (управляющие) символы  </A>
-<LI><A HREF="Text-Terminal-HOWTO-14.html#ss14.6">14.6 Проверка интерфейса</A>
-<LI><A HREF="Text-Terminal-HOWTO-14.html#ss14.7">14.7 Изменение установок терминала</A>
+<LI><A HREF="Text-Terminal-HOWTO-14.html#ss14.1">14.1 п▓п╡п╣п╢п╣п╫п╦п╣</A>
+<LI><A HREF="Text-Terminal-HOWTO-14.html#ss14.2">14.2 п≈п╟п©я┐я│п╨ я┌п╣я─п╪п╦п╫п╟п╩п╟</A>
+<LI><A HREF="Text-Terminal-HOWTO-14.html#ss14.3">14.3 п■я─п╟п╧п╡п╣я─ я┐я│я┌я─п╬п╧я│я┌п╡п╟ я┌п╣я─п╪п╦п╫п╟п╩п╟</A>
+<LI><A HREF="Text-Terminal-HOWTO-14.html#ss14.4">14.4 п≤я│п©п╬я─я┤п╣п╫п╫я▀п╧ п╦п╫я┌п╣я─я└п╣п╧я│ я┌п╣я─п╪п╦п╫п╟п╩п╟</A>
+<LI><A HREF="Text-Terminal-HOWTO-14.html#ss14.5">14.5 п║п©п╣я├п╦п╟п╩я▄п╫я▀п╣ (я┐п©я─п╟п╡п╩я▐я▌я┴п╦п╣) я│п╦п╪п╡п╬п╩я▀  </A>
+<LI><A HREF="Text-Terminal-HOWTO-14.html#ss14.6">14.6 п÷я─п╬п╡п╣я─п╨п╟ п╦п╫я┌п╣я─я└п╣п╧я│п╟</A>
+<LI><A HREF="Text-Terminal-HOWTO-14.html#ss14.7">14.7 п≤п╥п╪п╣п╫п╣п╫п╦п╣ я┐я│я┌п╟п╫п╬п╡п╬п╨ я┌п╣я─п╪п╦п╫п╟п╩п╟</A>
 </UL>
 <P>
-<H2><A NAME="toc15">15.</A> <A HREF="Text-Terminal-HOWTO-15.html">Поиск неисправностей (программное обеспечение)</A></H2>
+<H2><A NAME="toc15">15.</A> <A HREF="Text-Terminal-HOWTO-15.html">п÷п╬п╦я│п╨ п╫п╣п╦я│п©я─п╟п╡п╫п╬я│я┌п╣п╧ (п©я─п╬пЁя─п╟п╪п╪п╫п╬п╣ п╬п╠п╣я│п©п╣я┤п╣п╫п╦п╣)</A></H2>
 
 <UL>
-<LI><A HREF="Text-Terminal-HOWTO-15.html#ss15.1">15.1 Терминал работал хорошо</A>
-<LI><A HREF="Text-Terminal-HOWTO-15.html#ss15.2">15.2 Терминал недавно установлен</A>
-<LI><A HREF="Text-Terminal-HOWTO-15.html#ss15.3">15.3 Терминал работает хорошо?</A>
-<LI><A HREF="Text-Terminal-HOWTO-15.html#ss15.4">15.4 Отсутствует текст</A>
-<LI><A HREF="Text-Terminal-HOWTO-15.html#ss15.5">15.5 getty восстанавливается слишком быстро</A>
-<LI><A HREF="Text-Terminal-HOWTO-15.html#ss15.6">15.6 Сбои сразу после входа в систему</A>
-<LI><A HREF="Text-Terminal-HOWTO-15.html#ss15.7">15.7 Нельзя войти в систему</A>
-<LI><A HREF="Text-Terminal-HOWTO-15.html#ss15.8">15.8 Искаженная подсказка входа в систему</A>
-<LI><A HREF="Text-Terminal-HOWTO-15.html#ss15.9">15.9 Нет признаков приглашения входа в систему</A>
-<LI><A HREF="Text-Terminal-HOWTO-15.html#ss15.10">15.10 Испытательное оборудование для последовательных устройств  </A>
+<LI><A HREF="Text-Terminal-HOWTO-15.html#ss15.1">15.1 п╒п╣я─п╪п╦п╫п╟п╩ я─п╟п╠п╬я┌п╟п╩ я┘п╬я─п╬я┬п╬</A>
+<LI><A HREF="Text-Terminal-HOWTO-15.html#ss15.2">15.2 п╒п╣я─п╪п╦п╫п╟п╩ п╫п╣п╢п╟п╡п╫п╬ я┐я│я┌п╟п╫п╬п╡п╩п╣п╫</A>
+<LI><A HREF="Text-Terminal-HOWTO-15.html#ss15.3">15.3 п╒п╣я─п╪п╦п╫п╟п╩ я─п╟п╠п╬я┌п╟п╣я┌ я┘п╬я─п╬я┬п╬?</A>
+<LI><A HREF="Text-Terminal-HOWTO-15.html#ss15.4">15.4 п·я┌я│я┐я┌я│я┌п╡я┐п╣я┌ я┌п╣п╨я│я┌</A>
+<LI><A HREF="Text-Terminal-HOWTO-15.html#ss15.5">15.5 getty п╡п╬я│я│я┌п╟п╫п╟п╡п╩п╦п╡п╟п╣я┌я│я▐ я│п╩п╦я┬п╨п╬п╪ п╠я▀я│я┌я─п╬</A>
+<LI><A HREF="Text-Terminal-HOWTO-15.html#ss15.6">15.6 п║п╠п╬п╦ я│я─п╟п╥я┐ п©п╬я│п╩п╣ п╡я┘п╬п╢п╟ п╡ я│п╦я│я┌п╣п╪я┐</A>
+<LI><A HREF="Text-Terminal-HOWTO-15.html#ss15.7">15.7 п²п╣п╩я▄п╥я▐ п╡п╬п╧я┌п╦ п╡ я│п╦я│я┌п╣п╪я┐</A>
+<LI><A HREF="Text-Terminal-HOWTO-15.html#ss15.8">15.8 п≤я│п╨п╟п╤п╣п╫п╫п╟я▐ п©п╬п╢я│п╨п╟п╥п╨п╟ п╡я┘п╬п╢п╟ п╡ я│п╦я│я┌п╣п╪я┐</A>
+<LI><A HREF="Text-Terminal-HOWTO-15.html#ss15.9">15.9 п²п╣я┌ п©я─п╦п╥п╫п╟п╨п╬п╡ п©я─п╦пЁп╩п╟я┬п╣п╫п╦я▐ п╡я┘п╬п╢п╟ п╡ я│п╦я│я┌п╣п╪я┐</A>
+<LI><A HREF="Text-Terminal-HOWTO-15.html#ss15.10">15.10 п≤я│п©я▀я┌п╟я┌п╣п╩я▄п╫п╬п╣ п╬п╠п╬я─я┐п╢п╬п╡п╟п╫п╦п╣ п╢п╩я▐ п©п╬я│п╩п╣п╢п╬п╡п╟я┌п╣п╩я▄п╫я▀я┘ я┐я│я┌я─п╬п╧я│я┌п╡  </A>
 </UL>
 <P>
-<H2><A NAME="toc16">16.</A> <A HREF="Text-Terminal-HOWTO-16.html">Ремонт и диагностика</A></H2>
+<H2><A NAME="toc16">16.</A> <A HREF="Text-Terminal-HOWTO-16.html">п═п╣п╪п╬п╫я┌ п╦ п╢п╦п╟пЁп╫п╬я│я┌п╦п╨п╟</A></H2>
 
 <UL>
-<LI><A HREF="Text-Terminal-HOWTO-16.html#ss16.1">16.1 Книги по ремонту и вебсайты</A>
-<LI><A HREF="Text-Terminal-HOWTO-16.html#ss16.2">16.2 Безопасность</A>
-<LI><A HREF="Text-Terminal-HOWTO-16.html#ss16.3">16.3 Вид дисплея</A>
-<LI><A HREF="Text-Terminal-HOWTO-16.html#ss16.4">16.4 Диагностика</A>
-<LI><A HREF="Text-Terminal-HOWTO-16.html#ss16.5">16.5 Конденсаторы</A>
-<LI><A HREF="Text-Terminal-HOWTO-16.html#ss16.6">16.6 Клавиатуры</A>
+<LI><A HREF="Text-Terminal-HOWTO-16.html#ss16.1">16.1 п п╫п╦пЁп╦ п©п╬ я─п╣п╪п╬п╫я┌я┐ п╦ п╡п╣п╠я│п╟п╧я┌я▀</A>
+<LI><A HREF="Text-Terminal-HOWTO-16.html#ss16.2">16.2 п▒п╣п╥п╬п©п╟я│п╫п╬я│я┌я▄</A>
+<LI><A HREF="Text-Terminal-HOWTO-16.html#ss16.3">16.3 п▓п╦п╢ п╢п╦я│п©п╩п╣я▐</A>
+<LI><A HREF="Text-Terminal-HOWTO-16.html#ss16.4">16.4 п■п╦п╟пЁп╫п╬я│я┌п╦п╨п╟</A>
+<LI><A HREF="Text-Terminal-HOWTO-16.html#ss16.5">16.5 п п╬п╫п╢п╣п╫я│п╟я┌п╬я─я▀</A>
+<LI><A HREF="Text-Terminal-HOWTO-16.html#ss16.6">16.6 п п╩п╟п╡п╦п╟я┌я┐я─я▀</A>
 </UL>
 <P>
-<H2><A NAME="toc17">17.</A> <A HREF="Text-Terminal-HOWTO-17.html">Приложение</A></H2>
+<H2><A NAME="toc17">17.</A> <A HREF="Text-Terminal-HOWTO-17.html">п÷я─п╦п╩п╬п╤п╣п╫п╦п╣</A></H2>
 
 <UL>
-<LI><A HREF="Text-Terminal-HOWTO-17.html#ss17.1">17.1 Список команд терминала Linux  </A>
-<LI><A HREF="Text-Terminal-HOWTO-17.html#ss17.2">17.2 Интернет и Книги</A>
+<LI><A HREF="Text-Terminal-HOWTO-17.html#ss17.1">17.1 п║п©п╦я│п╬п╨ п╨п╬п╪п╟п╫п╢ я┌п╣я─п╪п╦п╫п╟п╩п╟ Linux  </A>
+<LI><A HREF="Text-Terminal-HOWTO-17.html#ss17.2">17.2 п≤п╫я┌п╣я─п╫п╣я┌ п╦ п п╫п╦пЁп╦</A>
 </UL>
 <HR>
 <A HREF="Text-Terminal-HOWTO-1.html">Next</A>

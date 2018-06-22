@@ -15,79 +15,79 @@ Contents
 <H1>LDAP Linux HOWTO</H1>
 
 <H2>Luiz Ernesto Pinheiro Malere, 
-<A HREF="http://www.linux.org.ru/books/HOWTO/malere@yahoo.com">malere@yahoo.com</A>, перевод Шепелевича
-Константина, 
+<A HREF="http://www.linux.org.ru/books/HOWTO/malere@yahoo.com">malere@yahoo.com</A>, п©п╣я─п╣п╡п╬п╢ п╗п╣п©п╣п╩п╣п╡п╦я┤п╟
+п п╬п╫я│я┌п╟п╫я┌п╦п╫п╟, 
 <A HREF="mailto:shki@ukr.net">shki@ukr.net</A></H2>v1.01, 15 February 2000,
 <P><HR>
-<EM>В этом документе представлена информация о том, как устанавливать, настраивать, запускать и сопровождать LDAP сервер в системе Linux (Lightweight Directory Access Protocol - Облегченный Протокол Доступа к Каталогам /прим. перевод. здесь и далее во избежание путаницы терминов, "каталог" используется в смысле LDAP directory, а "директория" - в смысле file system directory/). Описано также как создавать LDAP базы, как обновлять и удалять информацию в базе, как организовать Roaming Access и как использовать адресную книгу Netscape. Этот документ создан по материалам информационных страниц Мичиганского Университета об LDAP.</EM>
+<EM>п▓ я█я┌п╬п╪ п╢п╬п╨я┐п╪п╣п╫я┌п╣ п©я─п╣п╢я│я┌п╟п╡п╩п╣п╫п╟ п╦п╫я└п╬я─п╪п╟я├п╦я▐ п╬ я┌п╬п╪, п╨п╟п╨ я┐я│я┌п╟п╫п╟п╡п╩п╦п╡п╟я┌я▄, п╫п╟я│я┌я─п╟п╦п╡п╟я┌я▄, п╥п╟п©я┐я│п╨п╟я┌я▄ п╦ я│п╬п©я─п╬п╡п╬п╤п╢п╟я┌я▄ LDAP я│п╣я─п╡п╣я─ п╡ я│п╦я│я┌п╣п╪п╣ Linux (Lightweight Directory Access Protocol - п·п╠п╩п╣пЁя┤п╣п╫п╫я▀п╧ п÷я─п╬я┌п╬п╨п╬п╩ п■п╬я│я┌я┐п©п╟ п╨ п п╟я┌п╟п╩п╬пЁп╟п╪ /п©я─п╦п╪. п©п╣я─п╣п╡п╬п╢. п╥п╢п╣я│я▄ п╦ п╢п╟п╩п╣п╣ п╡п╬ п╦п╥п╠п╣п╤п╟п╫п╦п╣ п©я┐я┌п╟п╫п╦я├я▀ я┌п╣я─п╪п╦п╫п╬п╡, "п╨п╟я┌п╟п╩п╬пЁ" п╦я│п©п╬п╩я▄п╥я┐п╣я┌я│я▐ п╡ я│п╪я▀я│п╩п╣ LDAP directory, п╟ "п╢п╦я─п╣п╨я┌п╬я─п╦я▐" - п╡ я│п╪я▀я│п╩п╣ file system directory/). п·п©п╦я│п╟п╫п╬ я┌п╟п╨п╤п╣ п╨п╟п╨ я│п╬п╥п╢п╟п╡п╟я┌я▄ LDAP п╠п╟п╥я▀, п╨п╟п╨ п╬п╠п╫п╬п╡п╩я▐я┌я▄ п╦ я┐п╢п╟п╩я▐я┌я▄ п╦п╫я└п╬я─п╪п╟я├п╦я▌ п╡ п╠п╟п╥п╣, п╨п╟п╨ п╬я─пЁп╟п╫п╦п╥п╬п╡п╟я┌я▄ Roaming Access п╦ п╨п╟п╨ п╦я│п©п╬п╩я▄п╥п╬п╡п╟я┌я▄ п╟п╢я─п╣я│п╫я┐я▌ п╨п╫п╦пЁя┐ Netscape. п╜я┌п╬я┌ п╢п╬п╨я┐п╪п╣п╫я┌ я│п╬п╥п╢п╟п╫ п©п╬ п╪п╟я┌п╣я─п╦п╟п╩п╟п╪ п╦п╫я└п╬я─п╪п╟я├п╦п╬п╫п╫я▀я┘ я│я┌я─п╟п╫п╦я├ п°п╦я┤п╦пЁп╟п╫я│п╨п╬пЁп╬ пёп╫п╦п╡п╣я─я│п╦я┌п╣я┌п╟ п╬п╠ LDAP.</EM>
 <HR>
 <P>
-<H2><A NAME="toc1">1.</A> <A HREF="LDAP-HOWTO-1.html">Введение</A></H2>
+<H2><A NAME="toc1">1.</A> <A HREF="LDAP-HOWTO-1.html">п▓п╡п╣п╢п╣п╫п╦п╣</A></H2>
 
 <UL>
-<LI><A HREF="LDAP-HOWTO-1.html#ss1.1">1.1 Что такое LDAP?</A>
-<LI><A HREF="LDAP-HOWTO-1.html#ss1.2">1.2 Что такое сервис Каталогов (Directory Service)?</A>
-<LI><A HREF="LDAP-HOWTO-1.html#ss1.3">1.3 Как LDAP работает?</A>
-<LI><A HREF="LDAP-HOWTO-1.html#ss1.4">1.4 LDAP базы, объекты и атрибуты</A>
-<LI><A HREF="LDAP-HOWTO-1.html#ss1.5">1.5 Новые версии этого документа</A>
-<LI><A HREF="LDAP-HOWTO-1.html#ss1.6">1.6 Отзывы и предложения</A>
-<LI><A HREF="LDAP-HOWTO-1.html#ss1.7">1.7 Благодарности</A>
-<LI><A HREF="LDAP-HOWTO-1.html#ss1.8">1.8 Copyright и Disclaimer</A>
+<LI><A HREF="LDAP-HOWTO-1.html#ss1.1">1.1 п╖я┌п╬ я┌п╟п╨п╬п╣ LDAP?</A>
+<LI><A HREF="LDAP-HOWTO-1.html#ss1.2">1.2 п╖я┌п╬ я┌п╟п╨п╬п╣ я│п╣я─п╡п╦я│ п п╟я┌п╟п╩п╬пЁп╬п╡ (Directory Service)?</A>
+<LI><A HREF="LDAP-HOWTO-1.html#ss1.3">1.3 п п╟п╨ LDAP я─п╟п╠п╬я┌п╟п╣я┌?</A>
+<LI><A HREF="LDAP-HOWTO-1.html#ss1.4">1.4 LDAP п╠п╟п╥я▀, п╬п╠я┼п╣п╨я┌я▀ п╦ п╟я┌я─п╦п╠я┐я┌я▀</A>
+<LI><A HREF="LDAP-HOWTO-1.html#ss1.5">1.5 п²п╬п╡я▀п╣ п╡п╣я─я│п╦п╦ я█я┌п╬пЁп╬ п╢п╬п╨я┐п╪п╣п╫я┌п╟</A>
+<LI><A HREF="LDAP-HOWTO-1.html#ss1.6">1.6 п·я┌п╥я▀п╡я▀ п╦ п©я─п╣п╢п╩п╬п╤п╣п╫п╦я▐</A>
+<LI><A HREF="LDAP-HOWTO-1.html#ss1.7">1.7 п▒п╩п╟пЁп╬п╢п╟я─п╫п╬я│я┌п╦</A>
+<LI><A HREF="LDAP-HOWTO-1.html#ss1.8">1.8 Copyright п╦ Disclaimer</A>
 </UL>
 <P>
-<H2><A NAME="toc2">2.</A> <A HREF="LDAP-HOWTO-2.html">Установка LDAP сервера</A></H2>
+<H2><A NAME="toc2">2.</A> <A HREF="LDAP-HOWTO-2.html">пёя│я┌п╟п╫п╬п╡п╨п╟ LDAP я│п╣я─п╡п╣я─п╟</A></H2>
 
 <UL>
-<LI><A HREF="LDAP-HOWTO-2.html#ss2.1">2.1 Скачиваем дистрибутив</A>
-<LI><A HREF="LDAP-HOWTO-2.html#ss2.2">2.2 Распаковка сервера</A>
-<LI><A HREF="LDAP-HOWTO-2.html#ss2.3">2.3 Настройка дистрибутива</A>
-<LI><A HREF="LDAP-HOWTO-2.html#ss2.4">2.4 Сборка сервера</A>
+<LI><A HREF="LDAP-HOWTO-2.html#ss2.1">2.1 п║п╨п╟я┤п╦п╡п╟п╣п╪ п╢п╦я│я┌я─п╦п╠я┐я┌п╦п╡</A>
+<LI><A HREF="LDAP-HOWTO-2.html#ss2.2">2.2 п═п╟я│п©п╟п╨п╬п╡п╨п╟ я│п╣я─п╡п╣я─п╟</A>
+<LI><A HREF="LDAP-HOWTO-2.html#ss2.3">2.3 п²п╟я│я┌я─п╬п╧п╨п╟ п╢п╦я│я┌я─п╦п╠я┐я┌п╦п╡п╟</A>
+<LI><A HREF="LDAP-HOWTO-2.html#ss2.4">2.4 п║п╠п╬я─п╨п╟ я│п╣я─п╡п╣я─п╟</A>
 </UL>
 <P>
-<H2><A NAME="toc3">3.</A> <A HREF="LDAP-HOWTO-3.html">Настройка LDAP сервера</A></H2>
+<H2><A NAME="toc3">3.</A> <A HREF="LDAP-HOWTO-3.html">п²п╟я│я┌я─п╬п╧п╨п╟ LDAP я│п╣я─п╡п╣я─п╟</A></H2>
 
 <UL>
-<LI><A HREF="LDAP-HOWTO-3.html#ss3.1">3.1 Формат конфигурационного файла</A>
-<LI><A HREF="LDAP-HOWTO-3.html#ss3.2">3.2 Глобальные Параметры</A>
-<LI><A HREF="LDAP-HOWTO-3.html#ss3.3">3.3 Общие Параметры Баз Данных</A>
-<LI><A HREF="LDAP-HOWTO-3.html#ss3.4">3.4 Параметры специфичные для LDBM</A>
-<LI><A HREF="LDAP-HOWTO-3.html#ss3.5">3.5 Примеры Управления Доступом</A>
+<LI><A HREF="LDAP-HOWTO-3.html#ss3.1">3.1 п╓п╬я─п╪п╟я┌ п╨п╬п╫я└п╦пЁя┐я─п╟я├п╦п╬п╫п╫п╬пЁп╬ я└п╟п╧п╩п╟</A>
+<LI><A HREF="LDAP-HOWTO-3.html#ss3.2">3.2 п⌠п╩п╬п╠п╟п╩я▄п╫я▀п╣ п÷п╟я─п╟п╪п╣я┌я─я▀</A>
+<LI><A HREF="LDAP-HOWTO-3.html#ss3.3">3.3 п·п╠я┴п╦п╣ п÷п╟я─п╟п╪п╣я┌я─я▀ п▒п╟п╥ п■п╟п╫п╫я▀я┘</A>
+<LI><A HREF="LDAP-HOWTO-3.html#ss3.4">3.4 п÷п╟я─п╟п╪п╣я┌я─я▀ я│п©п╣я├п╦я└п╦я┤п╫я▀п╣ п╢п╩я▐ LDBM</A>
+<LI><A HREF="LDAP-HOWTO-3.html#ss3.5">3.5 п÷я─п╦п╪п╣я─я▀ пёп©я─п╟п╡п╩п╣п╫п╦я▐ п■п╬я│я┌я┐п©п╬п╪</A>
 </UL>
 <P>
-<H2><A NAME="toc4">4.</A> <A HREF="LDAP-HOWTO-4.html">Запуск LDAP сервера</A></H2>
+<H2><A NAME="toc4">4.</A> <A HREF="LDAP-HOWTO-4.html">п≈п╟п©я┐я│п╨ LDAP я│п╣я─п╡п╣я─п╟</A></H2>
 
 <UL>
-<LI><A HREF="LDAP-HOWTO-4.html#ss4.1">4.1 Параметры Коммандной Строки</A>
-<LI><A HREF="LDAP-HOWTO-4.html#ss4.2">4.2 Запуск slapd в качестве автономного демона</A>
-<LI><A HREF="LDAP-HOWTO-4.html#ss4.3">4.3 Запуск slapd из под inetd</A>
+<LI><A HREF="LDAP-HOWTO-4.html#ss4.1">4.1 п÷п╟я─п╟п╪п╣я┌я─я▀ п п╬п╪п╪п╟п╫п╢п╫п╬п╧ п║я┌я─п╬п╨п╦</A>
+<LI><A HREF="LDAP-HOWTO-4.html#ss4.2">4.2 п≈п╟п©я┐я│п╨ slapd п╡ п╨п╟я┤п╣я│я┌п╡п╣ п╟п╡я┌п╬п╫п╬п╪п╫п╬пЁп╬ п╢п╣п╪п╬п╫п╟</A>
+<LI><A HREF="LDAP-HOWTO-4.html#ss4.3">4.3 п≈п╟п©я┐я│п╨ slapd п╦п╥ п©п╬п╢ inetd</A>
 </UL>
 <P>
-<H2><A NAME="toc5">5.</A> <A HREF="LDAP-HOWTO-5.html">Создание и Поддержка Базы Данных</A></H2>
+<H2><A NAME="toc5">5.</A> <A HREF="LDAP-HOWTO-5.html">п║п╬п╥п╢п╟п╫п╦п╣ п╦ п÷п╬п╢п╢п╣я─п╤п╨п╟ п▒п╟п╥я▀ п■п╟п╫п╫я▀я┘</A></H2>
 
 <UL>
-<LI><A HREF="LDAP-HOWTO-5.html#ss5.1">5.1 Создание Базы в Интерактивном Режиме /online/</A>
-<LI><A HREF="LDAP-HOWTO-5.html#ss5.2">5.2 Создание Базы без Сервера /offline/</A>
-<LI><A HREF="LDAP-HOWTO-5.html#ss5.3">5.3 Подробнее Об LDIF Формате</A>
-<LI><A HREF="LDAP-HOWTO-5.html#ss5.4">5.4 Утилиты ldapsearch, ldapdelete и ldapmodify</A>
+<LI><A HREF="LDAP-HOWTO-5.html#ss5.1">5.1 п║п╬п╥п╢п╟п╫п╦п╣ п▒п╟п╥я▀ п╡ п≤п╫я┌п╣я─п╟п╨я┌п╦п╡п╫п╬п╪ п═п╣п╤п╦п╪п╣ /online/</A>
+<LI><A HREF="LDAP-HOWTO-5.html#ss5.2">5.2 п║п╬п╥п╢п╟п╫п╦п╣ п▒п╟п╥я▀ п╠п╣п╥ п║п╣я─п╡п╣я─п╟ /offline/</A>
+<LI><A HREF="LDAP-HOWTO-5.html#ss5.3">5.3 п÷п╬п╢я─п╬п╠п╫п╣п╣ п·п╠ LDIF п╓п╬я─п╪п╟я┌п╣</A>
+<LI><A HREF="LDAP-HOWTO-5.html#ss5.4">5.4 пёя┌п╦п╩п╦я┌я▀ ldapsearch, ldapdelete п╦ ldapmodify</A>
 </UL>
 <P>
-<H2><A NAME="toc6">6.</A> <A HREF="LDAP-HOWTO-6.html">Дополнительная информация и свойства</A></H2>
+<H2><A NAME="toc6">6.</A> <A HREF="LDAP-HOWTO-6.html">п■п╬п©п╬п╩п╫п╦я┌п╣п╩я▄п╫п╟я▐ п╦п╫я└п╬я─п╪п╟я├п╦я▐ п╦ я│п╡п╬п╧я│я┌п╡п╟</A></H2>
 
 <UL>
 <LI><A HREF="LDAP-HOWTO-6.html#ss6.1">6.1 Roaming Access</A>
 <LI><A HREF="LDAP-HOWTO-6.html#ss6.2">6.2 Netscape Address Book</A>
-<LI><A HREF="LDAP-HOWTO-6.html#ss6.3">6.3 LDAP Migration Tools /Конвертеры/</A>
-<LI><A HREF="LDAP-HOWTO-6.html#ss6.4">6.4 Аутентификация с помощью LDAP</A>
-<LI><A HREF="LDAP-HOWTO-6.html#ss6.5">6.5 GUI программы для LDAP</A>
-<LI><A HREF="LDAP-HOWTO-6.html#ss6.6">6.6 Завершение LDAP сервера</A>
-<LI><A HREF="LDAP-HOWTO-6.html#ss6.7">6.7 Журналы</A>
+<LI><A HREF="LDAP-HOWTO-6.html#ss6.3">6.3 LDAP Migration Tools /п п╬п╫п╡п╣я─я┌п╣я─я▀/</A>
+<LI><A HREF="LDAP-HOWTO-6.html#ss6.4">6.4 п░я┐я┌п╣п╫я┌п╦я└п╦п╨п╟я├п╦я▐ я│ п©п╬п╪п╬я┴я▄я▌ LDAP</A>
+<LI><A HREF="LDAP-HOWTO-6.html#ss6.5">6.5 GUI п©я─п╬пЁя─п╟п╪п╪я▀ п╢п╩я▐ LDAP</A>
+<LI><A HREF="LDAP-HOWTO-6.html#ss6.6">6.6 п≈п╟п╡п╣я─я┬п╣п╫п╦п╣ LDAP я│п╣я─п╡п╣я─п╟</A>
+<LI><A HREF="LDAP-HOWTO-6.html#ss6.7">6.7 п√я┐я─п╫п╟п╩я▀</A>
 </UL>
 <P>
-<H2><A NAME="toc7">7.</A> <A HREF="LDAP-HOWTO-7.html">Ссылки</A></H2>
+<H2><A NAME="toc7">7.</A> <A HREF="LDAP-HOWTO-7.html">п║я│я▀п╩п╨п╦</A></H2>
 
 <UL>
 <LI><A HREF="LDAP-HOWTO-7.html#ss7.1">7.1 URLs</A>
-<LI><A HREF="LDAP-HOWTO-7.html#ss7.2">7.2 Книги</A>
+<LI><A HREF="LDAP-HOWTO-7.html#ss7.2">7.2 п п╫п╦пЁп╦</A>
 <LI><A HREF="LDAP-HOWTO-7.html#ss7.3">7.3 RFCs</A>
 </UL>
 <HR>

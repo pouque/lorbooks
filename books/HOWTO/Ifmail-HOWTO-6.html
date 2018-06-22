@@ -15,14 +15,14 @@
 <H2><A NAME="s6">6. gettys &amp; inittab</A></H2>
 
 <P> 
-getty используется для наблюдения за состоянием последовательной линии, и при
-поступлении звонка он передает звонящего соответствующей программе. Есть два
-getty, коотрые очень хорошо работают с ifmail - getty_ps и mgetty+sendfax-0.98.
-Я использую mgetty+sendfax, так как он работает и с uucp, и с fido звонками.
+getty п╦я│п©п╬п╩я▄п╥я┐п╣я┌я│я▐ п╢п╩я▐ п╫п╟п╠п╩я▌п╢п╣п╫п╦я▐ п╥п╟ я│п╬я│я┌п╬я▐п╫п╦п╣п╪ п©п╬я│п╩п╣п╢п╬п╡п╟я┌п╣п╩я▄п╫п╬п╧ п╩п╦п╫п╦п╦, п╦ п©я─п╦
+п©п╬я│я┌я┐п©п╩п╣п╫п╦п╦ п╥п╡п╬п╫п╨п╟ п╬п╫ п©п╣я─п╣п╢п╟п╣я┌ п╥п╡п╬п╫я▐я┴п╣пЁп╬ я│п╬п╬я┌п╡п╣я┌я│я┌п╡я┐я▌я┴п╣п╧ п©я─п╬пЁя─п╟п╪п╪п╣. п∙я│я┌я▄ п╢п╡п╟
+getty, п╨п╬п╬я┌я─я▀п╣ п╬я┤п╣п╫я▄ я┘п╬я─п╬я┬п╬ я─п╟п╠п╬я┌п╟я▌я┌ я│ ifmail - getty_ps п╦ mgetty+sendfax-0.98.
+п╞ п╦я│п©п╬п╩я▄п╥я┐я▌ mgetty+sendfax, я┌п╟п╨ п╨п╟п╨ п╬п╫ я─п╟п╠п╬я┌п╟п╣я┌ п╦ я│ uucp, п╦ я│ fido п╥п╡п╬п╫п╨п╟п╪п╦.
 <P> 
-Чтобы использовать mgetty вам нужно отредактировать его несколько 
-конфигурационных файлов, но из них только один самый важный - это файл
-login-config.dist . Вот мой файл /etc/mgetty-0.98/login-config.dist :
+п╖я┌п╬п╠я▀ п╦я│п©п╬п╩я▄п╥п╬п╡п╟я┌я▄ mgetty п╡п╟п╪ п╫я┐п╤п╫п╬ п╬я┌я─п╣п╢п╟п╨я┌п╦я─п╬п╡п╟я┌я▄ п╣пЁп╬ п╫п╣я│п╨п╬п╩я▄п╨п╬ 
+п╨п╬п╫я└п╦пЁя┐я─п╟я├п╦п╬п╫п╫я▀я┘ я└п╟п╧п╩п╬п╡, п╫п╬ п╦п╥ п╫п╦я┘ я┌п╬п╩я▄п╨п╬ п╬п╢п╦п╫ я│п╟п╪я▀п╧ п╡п╟п╤п╫я▀п╧ - я█я┌п╬ я└п╟п╧п╩
+login-config.dist . п▓п╬я┌ п╪п╬п╧ я└п╟п╧п╩ /etc/mgetty-0.98/login-config.dist :
 <BLOCKQUOTE><CODE>
 <PRE>
  
@@ -40,8 +40,8 @@ login-config.dist . Вот мой файл /etc/mgetty-0.98/login-config.dist :
  #
  # username may be prefixed / suffixed by "*" (wildcard)
  #
- # userid is a valid user name from /etc/passwd, или "-" to not set
- #  a login user id и keep the uid/euid root (needed for /bin/login)
+ # userid is a valid user name from /etc/passwd, п╦п╩п╦ "-" to not set
+ #  a login user id п╦ keep the uid/euid root (needed for /bin/login)
  #
  # utmp_entry is what will appear in the "who" listing. Use "-" to not
  #  set an utmp entry (a must for /bin/login), use "@" to set it to the
@@ -54,9 +54,9 @@ login-config.dist . Вот мой файл /etc/mgetty-0.98/login-config.dist :
  #
  #
  # SAMPLES:
- # Use this one with my Taylor-UUCP patch (taylor104.p1) и Taylor-UUCP
+ # Use this one with my Taylor-UUCP patch (taylor104.p1) п╦ Taylor-UUCP
  #  passwd files. (Big advantage: tuucp can use the same passwd file for
- #  serial dial-in и tcp dial-in [uucico running as in.uucpd]).
+ #  serial dial-in п╦ tcp dial-in [uucico running as in.uucpd]).
  #
  #U*    uucp    @       /usr/lib/uucp/uucico -L @
  #
@@ -78,7 +78,7 @@ login-config.dist . Вот мой файл /etc/mgetty-0.98/login-config.dist :
  #
  #telnet-smarty gast    telnet  /usr/bin/telnet -8 smarty
  #
- # This is the "standard" behaviour - *dont* set a userid или utmp
+ # This is the "standard" behaviour - *dont* set a userid п╦п╩п╦ utmp
  #  entry here, otherwise /bin/login will fail!
  #  This entry isn't really necessary: if it's missing, the built-in
  #  default will do exactly this.
@@ -87,9 +87,9 @@ login-config.dist . Вот мой файл /etc/mgetty-0.98/login-config.dist :
 </PRE>
 </CODE></BLOCKQUOTE>
  
-<P>Если вы используете getty_ps, не забудьте добавить #define FIDO в tune.h. Вам
-также надо будет определить конфигурационный файл для ttyS устройства, которое
-вы используете. Примеры есть в /etc/default для uugetty и в архиве. Вот мой
+<P>п∙я│п╩п╦ п╡я▀ п╦я│п©п╬п╩я▄п╥я┐п╣я┌п╣ getty_ps, п╫п╣ п╥п╟п╠я┐п╢я▄я┌п╣ п╢п╬п╠п╟п╡п╦я┌я▄ #define FIDO п╡ tune.h. п▓п╟п╪
+я┌п╟п╨п╤п╣ п╫п╟п╢п╬ п╠я┐п╢п╣я┌ п╬п©я─п╣п╢п╣п╩п╦я┌я▄ п╨п╬п╫я└п╦пЁя┐я─п╟я├п╦п╬п╫п╫я▀п╧ я└п╟п╧п╩ п╢п╩я▐ ttyS я┐я│я┌я─п╬п╧я│я┌п╡п╟, п╨п╬я┌п╬я─п╬п╣
+п╡я▀ п╦я│п©п╬п╩я▄п╥я┐п╣я┌п╣. п÷я─п╦п╪п╣я─я▀ п╣я│я┌я▄ п╡ /etc/default п╢п╩я▐ uugetty п╦ п╡ п╟я─я┘п╦п╡п╣. п▓п╬я┌ п╪п╬п╧
 /etc/default/uugetty.ttyS1:
 <BLOCKQUOTE><CODE>
 <PRE>
@@ -114,8 +114,8 @@ login-config.dist . Вот мой файл /etc/mgetty-0.98/login-config.dist :
 </PRE>
 </CODE></BLOCKQUOTE>
  
-Далее вам нужно добавить строку в ваш /etc/inittab для вашего getty.
-Вот мой /etc/inittab :
+п■п╟п╩п╣п╣ п╡п╟п╪ п╫я┐п╤п╫п╬ п╢п╬п╠п╟п╡п╦я┌я▄ я│я┌я─п╬п╨я┐ п╡ п╡п╟я┬ /etc/inittab п╢п╩я▐ п╡п╟я┬п╣пЁп╬ getty.
+п▓п╬я┌ п╪п╬п╧ /etc/inittab :
 <BLOCKQUOTE><CODE>
 <PRE>
  
@@ -128,10 +128,10 @@ login-config.dist . Вот мой файл /etc/mgetty-0.98/login-config.dist :
 </PRE>
 </CODE></BLOCKQUOTE>
  
-Первое поле определяет устройство. Вторая runlevel`ы, для которых действительны
-значения остальных полей. Третье поле 'respawn:' перезапускает программы, если
-она завершит свою работу. Четвертое поле - путь и имя программы для запуска и 
-параметры, нужные для запуска getty. Более подробно описано в 'man inittab'.
+п÷п╣я─п╡п╬п╣ п©п╬п╩п╣ п╬п©я─п╣п╢п╣п╩я▐п╣я┌ я┐я│я┌я─п╬п╧я│я┌п╡п╬. п▓я┌п╬я─п╟я▐ runlevel`я▀, п╢п╩я▐ п╨п╬я┌п╬я─я▀я┘ п╢п╣п╧я│я┌п╡п╦я┌п╣п╩я▄п╫я▀
+п╥п╫п╟я┤п╣п╫п╦я▐ п╬я│я┌п╟п╩я▄п╫я▀я┘ п©п╬п╩п╣п╧. п╒я─п╣я┌я▄п╣ п©п╬п╩п╣ 'respawn:' п©п╣я─п╣п╥п╟п©я┐я│п╨п╟п╣я┌ п©я─п╬пЁя─п╟п╪п╪я▀, п╣я│п╩п╦
+п╬п╫п╟ п╥п╟п╡п╣я─я┬п╦я┌ я│п╡п╬я▌ я─п╟п╠п╬я┌я┐. п╖п╣я┌п╡п╣я─я┌п╬п╣ п©п╬п╩п╣ - п©я┐я┌я▄ п╦ п╦п╪я▐ п©я─п╬пЁя─п╟п╪п╪я▀ п╢п╩я▐ п╥п╟п©я┐я│п╨п╟ п╦ 
+п©п╟я─п╟п╪п╣я┌я─я▀, п╫я┐п╤п╫я▀п╣ п╢п╩я▐ п╥п╟п©я┐я│п╨п╟ getty. п▒п╬п╩п╣п╣ п©п╬п╢я─п╬п╠п╫п╬ п╬п©п╦я│п╟п╫п╬ п╡ 'man inittab'.
 <P>
 <P>
 <P>

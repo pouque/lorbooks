@@ -1,10 +1,10 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=koi8-r"><title>Поддержка кириллицы в программах gtk</title><meta name="generator" content="DocBook XSL Stylesheets V1.59.1"><link rel="home" href="index.html" title="The Linux Cyrillic HOWTO (russian)"><link rel="up" href="ch14.html" title="Глава 14. Кириллизация библиотек"><link rel="previous" href="ch14.html" title="Глава 14. Кириллизация библиотек"><link rel="next" href="ch15.html" title="Глава 15. Кириллические шрифты"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Поддержка кириллицы в программах gtk</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch14.html">Пред.</a> </td><th width="60%" align="center">Глава 14. Кириллизация библиотек</th><td width="20%" align="right"> <a accesskey="n" href="ch15.html">След.</a></td></tr></table><hr></div><div class="sect1" lang="ru"><div class="titlepage"><div><h2 class="title" style="clear: both"><a name="gtk"></a>Поддержка кириллицы в программах gtk</h2></div></div><a class="indexterm" name="id2805751"></a><a class="indexterm" name="id2805761"></a><p>Если <tt>gtk</tt> не находит нужных шрифтов, он
-режет 8-й бит.  Шрифты задаются в
-<tt>/etc/gtk/gtkrc.$LANG</tt>. Поэтому нужно создать файл
-<tt>gtkrc.ru</tt> или поправить существующий. Внутри должно
-быть примерно следующее (названия шрифтов, размеры и прочие атрибуты
-можно исправить по вкусу, но эти шрифты должны содержать кириллицу в
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=koi8-r"><title>п÷п╬п╢п╢п╣я─п╤п╨п╟ п╨п╦я─п╦п╩п╩п╦я├я▀ п╡ п©я─п╬пЁя─п╟п╪п╪п╟я┘ gtk</title><meta name="generator" content="DocBook XSL Stylesheets V1.59.1"><link rel="home" href="index.html" title="The Linux Cyrillic HOWTO (russian)"><link rel="up" href="ch14.html" title="п⌠п╩п╟п╡п╟ 14. п п╦я─п╦п╩п╩п╦п╥п╟я├п╦я▐ п╠п╦п╠п╩п╦п╬я┌п╣п╨"><link rel="previous" href="ch14.html" title="п⌠п╩п╟п╡п╟ 14. п п╦я─п╦п╩п╩п╦п╥п╟я├п╦я▐ п╠п╦п╠п╩п╦п╬я┌п╣п╨"><link rel="next" href="ch15.html" title="п⌠п╩п╟п╡п╟ 15. п п╦я─п╦п╩п╩п╦я┤п╣я│п╨п╦п╣ я┬я─п╦я└я┌я▀"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">п÷п╬п╢п╢п╣я─п╤п╨п╟ п╨п╦я─п╦п╩п╩п╦я├я▀ п╡ п©я─п╬пЁя─п╟п╪п╪п╟я┘ gtk</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch14.html">п÷я─п╣п╢.</a>б═</td><th width="60%" align="center">п⌠п╩п╟п╡п╟ 14. п п╦я─п╦п╩п╩п╦п╥п╟я├п╦я▐ п╠п╦п╠п╩п╦п╬я┌п╣п╨</th><td width="20%" align="right">б═<a accesskey="n" href="ch15.html">п║п╩п╣п╢.</a></td></tr></table><hr></div><div class="sect1" lang="ru"><div class="titlepage"><div><h2 class="title" style="clear: both"><a name="gtk"></a>п÷п╬п╢п╢п╣я─п╤п╨п╟ п╨п╦я─п╦п╩п╩п╦я├я▀ п╡ п©я─п╬пЁя─п╟п╪п╪п╟я┘ gtk</h2></div></div><a class="indexterm" name="id2805751"></a><a class="indexterm" name="id2805761"></a><p>п∙я│п╩п╦ <tt>gtk</tt> п╫п╣ п╫п╟я┘п╬п╢п╦я┌ п╫я┐п╤п╫я▀я┘ я┬я─п╦я└я┌п╬п╡, п╬п╫
+я─п╣п╤п╣я┌ 8-п╧ п╠п╦я┌.  п╗я─п╦я└я┌я▀ п╥п╟п╢п╟я▌я┌я│я▐ п╡
+<tt>/etc/gtk/gtkrc.$LANG</tt>. п÷п╬я█я┌п╬п╪я┐ п╫я┐п╤п╫п╬ я│п╬п╥п╢п╟я┌я▄ я└п╟п╧п╩
+<tt>gtkrc.ru</tt> п╦п╩п╦ п©п╬п©я─п╟п╡п╦я┌я▄ я│я┐я┴п╣я│я┌п╡я┐я▌я┴п╦п╧. п▓п╫я┐я┌я─п╦ п╢п╬п╩п╤п╫п╬
+п╠я▀я┌я▄ п©я─п╦п╪п╣я─п╫п╬ я│п╩п╣п╢я┐я▌я┴п╣п╣ (п╫п╟п╥п╡п╟п╫п╦я▐ я┬я─п╦я└я┌п╬п╡, я─п╟п╥п╪п╣я─я▀ п╦ п©я─п╬я┤п╦п╣ п╟я┌я─п╦п╠я┐я┌я▀
+п╪п╬п╤п╫п╬ п╦я│п©я─п╟п╡п╦я┌я▄ п©п╬ п╡п╨я┐я│я┐, п╫п╬ я█я┌п╦ я┬я─п╦я└я┌я▀ п╢п╬п╩п╤п╫я▀ я│п╬п╢п╣я─п╤п╟я┌я▄ п╨п╦я─п╦п╩п╩п╦я├я┐ п╡
 koi8-r):</p><pre class="programlisting">
 style &quot;gtk-default-ru&quot; {
        fontset = &quot;-cronyx-helvetica-medium-r-normal--*-*-*-*-*-*-koi8-r,\
@@ -14,15 +14,15 @@ style &quot;gtk-default-ru&quot; {
 }
 class &quot;GtkWidget&quot; style &quot;gtk-default-ru&quot;
 </pre><p>
-</p><p>и скопировать этот файл в
-<tt>'gtkrc.ru_RU.KOI8-R'</tt>, или сделать
+</p><p>п╦ я│п╨п╬п©п╦я─п╬п╡п╟я┌я▄ я█я┌п╬я┌ я└п╟п╧п╩ п╡
+<tt>'gtkrc.ru_RU.KOI8-R'</tt>, п╦п╩п╦ я│п╢п╣п╩п╟я┌я▄
 symlink:</p><pre class="screen">
 $ cd /etc/gtk/
 $ ln -s  gtkrc.ru  gtkrc.ru_RU.KOI8-R
 </pre><p>
-</p><p>Подробности см. <a href="http://www.gtk.org/tutorial/gtk_tut-21.html" target="_top">www.gtk.org</a>,
-а также <a href="http://www.linux.org.ru/gnome/" target="_top">http://www.linux.org.ru/gnome/</a></p><p><span class="emphasis"><em>gtk</em></span> понимает национальные файлы gtkrc
-с именами типа <tt>gtkrc.ru_RU.koi8r</tt> (не
-<tt>gtkrc.ru_RU.KOI8-R</tt>). Это позволяет хранить
-файлы конфигурации для нескольких locales одновременно, при условии,
-что отсутствует <tt>gtkrc.ru</tt>.</p></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch14.html">Пред.</a> </td><td width="20%" align="center"><a accesskey="u" href="ch14.html">Уровень выше</a></td><td width="40%" align="right"> <a accesskey="n" href="ch15.html">След.</a></td></tr><tr><td width="40%" align="left" valign="top">Глава 14. Кириллизация библиотек </td><td width="20%" align="center"><a accesskey="h" href="index.html">Начало</a></td><td width="40%" align="right" valign="top"> Глава 15. Кириллические шрифты</td></tr></table></div></body></html>
+</p><p>п÷п╬п╢я─п╬п╠п╫п╬я│я┌п╦ я│п╪. <a href="http://www.gtk.org/tutorial/gtk_tut-21.html" target="_top">www.gtk.org</a>,
+п╟ я┌п╟п╨п╤п╣ <a href="http://www.linux.org.ru/gnome/" target="_top">http://www.linux.org.ru/gnome/</a></p><p><span class="emphasis"><em>gtk</em></span> п©п╬п╫п╦п╪п╟п╣я┌ п╫п╟я├п╦п╬п╫п╟п╩я▄п╫я▀п╣ я└п╟п╧п╩я▀ gtkrc
+я│ п╦п╪п╣п╫п╟п╪п╦ я┌п╦п©п╟ <tt>gtkrc.ru_RU.koi8r</tt> (п╫п╣
+<tt>gtkrc.ru_RU.KOI8-R</tt>). п╜я┌п╬ п©п╬п╥п╡п╬п╩я▐п╣я┌ я┘я─п╟п╫п╦я┌я▄
+я└п╟п╧п╩я▀ п╨п╬п╫я└п╦пЁя┐я─п╟я├п╦п╦ п╢п╩я▐ п╫п╣я│п╨п╬п╩я▄п╨п╦я┘ locales п╬п╢п╫п╬п╡я─п╣п╪п╣п╫п╫п╬, п©я─п╦ я┐я│п╩п╬п╡п╦п╦,
+я┤я┌п╬ п╬я┌я│я┐я┌я│я┌п╡я┐п╣я┌ <tt>gtkrc.ru</tt>.</p></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch14.html">п÷я─п╣п╢.</a>б═</td><td width="20%" align="center"><a accesskey="u" href="ch14.html">пёя─п╬п╡п╣п╫я▄ п╡я▀я┬п╣</a></td><td width="40%" align="right">б═<a accesskey="n" href="ch15.html">п║п╩п╣п╢.</a></td></tr><tr><td width="40%" align="left" valign="top">п⌠п╩п╟п╡п╟ 14. п п╦я─п╦п╩п╩п╦п╥п╟я├п╦я▐ п╠п╦п╠п╩п╦п╬я┌п╣п╨б═</td><td width="20%" align="center"><a accesskey="h" href="index.html">п²п╟я┤п╟п╩п╬</a></td><td width="40%" align="right" valign="top">б═п⌠п╩п╟п╡п╟ 15. п п╦я─п╦п╩п╩п╦я┤п╣я│п╨п╦п╣ я┬я─п╦я└я┌я▀</td></tr></table></div></body></html>

@@ -1,24 +1,24 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=koi8-r"><title>Кириллические имена файлов в файловой системе MS Windows</title><meta name="generator" content="DocBook XSL Stylesheets V1.59.1"><link rel="home" href="index.html" title="The Linux Cyrillic HOWTO (russian)"><link rel="up" href="ch13.html" title="Глава 13. Совместимость"><link rel="previous" href="ch13.html" title="Глава 13. Совместимость"><link rel="next" href="ch13s03.html" title="Samba"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Кириллические имена файлов в файловой системе MS Windows</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch13.html">Пред.</a> </td><th width="60%" align="center">Глава 13. Совместимость</th><td width="20%" align="right"> <a accesskey="n" href="ch13s03.html">След.</a></td></tr></table><hr></div><div class="sect1" lang="ru"><div class="titlepage"><div><h2 class="title" style="clear: both"><a name="win-fs"></a>Кириллические имена файлов в файловой системе MS Windows</h2></div></div><a class="indexterm" name="id2943300"></a><p>Windows имеет возможность давать имена файлов в кодировке Unicode,
-поэтому пользователи могут давать осмысленные имена своим файлам.  Linux,
-однако, не даёт полной поддержки для Unicode, поэтому если вы монтируете диск
-Windows <span class="emphasis"><em>VFAT</em></span>, то увидите, что подобные имена состоят из
-вопросительных знаков и прочего мусора.</p><p>Здесь указан путь, как получить правильное преобразование:</p><div class="orderedlist"><ol type="1"><li><p>Убедитесь, что ваше ядро скомпилировано с поддержкой codepage
-(в частности, с поддержкой кодовых страниц cp866 и KOI8-R &#8212; возможно, в
-виде модулей <tt>ls /lib/modules/`uname -r`/fs/nls_*</tt>).
-</p></li><li><p>Добавьте следующие опции при выполнении mount команды
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=koi8-r"><title>п п╦я─п╦п╩п╩п╦я┤п╣я│п╨п╦п╣ п╦п╪п╣п╫п╟ я└п╟п╧п╩п╬п╡ п╡ я└п╟п╧п╩п╬п╡п╬п╧ я│п╦я│я┌п╣п╪п╣ MS Windows</title><meta name="generator" content="DocBook XSL Stylesheets V1.59.1"><link rel="home" href="index.html" title="The Linux Cyrillic HOWTO (russian)"><link rel="up" href="ch13.html" title="п⌠п╩п╟п╡п╟ 13. п║п╬п╡п╪п╣я│я┌п╦п╪п╬я│я┌я▄"><link rel="previous" href="ch13.html" title="п⌠п╩п╟п╡п╟ 13. п║п╬п╡п╪п╣я│я┌п╦п╪п╬я│я┌я▄"><link rel="next" href="ch13s03.html" title="Samba"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">п п╦я─п╦п╩п╩п╦я┤п╣я│п╨п╦п╣ п╦п╪п╣п╫п╟ я└п╟п╧п╩п╬п╡ п╡ я└п╟п╧п╩п╬п╡п╬п╧ я│п╦я│я┌п╣п╪п╣ MS Windows</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch13.html">п÷я─п╣п╢.</a>б═</td><th width="60%" align="center">п⌠п╩п╟п╡п╟ 13. п║п╬п╡п╪п╣я│я┌п╦п╪п╬я│я┌я▄</th><td width="20%" align="right">б═<a accesskey="n" href="ch13s03.html">п║п╩п╣п╢.</a></td></tr></table><hr></div><div class="sect1" lang="ru"><div class="titlepage"><div><h2 class="title" style="clear: both"><a name="win-fs"></a>п п╦я─п╦п╩п╩п╦я┤п╣я│п╨п╦п╣ п╦п╪п╣п╫п╟ я└п╟п╧п╩п╬п╡ п╡ я└п╟п╧п╩п╬п╡п╬п╧ я│п╦я│я┌п╣п╪п╣ MS Windows</h2></div></div><a class="indexterm" name="id2943300"></a><p>Windows п╦п╪п╣п╣я┌ п╡п╬п╥п╪п╬п╤п╫п╬я│я┌я▄ п╢п╟п╡п╟я┌я▄ п╦п╪п╣п╫п╟ я└п╟п╧п╩п╬п╡ п╡ п╨п╬п╢п╦я─п╬п╡п╨п╣ Unicode,
+п©п╬я█я┌п╬п╪я┐ п©п╬п╩я▄п╥п╬п╡п╟я┌п╣п╩п╦ п╪п╬пЁя┐я┌ п╢п╟п╡п╟я┌я▄ п╬я│п╪я▀я│п╩п╣п╫п╫я▀п╣ п╦п╪п╣п╫п╟ я│п╡п╬п╦п╪ я└п╟п╧п╩п╟п╪.  Linux,
+п╬п╢п╫п╟п╨п╬, п╫п╣ п╢п╟я▒я┌ п©п╬п╩п╫п╬п╧ п©п╬п╢п╢п╣я─п╤п╨п╦ п╢п╩я▐ Unicode, п©п╬я█я┌п╬п╪я┐ п╣я│п╩п╦ п╡я▀ п╪п╬п╫я┌п╦я─я┐п╣я┌п╣ п╢п╦я│п╨
+Windows <span class="emphasis"><em>VFAT</em></span>, я┌п╬ я┐п╡п╦п╢п╦я┌п╣, я┤я┌п╬ п©п╬п╢п╬п╠п╫я▀п╣ п╦п╪п╣п╫п╟ я│п╬я│я┌п╬я▐я┌ п╦п╥
+п╡п╬п©я─п╬я│п╦я┌п╣п╩я▄п╫я▀я┘ п╥п╫п╟п╨п╬п╡ п╦ п©я─п╬я┤п╣пЁп╬ п╪я┐я│п╬я─п╟.</p><p>п≈п╢п╣я│я▄ я┐п╨п╟п╥п╟п╫ п©я┐я┌я▄, п╨п╟п╨ п©п╬п╩я┐я┤п╦я┌я▄ п©я─п╟п╡п╦п╩я▄п╫п╬п╣ п©я─п╣п╬п╠я─п╟п╥п╬п╡п╟п╫п╦п╣:</p><div class="orderedlist"><ol type="1"><li><p>пёп╠п╣п╢п╦я┌п╣я│я▄, я┤я┌п╬ п╡п╟я┬п╣ я▐п╢я─п╬ я│п╨п╬п╪п©п╦п╩п╦я─п╬п╡п╟п╫п╬ я│ п©п╬п╢п╢п╣я─п╤п╨п╬п╧ codepage
+(п╡ я┤п╟я│я┌п╫п╬я│я┌п╦, я│ п©п╬п╢п╢п╣я─п╤п╨п╬п╧ п╨п╬п╢п╬п╡я▀я┘ я│я┌я─п╟п╫п╦я├ cp866 п╦ KOI8-R &#8212; п╡п╬п╥п╪п╬п╤п╫п╬, п╡
+п╡п╦п╢п╣ п╪п╬п╢я┐п╩п╣п╧ <tt>ls /lib/modules/`uname -r`/fs/nls_*</tt>).
+</p></li><li><p>п■п╬п╠п╟п╡я▄я┌п╣ я│п╩п╣п╢я┐я▌я┴п╦п╣ п╬п©я├п╦п╦ п©я─п╦ п╡я▀п©п╬п╩п╫п╣п╫п╦п╦ mount п╨п╬п╪п╟п╫п╢я▀
 	    <tt>mount</tt>:
 
 </p><pre class="screen">
 codepage=866,iocharset=koi8-r
 </pre><p>
 
-или пропишите в <tt>/etc/fstab/</tt> примерно такую строчку:
+п╦п╩п╦ п©я─п╬п©п╦я┬п╦я┌п╣ п╡ <tt>/etc/fstab/</tt> п©я─п╦п╪п╣я─п╫п╬ я┌п╟п╨я┐я▌ я│я┌я─п╬я┤п╨я┐:
 
 </p><pre class="screen">
 /dev/hdc1 /Rack vfat iocharset=koi8-r,umask=0,showexec,codepage=866,quiet 0 0
 </pre><p>
 
-для выяснения подробностей смотрите <span class="emphasis"><em>man mount</em></span>.
-</p></li></ol></div><p></p><p>Более подробно смотрите <tt>Documentation/filesystems/vfat.txt</tt>
-в исходниках ядра Linux.</p><p></p></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch13.html">Пред.</a> </td><td width="20%" align="center"><a accesskey="u" href="ch13.html">Уровень выше</a></td><td width="40%" align="right"> <a accesskey="n" href="ch13s03.html">След.</a></td></tr><tr><td width="40%" align="left" valign="top">Глава 13. Совместимость </td><td width="20%" align="center"><a accesskey="h" href="index.html">Начало</a></td><td width="40%" align="right" valign="top"> Samba</td></tr></table></div></body></html>
+п╢п╩я▐ п╡я▀я▐я│п╫п╣п╫п╦я▐ п©п╬п╢я─п╬п╠п╫п╬я│я┌п╣п╧ я│п╪п╬я┌я─п╦я┌п╣ <span class="emphasis"><em>man mount</em></span>.
+</p></li></ol></div><p></p><p>п▒п╬п╩п╣п╣ п©п╬п╢я─п╬п╠п╫п╬ я│п╪п╬я┌я─п╦я┌п╣ <tt>Documentation/filesystems/vfat.txt</tt>
+п╡ п╦я│я┘п╬п╢п╫п╦п╨п╟я┘ я▐п╢я─п╟ Linux.</p><p></p></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch13.html">п÷я─п╣п╢.</a>б═</td><td width="20%" align="center"><a accesskey="u" href="ch13.html">пёя─п╬п╡п╣п╫я▄ п╡я▀я┬п╣</a></td><td width="40%" align="right">б═<a accesskey="n" href="ch13s03.html">п║п╩п╣п╢.</a></td></tr><tr><td width="40%" align="left" valign="top">п⌠п╩п╟п╡п╟ 13. п║п╬п╡п╪п╣я│я┌п╦п╪п╬я│я┌я▄б═</td><td width="20%" align="center"><a accesskey="h" href="index.html">п²п╟я┤п╟п╩п╬</a></td><td width="40%" align="right" valign="top">б═Samba</td></tr></table></div></body></html>

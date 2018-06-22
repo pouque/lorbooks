@@ -1,26 +1,26 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
   <meta http-equiv="Content-Type" content="text/html; charset=windows-1251"><title>Installing Patch-2.5.4</title>
-<meta name="GENERATOR" content="Modular DocBook HTML Stylesheet Version 1.73"><link rel="HOME" title="Linux From Scratch" href="http://www.linux.org.ru/books/Distro/lfsbook/chapter05/index.html"><link rel="UP" title="Preparing the LFS system" href="chapter05.html"><link rel="PREVIOUS" title="Installing Make-3.79.1" href="make.html"><link rel="NEXT" title="Installing Sed-3.02" href="sed.html"></head><body class="sect1" bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#840084" alink="#006000"><div class="NAVHEADER"><table summary="Header navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><th colspan="3" align="Center">Linux From Scratch: Версия 4.0</th></tr><tr><td width="10%" align="Left" valign="Bottom"><a href="make.html" accesskey="P">Назад</a></td><td width="80%" align="Center" valign="Bottom">Глава 5. Подготовка системы LFS</td><td width="10%" align="Right" valign="Bottom"><a href="sed.html" accesskey="N">Вперед</a></td></tr></tbody></table><hr align="Left" width="100%"></div><div class="sect1"><h1 class="sect1"><a name="ch05-patch">Установка Patch-2.5.4</a></h1><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen">Приблизительное время компиляции:           0.10 SBU<br>Необходимое дисковое пространство:  3 MB</pre></td></tr></tbody></table><div class="sect2"><h2 class="sect2"><a name="AEN1797">Инсталляция Patch</a></h2><p>Для инсталляции Patch выполните:</p><p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>CPPFLAGS=-D_GNU_SOURCE \<br>	./configure --prefix=$LFS/static &amp;&amp;<br>make LDFLAGS=-static &amp;&amp;<br>make install</b></tt></pre></td></tr></tbody></table></p></div><div class="sect2"><h2 class="sect2"><a name="AEN1803">Пояснения команд</a></h2><p><tt class="userinput"><b>CPPFLAGS=-D_GNU_SOURCE: </b></tt> 
-Установка этого параметра исправляет ошибки инсталляции на платформах PPC
-и m68k. Этот параметр не помешает компиляции на других платформах, например
-на x86, поэтому мы устанавливаем его по умолчанию.</p></div><div class="sect2">
-<div class="sect2"><h2 class="sect2"><a name="AEN7950">Содержимое Patch</a></h2><p>Последняя проверка: версия 2.5.4.</p><div class="sect3"><h3 class="sect3"><a name="AEN7953">Программы</a></h3><p>patch</p></div><div class="sect3"><h3 class="sect3"><a name="AEN7956">Описания</a></h3><div class="sect4"><h4 class="sect4"><a name="AEN7958">patch</a></h4><p>patch модифицирует файл в соответствии с патчем. Патч обычно
-является списком, созданным diff, содержащим инструкции к изменению.
-Patch часто используется для исправлений в исходном коде, поскольку
-сохраняет время и место на диске. Например, имеется пакет объемом 1 MB.
-Следующая версия пакета имеет изменения только в 2 файлах. Новая версия
-может быть как новым пакетом в 1 MB или патчем в 1 KB. Таким образом,
-патчи позволяют избежать объемных загрузок.</p></div></div></div>
-<div class="sect2"><h2 class="sect2"><a name="AEN7961">Зависимости Patch</a></h2><p>Последняя проверка: версия 2.5.4.</p><p class="literallayout">Bash: sh<br>
-Binutils: as, ld<br>
-Diffutils: cmp<br>
-Fileutils: chmod, install, mv, rm<br>
-Gcc: cc, cc1, collect2, cpp0, gcc<br>
-Glibc: getconf<br>
-Grep: egrep, grep<br>
-Make: make<br>
-Sed: sed<br>
-Sh-utils: echo, expr, hostname, uname<br>
-Textutils: cat, tr</p></div>
-<h2 class="sect2"></h2></div></div><div class="NAVFOOTER"><hr align="Left" width="100%"><table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="33%" align="Left" valign="Top"><a href="make.html" accesskey="P">Назад</a></td><td width="34%" align="Center" valign="Top"><a href="../index.html" accesskey="H">Домой</a></td><td width="33%" align="Right" valign="Top"><a href="sed.html" accesskey="N">Вперед</a></td></tr><tr><td width="33%" align="Left" valign="Top">Установка Make-3.79.1</td><td width="34%" align="Center" valign="Top"><a href="chapter05.html" accesskey="U">Наверх</a></td><td width="33%" align="Right" valign="Top">Установка Sed-3.02</td></tr></tbody></table></div><br>
+<meta name="GENERATOR" content="Modular DocBook HTML Stylesheet Version 1.73"><link rel="HOME" title="Linux From Scratch" href="http://www.linux.org.ru/books/Distro/lfsbook/chapter05/index.html"><link rel="UP" title="Preparing the LFS system" href="chapter05.html"><link rel="PREVIOUS" title="Installing Make-3.79.1" href="make.html"><link rel="NEXT" title="Installing Sed-3.02" href="sed.html"></head><body class="sect1" bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#840084" alink="#006000"><div class="NAVHEADER"><table summary="Header navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><th colspan="3" align="Center">Linux From Scratch: Р±Р•РџРЇРҐРЄ 4.0</th></tr><tr><td width="10%" align="Left" valign="Bottom"><a href="make.html" accesskey="P">РјР®Р“Р®Р”</a></td><td width="80%" align="Center" valign="Bottom">С†РљР®Р‘Р® 5. РѕРќР”Р¦РќР РќР‘Р™Р® РЇРҐРЇР Р•Р›РЁ LFS</td><td width="10%" align="Right" valign="Bottom"><a href="sed.html" accesskey="N">Р±РћР•РџР•Р”</a></td></tr></tbody></table><hr align="Left" width="100%"></div><div class="sect1"><h1 class="sect1"><a name="ch05-patch">СЃРЇР Р®РњРќР‘Р™Р® Patch-2.5.4</a></h1><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen">РѕРџРҐРђРљРҐР“РҐР Р•РљР­РњРќР• Р‘РџР•Р›РЄ Р™РќР›РћРҐРљРЄР–РҐРҐ:           0.10 SBU<br>РјР•РќРђРЈРќР”РҐР›РќР• Р”РҐРЇР™РќР‘РќР• РћРџРќРЇР РџР®РњРЇР Р‘Рќ:  3 MB</pre></td></tr></tbody></table><div class="sect2"><h2 class="sect2"><a name="AEN1797">С…РњРЇР Р®РљРљРЄР–РҐРЄ Patch</a></h2><p>РґРљРЄ РҐРњРЇР Р®РљРљРЄР–РҐРҐ Patch Р‘РЁРћРќРљРњРҐР Р•:</p><p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>CPPFLAGS=-D_GNU_SOURCE \<br>	./configure --prefix=$LFS/static &amp;&amp;<br>make LDFLAGS=-static &amp;&amp;<br>make install</b></tt></pre></td></tr></tbody></table></p></div><div class="sect2"><h2 class="sect2"><a name="AEN1803">РѕРќРЄРЇРњР•РњРҐРЄ Р™РќР›Р®РњР”</a></h2><p><tt class="userinput"><b>CPPFLAGS=-D_GNU_SOURCE: </b></tt> 
+СЃРЇР Р®РњРќР‘Р™Р® Р©Р РќР¦Рќ РћР®РџР®Р›Р•Р РџР® РҐРЇРћРџР®Р‘РљРЄР•Р  РќР¬РҐРђР™РҐ РҐРњРЇР Р®РљРљРЄР–РҐРҐ РњР® РћРљР®Р РўРќРџР›Р®РЈ PPC
+РҐ m68k. С‰Р РќР  РћР®РџР®Р›Р•Р Рџ РњР• РћРќР›Р•Р¬Р®Р•Р  Р™РќР›РћРҐРљРЄР–РҐРҐ РњР® Р”РџРЎР¦РҐРЈ РћРљР®Р РўРќРџР›Р®РЈ, РњР®РћРџРҐР›Р•Рџ
+РњР® x86, РћРќР©Р РќР›РЎ Р›РЁ РЎРЇР Р®РњР®Р‘РљРҐР‘Р®Р•Р› Р•Р¦Рќ РћРќ РЎР›РќРљР’Р®РњРҐР§.</p></div><div class="sect2">
+<div class="sect2"><h2 class="sect2"><a name="AEN7950">СЏРќР”Р•РџР¤РҐР›РќР• Patch</a></h2><p>РѕРќРЇРљР•Р”РњРЄРЄ РћРџРќР‘Р•РџР™Р®: Р‘Р•РџРЇРҐРЄ 2.5.4.</p><div class="sect3"><h3 class="sect3"><a name="AEN7953">РѕРџРќР¦РџР®Р›Р›РЁ</a></h3><p>patch</p></div><div class="sect3"><h3 class="sect3"><a name="AEN7956">РЅРћРҐРЇР®РњРҐРЄ</a></h3><div class="sect4"><h4 class="sect4"><a name="AEN7958">patch</a></h4><p>patch Р›РќР”РҐРўРҐР–РҐРџРЎР•Р  РўР®РРљ Р‘ РЇРќРќР Р‘Р•Р РЇР Р‘РҐРҐ РЇ РћР®Р Р’Р•Р›. РѕР®Р Р’ РќРђРЁР’РњРќ
+РЄР‘РљРЄР•Р РЇРЄ РЇРћРҐРЇР™РќР›, РЇРќР“Р”Р®РњРњРЁР› diff, РЇРќР”Р•РџР¤Р®Р«РҐР› РҐРњРЇР РџРЎР™Р–РҐРҐ Р™ РҐР“Р›Р•РњР•РњРҐР§.
+Patch Р’Р®РЇР Рќ РҐРЇРћРќРљР­Р“РЎР•Р РЇРЄ Р”РљРЄ РҐРЇРћРџР®Р‘РљР•РњРҐР Р‘ РҐРЇРЈРќР”РњРќР› Р™РќР”Р•, РћРќРЇР™РќРљР­Р™РЎ
+РЇРќРЈРџР®РњРЄР•Р  Р‘РџР•Р›РЄ РҐ Р›Р•РЇР Рќ РњР® Р”РҐРЇР™Р•. РјР®РћРџРҐР›Р•Рџ, РҐР›Р•Р•Р РЇРЄ РћР®Р™Р•Р  РќРђР—Р•Р›РќР› 1 MB.
+СЏРљР•Р”РЎР§Р«Р®РЄ Р‘Р•РџРЇРҐРЄ РћР®Р™Р•Р Р® РҐР›Р•Р•Р  РҐР“Р›Р•РњР•РњРҐРЄ Р РќРљР­Р™Рќ Р‘ 2 РўР®РРљР®РЈ. РјРќР‘Р®РЄ Р‘Р•РџРЇРҐРЄ
+Р›РќР¤Р•Р  РђРЁР Р­ Р™Р®Р™ РњРќР‘РЁР› РћР®Р™Р•Р РќР› Р‘ 1 MB РҐРљРҐ РћР®Р Р’Р•Р› Р‘ 1 KB. СЂР®Р™РҐР› РќРђРџР®Р“РќР›,
+РћР®Р Р’РҐ РћРќР“Р‘РќРљРЄР§Р  РҐР“РђР•Р¤Р®Р Р­ РќРђР—Р•Р›РњРЁРЈ Р“Р®Р¦РџРЎР“РќР™.</p></div></div></div>
+<div class="sect2"><h2 class="sect2"><a name="AEN7961">РіР®Р‘РҐРЇРҐР›РќРЇР РҐ Patch</a></h2><p>РѕРќРЇРљР•Р”РњРЄРЄ РћРџРќР‘Р•РџР™Р®: Р‘Р•РџРЇРҐРЄ 2.5.4.</p><p class="literallayout">Bash:в•ђsh<br>
+Binutils:в•ђas,в•ђld<br>
+Diffutils:в•ђcmp<br>
+Fileutils:в•ђchmod,в•ђinstall,в•ђmv,в•ђrm<br>
+Gcc:в•ђcc,в•ђcc1,в•ђcollect2,в•ђcpp0,в•ђgcc<br>
+Glibc:в•ђgetconf<br>
+Grep:в•ђegrep,в•ђgrep<br>
+Make:в•ђmake<br>
+Sed:в•ђsed<br>
+Sh-utils:в•ђecho,в•ђexpr,в•ђhostname,в•ђuname<br>
+Textutils:в•ђcat,в•ђtr</p></div>
+<h2 class="sect2"></h2></div></div><div class="NAVFOOTER"><hr align="Left" width="100%"><table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="33%" align="Left" valign="Top"><a href="make.html" accesskey="P">РјР®Р“Р®Р”</a></td><td width="34%" align="Center" valign="Top"><a href="../index.html" accesskey="H">РґРќР›РќР</a></td><td width="33%" align="Right" valign="Top"><a href="sed.html" accesskey="N">Р±РћР•РџР•Р”</a></td></tr><tr><td width="33%" align="Left" valign="Top">СЃРЇР Р®РњРќР‘Р™Р® Make-3.79.1</td><td width="34%" align="Center" valign="Top"><a href="chapter05.html" accesskey="U">РјР®Р‘Р•РџРЈ</a></td><td width="33%" align="Right" valign="Top">СЃРЇР Р®РњРќР‘Р™Р® Sed-3.02</td></tr></tbody></table></div><br>
 </body></html>

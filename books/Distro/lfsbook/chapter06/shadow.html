@@ -1,69 +1,69 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>Installing Shadow-4.0.3</title><meta name="GENERATOR" content="Microsoft FrontPage 4.0" /=""><link rel="HOME" title="Linux From Scratch" href="http://www.linuxfromscratch.org/view/4.0/index.html" /=""><link rel="UP" title="Installing basic system software" href="http://www.linuxfromscratch.org/view/4.0/chapter06/chapter06.html" /=""><link rel="PREVIOUS" title="Installing Psmisc-21" href="http://www.linuxfromscratch.org/view/4.0/chapter06/psmisc.html" /=""><link rel="NEXT" title="Installing Sysklogd-1.4.1" href="http://www.linuxfromscratch.org/view/4.0/chapter06/sysklogd.html" /=""></head><body class="sect1" bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#840084" alink="#006000"><div class="NAVHEADER"><table summary="Header navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><th colspan="3" align="Center">Linux From Scratch: Версия 4.0</th></tr><tr><td width="10%" align="Left" valign="Bottom"><a href="psmisc.html" accesskey="P">Назад</a></td><td width="80%" align="Center" valign="Bottom">Глава 6. Установка основных компонентов
-        системы</td><td width="10%" align="Right" valign="Bottom"><a href="sysklogd.html" accesskey="N">Вперед</a></td></tr></tbody></table><hr align="Left" width="100%" /=""></div><div class="sect1"><h1 class="sect1"><a name="ch06-shadow">Установка Shadow-4.0.3</a></h1><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen">Приблизительное время компиляции:           0.88 SBU<br>Необходимое дисковое пространство:  7 MB</pre></td></tr></tbody></table><div class="sect2"><h2 class="sect2"><a name="AEN5162">Инсталляция Shadow Password Suite</a></h2><p>Перед тем как перейти к инсталляции
-    данного пакета, рекомендуем прочесть
-    руководство по теневым паролям &lt;Shadow
-    passwords&gt;, которое рассказывает о том, как
-    сделать систему более защищенной в
-    отношении паролей, как включить
-    поддержку паролей MD5 и как выжать из
-    пакета Shadow максимум пользы для системы.
-    См. <a href="http://hints.linuxfromscratch.org/hints/shadowpasswd_plus.txt" target="_top">http://hints.linuxfromscratch.org/hints/shadowpasswd_plus.txt</a>.</p><p>Для инсталляции Shadow Password Suite выполните:</p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>./configure --prefix=/usr \<br>    --libdir=/usr/lib --enable-shared &amp;&amp;<br>make &amp;&amp;<br>make install &amp;&amp;<br>cp etc/{limits,login.access} /etc &amp;&amp;<br>sed 's%/var/spool/mail%/var/mail%' \<br>    etc/login.defs.linux &gt; /etc/login.defs &amp;&amp;<br>ln -s vipw /usr/sbin/vigr &amp;&amp;<br>rm /bin/vipw &amp;&amp;<br>mv /bin/sg /usr/bin &amp;&amp;<br>mv /usr/lib/lib{shadow,misc}.so.0* /lib &amp;&amp;<br>ln -sf ../../lib/libshadow.so.0 /usr/lib/libshadow.so &amp;&amp;<br>ln -sf ../../lib/libmisc.so.0 /usr/lib/libmisc.so</b></tt></pre></td></tr></tbody></table><p>Sh-utils и Shadow Password Suite устанавливают свои
-    программы
-<tt class="filename">groups</tt>. Если вы захотите удалить программу <tt class="filename">groups</tt>  из пакета Shadow Password
-Suite выполните:</p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>rm /bin/groups</b></tt></pre></td></tr></tbody></table></div><div class="sect2"><h2 class="sect2"><a name="AEN5176">Пояснения команд</a></h2><p><tt class="userinput"><b>cp limits login.access /etc:</b></tt>  Эти файлы не инсталлируются при установке
-    пакета, поэтому необходимо скопировать
-    их вручную, т.к. они необходимы для
-    настроек аутентификации системы.</p><p><tt class="userinput"><b>sed "s%/var/spool/mail%/var/mail%" login.defs.linux &gt;
-/etc/login.defs</b></tt>: /var/spool/mail устаревшее местонахождение
-    почтовых ящиков пользователей. На
-    сегодняшний день используется каталог /var/mail.</p><p><tt class="userinput"><b>ln -s vipw vigr:</b></tt>  В соответствии с страницой руководства
-    команды vipw, на эту команду должна
-    существовать символическая ссылка vigr.
-    Так как при инсталляции Shadow эта
-    символическая ссылка не создается,
-    создадим ее вручную.</p></div><div class="sect2">
-<div class="sect2"><h2 class="sect2"><a name="AEN8264">Содержимое Shadow</a></h2><p>Последняя проверка: версия 4.0.3.</p><div class="sect3"><h3 class="sect3"><a name="AEN8267">Программы</a></h3><p>chage, chfn, chpasswd, chsh, dpasswd, expiry, faillog, gpasswd,
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>Installing Shadow-4.0.3</title><meta name="GENERATOR" content="Microsoft FrontPage 4.0" /=""><link rel="HOME" title="Linux From Scratch" href="http://www.linuxfromscratch.org/view/4.0/index.html" /=""><link rel="UP" title="Installing basic system software" href="http://www.linuxfromscratch.org/view/4.0/chapter06/chapter06.html" /=""><link rel="PREVIOUS" title="Installing Psmisc-21" href="http://www.linuxfromscratch.org/view/4.0/chapter06/psmisc.html" /=""><link rel="NEXT" title="Installing Sysklogd-1.4.1" href="http://www.linuxfromscratch.org/view/4.0/chapter06/sysklogd.html" /=""></head><body class="sect1" bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#840084" alink="#006000"><div class="NAVHEADER"><table summary="Header navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><th colspan="3" align="Center">Linux From Scratch: Р±Р•РџРЇРҐРЄ 4.0</th></tr><tr><td width="10%" align="Left" valign="Bottom"><a href="psmisc.html" accesskey="P">РјР®Р“Р®Р”</a></td><td width="80%" align="Center" valign="Bottom">С†РљР®Р‘Р® 6. СЃРЇР Р®РњРќР‘Р™Р® РќРЇРњРќР‘РњРЁРЈ Р™РќР›РћРќРњР•РњР РќР‘
+        РЇРҐРЇР Р•Р›РЁ</td><td width="10%" align="Right" valign="Bottom"><a href="sysklogd.html" accesskey="N">Р±РћР•РџР•Р”</a></td></tr></tbody></table><hr align="Left" width="100%" /=""></div><div class="sect1"><h1 class="sect1"><a name="ch06-shadow">СЃРЇР Р®РњРќР‘Р™Р® Shadow-4.0.3</a></h1><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen">РѕРџРҐРђРљРҐР“РҐР Р•РљР­РњРќР• Р‘РџР•Р›РЄ Р™РќР›РћРҐРљРЄР–РҐРҐ:           0.88 SBU<br>РјР•РќРђРЈРќР”РҐР›РќР• Р”РҐРЇР™РќР‘РќР• РћРџРќРЇР РџР®РњРЇР Р‘Рќ:  7 MB</pre></td></tr></tbody></table><div class="sect2"><h2 class="sect2"><a name="AEN5162">С…РњРЇР Р®РљРљРЄР–РҐРЄ Shadow Password Suite</a></h2><p>РѕР•РџР•Р” Р Р•Р› Р™Р®Р™ РћР•РџР•РР РҐ Р™ РҐРњРЇР Р®РљРљРЄР–РҐРҐ
+    Р”Р®РњРњРќР¦Рќ РћР®Р™Р•Р Р®, РџР•Р™РќР›Р•РњР”РЎР•Р› РћРџРќР’Р•РЇР Р­
+    РџРЎР™РќР‘РќР”РЇР Р‘Рќ РћРќ Р Р•РњР•Р‘РЁР› РћР®РџРќРљРЄР› &lt;Shadow
+    passwords&gt;, Р™РќР РќРџРќР• РџР®РЇРЇР™Р®Р“РЁР‘Р®Р•Р  Рќ Р РќР›, Р™Р®Р™
+    РЇР”Р•РљР®Р Р­ РЇРҐРЇР Р•Р›РЎ РђРќРљР•Р• Р“Р®Р«РҐР«Р•РњРњРќР Р‘
+    РќР РњРќР¬Р•РњРҐРҐ РћР®РџРќРљР•Р, Р™Р®Р™ Р‘Р™РљР§Р’РҐР Р­
+    РћРќР”Р”Р•РџР¤Р™РЎ РћР®РџРќРљР•Р MD5 РҐ Р™Р®Р™ Р‘РЁР¤Р®Р Р­ РҐР“
+    РћР®Р™Р•Р Р® Shadow Р›Р®Р™РЇРҐР›РЎР› РћРќРљР­Р“РЁ Р”РљРЄ РЇРҐРЇР Р•Р›РЁ.
+    СЏР›. <a href="http://hints.linuxfromscratch.org/hints/shadowpasswd_plus.txt" target="_top">http://hints.linuxfromscratch.org/hints/shadowpasswd_plus.txt</a>.</p><p>РґРљРЄ РҐРњРЇР Р®РљРљРЄР–РҐРҐ Shadow Password Suite Р‘РЁРћРќРљРњРҐР Р•:</p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>./configure --prefix=/usr \<br>в•ђв•ђв•ђв•ђ--libdir=/usr/lib --enable-shared &amp;&amp;<br>make &amp;&amp;<br>make install &amp;&amp;<br>cp etc/{limits,login.access} /etc &amp;&amp;<br>sed 's%/var/spool/mail%/var/mail%' \<br>в•ђв•ђв•ђв•ђetc/login.defs.linux &gt; /etc/login.defs &amp;&amp;<br>ln -s vipw /usr/sbin/vigr &amp;&amp;<br>rm /bin/vipw &amp;&amp;<br>mv /bin/sg /usr/bin &amp;&amp;<br>mv /usr/lib/lib{shadow,misc}.so.0* /lib &amp;&amp;<br>ln -sf ../../lib/libshadow.so.0 /usr/lib/libshadow.so &amp;&amp;<br>ln -sf ../../lib/libmisc.so.0 /usr/lib/libmisc.so</b></tt></pre></td></tr></tbody></table><p>Sh-utils РҐ Shadow Password Suite РЎРЇР Р®РњР®Р‘РљРҐР‘Р®Р§Р  РЇР‘РќРҐ
+    РћРџРќР¦РџР®Р›Р›РЁ
+<tt class="filename">groups</tt>. РµРЇРљРҐ Р‘РЁ Р“Р®РЈРќР РҐР Р• РЎР”Р®РљРҐР Р­ РћРџРќР¦РџР®Р›Р›РЎ <tt class="filename">groups</tt>  РҐР“ РћР®Р™Р•Р Р® Shadow Password
+Suite Р‘РЁРћРќРљРњРҐР Р•:</p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>rm /bin/groups</b></tt></pre></td></tr></tbody></table></div><div class="sect2"><h2 class="sect2"><a name="AEN5176">РѕРќРЄРЇРњР•РњРҐРЄ Р™РќР›Р®РњР”</a></h2><p><tt class="userinput"><b>cp limits login.access /etc:</b></tt>  С‰Р РҐ РўР®РРљРЁ РњР• РҐРњРЇР Р®РљРљРҐРџРЎР§Р РЇРЄ РћРџРҐ РЎРЇР Р®РњРќР‘Р™Р•
+    РћР®Р™Р•Р Р®, РћРќР©Р РќР›РЎ РњР•РќРђРЈРќР”РҐР›Рќ РЇР™РќРћРҐРџРќР‘Р®Р Р­
+    РҐРЈ Р‘РџРЎР’РњРЎР§, Р .Р™. РќРњРҐ РњР•РќРђРЈРќР”РҐР›РЁ Р”РљРЄ
+    РњР®РЇР РџРќР•Р™ Р®РЎР Р•РњР РҐРўРҐР™Р®Р–РҐРҐ РЇРҐРЇР Р•Р›РЁ.</p><p><tt class="userinput"><b>sed "s%/var/spool/mail%/var/mail%" login.defs.linux &gt;
+/etc/login.defs</b></tt>: /var/spool/mail РЎРЇР Р®РџР•Р‘Р¬Р•Р• Р›Р•РЇР РќРњР®РЈРќР¤Р”Р•РњРҐР•
+    РћРќР’Р РќР‘РЁРЈ РЄР«РҐР™РќР‘ РћРќРљР­Р“РќР‘Р®Р Р•РљР•Р. РјР®
+    РЇР•Р¦РќР”РњРЄР¬РњРҐР Р”Р•РњР­ РҐРЇРћРќРљР­Р“РЎР•Р РЇРЄ Р™Р®Р Р®РљРќР¦ /var/mail.</p><p><tt class="userinput"><b>ln -s vipw vigr:</b></tt>  Р± РЇРќРќР Р‘Р•Р РЇР Р‘РҐРҐ РЇ РЇР РџР®РњРҐР–РќР РџРЎР™РќР‘РќР”РЇР Р‘Р®
+    Р™РќР›Р®РњР”РЁ vipw, РњР® Р©Р РЎ Р™РќР›Р®РњР”РЎ Р”РќРљР¤РњР®
+    РЇРЎР«Р•РЇР Р‘РќР‘Р®Р Р­ РЇРҐР›Р‘РќРљРҐР’Р•РЇР™Р®РЄ РЇРЇРЁРљР™Р® vigr.
+    СЂР®Р™ Р™Р®Р™ РћРџРҐ РҐРњРЇР Р®РљРљРЄР–РҐРҐ Shadow Р©Р Р®
+    РЇРҐР›Р‘РќРљРҐР’Р•РЇР™Р®РЄ РЇРЇРЁРљР™Р® РњР• РЇРќР“Р”Р®Р•Р РЇРЄ,
+    РЇРќР“Р”Р®Р”РҐР› Р•Р• Р‘РџРЎР’РњРЎР§.</p></div><div class="sect2">
+<div class="sect2"><h2 class="sect2"><a name="AEN8264">СЏРќР”Р•РџР¤РҐР›РќР• Shadow</a></h2><p>РѕРќРЇРљР•Р”РњРЄРЄ РћРџРќР‘Р•РџР™Р®: Р‘Р•РџРЇРҐРЄ 4.0.3.</p><div class="sect3"><h3 class="sect3"><a name="AEN8267">РѕРџРќР¦РџР®Р›Р›РЁ</a></h3><p>chage, chfn, chpasswd, chsh, dpasswd, expiry, faillog, gpasswd,
 groupadd, groupdel, groupmod, groups, grpck, grpconv, grpunconv,
 lastlog, login, logoutd, mkpasswd, newgrp, newusers, passwd, pwck,
-pwconv, pwunconv, sg (ссылка на newgrp), useradd, userdel, usermod, vigr
-(ссылка на vipw) и vipw</p></div><div class="sect3"><h3 class="sect3"><a name="AEN8270">Описания</a></h3><div class="sect4"><h4 class="sect4"><a name="AEN8272">chage</a></h4><p>chage изменяет число дней между сменами паролей и дату последнего
-изменения.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8275">chfn</a></h4><p>chfn изменяет полное имя пользователя и прочую информацию о нем
-(номер рабочего кабинета, рабочий и домашний телефоны).</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8278">chpasswd</a></h4><p>chpasswd читает файл, содержащий пользовательские имена и пароли, и
-использует эту информацию для обновления группы существующих
-пользователей.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8281">chsh</a></h4><p>chsh меняет командный интерпретатор, используемый пользователем.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8284">dpasswd</a></h4><p>dpasswd добавляет, удаляет и обновляет пароли dial-up подключений
-для командных оболочек.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8287">expiry</a></h4><p>expiry просматривает и изменяет правила истечения срока действия
-паролей.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8290">faillog</a></h4><p>faillog форматирует содержимое журнала ошибок /var/log/faillog и
-поддерживает счетчики и лимиты ошибок.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8293">gpasswd</a></h4><p>gpasswd используется для редактирования /etc/group.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8296">groupadd</a></h4><p>groupadd создает новую группу, используя заданные параметры и
-параметры по умолчанию.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8299">groupdel</a></h4><p>groupdel изменяет файлы учетных записей, удаляя все относящееся к
-заданной группе.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8302">groupmod</a></h4><p>groupmod изменяет файлы учетных записей групп, внося заданные
-изменения.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8305">groups</a></h4><p>groups выводит группы, к которым принадлежит пользователь.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8308">grpck</a></h4><p>grpck проверяет целостность системной информации об аутентификации.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8311">grpconv</a></h4><p>grpunconv конвертирует обычные файлы групп в теневые.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8314">grpunconv</a></h4><p>grpunconv конвертирует теневые файлы групп в обычные.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8317">lastlog</a></h4><p>lastlog форматирует и выводит содержимое журнала регистраций
-/var/log/lastlog. Выводится регистрационное имя, порт и время
-регистрации.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8320">login</a></h4><p>login используется для начала новой сессии работы с системой.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8323">logoutd</a></h4><p>logoutd контролирует время регистрации и прочие ограничения,
-указанные в /etc/porttime.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8326">mkpasswd</a></h4><p>mkpasswd читает файл в заданном формате и конвертирует его в базу
-данных соответствующего формата.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8329">newgrp</a></h4><p>newgrp изменяет текущую группу.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8332">newusers</a></h4><p>newusers читает файл с именами пользователей и пустыми полями
-паролей и обновляет группу существующих пользователей или создает новых.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8335">passwd</a></h4><p>passwd меняет пароли пользователей и групп.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8338">pwck</a></h4><p>pwck проверяет целостность файлов паролей.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8341">pwconv</a></h4><p>pwconv конвертирует обычный файл паролей в теневой.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8344">pwunconv</a></h4><p>pwunconv конвертирует теневой файл паролей в обычный.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8347">sg</a></h4><p>sg меняет GID пользователя на соответствующий указанной группе или
-выполняет заданную команду с правами указанной группы.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8350">useradd</a></h4><p>useradd создает нового пользователя или обновляет данные по
-умолчанию о новых пользователях.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8353">userdel</a></h4><p>userdel изменяет файлы, содержащие информацию о пользователях,
-удаляя все записи, относящиеся к указаннному регистрационному имени.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8356">usermod</a></h4><p>usermod изменяет файлы учетных записей пользователей, внося заданные
-изменения..</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8359">vipw и vigr</a></h4><p>vipw и vigr позволяют безопасно редактировать /etc/passwd и
-/etc/group. С флагом -s будут редактироваться теневые версии файлов,
-/etc/shadow и /etc/gshadow.</p></div></div><div class="sect3"><h3 class="sect3"><a name="AEN8362">Библиотеки</a></h3><p>libmisc.[a,so], libshadow.[a,so]</p></div><div class="sect3"><h3 class="sect3"><a name="AEN8365">Descriptions</a></h3><div class="sect4"><h4 class="sect4"><a name="AEN8367">libmisc</a></h4><p>На данный момент нет описания.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8370">libshadow</a></h4><p>libshadow предоставляет большинство функций для программ shadow.</p></div></div></div>
-<div class="sect2"><h2 class="sect2"><a name="AEN8373">Зависимости Shadow</a></h2><p>Последняя проверка: версия 20001016.</p><p class="literallayout">Autoconf: autoconf, autoheader<br>
-Automake: aclocal, automake<br>
-Bash: sh<br>
-Binutils: ar, as, ld, nm, ranlib<br>
-Diffutils: cmp<br>
-Fileutils: chmod, cp, install, ln, ls, mkdir, mv, rm, rmdir<br>
-Gettext: msgfmt, xgettext<br>
-Gcc: cc1, collect2, cpp0, gcc<br>
-Glibc: ldconfig<br>
-Grep: egrep, grep<br>
-M4: m4<br>
-Make: make<br>
-Gawk: gawk<br>
-Net-tools: hostname<br>
-Sed: sed<br>
-Sh-utils: basename, echo, expr, sleep, uname<br>
-Texinfo: makeinfo<br>
-Textutils: cat, sort, tr, uniq</p></div>
-<h2 class="sect2"></h2></div></div><div class="NAVFOOTER"><hr align="Left" width="100%" /=""><table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="33%" align="Left" valign="Top"><a href="psmisc.html" accesskey="P">Назад</a></td><td width="34%" align="Center" valign="Top"><a href="../index.html" accesskey="H">Домой</a></td><td width="33%" align="Right" valign="Top"><a href="sysklogd.html" accesskey="N">Вперед</a></td></tr><tr><td width="33%" align="Left" valign="Top">Установка Psmisc-21</td><td width="34%" align="Center" valign="Top"><a href="chapter06.html" accesskey="U">Наверх</a></td><td width="33%" align="Right" valign="Top">Установка Sysklogd-1.4.1</td></tr></tbody></table></div></body></html>
+pwconv, pwunconv, sg (РЇРЇРЁРљР™Р® РњР® newgrp), useradd, userdel, usermod, vigr
+(РЇРЇРЁРљР™Р® РњР® vipw) РҐ vipw</p></div><div class="sect3"><h3 class="sect3"><a name="AEN8270">РЅРћРҐРЇР®РњРҐРЄ</a></h3><div class="sect4"><h4 class="sect4"><a name="AEN8272">chage</a></h4><p>chage РҐР“Р›Р•РњРЄР•Р  Р’РҐРЇРљРќ Р”РњР•Р Р›Р•Р¤Р”РЎ РЇР›Р•РњР®Р›РҐ РћР®РџРќРљР•Р РҐ Р”Р®Р РЎ РћРќРЇРљР•Р”РњР•Р¦Рќ
+РҐР“Р›Р•РњР•РњРҐРЄ.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8275">chfn</a></h4><p>chfn РҐР“Р›Р•РњРЄР•Р  РћРќРљРњРќР• РҐР›РЄ РћРќРљР­Р“РќР‘Р®Р Р•РљРЄ РҐ РћРџРќР’РЎР§ РҐРњРўРќРџР›Р®Р–РҐР§ Рќ РњР•Р›
+(РњРќР›Р•Рџ РџР®РђРќР’Р•Р¦Рќ Р™Р®РђРҐРњР•Р Р®, РџР®РђРќР’РҐР РҐ Р”РќР›Р®Р¬РњРҐР Р Р•РљР•РўРќРњРЁ).</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8278">chpasswd</a></h4><p>chpasswd Р’РҐР Р®Р•Р  РўР®РРљ, РЇРќР”Р•РџР¤Р®Р«РҐР РћРќРљР­Р“РќР‘Р®Р Р•РљР­РЇР™РҐР• РҐР›Р•РњР® РҐ РћР®РџРќРљРҐ, РҐ
+РҐРЇРћРќРљР­Р“РЎР•Р  Р©Р РЎ РҐРњРўРќРџР›Р®Р–РҐР§ Р”РљРЄ РќРђРњРќР‘РљР•РњРҐРЄ Р¦РџРЎРћРћРЁ РЇРЎР«Р•РЇР Р‘РЎР§Р«РҐРЈ
+РћРќРљР­Р“РќР‘Р®Р Р•РљР•Р.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8281">chsh</a></h4><p>chsh Р›Р•РњРЄР•Р  Р™РќР›Р®РњР”РњРЁР РҐРњР Р•РџРћРџР•Р Р®Р РќРџ, РҐРЇРћРќРљР­Р“РЎР•Р›РЁР РћРќРљР­Р“РќР‘Р®Р Р•РљР•Р›.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8284">dpasswd</a></h4><p>dpasswd Р”РќРђР®Р‘РљРЄР•Р , РЎР”Р®РљРЄР•Р  РҐ РќРђРњРќР‘РљРЄР•Р  РћР®РџРќРљРҐ dial-up РћРќР”Р™РљР§Р’Р•РњРҐР
+Р”РљРЄ Р™РќР›Р®РњР”РњРЁРЈ РќРђРќРљРќР’Р•Р™.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8287">expiry</a></h4><p>expiry РћРџРќРЇР›Р®Р РџРҐР‘Р®Р•Р  РҐ РҐР“Р›Р•РњРЄР•Р  РћРџР®Р‘РҐРљР® РҐРЇР Р•Р’Р•РњРҐРЄ РЇРџРќР™Р® Р”Р•РРЇР Р‘РҐРЄ
+РћР®РџРќРљР•Р.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8290">faillog</a></h4><p>faillog РўРќРџР›Р®Р РҐРџРЎР•Р  РЇРќР”Р•РџР¤РҐР›РќР• Р¤РЎРџРњР®РљР® РќР¬РҐРђРќР™ /var/log/faillog РҐ
+РћРќР”Р”Р•РџР¤РҐР‘Р®Р•Р  РЇР’Р•Р Р’РҐР™РҐ РҐ РљРҐР›РҐР РЁ РќР¬РҐРђРќР™.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8293">gpasswd</a></h4><p>gpasswd РҐРЇРћРќРљР­Р“РЎР•Р РЇРЄ Р”РљРЄ РџР•Р”Р®Р™Р РҐРџРќР‘Р®РњРҐРЄ /etc/group.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8296">groupadd</a></h4><p>groupadd РЇРќР“Р”Р®Р•Р  РњРќР‘РЎР§ Р¦РџРЎРћРћРЎ, РҐРЇРћРќРљР­Р“РЎРЄ Р“Р®Р”Р®РњРњРЁР• РћР®РџР®Р›Р•Р РџРЁ РҐ
+РћР®РџР®Р›Р•Р РџРЁ РћРќ РЎР›РќРљР’Р®РњРҐР§.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8299">groupdel</a></h4><p>groupdel РҐР“Р›Р•РњРЄР•Р  РўР®РРљРЁ РЎР’Р•Р РњРЁРЈ Р“Р®РћРҐРЇР•Р, РЎР”Р®РљРЄРЄ Р‘РЇР• РќР РњРќРЇРЄР«Р•Р•РЇРЄ Р™
+Р“Р®Р”Р®РњРњРќР Р¦РџРЎРћРћР•.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8302">groupmod</a></h4><p>groupmodв•ђРҐР“Р›Р•РњРЄР•Р  РўР®РРљРЁ РЎР’Р•Р РњРЁРЈ Р“Р®РћРҐРЇР•Р Р¦РџРЎРћРћ, Р‘РњРќРЇРЄ Р“Р®Р”Р®РњРњРЁР•
+РҐР“Р›Р•РњР•РњРҐРЄ.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8305">groups</a></h4><p>groups Р‘РЁР‘РќР”РҐР  Р¦РџРЎРћРћРЁ, Р™ Р™РќР РќРџРЁР› РћРџРҐРњР®Р”РљР•Р¤РҐР  РћРќРљР­Р“РќР‘Р®Р Р•РљР­.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8308">grpck</a></h4><p>grpck РћРџРќР‘Р•РџРЄР•Р  Р–Р•РљРќРЇР РњРќРЇР Р­ РЇРҐРЇР Р•Р›РњРќР РҐРњРўРќРџР›Р®Р–РҐРҐ РќРђ Р®РЎР Р•РњР РҐРўРҐР™Р®Р–РҐРҐ.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8311">grpconv</a></h4><p>grpunconv Р™РќРњР‘Р•РџР РҐРџРЎР•Р  РќРђРЁР’РњРЁР• РўР®РРљРЁ Р¦РџРЎРћРћ Р‘ Р Р•РњР•Р‘РЁР•.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8314">grpunconv</a></h4><p>grpunconv Р™РќРњР‘Р•РџР РҐРџРЎР•Р  Р Р•РњР•Р‘РЁР• РўР®РРљРЁ Р¦РџРЎРћРћ Р‘ РќРђРЁР’РњРЁР•.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8317">lastlog</a></h4><p>lastlog РўРќРџР›Р®Р РҐРџРЎР•Р  РҐ Р‘РЁР‘РќР”РҐР  РЇРќР”Р•РџР¤РҐР›РќР• Р¤РЎРџРњР®РљР® РџР•Р¦РҐРЇР РџР®Р–РҐР
+/var/log/lastlog. Р±РЁР‘РќР”РҐР РЇРЄ РџР•Р¦РҐРЇР РџР®Р–РҐРќРњРњРќР• РҐР›РЄ, РћРќРџР  РҐ Р‘РџР•Р›РЄ
+РџР•Р¦РҐРЇР РџР®Р–РҐРҐ.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8320">login</a></h4><p>login РҐРЇРћРќРљР­Р“РЎР•Р РЇРЄ Р”РљРЄ РњР®Р’Р®РљР® РњРќР‘РќР РЇР•РЇРЇРҐРҐ РџР®РђРќР РЁ РЇ РЇРҐРЇР Р•Р›РќР.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8323">logoutd</a></h4><p>logoutd Р™РќРњР РџРќРљРҐРџРЎР•Р  Р‘РџР•Р›РЄ РџР•Р¦РҐРЇР РџР®Р–РҐРҐ РҐ РћРџРќР’РҐР• РќР¦РџР®РњРҐР’Р•РњРҐРЄ,
+РЎР™Р®Р“Р®РњРњРЁР• Р‘ /etc/porttime.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8326">mkpasswd</a></h4><p>mkpasswd Р’РҐР Р®Р•Р  РўР®РРљ Р‘ Р“Р®Р”Р®РњРњРќР› РўРќРџР›Р®Р Р• РҐ Р™РќРњР‘Р•РџР РҐРџРЎР•Р  Р•Р¦Рќ Р‘ РђР®Р“РЎ
+Р”Р®РњРњРЁРЈ РЇРќРќР Р‘Р•Р РЇР Р‘РЎР§Р«Р•Р¦Рќ РўРќРџР›Р®Р Р®.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8329">newgrp</a></h4><p>newgrp РҐР“Р›Р•РњРЄР•Р  Р Р•Р™РЎР«РЎР§ Р¦РџРЎРћРћРЎ.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8332">newusers</a></h4><p>newusers Р’РҐР Р®Р•Р  РўР®РРљ РЇ РҐР›Р•РњР®Р›РҐ РћРќРљР­Р“РќР‘Р®Р Р•РљР•Р РҐ РћРЎРЇР РЁР›РҐ РћРќРљРЄР›РҐ
+РћР®РџРќРљР•Р РҐ РќРђРњРќР‘РљРЄР•Р  Р¦РџРЎРћРћРЎ РЇРЎР«Р•РЇР Р‘РЎР§Р«РҐРЈ РћРќРљР­Р“РќР‘Р®Р Р•РљР•Р РҐРљРҐ РЇРќР“Р”Р®Р•Р  РњРќР‘РЁРЈ.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8335">passwd</a></h4><p>passwd Р›Р•РњРЄР•Р  РћР®РџРќРљРҐ РћРќРљР­Р“РќР‘Р®Р Р•РљР•Р РҐ Р¦РџРЎРћРћ.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8338">pwck</a></h4><p>pwck РћРџРќР‘Р•РџРЄР•Р  Р–Р•РљРќРЇР РњРќРЇР Р­ РўР®РРљРќР‘ РћР®РџРќРљР•Р.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8341">pwconv</a></h4><p>pwconv Р™РќРњР‘Р•РџР РҐРџРЎР•Р  РќРђРЁР’РњРЁР РўР®РРљ РћР®РџРќРљР•Р Р‘ Р Р•РњР•Р‘РќР.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8344">pwunconv</a></h4><p>pwunconv Р™РќРњР‘Р•РџР РҐРџРЎР•Р  Р Р•РњР•Р‘РќР РўР®РРљ РћР®РџРќРљР•Р Р‘ РќРђРЁР’РњРЁР.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8347">sg</a></h4><p>sg Р›Р•РњРЄР•Р  GID РћРќРљР­Р“РќР‘Р®Р Р•РљРЄ РњР® РЇРќРќР Р‘Р•Р РЇР Р‘РЎР§Р«РҐР РЎР™Р®Р“Р®РњРњРќР Р¦РџРЎРћРћР• РҐРљРҐ
+Р‘РЁРћРќРљРњРЄР•Р  Р“Р®Р”Р®РњРњРЎР§ Р™РќР›Р®РњР”РЎ РЇ РћРџР®Р‘Р®Р›РҐ РЎР™Р®Р“Р®РњРњРќР Р¦РџРЎРћРћРЁ.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8350">useradd</a></h4><p>useradd РЇРќР“Р”Р®Р•Р  РњРќР‘РќР¦Рќ РћРќРљР­Р“РќР‘Р®Р Р•РљРЄ РҐРљРҐ РќРђРњРќР‘РљРЄР•Р  Р”Р®РњРњРЁР• РћРќ
+РЎР›РќРљР’Р®РњРҐР§ Рќ РњРќР‘РЁРЈ РћРќРљР­Р“РќР‘Р®Р Р•РљРЄРЈ.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8353">userdel</a></h4><p>userdel РҐР“Р›Р•РњРЄР•Р  РўР®РРљРЁ, РЇРќР”Р•РџР¤Р®Р«РҐР• РҐРњРўРќРџР›Р®Р–РҐР§ Рќ РћРќРљР­Р“РќР‘Р®Р Р•РљРЄРЈ,
+РЎР”Р®РљРЄРЄ Р‘РЇР• Р“Р®РћРҐРЇРҐ, РќР РњРќРЇРЄР«РҐР•РЇРЄ Р™ РЎР™Р®Р“Р®РњРњРњРќР›РЎ РџР•Р¦РҐРЇР РџР®Р–РҐРќРњРњРќР›РЎ РҐР›Р•РњРҐ.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8356">usermod</a></h4><p>usermodв•ђРҐР“Р›Р•РњРЄР•Р  РўР®РРљРЁ РЎР’Р•Р РњРЁРЈ Р“Р®РћРҐРЇР•Р РћРќРљР­Р“РќР‘Р®Р Р•РљР•Р, Р‘РњРќРЇРЄ Р“Р®Р”Р®РњРњРЁР•
+РҐР“Р›Р•РњР•РњРҐРЄ..</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8359">vipw РҐ vigr</a></h4><p>vipw РҐ vigr РћРќР“Р‘РќРљРЄР§Р  РђР•Р“РќРћР®РЇРњРќ РџР•Р”Р®Р™Р РҐРџРќР‘Р®Р Р­ /etc/passwd РҐ
+/etc/group. СЏ РўРљР®Р¦РќР› -s РђРЎР”РЎР  РџР•Р”Р®Р™Р РҐРџРќР‘Р®Р Р­РЇРЄ Р Р•РњР•Р‘РЁР• Р‘Р•РџРЇРҐРҐ РўР®РРљРќР‘,
+/etc/shadow РҐ /etc/gshadow.</p></div></div><div class="sect3"><h3 class="sect3"><a name="AEN8362">Р°РҐРђРљРҐРќР Р•Р™РҐ</a></h3><p>libmisc.[a,so], libshadow.[a,so]</p></div><div class="sect3"><h3 class="sect3"><a name="AEN8365">Descriptions</a></h3><div class="sect4"><h4 class="sect4"><a name="AEN8367">libmisc</a></h4><p>РјР® Р”Р®РњРњРЁР Р›РќР›Р•РњР  РњР•Р  РќРћРҐРЇР®РњРҐРЄ.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8370">libshadow</a></h4><p>libshadow РћРџР•Р”РќРЇР Р®Р‘РљРЄР•Р  РђРќРљР­Р¬РҐРњРЇР Р‘Рќ РўРЎРњР™Р–РҐР Р”РљРЄ РћРџРќР¦РџР®Р›Р› shadow.</p></div></div></div>
+<div class="sect2"><h2 class="sect2"><a name="AEN8373">РіР®Р‘РҐРЇРҐР›РќРЇР РҐ Shadow</a></h2><p>РѕРќРЇРљР•Р”РњРЄРЄ РћРџРќР‘Р•РџР™Р®: Р‘Р•РџРЇРҐРЄ 20001016.</p><p class="literallayout">Autoconf:в•ђautoconf,в•ђautoheader<br>
+Automake:в•ђaclocal,в•ђautomake<br>
+Bash:в•ђsh<br>
+Binutils:в•ђar,в•ђas,в•ђld,в•ђnm,в•ђranlib<br>
+Diffutils:в•ђcmp<br>
+Fileutils:в•ђchmod,в•ђcp,в•ђinstall,в•ђln,в•ђls,в•ђmkdir,в•ђmv,в•ђrm,в•ђrmdir<br>
+Gettext:в•ђmsgfmt,в•ђxgettext<br>
+Gcc:в•ђcc1,в•ђcollect2,в•ђcpp0,в•ђgcc<br>
+Glibc:в•ђldconfig<br>
+Grep:в•ђegrep,в•ђgrep<br>
+M4:в•ђm4<br>
+Make:в•ђmake<br>
+Gawk:в•ђgawk<br>
+Net-tools:в•ђhostname<br>
+Sed:в•ђsed<br>
+Sh-utils:в•ђbasename,в•ђecho,в•ђexpr,в•ђsleep,в•ђuname<br>
+Texinfo:в•ђmakeinfo<br>
+Textutils:в•ђcat,в•ђsort,в•ђtr,в•ђuniq</p></div>
+<h2 class="sect2"></h2></div></div><div class="NAVFOOTER"><hr align="Left" width="100%" /=""><table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="33%" align="Left" valign="Top"><a href="psmisc.html" accesskey="P">РјР®Р“Р®Р”</a></td><td width="34%" align="Center" valign="Top"><a href="../index.html" accesskey="H">РґРќР›РќР</a></td><td width="33%" align="Right" valign="Top"><a href="sysklogd.html" accesskey="N">Р±РћР•РџР•Р”</a></td></tr><tr><td width="33%" align="Left" valign="Top">СЃРЇР Р®РњРќР‘Р™Р® Psmisc-21</td><td width="34%" align="Center" valign="Top"><a href="chapter06.html" accesskey="U">РјР®Р‘Р•РџРЈ</a></td><td width="33%" align="Right" valign="Top">СЃРЇР Р®РњРќР‘Р™Р® Sysklogd-1.4.1</td></tr></tbody></table></div></body></html>

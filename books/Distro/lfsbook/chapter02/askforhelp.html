@@ -7,43 +7,43 @@
   <link rel="UP" title="Important information" href="chapter02.html">
   <link rel="PREVIOUS" title="Which Platform?" href="platform.html">
   <link rel="NEXT" title="Part II - Installing the LFS system" href="http://www.linux.org.ru/books/Distro/lfsbook/chapter02/part2.html"></head><body class="sect1" bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#840084" alink="#006000">
-<div class="NAVHEADER"><table summary="Header navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><th colspan="3" align="Center">Linux From Scratch: Версия 4.0</th></tr><tr><td width="10%" align="Left" valign="Bottom"><a href="platform.html" accesskey="P">Назад</a></td><td width="80%" align="Center" valign="Bottom">Глава 2. Важная информация<br>
-</td><td width="10%" align="Right" valign="Bottom"><a href="../part2.html" accesskey="N">Вперед</a></td></tr></tbody></table><hr align="Left" width="100%"></div>
-<div class="sect1"><h1 class="sect1"><a name="ch02-askforhelp">Как попросить о помощи</a></h1><p>В
-том случае, если при прочтении этой книги вы столкнетесь с проблемой, недокументированной
-в FAQ, многие участники проекта LFS в списках рассылки и на канале IRC будут
-рады помочь. Получить общее представление о списках рассылки LFS вы можете
-в разделе <a href="../chapter01/maillists.html">Глава 1 - Списки рассылки и архивы</a>. Чтобы нам было легче диагностировать и решать вашу
-проблему, пострайтесь привести как можно больше деталей в запросе.</p><div class="sect2"><h2 class="sect2"><a name="AEN894">Что необходимо
-указать</a></h2><p>Помимо краткого описания проблемы, не забудьте указать нижеприведенные вещи:</p><ul><li><p>версию используемой
-книги,</p></li><li><p>название пакета или секции, с которой у вас проблемы,</p></li><li><p>сообщение об ошибке или симптомы
-проблемы,</p></li><li><p>отклонялись ли вы от шагов,описанных в книге</p></li></ul><p>(Заметьте,
-что если вы отклонялись от книги, это не значит, что мы не попытаемся помочь,
-ведь весь смысл LFS - в возможности выбора. Просто напросто ваше признание
-поможет нам найти решение.)</p></div><div class="sect2"><h2 class="sect2"><a name="AEN907">Проблемы configure</a></h2><p>Если при выполнении
-скрипта configure, что-то прошло не так как надо, обратите внимание на последние строки в файле
-<tt class="filename">config.log</tt>. Обычно этот файл содержит сообщения
-об ошибках, которые не были выведены на экран. Если вы задумали попросить
-нас о помощи, не забудьте включить эти строки в ваше сообщение.</p></div><div class="sect2"><h2 class="sect2"><a name="AEN911">Проблемы при
-компиляции</a></h2><p>Для
-того чтобы помочь нам найти причину проблемы, важен как вывод на экране,
-так и содержание некоторых файлов. Вывод на экране скрипта ./configure и
-команды make содержат много полезной информации. Не стоит слепо включать
-в свое сообщение весь вывод, но и не следует включать слишком мало информации.
-Ниже приведен вывод на экран команды make:</p><p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen">gcc<br>-DALIASPATH=\"/mnt/lfs/usr/share/locale:.\"<br>-DLOCALEDIR=\"/mnt/lfs/usr/share/locale\" -DLIBDIR=\"/mnt/lfs/usr/lib\"<br>-DINCLUDEDIR=\"/mnt/lfs/usr/include\"<br>-DHAVE_CONFIG_H -I. -I.<br>-g -O2 -c getopt1.c<br>gcc -g -O2 -static -o make ar.o arscan.o commands.o dir.o expand.o file.o<br>function.o getopt.o implicit.o job.o<br>main.o misc.o read.o remake.o rule.o<br>signame.o variable.o vpath.o default.o remote-stub.o version.o opt1.o<br>-lutil job.o: In function<br>`load_too_high':<br>/lfs/tmp/make-3.79.1/job.c:1565: undefined reference to `getloadavg'<br>collect2: ld returned 1 exit status<br>make[2]: *** [make] Error<br>1<br>make[2]: Leaving directory `/lfs/tmp/make-3.79.1'<br>make[1]: *** [all-recursive] Error 1<br>make[1]: Leaving directory `/lfs/tmp/make-3.79.1'<br>make: ***<br>[all-recursive-am] Error 2</pre></td></tr></tbody></table></p><p>В таком случае,большинство просто включают в сообщении с просьбой помочь
-строку: <table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen">make [2]: *** [make] Error 1</pre></td></tr></tbody></table>и
-все, что идет после нее. Однако это недостаточно для решения проблемы. Это
-показывает, что что-то не так, но не говорит, что именно не так.<em></em><em></em>
-В сообщение с проосьбой помочь необходимо включить всю секцию вывода, т.к.
-она содержит выполненные команды и их сообщения об ошибках.<br>
+<div class="NAVHEADER"><table summary="Header navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><th colspan="3" align="Center">Linux From Scratch: Р±Р•РџРЇРҐРЄ 4.0</th></tr><tr><td width="10%" align="Left" valign="Bottom"><a href="platform.html" accesskey="P">РјР®Р“Р®Р”</a></td><td width="80%" align="Center" valign="Bottom">С†РљР®Р‘Р® 2. Р±Р®Р¤РњР®РЄ РҐРњРўРќРџР›Р®Р–РҐРЄ<br>
+</td><td width="10%" align="Right" valign="Bottom"><a href="../part2.html" accesskey="N">Р±РћР•РџР•Р”</a></td></tr></tbody></table><hr align="Left" width="100%"></div>
+<div class="sect1"><h1 class="sect1"><a name="ch02-askforhelp">Р№Р®Р™ РћРќРћРџРќРЇРҐР Р­ Рќ РћРќР›РќР«РҐ</a></h1><p>Р±
+Р РќР› РЇРљРЎР’Р®Р•, Р•РЇРљРҐ РћРџРҐ РћРџРќР’Р Р•РњРҐРҐ Р©Р РќР Р™РњРҐР¦РҐ Р‘РЁ РЇР РќРљР™РњР•Р Р•РЇР­ РЇ РћРџРќРђРљР•Р›РќР, РњР•Р”РќР™РЎР›Р•РњР РҐРџРќР‘Р®РњРњРќР
+Р‘ FAQ, Р›РњРќР¦РҐР• РЎР’Р®РЇР РњРҐР™РҐ РћРџРќР•Р™Р Р® LFS Р‘ РЇРћРҐРЇР™Р®РЈ РџР®РЇРЇРЁРљР™РҐ РҐ РњР® Р™Р®РњР®РљР• IRC РђРЎР”РЎР 
+РџР®Р”РЁ РћРќР›РќР’Р­. РѕРќРљРЎР’РҐР Р­ РќРђР«Р•Р• РћРџР•Р”РЇР Р®Р‘РљР•РњРҐР• Рќ РЇРћРҐРЇР™Р®РЈ РџР®РЇРЇРЁРљР™РҐ LFS Р‘РЁ Р›РќР¤Р•Р Р•
+Р‘ РџР®Р“Р”Р•РљР• <a href="../chapter01/maillists.html">С†РљР®Р‘Р® 1 - СЏРћРҐРЇР™РҐ РџР®РЇРЇРЁРљР™РҐ РҐ Р®РџРЈРҐР‘РЁ</a>. РІР РќРђРЁ РњР®Р› РђРЁРљРќ РљР•Р¦Р’Р• Р”РҐР®Р¦РњРќРЇР РҐРџРќР‘Р®Р Р­ РҐ РџР•Р¬Р®Р Р­ Р‘Р®Р¬РЎ
+РћРџРќРђРљР•Р›РЎ, РћРќРЇР РџР®РР Р•РЇР­ РћРџРҐР‘Р•РЇР РҐ Р™Р®Р™ Р›РќР¤РњРќ РђРќРљР­Р¬Р• Р”Р•Р Р®РљР•Р Р‘ Р“Р®РћРџРќРЇР•.</p><div class="sect2"><h2 class="sect2"><a name="AEN894">РІР Рќ РњР•РќРђРЈРќР”РҐР›Рќ
+РЎР™Р®Р“Р®Р Р­</a></h2><p>РѕРќР›РҐР›Рќ Р™РџР®Р Р™РќР¦Рќ РќРћРҐРЇР®РњРҐРЄ РћРџРќРђРљР•Р›РЁ, РњР• Р“Р®РђРЎР”Р­Р Р• РЎР™Р®Р“Р®Р Р­ РњРҐР¤Р•РћРџРҐР‘Р•Р”Р•РњРњРЁР• Р‘Р•Р«РҐ:</p><ul><li><p>Р‘Р•РџРЇРҐР§ РҐРЇРћРќРљР­Р“РЎР•Р›РќР
+Р™РњРҐР¦РҐ,</p></li><li><p>РњР®Р“Р‘Р®РњРҐР• РћР®Р™Р•Р Р® РҐРљРҐ РЇР•Р™Р–РҐРҐ, РЇ Р™РќР РќРџРќР РЎ Р‘Р®РЇ РћРџРќРђРљР•Р›РЁ,</p></li><li><p>РЇРќРќРђР«Р•РњРҐР• РќРђ РќР¬РҐРђР™Р• РҐРљРҐ РЇРҐР›РћР РќР›РЁ
+РћРџРќРђРљР•Р›РЁ,</p></li><li><p>РќР Р™РљРќРњРЄРљРҐРЇР­ РљРҐ Р‘РЁ РќР  Р¬Р®Р¦РќР‘,РќРћРҐРЇР®РњРњРЁРЈ Р‘ Р™РњРҐР¦Р•</p></li></ul><p>(РіР®Р›Р•Р Р­Р Р•,
+Р’Р Рќ Р•РЇРљРҐ Р‘РЁ РќР Р™РљРќРњРЄРљРҐРЇР­ РќР  Р™РњРҐР¦РҐ, Р©Р Рќ РњР• Р“РњР®Р’РҐР , Р’Р Рќ Р›РЁ РњР• РћРќРћРЁР Р®Р•Р›РЇРЄ РћРќР›РќР’Р­,
+Р‘Р•Р”Р­ Р‘Р•РЇР­ РЇР›РЁРЇРљ LFS - Р‘ Р‘РќР“Р›РќР¤РњРќРЇР РҐ Р‘РЁРђРќРџР®. РѕРџРќРЇР Рќ РњР®РћРџРќРЇР Рќ Р‘Р®Р¬Р• РћРџРҐР“РњР®РњРҐР•
+РћРќР›РќР¤Р•Р  РњР®Р› РњР®РР РҐ РџР•Р¬Р•РњРҐР•.)</p></div><div class="sect2"><h2 class="sect2"><a name="AEN907">РѕРџРќРђРљР•Р›РЁ configure</a></h2><p>РµРЇРљРҐ РћРџРҐ Р‘РЁРћРќРљРњР•РњРҐРҐ
+РЇР™РџРҐРћР Р® configure, Р’Р Рќ-Р Рќ РћРџРќР¬РљРќ РњР• Р Р®Р™ Р™Р®Р™ РњР®Р”Рќ, РќРђРџР®Р РҐР Р• Р‘РњРҐР›Р®РњРҐР• РњР® РћРќРЇРљР•Р”РњРҐР• РЇР РџРќР™РҐ Р‘ РўР®РРљР•
+<tt class="filename">config.log</tt>. РЅРђРЁР’РњРќ Р©Р РќР  РўР®РРљ РЇРќР”Р•РџР¤РҐР  РЇРќРќРђР«Р•РњРҐРЄ
+РќРђ РќР¬РҐРђР™Р®РЈ, Р™РќР РќРџРЁР• РњР• РђРЁРљРҐ Р‘РЁР‘Р•Р”Р•РњРЁ РњР® Р©Р™РџР®Рњ. РµРЇРљРҐ Р‘РЁ Р“Р®Р”РЎР›Р®РљРҐ РћРќРћРџРќРЇРҐР Р­
+РњР®РЇ Рќ РћРќР›РќР«РҐ, РњР• Р“Р®РђРЎР”Р­Р Р• Р‘Р™РљР§Р’РҐР Р­ Р©Р РҐ РЇР РџРќР™РҐ Р‘ Р‘Р®Р¬Р• РЇРќРќРђР«Р•РњРҐР•.</p></div><div class="sect2"><h2 class="sect2"><a name="AEN911">РѕРџРќРђРљР•Р›РЁ РћРџРҐ
+Р™РќР›РћРҐРљРЄР–РҐРҐ</a></h2><p>РґРљРЄ
+Р РќР¦Рќ Р’Р РќРђРЁ РћРќР›РќР’Р­ РњР®Р› РњР®РР РҐ РћРџРҐР’РҐРњРЎ РћРџРќРђРљР•Р›РЁ, Р‘Р®Р¤Р•Рњ Р™Р®Р™ Р‘РЁР‘РќР” РњР® Р©Р™РџР®РњР•,
+Р Р®Р™ РҐ РЇРќР”Р•РџР¤Р®РњРҐР• РњР•Р™РќР РќРџРЁРЈ РўР®РРљРќР‘. Р±РЁР‘РќР” РњР® Р©Р™РџР®РњР• РЇР™РџРҐРћР Р® ./configure РҐ
+Р™РќР›Р®РњР”РЁ make РЇРќР”Р•РџР¤Р®Р  Р›РњРќР¦Рќ РћРќРљР•Р“РњРќР РҐРњРўРќРџР›Р®Р–РҐРҐ. РјР• РЇР РќРҐР  РЇРљР•РћРќ Р‘Р™РљР§Р’Р®Р Р­
+Р‘ РЇР‘РќР• РЇРќРќРђР«Р•РњРҐР• Р‘Р•РЇР­ Р‘РЁР‘РќР”, РњРќ РҐ РњР• РЇРљР•Р”РЎР•Р  Р‘Р™РљР§Р’Р®Р Р­ РЇРљРҐР¬Р™РќР› Р›Р®РљРќ РҐРњРўРќРџР›Р®Р–РҐРҐ.
+РјРҐР¤Р• РћРџРҐР‘Р•Р”Р•Рњ Р‘РЁР‘РќР” РњР® Р©Р™РџР®Рњ Р™РќР›Р®РњР”РЁ make:</p><p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen">gcc<br>-DALIASPATH=\"/mnt/lfs/usr/share/locale:.\"<br>-DLOCALEDIR=\"/mnt/lfs/usr/share/locale\" -DLIBDIR=\"/mnt/lfs/usr/lib\"<br>-DINCLUDEDIR=\"/mnt/lfs/usr/include\"<br>-DHAVE_CONFIG_H -I. -I.<br>-g -O2 -c getopt1.c<br>gcc -g -O2 -static -o make ar.o arscan.o commands.o dir.o expand.o file.o<br>function.o getopt.o implicit.o job.o<br>main.o misc.o read.o remake.o rule.o<br>signame.o variable.o vpath.o default.o remote-stub.o version.o opt1.o<br>-lutil job.o: In function<br>`load_too_high':<br>/lfs/tmp/make-3.79.1/job.c:1565: undefined reference to `getloadavg'<br>collect2: ld returned 1 exit status<br>make[2]: *** [make] Error<br>1<br>make[2]: Leaving directory `/lfs/tmp/make-3.79.1'<br>make[1]: *** [all-recursive] Error 1<br>make[1]: Leaving directory `/lfs/tmp/make-3.79.1'<br>make: ***<br>[all-recursive-am] Error 2</pre></td></tr></tbody></table></p><p>Р± Р Р®Р™РќР› РЇРљРЎР’Р®Р•,РђРќРљР­Р¬РҐРњРЇР Р‘Рќ РћРџРќРЇР Рќ Р‘Р™РљР§Р’Р®Р§Р  Р‘ РЇРќРќРђР«Р•РњРҐРҐ РЇ РћРџРќРЇР­РђРќР РћРќР›РќР’Р­
+РЇР РџРќР™РЎ: <table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen">make [2]: *** [make] Error 1</pre></td></tr></tbody></table>РҐ
+Р‘РЇР•, Р’Р Рќ РҐР”Р•Р  РћРќРЇРљР• РњР•Р•. РЅР”РњР®Р™Рќ Р©Р Рќ РњР•Р”РќРЇР Р®Р РќР’РњРќ Р”РљРЄ РџР•Р¬Р•РњРҐРЄ РћРџРќРђРљР•Р›РЁ. С‰Р Рќ
+РћРќР™Р®Р“РЁР‘Р®Р•Р , Р’Р Рќ Р’Р Рќ-Р Рќ РњР• Р Р®Р™, РњРќ РњР• Р¦РќР‘РќРџРҐР , Р’Р Рќ РҐР›Р•РњРњРќ РњР• Р Р®Р™.<em></em><em></em>
+Р± РЇРќРќРђР«Р•РњРҐР• РЇ РћРџРќРќРЇР­РђРќР РћРќР›РќР’Р­ РњР•РќРђРЈРќР”РҐР›Рќ Р‘Р™РљР§Р’РҐР Р­ Р‘РЇР§ РЇР•Р™Р–РҐР§ Р‘РЁР‘РќР”Р®, Р .Р™.
+РќРњР® РЇРќР”Р•РџР¤РҐР  Р‘РЁРћРќРљРњР•РњРњРЁР• Р™РќР›Р®РњР”РЁ РҐ РҐРЈ РЇРќРќРђР«Р•РњРҐРЄ РќРђ РќР¬РҐРђР™Р®РЈ.<br>
 </p>
-<p>В Интернете есть замечательная статья от том, как правильно задавать вопросы,
-написанная Эриком С. Реймондом. Она находится по адресу<a href="http://www.tuxedo.org/%7Eesr/faqs/smart-questions.html" target="_top">
+<p>Р± С…РњР Р•РџРњР•Р Р• Р•РЇР Р­ Р“Р®Р›Р•Р’Р®Р Р•РљР­РњР®РЄ РЇР Р®Р Р­РЄ РќР  Р РќР›, Р™Р®Р™ РћРџР®Р‘РҐРљР­РњРќ Р“Р®Р”Р®Р‘Р®Р Р­ Р‘РќРћРџРќРЇРЁ,
+РњР®РћРҐРЇР®РњРњР®РЄ С‰РџРҐР™РќР› СЏ. РїР•РР›РќРњР”РќР›. РЅРњР® РњР®РЈРќР”РҐР РЇРЄ РћРќ Р®Р”РџР•РЇРЎ<a href="http://www.tuxedo.org/%7Eesr/faqs/smart-questions.html" target="_top">
 http://www.tuxedo.org/~esr/faqs/smart-questions.html</a>.
-Следую советам статьи, вы научитесь правильно задавать вопросы и ваши шансы получить квалифицированный ответ возрастут.</p>
+СЏРљР•Р”РЎР§ РЇРќР‘Р•Р Р®Р› РЇР Р®Р Р­РҐ, Р‘РЁ РњР®РЎР’РҐР Р•РЇР­ РћРџР®Р‘РҐРљР­РњРќ Р“Р®Р”Р®Р‘Р®Р Р­ Р‘РќРћРџРќРЇРЁ РҐ Р‘Р®Р¬РҐ Р¬Р®РњРЇРЁ РћРќРљРЎР’РҐР Р­ Р™Р‘Р®РљРҐРўРҐР–РҐРџРќР‘Р®РњРњРЁР РќР Р‘Р•Р  Р‘РќР“РџР®РЇР РЎР .</p>
 </div></div>
-<div class="NAVFOOTER"><hr align="Left" width="100%"><table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="33%" align="Left" valign="Top"><a href="platform.html" accesskey="P">Назад</a></td><td width="34%" align="Center" valign="Top"><a href="../index.html" accesskey="H">Домой</a></td><td width="33%" align="Right" valign="Top"><a href="../part2.html" accesskey="N">Вперед</a></td></tr><tr><td width="33%" align="Left" valign="Top">Поддерживаемые платформы<br>
-</td><td width="34%" align="Center" valign="Top"><a href="chapter02.html" accesskey="U">Наверх</a></td><td width="33%" align="Right" valign="Top">Часть II - Устанавливаем систему LFS<br>
+<div class="NAVFOOTER"><hr align="Left" width="100%"><table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="33%" align="Left" valign="Top"><a href="platform.html" accesskey="P">РјР®Р“Р®Р”</a></td><td width="34%" align="Center" valign="Top"><a href="../index.html" accesskey="H">РґРќР›РќР</a></td><td width="33%" align="Right" valign="Top"><a href="../part2.html" accesskey="N">Р±РћР•РџР•Р”</a></td></tr><tr><td width="33%" align="Left" valign="Top">РѕРќР”Р”Р•РџР¤РҐР‘Р®Р•Р›РЁР• РћРљР®Р РўРќРџР›РЁ<br>
+</td><td width="34%" align="Center" valign="Top"><a href="chapter02.html" accesskey="U">РјР®Р‘Р•РџРЈ</a></td><td width="33%" align="Right" valign="Top">РІР®РЇР Р­ II - СЃРЇР Р®РњР®Р‘РљРҐР‘Р®Р•Р› РЇРҐРЇР Р•Р›РЎ LFS<br>
 </td></tr></tbody></table></div>
 <br>
 

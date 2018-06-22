@@ -14,35 +14,35 @@ Contents
 <HR>
 <H1>PPP-over-minicom mini-HOWTO</H1>
 
-<H2>Winfried TrЭmper 
+<H2>Winfried Trп╜mper 
 <A HREF="mailto:winni@xpilot.org">winni@xpilot.org</A> <BR>
-Русский перевод
+п═я┐я│я│п╨п╦п╧ п©п╣я─п╣п╡п╬п╢
 Ilgiz Kalmetev, 
 <A HREF="mailto:ilgiz@mail.rb.ru">ilgiz@mail.rb.ru</A></H2>v0.0  09 December 1996
 <P><HR>
-<EM>  Вам нужна меню-ориентированная программа для работы по протоколу PPP?
- Простая, но мощная, база телефонных номеров вашего интернет-провайдера?
- Хотите видеть, что пишется в логи? Тогда этот mini-HOWTO для вас!</EM>
+<EM>  п▓п╟п╪ п╫я┐п╤п╫п╟ п╪п╣п╫я▌-п╬я─п╦п╣п╫я┌п╦я─п╬п╡п╟п╫п╫п╟я▐ п©я─п╬пЁя─п╟п╪п╪п╟ п╢п╩я▐ я─п╟п╠п╬я┌я▀ п©п╬ п©я─п╬я┌п╬п╨п╬п╩я┐ PPP?
+ п÷я─п╬я│я┌п╟я▐, п╫п╬ п╪п╬я┴п╫п╟я▐, п╠п╟п╥п╟ я┌п╣п╩п╣я└п╬п╫п╫я▀я┘ п╫п╬п╪п╣я─п╬п╡ п╡п╟я┬п╣пЁп╬ п╦п╫я┌п╣я─п╫п╣я┌-п©я─п╬п╡п╟п╧п╢п╣я─п╟?
+ п╔п╬я┌п╦я┌п╣ п╡п╦п╢п╣я┌я▄, я┤я┌п╬ п©п╦я┬п╣я┌я│я▐ п╡ п╩п╬пЁп╦? п╒п╬пЁп╢п╟ я█я┌п╬я┌ mini-HOWTO п╢п╩я▐ п╡п╟я│!</EM>
 <HR>
 <P>
-<H2><A NAME="toc1">1.</A> <A HREF="PPP-over-minicom-1.html">Введение</A></H2>
+<H2><A NAME="toc1">1.</A> <A HREF="PPP-over-minicom-1.html">п▓п╡п╣п╢п╣п╫п╦п╣</A></H2>
 
 <UL>
-<LI><A HREF="PPP-over-minicom-1.html#ss1.1">1.1 Терминальная программа "minicom"</A>
-<LI><A HREF="PPP-over-minicom-1.html#ss1.2">1.2 Обратная связь</A>
-<LI><A HREF="PPP-over-minicom-1.html#ss1.3">1.3 Известные недочеты</A>
+<LI><A HREF="PPP-over-minicom-1.html#ss1.1">1.1 п╒п╣я─п╪п╦п╫п╟п╩я▄п╫п╟я▐ п©я─п╬пЁя─п╟п╪п╪п╟ "minicom"</A>
+<LI><A HREF="PPP-over-minicom-1.html#ss1.2">1.2 п·п╠я─п╟я┌п╫п╟я▐ я│п╡я▐п╥я▄</A>
+<LI><A HREF="PPP-over-minicom-1.html#ss1.3">1.3 п≤п╥п╡п╣я│я┌п╫я▀п╣ п╫п╣п╢п╬я┤п╣я┌я▀</A>
 </UL>
 <P>
-<H2><A NAME="toc2">2.</A> <A HREF="PPP-over-minicom-2.html">Звонки с помощью minicom</A></H2>
+<H2><A NAME="toc2">2.</A> <A HREF="PPP-over-minicom-2.html">п≈п╡п╬п╫п╨п╦ я│ п©п╬п╪п╬я┴я▄я▌ minicom</A></H2>
 
 <UL>
-<LI><A HREF="PPP-over-minicom-2.html#ss2.1">2.1 Настройка minicom</A>
-<LI><A HREF="PPP-over-minicom-2.html#ss2.2">2.2 Запуск PPP вручную</A>
-<LI><A HREF="PPP-over-minicom-2.html#ss2.3">2.3 Изучение логов</A>
-<LI><A HREF="PPP-over-minicom-2.html#ss2.4">2.4 Настройка телефонных номеров</A>
-<LI><A HREF="PPP-over-minicom-2.html#ss2.5">2.5 Сценарий регистрации</A>
-<LI><A HREF="PPP-over-minicom-2.html#ss2.6">2.6 Автоматический дозвон при запуске</A>
-<LI><A HREF="PPP-over-minicom-2.html#ss2.7">2.7 Будущие расширения</A>
+<LI><A HREF="PPP-over-minicom-2.html#ss2.1">2.1 п²п╟я│я┌я─п╬п╧п╨п╟ minicom</A>
+<LI><A HREF="PPP-over-minicom-2.html#ss2.2">2.2 п≈п╟п©я┐я│п╨ PPP п╡я─я┐я┤п╫я┐я▌</A>
+<LI><A HREF="PPP-over-minicom-2.html#ss2.3">2.3 п≤п╥я┐я┤п╣п╫п╦п╣ п╩п╬пЁп╬п╡</A>
+<LI><A HREF="PPP-over-minicom-2.html#ss2.4">2.4 п²п╟я│я┌я─п╬п╧п╨п╟ я┌п╣п╩п╣я└п╬п╫п╫я▀я┘ п╫п╬п╪п╣я─п╬п╡</A>
+<LI><A HREF="PPP-over-minicom-2.html#ss2.5">2.5 п║я├п╣п╫п╟я─п╦п╧ я─п╣пЁп╦я│я┌я─п╟я├п╦п╦</A>
+<LI><A HREF="PPP-over-minicom-2.html#ss2.6">2.6 п░п╡я┌п╬п╪п╟я┌п╦я┤п╣я│п╨п╦п╧ п╢п╬п╥п╡п╬п╫ п©я─п╦ п╥п╟п©я┐я│п╨п╣</A>
+<LI><A HREF="PPP-over-minicom-2.html#ss2.7">2.7 п▒я┐п╢я┐я┴п╦п╣ я─п╟я│я┬п╦я─п╣п╫п╦я▐</A>
 </UL>
 <HR>
 <A HREF="PPP-over-minicom-1.html">Next</A>
