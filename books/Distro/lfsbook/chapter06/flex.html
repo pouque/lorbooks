@@ -1,11 +1,11 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>Installing Flex-2.5.4a</title><meta name="GENERATOR" content="Microsoft FrontPage 4.0" /=""><link rel="HOME" title="Linux From Scratch" href="http://www.linuxfromscratch.org/view/4.0/index.html" /=""><link rel="UP" title="Installing basic system software" href="http://www.linuxfromscratch.org/view/4.0/chapter06/chapter06.html" /=""><link rel="PREVIOUS" title="Installing Sed-3.02" href="http://www.linuxfromscratch.org/view/4.0/chapter06/sed.html" /=""><link rel="NEXT" title="Installing Binutils-2.13" href="http://www.linuxfromscratch.org/view/4.0/chapter06/binutils.html" /=""></head><body class="sect1" bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#840084" alink="#006000"><div class="NAVHEADER"><table summary="Header navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><th colspan="3" align="Center">Linux From Scratch: Версия 4.0</th></tr><tr><td width="10%" align="Left" valign="Bottom"><a href="sed.html" accesskey="P">Назад</a></td><td width="80%" align="Center" valign="Bottom">Глава 6. Установка основных компонентов
-        системы</td><td width="10%" align="Right" valign="Bottom"><a href="binutils.html" accesskey="N">Вперед</a></td></tr></tbody></table><hr align="Left" width="100%" /=""></div><div class="sect1"><h1 class="sect1"><a name="ch06-flex">Установка Flex-2.5.4a</a></h1><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen">Приблизительное время компиляции:           0.05 SBU<br>Необходимое дисковое пространство:  3 MB</pre></td></tr></tbody></table><div class="sect2"><h2 class="sect2"><a name="AEN3355">Инсталляция Flex</a></h2><p>Для инсталляции Flex выполните:</p><p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>./configure --prefix=/usr &amp;&amp;<br>make &amp;&amp;<br>make install</b></tt></pre></td></tr></tbody></table></p><p>Некоторые программы не знают о
-    существовании flex и пытаются найти
-    программу lex (flex - альтернатива (предпочтительная)
-    команде lex). Итак, для устранения
-    возможных проблем, создадим скрипт bash под
-    названием lex. Он будет вызывать команду flex
-    и эмулировать lex.</p><p>Создадим файл <tt class="filename">/usr/bin/lex</tt>:</p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>cat &gt; /usr/bin/lex &lt;&lt; "EOF"</b></tt>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>Installing Flex-2.5.4a</title><meta name="GENERATOR" content="Microsoft FrontPage 4.0" /=""><link rel="HOME" title="Linux From Scratch" href="http://www.linuxfromscratch.org/view/4.0/index.html" /=""><link rel="UP" title="Installing basic system software" href="http://www.linuxfromscratch.org/view/4.0/chapter06/chapter06.html" /=""><link rel="PREVIOUS" title="Installing Sed-3.02" href="http://www.linuxfromscratch.org/view/4.0/chapter06/sed.html" /=""><link rel="NEXT" title="Installing Binutils-2.13" href="http://www.linuxfromscratch.org/view/4.0/chapter06/binutils.html" /=""></head><body class="sect1" bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#840084" alink="#006000"><div class="NAVHEADER"><table summary="Header navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><th colspan="3" align="Center">Linux From Scratch: Р±Р•РџРЇРҐРЄ 4.0</th></tr><tr><td width="10%" align="Left" valign="Bottom"><a href="sed.html" accesskey="P">РјР®Р“Р®Р”</a></td><td width="80%" align="Center" valign="Bottom">С†РљР®Р‘Р® 6. СЃРЇР Р®РњРќР‘Р™Р® РќРЇРњРќР‘РњРЁРЈ Р™РќР›РћРќРњР•РњР РќР‘
+        РЇРҐРЇР Р•Р›РЁ</td><td width="10%" align="Right" valign="Bottom"><a href="binutils.html" accesskey="N">Р±РћР•РџР•Р”</a></td></tr></tbody></table><hr align="Left" width="100%" /=""></div><div class="sect1"><h1 class="sect1"><a name="ch06-flex">СЃРЇР Р®РњРќР‘Р™Р® Flex-2.5.4a</a></h1><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen">РѕРџРҐРђРљРҐР“РҐР Р•РљР­РњРќР• Р‘РџР•Р›РЄ Р™РќР›РћРҐРљРЄР–РҐРҐ:           0.05 SBU<br>РјР•РќРђРЈРќР”РҐР›РќР• Р”РҐРЇР™РќР‘РќР• РћРџРќРЇР РџР®РњРЇР Р‘Рќ:  3 MB</pre></td></tr></tbody></table><div class="sect2"><h2 class="sect2"><a name="AEN3355">С…РњРЇР Р®РљРљРЄР–РҐРЄ Flex</a></h2><p>РґРљРЄ РҐРњРЇР Р®РљРљРЄР–РҐРҐ Flex Р‘РЁРћРќРљРњРҐР Р•:</p><p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>./configure --prefix=/usr &amp;&amp;<br>make &amp;&amp;<br>make install</b></tt></pre></td></tr></tbody></table></p><p>РјР•Р™РќР РќРџРЁР• РћРџРќР¦РџР®Р›Р›РЁ РњР• Р“РњР®Р§Р  Рќ
+    РЇРЎР«Р•РЇР Р‘РќР‘Р®РњРҐРҐ flex РҐ РћРЁР Р®Р§Р РЇРЄ РњР®РР РҐ
+    РћРџРќР¦РџР®Р›Р›РЎ lex (flex - Р®РљР­Р Р•РџРњР®Р РҐР‘Р® (РћРџР•Р”РћРќР’Р РҐР Р•РљР­РњР®РЄ)
+    Р™РќР›Р®РњР”Р• lex). С…Р Р®Р™, Р”РљРЄ РЎРЇР РџР®РњР•РњРҐРЄ
+    Р‘РќР“Р›РќР¤РњРЁРЈ РћРџРќРђРљР•Р›, РЇРќР“Р”Р®Р”РҐР› РЇР™РџРҐРћР  bash РћРќР”
+    РњР®Р“Р‘Р®РњРҐР•Р› lex. РЅРњ РђРЎР”Р•Р  Р‘РЁР“РЁР‘Р®Р Р­ Р™РќР›Р®РњР”РЎ flex
+    РҐ Р©Р›РЎРљРҐРџРќР‘Р®Р Р­ lex.</p><p>СЏРќР“Р”Р®Р”РҐР› РўР®РРљ <tt class="filename">/usr/bin/lex</tt>:</p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>cat &gt; /usr/bin/lex &lt;&lt; "EOF"</b></tt>
 #!/bin/sh
 # Begin /usr/bin/lex
 
@@ -13,21 +13,21 @@ exec /usr/bin/flex -l "$@"
 
 # End /usr/bin/lex
 <tt class="userinput"><b>EOF<br>chmod 755 /usr/bin/lex</b></tt></pre></td></tr></tbody></table></div><div class="sect2">
-<div class="sect2"><h2 class="sect2"><a name="AEN6726">Содержимое Flex</a></h2><p>Последняя проверка: версия 2.5.4a.</p><div class="sect3"><h3 class="sect3"><a name="AEN6729">Program Files</a></h3><p>flex, flex++ (ссылка на flex) and lex</p></div><div class="sect3"><h3 class="sect3"><a name="AEN6732">Descriptions</a></h3><div class="sect4"><h4 class="sect4"><a name="AEN6734">flex</a></h4><p>flex - инструмент для генерации программ, распознающих заданные образцы
-в тексте. Распознавание образцов часто используется во многих приложениях.
-Пользователь задает правила поиска, и flex создает программу для поиска образцов.
-Причина, по которой люди используют flex, состоит в том, что гораздо проще
-задать правила, чем писать собственную программу.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6737">flex++</a></h4><p>flex++ вызывает версию flex, используемую для сканеров  C++.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6740">lex</a></h4><p>Мы создали скрипт lex, вызывающий flex с опцией -l. Это необходимо для
-совместимости с программами, использующими lex вместо flex.</p></div></div><div class="sect3"><h3 class="sect3"><a name="AEN6743">Библиотеки</a></h3><p>libfl.a</p></div><div class="sect3"><h3 class="sect3"><a name="AEN6746">Описания</a></h3><div class="sect4"><h4 class="sect4"><a name="AEN6748">libfl</a></h4><p>libfl - библиотека flex.</p></div></div></div>
-<div class="sect2"><h2 class="sect2"><a name="AEN6751">Зависимости Flex</a></h2><p>Последняя проверка: версия 2.5.4a.</p><p class="literallayout">Bash: sh<br>
- Binutils: ar, as, ld, ranlib<br>
- Bison: bison<br>
- Diffutils: cmp<br>
- Fileutils: chmod, cp, install, ln, mv, rm, touch<br>
- Gcc: cc1, collect2, cpp0, gcc<br>
- Grep: egrep, grep<br>
- Make: make<br>
- Sed: sed<br>
- Sh-utils: echo, hostname<br>
- Textutils: cat, tr</p></div>
-<h2 class="sect2"></h2></div></div><div class="NAVFOOTER"><hr align="Left" width="100%" /=""><table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="33%" align="Left" valign="Top"><a href="sed.html" accesskey="P">Назад</a></td><td width="34%" align="Center" valign="Top"><a href="../index.html" accesskey="H">Домой</a></td><td width="33%" align="Right" valign="Top"><a href="binutils.html" accesskey="N">Вперед</a></td></tr><tr><td width="33%" align="Left" valign="Top">Установка Sed-3.02</td><td width="34%" align="Center" valign="Top"><a href="chapter06.html" accesskey="U">Наверх</a></td><td width="33%" align="Right" valign="Top">Установка Binutils-2.13</td></tr></tbody></table></div></body></html>
+<div class="sect2"><h2 class="sect2"><a name="AEN6726">СЏРќР”Р•РџР¤РҐР›РќР• Flex</a></h2><p>РѕРќРЇРљР•Р”РњРЄРЄ РћРџРќР‘Р•РџР™Р®: Р‘Р•РџРЇРҐРЄ 2.5.4a.</p><div class="sect3"><h3 class="sect3"><a name="AEN6729">Program Files</a></h3><p>flex, flex++ (РЇРЇРЁРљР™Р® РњР® flex) and lex</p></div><div class="sect3"><h3 class="sect3"><a name="AEN6732">Descriptions</a></h3><div class="sect4"><h4 class="sect4"><a name="AEN6734">flex</a></h4><p>flex - РҐРњРЇР РџРЎР›Р•РњР  Р”РљРЄ Р¦Р•РњР•РџР®Р–РҐРҐ РћРџРќР¦РџР®Р›Р›, РџР®РЇРћРќР“РњР®Р§Р«РҐРЈ Р“Р®Р”Р®РњРњРЁР• РќРђРџР®Р“Р–РЁ
+Р‘ Р Р•Р™РЇР Р•. РїР®РЇРћРќР“РњР®Р‘Р®РњРҐР• РќРђРџР®Р“Р–РќР‘ Р’Р®РЇР Рќ РҐРЇРћРќРљР­Р“РЎР•Р РЇРЄ Р‘Рќ Р›РњРќР¦РҐРЈ РћРџРҐРљРќР¤Р•РњРҐРЄРЈ.
+РѕРќРљР­Р“РќР‘Р®Р Р•РљР­ Р“Р®Р”Р®Р•Р  РћРџР®Р‘РҐРљР® РћРќРҐРЇР™Р®, РҐ flex РЇРќР“Р”Р®Р•Р  РћРџРќР¦РџР®Р›Р›РЎ Р”РљРЄ РћРќРҐРЇР™Р® РќРђРџР®Р“Р–РќР‘.
+РѕРџРҐР’РҐРњР®, РћРќ Р™РќР РќРџРќР РљР§Р”РҐ РҐРЇРћРќРљР­Р“РЎР§Р  flex, РЇРќРЇР РќРҐР  Р‘ Р РќР›, Р’Р Рќ Р¦РќРџР®Р“Р”Рќ РћРџРќР«Р•
+Р“Р®Р”Р®Р Р­ РћРџР®Р‘РҐРљР®, Р’Р•Р› РћРҐРЇР®Р Р­ РЇРќРђРЇР Р‘Р•РњРњРЎР§ РћРџРќР¦РџР®Р›Р›РЎ.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6737">flex++</a></h4><p>flex++ Р‘РЁР“РЁР‘Р®Р•Р  Р‘Р•РџРЇРҐР§ flex, РҐРЇРћРќРљР­Р“РЎР•Р›РЎР§ Р”РљРЄ РЇР™Р®РњР•РџРќР‘  C++.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN6740">lex</a></h4><p>Р»РЁ РЇРќР“Р”Р®РљРҐ РЇР™РџРҐРћР  lex, Р‘РЁР“РЁР‘Р®Р§Р«РҐР flex РЇ РќРћР–РҐР•Р -l. С‰Р Рќ РњР•РќРђРЈРќР”РҐР›Рќ Р”РљРЄ
+РЇРќР‘Р›Р•РЇР РҐР›РќРЇР РҐ РЇ РћРџРќР¦РџР®Р›Р›Р®Р›РҐ, РҐРЇРћРќРљР­Р“РЎР§Р«РҐР›РҐ lex Р‘Р›Р•РЇР Рќ flex.</p></div></div><div class="sect3"><h3 class="sect3"><a name="AEN6743">Р°РҐРђРљРҐРќР Р•Р™РҐ</a></h3><p>libfl.a</p></div><div class="sect3"><h3 class="sect3"><a name="AEN6746">РЅРћРҐРЇР®РњРҐРЄ</a></h3><div class="sect4"><h4 class="sect4"><a name="AEN6748">libfl</a></h4><p>libfl - РђРҐРђРљРҐРќР Р•Р™Р® flex.</p></div></div></div>
+<div class="sect2"><h2 class="sect2"><a name="AEN6751">РіР®Р‘РҐРЇРҐР›РќРЇР РҐ Flex</a></h2><p>РѕРќРЇРљР•Р”РњРЄРЄ РћРџРќР‘Р•РџР™Р®: Р‘Р•РџРЇРҐРЄ 2.5.4a.</p><p class="literallayout">Bash:в•ђsh<br>
+ Binutils:в•ђar,в•ђas,в•ђld,в•ђranlib<br>
+ Bison:в•ђbison<br>
+ Diffutils:в•ђcmp<br>
+ Fileutils:в•ђchmod,в•ђcp,в•ђinstall,в•ђln,в•ђmv,в•ђrm,в•ђtouch<br>
+ Gcc:в•ђcc1,в•ђcollect2,в•ђcpp0,в•ђgcc<br>
+ Grep:в•ђegrep,в•ђgrep<br>
+ Make:в•ђmake<br>
+ Sed:в•ђsed<br>
+ Sh-utils:в•ђecho,в•ђhostname<br>
+ Textutils:в•ђcat,в•ђtr</p></div>
+<h2 class="sect2"></h2></div></div><div class="NAVFOOTER"><hr align="Left" width="100%" /=""><table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="33%" align="Left" valign="Top"><a href="sed.html" accesskey="P">РјР®Р“Р®Р”</a></td><td width="34%" align="Center" valign="Top"><a href="../index.html" accesskey="H">РґРќР›РќР</a></td><td width="33%" align="Right" valign="Top"><a href="binutils.html" accesskey="N">Р±РћР•РџР•Р”</a></td></tr><tr><td width="33%" align="Left" valign="Top">СЃРЇР Р®РњРќР‘Р™Р® Sed-3.02</td><td width="34%" align="Center" valign="Top"><a href="chapter06.html" accesskey="U">РјР®Р‘Р•РџРЈ</a></td><td width="33%" align="Right" valign="Top">СЃРЇР Р®РњРќР‘Р™Р® Binutils-2.13</td></tr></tbody></table></div></body></html>

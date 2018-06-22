@@ -8,70 +8,70 @@
 
 </HEAD>
 <BODY>
-<A HREF="SMB-HOWTO-1.html">Следующий</A>
-Предыдущий
-Содержание
+<A HREF="SMB-HOWTO-1.html">п║п╩п╣п╢я┐я▌я┴п╦п╧</A>
+п÷я─п╣п╢я▀п╢я┐я┴п╦п╧
+п║п╬п╢п╣я─п╤п╟п╫п╦п╣
 <HR>
 <H1>SMB HOWTO</H1>
 
 <H2>David Wood, 
-<A HREF="mailto:dwood@plugged.net.au">dwood@plugged.net.au</A>, перевод Alex Ott
-<CODE>ott@phtd.tpu.edu.ru</CODE> </H2>v1.3, 20 апреля 2000
+<A HREF="mailto:dwood@plugged.net.au">dwood@plugged.net.au</A>, п©п╣я─п╣п╡п╬п╢ Alex Ott
+<CODE>ott@phtd.tpu.edu.ru</CODE> </H2>v1.3, 20 п╟п©я─п╣п╩я▐ 2000
 <P><HR>
-<EM>Это SMB HOWTO. Этот документ описывает использование в Linux, с помощью
-Samba, протокола Server Message Block (SMB), который иногда также называется
-протоколом Session Message Block (SMB), протоколом NetBIOS или протоколом
+<EM>п╜я┌п╬ SMB HOWTO. п╜я┌п╬я┌ п╢п╬п╨я┐п╪п╣п╫я┌ п╬п©п╦я│я▀п╡п╟п╣я┌ п╦я│п©п╬п╩я▄п╥п╬п╡п╟п╫п╦п╣ п╡ Linux, я│ п©п╬п╪п╬я┴я▄я▌
+Samba, п©я─п╬я┌п╬п╨п╬п╩п╟ Server Message Block (SMB), п╨п╬я┌п╬я─я▀п╧ п╦п╫п╬пЁп╢п╟ я┌п╟п╨п╤п╣ п╫п╟п╥я▀п╡п╟п╣я┌я│я▐
+п©я─п╬я┌п╬п╨п╬п╩п╬п╪ Session Message Block (SMB), п©я─п╬я┌п╬п╨п╬п╩п╬п╪ NetBIOS п╦п╩п╦ п©я─п╬я┌п╬п╨п╬п╩п╬п╪
 LanManager.</EM>
 <HR>
-<P><B>Примечание переводчика:</B> Шлите мне любые комментарии и
-замечания, даже небольшие.
+<P><B>п÷я─п╦п╪п╣я┤п╟п╫п╦п╣ п©п╣я─п╣п╡п╬п╢я┤п╦п╨п╟:</B> п╗п╩п╦я┌п╣ п╪п╫п╣ п╩я▌п╠я▀п╣ п╨п╬п╪п╪п╣п╫я┌п╟я─п╦п╦ п╦
+п╥п╟п╪п╣я┤п╟п╫п╦я▐, п╢п╟п╤п╣ п╫п╣п╠п╬п╩я▄я┬п╦п╣.
 <P>
 <P>
 <P>
-<H2><A NAME="toc1">1.</A> <A HREF="SMB-HOWTO-1.html">Лицензия</A></H2>
+<H2><A NAME="toc1">1.</A> <A HREF="SMB-HOWTO-1.html">п⌡п╦я├п╣п╫п╥п╦я▐</A></H2>
 
 <P>
-<H2><A NAME="toc2">2.</A> <A HREF="SMB-HOWTO-2.html">Введение</A></H2>
+<H2><A NAME="toc2">2.</A> <A HREF="SMB-HOWTO-2.html">п▓п╡п╣п╢п╣п╫п╦п╣</A></H2>
 
 <P>
-<H2><A NAME="toc3">3.</A> <A HREF="SMB-HOWTO-3.html">Дополнительная информация</A></H2>
+<H2><A NAME="toc3">3.</A> <A HREF="SMB-HOWTO-3.html">п■п╬п©п╬п╩п╫п╦я┌п╣п╩я▄п╫п╟я▐ п╦п╫я└п╬я─п╪п╟я├п╦я▐</A></H2>
 
 <P>
-<H2><A NAME="toc4">4.</A> <A HREF="SMB-HOWTO-4.html">Установка</A></H2>
+<H2><A NAME="toc4">4.</A> <A HREF="SMB-HOWTO-4.html">пёя│я┌п╟п╫п╬п╡п╨п╟</A></H2>
 
 <P>
-<H2><A NAME="toc5">5.</A> <A HREF="SMB-HOWTO-5.html">Запуск демонов</A></H2>
+<H2><A NAME="toc5">5.</A> <A HREF="SMB-HOWTO-5.html">п≈п╟п©я┐я│п╨ п╢п╣п╪п╬п╫п╬п╡</A></H2>
 
 <P>
-<H2><A NAME="toc6">6.</A> <A HREF="SMB-HOWTO-6.html">Основная настройка (/etc/smb.conf) </A></H2>
+<H2><A NAME="toc6">6.</A> <A HREF="SMB-HOWTO-6.html">п·я│п╫п╬п╡п╫п╟я▐ п╫п╟я│я┌я─п╬п╧п╨п╟ (/etc/smb.conf) </A></H2>
 
 <P>
-<H2><A NAME="toc7">7.</A> <A HREF="SMB-HOWTO-7.html">Организация доступа к дискам Linux для машин под Windows</A></H2>
+<H2><A NAME="toc7">7.</A> <A HREF="SMB-HOWTO-7.html">п·я─пЁп╟п╫п╦п╥п╟я├п╦я▐ п╢п╬я│я┌я┐п©п╟ п╨ п╢п╦я│п╨п╟п╪ Linux п╢п╩я▐ п╪п╟я┬п╦п╫ п©п╬п╢ Windows</A></H2>
 
 <P>
-<H2><A NAME="toc8">8.</A> <A HREF="SMB-HOWTO-8.html">Доступ к SMB-ресурсам из Linux</A></H2>
+<H2><A NAME="toc8">8.</A> <A HREF="SMB-HOWTO-8.html">п■п╬я│я┌я┐п© п╨ SMB-я─п╣я│я┐я─я│п╟п╪ п╦п╥ Linux</A></H2>
 
 <P>
-<H2><A NAME="toc9">9.</A> <A HREF="SMB-HOWTO-9.html">Доступ к принтеру Linux для Windows-машин</A></H2>
+<H2><A NAME="toc9">9.</A> <A HREF="SMB-HOWTO-9.html">п■п╬я│я┌я┐п© п╨ п©я─п╦п╫я┌п╣я─я┐ Linux п╢п╩я▐ Windows-п╪п╟я┬п╦п╫</A></H2>
 
 <P>
-<H2><A NAME="toc10">10.</A> <A HREF="SMB-HOWTO-10.html">Доступ к принтеру Windows с машин работающих под Linux</A></H2>
+<H2><A NAME="toc10">10.</A> <A HREF="SMB-HOWTO-10.html">п■п╬я│я┌я┐п© п╨ п©я─п╦п╫я┌п╣я─я┐ Windows я│ п╪п╟я┬п╦п╫ я─п╟п╠п╬я┌п╟я▌я┴п╦я┘ п©п╬п╢ Linux</A></H2>
 
 <P>
-<H2><A NAME="toc11">11.</A> <A HREF="SMB-HOWTO-11.html">Резервирование данных с машин с Windows на машину с Linux</A></H2>
+<H2><A NAME="toc11">11.</A> <A HREF="SMB-HOWTO-11.html">п═п╣п╥п╣я─п╡п╦я─п╬п╡п╟п╫п╦п╣ п╢п╟п╫п╫я▀я┘ я│ п╪п╟я┬п╦п╫ я│ Windows п╫п╟ п╪п╟я┬п╦п╫я┐ я│ Linux</A></H2>
 
 <P>
-<H2><A NAME="toc12">12.</A> <A HREF="SMB-HOWTO-12.html">Использование Samba между маршрутизируемыми сетями</A></H2>
+<H2><A NAME="toc12">12.</A> <A HREF="SMB-HOWTO-12.html">п≤я│п©п╬п╩я▄п╥п╬п╡п╟п╫п╦п╣ Samba п╪п╣п╤п╢я┐ п╪п╟я─я┬я─я┐я┌п╦п╥п╦я─я┐п╣п╪я▀п╪п╦ я│п╣я┌я▐п╪п╦</A></H2>
 
 <P>
-<H2><A NAME="toc13">13.</A> <A HREF="SMB-HOWTO-13.html">Авторские права</A></H2>
+<H2><A NAME="toc13">13.</A> <A HREF="SMB-HOWTO-13.html">п░п╡я┌п╬я─я│п╨п╦п╣ п©я─п╟п╡п╟</A></H2>
 
 <P>
-<H2><A NAME="toc14">14.</A> <A HREF="SMB-HOWTO-14.html">Благодарности</A></H2>
+<H2><A NAME="toc14">14.</A> <A HREF="SMB-HOWTO-14.html">п▒п╩п╟пЁп╬п╢п╟я─п╫п╬я│я┌п╦</A></H2>
 
 <HR>
-<A HREF="SMB-HOWTO-1.html">Следующий</A>
-Предыдущий
-Содержание
+<A HREF="SMB-HOWTO-1.html">п║п╩п╣п╢я┐я▌я┴п╦п╧</A>
+п÷я─п╣п╢я▀п╢я┐я┴п╦п╧
+п║п╬п╢п╣я─п╤п╟п╫п╦п╣
 </BODY>
 </HTML>

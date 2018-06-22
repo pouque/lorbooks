@@ -9,119 +9,119 @@
 
 <body bgcolor="#FFFFFF">
 
-<h1>Как установить locale ?</h1>
+<h1>п п╟п╨ я┐я│я┌п╟п╫п╬п╡п╦я┌я▄ locale ?</h1>
 
-<p>&nbsp;&nbsp;&nbsp; Способ установки средств <strong>locale</strong>
-может довольно сильно различаться в
-операционных системах от разных производителей,
-особенно для старых реализаций <strong>POSIX</strong> до 1996
-года и переходных реализациий.</p>
+<p>&nbsp;&nbsp;&nbsp; п║п©п╬я│п╬п╠ я┐я│я┌п╟п╫п╬п╡п╨п╦ я│я─п╣п╢я│я┌п╡ <strong>locale</strong>
+п╪п╬п╤п╣я┌ п╢п╬п╡п╬п╩я▄п╫п╬ я│п╦п╩я▄п╫п╬ я─п╟п╥п╩п╦я┤п╟я┌я▄я│я▐ п╡
+п╬п©п╣я─п╟я├п╦п╬п╫п╫я▀я┘ я│п╦я│я┌п╣п╪п╟я┘ п╬я┌ я─п╟п╥п╫я▀я┘ п©я─п╬п╦п╥п╡п╬п╢п╦я┌п╣п╩п╣п╧,
+п╬я│п╬п╠п╣п╫п╫п╬ п╢п╩я▐ я│я┌п╟я─я▀я┘ я─п╣п╟п╩п╦п╥п╟я├п╦п╧ <strong>POSIX</strong> п╢п╬ 1996
+пЁп╬п╢п╟ п╦ п©п╣я─п╣я┘п╬п╢п╫я▀я┘ я─п╣п╟п╩п╦п╥п╟я├п╦п╦п╧.</p>
 
-<p>&nbsp;&nbsp;&nbsp; Как описано <a href="locale_w.html#posix">тут</a>,
-структурно средства<strong> POSIX locale</strong> состоят из
-следующих компонентов : 
+<p>&nbsp;&nbsp;&nbsp; п п╟п╨ п╬п©п╦я│п╟п╫п╬ <a href="locale_w.html#posix">я┌я┐я┌</a>,
+я│я┌я─я┐п╨я┌я┐я─п╫п╬ я│я─п╣п╢я│я┌п╡п╟<strong> POSIX locale</strong> я│п╬я│я┌п╬я▐я┌ п╦п╥
+я│п╩п╣п╢я┐я▌я┴п╦я┘ п╨п╬п╪п©п╬п╫п╣п╫я┌п╬п╡ : 
 
 <ol>
-  <li>Набор библиотечных (<strong>libc</strong>) вызовов (locale API):
+  <li>п²п╟п╠п╬я─ п╠п╦п╠п╩п╦п╬я┌п╣я┤п╫я▀я┘ (<strong>libc</strong>) п╡я▀п╥п╬п╡п╬п╡ (locale API):
     <a href="http://www.linux.org.ru/books/man/man3/setlocale.html"><em>setlocale()</em></a>, <a href="http://www.linux.org.ru/books/man/man3/isalpha.html"><em>isalpha()</em></a>, <a href="http://www.linux.org.ru/books/man/man3/toupper.html"><em>toupper()</em></a>,
     e.t.c.</li>
-  <li>Переменные окружения, для управления
-    средствами <strong>locale</strong> :<strong> <a href="http://www.linux.org.ru/books/man/man_e/lang.html">LANG</a></strong>,
+  <li>п÷п╣я─п╣п╪п╣п╫п╫я▀п╣ п╬п╨я─я┐п╤п╣п╫п╦я▐, п╢п╩я▐ я┐п©я─п╟п╡п╩п╣п╫п╦я▐
+    я│я─п╣п╢я│я┌п╡п╟п╪п╦ <strong>locale</strong> :<strong> <a href="http://www.linux.org.ru/books/man/man_e/lang.html">LANG</a></strong>,
     LC_CTYPE. e.t.c.</li>
-  <li>Утилита для получения информации о средствах <strong>locale</strong>
+  <li>пёя┌п╦п╩п╦я┌п╟ п╢п╩я▐ п©п╬п╩я┐я┤п╣п╫п╦я▐ п╦п╫я└п╬я─п╪п╟я├п╦п╦ п╬ я│я─п╣п╢я│я┌п╡п╟я┘ <strong>locale</strong>
     : <a href="http://www.linux.org.ru/books/man/man1/locale.html"><em>locale</em></a></li>
-  <li>Исходные тексты описания <strong>locale</strong> : <strong>locale
+  <li>п≤я│я┘п╬п╢п╫я▀п╣ я┌п╣п╨я│я┌я▀ п╬п©п╦я│п╟п╫п╦я▐ <strong>locale</strong> : <strong>locale
     definitions</strong>, <a href="http://www.linux.org.ru/books/man/man_b/charset.html">Charfcter Set Definitions File</a>
     : <em>/usr/share/i18n/*</em></li>
-  <li>Утилита для изготовления (компиляции) объектов
-    локализации : <a href="http://www.linux.org.ru/books/man/man1/localedef.html"><em>localedef</em></a></li>
-  <li>Собственно объекты локализации (наборы данных <strong>locale</strong>)
+  <li>пёя┌п╦п╩п╦я┌п╟ п╢п╩я▐ п╦п╥пЁп╬я┌п╬п╡п╩п╣п╫п╦я▐ (п╨п╬п╪п©п╦п╩я▐я├п╦п╦) п╬п╠я┼п╣п╨я┌п╬п╡
+    п╩п╬п╨п╟п╩п╦п╥п╟я├п╦п╦ : <a href="http://www.linux.org.ru/books/man/man1/localedef.html"><em>localedef</em></a></li>
+  <li>п║п╬п╠я│я┌п╡п╣п╫п╫п╬ п╬п╠я┼п╣п╨я┌я▀ п╩п╬п╨п╟п╩п╦п╥п╟я├п╦п╦ (п╫п╟п╠п╬я─я▀ п╢п╟п╫п╫я▀я┘ <strong>locale</strong>)
     : <em>/usr/share/locale/*</em></li>
 </ol>
 
-<p>&nbsp;&nbsp;&nbsp; Предположим, что библиотека<strong> libc</strong>
-на Вашей системе содержит все необходимые
-вызовы. Иначе придется поменять библиотеку (или
-систему). :-)</p>
+<p>&nbsp;&nbsp;&nbsp; п÷я─п╣п╢п©п╬п╩п╬п╤п╦п╪, я┤я┌п╬ п╠п╦п╠п╩п╦п╬я┌п╣п╨п╟<strong> libc</strong>
+п╫п╟ п▓п╟я┬п╣п╧ я│п╦я│я┌п╣п╪п╣ я│п╬п╢п╣я─п╤п╦я┌ п╡я│п╣ п╫п╣п╬п╠я┘п╬п╢п╦п╪я▀п╣
+п╡я▀п╥п╬п╡я▀. п≤п╫п╟я┤п╣ п©я─п╦п╢п╣я┌я│я▐ п©п╬п╪п╣п╫я▐я┌я▄ п╠п╦п╠п╩п╦п╬я┌п╣п╨я┐ (п╦п╩п╦
+я│п╦я│я┌п╣п╪я┐). :-)</p>
 
-<p>&nbsp;&nbsp;&nbsp; В стандарте <strong>POSIX.2</strong> (Утилиты
-командной строки) определенны две утилиты -&nbsp; <a href="http://www.linux.org.ru/books/man/man1/locale.html"><em>locale</em></a> и <a href="http://www.linux.org.ru/books/man/man1/localedef.html"><em>localedef</em></a>.
-Если система отвечает стандарту <strong>POSIX.2:1996</strong>,
-на вашей машине они имеются.</p>
+<p>&nbsp;&nbsp;&nbsp; п▓ я│я┌п╟п╫п╢п╟я─я┌п╣ <strong>POSIX.2</strong> (пёя┌п╦п╩п╦я┌я▀
+п╨п╬п╪п╟п╫п╢п╫п╬п╧ я│я┌я─п╬п╨п╦) п╬п©я─п╣п╢п╣п╩п╣п╫п╫я▀ п╢п╡п╣ я┐я┌п╦п╩п╦я┌я▀ -&nbsp; <a href="http://www.linux.org.ru/books/man/man1/locale.html"><em>locale</em></a> п╦ <a href="http://www.linux.org.ru/books/man/man1/localedef.html"><em>localedef</em></a>.
+п∙я│п╩п╦ я│п╦я│я┌п╣п╪п╟ п╬я┌п╡п╣я┤п╟п╣я┌ я│я┌п╟п╫п╢п╟я─я┌я┐ <strong>POSIX.2:1996</strong>,
+п╫п╟ п╡п╟я┬п╣п╧ п╪п╟я┬п╦п╫п╣ п╬п╫п╦ п╦п╪п╣я▌я┌я│я▐.</p>
 
-<p>&nbsp;&nbsp;&nbsp; Утилита<a href="http://www.linux.org.ru/books/man/man1/locale.html"><em> locale</em></a>
-служит для получения различной информации о
-текущих значениях категорий <strong>locale</strong>, o всех
-установленных в системе возможных <strong>locale</strong> и
-о внутренних характеристиках различных
-категорий <strong>locale</strong>.</p>
+<p>&nbsp;&nbsp;&nbsp; пёя┌п╦п╩п╦я┌п╟<a href="http://www.linux.org.ru/books/man/man1/locale.html"><em> locale</em></a>
+я│п╩я┐п╤п╦я┌ п╢п╩я▐ п©п╬п╩я┐я┤п╣п╫п╦я▐ я─п╟п╥п╩п╦я┤п╫п╬п╧ п╦п╫я└п╬я─п╪п╟я├п╦п╦ п╬
+я┌п╣п╨я┐я┴п╦я┘ п╥п╫п╟я┤п╣п╫п╦я▐я┘ п╨п╟я┌п╣пЁп╬я─п╦п╧ <strong>locale</strong>, o п╡я│п╣я┘
+я┐я│я┌п╟п╫п╬п╡п╩п╣п╫п╫я▀я┘ п╡ я│п╦я│я┌п╣п╪п╣ п╡п╬п╥п╪п╬п╤п╫я▀я┘ <strong>locale</strong> п╦
+п╬ п╡п╫я┐я┌я─п╣п╫п╫п╦я┘ я┘п╟я─п╟п╨я┌п╣я─п╦я│я┌п╦п╨п╟я┘ я─п╟п╥п╩п╦я┤п╫я▀я┘
+п╨п╟я┌п╣пЁп╬я─п╦п╧ <strong>locale</strong>.</p>
 
-<p>&nbsp;&nbsp;&nbsp; Имея утилиту <a href="http://www.linux.org.ru/books/man/man1/locale.html"><em>locale</em></a>
-можно <a href="locale_h.html">проверить</a> наличие
-необходимых &quot;объектов локализации&quot;, а потом <a href="locale_o.html">включить</a> необходимое языковое
-окружение.</p>
+<p>&nbsp;&nbsp;&nbsp; п≤п╪п╣я▐ я┐я┌п╦п╩п╦я┌я┐ <a href="http://www.linux.org.ru/books/man/man1/locale.html"><em>locale</em></a>
+п╪п╬п╤п╫п╬ <a href="locale_h.html">п©я─п╬п╡п╣я─п╦я┌я▄</a> п╫п╟п╩п╦я┤п╦п╣
+п╫п╣п╬п╠я┘п╬п╢п╦п╪я▀я┘ &quot;п╬п╠я┼п╣п╨я┌п╬п╡ п╩п╬п╨п╟п╩п╦п╥п╟я├п╦п╦&quot;, п╟ п©п╬я┌п╬п╪ <a href="locale_o.html">п╡п╨п╩я▌я┤п╦я┌я▄</a> п╫п╣п╬п╠я┘п╬п╢п╦п╪п╬п╣ я▐п╥я▀п╨п╬п╡п╬п╣
+п╬п╨я─я┐п╤п╣п╫п╦п╣.</p>
 
-<p>&nbsp;&nbsp;&nbsp; Ситуация чуть осложняется, если
-необходимые &quot;объекты локализации&quot;
-отсутствуют. К счастью, стандарт <strong>POSIX</strong>
-варианта 1996 г. сделан более переносимым, не
-зависящим от конкретной реализации и все
-действия пользователя не различаюся от системы к
-системе и их внутренняя реализация скрыта за
-утилитами <strong>POSIX.2</strong>.</p>
+<p>&nbsp;&nbsp;&nbsp; п║п╦я┌я┐п╟я├п╦я▐ я┤я┐я┌я▄ п╬я│п╩п╬п╤п╫я▐п╣я┌я│я▐, п╣я│п╩п╦
+п╫п╣п╬п╠я┘п╬п╢п╦п╪я▀п╣ &quot;п╬п╠я┼п╣п╨я┌я▀ п╩п╬п╨п╟п╩п╦п╥п╟я├п╦п╦&quot;
+п╬я┌я│я┐я┌я│я┌п╡я┐я▌я┌. п  я│я┤п╟я│я┌я▄я▌, я│я┌п╟п╫п╢п╟я─я┌ <strong>POSIX</strong>
+п╡п╟я─п╦п╟п╫я┌п╟ 1996 пЁ. я│п╢п╣п╩п╟п╫ п╠п╬п╩п╣п╣ п©п╣я─п╣п╫п╬я│п╦п╪я▀п╪, п╫п╣
+п╥п╟п╡п╦я│я▐я┴п╦п╪ п╬я┌ п╨п╬п╫п╨я─п╣я┌п╫п╬п╧ я─п╣п╟п╩п╦п╥п╟я├п╦п╦ п╦ п╡я│п╣
+п╢п╣п╧я│я┌п╡п╦я▐ п©п╬п╩я▄п╥п╬п╡п╟я┌п╣п╩я▐ п╫п╣ я─п╟п╥п╩п╦я┤п╟я▌я│я▐ п╬я┌ я│п╦я│я┌п╣п╪я▀ п╨
+я│п╦я│я┌п╣п╪п╣ п╦ п╦я┘ п╡п╫я┐я┌я─п╣п╫п╫я▐я▐ я─п╣п╟п╩п╦п╥п╟я├п╦я▐ я│п╨я─я▀я┌п╟ п╥п╟
+я┐я┌п╦п╩п╦я┌п╟п╪п╦ <strong>POSIX.2</strong>.</p>
 
-<p>&nbsp;&nbsp;&nbsp; Если в системе не предустановлено
-нужные нам &quot;объекты локализации&quot;, они могут
-быть добавлены в систему с помощью утилиты<a href="http://www.linux.org.ru/books/man/man1/localedef.html"><em> localedef</em></a> путем компиляции
-специальных (текстовых) файлов описания
-параметров :&nbsp; Файла Описания Набора Символов (<a href="http://www.linux.org.ru/books/man/man_b/charset.html">Characher Set Definition File</a>) и Файла
-Описания Локализации (locale definitions) . После этого
-они становится изветным системе и видимым по <strong>`locale
+<p>&nbsp;&nbsp;&nbsp; п∙я│п╩п╦ п╡ я│п╦я│я┌п╣п╪п╣ п╫п╣ п©я─п╣п╢я┐я│я┌п╟п╫п╬п╡п╩п╣п╫п╬
+п╫я┐п╤п╫я▀п╣ п╫п╟п╪ &quot;п╬п╠я┼п╣п╨я┌я▀ п╩п╬п╨п╟п╩п╦п╥п╟я├п╦п╦&quot;, п╬п╫п╦ п╪п╬пЁя┐я┌
+п╠я▀я┌я▄ п╢п╬п╠п╟п╡п╩п╣п╫я▀ п╡ я│п╦я│я┌п╣п╪я┐ я│ п©п╬п╪п╬я┴я▄я▌ я┐я┌п╦п╩п╦я┌я▀<a href="http://www.linux.org.ru/books/man/man1/localedef.html"><em> localedef</em></a> п©я┐я┌п╣п╪ п╨п╬п╪п©п╦п╩я▐я├п╦п╦
+я│п©п╣я├п╦п╟п╩я▄п╫я▀я┘ (я┌п╣п╨я│я┌п╬п╡я▀я┘) я└п╟п╧п╩п╬п╡ п╬п©п╦я│п╟п╫п╦я▐
+п©п╟я─п╟п╪п╣я┌я─п╬п╡ :&nbsp; п╓п╟п╧п╩п╟ п·п©п╦я│п╟п╫п╦я▐ п²п╟п╠п╬я─п╟ п║п╦п╪п╡п╬п╩п╬п╡ (<a href="http://www.linux.org.ru/books/man/man_b/charset.html">Characher Set Definition File</a>) п╦ п╓п╟п╧п╩п╟
+п·п©п╦я│п╟п╫п╦я▐ п⌡п╬п╨п╟п╩п╦п╥п╟я├п╦п╦ (locale definitions) . п÷п╬я│п╩п╣ я█я┌п╬пЁп╬
+п╬п╫п╦ я│я┌п╟п╫п╬п╡п╦я┌я│я▐ п╦п╥п╡п╣я┌п╫я▀п╪ я│п╦я│я┌п╣п╪п╣ п╦ п╡п╦п╢п╦п╪я▀п╪ п©п╬ <strong>`locale
 -a`</strong>. </p>
 
 <pre><strong>$ localedef -c -i ru_RU -f ISO_8859-5 ru_RU.ISO_8859-5
 $ localedef -c -i ru_RU -f KOI8-R ru_RU.KOI8-R</strong></pre>
 
-<p>&nbsp;&nbsp;&nbsp; Данные файлы в исходном (текстовом)
-виде можно получить из коллекции <a href="ftp://dkuug.dk/i18n">ftp://dkuug.dk/i18n</a>
-или из комплекта исходных текстов библиотеки <a href="http://sourceware.cygnus.com/glibc/">glibc</a> 2.x (<code>./localedata/*</code> ).</p>
+<p>&nbsp;&nbsp;&nbsp; п■п╟п╫п╫я▀п╣ я└п╟п╧п╩я▀ п╡ п╦я│я┘п╬п╢п╫п╬п╪ (я┌п╣п╨я│я┌п╬п╡п╬п╪)
+п╡п╦п╢п╣ п╪п╬п╤п╫п╬ п©п╬п╩я┐я┤п╦я┌я▄ п╦п╥ п╨п╬п╩п╩п╣п╨я├п╦п╦ <a href="ftp://dkuug.dk/i18n">ftp://dkuug.dk/i18n</a>
+п╦п╩п╦ п╦п╥ п╨п╬п╪п©п╩п╣п╨я┌п╟ п╦я│я┘п╬п╢п╫я▀я┘ я┌п╣п╨я│я┌п╬п╡ п╠п╦п╠п╩п╦п╬я┌п╣п╨п╦ <a href="http://sourceware.cygnus.com/glibc/">glibc</a> 2.x (<code>./localedata/*</code> ).</p>
 
-<p>&nbsp;&nbsp;&nbsp; Файлы Описания Локализации (locale
-definitions) сделаны независимыми от <strong>Charset</strong>-а,
-поэтому один и тот же файл <strong>ru_RU</strong> подойдет
-для &quot;компиляции&quot; <strong>locale</strong> : <strong>ru_RU.ISO-8859-5</strong>,
+<p>&nbsp;&nbsp;&nbsp; п╓п╟п╧п╩я▀ п·п©п╦я│п╟п╫п╦я▐ п⌡п╬п╨п╟п╩п╦п╥п╟я├п╦п╦ (locale
+definitions) я│п╢п╣п╩п╟п╫я▀ п╫п╣п╥п╟п╡п╦я│п╦п╪я▀п╪п╦ п╬я┌ <strong>Charset</strong>-п╟,
+п©п╬я█я┌п╬п╪я┐ п╬п╢п╦п╫ п╦ я┌п╬я┌ п╤п╣ я└п╟п╧п╩ <strong>ru_RU</strong> п©п╬п╢п╬п╧п╢п╣я┌
+п╢п╩я▐ &quot;п╨п╬п╪п©п╦п╩я▐я├п╦п╦&quot; <strong>locale</strong> : <strong>ru_RU.ISO-8859-5</strong>,
 <strong>ru_RU.KOI8-R</strong>, <strong>ru_RU.CP1251</strong>.</p>
 
-<p>&nbsp;&nbsp;&nbsp;&nbsp; К сожалению, в некоторых системах
-(например в glibc) <a href="http://www.linux.org.ru/books/man/man1/localedef.html"><em>localedef</em></a>
-изменяет имя <strong>Charset</strong>, поэтому после <a href="http://www.linux.org.ru/books/man/man1/localedef.html"><em>localedef</em></a> каталог
-необходимо <a href="other/charsets.html">переименовать</a>.</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; п  я│п╬п╤п╟п╩п╣п╫п╦я▌, п╡ п╫п╣п╨п╬я┌п╬я─я▀я┘ я│п╦я│я┌п╣п╪п╟я┘
+(п╫п╟п©я─п╦п╪п╣я─ п╡ glibc) <a href="http://www.linux.org.ru/books/man/man1/localedef.html"><em>localedef</em></a>
+п╦п╥п╪п╣п╫я▐п╣я┌ п╦п╪я▐ <strong>Charset</strong>, п©п╬я█я┌п╬п╪я┐ п©п╬я│п╩п╣ <a href="http://www.linux.org.ru/books/man/man1/localedef.html"><em>localedef</em></a> п╨п╟я┌п╟п╩п╬пЁ
+п╫п╣п╬п╠я┘п╬п╢п╦п╪п╬ <a href="other/charsets.html">п©п╣я─п╣п╦п╪п╣п╫п╬п╡п╟я┌я▄</a>.</p>
 
-<p>&nbsp;&nbsp;&nbsp; Еще один вариант - это просто
-скопировать недостающие файлы-&quot;объекты
-локализации&quot; в двоичном виде. Некоторые
-производители <strong>UNIX</strong> поставляют для своих
-систем продукт &quot;<em><strong>Language Kit</strong></em>&quot;,
-который есть ни что иное, как комплект данных
-файлов. К сожалению, стандарт <strong>POSIX</strong> никак <strong>не
-определяет</strong> внутренний формат объектов
-локализации. Поэтому &quot;<em><strong>Language Kit</strong></em>&quot;
-одной системы (или даже версии) скорее всего не
-подойдет к другой системе.</p>
+<p>&nbsp;&nbsp;&nbsp; п∙я┴п╣ п╬п╢п╦п╫ п╡п╟я─п╦п╟п╫я┌ - я█я┌п╬ п©я─п╬я│я┌п╬
+я│п╨п╬п©п╦я─п╬п╡п╟я┌я▄ п╫п╣п╢п╬я│я┌п╟я▌я┴п╦п╣ я└п╟п╧п╩я▀-&quot;п╬п╠я┼п╣п╨я┌я▀
+п╩п╬п╨п╟п╩п╦п╥п╟я├п╦п╦&quot; п╡ п╢п╡п╬п╦я┤п╫п╬п╪ п╡п╦п╢п╣. п²п╣п╨п╬я┌п╬я─я▀п╣
+п©я─п╬п╦п╥п╡п╬п╢п╦я┌п╣п╩п╦ <strong>UNIX</strong> п©п╬я│я┌п╟п╡п╩я▐я▌я┌ п╢п╩я▐ я│п╡п╬п╦я┘
+я│п╦я│я┌п╣п╪ п©я─п╬п╢я┐п╨я┌ &quot;<em><strong>Language Kit</strong></em>&quot;,
+п╨п╬я┌п╬я─я▀п╧ п╣я│я┌я▄ п╫п╦ я┤я┌п╬ п╦п╫п╬п╣, п╨п╟п╨ п╨п╬п╪п©п╩п╣п╨я┌ п╢п╟п╫п╫я▀я┘
+я└п╟п╧п╩п╬п╡. п  я│п╬п╤п╟п╩п╣п╫п╦я▌, я│я┌п╟п╫п╢п╟я─я┌ <strong>POSIX</strong> п╫п╦п╨п╟п╨ <strong>п╫п╣
+п╬п©я─п╣п╢п╣п╩я▐п╣я┌</strong> п╡п╫я┐я┌я─п╣п╫п╫п╦п╧ я└п╬я─п╪п╟я┌ п╬п╠я┼п╣п╨я┌п╬п╡
+п╩п╬п╨п╟п╩п╦п╥п╟я├п╦п╦. п÷п╬я█я┌п╬п╪я┐ &quot;<em><strong>Language Kit</strong></em>&quot;
+п╬п╢п╫п╬п╧ я│п╦я│я┌п╣п╪я▀ (п╦п╩п╦ п╢п╟п╤п╣ п╡п╣я─я│п╦п╦) я│п╨п╬я─п╣п╣ п╡я│п╣пЁп╬ п╫п╣
+п©п╬п╢п╬п╧п╢п╣я┌ п╨ п╢я─я┐пЁп╬п╧ я│п╦я│я┌п╣п╪п╣.</p>
 
-<p>&nbsp;&nbsp;&nbsp; Для расширения кругозора, можно
-ознакомится с <a href="locale08.html">примером реализации</a>
-подсистемы <strong>locale</strong> в операционной системе <strong>Linux</strong>.</p>
+<p>&nbsp;&nbsp;&nbsp; п■п╩я▐ я─п╟я│я┬п╦я─п╣п╫п╦я▐ п╨я─я┐пЁп╬п╥п╬я─п╟, п╪п╬п╤п╫п╬
+п╬п╥п╫п╟п╨п╬п╪п╦я┌я│я▐ я│ <a href="locale08.html">п©я─п╦п╪п╣я─п╬п╪ я─п╣п╟п╩п╦п╥п╟я├п╦п╦</a>
+п©п╬п╢я│п╦я│я┌п╣п╪я▀ <strong>locale</strong> п╡ п╬п©п╣я─п╟я├п╦п╬п╫п╫п╬п╧ я│п╦я│я┌п╣п╪п╣ <strong>Linux</strong>.</p>
 
-<p>&nbsp;&nbsp;&nbsp; После выполнения необходимых
-установок, работоспособность <strong>locale</strong> можно <a href="locale_h.html">проверить</a>.</p>
+<p>&nbsp;&nbsp;&nbsp; п÷п╬я│п╩п╣ п╡я▀п©п╬п╩п╫п╣п╫п╦я▐ п╫п╣п╬п╠я┘п╬п╢п╦п╪я▀я┘
+я┐я│я┌п╟п╫п╬п╡п╬п╨, я─п╟п╠п╬я┌п╬я│п©п╬я│п╬п╠п╫п╬я│я┌я▄ <strong>locale</strong> п╪п╬п╤п╫п╬ <a href="locale_h.html">п©я─п╬п╡п╣я─п╦я┌я▄</a>.</p>
 
-<p>&nbsp;&nbsp;&nbsp; <a href="locale_i.html#locale">Дополнительная
-информация.</a></p>
+<p>&nbsp;&nbsp;&nbsp; <a href="locale_i.html#locale">п■п╬п©п╬п╩п╫п╦я┌п╣п╩я▄п╫п╟я▐
+п╦п╫я└п╬я─п╪п╟я├п╦я▐.</a></p>
 
 <hr>
 
-<p>Содержание &quot;<a href="index.html#toc">Locale AS IT IS</a>&quot;</p>
+<p>п║п╬п╢п╣я─п╤п╟п╫п╦п╣ &quot;<a href="index.html#toc">Locale AS IT IS</a>&quot;</p>
 
 <hr>
 

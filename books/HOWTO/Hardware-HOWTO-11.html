@@ -2,7 +2,7 @@
 <HTML>
 <HEAD>
  <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
- <TITLE>Linux Hardware Compatibility HOWTO: Контроллеры (мульти-портовые)</TITLE>
+ <TITLE>Linux Hardware Compatibility HOWTO: п п╬п╫я┌я─п╬п╩п╩п╣я─я▀ (п╪я┐п╩я▄я┌п╦-п©п╬я─я┌п╬п╡я▀п╣)</TITLE>
  <LINK HREF="Hardware-HOWTO-12.html" REL=next>
  <LINK HREF="Hardware-HOWTO-10.html" REL=previous>
  <LINK HREF="Hardware-HOWTO.html#toc11" REL=contents>
@@ -12,78 +12,78 @@
 <A HREF="Hardware-HOWTO-10.html">Previous</A>
 <A HREF="Hardware-HOWTO.html#toc11">Contents</A>
 <HR>
-<H2><A NAME="s11">11. Контроллеры (мульти-портовые)</A></H2>
+<H2><A NAME="s11">11. п п╬п╫я┌я─п╬п╩п╩п╣я─я▀ (п╪я┐п╩я▄я┌п╦-п©п╬я─я┌п╬п╡я▀п╣)</A></H2>
 
-<H2><A NAME="ss11.1">11.1 Не интеллектуальные карты</A>
+<H2><A NAME="ss11.1">11.1 п²п╣ п╦п╫я┌п╣п╩п╩п╣п╨я┌я┐п╟п╩я▄п╫я▀п╣ п╨п╟я─я┌я▀</A>
 </H2>
 
-<H3>Поддерживаются</H3>
+<H3>п÷п╬п╢п╢п╣я─п╤п╦п╡п╟я▌я┌я│я▐</H3>
 
 <P>
 <UL>
-<LI>AST FourPort и клоны (4 порта)</LI>
-<LI>Accent Async-4 (4 порта)</LI>
-<LI>Arnet Multiport-8 (8 портов)</LI>
-<LI>Bell Technologies HUB6 (6 портов)</LI>
-<LI>Boca BB-1004, 1008 (4, 8 портов) - без DTR, DSR, и CD</LI>
-<LI>Boca BB-2016 (16 портов)</LI>
-<LI>Boca IO/AT66 (6 портов)</LI>
-<LI>Boca IO 2by4 (4 последовательных / 2 парралельных, использует 5 IRQ)</LI>
-<LI>Computone ValuePort (4, 6, 8 портов) (AST FourPort совместимые)</LI>
-<LI>DigiBoard PC/X, PC/Xem, PCI/Xem, EISA/Xem, PCI/Xr (4, 8, 16 портов)</LI>
-<LI>Comtrol Hostess 550 (4, 8 портов)</LI>
-<LI>PC-COMM 4-port (4 порта)</LI>
-<LI>SIIG I/O Expander 4S (4 порта, использует 4 IRQ)</LI>
-<LI>STB 4-COM (4 порта)</LI>
+<LI>AST FourPort п╦ п╨п╩п╬п╫я▀ (4 п©п╬я─я┌п╟)</LI>
+<LI>Accent Async-4 (4 п©п╬я─я┌п╟)</LI>
+<LI>Arnet Multiport-8 (8 п©п╬я─я┌п╬п╡)</LI>
+<LI>Bell Technologies HUB6 (6 п©п╬я─я┌п╬п╡)</LI>
+<LI>Boca BB-1004, 1008 (4, 8 п©п╬я─я┌п╬п╡) - п╠п╣п╥ DTR, DSR, п╦ CD</LI>
+<LI>Boca BB-2016 (16 п©п╬я─я┌п╬п╡)</LI>
+<LI>Boca IO/AT66 (6 п©п╬я─я┌п╬п╡)</LI>
+<LI>Boca IO 2by4 (4 п©п╬я│п╩п╣п╢п╬п╡п╟я┌п╣п╩я▄п╫я▀я┘ / 2 п©п╟я─я─п╟п╩п╣п╩я▄п╫я▀я┘, п╦я│п©п╬п╩я▄п╥я┐п╣я┌ 5 IRQ)</LI>
+<LI>Computone ValuePort (4, 6, 8 п©п╬я─я┌п╬п╡) (AST FourPort я│п╬п╡п╪п╣я│я┌п╦п╪я▀п╣)</LI>
+<LI>DigiBoard PC/X, PC/Xem, PCI/Xem, EISA/Xem, PCI/Xr (4, 8, 16 п©п╬я─я┌п╬п╡)</LI>
+<LI>Comtrol Hostess 550 (4, 8 п©п╬я─я┌п╬п╡)</LI>
+<LI>PC-COMM 4-port (4 п©п╬я─я┌п╟)</LI>
+<LI>SIIG I/O Expander 4S (4 п©п╬я─я┌п╟, п╦я│п©п╬п╩я▄п╥я┐п╣я┌ 4 IRQ)</LI>
+<LI>STB 4-COM (4 п©п╬я─я┌п╟)</LI>
 <LI>Twincom ACI/550</LI>
-<LI>Usenet Serial Board II (4 порта)</LI>
+<LI>Usenet Serial Board II (4 п©п╬я─я┌п╟)</LI>
 </UL>
-<P>Не интеллектуальные карты обычно производиться в 2х вариантах. Один использует стандартные адреса портов и четыре IRQ , а второй совместим c AST FourPort и использует выбираемый блок адресов и одно IRQ (Адреса и IRQ устанавливаются с помощью <CODE>setserial</CODE>)
-Поэтому при покупке такой карты всегда проверяйте какой стандарт она использует.
+<P>п²п╣ п╦п╫я┌п╣п╩п╩п╣п╨я┌я┐п╟п╩я▄п╫я▀п╣ п╨п╟я─я┌я▀ п╬п╠я▀я┤п╫п╬ п©я─п╬п╦п╥п╡п╬п╢п╦я┌я▄я│я▐ п╡ 2я┘ п╡п╟я─п╦п╟п╫я┌п╟я┘. п·п╢п╦п╫ п╦я│п©п╬п╩я▄п╥я┐п╣я┌ я│я┌п╟п╫п╢п╟я─я┌п╫я▀п╣ п╟п╢я─п╣я│п╟ п©п╬я─я┌п╬п╡ п╦ я┤п╣я┌я▀я─п╣ IRQ , п╟ п╡я┌п╬я─п╬п╧ я│п╬п╡п╪п╣я│я┌п╦п╪ c AST FourPort п╦ п╦я│п©п╬п╩я▄п╥я┐п╣я┌ п╡я▀п╠п╦я─п╟п╣п╪я▀п╧ п╠п╩п╬п╨ п╟п╢я─п╣я│п╬п╡ п╦ п╬п╢п╫п╬ IRQ (п░п╢я─п╣я│п╟ п╦ IRQ я┐я│я┌п╟п╫п╟п╡п╩п╦п╡п╟я▌я┌я│я▐ я│ п©п╬п╪п╬я┴я▄я▌ <CODE>setserial</CODE>)
+п÷п╬я█я┌п╬п╪я┐ п©я─п╦ п©п╬п╨я┐п©п╨п╣ я┌п╟п╨п╬п╧ п╨п╟я─я┌я▀ п╡я│п╣пЁп╢п╟ п©я─п╬п╡п╣я─я▐п╧я┌п╣ п╨п╟п╨п╬п╧ я│я┌п╟п╫п╢п╟я─я┌ п╬п╫п╟ п╦я│п©п╬п╩я▄п╥я┐п╣я┌.
 <P>
-<H2><A NAME="ss11.2">11.2 Интеллектуальные карты</A>
+<H2><A NAME="ss11.2">11.2 п≤п╫я┌п╣п╩п╩п╣п╨я┌я┐п╟п╩я▄п╫я▀п╣ п╨п╟я─я┌я▀</A>
 </H2>
 
-<H3>Поддерживаются</H3>
+<H3>п÷п╬п╢п╢п╣я─п╤п╦п╡п╟я▌я┌я│я▐</H3>
 
 <P>
 <UL>
-<LI>Computone IntelliPort II (4/8/16 портов)<BR>
+<LI>Computone IntelliPort II (4/8/16 п©п╬я─я┌п╬п╡)<BR>
 <A HREF="ftp://ftp.computone.com/pub/bbs/beta/ip2linux-1.0.2.tar.gz">ftp://ftp.computone.com/pub/bbs/beta/ip2linux-1.0.2.tar.gz</A></LI>
-<LI>Cyclades Cyclom-Y (RISC-базирующийся, 8-32 порта) (<B>ISA/PCI</B>)<BR>
+<LI>Cyclades Cyclom-Y (RISC-п╠п╟п╥п╦я─я┐я▌я┴п╦п╧я│я▐, 8-32 п©п╬я─я┌п╟) (<B>ISA/PCI</B>)<BR>
 <A HREF="http://www.cyclades.com/">http://www.cyclades.com/</A></LI>
-<LI>Cyclades-Z (high-end, 16-64 порта) (<B>PCI</B>)<BR>
+<LI>Cyclades-Z (high-end, 16-64 п©п╬я─я┌п╟) (<B>PCI</B>)<BR>
 <A HREF="http://www.cyclades.com/">http://www.cyclades.com/</A></LI>
-<LI>DigiBoard PC/Xe (<B>ISA</B>), PC/Xi (<B>EISA</B>) и PC/Xeve<BR>
+<LI>DigiBoard PC/Xe (<B>ISA</B>), PC/Xi (<B>EISA</B>) п╦ PC/Xeve<BR>
 <A HREF="ftp://ftp.digibd.com/drivers/linux/">ftp://ftp.digibd.com/drivers/linux/</A></LI>
-<LI>Equinox SST интеллектуальные последовательные карты ввода/вывода<BR>
+<LI>Equinox SST п╦п╫я┌п╣п╩п╩п╣п╨я┌я┐п╟п╩я▄п╫я▀п╣ п©п╬я│п╩п╣п╢п╬п╡п╟я┌п╣п╩я▄п╫я▀п╣ п╨п╟я─я┌я▀ п╡п╡п╬п╢п╟/п╡я▀п╡п╬п╢п╟<BR>
 <A HREF="http://www.equinox.com">http://www.equinox.com</A></LI>
-<LI>Hayes ESP 1, 2 и 8 портовые версии<BR>
-Поддерживаются начиная с ядра 2.1.15. Патчи для версий ядра 2.0.x можно взять по адресу 
+<LI>Hayes ESP 1, 2 п╦ 8 п©п╬я─я┌п╬п╡я▀п╣ п╡п╣я─я│п╦п╦<BR>
+п÷п╬п╢п╢п╣я─п╤п╦п╡п╟я▌я┌я│я▐ п╫п╟я┤п╦п╫п╟я▐ я│ я▐п╢я─п╟ 2.1.15. п÷п╟я┌я┤п╦ п╢п╩я▐ п╡п╣я─я│п╦п╧ я▐п╢я─п╟ 2.0.x п╪п╬п╤п╫п╬ п╡п╥я▐я┌я▄ п©п╬ п╟п╢я─п╣я│я┐ 
 <A HREF="http://www.nyx.net/~arobinso">http://www.nyx.net/~arobinso</A></LI>
 <LI>Stallion EasyIO (<B>ISA</B>) / EasyConnection 8/32 (<B>ISA/MCA</B>) / EasyConnection 8/64 (<B>PCI</B>)<BR>
-Информацию о установке джамперов и файлов конфигурации смотрите по адресу :
+п≤п╫я└п╬я─п╪п╟я├п╦я▌ п╬ я┐я│я┌п╟п╫п╬п╡п╨п╣ п╢п╤п╟п╪п©п╣я─п╬п╡ п╦ я└п╟п╧п╩п╬п╡ п╨п╬п╫я└п╦пЁя┐я─п╟я├п╦п╦ я│п╪п╬я┌я─п╦я┌п╣ п©п╬ п╟п╢я─п╣я│я┐ :
 <A HREF="http://www.stallion.com">http://www.stallion.com</A></LI>
 <LI>Stallion EasyConnection 8/64 (<B>ISA/EISA</B>) / ONboard (<B>ISA/EISA/MCA</B>) / Brumby (<B>ISA</B>)<BR>
-Последняя версия драйвера лежит по адресу:
+п÷п╬я│п╩п╣п╢п╫я▐я▐ п╡п╣я─я│п╦я▐ п╢я─п╟п╧п╡п╣я─п╟ п╩п╣п╤п╦я┌ п©п╬ п╟п╢я─п╣я│я┐:
 <A HREF="ftp://ftp.stallion.com/drivers/ata5/Linux/v544.tar.gz">ftp://ftp.stallion.com/drivers/ata5/Linux/v544.tar.gz</A></LI>
 </UL>
 <P>
-<H3>Альфа, Бета драйвера</H3>
+<H3>п░п╩я▄я└п╟, п▒п╣я┌п╟ п╢я─п╟п╧п╡п╣я─п╟</H3>
 
 <P>
 <UL>
-<LI>Comtrol RocketPort (8/16/32 порта)<BR>
-<A HREF="ftp://metalab.unc.edu/pub/Linux/kernel/patches/serial/comtrol-1.04.tar.gz">ftp://metalab.unc.edu/pub/Linux/kernel/patches/serial/comtrol-1.04.tar.gz</A> (ядра 1.2.x). Драйвер для ядер 2.x может быть найден по адресу : 
+<LI>Comtrol RocketPort (8/16/32 п©п╬я─я┌п╟)<BR>
+<A HREF="ftp://metalab.unc.edu/pub/Linux/kernel/patches/serial/comtrol-1.04.tar.gz">ftp://metalab.unc.edu/pub/Linux/kernel/patches/serial/comtrol-1.04.tar.gz</A> (я▐п╢я─п╟ 1.2.x). п■я─п╟п╧п╡п╣я─ п╢п╩я▐ я▐п╢п╣я─ 2.x п╪п╬п╤п╣я┌ п╠я▀я┌я▄ п╫п╟п╧п╢п╣п╫ п©п╬ п╟п╢я─п╣я│я┐ : 
 <A HREF="http://ftp.leidenuniv.nl/linux/tsx-11/packages/comtrol/">http://ftp.leidenuniv.nl/linux/tsx-11/packages/comtrol/</A></LI>
 <LI>DigiBoard COM/Xi<BR></LI>
-<LI>Moxa C102, C104, C168, C218 (8 портов), C320 (8/16/24/32 расширяемый) и C320T<BR>
+<LI>Moxa C102, C104, C168, C218 (8 п©п╬я─я┌п╬п╡), C320 (8/16/24/32 я─п╟я│я┬п╦я─я▐п╣п╪я▀п╧) п╦ C320T<BR>
 <A HREF="ftp://ftp.moxa.com.tw/drivers/linux/">ftp://ftp.moxa.com.tw/drivers/linux/</A></LI>
 <LI>RISCom/8</LI>
-<LI>Specialix SIO/XIO (модульный, от 4 до 32 портов)<BR>
+<LI>Specialix SIO/XIO (п╪п╬п╢я┐п╩я▄п╫я▀п╧, п╬я┌ 4 п╢п╬ 32 п©п╬я─я┌п╬п╡)<BR>
 <A HREF="ftp://metalab.unc.edu/pub/Linux/kernel/patches/serial/sidrv.taz">ftp://metalab.unc.edu/pub/Linux/kernel/patches/serial/sidrv.taz</A></LI>
 <LI>Specialix IO8+ <BR>
-Пишите 
+п÷п╦я┬п╦я┌п╣ 
 <A HREF="mailto:devices@BitWizard.nl">devices@BitWizard.nl</A></LI>
 </UL>
 <P>

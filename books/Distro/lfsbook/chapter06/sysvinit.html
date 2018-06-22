@@ -1,49 +1,49 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>Installing Sysvinit-2.84</title><meta name="GENERATOR" content="Microsoft FrontPage 4.0" /=""><link rel="HOME" title="Linux From Scratch" href="http://www.linuxfromscratch.org/view/4.0/index.html" /=""><link rel="UP" title="Installing basic system software" href="http://www.linuxfromscratch.org/view/4.0/chapter06/chapter06.html" /=""><link rel="PREVIOUS" title="Installing Sysklogd-1.4.1" href="http://www.linuxfromscratch.org/view/4.0/chapter06/sysklogd.html" /=""><link rel="NEXT" title="Installing Tar-1.13" href="http://www.linuxfromscratch.org/view/4.0/chapter06/tar.html" /=""></head><body class="sect1" bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#840084" alink="#006000"><div class="NAVHEADER"><table summary="Header navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><th colspan="3" align="Center">Linux From Scratch: Версия 4.0</th></tr><tr><td width="10%" align="Left" valign="Bottom"><a href="sysklogd.html" accesskey="P">Назад</a></td><td width="80%" align="Center" valign="Bottom">Глава 6. Установка основных компонентов
-        системы</td><td width="10%" align="Right" valign="Bottom"><a href="tar.html" accesskey="N">Вперед</a></td></tr></tbody></table><hr align="Left" width="100%" /=""></div><div class="sect1"><h1 class="sect1"><a name="ch06-sysvinit">Установка Sysvinit-2.84</a></h1><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen">Приблизительное время компиляции:           0.06 SBU<br>Необходимое дисковое пространство:  1 MB</pre></td></tr></tbody></table><div class="sect2"><h2 class="sect2"><a name="AEN5327">Инсталляция Sysvinit</a></h2><p>Когда изменяется уровень (runlevel) системы (например,
-    при остановке работы системы), init
-    посылает сигналы TERM и KILL процессам,
-    которые он запустил. На экран init выдает
-    сообщение "Sending processes the TERM signal".
-    Создается впечатление, что init посылает
-    данные сигналы всем запущенным процессам.
-    Во избежание недоразумений, изменим файл init.c,
-    что вывод на экране выглядел следующим
-    образом: "Sending processes started by init the TERM signal".
-    Для этого выполните нижеприведенные
-    команды:</p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>cp src/init.c{,.backup} &amp;&amp;<br>sed 's/Sending processes/Sending processes started by init/g' \<br>    src/init.c.backup &gt; src/init.c</b></tt></pre></td></tr></tbody></table><p>Для инсталляции Sysvinit выполните:</p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>make -C src &amp;&amp;<br>make -C src install</b></tt></pre></td></tr></tbody></table></div><div class="sect2">
-<div class="sect2"><h2 class="sect2"><a name="AEN8532">Содержимое Sysvinit</a></h2><p>Последняя проверка: версия 2.84.</p><div class="sect3"><h3 class="sect3"><a name="AEN8535">Программы</a></h3><p>halt, init, killall5, last, lastb (ссылка на last), mesg, pidof
-(ссылка на killall5), poweroff (ссылка на halt), reboot (ссылка на
-halt), runlevel, shutdown, sulogin, telinit (ссылка на init), utmpdump и
-wall</p></div><div class="sect3"><h3 class="sect3"><a name="AEN8538">Описания</a></h3><div class="sect4"><h4 class="sect4"><a name="AEN8540">halt</a></h4><p>halt отмечает в /var/log/wtmp завершение работы системы и сообщает
-ядру о необходимости остановить, перезагрузить или отключить систему.
-Если halt или reboot вызваны, когда система не на уровнях выполнения  0
-или 6, вместо них запускается (с флагами -h и -r соответственно).</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8543">init</a></h4><p>init - предок всех процессов. Его основная роль - создание процессов
-из скрипта /etc/inittab. Этот файл содержит записи для создания getty, к
-которым подключаются пользователи. initt также контролирует различные
-автономные процессы.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8546">killall5</a></h4><p>killall5 - команда killall из SystemV. Посылается сигнал всем
-процессам вне собственной сессии, так что интерпретатор, выполняющий
-скрипт, из которого была вызвана эта команда, не будет завершен.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8549">last</a></h4><p>last просматривает /var/log/wtmp (или файл, указанный флагом -f) и
-выводит список всех пользователей, зарегистрировавшихся и завершивших
-сеанс с момента создания файла.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8552">lastb</a></h4><p>lastb действует аналогично last, но по умолчанию выводится журнал
-/var/log/btmp, содержащий записи о неудачных попытках регистрации.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8555">mesg</a></h4><p>mesg контролирует внешний доступ к терминалу пользователя. Обычно
-используется для разрешения записи на данный терминал прочим
-пользователям.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8558">pidof</a></h4><p>pidof выводит идентификаторы процессов (PIDs) указанных программ.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8561">poweroff</a></h4><p>poweroff действует аналогично shutdown -h -p. Выполняется останов
-системы и ее физическое отключение (необходим APM совместимый BIOS и
-поддержка APM в ядре).</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8564">reboot</a></h4><p>reboot действует аналогично shutdown -r. Выполняется перезагрузка
-системы.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8567">runlevel</a></h4><p>runlevel читает файл utmp (обычно /var/run/utmp), ищет записи об
-уровне выполнение, и выводит предыдущий и текущий уровни выполнения на
-стандартный вывод, разделенные пробелом.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8570">shutdown</a></h4><p>shutdown безопасно останавливает систему. Все зарегистрированные
-пользователи уведомляются об останове, регистрация в системе запрещается.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8573">sulogin</a></h4><p>sulogin вызывается init, когда система переходит в
-однопользовательский режим (указывается записью в in /etc/inittab). Init
-также выполняет sulogin, когда получает флаг -b от загрузчика
-(например, LILO).</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8576">telinit</a></h4><p>telinit посылает сигналы init, сообщающие о необходимости смены
-уровня выполнения.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8579">utmpdump</a></h4><p>utmpdump выводит содержимое файла (обычно /var/run/utmp) на
-стандартный вывод в удобном пользователю формате.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8582">wall</a></h4><p>wall посылает сообщение всем зарегистрированным пользователям, но
-лишь в случае, если mesg установлено yes.</p></div></div></div>
-<div class="sect2"><h2 class="sect2"><a name="AEN8585">Зависимости Sysvinit</a></h2><p>Последняя проверка: версия 2.84.</p><p class="literallayout">Bash: sh<br>
-Binutils: as, ld<br>
-Fileutils: chown, cp, install, ln, mknod, rm<br>
-Gcc: cc, cc1, collect2, cpp0<br>
-Make: make<br>
-Sed: sed</p></div>
-<h2 class="sect2"></h2></div></div><div class="NAVFOOTER"><hr align="Left" width="100%" /=""><table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="33%" align="Left" valign="Top"><a href="sysklogd.html" accesskey="P">Назад</a></td><td width="34%" align="Center" valign="Top"><a href="../index.html" accesskey="H">Домой</a></td><td width="33%" align="Right" valign="Top"><a href="tar.html" accesskey="N">Вперед</a></td></tr><tr><td width="33%" align="Left" valign="Top">Установка Sysklogd-1.4.1</td><td width="34%" align="Center" valign="Top"><a href="chapter06.html" accesskey="U">Наверх</a></td><td width="33%" align="Right" valign="Top">Установка Tar-1.13</td></tr></tbody></table></div></body></html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>Installing Sysvinit-2.84</title><meta name="GENERATOR" content="Microsoft FrontPage 4.0" /=""><link rel="HOME" title="Linux From Scratch" href="http://www.linuxfromscratch.org/view/4.0/index.html" /=""><link rel="UP" title="Installing basic system software" href="http://www.linuxfromscratch.org/view/4.0/chapter06/chapter06.html" /=""><link rel="PREVIOUS" title="Installing Sysklogd-1.4.1" href="http://www.linuxfromscratch.org/view/4.0/chapter06/sysklogd.html" /=""><link rel="NEXT" title="Installing Tar-1.13" href="http://www.linuxfromscratch.org/view/4.0/chapter06/tar.html" /=""></head><body class="sect1" bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#840084" alink="#006000"><div class="NAVHEADER"><table summary="Header navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><th colspan="3" align="Center">Linux From Scratch: Р±Р•РџРЇРҐРЄ 4.0</th></tr><tr><td width="10%" align="Left" valign="Bottom"><a href="sysklogd.html" accesskey="P">РјР®Р“Р®Р”</a></td><td width="80%" align="Center" valign="Bottom">С†РљР®Р‘Р® 6. СЃРЇР Р®РњРќР‘Р™Р® РќРЇРњРќР‘РњРЁРЈ Р™РќР›РћРќРњР•РњР РќР‘
+        РЇРҐРЇР Р•Р›РЁ</td><td width="10%" align="Right" valign="Bottom"><a href="tar.html" accesskey="N">Р±РћР•РџР•Р”</a></td></tr></tbody></table><hr align="Left" width="100%" /=""></div><div class="sect1"><h1 class="sect1"><a name="ch06-sysvinit">СЃРЇР Р®РњРќР‘Р™Р® Sysvinit-2.84</a></h1><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen">РѕРџРҐРђРљРҐР“РҐР Р•РљР­РњРќР• Р‘РџР•Р›РЄ Р™РќР›РћРҐРљРЄР–РҐРҐ:           0.06 SBU<br>РјР•РќРђРЈРќР”РҐР›РќР• Р”РҐРЇР™РќР‘РќР• РћРџРќРЇР РџР®РњРЇР Р‘Рќ:  1 MB</pre></td></tr></tbody></table><div class="sect2"><h2 class="sect2"><a name="AEN5327">С…РњРЇР Р®РљРљРЄР–РҐРЄ Sysvinit</a></h2><p>Р№РќР¦Р”Р® РҐР“Р›Р•РњРЄР•Р РЇРЄ РЎРџРќР‘Р•РњР­ (runlevel) РЇРҐРЇР Р•Р›РЁ (РњР®РћРџРҐР›Р•Рџ,
+    РћРџРҐ РќРЇР Р®РњРќР‘Р™Р• РџР®РђРќР РЁ РЇРҐРЇР Р•Р›РЁ), init
+    РћРќРЇРЁРљР®Р•Р  РЇРҐР¦РњР®РљРЁ TERM РҐ KILL РћРџРќР–Р•РЇРЇР®Р›,
+    Р™РќР РќРџРЁР• РќРњ Р“Р®РћРЎРЇР РҐРљ. РјР® Р©Р™РџР®Рњ init Р‘РЁР”Р®Р•Р 
+    РЇРќРќРђР«Р•РњРҐР• "Sending processes the TERM signal".
+    СЏРќР“Р”Р®Р•Р РЇРЄ Р‘РћР•Р’Р®Р РљР•РњРҐР•, Р’Р Рќ init РћРќРЇРЁРљР®Р•Р 
+    Р”Р®РњРњРЁР• РЇРҐР¦РњР®РљРЁ Р‘РЇР•Р› Р“Р®РћРЎР«Р•РњРњРЁР› РћРџРќР–Р•РЇРЇР®Р›.
+    Р±Рќ РҐР“РђР•Р¤Р®РњРҐР• РњР•Р”РќРџР®Р“РЎР›Р•РњРҐР, РҐР“Р›Р•РњРҐР› РўР®РРљ init.c,
+    Р’Р Рќ Р‘РЁР‘РќР” РњР® Р©Р™РџР®РњР• Р‘РЁР¦РљРЄР”Р•Рљ РЇРљР•Р”РЎР§Р«РҐР›
+    РќРђРџР®Р“РќР›: "Sending processes started by init the TERM signal".
+    РґРљРЄ Р©Р РќР¦Рќ Р‘РЁРћРќРљРњРҐР Р• РњРҐР¤Р•РћРџРҐР‘Р•Р”Р•РњРњРЁР•
+    Р™РќР›Р®РњР”РЁ:</p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>cp src/init.c{,.backup} &amp;&amp;<br>sed 's/Sending processes/Sending processes started by init/g' \<br>в•ђв•ђв•ђв•ђsrc/init.c.backup &gt; src/init.c</b></tt></pre></td></tr></tbody></table><p>РґРљРЄ РҐРњРЇР Р®РљРљРЄР–РҐРҐ Sysvinit Р‘РЁРћРќРљРњРҐР Р•:</p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>make -C src &amp;&amp;<br>make -C src install</b></tt></pre></td></tr></tbody></table></div><div class="sect2">
+<div class="sect2"><h2 class="sect2"><a name="AEN8532">СЏРќР”Р•РџР¤РҐР›РќР• Sysvinit</a></h2><p>РѕРќРЇРљР•Р”РњРЄРЄ РћРџРќР‘Р•РџР™Р®: Р‘Р•РџРЇРҐРЄ 2.84.</p><div class="sect3"><h3 class="sect3"><a name="AEN8535">РѕРџРќР¦РџР®Р›Р›РЁ</a></h3><p>halt, init, killall5, last, lastb (РЇРЇРЁРљР™Р® РњР® last), mesg, pidof
+(РЇРЇРЁРљР™Р® РњР® killall5), poweroff (РЇРЇРЁРљР™Р® РњР® halt), reboot (РЇРЇРЁРљР™Р® РњР®
+halt), runlevel, shutdown, sulogin, telinit (РЇРЇРЁРљР™Р® РњР® init), utmpdump РҐ
+wall</p></div><div class="sect3"><h3 class="sect3"><a name="AEN8538">РЅРћРҐРЇР®РњРҐРЄ</a></h3><div class="sect4"><h4 class="sect4"><a name="AEN8540">halt</a></h4><p>halt РќР Р›Р•Р’Р®Р•Р  Р‘ /var/log/wtmp Р“Р®Р‘Р•РџР¬Р•РњРҐР• РџР®РђРќР РЁ РЇРҐРЇР Р•Р›РЁ РҐ РЇРќРќРђР«Р®Р•Р 
+РЄР”РџРЎ Рќ РњР•РќРђРЈРќР”РҐР›РќРЇР РҐ РќРЇР Р®РњРќР‘РҐР Р­, РћР•РџР•Р“Р®Р¦РџРЎР“РҐР Р­ РҐРљРҐ РќР Р™РљР§Р’РҐР Р­ РЇРҐРЇР Р•Р›РЎ.
+РµРЇРљРҐ halt РҐРљРҐ reboot Р‘РЁР“Р‘Р®РњРЁ, Р™РќР¦Р”Р® РЇРҐРЇР Р•Р›Р® РњР• РњР® РЎРџРќР‘РњРЄРЈ Р‘РЁРћРќРљРњР•РњРҐРЄв•ђ 0
+РҐРљРҐ 6, Р‘Р›Р•РЇР Рќ РњРҐРЈ Р“Р®РћРЎРЇР™Р®Р•Р РЇРЄ (РЇ РўРљР®Р¦Р®Р›РҐ -h РҐ -r РЇРќРќР Р‘Р•Р РЇР Р‘Р•РњРњРќ).</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8543">init</a></h4><p>init - РћРџР•Р”РќР™ Р‘РЇР•РЈ РћРџРќР–Р•РЇРЇРќР‘. РµР¦Рќ РќРЇРњРќР‘РњР®РЄ РџРќРљР­ - РЇРќР“Р”Р®РњРҐР• РћРџРќР–Р•РЇРЇРќР‘
+РҐР“ РЇР™РџРҐРћР Р® /etc/inittab. С‰Р РќР  РўР®РРљ РЇРќР”Р•РџР¤РҐР  Р“Р®РћРҐРЇРҐ Р”РљРЄ РЇРќР“Р”Р®РњРҐРЄ getty, Р™
+Р™РќР РќРџРЁР› РћРќР”Р™РљР§Р’Р®Р§Р РЇРЄ РћРќРљР­Р“РќР‘Р®Р Р•РљРҐ. initt Р Р®Р™Р¤Р• Р™РќРњР РџРќРљРҐРџРЎР•Р  РџР®Р“РљРҐР’РњРЁР•
+Р®Р‘Р РќРњРќР›РњРЁР• РћРџРќР–Р•РЇРЇРЁ.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8546">killall5</a></h4><p>killall5 - Р™РќР›Р®РњР”Р® killall РҐР“ SystemV. РѕРќРЇРЁРљР®Р•Р РЇРЄ РЇРҐР¦РњР®Рљ Р‘РЇР•Р›
+РћРџРќР–Р•РЇРЇР®Р› Р‘РњР• РЇРќРђРЇР Р‘Р•РњРњРќР РЇР•РЇРЇРҐРҐ, Р Р®Р™ Р’Р Рќ РҐРњР Р•РџРћРџР•Р Р®Р РќРџ, Р‘РЁРћРќРљРњРЄР§Р«РҐР
+РЇР™РџРҐРћР , РҐР“ Р™РќР РќРџРќР¦Рќ РђРЁРљР® Р‘РЁР“Р‘Р®РњР® Р©Р Р® Р™РќР›Р®РњР”Р®, РњР• РђРЎР”Р•Р  Р“Р®Р‘Р•РџР¬Р•Рњ.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8549">last</a></h4><p>last РћРџРќРЇР›Р®Р РџРҐР‘Р®Р•Р  /var/log/wtmp (РҐРљРҐ РўР®РРљ, РЎР™Р®Р“Р®РњРњРЁР РўРљР®Р¦РќР› -f) РҐ
+Р‘РЁР‘РќР”РҐР  РЇРћРҐРЇРќР™ Р‘РЇР•РЈ РћРќРљР­Р“РќР‘Р®Р Р•РљР•Р, Р“Р®РџР•Р¦РҐРЇР РџРҐРџРќР‘Р®Р‘Р¬РҐРЈРЇРЄ РҐ Р“Р®Р‘Р•РџР¬РҐР‘Р¬РҐРЈ
+РЇР•Р®РњРЇ РЇ Р›РќР›Р•РњР Р® РЇРќР“Р”Р®РњРҐРЄ РўР®РРљР®.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8552">lastb</a></h4><p>lastb Р”Р•РРЇР Р‘РЎР•Р  Р®РњР®РљРќР¦РҐР’РњРќ last, РњРќ РћРќ РЎР›РќРљР’Р®РњРҐР§ Р‘РЁР‘РќР”РҐР РЇРЄ Р¤РЎРџРњР®Рљ
+/var/log/btmp, РЇРќР”Р•РџР¤Р®Р«РҐР Р“Р®РћРҐРЇРҐ Рќ РњР•РЎР”Р®Р’РњРЁРЈ РћРќРћРЁР Р™Р®РЈ РџР•Р¦РҐРЇР РџР®Р–РҐРҐ.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8555">mesg</a></h4><p>mesg Р™РќРњР РџРќРљРҐРџРЎР•Р  Р‘РњР•Р¬РњРҐР Р”РќРЇР РЎРћ Р™ Р Р•РџР›РҐРњР®РљРЎ РћРќРљР­Р“РќР‘Р®Р Р•РљРЄ. РЅРђРЁР’РњРќ
+РҐРЇРћРќРљР­Р“РЎР•Р РЇРЄ Р”РљРЄ РџР®Р“РџР•Р¬Р•РњРҐРЄ Р“Р®РћРҐРЇРҐ РњР® Р”Р®РњРњРЁР Р Р•РџР›РҐРњР®Рљ РћРџРќР’РҐР›
+РћРќРљР­Р“РќР‘Р®Р Р•РљРЄР›.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8558">pidof</a></h4><p>pidof Р‘РЁР‘РќР”РҐР  РҐР”Р•РњР РҐРўРҐР™Р®Р РќРџРЁ РћРџРќР–Р•РЇРЇРќР‘ (PIDs) РЎР™Р®Р“Р®РњРњРЁРЈ РћРџРќР¦РџР®Р›Р›.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8561">poweroff</a></h4><p>poweroff Р”Р•РРЇР Р‘РЎР•Р  Р®РњР®РљРќР¦РҐР’РњРќ shutdown -h -p. Р±РЁРћРќРљРњРЄР•Р РЇРЄ РќРЇР Р®РњРќР‘
+РЇРҐРЇР Р•Р›РЁ РҐ Р•Р• РўРҐР“РҐР’Р•РЇР™РќР• РќР Р™РљР§Р’Р•РњРҐР• (РњР•РќРђРЈРќР”РҐР› APM РЇРќР‘Р›Р•РЇР РҐР›РЁР BIOS РҐ
+РћРќР”Р”Р•РџР¤Р™Р® APM Р‘ РЄР”РџР•).</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8564">reboot</a></h4><p>reboot Р”Р•РРЇР Р‘РЎР•Р  Р®РњР®РљРќР¦РҐР’РњРќ shutdown -r. Р±РЁРћРќРљРњРЄР•Р РЇРЄ РћР•РџР•Р“Р®Р¦РџРЎР“Р™Р®
+РЇРҐРЇР Р•Р›РЁ.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8567">runlevel</a></h4><p>runlevel Р’РҐР Р®Р•Р  РўР®РРљ utmp (РќРђРЁР’РњРќ /var/run/utmp), РҐР«Р•Р  Р“Р®РћРҐРЇРҐ РќРђ
+РЎРџРќР‘РњР• Р‘РЁРћРќРљРњР•РњРҐР•, РҐ Р‘РЁР‘РќР”РҐР  РћРџР•Р”РЁР”РЎР«РҐР РҐ Р Р•Р™РЎР«РҐР РЎРџРќР‘РњРҐ Р‘РЁРћРќРљРњР•РњРҐРЄ РњР®
+РЇР Р®РњР”Р®РџР РњРЁР Р‘РЁР‘РќР”, РџР®Р“Р”Р•РљР•РњРњРЁР• РћРџРќРђР•РљРќР›.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8570">shutdown</a></h4><p>shutdown РђР•Р“РќРћР®РЇРњРќ РќРЇР Р®РњР®Р‘РљРҐР‘Р®Р•Р  РЇРҐРЇР Р•Р›РЎ. Р±РЇР• Р“Р®РџР•Р¦РҐРЇР РџРҐРџРќР‘Р®РњРњРЁР•
+РћРќРљР­Р“РќР‘Р®Р Р•РљРҐ РЎР‘Р•Р”РќР›РљРЄР§Р РЇРЄ РќРђ РќРЇР Р®РњРќР‘Р•, РџР•Р¦РҐРЇР РџР®Р–РҐРЄ Р‘ РЇРҐРЇР Р•Р›Р• Р“Р®РћРџР•Р«Р®Р•Р РЇРЄ.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8573">sulogin</a></h4><p>sulogin Р‘РЁР“РЁР‘Р®Р•Р РЇРЄ init, Р™РќР¦Р”Р® РЇРҐРЇР Р•Р›Р® РћР•РџР•РЈРќР”РҐР  Р‘
+РќР”РњРќРћРќРљР­Р“РќР‘Р®Р Р•РљР­РЇР™РҐР РџР•Р¤РҐР› (РЎР™Р®Р“РЁР‘Р®Р•Р РЇРЄ Р“Р®РћРҐРЇР­Р§ Р‘ in /etc/inittab). Init
+Р Р®Р™Р¤Р• Р‘РЁРћРќРљРњРЄР•Р  sulogin, Р™РќР¦Р”Р® РћРќРљРЎР’Р®Р•Р  РўРљР®Р¦ -b РќР  Р“Р®Р¦РџРЎР“Р’РҐР™Р®
+(РњР®РћРџРҐР›Р•Рџ, LILO).</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8576">telinit</a></h4><p>telinit РћРќРЇРЁРљР®Р•Р  РЇРҐР¦РњР®РљРЁ init, РЇРќРќРђР«Р®Р§Р«РҐР• Рќ РњР•РќРђРЈРќР”РҐР›РќРЇР РҐ РЇР›Р•РњРЁ
+РЎРџРќР‘РњРЄ Р‘РЁРћРќРљРњР•РњРҐРЄ.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8579">utmpdump</a></h4><p>utmpdump Р‘РЁР‘РќР”РҐР  РЇРќР”Р•РџР¤РҐР›РќР• РўР®РРљР® (РќРђРЁР’РњРќ /var/run/utmp) РњР®
+РЇР Р®РњР”Р®РџР РњРЁР Р‘РЁР‘РќР” Р‘ РЎР”РќРђРњРќР› РћРќРљР­Р“РќР‘Р®Р Р•РљР§ РўРќРџР›Р®Р Р•.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8582">wall</a></h4><p>wall РћРќРЇРЁРљР®Р•Р  РЇРќРќРђР«Р•РњРҐР• Р‘РЇР•Р› Р“Р®РџР•Р¦РҐРЇР РџРҐРџРќР‘Р®РњРњРЁР› РћРќРљР­Р“РќР‘Р®Р Р•РљРЄР›, РњРќ
+РљРҐР¬Р­ Р‘ РЇРљРЎР’Р®Р•, Р•РЇРљРҐ mesg РЎРЇР Р®РњРќР‘РљР•РњРќ yes.</p></div></div></div>
+<div class="sect2"><h2 class="sect2"><a name="AEN8585">РіР®Р‘РҐРЇРҐР›РќРЇР РҐ Sysvinit</a></h2><p>РѕРќРЇРљР•Р”РњРЄРЄ РћРџРќР‘Р•РџР™Р®: Р‘Р•РџРЇРҐРЄ 2.84.</p><p class="literallayout">Bash:в•ђsh<br>
+Binutils:в•ђas,в•ђld<br>
+Fileutils:в•ђchown,в•ђcp,в•ђinstall,в•ђln,в•ђmknod,в•ђrm<br>
+Gcc:в•ђcc,в•ђcc1,в•ђcollect2,в•ђcpp0<br>
+Make:в•ђmake<br>
+Sed:в•ђsed</p></div>
+<h2 class="sect2"></h2></div></div><div class="NAVFOOTER"><hr align="Left" width="100%" /=""><table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="33%" align="Left" valign="Top"><a href="sysklogd.html" accesskey="P">РјР®Р“Р®Р”</a></td><td width="34%" align="Center" valign="Top"><a href="../index.html" accesskey="H">РґРќР›РќР</a></td><td width="33%" align="Right" valign="Top"><a href="tar.html" accesskey="N">Р±РћР•РџР•Р”</a></td></tr><tr><td width="33%" align="Left" valign="Top">СЃРЇР Р®РњРќР‘Р™Р® Sysklogd-1.4.1</td><td width="34%" align="Center" valign="Top"><a href="chapter06.html" accesskey="U">РјР®Р‘Р•РџРЈ</a></td><td width="33%" align="Right" valign="Top">СЃРЇР Р®РњРќР‘Р™Р® Tar-1.13</td></tr></tbody></table></div></body></html>

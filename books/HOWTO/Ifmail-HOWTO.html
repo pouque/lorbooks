@@ -15,78 +15,78 @@ Contents
 <H1> IFMAIL-HOWTO</H1>
 
 <H2>Greg Frydenlund, fidonet 1:125/710<BR>
-Русский перевод
+п═я┐я│я│п╨п╦п╧ п©п╣я─п╣п╡п╬п╢
 Ilgiz Kalmetev, 
 <A HREF="mailto:ilgiz@mail.rb.ru">ilgiz@mail.rb.ru</A><BR>
-Файл config пакета ifmail  перевел Alexey Mahotkin, 
+п╓п╟п╧п╩ config п©п╟п╨п╣я┌п╟ ifmail  п©п╣я─п╣п╡п╣п╩ Alexey Mahotkin, 
 <A HREF="mailto:alexm@hsys.msk.ru">alexm@hsys.msk.ru</A></H2>v1.1, 08/05/1997 8:05:19 
 <P><HR>
-<EM>  Этот документ - попытка описать КАК под Linux настроить, установить и  использовать ifmail в качестве шлюза fidonet/internet, sendmail как агент  транспортировки почты (mta) и INN в качестве агента транспортировки новостей.</EM>
+<EM>  п╜я┌п╬я┌ п╢п╬п╨я┐п╪п╣п╫я┌ - п©п╬п©я▀я┌п╨п╟ п╬п©п╦я│п╟я┌я▄ п п░п  п©п╬п╢ Linux п╫п╟я│я┌я─п╬п╦я┌я▄, я┐я│я┌п╟п╫п╬п╡п╦я┌я▄ п╦  п╦я│п©п╬п╩я▄п╥п╬п╡п╟я┌я▄ ifmail п╡ п╨п╟я┤п╣я│я┌п╡п╣ я┬п╩я▌п╥п╟ fidonet/internet, sendmail п╨п╟п╨ п╟пЁп╣п╫я┌  я┌я─п╟п╫я│п©п╬я─я┌п╦я─п╬п╡п╨п╦ п©п╬я┤я┌я▀ (mta) п╦ INN п╡ п╨п╟я┤п╣я│я┌п╡п╣ п╟пЁп╣п╫я┌п╟ я┌я─п╟п╫я│п©п╬я─я┌п╦я─п╬п╡п╨п╦ п╫п╬п╡п╬я│я┌п╣п╧.</EM>
 <HR>
 <P>
-<H2><A NAME="toc1">1.</A> <A HREF="Ifmail-HOWTO-1.html">Введение</A></H2>
+<H2><A NAME="toc1">1.</A> <A HREF="Ifmail-HOWTO-1.html">п▓п╡п╣п╢п╣п╫п╦п╣</A></H2>
 
 <UL>
-<LI><A HREF="Ifmail-HOWTO-1.html#ss1.1">1.1 Обратная связь</A>
-<LI><A HREF="Ifmail-HOWTO-1.html#ss1.2">1.2 Отказ от ответственности</A>
-<LI><A HREF="Ifmail-HOWTO-1.html#ss1.3">1.3 Дополнительные источники</A>
-<LI><A HREF="Ifmail-HOWTO-1.html#ss1.4">1.4 Где достать последнюю версию данного HOWTO</A>
+<LI><A HREF="Ifmail-HOWTO-1.html#ss1.1">1.1 п·п╠я─п╟я┌п╫п╟я▐ я│п╡я▐п╥я▄</A>
+<LI><A HREF="Ifmail-HOWTO-1.html#ss1.2">1.2 п·я┌п╨п╟п╥ п╬я┌ п╬я┌п╡п╣я┌я│я┌п╡п╣п╫п╫п╬я│я┌п╦</A>
+<LI><A HREF="Ifmail-HOWTO-1.html#ss1.3">1.3 п■п╬п©п╬п╩п╫п╦я┌п╣п╩я▄п╫я▀п╣ п╦я│я┌п╬я┤п╫п╦п╨п╦</A>
+<LI><A HREF="Ifmail-HOWTO-1.html#ss1.4">1.4 п⌠п╢п╣ п╢п╬я│я┌п╟я┌я▄ п©п╬я│п╩п╣п╢п╫я▌я▌ п╡п╣я─я│п╦я▌ п╢п╟п╫п╫п╬пЁп╬ HOWTO</A>
 </UL>
 <P>
-<H2><A NAME="toc2">2.</A> <A HREF="Ifmail-HOWTO-2.html">Необходимые программы</A></H2>
+<H2><A NAME="toc2">2.</A> <A HREF="Ifmail-HOWTO-2.html">п²п╣п╬п╠я┘п╬п╢п╦п╪я▀п╣ п©я─п╬пЁя─п╟п╪п╪я▀</A></H2>
 
 <UL>
 <LI><A HREF="Ifmail-HOWTO-2.html#ss2.1">2.1 ifmail-2.11</A>
 <LI><A HREF="Ifmail-HOWTO-2.html#ss2.2">2.2 ifmail-2.10-tx8.4</A>
-<LI><A HREF="Ifmail-HOWTO-2.html#ss2.3">2.3 Агент транспортировки почты (MTA)</A>
-<LI><A HREF="Ifmail-HOWTO-2.html#ss2.4">2.4 Программа обслуживания последовательных линий</A>
-<LI><A HREF="Ifmail-HOWTO-2.html#ss2.5">2.5 Читалка новостей</A>
-<LI><A HREF="Ifmail-HOWTO-2.html#ss2.6">2.6 Читалка почты</A>
-<LI><A HREF="Ifmail-HOWTO-2.html#ss2.7">2.7 Упаковщики</A>
-<LI><A HREF="Ifmail-HOWTO-2.html#ss2.8">2.8 TIC-процессор</A>
-<LI><A HREF="Ifmail-HOWTO-2.html#ss2.9">2.9 Права доступа</A>
-<LI><A HREF="Ifmail-HOWTO-2.html#ss2.10">2.10 Примеры конфигураций</A>
+<LI><A HREF="Ifmail-HOWTO-2.html#ss2.3">2.3 п░пЁп╣п╫я┌ я┌я─п╟п╫я│п©п╬я─я┌п╦я─п╬п╡п╨п╦ п©п╬я┤я┌я▀ (MTA)</A>
+<LI><A HREF="Ifmail-HOWTO-2.html#ss2.4">2.4 п÷я─п╬пЁя─п╟п╪п╪п╟ п╬п╠я│п╩я┐п╤п╦п╡п╟п╫п╦я▐ п©п╬я│п╩п╣п╢п╬п╡п╟я┌п╣п╩я▄п╫я▀я┘ п╩п╦п╫п╦п╧</A>
+<LI><A HREF="Ifmail-HOWTO-2.html#ss2.5">2.5 п╖п╦я┌п╟п╩п╨п╟ п╫п╬п╡п╬я│я┌п╣п╧</A>
+<LI><A HREF="Ifmail-HOWTO-2.html#ss2.6">2.6 п╖п╦я┌п╟п╩п╨п╟ п©п╬я┤я┌я▀</A>
+<LI><A HREF="Ifmail-HOWTO-2.html#ss2.7">2.7 пёп©п╟п╨п╬п╡я┴п╦п╨п╦</A>
+<LI><A HREF="Ifmail-HOWTO-2.html#ss2.8">2.8 TIC-п©я─п╬я├п╣я│я│п╬я─</A>
+<LI><A HREF="Ifmail-HOWTO-2.html#ss2.9">2.9 п÷я─п╟п╡п╟ п╢п╬я│я┌я┐п©п╟</A>
+<LI><A HREF="Ifmail-HOWTO-2.html#ss2.10">2.10 п÷я─п╦п╪п╣я─я▀ п╨п╬п╫я└п╦пЁя┐я─п╟я├п╦п╧</A>
 </UL>
 <P>
-<H2><A NAME="toc3">3.</A> <A HREF="Ifmail-HOWTO-3.html">Сборка &amp; установка ifmail</A></H2>
+<H2><A NAME="toc3">3.</A> <A HREF="Ifmail-HOWTO-3.html">п║п╠п╬я─п╨п╟ &amp; я┐я│я┌п╟п╫п╬п╡п╨п╟ ifmail</A></H2>
 
 <UL>
 <LI><A HREF="Ifmail-HOWTO-3.html#ss3.1">3.1 ifmail CONFIG</A>
-<LI><A HREF="Ifmail-HOWTO-3.html#ss3.2">3.2 Файл config пакета ifmail </A>
-<LI><A HREF="Ifmail-HOWTO-3.html#ss3.3">3.3 Файл Areas пакета ifmail</A>
-<LI><A HREF="Ifmail-HOWTO-3.html#ss3.4">3.4 Журналы регистрации ifmail</A>
-<LI><A HREF="Ifmail-HOWTO-3.html#ss3.5">3.5 Компилятор нодлиста</A>
-<LI><A HREF="Ifmail-HOWTO-3.html#ss3.6">3.6 Пакеты ifmail</A>
-<LI><A HREF="Ifmail-HOWTO-3.html#ss3.7">3.7 Скачивание почты и распаковка</A>
+<LI><A HREF="Ifmail-HOWTO-3.html#ss3.2">3.2 п╓п╟п╧п╩ config п©п╟п╨п╣я┌п╟ ifmail </A>
+<LI><A HREF="Ifmail-HOWTO-3.html#ss3.3">3.3 п╓п╟п╧п╩ Areas п©п╟п╨п╣я┌п╟ ifmail</A>
+<LI><A HREF="Ifmail-HOWTO-3.html#ss3.4">3.4 п√я┐я─п╫п╟п╩я▀ я─п╣пЁп╦я│я┌я─п╟я├п╦п╦ ifmail</A>
+<LI><A HREF="Ifmail-HOWTO-3.html#ss3.5">3.5 п п╬п╪п©п╦п╩я▐я┌п╬я─ п╫п╬п╢п╩п╦я│я┌п╟</A>
+<LI><A HREF="Ifmail-HOWTO-3.html#ss3.6">3.6 п÷п╟п╨п╣я┌я▀ ifmail</A>
+<LI><A HREF="Ifmail-HOWTO-3.html#ss3.7">3.7 п║п╨п╟я┤п╦п╡п╟п╫п╦п╣ п©п╬я┤я┌я▀ п╦ я─п╟я│п©п╟п╨п╬п╡п╨п╟</A>
 <LI><A HREF="Ifmail-HOWTO-3.html#ss3.8">3.8 ifmail crontab</A>
 </UL>
 <P>
-<H2><A NAME="toc4">4.</A> <A HREF="Ifmail-HOWTO-4.html">Настройка sendmail V8</A></H2>
+<H2><A NAME="toc4">4.</A> <A HREF="Ifmail-HOWTO-4.html">п²п╟я│я┌я─п╬п╧п╨п╟ sendmail V8</A></H2>
 
 <P>
-<H2><A NAME="toc5">5.</A> <A HREF="Ifmail-HOWTO-5.html">Настройка INN</A></H2>
+<H2><A NAME="toc5">5.</A> <A HREF="Ifmail-HOWTO-5.html">п²п╟я│я┌я─п╬п╧п╨п╟ INN</A></H2>
 
 <P>
 <H2><A NAME="toc6">6.</A> <A HREF="Ifmail-HOWTO-6.html">gettys &amp; inittab</A></H2>
 
 <P>
-<H2><A NAME="toc7">7.</A> <A HREF="Ifmail-HOWTO-7.html">News/Echomail чтение и написание</A></H2>
+<H2><A NAME="toc7">7.</A> <A HREF="Ifmail-HOWTO-7.html">News/Echomail я┤я┌п╣п╫п╦п╣ п╦ п╫п╟п©п╦я│п╟п╫п╦п╣</A></H2>
 
 <P>
-<H2><A NAME="toc8">8.</A> <A HREF="Ifmail-HOWTO-8.html">Mail/Netmail чтение и написание</A></H2>
+<H2><A NAME="toc8">8.</A> <A HREF="Ifmail-HOWTO-8.html">Mail/Netmail я┤я┌п╣п╫п╦п╣ п╦ п╫п╟п©п╦я│п╟п╫п╦п╣</A></H2>
 
 <P>
-<H2><A NAME="toc9">9.</A> <A HREF="Ifmail-HOWTO-9.html">Фрекание файлов</A></H2>
+<H2><A NAME="toc9">9.</A> <A HREF="Ifmail-HOWTO-9.html">п╓я─п╣п╨п╟п╫п╦п╣ я└п╟п╧п╩п╬п╡</A></H2>
 
 <P>
-<H2><A NAME="toc10">10.</A> <A HREF="Ifmail-HOWTO-10.html">Решение проблем</A></H2>
+<H2><A NAME="toc10">10.</A> <A HREF="Ifmail-HOWTO-10.html">п═п╣я┬п╣п╫п╦п╣ п©я─п╬п╠п╩п╣п╪</A></H2>
 
 <UL>
-<LI><A HREF="Ifmail-HOWTO-10.html#ss10.1">10.1 Почта не обрабатывается</A>
-<LI><A HREF="Ifmail-HOWTO-10.html#ss10.2">10.2 Эхоконференции не обрабатываются</A>
+<LI><A HREF="Ifmail-HOWTO-10.html#ss10.1">10.1 п÷п╬я┤я┌п╟ п╫п╣ п╬п╠я─п╟п╠п╟я┌я▀п╡п╟п╣я┌я│я▐</A>
+<LI><A HREF="Ifmail-HOWTO-10.html#ss10.2">10.2 п╜я┘п╬п╨п╬п╫я└п╣я─п╣п╫я├п╦п╦ п╫п╣ п╬п╠я─п╟п╠п╟я┌я▀п╡п╟я▌я┌я│я▐</A>
 </UL>
 <P>
-<H2><A NAME="toc11">11.</A> <A HREF="Ifmail-HOWTO-11.html">Благодарности</A></H2>
+<H2><A NAME="toc11">11.</A> <A HREF="Ifmail-HOWTO-11.html">п▒п╩п╟пЁп╬п╢п╟я─п╫п╬я│я┌п╦</A></H2>
 
 <HR>
 <A HREF="Ifmail-HOWTO-1.html">Next</A>

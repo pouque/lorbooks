@@ -7,8 +7,8 @@ original version by:  Nikos Drakos, CBLU, University of Leeds
   Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
 <HTML>
 <HEAD>
-<TITLE>Меню.</TITLE>
-<META NAME="description" CONTENT="Меню.">
+<TITLE>п°п╣п╫я▌.</TITLE>
+<META NAME="description" CONTENT="п°п╣п╫я▌.">
 <META NAME="resource-type" CONTENT="document">
 <META NAME="distribution" CONTENT="global">
 
@@ -40,67 +40,67 @@ original version by:  Nikos Drakos, CBLU, University of Leeds
   HREF="IntroToLinux.html">
 <IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A>  
 <BR>
-<B> След.:</B> <A NAME="tex2html869"
-  HREF="node56.html">Функции.</A>
-<B> Вверх:</B> <A NAME="tex2html865"
-  HREF="node54.html">Введение в FVWM2</A>
-<B> Пред.:</B> <A NAME="tex2html859"
-  HREF="node54.html">Введение в FVWM2</A>
+<B> п║п╩п╣п╢.:</B> <A NAME="tex2html869"
+  HREF="node56.html">п╓я┐п╫п╨я├п╦п╦.</A>
+<B> п▓п╡п╣я─я┘:</B> <A NAME="tex2html865"
+  HREF="node54.html">п▓п╡п╣п╢п╣п╫п╦п╣ п╡ FVWM2</A>
+<B> п÷я─п╣п╢.:</B> <A NAME="tex2html859"
+  HREF="node54.html">п▓п╡п╣п╢п╣п╫п╦п╣ п╡ FVWM2</A>
  &nbsp; <B>  <A NAME="tex2html867"
-  HREF="IntroToLinux.html">Содержание</A></B> 
+  HREF="IntroToLinux.html">п║п╬п╢п╣я─п╤п╟п╫п╦п╣</A></B> 
 <BR>
 <BR></DIV>
 <!--End of Navigation Panel-->
 
 <H3><A NAME="SECTION00053100000000000000">
-Меню.</A>
+п°п╣п╫я▌.</A>
 </H3>
 
 <P>
-В FVWM вы не ограниченны придуманным и зафиксированным разработчиками WindowManager меню.
-Здесь их у вас может быть сколько угодно и каких угодно видов.
-Присутствует и возможность отрывать от меню подменю (или фиксировать его самого на экране), что инициируется нажатием средней кнопки мыши на его заголовке...
+п▓ FVWM п╡я▀ п╫п╣ п╬пЁя─п╟п╫п╦я┤п╣п╫п╫я▀ п©я─п╦п╢я┐п╪п╟п╫п╫я▀п╪ п╦ п╥п╟я└п╦п╨я│п╦я─п╬п╡п╟п╫п╫я▀п╪ я─п╟п╥я─п╟п╠п╬я┌я┤п╦п╨п╟п╪п╦ WindowManager п╪п╣п╫я▌.
+п≈п╢п╣я│я▄ п╦я┘ я┐ п╡п╟я│ п╪п╬п╤п╣я┌ п╠я▀я┌я▄ я│п╨п╬п╩я▄п╨п╬ я┐пЁп╬п╢п╫п╬ п╦ п╨п╟п╨п╦я┘ я┐пЁп╬п╢п╫п╬ п╡п╦п╢п╬п╡.
+п÷я─п╦я│я┐я┌я│я┌п╡я┐п╣я┌ п╦ п╡п╬п╥п╪п╬п╤п╫п╬я│я┌я▄ п╬я┌я─я▀п╡п╟я┌я▄ п╬я┌ п╪п╣п╫я▌ п©п╬п╢п╪п╣п╫я▌ (п╦п╩п╦ я└п╦п╨я│п╦я─п╬п╡п╟я┌я▄ п╣пЁп╬ я│п╟п╪п╬пЁп╬ п╫п╟ я█п╨я─п╟п╫п╣), я┤я┌п╬ п╦п╫п╦я├п╦п╦я─я┐п╣я┌я│я▐ п╫п╟п╤п╟я┌п╦п╣п╪ я│я─п╣п╢п╫п╣п╧ п╨п╫п╬п©п╨п╦ п╪я▀я┬п╦ п╫п╟ п╣пЁп╬ п╥п╟пЁп╬п╩п╬п╡п╨п╣...
 
 <P>
-К примеру мое главное меню создается следующим кодом:
+п  п©я─п╦п╪п╣я─я┐ п╪п╬п╣ пЁп╩п╟п╡п╫п╬п╣ п╪п╣п╫я▌ я│п╬п╥п╢п╟п╣я┌я│я▐ я│п╩п╣п╢я┐я▌я┴п╦п╪ п╨п╬п╢п╬п╪:
 <PRE>
-DestroyMenu /Debian    #Уничтожили меню с этим именем, если оно было
-AddToMenu /Debian      #А теперь создаем его
+DestroyMenu /Debian    #пёп╫п╦я┤я┌п╬п╤п╦п╩п╦ п╪п╣п╫я▌ я│ я█я┌п╦п╪ п╦п╪п╣п╫п╣п╪, п╣я│п╩п╦ п╬п╫п╬ п╠я▀п╩п╬
+AddToMenu /Debian      #п░ я┌п╣п©п╣я─я▄ я│п╬п╥п╢п╟п╣п╪ п╣пЁп╬
 
-# Читаем автоматически генерируемое пакетом menu главное меню Debian,
-# содержащее все установленные у вас интерактивные программы...
+# п╖п╦я┌п╟п╣п╪ п╟п╡я┌п╬п╪п╟я┌п╦я┤п╣я│п╨п╦ пЁп╣п╫п╣я─п╦я─я┐п╣п╪п╬п╣ п©п╟п╨п╣я┌п╬п╪ menu пЁп╩п╟п╡п╫п╬п╣ п╪п╣п╫я▌ Debian,
+# я│п╬п╢п╣я─п╤п╟я┴п╣п╣ п╡я│п╣ я┐я│я┌п╟п╫п╬п╡п╩п╣п╫п╫я▀п╣ я┐ п╡п╟я│ п╦п╫я┌п╣я─п╟п╨я┌п╦п╡п╫я▀п╣ п©я─п╬пЁя─п╟п╪п╪я▀...
 Read /etc/X11/fvwm/menudefs.hook Quiet
 
-# Добавляем к нему несколько своих пунктов
+# п■п╬п╠п╟п╡п╩я▐п╣п╪ п╨ п╫п╣п╪я┐ п╫п╣я│п╨п╬п╩я▄п╨п╬ я│п╡п╬п╦я┘ п©я┐п╫п╨я┌п╬п╡
 AddToMenu /Debian
-+  ""            Nop   # Полоска
++  ""            Nop   # п÷п╬п╩п╬я│п╨п╟
 + "&amp;Documents"   Popup Documents
 +  ""            Nop
 +  "Exit Fvwm"   Popup Quit-Verify
 </PRE>
-Где команда <TT>Popup</TT> означает вызов другого меню в качестве подменю данного.
+п⌠п╢п╣ п╨п╬п╪п╟п╫п╢п╟ <TT>Popup</TT> п╬п╥п╫п╟я┤п╟п╣я┌ п╡я▀п╥п╬п╡ п╢я─я┐пЁп╬пЁп╬ п╪п╣п╫я▌ п╡ п╨п╟я┤п╣я│я┌п╡п╣ п©п╬п╢п╪п╣п╫я▌ п╢п╟п╫п╫п╬пЁп╬.
 
 <P>
-Например меню Quit-Verify определяется следующим образом:
+п²п╟п©я─п╦п╪п╣я─ п╪п╣п╫я▌ Quit-Verify п╬п©я─п╣п╢п╣п╩я▐п╣я┌я│я▐ я│п╩п╣п╢я┐я▌я┴п╦п╪ п╬п╠я─п╟п╥п╬п╪:
 <PRE>
 DestroyMenu Quit-Verify
-# Выведем необязательный заголовок меню
+# п▓я▀п╡п╣п╢п╣п╪ п╫п╣п╬п╠я▐п╥п╟я┌п╣п╩я▄п╫я▀п╧ п╥п╟пЁп╬п╩п╬п╡п╬п╨ п╪п╣п╫я▌
 AddToMenu Quit-Verify "Really quit FVWM?" Title
-+ "No, restart Fvwm"   Restart  # Команда перезапуска
++ "No, restart Fvwm"   Restart  # п п╬п╪п╟п╫п╢п╟ п©п╣я─п╣п╥п╟п©я┐я│п╨п╟
 + ""                   Nop
-+ "Yes, really quit"   Quit     # Команда выхода
++ "Yes, really quit"   Quit     # п п╬п╪п╟п╫п╢п╟ п╡я▀я┘п╬п╢п╟
 </PRE>
 
 <P>
-Все просто&nbsp;-- не так ли?
-Но это, конечно, далеко не все.
+п▓я│п╣ п©я─п╬я│я┌п╬&nbsp;-- п╫п╣ я┌п╟п╨ п╩п╦?
+п²п╬ я█я┌п╬, п╨п╬п╫п╣я┤п╫п╬, п╢п╟п╩п╣п╨п╬ п╫п╣ п╡я│п╣.
 
 <P>
-Наиболее интересной, на мой взгляд, является возможность динамической генерации меню, используя вывод любой программы. Для этого переопределяется функция генерации меню, которая теперь либо прямо определяет состав меню, вызывая в цикле <TT>AddToMenu</TT>, либо обращается ко внешней программе, которая сделает это и что вам угодно еще...
-Пример:
+п²п╟п╦п╠п╬п╩п╣п╣ п╦п╫я┌п╣я─п╣я│п╫п╬п╧, п╫п╟ п╪п╬п╧ п╡п╥пЁп╩я▐п╢, я▐п╡п╩я▐п╣я┌я│я▐ п╡п╬п╥п╪п╬п╤п╫п╬я│я┌я▄ п╢п╦п╫п╟п╪п╦я┤п╣я│п╨п╬п╧ пЁп╣п╫п╣я─п╟я├п╦п╦ п╪п╣п╫я▌, п╦я│п©п╬п╩я▄п╥я┐я▐ п╡я▀п╡п╬п╢ п╩я▌п╠п╬п╧ п©я─п╬пЁя─п╟п╪п╪я▀. п■п╩я▐ я█я┌п╬пЁп╬ п©п╣я─п╣п╬п©я─п╣п╢п╣п╩я▐п╣я┌я│я▐ я└я┐п╫п╨я├п╦я▐ пЁп╣п╫п╣я─п╟я├п╦п╦ п╪п╣п╫я▌, п╨п╬я┌п╬я─п╟я▐ я┌п╣п©п╣я─я▄ п╩п╦п╠п╬ п©я─я▐п╪п╬ п╬п©я─п╣п╢п╣п╩я▐п╣я┌ я│п╬я│я┌п╟п╡ п╪п╣п╫я▌, п╡я▀п╥я▀п╡п╟я▐ п╡ я├п╦п╨п╩п╣ <TT>AddToMenu</TT>, п╩п╦п╠п╬ п╬п╠я─п╟я┴п╟п╣я┌я│я▐ п╨п╬ п╡п╫п╣я┬п╫п╣п╧ п©я─п╬пЁя─п╟п╪п╪п╣, п╨п╬я┌п╬я─п╟я▐ я│п╢п╣п╩п╟п╣я┌ я█я┌п╬ п╦ я┤я┌п╬ п╡п╟п╪ я┐пЁп╬п╢п╫п╬ п╣я┴п╣...
+п÷я─п╦п╪п╣я─:
 <PRE>
-# Составляем меню (JpgMenu) из *.jpg файлов, вызывая по 
-# клику на них программу xv
+# п║п╬я│я┌п╟п╡п╩я▐п╣п╪ п╪п╣п╫я▌ (JpgMenu) п╦п╥ *.jpg я└п╟п╧п╩п╬п╡, п╡я▀п╥я▀п╡п╟я▐ п©п╬ 
+# п╨п╩п╦п╨я┐ п╫п╟ п╫п╦я┘ п©я─п╬пЁя─п╟п╪п╪я┐ xv
 AddToMenu JpgMenu foo title
 + DynamicPopupAction Function MakeJpgMenu
 AddToFunc MakeJpgMenu
@@ -109,22 +109,22 @@ AddToFunc MakeJpgMenu
 + I PipeRead 'for i in $HOME/Pictures/*.jpg; \
     do echo AddToMenu JpgMenu "`basename $i`" Exec xv $i; done'
 
-# Более интересный пример.
-# Генерирует меню, состоящее из файлов каталога, передаваемого
-# функции FuncFvwmMenuDirectory...
-# Для выбранного элемента вызывается команда see
+# п▒п╬п╩п╣п╣ п╦п╫я┌п╣я─п╣я│п╫я▀п╧ п©я─п╦п╪п╣я─.
+# п⌠п╣п╫п╣я─п╦я─я┐п╣я┌ п╪п╣п╫я▌, я│п╬я│я┌п╬я▐я┴п╣п╣ п╦п╥ я└п╟п╧п╩п╬п╡ п╨п╟я┌п╟п╩п╬пЁп╟, п©п╣я─п╣п╢п╟п╡п╟п╣п╪п╬пЁп╬
+# я└я┐п╫п╨я├п╦п╦ FuncFvwmMenuDirectory...
+# п■п╩я▐ п╡я▀п╠я─п╟п╫п╫п╬пЁп╬ я█п╩п╣п╪п╣п╫я┌п╟ п╡я▀п╥я▀п╡п╟п╣я┌я│я▐ п╨п╬п╪п╟п╫п╢п╟ see
 DestroyFunc FuncFvwmMenuDirectory
 AddToFunc FuncFvwmMenuDirectory I PipeRead 'fvwm-menu-directory \
     --dir "$0" --exec-file ^"see" --xterm=" xterm -e" \
     --icon-dir=mini.folder.xpm --icon-title=mini.term.xpm \
     --icon-file=mini.file.xpm --icon-app=mini.hex.xpm --check-subdir'
 
-# Пример использования функции:
+# п÷я─п╦п╪п╣я─ п╦я│п©п╬п╩я▄п╥п╬п╡п╟п╫п╦я▐ я└я┐п╫п╨я├п╦п╦:
 AddToMenu Documents MissingSubmenuFunction FuncFvwmMenuDirectory
 + "&amp;Root dir%mini.folder.xpm%" Popup /
 + "&amp;Home dir%mini.folder.xpm%" Popup ~
 </PRE>
-Также очень удобно подключить к меню play-list XMMS...
+п╒п╟п╨п╤п╣ п╬я┤п╣п╫я▄ я┐п╢п╬п╠п╫п╬ п©п╬п╢п╨п╩я▌я┤п╦я┌я▄ п╨ п╪п╣п╫я▌ play-list XMMS...
 
 <P>
 
@@ -143,17 +143,17 @@ AddToMenu Documents MissingSubmenuFunction FuncFvwmMenuDirectory
   HREF="IntroToLinux.html">
 <IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A>  
 <BR>
-<B> След.:</B> <A NAME="tex2html869"
-  HREF="node56.html">Функции.</A>
-<B> Вверх:</B> <A NAME="tex2html865"
-  HREF="node54.html">Введение в FVWM2</A>
-<B> Пред.:</B> <A NAME="tex2html859"
-  HREF="node54.html">Введение в FVWM2</A>
+<B> п║п╩п╣п╢.:</B> <A NAME="tex2html869"
+  HREF="node56.html">п╓я┐п╫п╨я├п╦п╦.</A>
+<B> п▓п╡п╣я─я┘:</B> <A NAME="tex2html865"
+  HREF="node54.html">п▓п╡п╣п╢п╣п╫п╦п╣ п╡ FVWM2</A>
+<B> п÷я─п╣п╢.:</B> <A NAME="tex2html859"
+  HREF="node54.html">п▓п╡п╣п╢п╣п╫п╦п╣ п╡ FVWM2</A>
  &nbsp; <B>  <A NAME="tex2html867"
-  HREF="IntroToLinux.html">Содержание</A></B> </DIV>
+  HREF="IntroToLinux.html">п║п╬п╢п╣я─п╤п╟п╫п╦п╣</A></B> </DIV>
 <!--End of Navigation Panel-->
 <ADDRESS>
-<TABLE border="0" cellpadding="0" cellspacing="0" width="100%"><TR bgcolor="#336699"><TD bgcolor="#8080c0"><P align="center"><FONT color="#FFFFFF" size="1"><A href="http://www.gnu.org/copyleft/fdl.html"><FONT color="#FFFFFF" size="1">Copyleft</FONT></A> © 2002-2003 г. &nbsp; Nikolay A. Panov, <A href="http://www.uic.nnov.ru/~nik/articles/IntroToLinux/"><FONT color="#FFFFFF">"Intro To Linux" (orig)</FONT></A>, &nbsp;<a href="mailto:&#110;&#105;&#107;&#115;&#105;&#116;&#101;&#64;&#109;&#97;&#105;&#108;&#46;&#114;&#117;"><FONT color="#FFFFFF">&#110;&#105;&#107;&#115;&#105;&#116;&#101;&#64;&#109;&#97;&#105;&#108;&#46;&#114;&#117;</FONT></A>, &nbsp;ICQ: 122-40-8888</FONT></P></TD></TR></TABLE>
+<TABLE border="0" cellpadding="0" cellspacing="0" width="100%"><TR bgcolor="#336699"><TD bgcolor="#8080c0"><P align="center"><FONT color="#FFFFFF" size="1"><A href="http://www.gnu.org/copyleft/fdl.html"><FONT color="#FFFFFF" size="1">Copyleft</FONT></A> б╘ 2002-2003 пЁ. &nbsp; Nikolay A. Panov, <A href="http://www.uic.nnov.ru/~nik/articles/IntroToLinux/"><FONT color="#FFFFFF">"Intro To Linux" (orig)</FONT></A>, &nbsp;<a href="mailto:&#110;&#105;&#107;&#115;&#105;&#116;&#101;&#64;&#109;&#97;&#105;&#108;&#46;&#114;&#117;"><FONT color="#FFFFFF">&#110;&#105;&#107;&#115;&#105;&#116;&#101;&#64;&#109;&#97;&#105;&#108;&#46;&#114;&#117;</FONT></A>, &nbsp;ICQ: 122-40-8888</FONT></P></TD></TR></TABLE>
 </ADDRESS>
 </BODY>
 </HTML>

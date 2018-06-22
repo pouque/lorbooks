@@ -1,30 +1,30 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>Installing Tar-1.13</title><meta name="GENERATOR" content="Microsoft FrontPage 4.0" /=""><link rel="HOME" title="Linux From Scratch" href="http://www.linuxfromscratch.org/view/4.0/index.html" /=""><link rel="UP" title="Installing basic system software" href="http://www.linuxfromscratch.org/view/4.0/chapter06/chapter06.html" /=""><link rel="PREVIOUS" title="Installing Sysvinit-2.84" href="http://www.linuxfromscratch.org/view/4.0/chapter06/sysvinit.html" /=""><link rel="NEXT" title="Installing Util-linux-2.11u" href="http://www.linuxfromscratch.org/view/4.0/chapter06/util-linux.html" /=""></head><body class="sect1" bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#840084" alink="#006000"><div class="NAVHEADER"><table summary="Header navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><th colspan="3" align="Center">Linux From Scratch: Версия 4.0</th></tr><tr><td width="10%" align="Left" valign="Bottom"><a href="sysvinit.html" accesskey="P">Назад</a></td><td width="80%" align="Center" valign="Bottom">Установка основных компонентов системы</td><td width="10%" align="Right" valign="Bottom"><a href="util-linux.html" accesskey="N">Вперед</a></td></tr></tbody></table><hr align="Left" width="100%" /=""></div><div class="sect1"><h1 class="sect1"><a name="ch06-tar">Установка Tar-1.13</a></h1><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen">Приблизительное время компиляции:           0.26 SBU<br>Необходимое дисковое пространство:  6 MB</pre></td></tr></tbody></table><div class="sect2"><h2 class="sect2"><a name="AEN5397">Инсталляция Tar</a></h2><p>Есди вы хотите иметь возможность
-    распаковывать файлы bzip2 программой tar
-    напрямую, примените патч с FTP-сервера LFS.
-    Этот патч добавляет возможность
-    использования опции -j к команде tar,
-    которая работает аналогично с опцией -z,
-    использующейся для распаковки файлов gzip.</p><p>Примените патч, выполнив следующую команду:</p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>patch -Np1 -i ../tar-1.13.patch</b></tt></pre></td></tr></tbody></table><p>Для инсталляции Tar выполните:</p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>./configure --prefix=/usr \<br>    --libexecdir=/usr/bin --bindir=/bin &amp;&amp;<br>make &amp;&amp;<br>make install</b></tt></pre></td></tr></tbody></table></div><div class="sect2">
-<div class="sect2"><h2 class="sect2"><a name="AEN8598">Содержимое Tar</a></h2><p>Последняя проверка: версия 1.13.</p><div class="sect3"><h3 class="sect3"><a name="AEN8601">Программы</a></h3><p>rmt и tar</p></div><div class="sect3"><h3 class="sect3"><a name="AEN8604">Описания</a></h3><div class="sect4"><h4 class="sect4"><a name="AEN8606">rmt</a></h4><p>rmt используется другими программами для удаленного управления
-приводом магнитных лент.</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8609">tar</a></h4><p>tar - программа архивации, сохраняющая и извлекающая файлы из
-архивов tar.</p></div></div></div>
-<div class="sect2"><h2 class="sect2"><a name="AEN8612">Зависимости Tar</a></h2><p>Последняя проверка: версия 1.13.</p><p class="literallayout">Autoconf: autoconf, autoheader<br>
-Automake: aclocal, automake<br>
-Bash: sh<br>
-Binutils: ar, as, ld, ranlib<br>
-Diffutils: cmp<br>
-Fileutils: chmod, install, ls, mv, rm<br>
-Gettext: msgfmt, xgettext<br>
-Gcc: cc, cc1, collect2, cpp0, gcc<br>
-Glibc: getconf<br>
-Grep: egrep, fgrep, grep<br>
-M4: m4<br>
-Make: make<br>
-Gawk: gawk<br>
-Net-tools: hostname<br>
-Patch: patch<br>
-Sed: sed<br>
-Sh-utils: basename, echo, expr, sleep, uname<br>
-Texinfo: install-info, makeinfo<br>
-Textutils: cat, tr</p></div>
-<h2 class="sect2"></h2></div></div><div class="NAVFOOTER"><hr align="Left" width="100%" /=""><table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="33%" align="Left" valign="Top"><a href="sysvinit.html" accesskey="P">Назад</a></td><td width="34%" align="Center" valign="Top"><a href="../index.html" accesskey="H">Домой</a></td><td width="33%" align="Right" valign="Top"><a href="util-linux.html" accesskey="N">Вперед</a></td></tr><tr><td width="33%" align="Left" valign="Top">Установка Sysvinit-2.84</td><td width="34%" align="Center" valign="Top"><a href="chapter06.html" accesskey="U">Наверх</a></td><td width="33%" align="Right" valign="Top">Установка Util-linux-2.11u</td></tr></tbody></table></div></body></html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>Installing Tar-1.13</title><meta name="GENERATOR" content="Microsoft FrontPage 4.0" /=""><link rel="HOME" title="Linux From Scratch" href="http://www.linuxfromscratch.org/view/4.0/index.html" /=""><link rel="UP" title="Installing basic system software" href="http://www.linuxfromscratch.org/view/4.0/chapter06/chapter06.html" /=""><link rel="PREVIOUS" title="Installing Sysvinit-2.84" href="http://www.linuxfromscratch.org/view/4.0/chapter06/sysvinit.html" /=""><link rel="NEXT" title="Installing Util-linux-2.11u" href="http://www.linuxfromscratch.org/view/4.0/chapter06/util-linux.html" /=""></head><body class="sect1" bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#840084" alink="#006000"><div class="NAVHEADER"><table summary="Header navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><th colspan="3" align="Center">Linux From Scratch: Р±Р•РџРЇРҐРЄ 4.0</th></tr><tr><td width="10%" align="Left" valign="Bottom"><a href="sysvinit.html" accesskey="P">РјР®Р“Р®Р”</a></td><td width="80%" align="Center" valign="Bottom">СЃРЇР Р®РњРќР‘Р™Р® РќРЇРњРќР‘РњРЁРЈ Р™РќР›РћРќРњР•РњР РќР‘ РЇРҐРЇР Р•Р›РЁ</td><td width="10%" align="Right" valign="Bottom"><a href="util-linux.html" accesskey="N">Р±РћР•РџР•Р”</a></td></tr></tbody></table><hr align="Left" width="100%" /=""></div><div class="sect1"><h1 class="sect1"><a name="ch06-tar">СЃРЇР Р®РњРќР‘Р™Р® Tar-1.13</a></h1><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen">РѕРџРҐРђРљРҐР“РҐР Р•РљР­РњРќР• Р‘РџР•Р›РЄ Р™РќР›РћРҐРљРЄР–РҐРҐ:           0.26 SBU<br>РјР•РќРђРЈРќР”РҐР›РќР• Р”РҐРЇР™РќР‘РќР• РћРџРќРЇР РџР®РњРЇР Р‘Рќ:  6 MB</pre></td></tr></tbody></table><div class="sect2"><h2 class="sect2"><a name="AEN5397">С…РњРЇР Р®РљРљРЄР–РҐРЄ Tar</a></h2><p>РµРЇР”РҐ Р‘РЁ РЈРќР РҐР Р• РҐР›Р•Р Р­ Р‘РќР“Р›РќР¤РњРќРЇР Р­
+    РџР®РЇРћР®Р™РќР‘РЁР‘Р®Р Р­ РўР®РРљРЁ bzip2 РћРџРќР¦РџР®Р›Р›РќР tar
+    РњР®РћРџРЄР›РЎР§, РћРџРҐР›Р•РњРҐР Р• РћР®Р Р’ РЇ FTP-РЇР•РџР‘Р•РџР® LFS.
+    С‰Р РќР  РћР®Р Р’ Р”РќРђР®Р‘РљРЄР•Р  Р‘РќР“Р›РќР¤РњРќРЇР Р­
+    РҐРЇРћРќРљР­Р“РќР‘Р®РњРҐРЄ РќРћР–РҐРҐ -j Р™ Р™РќР›Р®РњР”Р• tar,
+    Р™РќР РќРџР®РЄ РџР®РђРќР Р®Р•Р  Р®РњР®РљРќР¦РҐР’РњРќ РЇ РќРћР–РҐР•Р -z,
+    РҐРЇРћРќРљР­Р“РЎР§Р«Р•РРЇРЄ Р”РљРЄ РџР®РЇРћР®Р™РќР‘Р™РҐ РўР®РРљРќР‘ gzip.</p><p>РѕРџРҐР›Р•РњРҐР Р• РћР®Р Р’, Р‘РЁРћРќРљРњРҐР‘ РЇРљР•Р”РЎР§Р«РЎР§ Р™РќР›Р®РњР”РЎ:</p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>patch -Np1 -i ../tar-1.13.patch</b></tt></pre></td></tr></tbody></table><p>РґРљРЄ РҐРњРЇР Р®РљРљРЄР–РҐРҐ Tar Р‘РЁРћРќРљРњРҐР Р•:</p><table border="0" bgcolor="#e0e0e0" width="100%"><tbody><tr><td><pre class="screen"><tt class="userinput"><b>./configure --prefix=/usr \<br>в•ђв•ђв•ђв•ђ--libexecdir=/usr/bin --bindir=/bin &amp;&amp;<br>make &amp;&amp;<br>make install</b></tt></pre></td></tr></tbody></table></div><div class="sect2">
+<div class="sect2"><h2 class="sect2"><a name="AEN8598">СЏРќР”Р•РџР¤РҐР›РќР• Tar</a></h2><p>РѕРќРЇРљР•Р”РњРЄРЄ РћРџРќР‘Р•РџР™Р®: Р‘Р•РџРЇРҐРЄ 1.13.</p><div class="sect3"><h3 class="sect3"><a name="AEN8601">РѕРџРќР¦РџР®Р›Р›РЁ</a></h3><p>rmt РҐ tar</p></div><div class="sect3"><h3 class="sect3"><a name="AEN8604">РЅРћРҐРЇР®РњРҐРЄ</a></h3><div class="sect4"><h4 class="sect4"><a name="AEN8606">rmt</a></h4><p>rmt РҐРЇРћРќРљР­Р“РЎР•Р РЇРЄ Р”РџРЎР¦РҐР›РҐ РћРџРќР¦РџР®Р›Р›Р®Р›РҐ Р”РљРЄ РЎР”Р®РљР•РњРњРќР¦Рќ РЎРћРџР®Р‘РљР•РњРҐРЄ
+РћРџРҐР‘РќР”РќР› Р›Р®Р¦РњРҐР РњРЁРЈ РљР•РњР .</p></div><div class="sect4"><h4 class="sect4"><a name="AEN8609">tar</a></h4><p>tar - РћРџРќР¦РџР®Р›Р›Р® Р®РџРЈРҐР‘Р®Р–РҐРҐ, РЇРќРЈРџР®РњРЄР§Р«Р®РЄ РҐ РҐР“Р‘РљР•Р™Р®Р§Р«Р®РЄ РўР®РРљРЁ РҐР“
+Р®РџРЈРҐР‘РќР‘ tar.</p></div></div></div>
+<div class="sect2"><h2 class="sect2"><a name="AEN8612">РіР®Р‘РҐРЇРҐР›РќРЇР РҐ Tar</a></h2><p>РѕРќРЇРљР•Р”РњРЄРЄ РћРџРќР‘Р•РџР™Р®: Р‘Р•РџРЇРҐРЄ 1.13.</p><p class="literallayout">Autoconf:в•ђautoconf,в•ђautoheader<br>
+Automake:в•ђaclocal,в•ђautomake<br>
+Bash:в•ђsh<br>
+Binutils:в•ђar,в•ђas,в•ђld,в•ђranlib<br>
+Diffutils:в•ђcmp<br>
+Fileutils:в•ђchmod,в•ђinstall,в•ђls,в•ђmv,в•ђrm<br>
+Gettext:в•ђmsgfmt,в•ђxgettext<br>
+Gcc:в•ђcc,в•ђcc1,в•ђcollect2,в•ђcpp0,в•ђgcc<br>
+Glibc:в•ђgetconf<br>
+Grep:в•ђegrep,в•ђfgrep,в•ђgrep<br>
+M4:в•ђm4<br>
+Make:в•ђmake<br>
+Gawk:в•ђgawk<br>
+Net-tools:в•ђhostname<br>
+Patch:в•ђpatch<br>
+Sed:в•ђsed<br>
+Sh-utils:в•ђbasename,в•ђecho,в•ђexpr,в•ђsleep,в•ђuname<br>
+Texinfo:в•ђinstall-info,в•ђmakeinfo<br>
+Textutils:в•ђcat,в•ђtr</p></div>
+<h2 class="sect2"></h2></div></div><div class="NAVFOOTER"><hr align="Left" width="100%" /=""><table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td width="33%" align="Left" valign="Top"><a href="sysvinit.html" accesskey="P">РјР®Р“Р®Р”</a></td><td width="34%" align="Center" valign="Top"><a href="../index.html" accesskey="H">РґРќР›РќР</a></td><td width="33%" align="Right" valign="Top"><a href="util-linux.html" accesskey="N">Р±РћР•РџР•Р”</a></td></tr><tr><td width="33%" align="Left" valign="Top">СЃРЇР Р®РњРќР‘Р™Р® Sysvinit-2.84</td><td width="34%" align="Center" valign="Top"><a href="chapter06.html" accesskey="U">РјР®Р‘Р•РџРЈ</a></td><td width="33%" align="Right" valign="Top">СЃРЇР Р®РњРќР‘Р™Р® Util-linux-2.11u</td></tr></tbody></table></div></body></html>

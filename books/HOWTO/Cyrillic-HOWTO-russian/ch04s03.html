@@ -1,59 +1,59 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=koi8-r"><title>kbd</title><meta name="generator" content="DocBook XSL Stylesheets V1.59.1"><link rel="home" href="index.html" title="The Linux Cyrillic HOWTO (russian)"><link rel="up" href="ch04.html" title="Глава 4. Консоль"><link rel="previous" href="ch04s02.html" title="Cyrillic console tools"><link rel="next" href="ch04s04.html" title="Проверка правильности кириллизации консоли"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">kbd</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch04s02.html">Пред.</a> </td><th width="60%" align="center">Глава 4. Консоль</th><td width="20%" align="right"> <a accesskey="n" href="ch04s04.html">След.</a></td></tr></table><hr></div><div class="sect1" lang="ru"><div class="titlepage"><div><h2 class="title" style="clear: both"><a name="linux-console-kbd"></a>kbd</h2></div></div><a class="indexterm" name="id2879804"></a><a class="indexterm" name="id2879820"></a><p>Довольно много дистрибутивов <span class="emphasis"><em>Linux</em></span>
-устанавливают <span class="emphasis"><em>kbd</em></span> как обязательную часть
-системы. Сам пакет доступен по адресу <a href="http://sunsite.unc.edu/pub/Linux/system/Keyboards/" target="_top">kbd</a>.</p><p>Пакет <span class="emphasis"><em>kbd</em></span> содержит утилиты управления
-клавиатурой, кроме этого, с ним поставляется широкий выбор шрифтов и
-раскладок.</p><p>Установка кириллицы с помощью <span class="emphasis"><em>kbd</em></span>
-обычно состоит из:</p><div class="orderedlist"><ol type="1"><li><p>Загрузки соответствующей раскладки клавиатуры
-с помощью программы <tt>loadkeys</tt>. Практически в каждом
-дистрибутиве можно установить раскладку клавиатуры, которую система
-загружает по умолчанию во время загрузки, с помощью соответствующей
-программы настройки (например, для RedHat &#8212; это
-<tt>/usr/sbin/kbdconfig</tt>).  Вы также можете просто
-запустить <tt>loadkeys</tt> из вашего
-<tt>&#732;/.profile</tt> или сделать это руками.
-</p></li><li><p>Настройки экранного шрифта. Это делается с
-помощью программы <tt>setfont</tt>. Файлы шрифтов находятся
-в <tt>/usr/lib/kbd/consolefonts</tt>.  </p></li></ol></div><p>Если вы являетесь приверженцем программ, работающих в
-текстовом режиме и использующих достоинства псевдографики PC (таких
-как Midnight Commander), то вы можете предпочесть использовать шрифты
-с <tt>CP866</tt> кодировкой и <span class="emphasis"><em>консольной
-раскладкой</em></span> (console character map). Это означает, что ваша
-консоль отображает CP866 шрифты, но все кириллические символы,
-соответствующие <span class="emphasis"><em>KOI8-R</em></span> кодировки, соответственным
-образом отображаются в <tt>CP866</tt> и поэтому выглядят
-правильно. Преимущество этого метода заключается в том, что он
-позволяет использовать псевдографические символы кодировки
-<tt>CP866</tt>.</p><p>Ниже перечислены команды, которые позволяют достичь этого
-эффекта.</p><pre class="programlisting">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=koi8-r"><title>kbd</title><meta name="generator" content="DocBook XSL Stylesheets V1.59.1"><link rel="home" href="index.html" title="The Linux Cyrillic HOWTO (russian)"><link rel="up" href="ch04.html" title="п⌠п╩п╟п╡п╟ 4. п п╬п╫я│п╬п╩я▄"><link rel="previous" href="ch04s02.html" title="Cyrillic console tools"><link rel="next" href="ch04s04.html" title="п÷я─п╬п╡п╣я─п╨п╟ п©я─п╟п╡п╦п╩я▄п╫п╬я│я┌п╦ п╨п╦я─п╦п╩п╩п╦п╥п╟я├п╦п╦ п╨п╬п╫я│п╬п╩п╦"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">kbd</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch04s02.html">п÷я─п╣п╢.</a>б═</td><th width="60%" align="center">п⌠п╩п╟п╡п╟ 4. п п╬п╫я│п╬п╩я▄</th><td width="20%" align="right">б═<a accesskey="n" href="ch04s04.html">п║п╩п╣п╢.</a></td></tr></table><hr></div><div class="sect1" lang="ru"><div class="titlepage"><div><h2 class="title" style="clear: both"><a name="linux-console-kbd"></a>kbd</h2></div></div><a class="indexterm" name="id2879804"></a><a class="indexterm" name="id2879820"></a><p>п■п╬п╡п╬п╩я▄п╫п╬ п╪п╫п╬пЁп╬ п╢п╦я│я┌я─п╦п╠я┐я┌п╦п╡п╬п╡ <span class="emphasis"><em>Linux</em></span>
+я┐я│я┌п╟п╫п╟п╡п╩п╦п╡п╟я▌я┌ <span class="emphasis"><em>kbd</em></span> п╨п╟п╨ п╬п╠я▐п╥п╟я┌п╣п╩я▄п╫я┐я▌ я┤п╟я│я┌я▄
+я│п╦я│я┌п╣п╪я▀. п║п╟п╪ п©п╟п╨п╣я┌ п╢п╬я│я┌я┐п©п╣п╫ п©п╬ п╟п╢я─п╣я│я┐ <a href="http://sunsite.unc.edu/pub/Linux/system/Keyboards/" target="_top">kbd</a>.</p><p>п÷п╟п╨п╣я┌ <span class="emphasis"><em>kbd</em></span> я│п╬п╢п╣я─п╤п╦я┌ я┐я┌п╦п╩п╦я┌я▀ я┐п©я─п╟п╡п╩п╣п╫п╦я▐
+п╨п╩п╟п╡п╦п╟я┌я┐я─п╬п╧, п╨я─п╬п╪п╣ я█я┌п╬пЁп╬, я│ п╫п╦п╪ п©п╬я│я┌п╟п╡п╩я▐п╣я┌я│я▐ я┬п╦я─п╬п╨п╦п╧ п╡я▀п╠п╬я─ я┬я─п╦я└я┌п╬п╡ п╦
+я─п╟я│п╨п╩п╟п╢п╬п╨.</p><p>пёя│я┌п╟п╫п╬п╡п╨п╟ п╨п╦я─п╦п╩п╩п╦я├я▀ я│ п©п╬п╪п╬я┴я▄я▌ <span class="emphasis"><em>kbd</em></span>
+п╬п╠я▀я┤п╫п╬ я│п╬я│я┌п╬п╦я┌ п╦п╥:</p><div class="orderedlist"><ol type="1"><li><p>п≈п╟пЁя─я┐п╥п╨п╦ я│п╬п╬я┌п╡п╣я┌я│я┌п╡я┐я▌я┴п╣п╧ я─п╟я│п╨п╩п╟п╢п╨п╦ п╨п╩п╟п╡п╦п╟я┌я┐я─я▀
+я│ п©п╬п╪п╬я┴я▄я▌ п©я─п╬пЁя─п╟п╪п╪я▀ <tt>loadkeys</tt>. п÷я─п╟п╨я┌п╦я┤п╣я│п╨п╦ п╡ п╨п╟п╤п╢п╬п╪
+п╢п╦я│я┌я─п╦п╠я┐я┌п╦п╡п╣ п╪п╬п╤п╫п╬ я┐я│я┌п╟п╫п╬п╡п╦я┌я▄ я─п╟я│п╨п╩п╟п╢п╨я┐ п╨п╩п╟п╡п╦п╟я┌я┐я─я▀, п╨п╬я┌п╬я─я┐я▌ я│п╦я│я┌п╣п╪п╟
+п╥п╟пЁя─я┐п╤п╟п╣я┌ п©п╬ я┐п╪п╬п╩я┤п╟п╫п╦я▌ п╡п╬ п╡я─п╣п╪я▐ п╥п╟пЁя─я┐п╥п╨п╦, я│ п©п╬п╪п╬я┴я▄я▌ я│п╬п╬я┌п╡п╣я┌я│я┌п╡я┐я▌я┴п╣п╧
+п©я─п╬пЁя─п╟п╪п╪я▀ п╫п╟я│я┌я─п╬п╧п╨п╦ (п╫п╟п©я─п╦п╪п╣я─, п╢п╩я▐ RedHat &#8212; я█я┌п╬
+<tt>/usr/sbin/kbdconfig</tt>).  п▓я▀ я┌п╟п╨п╤п╣ п╪п╬п╤п╣я┌п╣ п©я─п╬я│я┌п╬
+п╥п╟п©я┐я│я┌п╦я┌я▄ <tt>loadkeys</tt> п╦п╥ п╡п╟я┬п╣пЁп╬
+<tt>&#732;/.profile</tt> п╦п╩п╦ я│п╢п╣п╩п╟я┌я▄ я█я┌п╬ я─я┐п╨п╟п╪п╦.
+</p></li><li><p>п²п╟я│я┌я─п╬п╧п╨п╦ я█п╨я─п╟п╫п╫п╬пЁп╬ я┬я─п╦я└я┌п╟. п╜я┌п╬ п╢п╣п╩п╟п╣я┌я│я▐ я│
+п©п╬п╪п╬я┴я▄я▌ п©я─п╬пЁя─п╟п╪п╪я▀ <tt>setfont</tt>. п╓п╟п╧п╩я▀ я┬я─п╦я└я┌п╬п╡ п╫п╟я┘п╬п╢я▐я┌я│я▐
+п╡ <tt>/usr/lib/kbd/consolefonts</tt>.  </p></li></ol></div><p>п∙я│п╩п╦ п╡я▀ я▐п╡п╩я▐п╣я┌п╣я│я▄ п©я─п╦п╡п╣я─п╤п╣п╫я├п╣п╪ п©я─п╬пЁя─п╟п╪п╪, я─п╟п╠п╬я┌п╟я▌я┴п╦я┘ п╡
+я┌п╣п╨я│я┌п╬п╡п╬п╪ я─п╣п╤п╦п╪п╣ п╦ п╦я│п©п╬п╩я▄п╥я┐я▌я┴п╦я┘ п╢п╬я│я┌п╬п╦п╫я│я┌п╡п╟ п©я│п╣п╡п╢п╬пЁя─п╟я└п╦п╨п╦ PC (я┌п╟п╨п╦я┘
+п╨п╟п╨ Midnight Commander), я┌п╬ п╡я▀ п╪п╬п╤п╣я┌п╣ п©я─п╣п╢п©п╬я┤п╣я│я┌я▄ п╦я│п©п╬п╩я▄п╥п╬п╡п╟я┌я▄ я┬я─п╦я└я┌я▀
+я│ <tt>CP866</tt> п╨п╬п╢п╦я─п╬п╡п╨п╬п╧ п╦ <span class="emphasis"><em>п╨п╬п╫я│п╬п╩я▄п╫п╬п╧
+я─п╟я│п╨п╩п╟п╢п╨п╬п╧</em></span> (console character map). п╜я┌п╬ п╬п╥п╫п╟я┤п╟п╣я┌, я┤я┌п╬ п╡п╟я┬п╟
+п╨п╬п╫я│п╬п╩я▄ п╬я┌п╬п╠я─п╟п╤п╟п╣я┌ CP866 я┬я─п╦я└я┌я▀, п╫п╬ п╡я│п╣ п╨п╦я─п╦п╩п╩п╦я┤п╣я│п╨п╦п╣ я│п╦п╪п╡п╬п╩я▀,
+я│п╬п╬я┌п╡п╣я┌я│я┌п╡я┐я▌я┴п╦п╣ <span class="emphasis"><em>KOI8-R</em></span> п╨п╬п╢п╦я─п╬п╡п╨п╦, я│п╬п╬я┌п╡п╣я┌я│я┌п╡п╣п╫п╫я▀п╪
+п╬п╠я─п╟п╥п╬п╪ п╬я┌п╬п╠я─п╟п╤п╟я▌я┌я│я▐ п╡ <tt>CP866</tt> п╦ п©п╬я█я┌п╬п╪я┐ п╡я▀пЁп╩я▐п╢я▐я┌
+п©я─п╟п╡п╦п╩я▄п╫п╬. п÷я─п╣п╦п╪я┐я┴п╣я│я┌п╡п╬ я█я┌п╬пЁп╬ п╪п╣я┌п╬п╢п╟ п╥п╟п╨п╩я▌я┤п╟п╣я┌я│я▐ п╡ я┌п╬п╪, я┤я┌п╬ п╬п╫
+п©п╬п╥п╡п╬п╩я▐п╣я┌ п╦я│п©п╬п╩я▄п╥п╬п╡п╟я┌я▄ п©я│п╣п╡п╢п╬пЁя─п╟я└п╦я┤п╣я│п╨п╦п╣ я│п╦п╪п╡п╬п╩я▀ п╨п╬п╢п╦я─п╬п╡п╨п╦
+<tt>CP866</tt>.</p><p>п²п╦п╤п╣ п©п╣я─п╣я┤п╦я│п╩п╣п╫я▀ п╨п╬п╪п╟п╫п╢я▀, п╨п╬я┌п╬я─я▀п╣ п©п╬п╥п╡п╬п╩я▐я▌я┌ п╢п╬я│я┌п╦я┤я▄ я█я┌п╬пЁп╬
+я█я└я└п╣п╨я┌п╟.</p><pre class="programlisting">
 loadkeys /usr/lib/kbd/keytables/ru.map
 setfont /usr/lib/kbd/consolefonts/Cyr_a8x16
 mapscrn /usr/lib/kbd/consoletrans/koi2alt
-# ниже идёт магическая последовательность
+# п╫п╦п╤п╣ п╦п╢я▒я┌ п╪п╟пЁп╦я┤п╣я│п╨п╟я▐ п©п╬я│п╩п╣п╢п╬п╡п╟я┌п╣п╩я▄п╫п╬я│я┌я▄
 echo -ne &quot;\033(K&quot;
-</pre><p>При кириллизации всех консолей при загрузке системы вместо
-строчки</p><pre class="screen">
+</pre><p>п÷я─п╦ п╨п╦я─п╦п╩п╩п╦п╥п╟я├п╦п╦ п╡я│п╣я┘ п╨п╬п╫я│п╬п╩п╣п╧ п©я─п╦ п╥п╟пЁя─я┐п╥п╨п╣ я│п╦я│я┌п╣п╪я▀ п╡п╪п╣я│я┌п╬
+я│я┌я─п╬я┤п╨п╦</p><pre class="screen">
 echo -ne &quot;\033(K&quot;
-</pre><p>следует использовать строчку которая кириллизует все
-терминалы</p><pre class="programlisting">
+</pre><p>я│п╩п╣п╢я┐п╣я┌ п╦я│п©п╬п╩я▄п╥п╬п╡п╟я┌я▄ я│я┌я─п╬я┤п╨я┐ п╨п╬я┌п╬я─п╟я▐ п╨п╦я─п╦п╩п╩п╦п╥я┐п╣я┌ п╡я│п╣
+я┌п╣я─п╪п╦п╫п╟п╩я▀</p><pre class="programlisting">
 for i in 1 2 3 4 5 6 7; do echo -ne &quot;\033(K&quot; &gt; /dev/tty$i; done
-</pre><p>Этого же эффекта можно достичь следующим способом: </p><div class="itemizedlist"><ul type="disc"><li><p>Для тех систем, где файл <tt>/etc/issue</tt>
-не меняется в стартовых скриптах можно один раз в жизни сказать: 
+</pre><p>п╜я┌п╬пЁп╬ п╤п╣ я█я└я└п╣п╨я┌п╟ п╪п╬п╤п╫п╬ п╢п╬я│я┌п╦я┤я▄ я│п╩п╣п╢я┐я▌я┴п╦п╪ я│п©п╬я│п╬п╠п╬п╪: </p><div class="itemizedlist"><ul type="disc"><li><p>п■п╩я▐ я┌п╣я┘ я│п╦я│я┌п╣п╪, пЁп╢п╣ я└п╟п╧п╩ <tt>/etc/issue</tt>
+п╫п╣ п╪п╣п╫я▐п╣я┌я│я▐ п╡ я│я┌п╟я─я┌п╬п╡я▀я┘ я│п╨я─п╦п©я┌п╟я┘ п╪п╬п╤п╫п╬ п╬п╢п╦п╫ я─п╟п╥ п╡ п╤п╦п╥п╫п╦ я│п╨п╟п╥п╟я┌я▄: 
 </p><pre class="programlisting">
 echo -ne &quot;\033(K&quot; &gt;&gt; /etc/issue
 </pre><p>
-</p><p>Наличие в системе <tt>/etc/issue</tt> можно
-	проверить путем:
+</p><p>п²п╟п╩п╦я┤п╦п╣ п╡ я│п╦я│я┌п╣п╪п╣ <tt>/etc/issue</tt> п╪п╬п╤п╫п╬
+	п©я─п╬п╡п╣я─п╦я┌я▄ п©я┐я┌п╣п╪:
 </p><pre class="programlisting">
 grep -r &quot;/etc/issue&quot; /etc |grep &quot;&gt;&gt;&quot;
 </pre><p>
-</p></li><li><p>В новых системах <tt>/etc/issue</tt> обычно
-стало модно перезаписывать в стартовых скриптах, где именно, можно найти с
-помощью вышеупомянутого <tt>grep'а</tt>, добавить в эти
-скрипты <tt>echo -ne ...</tt>.  но при этом быть
-внимательным, чтобы не добавить эти же магические символы в
-<tt>/ets/issue.net</tt>, который используется для всех
-<tt>telnet</tt>&#8212;сессий, а не для консоли.</p></li></ul></div><p>Магическая последовательность необходима для перекодировки
-вывода символов на экран, если вы используете CP866 шрифты. Она
-работает, и этого достаточно для спокойной жизни. Однако, если вам
-любопытно, то посмотрите документацию к пакету kbd.</p></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch04s02.html">Пред.</a> </td><td width="20%" align="center"><a accesskey="u" href="ch04.html">Уровень выше</a></td><td width="40%" align="right"> <a accesskey="n" href="ch04s04.html">След.</a></td></tr><tr><td width="40%" align="left" valign="top">Cyrillic console tools </td><td width="20%" align="center"><a accesskey="h" href="index.html">Начало</a></td><td width="40%" align="right" valign="top"> Проверка правильности кириллизации консоли</td></tr></table></div></body></html>
+</p></li><li><p>п▓ п╫п╬п╡я▀я┘ я│п╦я│я┌п╣п╪п╟я┘ <tt>/etc/issue</tt> п╬п╠я▀я┤п╫п╬
+я│я┌п╟п╩п╬ п╪п╬п╢п╫п╬ п©п╣я─п╣п╥п╟п©п╦я│я▀п╡п╟я┌я▄ п╡ я│я┌п╟я─я┌п╬п╡я▀я┘ я│п╨я─п╦п©я┌п╟я┘, пЁп╢п╣ п╦п╪п╣п╫п╫п╬, п╪п╬п╤п╫п╬ п╫п╟п╧я┌п╦ я│
+п©п╬п╪п╬я┴я▄я▌ п╡я▀я┬п╣я┐п©п╬п╪я▐п╫я┐я┌п╬пЁп╬ <tt>grep'п╟</tt>, п╢п╬п╠п╟п╡п╦я┌я▄ п╡ я█я┌п╦
+я│п╨я─п╦п©я┌я▀ <tt>echo -ne ...</tt>.  п╫п╬ п©я─п╦ я█я┌п╬п╪ п╠я▀я┌я▄
+п╡п╫п╦п╪п╟я┌п╣п╩я▄п╫я▀п╪, я┤я┌п╬п╠я▀ п╫п╣ п╢п╬п╠п╟п╡п╦я┌я▄ я█я┌п╦ п╤п╣ п╪п╟пЁп╦я┤п╣я│п╨п╦п╣ я│п╦п╪п╡п╬п╩я▀ п╡
+<tt>/ets/issue.net</tt>, п╨п╬я┌п╬я─я▀п╧ п╦я│п©п╬п╩я▄п╥я┐п╣я┌я│я▐ п╢п╩я▐ п╡я│п╣я┘
+<tt>telnet</tt>&#8212;я│п╣я│я│п╦п╧, п╟ п╫п╣ п╢п╩я▐ п╨п╬п╫я│п╬п╩п╦.</p></li></ul></div><p>п°п╟пЁп╦я┤п╣я│п╨п╟я▐ п©п╬я│п╩п╣п╢п╬п╡п╟я┌п╣п╩я▄п╫п╬я│я┌я▄ п╫п╣п╬п╠я┘п╬п╢п╦п╪п╟ п╢п╩я▐ п©п╣я─п╣п╨п╬п╢п╦я─п╬п╡п╨п╦
+п╡я▀п╡п╬п╢п╟ я│п╦п╪п╡п╬п╩п╬п╡ п╫п╟ я█п╨я─п╟п╫, п╣я│п╩п╦ п╡я▀ п╦я│п©п╬п╩я▄п╥я┐п╣я┌п╣ CP866 я┬я─п╦я└я┌я▀. п·п╫п╟
+я─п╟п╠п╬я┌п╟п╣я┌, п╦ я█я┌п╬пЁп╬ п╢п╬я│я┌п╟я┌п╬я┤п╫п╬ п╢п╩я▐ я│п©п╬п╨п╬п╧п╫п╬п╧ п╤п╦п╥п╫п╦. п·п╢п╫п╟п╨п╬, п╣я│п╩п╦ п╡п╟п╪
+п╩я▌п╠п╬п©я▀я┌п╫п╬, я┌п╬ п©п╬я│п╪п╬я┌я─п╦я┌п╣ п╢п╬п╨я┐п╪п╣п╫я┌п╟я├п╦я▌ п╨ п©п╟п╨п╣я┌я┐ kbd.</p></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch04s02.html">п÷я─п╣п╢.</a>б═</td><td width="20%" align="center"><a accesskey="u" href="ch04.html">пёя─п╬п╡п╣п╫я▄ п╡я▀я┬п╣</a></td><td width="40%" align="right">б═<a accesskey="n" href="ch04s04.html">п║п╩п╣п╢.</a></td></tr><tr><td width="40%" align="left" valign="top">Cyrillic console toolsб═</td><td width="20%" align="center"><a accesskey="h" href="index.html">п²п╟я┤п╟п╩п╬</a></td><td width="40%" align="right" valign="top">б═п÷я─п╬п╡п╣я─п╨п╟ п©я─п╟п╡п╦п╩я▄п╫п╬я│я┌п╦ п╨п╦я─п╦п╩п╩п╦п╥п╟я├п╦п╦ п╨п╬п╫я│п╬п╩п╦</td></tr></table></div></body></html>
